@@ -21,7 +21,7 @@ jobs:
       run: |
         mkdir build
         cd build
-        cmake .
+        cmake ..
         cmake --build .
 
     - name: Check code formatting
