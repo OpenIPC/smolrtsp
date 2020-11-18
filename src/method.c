@@ -1,4 +1,4 @@
-#include <method.h>
+#include <smolrtsp/method.h>
 
 #include <string.h>
 

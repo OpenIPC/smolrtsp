@@ -6,16 +6,16 @@ include_directories(include)
 add_library(
   smolrtsp
   include/smolrtsp.h
-  include/limits.h
-  include/message_body.h
-  include/request.h
-  include/response.h
-  include/user_writer.h
-  include/method.h
+  include/smolrtsp/limits.h
+  include/smolrtsp/message_body.h
+  include/smolrtsp/request.h
+  include/smolrtsp/response.h
+  include/smolrtsp/user_writer.h
+  include/smolrtsp/method.h
   src/method.c
-  include/header.h
+  include/smolrtsp/header.h
   src/header.c
-  include/rtsp_version.h
+  include/smolrtsp/rtsp_version.h
   src/rtsp_version.c)
 
 foreach(TARGET ${BUILDSYSTEM_TARGETS})

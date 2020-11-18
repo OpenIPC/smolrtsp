@@ -1,4 +1,4 @@
-#include <rtsp_version.h>
+#include <smolrtsp/rtsp_version.h>
 
 #include <inttypes.h>
 #include <stdio.h>

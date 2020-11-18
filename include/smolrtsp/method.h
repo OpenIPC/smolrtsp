@@ -1,8 +1,8 @@
 #ifndef SMOLRTSP_METHOD_H
 #define SMOLRTSP_METHOD_H
 
-#include "limits.h"
-#include <user_writer.h>
+#include <smolrtsp/limits.h>
+#include <smolrtsp/user_writer.h>
 
 typedef char SmolRTSP_Method[SMOLRTSP_METHOD_SIZE];
 

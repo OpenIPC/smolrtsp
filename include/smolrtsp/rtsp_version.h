@@ -1,7 +1,7 @@
 #ifndef SMOLRTSP_RTSP_VERSION_H
 #define SMOLRTSP_RTSP_VERSION_H
 
-#include <user_writer.h>
+#include <smolrtsp/user_writer.h>
 
 #include <stdint.h>
 

@@ -1,7 +1,7 @@
 #ifndef SMOLRTSP_HEADER_H
 #define SMOLRTSP_HEADER_H
 
-#include <user_writer.h>
+#include <smolrtsp/user_writer.h>
 
 typedef struct {
     char *key;

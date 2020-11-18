@@ -1,8 +1,8 @@
 #ifndef SMOLRTSP_REQUEST_H
 #define SMOLRTSP_REQUEST_H
 
-#include <header.h>
-#include <message_body.h>
+#include <smolrtsp/header.h>
+#include <smolrtsp/message_body.h>
 
 #include <stddef.h>
 
