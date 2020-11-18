@@ -2,38 +2,34 @@
 
 #include <string.h>
 
-static const char *smolrtsp_header_accept_ranges_vtable_key(void) {
+static const char *SmolRTSP_HeaderAcceptRanges_key(void) {
     return "Accept-Ranges";
 }
 
-static void smolrtsp_header_accept_ranges_vtable_write_value(
-    const void *self, SmolRTSP_Writer writer, const void *user_cx) {
-    {
-        const SmolRTSP_HeaderAcceptRanges *self = (const SmolRTSP_HeaderAcceptRanges *)self;
-
-        for (size_t i = 0; i < self->range_units_count; i++) {
-            const char *range_unit = smolrtsp_range_unit_stringify(self->range_units[i]);
-            writer(strlen(range_unit), (const void *)range_unit, user_cx);
-        }
+static void SmolRTSP_HeaderAcceptRanges_write_value(
+    const SmolRTSP_HeaderAcceptRanges *self, SmolRTSP_Writer writer, const void *user_cx) {
+    for (size_t i = 0; i < self->range_units_count; i++) {
+        const char *range_unit = smolrtsp_range_unit_stringify(self->range_units[i]);
+        writer(strlen(range_unit), (const void *)range_unit, user_cx);
     }
 }
 
-static const SmolRTSP_HeaderVTable smolrtsp_header_accepts_ranges_vtable = {
-    .key = smolrtsp_header_accept_ranges_vtable_key,
-    .write_value = smolrtsp_header_accept_ranges_vtable_write_value,
+static const SmolRTSP_HeaderVTable SmolRTSP_HeaderAcceptRanges_vtable = {
+    .key = SmolRTSP_HeaderAcceptRanges_key,
+    .write_value = SmolRTSP_HeaderAcceptRanges_write_value,
 };
 
-SmolRTSP_HeaderAcceptRanges smolrtsp_header_accepts_ranges_new(
-    size_t range_units_count, const SmolRTSP_RangeUnit *range_units) {
+SmolRTSP_HeaderAcceptRanges
+SmolRTSP_HeaderAcceptRanges_new(size_t range_units_count, const SmolRTSP_RangeUnit *range_units) {
     return (SmolRTSP_HeaderAcceptRanges){
         .range_units_count = range_units_count,
         .range_units = range_units,
     };
 }
 
-SmolRTSP_Header smolrtsp_header_accepts_ranges_to_base(const SmolRTSP_HeaderAcceptRanges *header) {
+SmolRTSP_Header SmolRTSP_HeaderAcceptRanges_base(const SmolRTSP_HeaderAcceptRanges *self) {
     return (SmolRTSP_Header){
-        .vptr = &smolrtsp_header_accepts_ranges_vtable,
-        .self = (const void *)header,
+        .vptr = &SmolRTSP_HeaderAcceptRanges_vtable,
+        .self = (const void *)self,
     };
 }

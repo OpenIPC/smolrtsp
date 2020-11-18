@@ -10,8 +10,8 @@ typedef struct {
 } SmolRTSP_HeaderAcceptRanges;
 
 SmolRTSP_HeaderAcceptRanges
-smolrtsp_header_accepts_ranges_new(size_t range_units_count, const SmolRTSP_RangeUnit *range_units);
+SmolRTSP_HeaderAcceptRanges_new(size_t range_units_count, const SmolRTSP_RangeUnit *range_units);
 
-SmolRTSP_Header smolrtsp_header_accepts_ranges_to_base(const SmolRTSP_HeaderAcceptRanges *header);
+SmolRTSP_Header SmolRTSP_HeaderAcceptRanges_base(const SmolRTSP_HeaderAcceptRanges *self);
 
 #endif // SMOLRTSP_KNOWN_HEADERS_ACCEPT_RANGES_H
