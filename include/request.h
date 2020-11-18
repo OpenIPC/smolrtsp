@@ -6,7 +6,7 @@
 #include <stddef.h>
 
 typedef struct {
-    
+
 } SmolRTSP_RequestLine;
 
 typedef struct {
