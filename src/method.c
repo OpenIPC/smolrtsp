@@ -1,6 +1,6 @@
 #include <method.h>
 
-const char *smol_rtsp_method_stringify(SmolRTSP_Method method) {
+const char *smolrtsp_method_stringify(SmolRTSP_Method method) {
 #define ASSOC(tag, string)                                                                         \
     case SmolRTSP_Method##tag:                                                                     \
         return string

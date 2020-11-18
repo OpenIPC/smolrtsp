@@ -14,6 +14,6 @@ typedef enum {
     SmolRTSP_MethodTeardown,
 } SmolRTSP_Method;
 
-const char *smol_rtsp_method_stringify(SmolRTSP_Method method);
+const char *smolrtsp_method_stringify(SmolRTSP_Method method);
 
 #endif // SMOLRTSP_METHOD_H
