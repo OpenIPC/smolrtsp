@@ -5,6 +5,7 @@
 #include <smolrtsp/message_body.h>
 #include <smolrtsp/method.h>
 #include <smolrtsp/request_uri.h>
+#include <smolrtsp/rtsp_version.h>
 
 #include <stddef.h>
 
