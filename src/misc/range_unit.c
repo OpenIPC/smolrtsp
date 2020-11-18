@@ -1,6 +1,6 @@
 #include <misc/range_unit.h>
 
-const char *smolrtsp_range_unit_stringify(SmolRTSP_RangeUnit range_unit) {
+const char *SmolRTSP_RangeUnit_stringify(SmolRTSP_RangeUnit range_unit) {
 #define ASSOC(tag, string)                                                                         \
     case SmolRTSP_RangeUnit##tag:                                                                  \
         return string

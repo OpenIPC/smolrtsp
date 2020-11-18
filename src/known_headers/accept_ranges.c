@@ -9,7 +9,7 @@ static const char *SmolRTSP_HeaderAcceptRanges_key(void) {
 static void SmolRTSP_HeaderAcceptRanges_write_value(
     const SmolRTSP_HeaderAcceptRanges *self, SmolRTSP_Writer writer, const void *user_cx) {
     for (size_t i = 0; i < self->range_units_count; i++) {
-        const char *range_unit = smolrtsp_range_unit_stringify(self->range_units[i]);
+        const char *range_unit = SmolRTSP_RangeUnit_stringify(self->range_units[i]);
         writer(strlen(range_unit), (const void *)range_unit, user_cx);
     }
 }

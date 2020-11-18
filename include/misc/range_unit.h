@@ -10,6 +10,6 @@ typedef enum {
     SmolRTSP_RangeUnitExtensionFormat,
 } SmolRTSP_RangeUnit;
 
-const char *smolrtsp_range_unit_stringify(SmolRTSP_RangeUnit range_unit);
+const char *SmolRTSP_RangeUnit_stringify(SmolRTSP_RangeUnit range_unit);
 
 #endif // SMOLRTSP_MISC_RANGE_UNIT_H
