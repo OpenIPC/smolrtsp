@@ -6,7 +6,6 @@ include_directories(include)
 add_library(
   smolrtsp
   include/smolrtsp.h
-  include/rtsp_version.h
   include/limits.h
   include/message_body.h
   include/request.h
@@ -15,7 +14,9 @@ add_library(
   include/method.h
   src/method.c
   include/header.h
-  src/header.c)
+  src/header.c
+  include/rtsp_version.h
+  src/rtsp_version.c)
 
 foreach(TARGET ${BUILDSYSTEM_TARGETS})
   set_target_properties(TARGET PROPERTIES C_STANDARD 99 C_STANDARD_REQUIRED ON)
