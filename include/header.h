@@ -1,16 +1,47 @@
 #ifndef SMOLRTSP_HEADER_H
 #define SMOLRTSP_HEADER_H
 
-#include <oop.h>
-#include <writer.h>
+#include <user_writer.h>
 
-#include <stddef.h>
+typedef struct {
+    char *key;
+    char *value;
+} SmolRTSP_Header;
 
-SMOLRTSP_INTERFACE(SmolRTSP_Header, {
-    const char *(*key)(void);
-    void (*write_value)(const void *self, SmolRTSP_Writer writer, const void *user_cx);
-});
+#define DEF_HEADERS()                                                                              \
+    X(AcceptRanges, "Accept-Ranges")                                                               \
+    X(CacheControl, "Cache-Control")                                                               \
+    X(Connection, "Connection")                                                                    \
+    X(CSeq, "CSeq")                                                                                \
+    X(Date, "Date")                                                                                \
+    X(MediaProperties, "Media-Properties")                                                         \
+    X(MediaRange, "Media-Range")                                                                   \
+    X(PipelinedRequests, "Pipelined-Requests")                                                     \
+    X(ProxySupported, "Proxy-Supported")                                                           \
+    X(Range, "Range")                                                                              \
+    X(RTPInfo, "RTP-Info")                                                                         \
+    X(Scale, "Scale")                                                                              \
+    X(SeekStyle, "Seek-Style")                                                                     \
+    X(Server, "Server")                                                                            \
+    X(Session, "Session")                                                                          \
+    X(Speed, "Speed")                                                                              \
+    X(Supported, "Supported")                                                                      \
+    X(Timestamp, "Timestamp")                                                                      \
+    X(Transport, "Transport")                                                                      \
+    X(UserAgent, "User-Agent")                                                                     \
+    X(Via, "Via")
 
-#define SMOLRTPS_HEADER SMOLRTPS_INTERFACE_OBJ
+#define X(header, stringification) SmolRTSP_Header##header,
+typedef enum { DEF_HEADERS() } SmolRTSP_KnownHeader;
+#undef X
+
+#define X(header, stringification) [SmolRTSP_Header##header] = stringification,
+static const char smolrtsp_header_names[][21] = {DEF_HEADERS()};
+#undef X
+
+#undef DEF_HEADERS
+
+void
+SmolRTSP_KnownHeader_serialize(SmolRTSP_KnownHeader header, SmolRTSP_UserWriter writer, void *user_cx);
 
 #endif // SMOLRTSP_HEADER_H

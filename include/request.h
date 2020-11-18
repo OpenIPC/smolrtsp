@@ -12,7 +12,7 @@ typedef struct {
 typedef struct {
     SmolRTSP_RequestLine start_line;
     size_t headers_count;
-    const SmolRTSP_Header *headers;
+    SmolRTSP_Header *headers;
     const void *body;
 } SmolRTSP_Request;
 
