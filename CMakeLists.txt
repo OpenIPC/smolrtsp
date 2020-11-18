@@ -6,6 +6,7 @@ include_directories(include)
 add_library(
   smolrtsp
   include/smolrtsp.h
+  include/oop.h
   include/method.h
   src/method.c
   include/rtsp_version.h
