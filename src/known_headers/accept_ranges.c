@@ -14,16 +14,7 @@ static void SmolRTSP_HeaderAcceptRanges_write_value(
     }
 }
 
-SmolRTSP_HeaderAcceptRanges
-SmolRTSP_HeaderAcceptRanges_new(size_t range_units_count, const SmolRTSP_RangeUnit *range_units) {
-    static const SmolRTSP_HeaderVTable vtable = {
-        .key = SmolRTSP_HeaderAcceptRanges_key,
-        .write_value = SmolRTSP_HeaderAcceptRanges_write_value,
-    };
-
-    return (SmolRTSP_HeaderAcceptRanges){
-        .super = vtable,
-        .range_units_count = range_units_count,
-        .range_units = range_units,
-    };
-}
+const SmolRTSP_HeaderVTable SmolRTSP_HeaderAcceptRanges_vtable = {
+    .key = SmolRTSP_HeaderAcceptRanges_key,
+    .write_value = SmolRTSP_HeaderAcceptRanges_write_value,
+};

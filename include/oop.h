@@ -17,6 +17,6 @@
         void *self;                                                                                \
     } Mut##name
 
-#define SMOLRTSP_UPCAST(obj) ({.vptr = (obj).vptr, .self = (obj)})
+#define SMOLRTSP_INTERFACE_OBJ(derived_type, obj) ({.vptr = &derived_type##_vtable, .self = (obj)})
 
 #endif // SMOLRTSP_OOP_H

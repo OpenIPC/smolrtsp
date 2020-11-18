@@ -11,4 +11,6 @@ SMOLRTSP_INTERFACE(SmolRTSP_Header, {
     void (*write_value)(const void *self, SmolRTSP_Writer writer, const void *user_cx);
 });
 
+#define SMOLRTPS_HEADER SMOLRTPS_INTERFACE_OBJ
+
 #endif // SMOLRTSP_HEADER_H
