@@ -8,40 +8,29 @@ typedef struct {
     char *value;
 } SmolRTSP_Header;
 
-#define DEF_HEADERS()                                                                              \
-    X(AcceptRanges, "Accept-Ranges")                                                               \
-    X(CacheControl, "Cache-Control")                                                               \
-    X(Connection, "Connection")                                                                    \
-    X(CSeq, "CSeq")                                                                                \
-    X(Date, "Date")                                                                                \
-    X(MediaProperties, "Media-Properties")                                                         \
-    X(MediaRange, "Media-Range")                                                                   \
-    X(PipelinedRequests, "Pipelined-Requests")                                                     \
-    X(ProxySupported, "Proxy-Supported")                                                           \
-    X(Range, "Range")                                                                              \
-    X(RTPInfo, "RTP-Info")                                                                         \
-    X(Scale, "Scale")                                                                              \
-    X(SeekStyle, "Seek-Style")                                                                     \
-    X(Server, "Server")                                                                            \
-    X(Session, "Session")                                                                          \
-    X(Speed, "Speed")                                                                              \
-    X(Supported, "Supported")                                                                      \
-    X(Timestamp, "Timestamp")                                                                      \
-    X(Transport, "Transport")                                                                      \
-    X(UserAgent, "User-Agent")                                                                     \
-    X(Via, "Via")
+#define SMOLRTSP_HEADER_ACCEPT_RANGES      "Accept-Ranges"
+#define SMOLRTSP_HEADER_CACHE_CONTROL      "Cache-Control"
+#define SMOLRTSP_HEADER_CONNECTION         "Connection"
+#define SMOLRTSP_HEADER_C_SEQ              "CSeq"
+#define SMOLRTSP_HEADER_DATE               "Date"
+#define SMOLRTSP_HEADER_MEDIA_PROPERTIES   "Media-Properties"
+#define SMOLRTSP_HEADER_MEDIA_RANGE        "Media-Range"
+#define SMOLRTSP_HEADER_PIPELINED_REQUESTS "Pipelined-Requests"
+#define SMOLRTSP_HEADER_PROXY_SUPPORTED    "Proxy-Supported"
+#define SMOLRTSP_HEADER_RANGE              "Range"
+#define SMOLRTSP_HEADER_RTP_INFO           "RTP-Info"
+#define SMOLRTSP_HEADER_SCALE              "Scale"
+#define SMOLRTSP_HEADER_SEEK_STYLE         "Seek-Style"
+#define SMOLRTSP_HEADER_SERVER             "Server"
+#define SMOLRTSP_HEADER_SESSION            "Session"
+#define SMOLRTSP_HEADER_SPEED              "Speed"
+#define SMOLRTSP_HEADER_SUPPORTED          "Supported"
+#define SMOLRTSP_HEADER_TIMESTAMP          "Timestamp"
+#define SMOLRTSP_HEADER_TRANSPORT          "Transport"
+#define SMOLRTSP_HEADER_USER_AGENT         "User-Agent"
+#define SMOLRTSP_HEADER_VIA                "Via"
 
-#define X(header, stringification) SmolRTSP_Header##header,
-typedef enum { DEF_HEADERS() } SmolRTSP_KnownHeader;
-#undef X
-
-#define X(header, stringification) [SmolRTSP_Header##header] = stringification,
-static const char smolrtsp_header_names[][21] = {DEF_HEADERS()};
-#undef X
-
-#undef DEF_HEADERS
-
-void
-SmolRTSP_KnownHeader_serialize(SmolRTSP_KnownHeader header, SmolRTSP_UserWriter writer, void *user_cx);
+void SmolRTSP_Header_serialize(
+    const SmolRTSP_Header header, SmolRTSP_UserWriter user_writer, void *user_cx);
 
 #endif // SMOLRTSP_HEADER_H

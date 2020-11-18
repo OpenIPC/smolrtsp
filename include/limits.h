@@ -1,0 +1,8 @@
+#ifndef SMOLRTSP_LIMITS_H
+#define SMOLRTSP_LIMITS_H
+
+#ifndef SMOLRTSP_METHOD_SIZE
+#define SMOLRTSP_METHOD_SIZE 16
+#endif
+
+#endif // SMOLRTSP_LIMITS_H

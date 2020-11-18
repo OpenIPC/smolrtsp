@@ -1,31 +1,23 @@
 #ifndef SMOLRTSP_METHOD_H
 #define SMOLRTSP_METHOD_H
 
+#include "limits.h"
 #include <user_writer.h>
 
-#define DEF_METHODS()                                                                              \
-    X(Describe, "DESCRIBE")                                                                        \
-    X(GetParameter, "GET_PARAMETER")                                                               \
-    X(Options, "OPTIONS")                                                                          \
-    X(Pause, "PAUSE")                                                                              \
-    X(Play, "PLAY")                                                                                \
-    X(PlayNotify, "PLAY_NOTIFY")                                                                   \
-    X(Redirect, "REDIRECT")                                                                        \
-    X(Setup, "SETUP")                                                                              \
-    X(SetParameter, "SET_PARAMETER")                                                               \
-    X(Teardown, "TEARDOWN")
+typedef char SmolRTSP_Method[SMOLRTSP_METHOD_SIZE];
 
-#define X(method, _stringification) SmolRTSP_Method##method,
-typedef enum { DEF_METHODS() } SmolRTSP_Method;
-#undef X
+#define SMOLRTSP_METHOD_DESCRIBE      "DESCRIBE"
+#define SMOLRTSP_METHOD_GET_PARAMETER "GET_PARAMETER"
+#define SMOLRTSP_METHOD_OPTIONS       "OPTIONS"
+#define SMOLRTSP_METHOD_PAUSE         "PAUSE"
+#define SMOLRTSP_METHOD_PLAY          "PLAY"
+#define SMOLRTSP_METHOD_PLAY_NOTIFY   "PLAY_NOTIFY"
+#define SMOLRTSP_METHOD_REDIRECT      "REDIRECT"
+#define SMOLRTSP_METHOD_SETUP         "SETUP"
+#define SMOLRTSP_METHOD_SET_PARAMETER "SET_PARAMETER"
+#define SMOLRTSP_METHOD_TEARDOWN      "TEARDOWN"
 
-#define X(method, stringification) [SmolRTSP_Method##method] = stringification,
-static const char smolrtsp_method_names[][10] = {DEF_METHODS()};
-#undef X
-
-#undef DEF_METHODS
-
-const char *
-SmolRTSP_Method_serialize(SmolRTSP_Method method, SmolRTSP_UserWriter writer, void *user_cx);
+void SmolRTSP_Method_serialize(
+    const SmolRTSP_Method method, SmolRTSP_UserWriter user_writer, void *user_cx);
 
 #endif // SMOLRTSP_METHOD_H

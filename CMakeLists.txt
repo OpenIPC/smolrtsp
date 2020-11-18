@@ -7,6 +7,8 @@ add_library(
   smolrtsp
   include/smolrtsp.h
   include/rtsp_version.h
+  include/limits.h
+  include/message_body.h
   include/request.h
   include/response.h
   include/user_writer.h

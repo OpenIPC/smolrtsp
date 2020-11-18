@@ -2,6 +2,7 @@
 #define SMOLRTSP_RESPONSE_H
 
 #include <header.h>
+#include <message_body.h>
 
 #include <stddef.h>
 
@@ -13,7 +14,7 @@ typedef struct {
     SmolRTSP_ResponseLine start_line;
     size_t headers_count;
     SmolRTSP_Header *headers;
-    const void *body;
+    SmolRTSP_MessageBody body;
 } SmolRTSP_Response;
 
 #endif // SMOLRTSP_RESPONSE_H

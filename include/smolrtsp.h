@@ -1,6 +1,7 @@
 #ifndef SMOLRTSP_H
 #define SMOLRTSP_H
 
+#include "limits.h"
 #include <header.h>
 #include <method.h>
 #include <request.h>
