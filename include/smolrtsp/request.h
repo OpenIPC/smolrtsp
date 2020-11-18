@@ -3,11 +3,15 @@
 
 #include <smolrtsp/header.h>
 #include <smolrtsp/message_body.h>
+#include <smolrtsp/method.h>
+#include <smolrtsp/request_uri.h>
 
 #include <stddef.h>
 
 typedef struct {
-
+    SmolRTSP_Method method;
+    SmolRTSP_RequestURI uri;
+    SmolRTSP_RTSPVersion version;
 } SmolRTSP_RequestLine;
 
 typedef struct {
