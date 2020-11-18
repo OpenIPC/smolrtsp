@@ -17,6 +17,13 @@
         void *self;                                                                                \
     } Mut##name
 
-#define SMOLRTSP_INTERFACE_OBJ(derived_type, obj) ({.vptr = &derived_type##_vtable, .self = (obj)})
+#define SMOLRTSP_VTABLE(interface_name, derived_type)                                              \
+    const interface_name##VTable derived_type##_vtable
+
+#define SMOLRTSP_INTERFACE_OBJ(derived_type, obj)                                                  \
+    ({.vptr = &derived_type##_vtable, .self = (const void *)&(obj)})
+
+#define SMOLRTSP_MUT_INTERFACE_OBJ(derived_type, obj)                                              \
+    ({.vptr = &derived_type##_vtable, .self = (void *)&(obj)})
 
 #endif // SMOLRTSP_OOP_H

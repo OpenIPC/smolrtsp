@@ -9,6 +9,6 @@ typedef struct {
     const SmolRTSP_RangeUnit *range_units;
 } SmolRTSP_HeaderAcceptRanges;
 
-const SmolRTSP_HeaderVTable SmolRTSP_HeaderAcceptRanges_vtable;
+SMOLRTSP_VTABLE(SmolRTSP_Header, SmolRTSP_HeaderAcceptRanges);
 
 #endif // SMOLRTSP_KNOWN_HEADERS_ACCEPT_RANGES_H

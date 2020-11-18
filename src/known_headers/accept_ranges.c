@@ -14,7 +14,7 @@ static void SmolRTSP_HeaderAcceptRanges_write_value(
     }
 }
 
-const SmolRTSP_HeaderVTable SmolRTSP_HeaderAcceptRanges_vtable = {
+SMOLRTSP_VTABLE(SmolRTSP_Header, SmolRTSP_HeaderAcceptRanges) = {
     .key = SmolRTSP_HeaderAcceptRanges_key,
     .write_value = SmolRTSP_HeaderAcceptRanges_write_value,
 };
