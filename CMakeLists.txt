@@ -17,6 +17,7 @@ add_library(
   include/smolrtsp/user_writer.h
   include/smolrtsp/method.h
   include/smolrtsp/header.h
+  include/smolrtsp/header_map.h
   include/smolrtsp/request_parser.h
   include/smolrtsp/response_parser.h
   src/reason_phrase.c
@@ -25,6 +26,7 @@ add_library(
   src/rtsp_version.c
   src/method.c
   src/header.c
+  src/header_map.c
   src/request_parser.c
   src/response_parser.c
   src/parsing_aux.h

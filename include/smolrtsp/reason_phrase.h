@@ -4,11 +4,10 @@
 #include <smolrtsp/deserialization.h>
 #include <smolrtsp/limits.h>
 
-#include <stddef.h>
-
 typedef char SmolRTSP_ReasonPhrase[SMOLRTSP_REASON_PHRASE_SIZE];
 
 SmolRTSP_DeserializeResult SmolRTSP_ReasonPhrase_deserialize(
-    SmolRTSP_ReasonPhrase *restrict phrase, size_t size, const void *restrict data);
+    SmolRTSP_ReasonPhrase *restrict phrase, size_t size, const void *restrict data,
+    size_t *restrict bytes_read);
 
 #endif // SMOLRTSP_REASON_PHRASE_H

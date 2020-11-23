@@ -1,6 +1,8 @@
 #ifndef SMOLRTSP_DESERIALIZATION_H
 #define SMOLRTSP_DESERIALIZATION_H
 
+#include <stddef.h>
+
 #define SMOLRTSP_CRLF "\r\n"
 
 typedef enum {

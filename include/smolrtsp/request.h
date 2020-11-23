@@ -1,14 +1,12 @@
 #ifndef SMOLRTSP_REQUEST_H
 #define SMOLRTSP_REQUEST_H
 
-#include <smolrtsp/header.h>
+#include <smolrtsp/header_map.h>
 #include <smolrtsp/limits.h>
 #include <smolrtsp/message_body.h>
 #include <smolrtsp/method.h>
 #include <smolrtsp/request_uri.h>
 #include <smolrtsp/rtsp_version.h>
-
-#include <stddef.h>
 
 typedef struct {
     SmolRTSP_Method method;
@@ -18,8 +16,7 @@ typedef struct {
 
 typedef struct {
     SmolRTSP_RequestLine start_line;
-    size_t headers_count;
-    SmolRTSP_Header headers[SMOLRTSP_MAX_REQUEST_HEADERS];
+    SmolRTSP_HeaderMap header_map;
     SmolRTSP_MessageBody body;
 } SmolRTSP_Request;
 

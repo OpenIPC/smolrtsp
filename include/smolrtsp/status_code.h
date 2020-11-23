@@ -3,7 +3,6 @@
 
 #include <smolrtsp/deserialization.h>
 
-#include <stddef.h>
 #include <stdint.h>
 
 typedef uint_least16_t SmolRTSP_StatusCode;

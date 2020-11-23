@@ -5,8 +5,6 @@
 #include <smolrtsp/limits.h>
 #include <smolrtsp/user_writer.h>
 
-#include <stddef.h>
-
 typedef char SmolRTSP_Method[SMOLRTSP_METHOD_SIZE];
 
 #define SMOLRTSP_METHOD_DESCRIBE      "DESCRIBE"
@@ -23,6 +21,7 @@ typedef char SmolRTSP_Method[SMOLRTSP_METHOD_SIZE];
 void SmolRTSP_Method_serialize(
     const SmolRTSP_Method method, SmolRTSP_UserWriter user_writer, void *user_cx);
 SmolRTSP_DeserializeResult SmolRTSP_Method_deserialize(
-    SmolRTSP_Method *restrict method, size_t size, const void *restrict data);
+    SmolRTSP_Method *restrict method, size_t size, const void *restrict data,
+    size_t *restrict bytes_read);
 
 #endif // SMOLRTSP_METHOD_H
