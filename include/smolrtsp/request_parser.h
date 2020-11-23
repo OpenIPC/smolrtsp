@@ -14,6 +14,7 @@ typedef enum {
     SmolRTSP_ParseRequestResultMethodParsed,
     SmolRTSP_ParseRequestResultRequestURIParsed,
     SmolRTSP_ParseRequestResultRTSPVersionParsed,
+    SmolRTSP_ParseRequestResultHeaderParsed,
     SmolRTSP_ParseRequestResultHeaderMapParsed,
     SmolRTSP_ParseRequestResultOk,
     SmolRTSP_ParseRequestResultErr,

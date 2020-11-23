@@ -32,6 +32,7 @@ typedef struct {
 #define SMOLRTSP_HEADER_NAME_TRANSPORT          "Transport"
 #define SMOLRTSP_HEADER_NAME_USER_AGENT         "User-Agent"
 #define SMOLRTSP_HEADER_NAME_VIA                "Via"
+#define SMOLRTSP_HEADER_NAME_CONTENT_LENGTH     "Content-Length"
 
 // Request-header fields:
 #define SMOLRTSP_HEADER_NAME_ACCEPT              "Accept"

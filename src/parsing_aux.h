@@ -3,7 +3,6 @@
 
 #include <smolrtsp/deserialization.h>
 
-#include <stddef.h>
 #include <stdint.h>
 
 typedef const void *SmolRTSP_Cursor;

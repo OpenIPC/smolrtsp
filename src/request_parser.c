@@ -2,6 +2,7 @@
 #include <smolrtsp/request_parser.h>
 
 #include <stdbool.h>
+#include <stdio.h>
 #include <stdlib.h>
 
 struct SmolRTSP_RequestParser {
@@ -25,6 +26,9 @@ void SmolRTSP_RequestParser_free(SmolRTSP_RequestParser *parser) {
     free(parser);
 }
 
+typedef SmolRTSP_DeserializeResult (*Deserializer)(
+    void *restrict self, size_t size, const void *restrict data, size_t *restrict bytes_read);
+
 SmolRTSP_ParseRequestResult SmolRTSP_RequestParser_parse(
     SmolRTSP_RequestParser *restrict parser, SmolRTSP_Request *restrict request, size_t size,
     const void *restrict data) {
@@ -34,9 +38,6 @@ SmolRTSP_ParseRequestResult SmolRTSP_RequestParser_parse(
     }
 
     parser->cursor = data;
-
-    typedef SmolRTSP_DeserializeResult (*Deserializer)(
-        void *restrict self, size_t size, const void *restrict data, size_t *restrict bytes_read);
 
     typedef struct {
         Deserializer deserializer;
@@ -55,7 +56,8 @@ SmolRTSP_ParseRequestResult SmolRTSP_RequestParser_parse(
         ASSOC(NothingParsed, Method, &request->start_line.method),
         ASSOC(MethodParsed, RequestURI, &request->start_line.uri),
         ASSOC(RequestURIParsed, RTSPVersion, &request->start_line.version),
-        ASSOC(HeaderMapParsed, HeaderMap, &request->header_map),
+        ASSOC(HeaderParsed, HeaderMap, &request->header_map),
+        [SmolRTSP_ParseRequestResultHeaderMapParsed] = {NULL, NULL, 0},
     };
 
 #undef ASSOC
@@ -72,8 +74,25 @@ SmolRTSP_ParseRequestResult SmolRTSP_RequestParser_parse(
         switch (res) {
         case SmolRTSP_DeserializeResultOk:
             if (parser->state == SmolRTSP_ParseRequestResultHeaderMapParsed) {
-                parser->state = SmolRTSP_ParseRequestResultOk;
-                return parser->state;
+                const char *content_length_value;
+                if ((content_length_value = SmolRTSP_HeaderMap_find(
+                         &request->header_map, SMOLRTSP_HEADER_NAME_CONTENT_LENGTH)) == NULL) {
+                    request->body = NULL;
+                    parser->state = SmolRTSP_ParseRequestResultOk;
+                    return parser->state;
+                }
+
+                size_t content_length;
+                if (sscanf(content_length_value, "%zd", &content_length) != 1) {
+                    parser->state = SmolRTSP_ParseRequestResultErr;
+                    return parser->state;
+                }
+
+                if (size < content_length) {
+                    return parser->state;
+                }
+
+                request->body = data;
             }
 
             parser->state = transition.next_state_if_ok;
