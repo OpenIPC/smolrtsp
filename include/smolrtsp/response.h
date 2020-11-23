@@ -1,7 +1,7 @@
 #ifndef SMOLRTSP_RESPONSE_H
 #define SMOLRTSP_RESPONSE_H
 
-#include <smolrtsp/header.h>
+#include <smolrtsp/header_map.h>
 #include <smolrtsp/limits.h>
 #include <smolrtsp/message_body.h>
 #include <smolrtsp/reason_phrase.h>
@@ -18,8 +18,7 @@ typedef struct {
 
 typedef struct {
     SmolRTSP_ResponseLine start_line;
-    size_t headers_count;
-    SmolRTSP_Header headers[SMOLRTSP_MAX_RESPONSE_HEADERS];
+    SmolRTSP_HeaderMap header_map;
     SmolRTSP_MessageBody body;
 } SmolRTSP_Response;
 
