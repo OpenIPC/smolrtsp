@@ -1,7 +1,6 @@
 #ifndef SMOLRTSP_HEADER_H
 #define SMOLRTSP_HEADER_H
 
-#include <smolrtsp/deserialization.h>
 #include <smolrtsp/limits.h>
 #include <smolrtsp/user_writer.h>
 
@@ -67,9 +66,5 @@ typedef struct {
 
 void SmolRTSP_Header_serialize(
     const SmolRTSP_Header header, SmolRTSP_UserWriter user_writer, void *user_cx);
-
-SmolRTSP_DeserializeResult SmolRTSP_Header_deserialize(
-    SmolRTSP_Header *restrict header, size_t size, const void *restrict data,
-    size_t *restrict bytes_read);
 
 #endif // SMOLRTSP_HEADER_H

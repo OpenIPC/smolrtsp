@@ -3,8 +3,6 @@
 
 #include <stddef.h>
 
-#define SMOLRTSP_CRLF "\r\n"
-
 typedef enum {
     SmolRTSP_DeserializeResultOk,
     SmolRTSP_DeserializeResultErr,

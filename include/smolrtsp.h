@@ -4,6 +4,7 @@
 #include <smolrtsp/limits.h>
 
 #include <smolrtsp/deserialization.h>
+#include <smolrtsp/deserializers.h>
 #include <smolrtsp/header.h>
 #include <smolrtsp/message_body.h>
 #include <smolrtsp/method.h>

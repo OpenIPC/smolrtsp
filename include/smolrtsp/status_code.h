@@ -1,8 +1,6 @@
 #ifndef SMOLRTSP_STATUS_CODE_H
 #define SMOLRTSP_STATUS_CODE_H
 
-#include <smolrtsp/deserialization.h>
-
 #include <stdint.h>
 
 typedef uint_least16_t SmolRTSP_StatusCode;
@@ -55,8 +53,5 @@ typedef uint_least16_t SmolRTSP_StatusCode;
 #define SMOLRTSP_STATUS_CODE_RTSP_VERSION_NOT_SUPPORTED             505
 #define SMOLRTSP_STATUS_CODE_OPTION_NOT_SUPPORTED                   551
 #define SMOLRTSP_STATUS_CODE_PROXY_UNAVAILABLE                      553
-
-SmolRTSP_DeserializeResult SmolRTSP_StatusCode_deserialize(
-    SmolRTSP_StatusCode *restrict code, size_t size, const void *restrict data);
 
 #endif // SMOLRTSP_STATUS_CODE_H

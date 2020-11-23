@@ -14,16 +14,4 @@ void SmolRTSP_Header_serialize(
 
 SmolRTSP_DeserializeResult SmolRTSP_Header_deserialize(
     SmolRTSP_Header *restrict header, size_t size, const void *restrict data,
-    size_t *restrict bytes_read) {
-    SmolRTSP_Header parsed_header;
-
-    SmolRTSP_DeserializeResult res = SmolRTSP_parse(
-        sizeof(parsed_header), size, data, "%[^:] %[^" SMOLRTSP_CRLF "]%n", 3, &parsed_header.key,
-        &parsed_header.value, bytes_read);
-
-    if (res == SmolRTSP_DeserializeResultOk) {
-        memcpy(header, &parsed_header, sizeof(parsed_header));
-    }
-
-    return res;
-}
+    size_t *restrict bytes_read) {}

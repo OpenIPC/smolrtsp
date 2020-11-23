@@ -7,6 +7,8 @@ add_library(
   smolrtsp
   include/smolrtsp.h
   include/smolrtsp/limits.h
+  include/smolrtsp/deserializers.h
+  include/smolrtsp/user_writer.h
   include/smolrtsp/message_body.h
   include/smolrtsp/reason_phrase.h
   include/smolrtsp/request_uri.h
@@ -14,12 +16,10 @@ add_library(
   include/smolrtsp/rtsp_version.h
   include/smolrtsp/request.h
   include/smolrtsp/response.h
-  include/smolrtsp/user_writer.h
   include/smolrtsp/method.h
   include/smolrtsp/header.h
   include/smolrtsp/header_map.h
-  include/smolrtsp/request_parser.h
-  include/smolrtsp/response_parser.h
+  src/message_body.c
   src/reason_phrase.c
   src/request_uri.c
   src/status_code.c
@@ -27,6 +27,22 @@ add_library(
   src/method.c
   src/header.c
   src/header_map.c
+  include/smolrtsp/deserializers/header_map.h
+  include/smolrtsp/deserializers/header.h
+  include/smolrtsp/deserializers/message_body.h
+  include/smolrtsp/deserializers/method.h
+  include/smolrtsp/deserializers/reason_phrase.h
+  include/smolrtsp/deserializers/rtsp_version.h
+  include/smolrtsp/deserializers/status_code.h
+  src/deserializers/header_map.c
+  src/deserializers/header.c
+  src/deserializers/message_body.c
+  src/deserializers/method.c
+  src/deserializers/reason_phrase.c
+  src/deserializers/rtsp_version.c
+  src/deserializers/status_code.c
+  include/smolrtsp/request_parser.h
+  include/smolrtsp/response_parser.h
   src/request_parser.c
   src/response_parser.c
   src/parsing_aux.h

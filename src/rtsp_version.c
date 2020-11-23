@@ -18,19 +18,3 @@ void SmolRTSP_RTSPVersion_serialize(
     user_writer(strlen(dot), (const void *)dot, user_cx);
     user_writer(strlen(major), (const void *)major, user_cx);
 }
-
-SmolRTSP_DeserializeResult SmolRTSP_RTSPVersion_deserialize(
-    SmolRTSP_RTSPVersion *restrict version, size_t size, const void *restrict data,
-    size_t *restrict bytes_read) {
-    uint_least8_t major, minor;
-    SmolRTSP_DeserializeResult res = SmolRTSP_parse(
-        SMOLRTSP_RTSP_VERSION_SIZE, size, data, "RTSP/%" SCNuLEAST8 ".%" SCNuLEAST8 "%n", 3, &major,
-        &minor, bytes_read);
-
-    if (res == SmolRTSP_DeserializeResultOk) {
-        version->major = major;
-        version->minor = minor;
-    }
-
-    return res;
-}
