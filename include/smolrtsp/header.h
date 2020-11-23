@@ -1,11 +1,13 @@
 #ifndef SMOLRTSP_HEADER_H
 #define SMOLRTSP_HEADER_H
 
+#include <smolrtsp/deserialization.h>
+#include <smolrtsp/limits.h>
 #include <smolrtsp/user_writer.h>
 
 typedef struct {
-    char *key;
-    char *value;
+    char key[SMOLRTSP_HEADER_KEY_SIZE];
+    char value[SMOLRTSP_HEADER_VALUE_SIZE];
 } SmolRTSP_Header;
 
 // General-header fields:
@@ -64,5 +66,8 @@ typedef struct {
 
 void SmolRTSP_Header_serialize(
     const SmolRTSP_Header header, SmolRTSP_UserWriter user_writer, void *user_cx);
+
+SmolRTSP_DeserializeResult SmolRTSP_Header_deserialize(
+    SmolRTSP_Header *restrict header, size_t size, const void *restrict data);
 
 #endif // SMOLRTSP_HEADER_H
