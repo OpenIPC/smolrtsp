@@ -8,10 +8,10 @@ struct SmolRTSP_MethodDeserializer;
 typedef struct SmolRTSP_MethodDeserializer SmolRTSP_MethodDeserializer;
 
 SmolRTSP_MethodDeserializer *SmolRTSP_MethodDeserializer_new(void);
-void SmolRTSP_MethodDeserializer_free(SmolRTSP_MethodDeserializer *deserializer);
+void SmolRTSP_MethodDeserializer_free(SmolRTSP_MethodDeserializer *self);
 
 SmolRTSP_DeserializeResult SmolRTSP_MethodDeserializer_deserialize(
-    SmolRTSP_MethodDeserializer *restrict deserializer, SmolRTSP_Method *restrict method,
-    size_t size, const void *restrict data, size_t *restrict bytes_read);
+    SmolRTSP_MethodDeserializer *restrict self, SmolRTSP_Method *restrict method, size_t size,
+    const void *restrict data, size_t *restrict bytes_read);
 
 #endif // SMOLRTSP_DESERIALIZERS_METHOD_H

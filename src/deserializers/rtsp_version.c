@@ -12,10 +12,10 @@ SmolRTSP_RTSPVersionDeserializer *SmolRTSP_RTSPVersionDeserializer_new(void) {
     return &hollow_deserializer;
 }
 
-void SmolRTSP_RTSPVersionDeserializer_free(SmolRTSP_RTSPVersionDeserializer *deserializer) {}
+void SmolRTSP_RTSPVersionDeserializer_free(SmolRTSP_RTSPVersionDeserializer *self) {}
 
 SmolRTSP_DeserializeResult SmolRTSP_RTSPVersionDeserializer_deserialize(
-    SmolRTSP_RTSPVersionDeserializer *restrict deserializer, SmolRTSP_RTSPVersion *restrict version,
+    SmolRTSP_RTSPVersionDeserializer *restrict self, SmolRTSP_RTSPVersion *restrict version,
     size_t size, const void *restrict data, size_t *restrict bytes_read) {
     SmolRTSP_RTSPVersion parsed_version;
     SmolRTSP_DeserializeResult res = SmolRTSP_parse(

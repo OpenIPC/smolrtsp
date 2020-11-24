@@ -11,11 +11,11 @@ SmolRTSP_RequestURIDeserializer *SmolRTSP_RequestURIDeserializer_new(void) {
     return &hollow_deserializer;
 }
 
-void SmolRTSP_RequestURIDeserializer_free(SmolRTSP_RequestURIDeserializer *deserializer) {}
+void SmolRTSP_RequestURIDeserializer_free(SmolRTSP_RequestURIDeserializer *self) {}
 
 SmolRTSP_DeserializeResult SmolRTSP_RequestURIDeserializer_deserialize(
-    SmolRTSP_RequestURIDeserializer *restrict deserializer, SmolRTSP_RequestURI *restrict uri,
-    size_t size, const void *restrict data, size_t *restrict bytes_read) {
+    SmolRTSP_RequestURIDeserializer *restrict self, SmolRTSP_RequestURI *restrict uri, size_t size,
+    const void *restrict data, size_t *restrict bytes_read) {
     SmolRTSP_RequestURI parsed_uri;
 
     SmolRTSP_DeserializeResult res =

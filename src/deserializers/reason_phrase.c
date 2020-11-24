@@ -11,12 +11,11 @@ SmolRTSP_ReasonPhraseDeserializer *SmolRTSP_ReasonPhraseDeserializer_new(void) {
     return &hollow_deserializer;
 }
 
-void SmolRTSP_ReasonPhraseDeserializer_free(SmolRTSP_ReasonPhraseDeserializer *deserializer) {}
+void SmolRTSP_ReasonPhraseDeserializer_free(SmolRTSP_ReasonPhraseDeserializer *self) {}
 
 SmolRTSP_DeserializeResult SmolRTSP_ReasonPhraseDeserializer_deserialize(
-    SmolRTSP_ReasonPhraseDeserializer *restrict deserializer,
-    SmolRTSP_ReasonPhrase *restrict phrase, size_t size, const void *restrict data,
-    size_t *restrict bytes_read) {
+    SmolRTSP_ReasonPhraseDeserializer *restrict self, SmolRTSP_ReasonPhrase *restrict phrase,
+    size_t size, const void *restrict data, size_t *restrict bytes_read) {
     SmolRTSP_ReasonPhrase parsed_phrase;
 
     SmolRTSP_DeserializeResult res = SmolRTSP_parse(

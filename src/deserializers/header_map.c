@@ -9,11 +9,11 @@ SmolRTSP_HeaderMapDeserializer *SmolRTSP_HeaderMapDeserializer_new(void) {
     return &hollow_deserializer;
 }
 
-void SmolRTSP_HeaderMapDeserializer_free(SmolRTSP_HeaderMapDeserializer *deserializer) {}
+void SmolRTSP_HeaderMapDeserializer_free(SmolRTSP_HeaderMapDeserializer *self) {}
 
 SmolRTSP_DeserializeResult SmolRTSP_HeaderMapDeserializer_deserialize(
-    SmolRTSP_HeaderMapDeserializer *restrict deserializer, SmolRTSP_HeaderMap *restrict map,
-    size_t size, const void *restrict data, size_t *restrict bytes_read) {
+    SmolRTSP_HeaderMapDeserializer *restrict self, SmolRTSP_HeaderMap *restrict map, size_t size,
+    const void *restrict data, size_t *restrict bytes_read) {
     SmolRTSP_HeaderDeserializer *header_deserializer = SmolRTSP_HeaderDeserializer_new();
 
     for (size_t i = map->count; i < SMOLRTSP_HEADERS_COUNT; i++) {

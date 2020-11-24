@@ -8,10 +8,10 @@ struct SmolRTSP_MessageBodyDeserializer;
 typedef struct SmolRTSP_MessageBodyDeserializer SmolRTSP_MessageBodyDeserializer;
 
 SmolRTSP_MessageBodyDeserializer *SmolRTSP_MessageBodyDeserializer_new(size_t content_length);
-void SmolRTSP_MessageBodyDeserializer_free(SmolRTSP_MessageBodyDeserializer *deserializer);
+void SmolRTSP_MessageBodyDeserializer_free(SmolRTSP_MessageBodyDeserializer *self);
 
 SmolRTSP_DeserializeResult SmolRTSP_MessageBodyDeserializer_deserialize(
-    SmolRTSP_MessageBodyDeserializer *restrict deserializer, SmolRTSP_MessageBody *restrict body,
+    SmolRTSP_MessageBodyDeserializer *restrict self, SmolRTSP_MessageBody *restrict body,
     size_t size, const void *restrict data, size_t *restrict bytes_read);
 
 #endif // SMOLRTSP_DESERIALIZERS_MESSAGE_BODY_H
