@@ -1,6 +1,8 @@
 #include "../parsing_aux.h"
 #include <smolrtsp/deserializers/header.h>
 
+#include <string.h>
+
 struct SmolRTSP_HeaderDeserializer {
     char nothing;
 } hollow_deserializer;

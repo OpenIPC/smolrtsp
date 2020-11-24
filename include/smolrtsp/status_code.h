@@ -7,6 +7,7 @@ typedef uint_least16_t SmolRTSP_StatusCode;
 
 #define SMOLRTSP_STATUS_CODE_CONTINUE                               100
 #define SMOLRTSP_STATUS_CODE_OK                                     200
+#define SMOLRTSP_STATUS_LOW_ON_STORAGE_SPACE                        250
 #define SMOLRTSP_STATUS_CODE_MOVED_PERMANENTLY                      301
 #define SMOLRTSP_STATUS_CODE_FOUND                                  302
 #define SMOLRTSP_STATUS_CODE_SEE_OTHER                              303

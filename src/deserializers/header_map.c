@@ -1,3 +1,4 @@
+#include <smolrtsp/deserializers/header.h>
 #include <smolrtsp/deserializers/header_map.h>
 
 struct SmolRTSP_HeaderMapDeserializer {
@@ -15,8 +16,10 @@ SmolRTSP_DeserializeResult SmolRTSP_HeaderMapDeserializer_deserialize(
     size_t size, const void *restrict data, size_t *restrict bytes_read) {
     for (size_t i = map->count; i < SMOLRTSP_HEADERS_COUNT; i++) {
         size_t bytes_read_temp;
+        SmolRTSP_HeaderDeserializer *header_deserializer = SmolRTSP_HeaderDeserializer_new();
 
-        switch (SmolRTSP_Header_deserialize(&map->headers[i], size, data, &bytes_read_temp)) {
+        switch (SmolRTSP_HeaderDeserializer_deserialize(
+            header_deserializer, &map->headers[i], size, data, &bytes_read_temp)) {
         case SmolRTSP_DeserializeResultOk:
             *bytes_read += bytes_read_temp;
             break;
@@ -25,5 +28,7 @@ SmolRTSP_DeserializeResult SmolRTSP_HeaderMapDeserializer_deserialize(
         case SmolRTSP_DeserializeResultNeedMore:
             return SmolRTSP_DeserializeResultNeedMore;
         }
+
+        SmolRTSP_HeaderDeserializer_free(header_deserializer);
     }
 }
