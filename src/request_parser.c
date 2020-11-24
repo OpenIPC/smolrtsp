@@ -97,7 +97,7 @@ SmolRTSP_ParseRequestResult SmolRTSP_RequestParser_parse(
                 const char *content_length_value;
                 if ((content_length_value = SmolRTSP_HeaderMap_find(
                          &request->header_map, SMOLRTSP_HEADER_NAME_CONTENT_LENGTH)) == NULL) {
-                    request->body = NULL;
+                    request->body.data = NULL;
                     parser->state = SmolRTSP_ParseRequestResultMessageBodyParsed;
                     return parser->state;
                 }

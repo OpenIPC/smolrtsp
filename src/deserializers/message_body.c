@@ -28,6 +28,7 @@ SmolRTSP_DeserializeResult SmolRTSP_MessageBodyDeserializer_deserialize(
         return SmolRTSP_DeserializeResultNeedMore;
     }
 
-    *body = data;
+    body->size = deserializer->content_length;
+    body->data = data;
     return SmolRTSP_DeserializeResultOk;
 }

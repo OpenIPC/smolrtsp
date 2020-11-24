@@ -14,21 +14,20 @@ void SmolRTSP_HeaderMapDeserializer_free(SmolRTSP_HeaderMapDeserializer *deseria
 SmolRTSP_DeserializeResult SmolRTSP_HeaderMapDeserializer_deserialize(
     SmolRTSP_HeaderMapDeserializer *restrict deserializer, SmolRTSP_HeaderMap *restrict map,
     size_t size, const void *restrict data, size_t *restrict bytes_read) {
+    SmolRTSP_HeaderDeserializer *header_deserializer = SmolRTSP_HeaderDeserializer_new();
+
     for (size_t i = map->count; i < SMOLRTSP_HEADERS_COUNT; i++) {
         size_t bytes_read_temp;
-        SmolRTSP_HeaderDeserializer *header_deserializer = SmolRTSP_HeaderDeserializer_new();
 
-        switch (SmolRTSP_HeaderDeserializer_deserialize(
-            header_deserializer, &map->headers[i], size, data, &bytes_read_temp)) {
-        case SmolRTSP_DeserializeResultOk:
+        SmolRTSP_DeserializeResult res;
+        if ((res = SmolRTSP_HeaderDeserializer_deserialize(
+                 header_deserializer, &map->headers[i], size, data, &bytes_read_temp)) ==
+            SmolRTSP_DeserializeResultOk) {
             *bytes_read += bytes_read_temp;
-            break;
-        case SmolRTSP_DeserializeResultErr:
-            return SmolRTSP_DeserializeResultErr;
-        case SmolRTSP_DeserializeResultNeedMore:
-            return SmolRTSP_DeserializeResultNeedMore;
+        } else {
+            return res;
         }
-
-        SmolRTSP_HeaderDeserializer_free(header_deserializer);
     }
+
+    SmolRTSP_HeaderDeserializer_free(header_deserializer);
 }

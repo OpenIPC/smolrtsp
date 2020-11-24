@@ -1,6 +1,16 @@
 #ifndef SMOLRTSP_MESSAGE_BODY_H
 #define SMOLRTSP_MESSAGE_BODY_H
 
-typedef const void *SmolRTSP_MessageBody;
+#include <smolrtsp/user_writer.h>
+
+#include <stddef.h>
+
+typedef struct {
+    size_t size;
+    const void *data;
+} SmolRTSP_MessageBody;
+
+void SmolRTSP_MessageBody_serialize(
+    const SmolRTSP_MessageBody *restrict body, SmolRTSP_UserWriter user_writer, void *user_cx);
 
 #endif // SMOLRTSP_MESSAGE_BODY_H

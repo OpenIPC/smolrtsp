@@ -11,6 +11,6 @@ typedef struct {
 } SmolRTSP_RTSPVersion;
 
 void SmolRTSP_RTSPVersion_serialize(
-    const SmolRTSP_RTSPVersion version, SmolRTSP_UserWriter user_writer, void *user_cx);
+    const SmolRTSP_RTSPVersion *restrict version, SmolRTSP_UserWriter user_writer, void *user_cx);
 
 #endif // SMOLRTSP_RTSP_VERSION_H

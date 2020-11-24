@@ -50,6 +50,6 @@ typedef struct {
 #define SMOLRTSP_HEADER_NAME_WWW_AUTHENTICATE   "WWW-Authenticate"
 
 void SmolRTSP_Header_serialize(
-    const SmolRTSP_Header header, SmolRTSP_UserWriter user_writer, void *user_cx);
+    const SmolRTSP_Header *restrict header, SmolRTSP_UserWriter user_writer, void *user_cx);
 
 #endif // SMOLRTSP_HEADER_H

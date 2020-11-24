@@ -19,6 +19,6 @@ typedef char SmolRTSP_Method[SMOLRTSP_METHOD_SIZE];
 #define SMOLRTSP_METHOD_RECORD        "RECORD"
 
 void SmolRTSP_Method_serialize(
-    const SmolRTSP_Method method, SmolRTSP_UserWriter user_writer, void *user_cx);
+    const SmolRTSP_Method *restrict method, SmolRTSP_UserWriter user_writer, void *user_cx);
 
 #endif // SMOLRTSP_METHOD_H

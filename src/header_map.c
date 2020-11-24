@@ -16,7 +16,7 @@ char *SmolRTSP_HeaderMap_find(SmolRTSP_HeaderMap *restrict map, const char *rest
 void SmolRTSP_HeaderMap_serialize(
     const SmolRTSP_HeaderMap *restrict map, SmolRTSP_UserWriter user_writer, void *user_cx) {
     for (size_t i = 0; i < map->count; i++) {
-        SmolRTSP_Header_serialize(map->headers[i], user_writer, user_cx);
+        SmolRTSP_Header_serialize(&map->headers[i], user_writer, user_cx);
     }
 
     user_writer(strlen(SMOLRTSP_CRLF), SMOLRTSP_CRLF, user_cx);
