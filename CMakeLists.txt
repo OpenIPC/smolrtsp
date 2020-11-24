@@ -50,6 +50,4 @@ add_library(
   src/parsing_aux.h
   src/parsing_aux.c)
 
-foreach(TARGET ${BUILDSYSTEM_TARGETS})
-  set_target_properties(TARGET PROPERTIES C_STANDARD 99 C_STANDARD_REQUIRED ON)
-endforeach()
+set_target_properties(smolrtsp PROPERTIES C_STANDARD 99 C_STANDARD_REQUIRED ON)
