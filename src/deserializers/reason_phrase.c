@@ -23,7 +23,7 @@ SmolRTSP_DeserializeResult SmolRTSP_ReasonPhraseDeserializer_deserialize(
         bytes_read);
 
     if (res == SmolRTSP_DeserializeResultOk) {
-        strncpy((char *)phrase, parsed_phrase, sizeof(parsed_phrase));
+        strncpy(*phrase, parsed_phrase, sizeof(parsed_phrase));
     }
 
     return res;

@@ -22,7 +22,7 @@ SmolRTSP_DeserializeResult SmolRTSP_MethodDeserializer_deserialize(
         SmolRTSP_parse(SMOLRTSP_METHOD_SIZE, size, data, "%s%n", 2, parsed_method, bytes_read);
 
     if (res == SmolRTSP_DeserializeResultOk) {
-        strncpy((char *)method, parsed_method, sizeof(parsed_method));
+        strncpy(*method, parsed_method, sizeof(parsed_method));
     }
 
     return res;

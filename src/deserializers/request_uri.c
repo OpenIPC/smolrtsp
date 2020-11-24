@@ -22,7 +22,7 @@ SmolRTSP_DeserializeResult SmolRTSP_RequestURIDeserializer_deserialize(
         SmolRTSP_parse(SMOLRTSP_REQUEST_URI_SIZE, size, data, "%s%n", 2, parsed_uri, bytes_read);
 
     if (res == SmolRTSP_DeserializeResultOk) {
-        strncpy((char *)uri, parsed_uri, sizeof(parsed_uri));
+        strncpy(*uri, parsed_uri, sizeof(parsed_uri));
     }
 
     return res;
