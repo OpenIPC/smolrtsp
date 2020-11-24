@@ -35,6 +35,7 @@ add_library(
   include/smolrtsp/deserializers/rtsp_version.h
   include/smolrtsp/deserializers/status_code.h
   include/smolrtsp/deserializers/request_uri.h
+  include/smolrtsp/deserializers/request.h
   src/deserializers/header_map.c
   src/deserializers/header.c
   src/deserializers/message_body.c
@@ -43,9 +44,8 @@ add_library(
   src/deserializers/rtsp_version.c
   src/deserializers/status_code.c
   src/deserializers/request_uri.c
-  include/smolrtsp/request_parser.h
+  src/deserializers/request.c
   include/smolrtsp/response_parser.h
-  src/request_parser.c
   src/response_parser.c
   src/parsing_aux.h
   src/parsing_aux.c)
