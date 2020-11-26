@@ -75,21 +75,18 @@ SmolRTSP_DeserializeResult SmolRTSP_RequestDeserializer_deserialize(
         return self->state;
     }
 
-#define ASSOC(current_state, next_entity_to_deserialize, var)                                      \
+#define ASSOC(current_state, next_type, var)                                                       \
     case SmolRTSP_RequestDeserializerState##current_state: {                                       \
-        res = SmolRTSP_##next_entity_to_deserialize##Deserializer_deserialize(                     \
-            self->inner_deserializers.var, size, data);                                            \
-        size_t bytes_read = SmolRTSP_##next_entity_to_deserialize##Deserializer_bytes_read(        \
-            self->inner_deserializers.var);                                                        \
-        self->bytes_read += bytes_read;                                                            \
-        size -= bytes_read;                                                                        \
+        SmolRTSP_##next_type##Deserializer *deserializer = self->inner_deserializers.var;          \
+        res = SmolRTSP_##next_type##Deserializer_deserialize(deserializer, size, data);            \
+        size_t bytes_read = SmolRTSP_##next_type##Deserializer_bytes_read(deserializer);           \
                                                                                                    \
         switch (res) {                                                                             \
         case SmolRTSP_DeserializeResultOk:                                                         \
-            self->state = SmolRTSP_RequestDeserializerState##next_entity_to_deserialize##Parsed;   \
-                                                                                                   \
-            self->inner.var = SmolRTSP_##next_entity_to_deserialize##Deserializer_inner(           \
-                self->inner_deserializers.var);                                                    \
+            self->bytes_read += bytes_read;                                                        \
+            size -= bytes_read;                                                                    \
+            self->state = SmolRTSP_RequestDeserializerState##next_type##Parsed;                    \
+            self->inner.var = SmolRTSP_##next_type##Deserializer_inner(deserializer);              \
                                                                                                    \
             if (self->state == SmolRTSP_RequestDeserializerStateHeaderMapParsed) {                 \
                 const char *content_length_value;                                                  \
@@ -112,7 +109,7 @@ SmolRTSP_DeserializeResult SmolRTSP_RequestDeserializer_deserialize(
             break;                                                                                 \
         case SmolRTSP_DeserializeResultErr:                                                        \
             self->state = SmolRTSP_RequestDeserializerStateErr;                                    \
-            break;                                                                                 \
+            return res;                                                                            \
         case SmolRTSP_DeserializeResultNeedMore:                                                   \
             return res;                                                                            \
         }                                                                                          \
