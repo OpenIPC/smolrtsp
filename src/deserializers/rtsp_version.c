@@ -3,6 +3,7 @@
 #include <smolrtsp/limits.h>
 
 #include <inttypes.h>
+#include <stdlib.h>
 
 struct SmolRTSP_RTSPVersionDeserializer {
     SmolRTSP_RTSPVersion inner;
@@ -36,11 +37,14 @@ size_t SmolRTSP_RTSPVersionDeserializer_bytes_read(SmolRTSP_RTSPVersionDeseriali
 SmolRTSP_DeserializeResult SmolRTSP_RTSPVersionDeserializer_deserialize(
     SmolRTSP_RTSPVersionDeserializer *restrict self, size_t size, const void *restrict data) {
     SmolRTSP_RTSPVersion version;
+    size_t bytes_read;
+
     SmolRTSP_DeserializeResult res = SmolRTSP_parse(
         SMOLRTSP_RTSP_VERSION_SIZE, size, data, "RTSP/%" SCNuLEAST8 ".%" SCNuLEAST8 "%n", 3,
-        &version.major, &version.minor, &self->bytes_read);
+        &version.major, &version.minor, &bytes_read);
 
     if (res == SmolRTSP_DeserializeResultOk) {
+        self->bytes_read += bytes_read;
         self->inner = version;
     }
 

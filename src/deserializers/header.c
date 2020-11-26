@@ -1,6 +1,7 @@
 #include "../parsing_aux.h"
 #include <smolrtsp/deserializers/header.h>
 
+#include <stdlib.h>
 #include <string.h>
 
 struct SmolRTSP_HeaderDeserializer {
@@ -39,9 +40,9 @@ SmolRTSP_DeserializeResult SmolRTSP_HeaderDeserializer_deserialize(
     SmolRTSP_DeserializeResult res = SmolRTSP_parse(
         sizeof(header), size, data, "%[^:] %[^" SMOLRTSP_CRLF "]%n", 3, &header.key, &header.value,
         bytes_read);
-    self->bytes_read += bytes_read;
 
     if (res == SmolRTSP_DeserializeResultOk) {
+        self->bytes_read += bytes_read;
         memcpy(&self->inner, &header, sizeof(header));
     }
 

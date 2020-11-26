@@ -35,11 +35,13 @@ size_t SmolRTSP_MethodDeserializer_bytes_read(SmolRTSP_MethodDeserializer *self)
 SmolRTSP_DeserializeResult SmolRTSP_MethodDeserializer_deserialize(
     SmolRTSP_MethodDeserializer *restrict self, size_t size, const void *restrict data) {
     SmolRTSP_Method method;
+    size_t bytes_read;
 
     SmolRTSP_DeserializeResult res =
-        SmolRTSP_parse(SMOLRTSP_METHOD_SIZE, size, data, "%s%n", 2, method, &self->bytes_read);
+        SmolRTSP_parse(SMOLRTSP_METHOD_SIZE, size, data, "%s%n", 2, method, &bytes_read);
 
     if (res == SmolRTSP_DeserializeResultOk) {
+        self->bytes_read += bytes_read;
         strncpy(self->inner.data, method.data, sizeof(method.data));
     }
 
