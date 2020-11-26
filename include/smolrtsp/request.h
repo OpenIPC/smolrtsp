@@ -2,17 +2,8 @@
 #define SMOLRTSP_REQUEST_H
 
 #include <smolrtsp/header_map.h>
-#include <smolrtsp/limits.h>
 #include <smolrtsp/message_body.h>
-#include <smolrtsp/method.h>
-#include <smolrtsp/request_uri.h>
-#include <smolrtsp/rtsp_version.h>
-
-typedef struct {
-    SmolRTSP_Method method;
-    SmolRTSP_RequestURI uri;
-    SmolRTSP_RTSPVersion version;
-} SmolRTSP_RequestLine;
+#include <smolrtsp/request_line.h>
 
 typedef struct {
     SmolRTSP_RequestLine start_line;

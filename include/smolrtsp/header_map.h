@@ -13,6 +13,6 @@ typedef struct {
 char *SmolRTSP_HeaderMap_find(SmolRTSP_HeaderMap *restrict map, const char *restrict key);
 
 void SmolRTSP_HeaderMap_serialize(
-    const SmolRTSP_HeaderMap *restrict map, SmolRTSP_UserWriter user_writer, void *user_cx);
+    const SmolRTSP_HeaderMap *restrict self, SmolRTSP_UserWriter user_writer, void *user_cx);
 
 #endif // SMOLRTSP_HEADER_MAP_H

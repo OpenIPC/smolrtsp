@@ -58,6 +58,6 @@ typedef uint_least16_t SmolRTSP_StatusCode;
 #define SMOLRTSP_STATUS_CODE_PROXY_UNAVAILABLE                      553
 
 void SmolRTSP_StatusCode_serialize(
-    const SmolRTSP_StatusCode *restrict code, SmolRTSP_UserWriter user_writer, void *user_cx);
+    const SmolRTSP_StatusCode *restrict self, SmolRTSP_UserWriter user_writer, void *user_cx);
 
 #endif // SMOLRTSP_STATUS_CODE_H

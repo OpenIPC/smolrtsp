@@ -7,6 +7,7 @@ add_library(
   smolrtsp
   include/smolrtsp.h
   include/smolrtsp/limits.h
+  src/aux.h
   include/smolrtsp/deserializers.h
   include/smolrtsp/user_writer.h
   include/smolrtsp/message_body.h
@@ -36,6 +37,7 @@ add_library(
   include/smolrtsp/deserializers/status_code.h
   include/smolrtsp/deserializers/request_uri.h
   include/smolrtsp/deserializers/request.h
+  include/smolrtsp/deserializers/request_line.h
   src/deserializers/header_map.c
   src/deserializers/header.c
   src/deserializers/message_body.c
@@ -45,6 +47,7 @@ add_library(
   src/deserializers/status_code.c
   src/deserializers/request_uri.c
   src/deserializers/request.c
+  src/deserializers/request_line.c
   include/smolrtsp/response_parser.h
   src/response_parser.c
   src/parsing_aux.h

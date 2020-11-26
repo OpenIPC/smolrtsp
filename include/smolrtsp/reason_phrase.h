@@ -7,6 +7,6 @@
 typedef char SmolRTSP_ReasonPhrase[SMOLRTSP_REASON_PHRASE_SIZE];
 
 void SmolRTSP_ReasonPhrase_serialize(
-    const SmolRTSP_ReasonPhrase *restrict phrase, SmolRTSP_UserWriter user_writer, void *user_cx);
+    const SmolRTSP_ReasonPhrase *restrict self, SmolRTSP_UserWriter user_writer, void *user_cx);
 
 #endif // SMOLRTSP_REASON_PHRASE_H

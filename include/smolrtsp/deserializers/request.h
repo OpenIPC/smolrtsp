@@ -7,11 +7,8 @@ struct SmolRTSP_RequestDeserializer;
 typedef struct SmolRTSP_RequestDeserializer SmolRTSP_RequestDeserializer;
 
 typedef enum {
-    SmolRTSP_RequestDeserializerStateNothingParsed,
-    SmolRTSP_RequestDeserializerStateMethodParsed,
-    SmolRTSP_RequestDeserializerStateRequestURIParsed,
-    SmolRTSP_RequestDeserializerStateRTSPVersionParsed,
-    SmolRTSP_RequestDeserializerStateHeaderParsed,
+    SmolRTSP_RequestDeserializerStateStart,
+    SmolRTSP_RequestDeserializerStateRequestLineParsed,
     SmolRTSP_RequestDeserializerStateHeaderMapParsed,
     SmolRTSP_RequestDeserializerStateMessageBodyParsed,
     SmolRTSP_RequestDeserializerStateErr,
