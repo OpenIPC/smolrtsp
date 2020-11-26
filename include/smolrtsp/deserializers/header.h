@@ -10,8 +10,10 @@ typedef struct SmolRTSP_HeaderDeserializer SmolRTSP_HeaderDeserializer;
 SmolRTSP_HeaderDeserializer *SmolRTSP_HeaderDeserializer_new(void);
 void SmolRTSP_HeaderDeserializer_free(SmolRTSP_HeaderDeserializer *self);
 
+SmolRTSP_Header SmolRTSP_HeaderDeserializer_inner(SmolRTSP_HeaderDeserializer *self);
+size_t SmolRTSP_HeaderDeserializer_bytes_read(SmolRTSP_HeaderDeserializer *self);
+
 SmolRTSP_DeserializeResult SmolRTSP_HeaderDeserializer_deserialize(
-    SmolRTSP_HeaderDeserializer *restrict self, SmolRTSP_Header *restrict header, size_t size,
-    const void *restrict data, size_t *restrict bytes_read);
+    SmolRTSP_HeaderDeserializer *restrict self, size_t size, const void *restrict data);
 
 #endif // SMOLRTSP_DESERIALIZERS_HEADER_H

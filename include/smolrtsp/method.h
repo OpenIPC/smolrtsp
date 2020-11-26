@@ -4,7 +4,9 @@
 #include <smolrtsp/limits.h>
 #include <smolrtsp/user_writer.h>
 
-typedef char SmolRTSP_Method[SMOLRTSP_METHOD_SIZE];
+typedef struct {
+    char data[SMOLRTSP_METHOD_SIZE];
+} SmolRTSP_Method;
 
 #define SMOLRTSP_METHOD_OPTIONS       "OPTIONS"
 #define SMOLRTSP_METHOD_DESCRIBE      "DESCRIBE"

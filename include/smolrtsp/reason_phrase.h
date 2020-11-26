@@ -4,7 +4,9 @@
 #include <smolrtsp/limits.h>
 #include <smolrtsp/user_writer.h>
 
-typedef char SmolRTSP_ReasonPhrase[SMOLRTSP_REASON_PHRASE_SIZE];
+typedef struct {
+    char data[SMOLRTSP_REASON_PHRASE_SIZE];
+} SmolRTSP_ReasonPhrase;
 
 void SmolRTSP_ReasonPhrase_serialize(
     const SmolRTSP_ReasonPhrase *restrict self, SmolRTSP_UserWriter user_writer, void *user_cx);

@@ -28,7 +28,8 @@ static void InnerDeserializers_free(InnerDeserializers self) {
 
 struct SmolRTSP_RequestDeserializer {
     SmolRTSP_RequestDeserializerState state;
-    SmolRTSP_Cursor cursor;
+    SmolRTSP_Request inner;
+    size_t bytes_read;
     InnerDeserializers inner_deserializers;
 };
 
@@ -39,7 +40,7 @@ SmolRTSP_RequestDeserializer *SmolRTSP_RequestDeserializer_new(void) {
     }
 
     self->state = SmolRTSP_RequestDeserializerStateStart;
-    self->cursor = NULL;
+    self->bytes_read = 0;
     InnerDeserializers_init(&self->inner_deserializers);
 
     return self;
@@ -55,37 +56,46 @@ SmolRTSP_RequestDeserializer_state(const SmolRTSP_RequestDeserializer *self) {
     return self->state;
 }
 
+SmolRTSP_Request SmolRTSP_RequestDeserializer_inner(SmolRTSP_RequestDeserializer *self) {
+    return self->inner;
+}
+
+size_t SmolRTSP_RequestDeserializer_bytes_read(SmolRTSP_RequestDeserializer *self) {
+    return self->bytes_read;
+}
+
 typedef SmolRTSP_DeserializeResult (*Deserializer)(
     void *restrict self, void *restrict entity, size_t size, const void *restrict data,
     size_t *restrict bytes_read);
 
 SmolRTSP_DeserializeResult SmolRTSP_RequestDeserializer_deserialize(
-    SmolRTSP_RequestDeserializer *restrict self, SmolRTSP_Request *restrict request, size_t size,
-    const void *restrict data, size_t *restrict bytes_read) {
+    SmolRTSP_RequestDeserializer *restrict self, size_t size, const void *restrict data) {
     if (self->state == SmolRTSP_RequestDeserializerStateMessageBodyParsed ||
         self->state == SmolRTSP_RequestDeserializerStateErr) {
         return self->state;
     }
 
-    self->cursor = data;
-
 #define ASSOC(current_state, next_entity_to_deserialize, var)                                      \
     case SmolRTSP_RequestDeserializerState##current_state: {                                       \
-        size_t bytes_read_temp;                                                                    \
         res = SmolRTSP_##next_entity_to_deserialize##Deserializer_deserialize(                     \
-            self->inner_deserializers.var, &request->var, size, data, &bytes_read_temp);           \
-        *bytes_read += bytes_read_temp;                                                            \
-        self->cursor += bytes_read_temp;                                                           \
-        size -= bytes_read_temp;                                                                   \
+            self->inner_deserializers.var, size, data);                                            \
+        size_t bytes_read = SmolRTSP_##next_entity_to_deserialize##Deserializer_bytes_read(        \
+            self->inner_deserializers.var);                                                        \
+        self->bytes_read += bytes_read;                                                            \
+        size -= bytes_read;                                                                        \
                                                                                                    \
         switch (res) {                                                                             \
         case SmolRTSP_DeserializeResultOk:                                                         \
             self->state = SmolRTSP_RequestDeserializerState##next_entity_to_deserialize##Parsed;   \
+                                                                                                   \
+            self->inner.var = SmolRTSP_##next_entity_to_deserialize##Deserializer_inner(           \
+                self->inner_deserializers.var);                                                    \
+                                                                                                   \
             if (self->state == SmolRTSP_RequestDeserializerStateHeaderMapParsed) {                 \
                 const char *content_length_value;                                                  \
                 if ((content_length_value = SmolRTSP_HeaderMap_find(                               \
-                         &request->header_map, SMOLRTSP_HEADER_NAME_CONTENT_LENGTH)) == NULL) {    \
-                    request->body.data = NULL;                                                     \
+                         &self->inner.header_map, SMOLRTSP_HEADER_NAME_CONTENT_LENGTH)) == NULL) { \
+                    self->inner.body.data = NULL;                                                  \
                     self->state = SmolRTSP_RequestDeserializerStateMessageBodyParsed;              \
                     return self->state;                                                            \
                 }                                                                                  \

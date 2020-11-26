@@ -4,26 +4,44 @@
 #include <string.h>
 
 struct SmolRTSP_ReasonPhraseDeserializer {
-    char nothing;
-} hollow_deserializer;
+    SmolRTSP_ReasonPhrase inner;
+    size_t bytes_read;
+};
 
 SmolRTSP_ReasonPhraseDeserializer *SmolRTSP_ReasonPhraseDeserializer_new(void) {
-    return &hollow_deserializer;
+    SmolRTSP_ReasonPhraseDeserializer *self;
+    if ((self = malloc(sizeof(*self))) == NULL) {
+        return NULL;
+    }
+
+    self->bytes_read = 0;
+
+    return self;
 }
 
-void SmolRTSP_ReasonPhraseDeserializer_free(SmolRTSP_ReasonPhraseDeserializer *self) {}
+void SmolRTSP_ReasonPhraseDeserializer_free(SmolRTSP_ReasonPhraseDeserializer *self) {
+    free(self);
+}
+
+SmolRTSP_ReasonPhrase
+SmolRTSP_ReasonPhraseDeserializer_inner(SmolRTSP_ReasonPhraseDeserializer *self) {
+    return self->inner;
+}
+
+size_t SmolRTSP_ReasonPhraseDeserializer_bytes_read(SmolRTSP_ReasonPhraseDeserializer *self) {
+    return self->bytes_read;
+}
 
 SmolRTSP_DeserializeResult SmolRTSP_ReasonPhraseDeserializer_deserialize(
-    SmolRTSP_ReasonPhraseDeserializer *restrict self, SmolRTSP_ReasonPhrase *restrict phrase,
-    size_t size, const void *restrict data, size_t *restrict bytes_read) {
-    SmolRTSP_ReasonPhrase parsed_phrase;
+    SmolRTSP_ReasonPhraseDeserializer *restrict self, size_t size, const void *restrict data) {
+    SmolRTSP_ReasonPhrase phrase;
 
     SmolRTSP_DeserializeResult res = SmolRTSP_parse(
-        SMOLRTSP_REASON_PHRASE_SIZE, size, data, "%[^" SMOLRTSP_CRLF "]%n", 2, parsed_phrase,
-        bytes_read);
+        SMOLRTSP_REASON_PHRASE_SIZE, size, data, "%[^" SMOLRTSP_CRLF "]%n", 2, phrase,
+        &self->bytes_read);
 
     if (res == SmolRTSP_DeserializeResultOk) {
-        strncpy(*phrase, parsed_phrase, sizeof(parsed_phrase));
+        strncpy(self->inner.data, phrase.data, sizeof(phrase.data));
     }
 
     return res;

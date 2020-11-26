@@ -3,7 +3,8 @@
 #include <stdlib.h>
 
 struct SmolRTSP_MessageBodyDeserializer {
-    size_t content_length;
+    SmolRTSP_MessageBody inner;
+    size_t bytes_read;
 };
 
 SmolRTSP_MessageBodyDeserializer *SmolRTSP_MessageBodyDeserializer_new(size_t content_length) {
@@ -12,7 +13,9 @@ SmolRTSP_MessageBodyDeserializer *SmolRTSP_MessageBodyDeserializer_new(size_t co
         return NULL;
     }
 
-    self->content_length = content_length;
+    self->inner.size = content_length;
+    self->bytes_read = 0;
+
     return self;
 }
 
@@ -20,14 +23,22 @@ void SmolRTSP_MessageBodyDeserializer_free(SmolRTSP_MessageBodyDeserializer *sel
     free(self);
 }
 
+SmolRTSP_MessageBody
+SmolRTSP_MessageBodyDeserializer_inner(SmolRTSP_MessageBodyDeserializer *self) {
+    return self->inner;
+}
+
+size_t SmolRTSP_MessageBodyDeserializer_bytes_read(SmolRTSP_MessageBodyDeserializer *self) {
+    return self->bytes_read;
+}
+
 SmolRTSP_DeserializeResult SmolRTSP_MessageBodyDeserializer_deserialize(
-    SmolRTSP_MessageBodyDeserializer *restrict self, SmolRTSP_MessageBody *restrict body,
-    size_t size, const void *restrict data, size_t *restrict bytes_read) {
-    if (size < self->content_length) {
+    SmolRTSP_MessageBodyDeserializer *restrict self, size_t size, const void *restrict data) {
+    if (size < self->inner.size) {
         return SmolRTSP_DeserializeResultNeedMore;
     }
 
-    body->size = self->content_length;
-    body->data = data;
+    self->inner.data = data;
+    self->bytes_read += self->inner.size;
     return SmolRTSP_DeserializeResultOk;
 }

@@ -21,8 +21,10 @@ typedef enum {
 SmolRTSP_RequestLineDeserializerState
 SmolRTSP_RequestLineDeserializer_state(const SmolRTSP_RequestLineDeserializer *self);
 
+SmolRTSP_RequestLine SmolRTSP_RequestLineDeserializer_inner(SmolRTSP_RequestLineDeserializer *self);
+size_t SmolRTSP_RequestLineDeserializer_bytes_read(SmolRTSP_RequestLineDeserializer *self);
+
 SmolRTSP_DeserializeResult SmolRTSP_RequestLineDeserializer_deserialize(
-    SmolRTSP_RequestLineDeserializer *restrict self, SmolRTSP_RequestLine *restrict line,
-    size_t size, const void *restrict data, size_t *restrict bytes_read);
+    SmolRTSP_RequestLineDeserializer *restrict self, size_t size, const void *restrict data);
 
 #endif // SMOLRTSP_DESERIALIZERS_REQUEST_LINE_H

@@ -10,8 +10,10 @@ typedef struct SmolRTSP_RequestURIDeserializer SmolRTSP_RequestURIDeserializer;
 SmolRTSP_RequestURIDeserializer *SmolRTSP_RequestURIDeserializer_new(void);
 void SmolRTSP_RequestURIDeserializer_free(SmolRTSP_RequestURIDeserializer *self);
 
+SmolRTSP_RequestURI SmolRTSP_RequestURIDeserializer_inner(SmolRTSP_RequestURIDeserializer *self);
+size_t SmolRTSP_RequestURIDeserializer_bytes_read(SmolRTSP_RequestURIDeserializer *self);
+
 SmolRTSP_DeserializeResult SmolRTSP_RequestURIDeserializer_deserialize(
-    SmolRTSP_RequestURIDeserializer *restrict self, SmolRTSP_RequestURI *restrict uri, size_t size,
-    const void *restrict data, size_t *restrict bytes_read);
+    SmolRTSP_RequestURIDeserializer *restrict self, size_t size, const void *restrict data);
 
 #endif // SMOLRTSP_DESERIALIZERS_REQUEST_URI_H

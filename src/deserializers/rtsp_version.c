@@ -5,25 +5,43 @@
 #include <inttypes.h>
 
 struct SmolRTSP_RTSPVersionDeserializer {
-    char nothing;
-} hollow_deserializer;
+    SmolRTSP_RTSPVersion inner;
+    size_t bytes_read;
+};
 
 SmolRTSP_RTSPVersionDeserializer *SmolRTSP_RTSPVersionDeserializer_new(void) {
-    return &hollow_deserializer;
+    SmolRTSP_RTSPVersionDeserializer *self;
+    if ((self = malloc(sizeof(*self))) == NULL) {
+        return NULL;
+    }
+
+    self->bytes_read = 0;
+
+    return self;
 }
 
-void SmolRTSP_RTSPVersionDeserializer_free(SmolRTSP_RTSPVersionDeserializer *self) {}
+void SmolRTSP_RTSPVersionDeserializer_free(SmolRTSP_RTSPVersionDeserializer *self) {
+    free(self);
+}
+
+SmolRTSP_RTSPVersion
+SmolRTSP_RTSPVersionDeserializer_inner(SmolRTSP_RTSPVersionDeserializer *self) {
+    return self->inner;
+}
+
+size_t SmolRTSP_RTSPVersionDeserializer_bytes_read(SmolRTSP_RTSPVersionDeserializer *self) {
+    return self->bytes_read;
+}
 
 SmolRTSP_DeserializeResult SmolRTSP_RTSPVersionDeserializer_deserialize(
-    SmolRTSP_RTSPVersionDeserializer *restrict self, SmolRTSP_RTSPVersion *restrict version,
-    size_t size, const void *restrict data, size_t *restrict bytes_read) {
-    SmolRTSP_RTSPVersion parsed_version;
+    SmolRTSP_RTSPVersionDeserializer *restrict self, size_t size, const void *restrict data) {
+    SmolRTSP_RTSPVersion version;
     SmolRTSP_DeserializeResult res = SmolRTSP_parse(
         SMOLRTSP_RTSP_VERSION_SIZE, size, data, "RTSP/%" SCNuLEAST8 ".%" SCNuLEAST8 "%n", 3,
-        &parsed_version.major, &parsed_version.minor, bytes_read);
+        &version.major, &version.minor, &self->bytes_read);
 
     if (res == SmolRTSP_DeserializeResultOk) {
-        *version = parsed_version;
+        self->inner = version;
     }
 
     return res;

@@ -20,8 +20,10 @@ void SmolRTSP_RequestDeserializer_free(SmolRTSP_RequestDeserializer *self);
 SmolRTSP_RequestDeserializerState
 SmolRTSP_RequestDeserializer_state(const SmolRTSP_RequestDeserializer *self);
 
+SmolRTSP_Request SmolRTSP_RequestDeserializer_inner(SmolRTSP_RequestDeserializer *self);
+size_t SmolRTSP_RequestDeserializer_bytes_read(SmolRTSP_RequestDeserializer *self);
+
 SmolRTSP_DeserializeResult SmolRTSP_RequestDeserializer_deserialize(
-    SmolRTSP_RequestDeserializer *restrict self, SmolRTSP_Request *restrict request, size_t size,
-    const void *restrict data, size_t *restrict bytes_read);
+    SmolRTSP_RequestDeserializer *restrict self, size_t size, const void *restrict data);
 
 #endif // SMOLRTSP_DESERIALIZERS_REQUEST_H
