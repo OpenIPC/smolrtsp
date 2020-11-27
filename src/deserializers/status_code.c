@@ -37,7 +37,7 @@ SmolRTSP_DeserializeResult SmolRTSP_StatusCodeDeserializer_deserialize(
     size_t bytes_read;
 
     SmolRTSP_DeserializeResult res =
-        SmolRTSP_parse(6, size, data, "%" SCNuLEAST16 "%n", 2, &code, &bytes_read);
+        SmolRTSP_parse(6, size, data, "%" SCNuLEAST16 "%n", 1, &code, &bytes_read);
 
     if (res == SmolRTSP_DeserializeResultOk) {
         self->bytes_read = bytes_read;
