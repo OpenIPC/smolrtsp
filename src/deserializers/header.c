@@ -38,7 +38,7 @@ SmolRTSP_DeserializeResult SmolRTSP_HeaderDeserializer_deserialize(
     size_t bytes_read;
 
     SmolRTSP_DeserializeResult res = SmolRTSP_parse(
-        sizeof(header), size, data, "%[^:] %[^" SMOLRTSP_CRLF "]%n", 3, &header.key, &header.value,
+        sizeof(header), size, data, "%[^:] %[^" SMOLRTSP_CRLF "]%n", 2, &header.key, &header.value,
         bytes_read);
 
     if (res == SmolRTSP_DeserializeResultOk) {

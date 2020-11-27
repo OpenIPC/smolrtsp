@@ -40,7 +40,7 @@ SmolRTSP_DeserializeResult SmolRTSP_RTSPVersionDeserializer_deserialize(
     size_t bytes_read;
 
     SmolRTSP_DeserializeResult res = SmolRTSP_parse(
-        SMOLRTSP_RTSP_VERSION_SIZE, size, data, "RTSP/%" SCNuLEAST8 ".%" SCNuLEAST8 "%n", 3,
+        SMOLRTSP_RTSP_VERSION_SIZE, size, data, "RTSP/%" SCNuLEAST8 ".%" SCNuLEAST8 "%n", 2,
         &version.major, &version.minor, &bytes_read);
 
     if (res == SmolRTSP_DeserializeResultOk) {

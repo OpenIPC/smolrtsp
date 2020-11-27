@@ -39,7 +39,7 @@ SmolRTSP_DeserializeResult SmolRTSP_ReasonPhraseDeserializer_deserialize(
     size_t bytes_read;
 
     SmolRTSP_DeserializeResult res = SmolRTSP_parse(
-        SMOLRTSP_REASON_PHRASE_SIZE, size, data, "%[^" SMOLRTSP_CRLF "]%n", 2, phrase, &bytes_read);
+        SMOLRTSP_REASON_PHRASE_SIZE, size, data, "%[^" SMOLRTSP_CRLF "]%n", 1, phrase, &bytes_read);
 
     if (res == SmolRTSP_DeserializeResultOk) {
         self->bytes_read += bytes_read;

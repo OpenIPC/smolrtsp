@@ -38,7 +38,7 @@ SmolRTSP_DeserializeResult SmolRTSP_RequestURIDeserializer_deserialize(
     size_t bytes_read;
 
     SmolRTSP_DeserializeResult res =
-        SmolRTSP_parse(SMOLRTSP_REQUEST_URI_SIZE, size, data, "%s%n", 2, uri, &bytes_read);
+        SmolRTSP_parse(SMOLRTSP_REQUEST_URI_SIZE, size, data, "%s%n", 1, uri, &bytes_read);
 
     if (res == SmolRTSP_DeserializeResultOk) {
         self->bytes_read += bytes_read;
