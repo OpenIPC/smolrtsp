@@ -22,7 +22,7 @@ jobs:
         mkdir build
         cd build
         cmake ..
-        cmake --build .
+        scan-build --use-analyzer /usr/bin/clang cmake -DCMAKE_C_COMPILER=clang --build .
 
     - name: Check code formatting
       run: ./check-fmt.sh
