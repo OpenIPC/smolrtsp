@@ -68,6 +68,13 @@ typedef SmolRTSP_DeserializeResult (*Deserializer)(
     void *restrict self, void *restrict entity, size_t size, const void *restrict data,
     size_t *restrict bytes_read);
 
+typedef enum {
+    InitBodyDeserializerResultInvalidContentLength,
+    InitBodyDeserializerResultOk,
+} InitBodyDeserializerResult;
+
+static InitBodyDeserializerResult init_body_deserializer(SmolRTSP_RequestDeserializer *self);
+
 SmolRTSP_DeserializeResult SmolRTSP_RequestDeserializer_deserialize(
     SmolRTSP_RequestDeserializer *restrict self, size_t size, const void *restrict data) {
     if (self->state == SmolRTSP_RequestDeserializerStateMessageBodyParsed ||
@@ -89,22 +96,10 @@ SmolRTSP_DeserializeResult SmolRTSP_RequestDeserializer_deserialize(
             self->inner.var = SmolRTSP_##next_type##Deserializer_inner(deserializer);              \
                                                                                                    \
             if (self->state == SmolRTSP_RequestDeserializerStateHeaderMapParsed) {                 \
-                const char *content_length_value;                                                  \
-                if ((content_length_value = SmolRTSP_HeaderMap_find(                               \
-                         &self->inner.header_map, SMOLRTSP_HEADER_NAME_CONTENT_LENGTH)) == NULL) { \
-                    self->inner.body.data = NULL;                                                  \
-                    self->state = SmolRTSP_RequestDeserializerStateMessageBodyParsed;              \
-                    return self->state;                                                            \
+                if (init_body_deserializer(self) ==                                                \
+                    InitBodyDeserializerResultInvalidContentLength) {                              \
+                    return SmolRTSP_DeserializeResultErr;                                          \
                 }                                                                                  \
-                                                                                                   \
-                size_t content_length;                                                             \
-                if (sscanf(content_length_value, "%zd", &content_length) != 1) {                   \
-                    self->state = SmolRTSP_RequestDeserializerStateErr;                            \
-                    return self->state;                                                            \
-                }                                                                                  \
-                                                                                                   \
-                self->inner_deserializers.body =                                                   \
-                    SmolRTSP_MessageBodyDeserializer_new(content_length);                          \
             }                                                                                      \
             break;                                                                                 \
         case SmolRTSP_DeserializeResultErr:                                                        \
@@ -127,4 +122,21 @@ SmolRTSP_DeserializeResult SmolRTSP_RequestDeserializer_deserialize(
     }
 
 #undef ASSOC
+}
+
+static InitBodyDeserializerResult init_body_deserializer(SmolRTSP_RequestDeserializer *self) {
+    const char *content_length_str =
+        SmolRTSP_HeaderMap_find(&self->inner.header_map, SMOLRTSP_HEADER_NAME_CONTENT_LENGTH);
+
+    size_t content_length;
+
+    if (content_length_str == NULL) {
+        content_length = 0;
+    } else if (sscanf(content_length_str, "%zd", &content_length) != 1) {
+        self->state = SmolRTSP_RequestDeserializerStateErr;
+        return InitBodyDeserializerResultInvalidContentLength;
+    }
+
+    self->inner_deserializers.body = SmolRTSP_MessageBodyDeserializer_new(content_length);
+    return InitBodyDeserializerResultOk;
 }

@@ -38,6 +38,11 @@ SmolRTSP_DeserializeResult SmolRTSP_MessageBodyDeserializer_deserialize(
         return SmolRTSP_DeserializeResultNeedMore;
     }
 
+    if (self->inner.size == 0) {
+        self->inner = SmolRTSP_MessageBody_empty();
+        return SmolRTSP_DeserializeResultOk;
+    }
+
     self->inner.data = data;
     self->bytes_read += self->inner.size;
     return SmolRTSP_DeserializeResultOk;

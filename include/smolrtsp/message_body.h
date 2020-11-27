@@ -10,6 +10,8 @@ typedef struct {
     const void *data;
 } SmolRTSP_MessageBody;
 
+SmolRTSP_MessageBody SmolRTSP_MessageBody_empty(void);
+
 void SmolRTSP_MessageBody_serialize(
     const SmolRTSP_MessageBody *restrict self, SmolRTSP_UserWriter user_writer, void *user_cx);
 
