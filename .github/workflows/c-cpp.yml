@@ -17,6 +17,9 @@ jobs:
     - name: Update Git submodules
       run: git submodule update --init --recursive
 
+    - name: Install clang-tools
+      run: sudo apt-get install clang-tools
+
     - name: CMake build
       run: |
         mkdir build
