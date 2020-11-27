@@ -1,3 +1,8 @@
+/**
+ * @file
+ * @brief An RTSP request URI.
+ */
+
 #ifndef SMOLRTSP_REQUEST_URI_H
 #define SMOLRTSP_REQUEST_URI_H
 

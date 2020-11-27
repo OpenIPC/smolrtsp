@@ -1,3 +1,8 @@
+/**
+ * @file
+ * @brief An RTSP response.
+ */
+
 #ifndef SMOLRTSP_RESPONSE_H
 #define SMOLRTSP_RESPONSE_H
 

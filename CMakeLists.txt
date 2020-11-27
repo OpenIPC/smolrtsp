@@ -48,8 +48,6 @@ add_library(
   src/deserializers/request_uri.c
   src/deserializers/request.c
   src/deserializers/request_line.c
-  include/smolrtsp/response_parser.h
-  src/response_parser.c
   src/parsing_aux.h
   src/parsing_aux.c)
 

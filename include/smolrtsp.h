@@ -1,3 +1,8 @@
+/**
+ * @file
+ * @brief Re-exports all the functionality.
+ */
+
 #ifndef SMOLRTSP_H
 #define SMOLRTSP_H
 
@@ -10,10 +15,8 @@
 #include <smolrtsp/method.h>
 #include <smolrtsp/reason_phrase.h>
 #include <smolrtsp/request.h>
-#include <smolrtsp/request_parser.h>
 #include <smolrtsp/request_uri.h>
 #include <smolrtsp/response.h>
-#include <smolrtsp/response_parser.h>
 #include <smolrtsp/rtsp_version.h>
 #include <smolrtsp/status_code.h>
 #include <smolrtsp/user_writer.h>

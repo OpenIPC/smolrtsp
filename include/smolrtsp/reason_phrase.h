@@ -1,3 +1,8 @@
+/**
+ * @file
+ * @brief An RTSP reason phrase.
+ */
+
 #ifndef SMOLRTSP_REASON_PHRASE_H
 #define SMOLRTSP_REASON_PHRASE_H
 

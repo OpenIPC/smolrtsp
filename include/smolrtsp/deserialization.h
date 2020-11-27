@@ -1,3 +1,8 @@
+/**
+ * @file
+ * @brief Auxiliary declarations for deserialization.
+ */
+
 #ifndef SMOLRTSP_DESERIALIZATION_H
 #define SMOLRTSP_DESERIALIZATION_H
 

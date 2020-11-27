@@ -1,3 +1,8 @@
+/**
+ * @file
+ * @brief Implementation limits.
+ */
+
 #ifndef SMOLRTSP_LIMITS_H
 #define SMOLRTSP_LIMITS_H
 

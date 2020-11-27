@@ -1,3 +1,8 @@
+/**
+ * @file
+ * @brief An RTSP version.
+ */
+
 #ifndef SMOLRTSP_RTSP_VERSION_H
 #define SMOLRTSP_RTSP_VERSION_H
 

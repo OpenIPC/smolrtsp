@@ -1,3 +1,8 @@
+/**
+ * @file
+ * @brief A user-supplied writer interface.
+ */
+
 #ifndef SMOLRTSP_USER_WRITER_H
 #define SMOLRTSP_USER_WRITER_H
 

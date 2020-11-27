@@ -1,3 +1,8 @@
+/**
+ * @file
+ * @brief An RTSP method.
+ */
+
 #ifndef SMOLRTSP_METHOD_H
 #define SMOLRTSP_METHOD_H
 
