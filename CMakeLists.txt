@@ -51,4 +51,4 @@ add_library(
   src/parsing_aux.h
   src/parsing_aux.c)
 
-set_target_properties(smolrtsp PROPERTIES C_STANDARD 99 C_STANDARD_REQUIRED ON)
+set_target_properties(smolrtsp PROPERTIES C_STANDARD 11 C_STANDARD_REQUIRED ON)

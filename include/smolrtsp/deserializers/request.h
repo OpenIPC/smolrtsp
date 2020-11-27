@@ -1,6 +1,7 @@
 #ifndef SMOLRTSP_DESERIALIZERS_REQUEST_H
 #define SMOLRTSP_DESERIALIZERS_REQUEST_H
 
+#include <smolrtsp/deserialization.h>
 #include <smolrtsp/request.h>
 
 struct SmolRTSP_RequestDeserializer;
