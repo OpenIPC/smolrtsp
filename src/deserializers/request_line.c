@@ -66,8 +66,6 @@ size_t SmolRTSP_RequestLineDeserializer_bytes_read(SmolRTSP_RequestLineDeseriali
 
 SmolRTSP_DeserializeResult SmolRTSP_RequestLineDeserializer_deserialize(
     SmolRTSP_RequestLineDeserializer *restrict self, size_t size, const void *restrict data) {
-    SmolRTSP_DeserializeResult res;
-
 #define ASSOC(current_state, next_type, var)                                                       \
     case SmolRTSP_RequestLineDeserializerState##current_state: {                                   \
         SmolRTSP_##next_type##Deserializer *deserializer = self->inner_deserializers.var;          \
@@ -90,6 +88,7 @@ SmolRTSP_DeserializeResult SmolRTSP_RequestLineDeserializer_deserialize(
         }                                                                                          \
     } break
 
+    SmolRTSP_DeserializeResult res;
     while (true) {
         switch (self->state) {
             ASSOC(Start, Method, method);
@@ -97,6 +96,8 @@ SmolRTSP_DeserializeResult SmolRTSP_RequestLineDeserializer_deserialize(
             ASSOC(RequestURIParsed, RTSPVersion, version);
         case SmolRTSP_RequestLineDeserializerStateRTSPVersionParsed:
             return SmolRTSP_DeserializeResultOk;
+        case SmolRTSP_RequestLineDeserializerStateErr:
+            return SmolRTSP_DeserializeResultErr;
         }
     }
 

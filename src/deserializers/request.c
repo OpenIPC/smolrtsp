@@ -77,11 +77,6 @@ static InitBodyDeserializerResult init_body_deserializer(SmolRTSP_RequestDeseria
 
 SmolRTSP_DeserializeResult SmolRTSP_RequestDeserializer_deserialize(
     SmolRTSP_RequestDeserializer *restrict self, size_t size, const void *restrict data) {
-    if (self->state == SmolRTSP_RequestDeserializerStateMessageBodyParsed ||
-        self->state == SmolRTSP_RequestDeserializerStateErr) {
-        return self->state;
-    }
-
 #define ASSOC(current_state, next_type, var)                                                       \
     case SmolRTSP_RequestDeserializerState##current_state: {                                       \
         SmolRTSP_##next_type##Deserializer *deserializer = self->inner_deserializers.var;          \
@@ -118,6 +113,8 @@ SmolRTSP_DeserializeResult SmolRTSP_RequestDeserializer_deserialize(
             ASSOC(HeaderMapParsed, MessageBody, body);
         case SmolRTSP_RequestDeserializerStateMessageBodyParsed:
             return SmolRTSP_DeserializeResultOk;
+        case SmolRTSP_RequestDeserializerStateErr:
+            return SmolRTSP_DeserializeResultErr;
         }
     }
 
