@@ -1,4 +1,4 @@
-#include "../parsing_aux.h"
+#include "../deser_aux.h"
 #include <smolrtsp/deserializers/header_map.h>
 #include <smolrtsp/deserializers/message_body.h>
 #include <smolrtsp/deserializers/request.h>
@@ -14,10 +14,24 @@ typedef struct {
     SmolRTSP_MessageBodyDeserializer *body;
 } InnerDeserializers;
 
-static void InnerDeserializers_init(InnerDeserializers *self) {
-    self->start_line = SmolRTSP_RequestLineDeserializer_new();
-    self->header_map = SmolRTSP_HeaderMapDeserializer_new();
+typedef enum {
+    InitDeserializersResultOk,
+    InitDeserializersResultErr,
+} InitDeserializersResult;
+
+static InitDeserializersResult InnerDeserializers_init(InnerDeserializers *self) {
+#define INIT(expr)                                                                                 \
+    do {                                                                                           \
+        if ((expr) == NULL) {                                                                      \
+            return InitDeserializersResultErr;                                                     \
+        }                                                                                          \
+    } while (false)
+
+    INIT(self->start_line = SmolRTSP_RequestLineDeserializer_new());
+    INIT(self->header_map = SmolRTSP_HeaderMapDeserializer_new());
     self->body = NULL;
+
+#undef INIT
 }
 
 static void InnerDeserializers_free(InnerDeserializers self) {
@@ -41,7 +55,10 @@ SmolRTSP_RequestDeserializer *SmolRTSP_RequestDeserializer_new(void) {
 
     self->state = SmolRTSP_RequestDeserializerStateStart;
     self->bytes_read = 0;
-    InnerDeserializers_init(&self->inner_deserializers);
+    if (InnerDeserializers_init(&self->inner_deserializers) == InitDeserializersResultErr) {
+        free(self);
+        return NULL;
+    }
 
     return self;
 }
@@ -64,10 +81,6 @@ size_t SmolRTSP_RequestDeserializer_bytes_read(SmolRTSP_RequestDeserializer *sel
     return self->bytes_read;
 }
 
-typedef SmolRTSP_DeserializeResult (*Deserializer)(
-    void *restrict self, void *restrict entity, size_t size, const void *restrict data,
-    size_t *restrict bytes_read);
-
 typedef enum {
     InitBodyDeserializerResultInvalidContentLength,
     InitBodyDeserializerResultOk,
@@ -75,20 +88,18 @@ typedef enum {
 
 static InitBodyDeserializerResult init_body_deserializer(SmolRTSP_RequestDeserializer *self);
 
-SmolRTSP_DeserializeResult SmolRTSP_RequestDeserializer_deserialize(
-    SmolRTSP_RequestDeserializer *restrict self, size_t size, const void *restrict data) {
-#define ASSOC(current_state, next_type, var)                                                       \
-    case SmolRTSP_RequestDeserializerState##current_state: {                                       \
-        SmolRTSP_##next_type##Deserializer *deserializer = self->inner_deserializers.var;          \
-        res = SmolRTSP_##next_type##Deserializer_deserialize(deserializer, size, data);            \
-        size_t bytes_read = SmolRTSP_##next_type##Deserializer_bytes_read(deserializer);           \
+#define ASSOC(current_state, deser_type, var, next_state, error)                                   \
+    case current_state: {                                                                          \
+        deser_type *deser = self->inner_deserializers.var;                                         \
+        res = deser_type##_deserialize(deser, size, data + self->bytes_read);                      \
+        size_t bytes_read = deser_type##_bytes_read(deser);                                        \
                                                                                                    \
         switch (res) {                                                                             \
         case SmolRTSP_DeserializeResultOk:                                                         \
             self->bytes_read += bytes_read;                                                        \
             size -= bytes_read;                                                                    \
-            self->state = SmolRTSP_RequestDeserializerState##next_type##Parsed;                    \
-            self->inner.var = SmolRTSP_##next_type##Deserializer_inner(deserializer);              \
+            self->state = next_state;                                                              \
+            self->inner.var = deser_type##_inner(deser);                                           \
                                                                                                    \
             if (self->state == SmolRTSP_RequestDeserializerStateHeaderMapParsed) {                 \
                 if (init_body_deserializer(self) ==                                                \
@@ -98,28 +109,40 @@ SmolRTSP_DeserializeResult SmolRTSP_RequestDeserializer_deserialize(
             }                                                                                      \
             break;                                                                                 \
         case SmolRTSP_DeserializeResultErr:                                                        \
-            self->state = SmolRTSP_RequestDeserializerStateErr;                                    \
+            self->state = error;                                                                   \
             return res;                                                                            \
         case SmolRTSP_DeserializeResultNeedMore:                                                   \
             return res;                                                                            \
         }                                                                                          \
     } break
 
+SmolRTSP_DeserializeResult SmolRTSP_RequestDeserializer_deserialize(
+    SmolRTSP_RequestDeserializer *restrict self, size_t size,
+    const char data[restrict static size]) {
     SmolRTSP_DeserializeResult res;
     while (true) {
         switch (self->state) {
-            ASSOC(Start, RequestLine, start_line);
-            ASSOC(RequestLineParsed, HeaderMap, header_map);
-            ASSOC(HeaderMapParsed, MessageBody, body);
+            ASSOC(
+                SmolRTSP_RequestDeserializerStateStart, SmolRTSP_RequestLineDeserializer,
+                start_line, SmolRTSP_RequestDeserializerStateRequestLineParsed,
+                SmolRTSP_RequestDeserializerStateRequestLineErr);
+            ASSOC(
+                SmolRTSP_RequestDeserializerStateRequestLineParsed, SmolRTSP_HeaderMapDeserializer,
+                header_map, SmolRTSP_RequestDeserializerStateHeaderMapParsed,
+                SmolRTSP_RequestDeserializerStateHeaderMapErr);
+            ASSOC(
+                SmolRTSP_RequestDeserializerStateHeaderMapParsed, SmolRTSP_MessageBodyDeserializer,
+                body, SmolRTSP_RequestDeserializerStateMessageBodyParsed,
+                SmolRTSP_RequestDeserializerStateMessageBodyErr);
         case SmolRTSP_RequestDeserializerStateMessageBodyParsed:
             return SmolRTSP_DeserializeResultOk;
-        case SmolRTSP_RequestDeserializerStateErr:
+        default:
             return SmolRTSP_DeserializeResultErr;
         }
     }
+}
 
 #undef ASSOC
-}
 
 static InitBodyDeserializerResult init_body_deserializer(SmolRTSP_RequestDeserializer *self) {
     const char *content_length_str =
@@ -130,7 +153,7 @@ static InitBodyDeserializerResult init_body_deserializer(SmolRTSP_RequestDeseria
     if (content_length_str == NULL) {
         content_length = 0;
     } else if (sscanf(content_length_str, "%zd", &content_length) != 1) {
-        self->state = SmolRTSP_RequestDeserializerStateErr;
+        self->state = SmolRTSP_RequestDeserializerStateContentLengthErr;
         return InitBodyDeserializerResultInvalidContentLength;
     }
 

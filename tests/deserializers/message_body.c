@@ -1,5 +1,5 @@
 #include <smolrtsp/deserializers/message_body.h>
 
-void test_deserializers_message_body(void) {
+#include "../nala.h"
 
-}
+TEST(test_deserializers_message_body) {}

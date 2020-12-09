@@ -12,7 +12,10 @@ typedef enum {
     SmolRTSP_RequestDeserializerStateRequestLineParsed,
     SmolRTSP_RequestDeserializerStateHeaderMapParsed,
     SmolRTSP_RequestDeserializerStateMessageBodyParsed,
-    SmolRTSP_RequestDeserializerStateErr,
+    SmolRTSP_RequestDeserializerStateRequestLineErr,
+    SmolRTSP_RequestDeserializerStateHeaderMapErr,
+    SmolRTSP_RequestDeserializerStateMessageBodyErr,
+    SmolRTSP_RequestDeserializerStateContentLengthErr,
 } SmolRTSP_RequestDeserializerState;
 
 SmolRTSP_RequestDeserializer *SmolRTSP_RequestDeserializer_new(void);
@@ -25,6 +28,7 @@ SmolRTSP_Request SmolRTSP_RequestDeserializer_inner(SmolRTSP_RequestDeserializer
 size_t SmolRTSP_RequestDeserializer_bytes_read(SmolRTSP_RequestDeserializer *self);
 
 SmolRTSP_DeserializeResult SmolRTSP_RequestDeserializer_deserialize(
-    SmolRTSP_RequestDeserializer *restrict self, size_t size, const void *restrict data);
+    SmolRTSP_RequestDeserializer *restrict self, size_t size,
+    const char data[restrict static size]);
 
 #endif // SMOLRTSP_DESERIALIZERS_REQUEST_H

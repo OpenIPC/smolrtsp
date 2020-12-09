@@ -1,4 +1,5 @@
-#include "../parsing_aux.h"
+#include "../aux.h"
+#include "../deser_aux.h"
 #include <smolrtsp/deserializers/request_uri.h>
 
 #include <stdlib.h>
@@ -33,12 +34,14 @@ size_t SmolRTSP_RequestURIDeserializer_bytes_read(SmolRTSP_RequestURIDeserialize
 }
 
 SmolRTSP_DeserializeResult SmolRTSP_RequestURIDeserializer_deserialize(
-    SmolRTSP_RequestURIDeserializer *restrict self, size_t size, const void *restrict data) {
+    SmolRTSP_RequestURIDeserializer *restrict self, size_t size,
+    const char data[restrict static size]) {
     SmolRTSP_RequestURI uri;
-    size_t bytes_read;
+    int bytes_read;
 
-    SmolRTSP_DeserializeResult res =
-        SmolRTSP_parse(SMOLRTSP_REQUEST_URI_SIZE, size, data, "%s%n", 1, uri, &bytes_read);
+    SmolRTSP_DeserializeResult res = SmolRTSP_parse(
+        SMOLRTSP_REQUEST_URI_SIZE, size, data, "%" STRINGIFY(SMOLRTSP_REQUEST_URI_SIZE) "s%n", 1,
+        uri.data, &bytes_read);
 
     if (res == SmolRTSP_DeserializeResultOk) {
         self->bytes_read += bytes_read;

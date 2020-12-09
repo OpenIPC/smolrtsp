@@ -1,4 +1,5 @@
-#include "../parsing_aux.h"
+#include "../aux.h"
+#include "../deser_aux.h"
 #include <smolrtsp/deserializers/reason_phrase.h>
 
 #include <stdlib.h>
@@ -34,12 +35,14 @@ size_t SmolRTSP_ReasonPhraseDeserializer_bytes_read(SmolRTSP_ReasonPhraseDeseria
 }
 
 SmolRTSP_DeserializeResult SmolRTSP_ReasonPhraseDeserializer_deserialize(
-    SmolRTSP_ReasonPhraseDeserializer *restrict self, size_t size, const void *restrict data) {
+    SmolRTSP_ReasonPhraseDeserializer *restrict self, size_t size,
+    const char data[restrict static size]) {
     SmolRTSP_ReasonPhrase phrase;
-    size_t bytes_read;
+    int bytes_read;
 
     SmolRTSP_DeserializeResult res = SmolRTSP_parse(
-        SMOLRTSP_REASON_PHRASE_SIZE, size, data, "%[^" SMOLRTSP_CRLF "]%n", 1, phrase, &bytes_read);
+        SMOLRTSP_REASON_PHRASE_SIZE, size, data,
+        "%" STRINGIFY(SMOLRTSP_REASON_PHRASE_SIZE) "[^" CRLF "]%n", 1, phrase.data, &bytes_read);
 
     if (res == SmolRTSP_DeserializeResultOk) {
         self->bytes_read += bytes_read;

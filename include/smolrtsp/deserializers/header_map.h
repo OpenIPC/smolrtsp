@@ -14,6 +14,7 @@ SmolRTSP_HeaderMap SmolRTSP_HeaderMapDeserializer_inner(SmolRTSP_HeaderMapDeseri
 size_t SmolRTSP_HeaderMapDeserializer_bytes_read(SmolRTSP_HeaderMapDeserializer *self);
 
 SmolRTSP_DeserializeResult SmolRTSP_HeaderMapDeserializer_deserialize(
-    SmolRTSP_HeaderMapDeserializer *restrict self, size_t size, const void *restrict data);
+    SmolRTSP_HeaderMapDeserializer *restrict self, size_t size,
+    const char data[restrict static size]);
 
 #endif // SMOLRTSP_DESERIALIZERS_HEADER_MAP_H

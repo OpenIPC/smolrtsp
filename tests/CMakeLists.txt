@@ -5,7 +5,6 @@ include_directories(../include)
 
 add_executable(
   tests
-  main.c
   nala.h
   nala.c
   deserializers/header_map.c
@@ -17,7 +16,8 @@ add_executable(
   deserializers/request_uri.c
   deserializers/request.c
   deserializers/rtsp_version.c
-  deserializers/status_code.c)
+  deserializers/status_code.c
+  deserializers/crlf.c)
 
 add_subdirectory(.. build)
 target_link_libraries(tests smolrtsp)

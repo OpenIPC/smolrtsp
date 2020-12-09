@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.0)
 project(smolrtsp LANGUAGES C)
 
-include_directories(include)
+include_directories(include libs)
 
 add_library(
   smolrtsp
@@ -20,16 +20,19 @@ add_library(
   include/smolrtsp/method.h
   include/smolrtsp/header.h
   include/smolrtsp/header_map.h
+  include/smolrtsp/request_line.h
+  include/smolrtsp/crlf.h
   src/message_body.c
   src/reason_phrase.c
   src/request_uri.c
   src/status_code.c
   src/rtsp_version.c
+  src/request.c
   src/method.c
   src/header.c
   src/header_map.c
+  src/request_line.c
   include/smolrtsp/deserializers/header_map.h
-  include/smolrtsp/deserializers/header.h
   include/smolrtsp/deserializers/message_body.h
   include/smolrtsp/deserializers/method.h
   include/smolrtsp/deserializers/reason_phrase.h
@@ -38,8 +41,9 @@ add_library(
   include/smolrtsp/deserializers/request_uri.h
   include/smolrtsp/deserializers/request.h
   include/smolrtsp/deserializers/request_line.h
+  include/smolrtsp/deserializers/crlf.h
+  include/smolrtsp/deserializers/header.h
   src/deserializers/header_map.c
-  src/deserializers/header.c
   src/deserializers/message_body.c
   src/deserializers/method.c
   src/deserializers/reason_phrase.c
@@ -48,7 +52,9 @@ add_library(
   src/deserializers/request_uri.c
   src/deserializers/request.c
   src/deserializers/request_line.c
-  src/parsing_aux.h
-  src/parsing_aux.c)
+  src/deserializers/crlf.c
+  src/deserializers/header.c
+  src/deser_aux.h
+  src/deser_aux.c)
 
 set_target_properties(smolrtsp PROPERTIES C_STANDARD 11 C_STANDARD_REQUIRED ON)

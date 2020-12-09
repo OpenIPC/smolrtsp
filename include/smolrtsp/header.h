@@ -9,9 +9,13 @@
 #include <smolrtsp/limits.h>
 #include <smolrtsp/user_writer.h>
 
+#include <stdbool.h>
+
 typedef struct {
-    char key[SMOLRTSP_HEADER_KEY_SIZE];
-    char value[SMOLRTSP_HEADER_VALUE_SIZE];
+    const char *key;
+    size_t key_len;
+    const char *value;
+    size_t value_len;
 } SmolRTSP_Header;
 
 #define SMOLRTSP_HEADER_NAME_ACCEPT             "Accept"
@@ -56,5 +60,7 @@ typedef struct {
 
 void SmolRTSP_Header_serialize(
     const SmolRTSP_Header *restrict self, SmolRTSP_UserWriter user_writer, void *user_cx);
+
+bool SmolRTSP_Header_eq(const SmolRTSP_Header *lhs, const SmolRTSP_Header *rhs);
 
 #endif // SMOLRTSP_HEADER_H

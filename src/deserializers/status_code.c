@@ -1,4 +1,4 @@
-#include "../parsing_aux.h"
+#include "../deser_aux.h"
 #include <smolrtsp/deserializers/status_code.h>
 
 #include <inttypes.h>
@@ -32,9 +32,10 @@ size_t SmolRTSP_StatusCodeDeserializer_bytes_read(SmolRTSP_StatusCodeDeserialize
 }
 
 SmolRTSP_DeserializeResult SmolRTSP_StatusCodeDeserializer_deserialize(
-    SmolRTSP_StatusCodeDeserializer *restrict self, size_t size, const void *restrict data) {
+    SmolRTSP_StatusCodeDeserializer *restrict self, size_t size,
+    const char data[restrict static size]) {
     SmolRTSP_StatusCode code;
-    size_t bytes_read;
+    int bytes_read;
 
     SmolRTSP_DeserializeResult res =
         SmolRTSP_parse(6, size, data, "%" SCNuLEAST16 "%n", 1, &code, &bytes_read);

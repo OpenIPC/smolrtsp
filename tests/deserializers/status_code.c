@@ -4,19 +4,23 @@
 
 #include "../nala.h"
 
-static void check_deserialization(const char *status_code, SmolRTSP_StatusCode expected) {
-    SmolRTSP_StatusCodeDeserializer *deserializer = SmolRTSP_StatusCodeDeserializer_new();
+static void check(const char *code, SmolRTSP_StatusCode expected) {
+    SmolRTSP_StatusCodeDeserializer *deser = SmolRTSP_StatusCodeDeserializer_new();
+    ASSERT_NE(deser, NULL);
 
     SmolRTSP_DeserializeResult res =
-        SmolRTSP_StatusCodeDeserializer_deserialize(deserializer, strlen(status_code), status_code);
+        SmolRTSP_StatusCodeDeserializer_deserialize(deser, strlen(code), code);
     ASSERT_EQ(res, SmolRTSP_DeserializeResultOk);
 
-    SmolRTSP_StatusCode inner = SmolRTSP_StatusCodeDeserializer_inner(deserializer);
+    SmolRTSP_StatusCode inner = SmolRTSP_StatusCodeDeserializer_inner(deser);
     ASSERT_EQ(inner, expected);
 
-    SmolRTSP_StatusCodeDeserializer_free(deserializer);
+    SmolRTSP_StatusCodeDeserializer_free(deser);
 }
 
-void test_deserializers_status_code(void) {
-    check_deserialization("404", 404);
+TEST(test_deserializers_status_code) {
+    check("404", SMOLRTSP_STATUS_CODE_NOT_FOUND);
+    check("100", SMOLRTSP_STATUS_CODE_CONTINUE);
+    check("452", SMOLRTSP_STATUS_CODE_RESERVED);
+    check("466", SMOLRTSP_STATUS_CODE_KEY_MANAGEMENT_ERROR);
 }

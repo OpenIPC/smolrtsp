@@ -1,4 +1,4 @@
-#include "parsing_aux.h"
+#include "deser_aux.h"
 #include <smolrtsp/limits.h>
 #include <smolrtsp/rtsp_version.h>
 
@@ -17,4 +17,8 @@ void SmolRTSP_RTSPVersion_serialize(
     user_writer(strlen(minor), (const void *)minor, user_cx);
     user_writer(strlen(dot), (const void *)dot, user_cx);
     user_writer(strlen(major), (const void *)major, user_cx);
+}
+
+bool SmolRTSP_RTSPVersion_eq(const SmolRTSP_RTSPVersion *lhs, const SmolRTSP_RTSPVersion *rhs) {
+    return lhs->major == rhs->major && lhs->minor == rhs->minor;
 }

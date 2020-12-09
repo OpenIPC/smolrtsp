@@ -1,4 +1,4 @@
-#include "../parsing_aux.h"
+#include "../deser_aux.h"
 #include <smolrtsp/deserializers/rtsp_version.h>
 #include <smolrtsp/limits.h>
 
@@ -35,16 +35,21 @@ size_t SmolRTSP_RTSPVersionDeserializer_bytes_read(SmolRTSP_RTSPVersionDeseriali
 }
 
 SmolRTSP_DeserializeResult SmolRTSP_RTSPVersionDeserializer_deserialize(
-    SmolRTSP_RTSPVersionDeserializer *restrict self, size_t size, const void *restrict data) {
+    SmolRTSP_RTSPVersionDeserializer *restrict self, size_t size,
+    const char data[restrict static size]) {
     SmolRTSP_RTSPVersion version;
-    size_t bytes_read;
+    size_t bytes_read = 0;
 
+    MATCH(SmolRTSP_match_whitespaces(&size, &data, &bytes_read));
+
+    int bytes_read_int;
     SmolRTSP_DeserializeResult res = SmolRTSP_parse(
         SMOLRTSP_RTSP_VERSION_SIZE, size, data, "RTSP/%" SCNuLEAST8 ".%" SCNuLEAST8 "%n", 2,
-        &version.major, &version.minor, &bytes_read);
+        &version.major, &version.minor, &bytes_read_int);
 
     if (res == SmolRTSP_DeserializeResultOk) {
         self->bytes_read += bytes_read;
+        self->bytes_read += bytes_read_int;
         self->inner = version;
     }
 

@@ -9,7 +9,13 @@
 void SmolRTSP_RequestLine_serialize(
     const SmolRTSP_RequestLine *restrict self, SmolRTSP_UserWriter user_writer, void *user_cx) {
     SmolRTSP_Method_serialize(&self->method, user_writer, user_cx);
-    SmolRTSP_RequestUri_serialize(&self->uri, user_writer, user_cx);
+    SmolRTSP_RequestURI_serialize(&self->uri, user_writer, user_cx);
     SmolRTSP_RTSPVersion_serialize(&self->version, user_writer, user_cx);
-    user_writer(strlen(SMOLRTSP_CRLF), SMOLRTSP_CRLF, user_cx);
+    user_writer(strlen(CRLF), CRLF, user_cx);
+}
+
+bool SmolRTSP_RequestLine_eq(const SmolRTSP_RequestLine *lhs, const SmolRTSP_RequestLine *rhs) {
+    return SmolRTSP_Method_eq(&lhs->method, &rhs->method) &&
+           SmolRTSP_RequestURI_eq(&lhs->uri, &rhs->uri) &&
+           SmolRTSP_RTSPVersion_eq(&lhs->version, &rhs->version);
 }

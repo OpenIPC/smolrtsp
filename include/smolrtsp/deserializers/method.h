@@ -14,6 +14,6 @@ SmolRTSP_Method SmolRTSP_MethodDeserializer_inner(SmolRTSP_MethodDeserializer *s
 size_t SmolRTSP_MethodDeserializer_bytes_read(SmolRTSP_MethodDeserializer *self);
 
 SmolRTSP_DeserializeResult SmolRTSP_MethodDeserializer_deserialize(
-    SmolRTSP_MethodDeserializer *restrict self, size_t size, const void *restrict data);
+    SmolRTSP_MethodDeserializer *restrict self, size_t size, const char data[restrict static size]);
 
 #endif // SMOLRTSP_DESERIALIZERS_METHOD_H
