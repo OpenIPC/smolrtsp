@@ -39,14 +39,12 @@ SmolRTSP_DeserializeResult SmolRTSP_MethodDeserializer_deserialize(
     SmolRTSP_Method method;
     int bytes_read;
 
-    SmolRTSP_DeserializeResult res = SmolRTSP_parse(
+    MATCH(SmolRTSP_parse(
         SMOLRTSP_METHOD_SIZE, size, data, "%" STRINGIFY(SMOLRTSP_METHOD_SIZE) "s%n", 1, method.data,
-        &bytes_read);
+        &bytes_read));
 
-    if (res == SmolRTSP_DeserializeResultOk) {
-        self->bytes_read += bytes_read;
-        strncpy(self->inner.data, method.data, sizeof(method.data));
-    }
+    self->bytes_read += bytes_read;
+    strncpy(self->inner.data, method.data, sizeof(method.data));
 
-    return res;
+    return SmolRTSP_DeserializeResultOk;
 }

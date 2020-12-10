@@ -43,15 +43,13 @@ SmolRTSP_DeserializeResult SmolRTSP_RTSPVersionDeserializer_deserialize(
     MATCH(SmolRTSP_match_whitespaces(&size, &data, &bytes_read));
 
     int bytes_read_int;
-    SmolRTSP_DeserializeResult res = SmolRTSP_parse(
+    MATCH(SmolRTSP_parse(
         SMOLRTSP_RTSP_VERSION_SIZE, size, data, "RTSP/%" SCNuLEAST8 ".%" SCNuLEAST8 "%n", 2,
-        &version.major, &version.minor, &bytes_read_int);
+        &version.major, &version.minor, &bytes_read_int));
 
-    if (res == SmolRTSP_DeserializeResultOk) {
-        self->bytes_read += bytes_read;
-        self->bytes_read += bytes_read_int;
-        self->inner = version;
-    }
+    self->bytes_read += bytes_read;
+    self->bytes_read += bytes_read_int;
+    self->inner = version;
 
-    return res;
+    return SmolRTSP_DeserializeResultOk;
 }

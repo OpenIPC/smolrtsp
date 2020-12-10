@@ -39,14 +39,12 @@ SmolRTSP_DeserializeResult SmolRTSP_RequestURIDeserializer_deserialize(
     SmolRTSP_RequestURI uri;
     int bytes_read;
 
-    SmolRTSP_DeserializeResult res = SmolRTSP_parse(
+    MATCH(SmolRTSP_parse(
         SMOLRTSP_REQUEST_URI_SIZE, size, data, "%" STRINGIFY(SMOLRTSP_REQUEST_URI_SIZE) "s%n", 1,
-        uri.data, &bytes_read);
+        uri.data, &bytes_read));
 
-    if (res == SmolRTSP_DeserializeResultOk) {
-        self->bytes_read += bytes_read;
-        strncpy(self->inner.data, uri.data, sizeof(uri));
-    }
+    self->bytes_read += bytes_read;
+    strncpy(self->inner.data, uri.data, sizeof(uri));
 
-    return res;
+    return SmolRTSP_DeserializeResultOk;
 }

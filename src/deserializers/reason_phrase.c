@@ -40,14 +40,12 @@ SmolRTSP_DeserializeResult SmolRTSP_ReasonPhraseDeserializer_deserialize(
     SmolRTSP_ReasonPhrase phrase;
     int bytes_read;
 
-    SmolRTSP_DeserializeResult res = SmolRTSP_parse(
+    MATCH(SmolRTSP_parse(
         SMOLRTSP_REASON_PHRASE_SIZE, size, data,
-        "%" STRINGIFY(SMOLRTSP_REASON_PHRASE_SIZE) "[^" CRLF "]%n", 1, phrase.data, &bytes_read);
+        "%" STRINGIFY(SMOLRTSP_REASON_PHRASE_SIZE) "[^" CRLF "]%n", 1, phrase.data, &bytes_read));
 
-    if (res == SmolRTSP_DeserializeResultOk) {
-        self->bytes_read += bytes_read;
-        strncpy(self->inner.data, phrase.data, sizeof(phrase.data));
-    }
+    self->bytes_read += bytes_read;
+    strncpy(self->inner.data, phrase.data, sizeof(phrase.data));
 
-    return res;
+    return SmolRTSP_DeserializeResultOk;
 }

@@ -37,13 +37,10 @@ SmolRTSP_DeserializeResult SmolRTSP_StatusCodeDeserializer_deserialize(
     SmolRTSP_StatusCode code;
     int bytes_read;
 
-    SmolRTSP_DeserializeResult res =
-        SmolRTSP_parse(6, size, data, "%" SCNuLEAST16 "%n", 1, &code, &bytes_read);
+    MATCH(SmolRTSP_parse(6, size, data, "%" SCNuLEAST16 "%n", 1, &code, &bytes_read));
 
-    if (res == SmolRTSP_DeserializeResultOk) {
-        self->bytes_read = bytes_read;
-        self->inner = code;
-    }
+    self->bytes_read = bytes_read;
+    self->inner = code;
 
-    return res;
+    return SmolRTSP_DeserializeResultOk;
 }
