@@ -1,4 +1,5 @@
 #include "deser_aux.h"
+#include "aux.h"
 
 #include <ctype.h>
 #include <stdarg.h>
@@ -30,8 +31,7 @@ SmolRTSP_DeserializeResult SmolRTSP_match_whitespaces(
     for (size_t i = 0; i < *size; i++) {
         if ((*str)[i] != ' ') {
             *bytes_read += i;
-            *size -= i;
-            *str += i;
+            SUB_SLICE(*size, *str, i);
             return SmolRTSP_DeserializeResultOk;
         }
     }
@@ -44,8 +44,7 @@ SmolRTSP_DeserializeResult SmolRTSP_match_non_whitespaces(
     for (size_t i = 0; i < *size; i++) {
         if ((*str)[i] == ' ') {
             *bytes_read += i;
-            *size -= i;
-            *str += i;
+            SUB_SLICE(*size, *str, i);
             return SmolRTSP_DeserializeResultOk;
         }
     }
@@ -58,8 +57,7 @@ SmolRTSP_DeserializeResult SmolRTSP_match_crlf(
     for (size_t i = 0; i < *size - 1; i++) {
         if ((*str)[i] == '\r' && (*str)[i + 1] == '\n') {
             *bytes_read += i + 2;
-            *size -= i + 2;
-            *str += i + 2;
+            SUB_SLICE(*size, *str, i + 2);
             return SmolRTSP_DeserializeResultOk;
         }
     }
@@ -72,8 +70,7 @@ SmolRTSP_DeserializeResult SmolRTSP_match_header_name(
     for (size_t i = 0; i < *size; i++) {
         if (!isalpha((*str)[i]) && (*str)[i] != '-') {
             *bytes_read += i;
-            *size -= i;
-            *str += i;
+            SUB_SLICE(*size, *str, i);
             return SmolRTSP_DeserializeResultOk;
         }
     }
