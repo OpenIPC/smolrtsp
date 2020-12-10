@@ -1,6 +1,7 @@
 #include "../deser_aux.h"
 #include <smolrtsp/deserializers/status_code.h>
 
+#include <assert.h>
 #include <inttypes.h>
 #include <stdlib.h>
 
@@ -24,16 +25,21 @@ void SmolRTSP_StatusCodeDeserializer_free(SmolRTSP_StatusCodeDeserializer *self)
 }
 
 SmolRTSP_StatusCode SmolRTSP_StatusCodeDeserializer_inner(SmolRTSP_StatusCodeDeserializer *self) {
+    assert(self);
     return self->inner;
 }
 
 size_t SmolRTSP_StatusCodeDeserializer_bytes_read(SmolRTSP_StatusCodeDeserializer *self) {
+    assert(self);
     return self->bytes_read;
 }
 
 SmolRTSP_DeserializeResult SmolRTSP_StatusCodeDeserializer_deserialize(
     SmolRTSP_StatusCodeDeserializer *restrict self, size_t size,
     const char data[restrict static size]) {
+    assert(self);
+    assert(data);
+
     SmolRTSP_StatusCode code;
     int bytes_read;
 

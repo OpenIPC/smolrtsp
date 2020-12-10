@@ -5,6 +5,7 @@
 #include <smolrtsp/deserializers/request_uri.h>
 #include <smolrtsp/deserializers/rtsp_version.h>
 
+#include <assert.h>
 #include <stdbool.h>
 #include <stdlib.h>
 
@@ -75,15 +76,18 @@ void SmolRTSP_RequestLineDeserializer_free(SmolRTSP_RequestLineDeserializer *sel
 
 SmolRTSP_RequestLineDeserializerState
 SmolRTSP_RequestLineDeserializer_state(const SmolRTSP_RequestLineDeserializer *self) {
+    assert(self);
     return self->state;
 }
 
 SmolRTSP_RequestLine
 SmolRTSP_RequestLineDeserializer_inner(SmolRTSP_RequestLineDeserializer *self) {
+    assert(self);
     return self->inner;
 }
 
 size_t SmolRTSP_RequestLineDeserializer_bytes_read(SmolRTSP_RequestLineDeserializer *self) {
+    assert(self);
     return self->bytes_read;
 }
 
@@ -111,6 +115,9 @@ size_t SmolRTSP_RequestLineDeserializer_bytes_read(SmolRTSP_RequestLineDeseriali
 SmolRTSP_DeserializeResult SmolRTSP_RequestLineDeserializer_deserialize(
     SmolRTSP_RequestLineDeserializer *restrict self, size_t size,
     const char data[restrict static size]) {
+    assert(self);
+    assert(data);
+
     SmolRTSP_DeserializeResult res;
     while (true) {
         switch (self->state) {

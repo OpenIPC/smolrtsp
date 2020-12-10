@@ -27,10 +27,12 @@ void SmolRTSP_HeaderDeserializer_free(SmolRTSP_HeaderDeserializer *self) {
 }
 
 SmolRTSP_Header SmolRTSP_HeaderDeserializer_inner(SmolRTSP_HeaderDeserializer *self) {
+    assert(self);
     return self->inner;
 }
 
 size_t SmolRTSP_HeaderDeserializer_bytes_read(SmolRTSP_HeaderDeserializer *self) {
+    assert(self);
     return self->bytes_read;
 }
 

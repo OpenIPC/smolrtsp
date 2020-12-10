@@ -4,6 +4,7 @@
 #include <smolrtsp/deserializers/request.h>
 #include <smolrtsp/deserializers/request_line.h>
 
+#include <assert.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -74,10 +75,12 @@ SmolRTSP_RequestDeserializer_state(const SmolRTSP_RequestDeserializer *self) {
 }
 
 SmolRTSP_Request SmolRTSP_RequestDeserializer_inner(SmolRTSP_RequestDeserializer *self) {
+    assert(self);
     return self->inner;
 }
 
 size_t SmolRTSP_RequestDeserializer_bytes_read(SmolRTSP_RequestDeserializer *self) {
+    assert(self);
     return self->bytes_read;
 }
 
@@ -119,6 +122,9 @@ static InitBodyDeserializerResult init_body_deserializer(SmolRTSP_RequestDeseria
 SmolRTSP_DeserializeResult SmolRTSP_RequestDeserializer_deserialize(
     SmolRTSP_RequestDeserializer *restrict self, size_t size,
     const char data[restrict static size]) {
+    assert(self);
+    assert(data);
+
     SmolRTSP_DeserializeResult res;
     while (true) {
         switch (self->state) {

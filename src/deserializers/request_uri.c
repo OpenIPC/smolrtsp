@@ -2,6 +2,7 @@
 #include "../deser_aux.h"
 #include <smolrtsp/deserializers/request_uri.h>
 
+#include <assert.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -26,16 +27,21 @@ void SmolRTSP_RequestURIDeserializer_free(SmolRTSP_RequestURIDeserializer *self)
 }
 
 SmolRTSP_RequestURI SmolRTSP_RequestURIDeserializer_inner(SmolRTSP_RequestURIDeserializer *self) {
+    assert(self);
     return self->inner;
 }
 
 size_t SmolRTSP_RequestURIDeserializer_bytes_read(SmolRTSP_RequestURIDeserializer *self) {
+    assert(self);
     return self->bytes_read;
 }
 
 SmolRTSP_DeserializeResult SmolRTSP_RequestURIDeserializer_deserialize(
     SmolRTSP_RequestURIDeserializer *restrict self, size_t size,
     const char data[restrict static size]) {
+    assert(self);
+    assert(data);
+
     SmolRTSP_RequestURI uri;
     int bytes_read;
 

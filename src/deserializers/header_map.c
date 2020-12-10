@@ -28,10 +28,12 @@ void SmolRTSP_HeaderMapDeserializer_free(SmolRTSP_HeaderMapDeserializer *self) {
 }
 
 SmolRTSP_HeaderMap SmolRTSP_HeaderMapDeserializer_inner(SmolRTSP_HeaderMapDeserializer *self) {
+    assert(self);
     return self->inner;
 }
 
 size_t SmolRTSP_HeaderMapDeserializer_bytes_read(SmolRTSP_HeaderMapDeserializer *self) {
+    assert(self);
     return self->bytes_read;
 }
 

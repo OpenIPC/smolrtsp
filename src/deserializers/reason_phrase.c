@@ -2,6 +2,7 @@
 #include "../deser_aux.h"
 #include <smolrtsp/deserializers/reason_phrase.h>
 
+#include <assert.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -27,16 +28,21 @@ void SmolRTSP_ReasonPhraseDeserializer_free(SmolRTSP_ReasonPhraseDeserializer *s
 
 SmolRTSP_ReasonPhrase
 SmolRTSP_ReasonPhraseDeserializer_inner(SmolRTSP_ReasonPhraseDeserializer *self) {
+    assert(self);
     return self->inner;
 }
 
 size_t SmolRTSP_ReasonPhraseDeserializer_bytes_read(SmolRTSP_ReasonPhraseDeserializer *self) {
+    assert(self);
     return self->bytes_read;
 }
 
 SmolRTSP_DeserializeResult SmolRTSP_ReasonPhraseDeserializer_deserialize(
     SmolRTSP_ReasonPhraseDeserializer *restrict self, size_t size,
     const char data[restrict static size]) {
+    assert(self);
+    assert(data);
+
     SmolRTSP_ReasonPhrase phrase;
     int bytes_read;
 

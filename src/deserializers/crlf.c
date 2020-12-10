@@ -1,6 +1,7 @@
 #include "../aux.h"
 #include <smolrtsp/deserializers/crlf.h>
 
+#include <assert.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -26,15 +27,20 @@ void SmolRTSP_CRLFDeserializer_free(SmolRTSP_CRLFDeserializer *self) {
 }
 
 SmolRTSP_CRLF SmolRTSP_CRLFDeserializer_inner(SmolRTSP_CRLFDeserializer *self) {
+    assert(self);
     return self->inner;
 }
 
 size_t SmolRTSP_CRLFDeserializer_bytes_read(SmolRTSP_CRLFDeserializer *self) {
+    assert(self);
     return self->bytes_read;
 }
 
 SmolRTSP_DeserializeResult SmolRTSP_CRLFDeserializer_deserialize(
     SmolRTSP_CRLFDeserializer *restrict self, size_t size, const char data[restrict static size]) {
+    assert(self);
+    assert(data);
+
     if (size < strlen(CRLF)) {
         return SmolRTSP_DeserializeResultNeedMore;
     }

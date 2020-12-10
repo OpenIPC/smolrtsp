@@ -2,6 +2,7 @@
 #include "../deser_aux.h"
 #include <smolrtsp/deserializers/method.h>
 
+#include <assert.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -26,16 +27,21 @@ void SmolRTSP_MethodDeserializer_free(SmolRTSP_MethodDeserializer *self) {
 }
 
 SmolRTSP_Method SmolRTSP_MethodDeserializer_inner(SmolRTSP_MethodDeserializer *self) {
+    assert(self);
     return self->inner;
 }
 
 size_t SmolRTSP_MethodDeserializer_bytes_read(SmolRTSP_MethodDeserializer *self) {
+    assert(self);
     return self->bytes_read;
 }
 
 SmolRTSP_DeserializeResult SmolRTSP_MethodDeserializer_deserialize(
     SmolRTSP_MethodDeserializer *restrict self, size_t size,
     const char data[restrict static size]) {
+    assert(self);
+    assert(data);
+
     SmolRTSP_Method method;
     int bytes_read;
 
