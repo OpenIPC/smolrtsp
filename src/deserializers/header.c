@@ -37,8 +37,7 @@ size_t SmolRTSP_HeaderDeserializer_bytes_read(SmolRTSP_HeaderDeserializer *self)
 }
 
 SmolRTSP_DeserializeResult SmolRTSP_HeaderDeserializer_deserialize(
-    SmolRTSP_HeaderDeserializer *restrict self, size_t size,
-    const char data[restrict static size]) {
+    SmolRTSP_HeaderDeserializer *restrict self, size_t size, const char data[restrict]) {
     assert(self);
     assert(data);
 

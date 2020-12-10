@@ -120,8 +120,7 @@ static InitBodyDeserializerResult init_body_deserializer(SmolRTSP_RequestDeseria
     } break
 
 SmolRTSP_DeserializeResult SmolRTSP_RequestDeserializer_deserialize(
-    SmolRTSP_RequestDeserializer *restrict self, size_t size,
-    const char data[restrict static size]) {
+    SmolRTSP_RequestDeserializer *restrict self, size_t size, const char data[restrict]) {
     assert(self);
     assert(data);
 

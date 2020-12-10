@@ -38,8 +38,7 @@ size_t SmolRTSP_RTSPVersionDeserializer_bytes_read(SmolRTSP_RTSPVersionDeseriali
 }
 
 SmolRTSP_DeserializeResult SmolRTSP_RTSPVersionDeserializer_deserialize(
-    SmolRTSP_RTSPVersionDeserializer *restrict self, size_t size,
-    const char data[restrict static size]) {
+    SmolRTSP_RTSPVersionDeserializer *restrict self, size_t size, const char data[restrict]) {
     assert(self);
     assert(data);
 

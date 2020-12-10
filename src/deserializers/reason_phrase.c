@@ -38,8 +38,7 @@ size_t SmolRTSP_ReasonPhraseDeserializer_bytes_read(SmolRTSP_ReasonPhraseDeseria
 }
 
 SmolRTSP_DeserializeResult SmolRTSP_ReasonPhraseDeserializer_deserialize(
-    SmolRTSP_ReasonPhraseDeserializer *restrict self, size_t size,
-    const char data[restrict static size]) {
+    SmolRTSP_ReasonPhraseDeserializer *restrict self, size_t size, const char data[restrict]) {
     assert(self);
     assert(data);
 

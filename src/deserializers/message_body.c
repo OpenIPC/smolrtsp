@@ -36,8 +36,7 @@ size_t SmolRTSP_MessageBodyDeserializer_bytes_read(SmolRTSP_MessageBodyDeseriali
 }
 
 SmolRTSP_DeserializeResult SmolRTSP_MessageBodyDeserializer_deserialize(
-    SmolRTSP_MessageBodyDeserializer *restrict self, size_t size,
-    const char data[restrict static size]) {
+    SmolRTSP_MessageBodyDeserializer *restrict self, size_t size, const char data[restrict]) {
     assert(self);
     assert(data);
 

@@ -37,8 +37,7 @@ size_t SmolRTSP_RequestURIDeserializer_bytes_read(SmolRTSP_RequestURIDeserialize
 }
 
 SmolRTSP_DeserializeResult SmolRTSP_RequestURIDeserializer_deserialize(
-    SmolRTSP_RequestURIDeserializer *restrict self, size_t size,
-    const char data[restrict static size]) {
+    SmolRTSP_RequestURIDeserializer *restrict self, size_t size, const char data[restrict]) {
     assert(self);
     assert(data);
 

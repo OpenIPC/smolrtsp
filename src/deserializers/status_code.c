@@ -35,8 +35,7 @@ size_t SmolRTSP_StatusCodeDeserializer_bytes_read(SmolRTSP_StatusCodeDeserialize
 }
 
 SmolRTSP_DeserializeResult SmolRTSP_StatusCodeDeserializer_deserialize(
-    SmolRTSP_StatusCodeDeserializer *restrict self, size_t size,
-    const char data[restrict static size]) {
+    SmolRTSP_StatusCodeDeserializer *restrict self, size_t size, const char data[restrict]) {
     assert(self);
     assert(data);
 

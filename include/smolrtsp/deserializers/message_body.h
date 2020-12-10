@@ -14,7 +14,6 @@ SmolRTSP_MessageBody SmolRTSP_MessageBodyDeserializer_inner(SmolRTSP_MessageBody
 size_t SmolRTSP_MessageBodyDeserializer_bytes_read(SmolRTSP_MessageBodyDeserializer *self);
 
 SmolRTSP_DeserializeResult SmolRTSP_MessageBodyDeserializer_deserialize(
-    SmolRTSP_MessageBodyDeserializer *restrict self, size_t size,
-    const char data[restrict static size]);
+    SmolRTSP_MessageBodyDeserializer *restrict self, size_t size, const char data[restrict]);
 
 #endif // SMOLRTSP_DESERIALIZERS_MESSAGE_BODY_H
