@@ -1,3 +1,8 @@
+/**
+ * @file
+ * @brief An RTSP reason phrase deserializer.
+ */
+
 #ifndef SMOLRTSP_DESERIALIZERS_REASON_PHRASE_H
 #define SMOLRTSP_DESERIALIZERS_REASON_PHRASE_H
 

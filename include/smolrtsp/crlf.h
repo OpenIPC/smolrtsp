@@ -1,3 +1,8 @@
+/**
+ * @file
+ * @brief CRLF, "\r\n".
+ */
+
 #ifndef SMOLRTSP_CRLF_H
 #define SMOLRTSP_CRLF_H
 

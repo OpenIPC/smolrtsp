@@ -1,3 +1,8 @@
+/**
+ * @file
+ * @brief A CRLF deserializer.
+ */
+
 #ifndef SMOLRTSP_DESERIALIZERS_CRLF_H
 #define SMOLRTSP_DESERIALIZERS_CRLF_H
 

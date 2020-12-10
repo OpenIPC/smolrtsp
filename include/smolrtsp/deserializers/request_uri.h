@@ -1,3 +1,8 @@
+/**
+ * @file
+ * @brief An RTSP request URI deserializer.
+ */
+
 #ifndef SMOLRTSP_DESERIALIZERS_REQUEST_URI_H
 #define SMOLRTSP_DESERIALIZERS_REQUEST_URI_H
 

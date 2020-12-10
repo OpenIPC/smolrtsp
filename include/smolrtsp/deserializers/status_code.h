@@ -1,3 +1,8 @@
+/**
+ * @file
+ * @brief An RTSP status code deserializer.
+ */
+
 #ifndef SMOLRTSP_DESERIALIZERS_STATUS_CODE_H
 #define SMOLRTSP_DESERIALIZERS_STATUS_CODE_H
 

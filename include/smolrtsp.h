@@ -6,15 +6,17 @@
 #ifndef SMOLRTSP_H
 #define SMOLRTSP_H
 
-#include <smolrtsp/limits.h>
-
+#include <smolrtsp/crlf.h>
 #include <smolrtsp/deserialization.h>
 #include <smolrtsp/deserializers.h>
 #include <smolrtsp/header.h>
+#include <smolrtsp/header_map.h>
+#include <smolrtsp/limits.h>
 #include <smolrtsp/message_body.h>
 #include <smolrtsp/method.h>
 #include <smolrtsp/reason_phrase.h>
 #include <smolrtsp/request.h>
+#include <smolrtsp/request_line.h>
 #include <smolrtsp/request_uri.h>
 #include <smolrtsp/response.h>
 #include <smolrtsp/rtsp_version.h>

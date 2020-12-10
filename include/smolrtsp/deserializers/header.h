@@ -1,3 +1,8 @@
+/**
+ * @file
+ * @brief An RTSP header deserializer.
+ */
+
 #ifndef SMOLRTSP_DESERIALIZERS_HEADER_H
 #define SMOLRTSP_DESERIALIZERS_HEADER_H
 

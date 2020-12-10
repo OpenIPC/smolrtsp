@@ -1,3 +1,8 @@
+/**
+ * @file
+ * @brief An RTSP message body deserializer.
+ */
+
 #ifndef SMOLRTSP_DESERIALIZERS_MESSAGE_BODY_H
 #define SMOLRTSP_DESERIALIZERS_MESSAGE_BODY_H
 

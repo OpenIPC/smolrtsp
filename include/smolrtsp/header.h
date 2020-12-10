@@ -11,6 +11,9 @@
 
 #include <stdbool.h>
 
+/**
+ * An RTSP header.
+ */
 typedef struct {
     const char *key;
     size_t key_len;
@@ -58,9 +61,25 @@ typedef struct {
 #define SMOLRTSP_HEADER_NAME_VIA                "Via"
 #define SMOLRTSP_HEADER_NAME_WWW_AUTHENTICATE   "WWW-Authenticate"
 
+/**
+ * Serializes @p self into @p user_writer.
+ *
+ * @param[in] user_cx Some value provided to @p user_writer on each write.
+ *
+ * @pre @p self shall not be `NULL`.
+ * @pre @p user_writer shall not be `NULL`.
+ */
 void SmolRTSP_Header_serialize(
     const SmolRTSP_Header *restrict self, SmolRTSP_UserWriter user_writer, void *user_cx);
 
+/**
+ * Compares @p lhs with @p rhs for equality.
+ *
+ * @return `true` if @p lhs and @rhs are equal, `false` otherwise.
+ *
+ * @pre @p lhs shall not be `NULL`.
+ * @pre @p rhs shall not be `NULL`.
+ */
 bool SmolRTSP_Header_eq(const SmolRTSP_Header *lhs, const SmolRTSP_Header *rhs);
 
 #endif // SMOLRTSP_HEADER_H

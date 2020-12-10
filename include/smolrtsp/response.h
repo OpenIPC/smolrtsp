@@ -15,6 +15,9 @@
 
 #include <stddef.h>
 
+/**
+ * An RTSP response line.
+ */
 typedef struct {
     SmolRTSP_RTSPVersion version;
     SmolRTSP_StatusCode code;

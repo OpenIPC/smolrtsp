@@ -12,12 +12,23 @@
 
 #include <stdbool.h>
 
+/**
+ * An RTSP request.
+ */
 typedef struct {
     SmolRTSP_RequestLine start_line;
     SmolRTSP_HeaderMap header_map;
     SmolRTSP_MessageBody body;
 } SmolRTSP_Request;
 
+/**
+ * Compares @p lhs with @p rhs for equality.
+ *
+ * @return `true` if @p lhs and @rhs are equal, `false` otherwise.
+ *
+ * @pre @p lhs shall not be `NULL`.
+ * @pre @p rhs shall not be `NULL`.
+ */
 bool SmolRTSP_Request_eq(const SmolRTSP_Request *lhs, const SmolRTSP_Request *rhs);
 
 #endif // SMOLRTSP_REQUEST_H

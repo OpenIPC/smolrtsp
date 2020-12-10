@@ -1,3 +1,8 @@
+/**
+ * @file
+ * @brief An RTSP version deserializer.
+ */
+
 #ifndef SMOLRTSP_DESERIALIZERS_RTSP_VERSION_H
 #define SMOLRTSP_DESERIALIZERS_RTSP_VERSION_H
 
