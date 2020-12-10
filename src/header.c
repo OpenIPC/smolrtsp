@@ -1,10 +1,14 @@
 #include "deser_aux.h"
 #include <smolrtsp/header.h>
 
+#include <assert.h>
 #include <string.h>
 
 void SmolRTSP_Header_serialize(
     const SmolRTSP_Header *restrict self, SmolRTSP_UserWriter user_writer, void *user_cx) {
+    assert(self);
+    assert(user_writer);
+
     static const char hcolon[] = ": ";
 
     user_writer(self->key_len, self->key, user_cx);
@@ -13,6 +17,9 @@ void SmolRTSP_Header_serialize(
 }
 
 bool SmolRTSP_Header_eq(const SmolRTSP_Header *lhs, const SmolRTSP_Header *rhs) {
+    assert(lhs);
+    assert(rhs);
+
     if (lhs->key_len != rhs->key_len || lhs->value_len != rhs->value_len) {
         return false;
     }
