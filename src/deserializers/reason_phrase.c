@@ -38,15 +38,18 @@ size_t SmolRTSP_ReasonPhraseDeserializer_bytes_read(SmolRTSP_ReasonPhraseDeseria
 }
 
 SmolRTSP_DeserializeResult SmolRTSP_ReasonPhraseDeserializer_deserialize(
-    SmolRTSP_ReasonPhraseDeserializer *restrict self, size_t size, const char data[restrict]) {
+    SmolRTSP_ReasonPhraseDeserializer *restrict self, SmolRTSP_Slice data) {
     assert(self);
-    assert(data);
+    assert(!SmolRTSP_Slice_is_null(data));
+
+    const char *str = data.data;
+    const size_t size = data.size;
 
     SmolRTSP_ReasonPhrase phrase;
     int bytes_read;
 
     MATCH(SmolRTSP_parse(
-        SMOLRTSP_REASON_PHRASE_SIZE, size, data,
+        SMOLRTSP_REASON_PHRASE_SIZE, size, str,
         "%" STRINGIFY(SMOLRTSP_REASON_PHRASE_SIZE) "[^" CRLF "]%n", 1, phrase.data, &bytes_read));
 
     self->bytes_read += bytes_read;

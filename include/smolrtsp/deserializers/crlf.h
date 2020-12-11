@@ -19,6 +19,6 @@ SmolRTSP_CRLF SmolRTSP_CRLFDeserializer_inner(SmolRTSP_CRLFDeserializer *self);
 size_t SmolRTSP_CRLFDeserializer_bytes_read(SmolRTSP_CRLFDeserializer *self);
 
 SmolRTSP_DeserializeResult SmolRTSP_CRLFDeserializer_deserialize(
-    SmolRTSP_CRLFDeserializer *restrict self, size_t size, const char data[restrict]);
+    SmolRTSP_CRLFDeserializer *restrict self, SmolRTSP_Slice data);
 
 #endif // SMOLRTSP_DESERIALIZERS_CRLF_H

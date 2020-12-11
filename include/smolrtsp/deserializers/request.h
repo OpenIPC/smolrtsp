@@ -33,6 +33,6 @@ SmolRTSP_Request SmolRTSP_RequestDeserializer_inner(SmolRTSP_RequestDeserializer
 size_t SmolRTSP_RequestDeserializer_bytes_read(SmolRTSP_RequestDeserializer *self);
 
 SmolRTSP_DeserializeResult SmolRTSP_RequestDeserializer_deserialize(
-    SmolRTSP_RequestDeserializer *restrict self, size_t size, const char data[restrict]);
+    SmolRTSP_RequestDeserializer *restrict self, SmolRTSP_Slice data);
 
 #endif // SMOLRTSP_DESERIALIZERS_REQUEST_H

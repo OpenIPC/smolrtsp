@@ -9,7 +9,7 @@ static void check(const char *code, SmolRTSP_StatusCode expected) {
     ASSERT_NE(deser, NULL);
 
     SmolRTSP_DeserializeResult res =
-        SmolRTSP_StatusCodeDeserializer_deserialize(deser, strlen(code), code);
+        SmolRTSP_StatusCodeDeserializer_deserialize(deser, SmolRTSP_Slice_new(code, strlen(code)));
     ASSERT_EQ(res, SmolRTSP_DeserializeResultOk);
 
     SmolRTSP_StatusCode inner = SmolRTSP_StatusCodeDeserializer_inner(deser);

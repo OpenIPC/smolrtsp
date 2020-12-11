@@ -36,20 +36,23 @@ size_t SmolRTSP_MessageBodyDeserializer_bytes_read(SmolRTSP_MessageBodyDeseriali
 }
 
 SmolRTSP_DeserializeResult SmolRTSP_MessageBodyDeserializer_deserialize(
-    SmolRTSP_MessageBodyDeserializer *restrict self, size_t size, const char data[restrict]) {
+    SmolRTSP_MessageBodyDeserializer *restrict self, SmolRTSP_Slice data) {
     assert(self);
-    assert(data);
+    assert(!SmolRTSP_Slice_is_null(data));
+
+    const char *str = data.data;
+    const size_t size = data.size;
 
     if (size < self->inner.size) {
         return SmolRTSP_DeserializeResultNeedMore;
     }
 
     if (self->inner.size == 0) {
-        self->inner = SmolRTSP_MessageBody_empty();
+        self->inner = SmolRTSP_Slice_null();
         return SmolRTSP_DeserializeResultOk;
     }
 
-    self->inner.data = data;
+    self->inner.data = str;
     self->bytes_read += self->inner.size;
     return SmolRTSP_DeserializeResultOk;
 }

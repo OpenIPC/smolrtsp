@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>libsmolrtsp: SmolRTSP_Header Struct Reference</title>
+<title>smolrtsp: SmolRTSP_Header Struct Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">libsmolrtsp
+   <div id="projectname">smolrtsp
    &#160;<span id="projectnumber">0.1.0</span>
    </div>
    <div id="projectbrief">A small, portable, extensible RTSP 1.0 implementation in C99</div>
@@ -66,17 +66,27 @@ $(function() {
 <div class="title">SmolRTSP_Header Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="header_8h_source.html">header.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
-<tr class="memitem:a8782211ed6276ce3e72fc11629aa41ca"><td class="memItemLeft" align="right" valign="top"><a id="a8782211ed6276ce3e72fc11629aa41ca"></a>
-char&#160;</td><td class="memItemRight" valign="bottom"><b>key</b> [SMOLRTSP_HEADER_KEY_SIZE]</td></tr>
-<tr class="separator:a8782211ed6276ce3e72fc11629aa41ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab5d54a76765401050d41fe4c46e836d0"><td class="memItemLeft" align="right" valign="top"><a id="ab5d54a76765401050d41fe4c46e836d0"></a>
-char&#160;</td><td class="memItemRight" valign="bottom"><b>value</b> [SMOLRTSP_HEADER_VALUE_SIZE]</td></tr>
-<tr class="separator:ab5d54a76765401050d41fe4c46e836d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a091f73d832e3ca282fae4d86e3e8d79a"><td class="memItemLeft" align="right" valign="top"><a id="a091f73d832e3ca282fae4d86e3e8d79a"></a>
+const char *&#160;</td><td class="memItemRight" valign="bottom"><b>key</b></td></tr>
+<tr class="separator:a091f73d832e3ca282fae4d86e3e8d79a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a282fa89aecae4a39b9aa41bdd81d67c9"><td class="memItemLeft" align="right" valign="top"><a id="a282fa89aecae4a39b9aa41bdd81d67c9"></a>
+size_t&#160;</td><td class="memItemRight" valign="bottom"><b>key_len</b></td></tr>
+<tr class="separator:a282fa89aecae4a39b9aa41bdd81d67c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e5099203b1be47b98e960360cb36787"><td class="memItemLeft" align="right" valign="top"><a id="a7e5099203b1be47b98e960360cb36787"></a>
+const char *&#160;</td><td class="memItemRight" valign="bottom"><b>value</b></td></tr>
+<tr class="separator:a7e5099203b1be47b98e960360cb36787"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77922c2ace974d457e4b6abf47fbb2e0"><td class="memItemLeft" align="right" valign="top"><a id="a77922c2ace974d457e4b6abf47fbb2e0"></a>
+size_t&#160;</td><td class="memItemRight" valign="bottom"><b>value_len</b></td></tr>
+<tr class="separator:a77922c2ace974d457e4b6abf47fbb2e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<hr/>The documentation for this struct was generated from the following file:<ul>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>An RTSP header. </p>
+</div><hr/>The documentation for this struct was generated from the following file:<ul>
 <li>include/smolrtsp/<a class="el" href="header_8h_source.html">header.h</a></li>
 </ul>
 </div><!-- contents -->

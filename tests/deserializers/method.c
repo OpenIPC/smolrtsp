@@ -9,7 +9,7 @@ static void check(const char *method, SmolRTSP_Method expected) {
     ASSERT_NE(deser, NULL);
 
     SmolRTSP_DeserializeResult res =
-        SmolRTSP_MethodDeserializer_deserialize(deser, strlen(method), method);
+        SmolRTSP_MethodDeserializer_deserialize(deser, SmolRTSP_Slice_new(method, strlen(method)));
     SmolRTSP_Method inner = SmolRTSP_MethodDeserializer_inner(deser);
     size_t bytes_read = SmolRTSP_MethodDeserializer_bytes_read(deser);
 

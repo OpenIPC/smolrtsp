@@ -17,4 +17,6 @@
         data += len;                                                                               \
     } while (false)
 
+#define OBJ(type, expr) ((type *)(type[]){expr})
+
 #endif // SMOLRTSP_AUX_H

@@ -37,26 +37,29 @@ size_t SmolRTSP_HeaderDeserializer_bytes_read(SmolRTSP_HeaderDeserializer *self)
 }
 
 SmolRTSP_DeserializeResult SmolRTSP_HeaderDeserializer_deserialize(
-    SmolRTSP_HeaderDeserializer *restrict self, size_t size, const char data[restrict]) {
+    SmolRTSP_HeaderDeserializer *restrict self, SmolRTSP_Slice data) {
     assert(self);
-    assert(data);
+    assert(!SmolRTSP_Slice_is_null(data));
+
+    const char *str = data.data;
+    size_t size = data.size;
 
     SmolRTSP_Header header;
     size_t bytes_read = 0;
 
-    MATCH(SmolRTSP_match_whitespaces(&size, &data, &bytes_read));
-    header.key = data;
-    MATCH(SmolRTSP_match_header_name(&size, &data, &bytes_read));
-    header.key_len = data - header.key;
+    MATCH(SmolRTSP_match_whitespaces(&size, &str, &bytes_read));
+    header.key.data = str;
+    MATCH(SmolRTSP_match_header_name(&size, &str, &bytes_read));
+    header.key.size = str - (const char *)header.key.data;
 
-    MATCH(SmolRTSP_match_whitespaces(&size, &data, &bytes_read));
-    EXPECT(size, data, bytes_read, ':');
-    MATCH(SmolRTSP_match_whitespaces(&size, &data, &bytes_read));
+    MATCH(SmolRTSP_match_whitespaces(&size, &str, &bytes_read));
+    EXPECT(size, str, bytes_read, ':');
+    MATCH(SmolRTSP_match_whitespaces(&size, &str, &bytes_read));
 
-    header.value = data;
+    header.value.data = str;
 
-    MATCH(SmolRTSP_match_crlf(&size, &data, &bytes_read));
-    header.value_len = data - header.value - 2;
+    MATCH(SmolRTSP_match_crlf(&size, &str, &bytes_read));
+    header.value.size = str - (const char *)header.value.data - 2;
 
     self->inner = header;
     self->bytes_read += bytes_read;

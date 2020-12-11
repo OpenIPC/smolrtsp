@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>libsmolrtsp: include/smolrtsp/rtsp_version.h File Reference</title>
+<title>smolrtsp: include/smolrtsp/rtsp_version.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">libsmolrtsp
+   <div id="projectname">smolrtsp
    &#160;<span id="projectnumber">0.1.0</span>
    </div>
    <div id="projectbrief">A small, portable, extensible RTSP 1.0 implementation in C99</div>
@@ -75,6 +75,7 @@ $(function() {
 <p>An RTSP version.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;<a class="el" href="user__writer_8h_source.html">smolrtsp/user_writer.h</a>&gt;</code><br />
+<code>#include &lt;stdbool.h&gt;</code><br />
 <code>#include &lt;stdint.h&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for rtsp_version.h:</div>
@@ -89,14 +90,14 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="rtsp__version_8h__dep__incl.png" border="0" usemap="#include_2smolrtsp_2rtsp__version_8hdep" alt=""/></div>
 <map name="include_2smolrtsp_2rtsp__version_8hdep" id="include_2smolrtsp_2rtsp__version_8hdep">
-<area shape="rect" id="node2" href="smolrtsp_8h.html" title="Re&#45;exports all the functionality. " alt="" coords="541,281,669,307"/>
-<area shape="rect" id="node3" href="request__line_8h.html" title="An RTSP request line. " alt="" coords="230,95,394,136"/>
-<area shape="rect" id="node7" href="response_8h.html" title="An RTSP response. " alt="" coords="714,102,899,129"/>
-<area shape="rect" id="node8" href="deserializers_2rtsp__version_8h_source.html" title="include/smolrtsp/deserializers\l/rtsp_version.h" alt="" coords="441,95,636,136"/>
-<area shape="rect" id="node4" href="request_8h.html" title="An RTSP request. " alt="" coords="15,191,190,218"/>
-<area shape="rect" id="node6" href="deserializers_2request__line_8h_source.html" title="include/smolrtsp/deserializers\l/request_line.h" alt="" coords="215,184,409,225"/>
-<area shape="rect" id="node5" href="deserializers_2request_8h_source.html" title="include/smolrtsp/deserializers\l/request.h" alt="" coords="5,273,200,315"/>
-<area shape="rect" id="node9" href="deserializers_8h.html" title="A collection of RTSP types deserializers. " alt="" coords="433,191,639,218"/>
+<area shape="rect" id="node2" href="smolrtsp_8h.html" title="Re&#45;exports all the functionality. " alt="" coords="160,281,288,307"/>
+<area shape="rect" id="node3" href="request__line_8h.html" title="An RTSP request line. " alt="" coords="461,95,625,136"/>
+<area shape="rect" id="node7" href="response_8h.html" title="An RTSP response. " alt="" coords="31,102,217,129"/>
+<area shape="rect" id="node8" href="deserializers_2rtsp__version_8h.html" title="An RTSP version deserializer. " alt="" coords="241,95,436,136"/>
+<area shape="rect" id="node4" href="request_8h.html" title="An RTSP request. " alt="" coords="621,191,795,218"/>
+<area shape="rect" id="node6" href="deserializers_2request__line_8h.html" title="An RTSP request line deserializer. " alt="" coords="351,184,545,225"/>
+<area shape="rect" id="node5" href="deserializers_2request_8h.html" title="An RTSP request deserializer. " alt="" coords="611,273,805,315"/>
+<area shape="rect" id="node9" href="deserializers_8h.html" title="A collection of RTSP types deserializers. " alt="" coords="121,191,327,218"/>
 </map>
 </div>
 </div>
@@ -109,13 +110,92 @@ Data Structures</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:aaed5a17fdabae3574c10e78ca6d9337e"><td class="memItemLeft" align="right" valign="top"><a id="aaed5a17fdabae3574c10e78ca6d9337e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SmolRTSP_RTSPVersion_serialize</b> (const <a class="el" href="structSmolRTSP__RTSPVersion.html">SmolRTSP_RTSPVersion</a> *restrict self, SmolRTSP_UserWriter user_writer, void *user_cx)</td></tr>
+<tr class="memitem:aaed5a17fdabae3574c10e78ca6d9337e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rtsp__version_8h.html#aaed5a17fdabae3574c10e78ca6d9337e">SmolRTSP_RTSPVersion_serialize</a> (const <a class="el" href="structSmolRTSP__RTSPVersion.html">SmolRTSP_RTSPVersion</a> *restrict self, <a class="el" href="user__writer_8h.html#a1a92950ede72b9e938c684396bf0e34b">SmolRTSP_UserWriter</a> user_writer, void *user_cx)</td></tr>
 <tr class="separator:aaed5a17fdabae3574c10e78ca6d9337e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa448554841474e5a0c97a1be3064957"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rtsp__version_8h.html#afa448554841474e5a0c97a1be3064957">SmolRTSP_RTSPVersion_eq</a> (const <a class="el" href="structSmolRTSP__RTSPVersion.html">SmolRTSP_RTSPVersion</a> *lhs, const <a class="el" href="structSmolRTSP__RTSPVersion.html">SmolRTSP_RTSPVersion</a> *rhs)</td></tr>
+<tr class="separator:afa448554841474e5a0c97a1be3064957"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>An RTSP version. </p>
-</div></div><!-- contents -->
+</div><h2 class="groupheader">Function Documentation</h2>
+<a id="afa448554841474e5a0c97a1be3064957"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa448554841474e5a0c97a1be3064957">&#9670;&nbsp;</a></span>SmolRTSP_RTSPVersion_eq()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool SmolRTSP_RTSPVersion_eq </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structSmolRTSP__RTSPVersion.html">SmolRTSP_RTSPVersion</a> *&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structSmolRTSP__RTSPVersion.html">SmolRTSP_RTSPVersion</a> *&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Compares <code>lhs</code> with <code>rhs</code> for equality.</p>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> if <code>lhs</code> and  are equal, <code>false</code> otherwise.</dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd><code>lhs</code> shall not be <code>NULL</code>. </dd>
+<dd>
+<code>rhs</code> shall not be <code>NULL</code>. </dd></dl>
+
+</div>
+</div>
+<a id="aaed5a17fdabae3574c10e78ca6d9337e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaed5a17fdabae3574c10e78ca6d9337e">&#9670;&nbsp;</a></span>SmolRTSP_RTSPVersion_serialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SmolRTSP_RTSPVersion_serialize </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structSmolRTSP__RTSPVersion.html">SmolRTSP_RTSPVersion</a> *restrict&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="user__writer_8h.html#a1a92950ede72b9e938c684396bf0e34b">SmolRTSP_UserWriter</a>&#160;</td>
+          <td class="paramname"><em>user_writer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *&#160;</td>
+          <td class="paramname"><em>user_cx</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Serializes <code>self</code> into <code>user_writer</code>.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">user_cx</td><td>Some value provided to <code>user_writer</code> on each write.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section pre"><dt>Precondition</dt><dd><code>self</code> shall not be <code>NULL</code>. </dd>
+<dd>
+<code>user_writer</code> shall not be <code>NULL</code>. </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

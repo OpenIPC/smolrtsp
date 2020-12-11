@@ -7,6 +7,7 @@
 #define SMOLRTSP_HEADER_H
 
 #include <smolrtsp/limits.h>
+#include <smolrtsp/slice.h>
 #include <smolrtsp/user_writer.h>
 
 #include <stdbool.h>
@@ -15,10 +16,8 @@
  * An RTSP header.
  */
 typedef struct {
-    const char *key;
-    size_t key_len;
-    const char *value;
-    size_t value_len;
+    SmolRTSP_Slice key;
+    SmolRTSP_Slice value;
 } SmolRTSP_Header;
 
 #define SMOLRTSP_HEADER_NAME_ACCEPT             "Accept"

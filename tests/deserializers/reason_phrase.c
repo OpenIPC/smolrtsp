@@ -8,8 +8,8 @@ static void check(const char *phrase, SmolRTSP_ReasonPhrase expected) {
     SmolRTSP_ReasonPhraseDeserializer *deser = SmolRTSP_ReasonPhraseDeserializer_new();
     ASSERT_NE(deser, NULL);
 
-    SmolRTSP_DeserializeResult res =
-        SmolRTSP_ReasonPhraseDeserializer_deserialize(deser, strlen(phrase), phrase);
+    SmolRTSP_DeserializeResult res = SmolRTSP_ReasonPhraseDeserializer_deserialize(
+        deser, SmolRTSP_Slice_new(phrase, strlen(phrase)));
     ASSERT_EQ(res, SmolRTSP_DeserializeResultOk);
 
     SmolRTSP_ReasonPhrase inner = SmolRTSP_ReasonPhraseDeserializer_inner(deser);

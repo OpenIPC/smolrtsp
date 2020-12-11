@@ -37,15 +37,18 @@ size_t SmolRTSP_CRLFDeserializer_bytes_read(SmolRTSP_CRLFDeserializer *self) {
 }
 
 SmolRTSP_DeserializeResult SmolRTSP_CRLFDeserializer_deserialize(
-    SmolRTSP_CRLFDeserializer *restrict self, size_t size, const char data[restrict]) {
+    SmolRTSP_CRLFDeserializer *restrict self, SmolRTSP_Slice data) {
     assert(self);
-    assert(data);
+    assert(!SmolRTSP_Slice_is_null(data));
+
+    const char *str = data.data;
+    const size_t size = data.size;
 
     if (size < strlen(CRLF)) {
         return SmolRTSP_DeserializeResultNeedMore;
     }
 
-    if (memcmp(data, CRLF, strlen(CRLF)) == 0) {
+    if (memcmp(str, CRLF, strlen(CRLF)) == 0) {
         self->bytes_read = strlen(CRLF);
         return SmolRTSP_DeserializeResultOk;
     }

@@ -38,18 +38,21 @@ size_t SmolRTSP_RTSPVersionDeserializer_bytes_read(SmolRTSP_RTSPVersionDeseriali
 }
 
 SmolRTSP_DeserializeResult SmolRTSP_RTSPVersionDeserializer_deserialize(
-    SmolRTSP_RTSPVersionDeserializer *restrict self, size_t size, const char data[restrict]) {
+    SmolRTSP_RTSPVersionDeserializer *restrict self, SmolRTSP_Slice data) {
     assert(self);
-    assert(data);
+    assert(!SmolRTSP_Slice_is_null(data));
+
+    const char *str = data.data;
+    const size_t size = data.size;
 
     SmolRTSP_RTSPVersion version;
     size_t bytes_read = 0;
 
-    MATCH(SmolRTSP_match_whitespaces(&size, &data, &bytes_read));
+    MATCH(SmolRTSP_match_whitespaces(&size, &str, &bytes_read));
 
     int bytes_read_int;
     MATCH(SmolRTSP_parse(
-        SMOLRTSP_RTSP_VERSION_SIZE, size, data, "RTSP/%" SCNuLEAST8 ".%" SCNuLEAST8 "%n", 2,
+        SMOLRTSP_RTSP_VERSION_SIZE, size, str, "RTSP/%" SCNuLEAST8 ".%" SCNuLEAST8 "%n", 2,
         &version.major, &version.minor, &bytes_read_int));
 
     self->bytes_read += bytes_read;

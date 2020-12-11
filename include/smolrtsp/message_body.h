@@ -6,6 +6,7 @@
 #ifndef SMOLRTSP_MESSAGE_BODY_H
 #define SMOLRTSP_MESSAGE_BODY_H
 
+#include <smolrtsp/slice.h>
 #include <smolrtsp/user_writer.h>
 
 #include <stdbool.h>
@@ -14,12 +15,7 @@
 /**
  * An RTSP message body.
  */
-typedef struct {
-    const char *data;
-    size_t size;
-} SmolRTSP_MessageBody;
-
-SmolRTSP_MessageBody SmolRTSP_MessageBody_empty(void);
+typedef SmolRTSP_Slice SmolRTSP_MessageBody;
 
 /**
  * Serializes @p self into @p user_writer.

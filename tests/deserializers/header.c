@@ -10,7 +10,7 @@ static void check(const char *header, SmolRTSP_Header expected) {
     ASSERT_NE(deser, NULL);
 
     SmolRTSP_DeserializeResult res =
-        SmolRTSP_HeaderDeserializer_deserialize(deser, strlen(header), header);
+        SmolRTSP_HeaderDeserializer_deserialize(deser, SmolRTSP_Slice_new(header, strlen(header)));
     SmolRTSP_Header inner = SmolRTSP_HeaderDeserializer_inner(deser);
     size_t bytes_read = SmolRTSP_HeaderDeserializer_bytes_read(deser);
 

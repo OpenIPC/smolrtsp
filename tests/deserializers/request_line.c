@@ -10,7 +10,7 @@ static void check(const char *line, SmolRTSP_RequestLine expected) {
     ASSERT_NE(deser, NULL);
 
     SmolRTSP_DeserializeResult res =
-        SmolRTSP_RequestLineDeserializer_deserialize(deser, strlen(line), line);
+        SmolRTSP_RequestLineDeserializer_deserialize(deser, SmolRTSP_Slice_new(line, strlen(line)));
     SmolRTSP_RequestLine inner = SmolRTSP_RequestLineDeserializer_inner(deser);
     size_t bytes_read = SmolRTSP_RequestLineDeserializer_bytes_read(deser);
 

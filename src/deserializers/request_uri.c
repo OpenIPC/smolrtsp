@@ -37,15 +37,18 @@ size_t SmolRTSP_RequestURIDeserializer_bytes_read(SmolRTSP_RequestURIDeserialize
 }
 
 SmolRTSP_DeserializeResult SmolRTSP_RequestURIDeserializer_deserialize(
-    SmolRTSP_RequestURIDeserializer *restrict self, size_t size, const char data[restrict]) {
+    SmolRTSP_RequestURIDeserializer *restrict self, SmolRTSP_Slice data) {
     assert(self);
-    assert(data);
+    assert(!SmolRTSP_Slice_is_null(data));
+
+    const char *str = data.data;
+    const size_t size = data.size;
 
     SmolRTSP_RequestURI uri;
     int bytes_read;
 
     MATCH(SmolRTSP_parse(
-        SMOLRTSP_REQUEST_URI_SIZE, size, data, "%" STRINGIFY(SMOLRTSP_REQUEST_URI_SIZE) "s%n", 1,
+        SMOLRTSP_REQUEST_URI_SIZE, size, str, "%" STRINGIFY(SMOLRTSP_REQUEST_URI_SIZE) "s%n", 1,
         uri.data, &bytes_read));
 
     self->bytes_read += bytes_read;

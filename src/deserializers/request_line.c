@@ -94,7 +94,7 @@ size_t SmolRTSP_RequestLineDeserializer_bytes_read(SmolRTSP_RequestLineDeseriali
 #define ASSOC(current_state, deser_type, var, next_state, error)                                   \
     case current_state: {                                                                          \
         deser_type *deser = self->inner_deserializers.var;                                         \
-        res = deser_type##_deserialize(deser, size, data + self->bytes_read);                      \
+        res = deser_type##_deserialize(deser, SmolRTSP_Slice_new(str + self->bytes_read, size));   \
         size_t bytes_read = deser_type##_bytes_read(deser);                                        \
                                                                                                    \
         switch (res) {                                                                             \
@@ -113,9 +113,12 @@ size_t SmolRTSP_RequestLineDeserializer_bytes_read(SmolRTSP_RequestLineDeseriali
     } break
 
 SmolRTSP_DeserializeResult SmolRTSP_RequestLineDeserializer_deserialize(
-    SmolRTSP_RequestLineDeserializer *restrict self, size_t size, const char data[restrict]) {
+    SmolRTSP_RequestLineDeserializer *restrict self, SmolRTSP_Slice data) {
     assert(self);
-    assert(data);
+    assert(!SmolRTSP_Slice_is_null(data));
+
+    const char *str = data.data;
+    size_t size = data.size;
 
     SmolRTSP_DeserializeResult res;
     while (true) {

@@ -94,7 +94,7 @@ static InitBodyDeserializerResult init_body_deserializer(SmolRTSP_RequestDeseria
 #define ASSOC(current_state, deser_type, var, next_state, error)                                   \
     case current_state: {                                                                          \
         deser_type *deser = self->inner_deserializers.var;                                         \
-        res = deser_type##_deserialize(deser, size, data + self->bytes_read);                      \
+        res = deser_type##_deserialize(deser, SmolRTSP_Slice_new(str + self->bytes_read, size));   \
         size_t bytes_read = deser_type##_bytes_read(deser);                                        \
                                                                                                    \
         switch (res) {                                                                             \
@@ -120,9 +120,12 @@ static InitBodyDeserializerResult init_body_deserializer(SmolRTSP_RequestDeseria
     } break
 
 SmolRTSP_DeserializeResult SmolRTSP_RequestDeserializer_deserialize(
-    SmolRTSP_RequestDeserializer *restrict self, size_t size, const char data[restrict]) {
+    SmolRTSP_RequestDeserializer *restrict self, SmolRTSP_Slice data) {
     assert(self);
-    assert(data);
+    assert(!SmolRTSP_Slice_is_null(data));
+
+    const char *str = data.data;
+    size_t size = data.size;
 
     SmolRTSP_DeserializeResult res;
     while (true) {
@@ -150,14 +153,14 @@ SmolRTSP_DeserializeResult SmolRTSP_RequestDeserializer_deserialize(
 #undef ASSOC
 
 static InitBodyDeserializerResult init_body_deserializer(SmolRTSP_RequestDeserializer *self) {
-    const char *content_length_str =
+    SmolRTSP_Slice content_length_slice =
         SmolRTSP_HeaderMap_find(&self->inner.header_map, SMOLRTSP_HEADER_NAME_CONTENT_LENGTH);
 
     size_t content_length;
 
-    if (content_length_str == NULL) {
+    if (SmolRTSP_Slice_is_null(content_length_slice)) {
         content_length = 0;
-    } else if (sscanf(content_length_str, "%zd", &content_length) != 1) {
+    } else if (sscanf(content_length_slice.data, "%zd", &content_length) != 1) {
         self->state = SmolRTSP_RequestDeserializerStateContentLengthErr;
         return InitBodyDeserializerResultInvalidContentLength;
     }

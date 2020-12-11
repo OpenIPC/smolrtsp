@@ -4,17 +4,20 @@
 #include <assert.h>
 #include <string.h>
 
-const char *SmolRTSP_HeaderMap_find(SmolRTSP_HeaderMap *restrict self, const char *restrict key) {
+SmolRTSP_Slice
+SmolRTSP_HeaderMap_find(SmolRTSP_HeaderMap *restrict self, const char *restrict key) {
     assert(self);
     assert(key);
 
+    const SmolRTSP_Slice key_slice = {.data = key, .size = strlen(key)};
+
     for (size_t i = 0; i < self->count; i++) {
-        if (strncmp(self->headers[i].key, key, SMOLRTSP_HEADER_KEY_SIZE) == 0) {
+        if (SmolRTSP_Slice_eq(&self->headers[i].key, &key_slice)) {
             return self->headers[i].value;
         }
     }
 
-    return NULL;
+    return SmolRTSP_Slice_null();
 }
 
 void SmolRTSP_HeaderMap_serialize(
@@ -37,7 +40,9 @@ bool SmolRTSP_HeaderMap_eq(const SmolRTSP_HeaderMap *lhs, const SmolRTSP_HeaderM
         return false;
     }
 
-    for (size_t i = 0; i < lhs->count; i++) {
+    const size_t count = lhs->count;
+
+    for (size_t i = 0; i < count; i++) {
         if (!SmolRTSP_Header_eq(&lhs->headers[i], &rhs->headers[i])) {
             return false;
         }

@@ -38,16 +38,19 @@ size_t SmolRTSP_HeaderMapDeserializer_bytes_read(SmolRTSP_HeaderMapDeserializer 
 }
 
 SmolRTSP_DeserializeResult SmolRTSP_HeaderMapDeserializer_deserialize(
-    SmolRTSP_HeaderMapDeserializer *restrict self, size_t size, const char data[restrict]) {
+    SmolRTSP_HeaderMapDeserializer *restrict self, SmolRTSP_Slice data) {
     assert(self);
-    assert(data);
+    assert(!SmolRTSP_Slice_is_null(data));
+
+    const char *str = data.data;
+    size_t size = data.size;
 
     while (true) {
         if (size < 2) {
             return SmolRTSP_DeserializeResultNeedMore;
         }
 
-        if (data[0] == '\r' && data[1] == '\n') {
+        if (str[0] == '\r' && str[1] == '\n') {
             self->bytes_read += 2;
             return SmolRTSP_DeserializeResultOk;
         }
@@ -57,10 +60,10 @@ SmolRTSP_DeserializeResult SmolRTSP_HeaderMapDeserializer_deserialize(
             return SmolRTSP_DeserializeResultErr;
         }
 
-        MATCH(SmolRTSP_HeaderDeserializer_deserialize(deser, size, data));
+        MATCH(SmolRTSP_HeaderDeserializer_deserialize(deser, SmolRTSP_Slice_new(str, size)));
         size_t bytes_read = SmolRTSP_HeaderDeserializer_bytes_read(deser);
         size -= bytes_read;
-        data += bytes_read;
+        str += bytes_read;
         self->bytes_read += bytes_read;
         self->inner.headers[self->inner.count] = SmolRTSP_HeaderDeserializer_inner(deser);
         self->inner.count++;

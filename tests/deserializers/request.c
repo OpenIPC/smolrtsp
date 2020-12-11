@@ -10,12 +10,14 @@ static void check(const char *header, SmolRTSP_Request expected) {
     ASSERT_NE(deser, NULL);
 
     SmolRTSP_DeserializeResult res =
-        SmolRTSP_RequestDeserializer_deserialize(deser, strlen(header), header);
+        SmolRTSP_RequestDeserializer_deserialize(deser, SmolRTSP_Slice_new(header, strlen(header)));
     SmolRTSP_Request inner = SmolRTSP_RequestDeserializer_inner(deser);
     size_t bytes_read = SmolRTSP_RequestDeserializer_bytes_read(deser);
+    SmolRTSP_RequestDeserializerState state = SmolRTSP_RequestDeserializer_state(deser);
 
     ASSERT_EQ(res, SmolRTSP_DeserializeResultOk);
     ASSERT_EQ(bytes_read, strlen(header));
+    ASSERT_EQ(state, SmolRTSP_RequestDeserializerStateMessageBodyParsed);
     ASSERT(SmolRTSP_Request_eq(&inner, &expected));
 
     SmolRTSP_RequestDeserializer_free(deser);
@@ -37,8 +39,8 @@ TEST(test_deserializers_request) {
                         {
                             SMOLRTSP_HEADER_NAME_CONTENT_LENGTH,
                             strlen(SMOLRTSP_HEADER_NAME_CONTENT_LENGTH),
-                            "50",
-                            strlen("50"),
+                            "10",
+                            strlen("10"),
                         },
                         {
                             SMOLRTSP_HEADER_NAME_ACCEPT_LANGUAGE,
@@ -54,13 +56,14 @@ TEST(test_deserializers_request) {
                         },
                     },
             },
-        .body = {NULL, 0},
+        .body = SmolRTSP_Slice_from_str("0123456789"),
     };
 
     const char *request =
         "DESCRIBE http://example.com RTSP/1.1" CRLF SMOLRTSP_HEADER_NAME_CONTENT_LENGTH
-        ": 50" CRLF SMOLRTSP_HEADER_NAME_ACCEPT_LANGUAGE
-        ": English" CRLF SMOLRTSP_HEADER_NAME_CONTENT_TYPE ": application/octet-stream" CRLF CRLF;
+        ": 10" CRLF SMOLRTSP_HEADER_NAME_ACCEPT_LANGUAGE
+        ": English" CRLF SMOLRTSP_HEADER_NAME_CONTENT_TYPE ": application/octet-stream" CRLF CRLF
+        "0123456789";
 
     check(request, expected);
 }

@@ -35,14 +35,17 @@ size_t SmolRTSP_StatusCodeDeserializer_bytes_read(SmolRTSP_StatusCodeDeserialize
 }
 
 SmolRTSP_DeserializeResult SmolRTSP_StatusCodeDeserializer_deserialize(
-    SmolRTSP_StatusCodeDeserializer *restrict self, size_t size, const char data[restrict]) {
+    SmolRTSP_StatusCodeDeserializer *restrict self, SmolRTSP_Slice data) {
     assert(self);
-    assert(data);
+    assert(!SmolRTSP_Slice_is_null(data));
+
+    const char *str = data.data;
+    const size_t size = data.size;
 
     SmolRTSP_StatusCode code;
     int bytes_read;
 
-    MATCH(SmolRTSP_parse(6, size, data, "%" SCNuLEAST16 "%n", 1, &code, &bytes_read));
+    MATCH(SmolRTSP_parse(6, size, str, "%" SCNuLEAST16 "%n", 1, &code, &bytes_read));
 
     self->bytes_read = bytes_read;
     self->inner = code;

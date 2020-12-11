@@ -9,7 +9,7 @@ static void check(const char *uri, SmolRTSP_RequestURI expected) {
     ASSERT_NE(deser, NULL);
 
     SmolRTSP_DeserializeResult res =
-        SmolRTSP_RequestURIDeserializer_deserialize(deser, strlen(uri), uri);
+        SmolRTSP_RequestURIDeserializer_deserialize(deser, SmolRTSP_Slice_new(uri, strlen(uri)));
     SmolRTSP_RequestURI inner = SmolRTSP_RequestURIDeserializer_inner(deser);
     size_t bytes_read = SmolRTSP_RequestURIDeserializer_bytes_read(deser);
 

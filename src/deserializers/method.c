@@ -37,15 +37,18 @@ size_t SmolRTSP_MethodDeserializer_bytes_read(SmolRTSP_MethodDeserializer *self)
 }
 
 SmolRTSP_DeserializeResult SmolRTSP_MethodDeserializer_deserialize(
-    SmolRTSP_MethodDeserializer *restrict self, size_t size, const char data[restrict]) {
+    SmolRTSP_MethodDeserializer *restrict self, SmolRTSP_Slice data) {
     assert(self);
-    assert(data);
+    assert(!SmolRTSP_Slice_is_null(data));
+
+    const char *str = data.data;
+    const size_t size = data.size;
 
     SmolRTSP_Method method;
     int bytes_read;
 
     MATCH(SmolRTSP_parse(
-        SMOLRTSP_METHOD_SIZE, size, data, "%" STRINGIFY(SMOLRTSP_METHOD_SIZE) "s%n", 1, method.data,
+        SMOLRTSP_METHOD_SIZE, size, str, "%" STRINGIFY(SMOLRTSP_METHOD_SIZE) "s%n", 1, method.data,
         &bytes_read));
 
     self->bytes_read += bytes_read;

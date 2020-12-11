@@ -20,6 +20,7 @@
 #include <smolrtsp/request_uri.h>
 #include <smolrtsp/response.h>
 #include <smolrtsp/rtsp_version.h>
+#include <smolrtsp/slice.h>
 #include <smolrtsp/status_code.h>
 #include <smolrtsp/user_writer.h>
 
