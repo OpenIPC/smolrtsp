@@ -1,5 +1,5 @@
 #include "../aux.h"
-#include "../deser_aux.h"
+#include "../matching.h"
 #include <smolrtsp/deserializers/request_uri.h>
 
 #include <assert.h>
@@ -41,18 +41,15 @@ SmolRTSP_DeserializeResult SmolRTSP_RequestURIDeserializer_deserialize(
     assert(self);
     assert(!SmolRTSP_Slice_is_null(data));
 
-    const char *str = data.data;
-    const size_t size = data.size;
+    size_t bytes_read = 0;
 
-    SmolRTSP_RequestURI uri;
-    int bytes_read;
-
-    MATCH(SmolRTSP_parse(
-        SMOLRTSP_REQUEST_URI_SIZE, size, str, "%" STRINGIFY(SMOLRTSP_REQUEST_URI_SIZE) "s%n", 1,
-        uri.data, &bytes_read));
+    MATCH(SmolRTSP_match_whitespaces(&data, &bytes_read));
+    const char *uri = data.ptr;
+    MATCH(SmolRTSP_match_non_whitespaces(&data, &bytes_read));
+    const size_t uri_size = (const char *)data.ptr - uri;
 
     self->bytes_read += bytes_read;
-    strncpy(self->inner.data, uri.data, sizeof(uri));
+    self->inner = SmolRTSP_Slice_new(uri, uri_size);
 
     return SmolRTSP_DeserializeResultOk;
 }

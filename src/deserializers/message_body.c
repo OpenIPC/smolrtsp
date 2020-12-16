@@ -40,7 +40,7 @@ SmolRTSP_DeserializeResult SmolRTSP_MessageBodyDeserializer_deserialize(
     assert(self);
     assert(!SmolRTSP_Slice_is_null(data));
 
-    const char *str = data.data;
+    const char *str = data.ptr;
     const size_t size = data.size;
 
     if (size < self->inner.size) {
@@ -52,7 +52,7 @@ SmolRTSP_DeserializeResult SmolRTSP_MessageBodyDeserializer_deserialize(
         return SmolRTSP_DeserializeResultOk;
     }
 
-    self->inner.data = str;
+    self->inner.ptr = str;
     self->bytes_read += self->inner.size;
     return SmolRTSP_DeserializeResultOk;
 }

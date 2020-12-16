@@ -1,4 +1,5 @@
 #include "../aux.h"
+#include "../matching.h"
 #include <smolrtsp/deserializers/crlf.h>
 
 #include <assert.h>
@@ -41,17 +42,9 @@ SmolRTSP_DeserializeResult SmolRTSP_CRLFDeserializer_deserialize(
     assert(self);
     assert(!SmolRTSP_Slice_is_null(data));
 
-    const char *str = data.data;
-    const size_t size = data.size;
+    size_t bytes_read = 0;
 
-    if (size < strlen(CRLF)) {
-        return SmolRTSP_DeserializeResultNeedMore;
-    }
-
-    if (memcmp(str, CRLF, strlen(CRLF)) == 0) {
-        self->bytes_read = strlen(CRLF);
-        return SmolRTSP_DeserializeResultOk;
-    }
-
-    return SmolRTSP_DeserializeResultErr;
+    MATCH(SmolRTSP_match_str(&data, &bytes_read, SMOLRTSP_CRLF));
+    self->bytes_read += bytes_read;
+    return SmolRTSP_DeserializeResultOk;
 }

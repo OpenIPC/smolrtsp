@@ -7,10 +7,10 @@
 #define SMOLRTSP_DESERIALIZERS_REQUEST_LINE_H
 
 #include <smolrtsp/deserialization.h>
+#include <smolrtsp/opaque_type.h>
 #include <smolrtsp/request_line.h>
 
-struct SmolRTSP_RequestLineDeserializer;
-typedef struct SmolRTSP_RequestLineDeserializer SmolRTSP_RequestLineDeserializer;
+SMOLRTSP_OPAQUE_TYPE(SmolRTSP_RequestLineDeserializer);
 
 SmolRTSP_RequestLineDeserializer *SmolRTSP_RequestLineDeserializer_new(void);
 void SmolRTSP_RequestLineDeserializer_free(SmolRTSP_RequestLineDeserializer *self);

@@ -7,10 +7,10 @@
 #define SMOLRTSP_DESERIALIZERS_REQUEST_H
 
 #include <smolrtsp/deserialization.h>
+#include <smolrtsp/opaque_type.h>
 #include <smolrtsp/request.h>
 
-struct SmolRTSP_RequestDeserializer;
-typedef struct SmolRTSP_RequestDeserializer SmolRTSP_RequestDeserializer;
+SMOLRTSP_OPAQUE_TYPE(SmolRTSP_RequestDeserializer);
 
 typedef enum {
     SmolRTSP_RequestDeserializerStateStart,
@@ -23,7 +23,8 @@ typedef enum {
     SmolRTSP_RequestDeserializerStateContentLengthErr,
 } SmolRTSP_RequestDeserializerState;
 
-SmolRTSP_RequestDeserializer *SmolRTSP_RequestDeserializer_new(void);
+SmolRTSP_RequestDeserializer *
+SmolRTSP_RequestDeserializer_new(size_t size, SmolRTSP_Header headers[static size]);
 void SmolRTSP_RequestDeserializer_free(SmolRTSP_RequestDeserializer *self);
 
 SmolRTSP_RequestDeserializerState

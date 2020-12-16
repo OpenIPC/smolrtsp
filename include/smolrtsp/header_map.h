@@ -10,13 +10,23 @@
 
 #include <stdbool.h>
 #include <stddef.h>
+#include <stdio.h>
 
 /**
  * An RTSP header map.
  */
 typedef struct {
-    SmolRTSP_Header headers[SMOLRTSP_HEADERS_COUNT];
-    size_t count;
+    SmolRTSP_Header *headers;
+
+    /**
+     * A count of elements currently in \link #headers \endlink.
+     */
+    size_t len;
+
+    /**
+     * A count of elements \link #SmolRTSP_HeaderMap.headers \endlink is able to contain.
+     */
+    size_t size;
 } SmolRTSP_HeaderMap;
 
 /**
@@ -47,6 +57,17 @@ void SmolRTSP_HeaderMap_serialize(
  * @pre @p lhs shall not be `NULL`.
  * @pre @p rhs shall not be `NULL`.
  */
-bool SmolRTSP_HeaderMap_eq(const SmolRTSP_HeaderMap *lhs, const SmolRTSP_HeaderMap *rhs);
+bool SmolRTSP_HeaderMap_eq(
+    const SmolRTSP_HeaderMap *restrict lhs, const SmolRTSP_HeaderMap *restrict rhs);
+
+/**
+ * Decides whether @p self is full (no more space left for an additional header) or not.
+ *
+ * @return `true` if @p self is full, `false` otherwise
+ */
+bool SmolRTSP_HeaderMap_is_full(const SmolRTSP_HeaderMap self);
+
+void SmolRTSP_HeaderMap_pretty_print_to_file(const SmolRTSP_HeaderMap *self, FILE *stream);
+void SmolRTSP_HeaderMap_pretty_print(const SmolRTSP_HeaderMap *self);
 
 #endif // SMOLRTSP_HEADER_MAP_H

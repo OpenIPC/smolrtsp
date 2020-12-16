@@ -65,9 +65,8 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Data Structures</a> &#124;
 <a href="#define-members">Macros</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#typedef-members">Typedefs</a>  </div>
   <div class="headertitle">
 <div class="title">method.h File Reference</div>  </div>
 </div><!--header-->
@@ -75,16 +74,14 @@ $(function() {
 
 <p>An RTSP method.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &lt;<a class="el" href="limits_8h_source.html">smolrtsp/limits.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="user__writer_8h_source.html">smolrtsp/user_writer.h</a>&gt;</code><br />
-<code>#include &lt;stdbool.h&gt;</code><br />
+<div class="textblock"><code>#include &lt;<a class="el" href="slice_8h_source.html">smolrtsp/slice.h</a>&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for method.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="method_8h__incl.png" border="0" usemap="#include_2smolrtsp_2method_8h" alt=""/></div>
 <map name="include_2smolrtsp_2method_8h" id="include_2smolrtsp_2method_8h">
-<area shape="rect" id="node2" href="limits_8h.html" title="Implementation limits. " alt="" coords="5,80,124,107"/>
-<area shape="rect" id="node3" href="user__writer_8h.html" title="A user&#45;supplied writer interface. " alt="" coords="148,80,299,107"/>
+<area shape="rect" id="node2" href="slice_8h.html" title="A slice of data. " alt="" coords="137,80,251,107"/>
+<area shape="rect" id="node3" href="user__writer_8h.html" title="A user&#45;supplied writer interface. " alt="" coords="5,155,156,181"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -104,131 +101,62 @@ This graph shows which files directly or indirectly include this file:</div>
 </div>
 <p><a href="method_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
-Data Structures</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structSmolRTSP__Method.html">SmolRTSP_Method</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
 <tr class="memitem:a46e50082f98baaeeaf31e40a2fb7bf77"><td class="memItemLeft" align="right" valign="top"><a id="a46e50082f98baaeeaf31e40a2fb7bf77"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>SMOLRTSP_METHOD_OPTIONS</b>&#160;&#160;&#160;((<a class="el" href="structSmolRTSP__Method.html">SmolRTSP_Method</a>){&quot;OPTIONS&quot;})</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SMOLRTSP_METHOD_OPTIONS</b>&#160;&#160;&#160;(<a class="el" href="slice_8h.html#ab85cd7fa3b6f238c6539c35a6a7454dd">SmolRTSP_Slice_from_str</a>(&quot;OPTIONS&quot;))</td></tr>
 <tr class="separator:a46e50082f98baaeeaf31e40a2fb7bf77"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9fbe515726b17e8bb6d8d6f91ede8fd2"><td class="memItemLeft" align="right" valign="top"><a id="a9fbe515726b17e8bb6d8d6f91ede8fd2"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>SMOLRTSP_METHOD_DESCRIBE</b>&#160;&#160;&#160;((<a class="el" href="structSmolRTSP__Method.html">SmolRTSP_Method</a>){&quot;DESCRIBE&quot;})</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SMOLRTSP_METHOD_DESCRIBE</b>&#160;&#160;&#160;(<a class="el" href="slice_8h.html#ab85cd7fa3b6f238c6539c35a6a7454dd">SmolRTSP_Slice_from_str</a>(&quot;DESCRIBE&quot;))</td></tr>
 <tr class="separator:a9fbe515726b17e8bb6d8d6f91ede8fd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa37e67ee947aeb1de57b81e92825ae36"><td class="memItemLeft" align="right" valign="top"><a id="aa37e67ee947aeb1de57b81e92825ae36"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>SMOLRTSP_METHOD_ANNOUNCE</b>&#160;&#160;&#160;((<a class="el" href="structSmolRTSP__Method.html">SmolRTSP_Method</a>){&quot;ANNOUNCE&quot;})</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SMOLRTSP_METHOD_ANNOUNCE</b>&#160;&#160;&#160;(<a class="el" href="slice_8h.html#ab85cd7fa3b6f238c6539c35a6a7454dd">SmolRTSP_Slice_from_str</a>(&quot;ANNOUNCE&quot;))</td></tr>
 <tr class="separator:aa37e67ee947aeb1de57b81e92825ae36"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5ac555e4374760a969723d0faa28cff8"><td class="memItemLeft" align="right" valign="top"><a id="a5ac555e4374760a969723d0faa28cff8"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>SMOLRTSP_METHOD_SETUP</b>&#160;&#160;&#160;((<a class="el" href="structSmolRTSP__Method.html">SmolRTSP_Method</a>){&quot;SETUP&quot;})</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SMOLRTSP_METHOD_SETUP</b>&#160;&#160;&#160;(<a class="el" href="slice_8h.html#ab85cd7fa3b6f238c6539c35a6a7454dd">SmolRTSP_Slice_from_str</a>(&quot;SETUP&quot;))</td></tr>
 <tr class="separator:a5ac555e4374760a969723d0faa28cff8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a19b3e5e82b5e6017739ba7d68edffc8f"><td class="memItemLeft" align="right" valign="top"><a id="a19b3e5e82b5e6017739ba7d68edffc8f"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>SMOLRTSP_METHOD_PLAY</b>&#160;&#160;&#160;((<a class="el" href="structSmolRTSP__Method.html">SmolRTSP_Method</a>){&quot;PLAY&quot;})</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SMOLRTSP_METHOD_PLAY</b>&#160;&#160;&#160;(<a class="el" href="slice_8h.html#ab85cd7fa3b6f238c6539c35a6a7454dd">SmolRTSP_Slice_from_str</a>(&quot;PLAY&quot;))</td></tr>
 <tr class="separator:a19b3e5e82b5e6017739ba7d68edffc8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a172adb93d5ffb9d8c5b59cd1ed1a2415"><td class="memItemLeft" align="right" valign="top"><a id="a172adb93d5ffb9d8c5b59cd1ed1a2415"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>SMOLRTSP_METHOD_PAUSE</b>&#160;&#160;&#160;((<a class="el" href="structSmolRTSP__Method.html">SmolRTSP_Method</a>){&quot;PAUSE&quot;})</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SMOLRTSP_METHOD_PAUSE</b>&#160;&#160;&#160;(<a class="el" href="slice_8h.html#ab85cd7fa3b6f238c6539c35a6a7454dd">SmolRTSP_Slice_from_str</a>(&quot;PAUSE&quot;))</td></tr>
 <tr class="separator:a172adb93d5ffb9d8c5b59cd1ed1a2415"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad68afefe3b624f7988f86729de6d7119"><td class="memItemLeft" align="right" valign="top"><a id="ad68afefe3b624f7988f86729de6d7119"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>SMOLRTSP_METHOD_TEARDOWN</b>&#160;&#160;&#160;((<a class="el" href="structSmolRTSP__Method.html">SmolRTSP_Method</a>){&quot;TEARDOWN&quot;})</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SMOLRTSP_METHOD_TEARDOWN</b>&#160;&#160;&#160;(<a class="el" href="slice_8h.html#ab85cd7fa3b6f238c6539c35a6a7454dd">SmolRTSP_Slice_from_str</a>(&quot;TEARDOWN&quot;))</td></tr>
 <tr class="separator:ad68afefe3b624f7988f86729de6d7119"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a511a893c10e00e27844420e553d4cfee"><td class="memItemLeft" align="right" valign="top"><a id="a511a893c10e00e27844420e553d4cfee"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>SMOLRTSP_METHOD_GET_PARAMETER</b>&#160;&#160;&#160;((<a class="el" href="structSmolRTSP__Method.html">SmolRTSP_Method</a>){&quot;GET_PARAMETER&quot;})</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SMOLRTSP_METHOD_GET_PARAMETER</b>&#160;&#160;&#160;(<a class="el" href="slice_8h.html#ab85cd7fa3b6f238c6539c35a6a7454dd">SmolRTSP_Slice_from_str</a>(&quot;GET_PARAMETER&quot;))</td></tr>
 <tr class="separator:a511a893c10e00e27844420e553d4cfee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a77e17a1fbf33c6ca1fca531fc5f70c5b"><td class="memItemLeft" align="right" valign="top"><a id="a77e17a1fbf33c6ca1fca531fc5f70c5b"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>SMOLRTSP_METHOD_SET_PARAMETER</b>&#160;&#160;&#160;((<a class="el" href="structSmolRTSP__Method.html">SmolRTSP_Method</a>){&quot;SET_PARAMETER&quot;})</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SMOLRTSP_METHOD_SET_PARAMETER</b>&#160;&#160;&#160;(<a class="el" href="slice_8h.html#ab85cd7fa3b6f238c6539c35a6a7454dd">SmolRTSP_Slice_from_str</a>(&quot;SET_PARAMETER&quot;))</td></tr>
 <tr class="separator:a77e17a1fbf33c6ca1fca531fc5f70c5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8eb675339427385f6a72b81b33466dbc"><td class="memItemLeft" align="right" valign="top"><a id="a8eb675339427385f6a72b81b33466dbc"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>SMOLRTSP_METHOD_REDIRECT</b>&#160;&#160;&#160;((<a class="el" href="structSmolRTSP__Method.html">SmolRTSP_Method</a>){&quot;REDIRECT&quot;})</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SMOLRTSP_METHOD_REDIRECT</b>&#160;&#160;&#160;(<a class="el" href="slice_8h.html#ab85cd7fa3b6f238c6539c35a6a7454dd">SmolRTSP_Slice_from_str</a>(&quot;REDIRECT&quot;))</td></tr>
 <tr class="separator:a8eb675339427385f6a72b81b33466dbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aad0449953234a79f36e6446a884922a2"><td class="memItemLeft" align="right" valign="top"><a id="aad0449953234a79f36e6446a884922a2"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>SMOLRTSP_METHOD_RECORD</b>&#160;&#160;&#160;((<a class="el" href="structSmolRTSP__Method.html">SmolRTSP_Method</a>){&quot;RECORD&quot;})</td></tr>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SMOLRTSP_METHOD_RECORD</b>&#160;&#160;&#160;(<a class="el" href="slice_8h.html#ab85cd7fa3b6f238c6539c35a6a7454dd">SmolRTSP_Slice_from_str</a>(&quot;RECORD&quot;))</td></tr>
 <tr class="separator:aad0449953234a79f36e6446a884922a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
-Functions</h2></td></tr>
-<tr class="memitem:a54d41d977b2fae61d95015d9393a87ba"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="method_8h.html#a54d41d977b2fae61d95015d9393a87ba">SmolRTSP_Method_serialize</a> (const <a class="el" href="structSmolRTSP__Method.html">SmolRTSP_Method</a> *restrict self, <a class="el" href="user__writer_8h.html#a1a92950ede72b9e938c684396bf0e34b">SmolRTSP_UserWriter</a> user_writer, void *user_cx)</td></tr>
-<tr class="separator:a54d41d977b2fae61d95015d9393a87ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af20a16ccf557910fa4522d9d5b0d9587"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="method_8h.html#af20a16ccf557910fa4522d9d5b0d9587">SmolRTSP_Method_eq</a> (const <a class="el" href="structSmolRTSP__Method.html">SmolRTSP_Method</a> *lhs, const <a class="el" href="structSmolRTSP__Method.html">SmolRTSP_Method</a> *rhs)</td></tr>
-<tr class="separator:af20a16ccf557910fa4522d9d5b0d9587"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:a47449cbca4b1d6b9bce9a70481f56381"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="structSmolRTSP__Slice.html">SmolRTSP_Slice</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="method_8h.html#a47449cbca4b1d6b9bce9a70481f56381">SmolRTSP_Method</a></td></tr>
+<tr class="separator:a47449cbca4b1d6b9bce9a70481f56381"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>An RTSP method. </p>
-</div><h2 class="groupheader">Function Documentation</h2>
-<a id="af20a16ccf557910fa4522d9d5b0d9587"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af20a16ccf557910fa4522d9d5b0d9587">&#9670;&nbsp;</a></span>SmolRTSP_Method_eq()</h2>
+</div><h2 class="groupheader">Typedef Documentation</h2>
+<a id="a47449cbca4b1d6b9bce9a70481f56381"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47449cbca4b1d6b9bce9a70481f56381">&#9670;&nbsp;</a></span>SmolRTSP_Method</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool SmolRTSP_Method_eq </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="structSmolRTSP__Method.html">SmolRTSP_Method</a> *&#160;</td>
-          <td class="paramname"><em>lhs</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="structSmolRTSP__Method.html">SmolRTSP_Method</a> *&#160;</td>
-          <td class="paramname"><em>rhs</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
+          <td class="memname">typedef <a class="el" href="structSmolRTSP__Slice.html">SmolRTSP_Slice</a> <a class="el" href="method_8h.html#a47449cbca4b1d6b9bce9a70481f56381">SmolRTSP_Method</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Compares <code>lhs</code> with <code>rhs</code> for equality.</p>
-<dl class="section return"><dt>Returns</dt><dd><code>true</code> if <code>lhs</code> and  are equal, <code>false</code> otherwise.</dd></dl>
-<dl class="section pre"><dt>Precondition</dt><dd><code>lhs</code> shall not be <code>NULL</code>. </dd>
-<dd>
-<code>rhs</code> shall not be <code>NULL</code>. </dd></dl>
-
-</div>
-</div>
-<a id="a54d41d977b2fae61d95015d9393a87ba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a54d41d977b2fae61d95015d9393a87ba">&#9670;&nbsp;</a></span>SmolRTSP_Method_serialize()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void SmolRTSP_Method_serialize </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="structSmolRTSP__Method.html">SmolRTSP_Method</a> *restrict&#160;</td>
-          <td class="paramname"><em>self</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="user__writer_8h.html#a1a92950ede72b9e938c684396bf0e34b">SmolRTSP_UserWriter</a>&#160;</td>
-          <td class="paramname"><em>user_writer</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">void *&#160;</td>
-          <td class="paramname"><em>user_cx</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Serializes <code>self</code> into <code>user_writer</code>.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">user_cx</td><td>Some value provided to <code>user_writer</code> on each write.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section pre"><dt>Precondition</dt><dd><code>self</code> shall not be <code>NULL</code>. </dd>
-<dd>
-<code>user_writer</code> shall not be <code>NULL</code>. </dd></dl>
+<p>An RTSP method. </p>
 
 </div>
 </div>

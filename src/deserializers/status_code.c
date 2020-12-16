@@ -1,8 +1,9 @@
-#include "../deser_aux.h"
+#include "../matching.h"
 #include <smolrtsp/deserializers/status_code.h>
 
 #include <assert.h>
 #include <inttypes.h>
+#include <stdio.h>
 #include <stdlib.h>
 
 struct SmolRTSP_StatusCodeDeserializer {
@@ -39,16 +40,22 @@ SmolRTSP_DeserializeResult SmolRTSP_StatusCodeDeserializer_deserialize(
     assert(self);
     assert(!SmolRTSP_Slice_is_null(data));
 
-    const char *str = data.data;
-    const size_t size = data.size;
+    const char *str = data.ptr;
+    size_t size = data.size, bytes_read = 0;
 
-    SmolRTSP_StatusCode code;
-    int bytes_read;
+    MATCH(SmolRTSP_match_whitespaces(&data, &bytes_read));
+    const char *code = data.ptr;
+    MATCH(SmolRTSP_match_numeric(&data, &bytes_read));
+    const size_t code_size = (const char *)data.ptr - code;
 
-    MATCH(SmolRTSP_parse(6, size, str, "%" SCNuLEAST16 "%n", 1, &code, &bytes_read));
+    SmolRTSP_StatusCode code_int;
+    char format[50];
+    snprintf(format, sizeof(format), "%%%zd" SCNuLEAST16, code_size);
+    int rc = sscanf(code, format, &code_int);
+    assert(rc == 1);
 
     self->bytes_read = bytes_read;
-    self->inner = code;
+    self->inner = code_int;
 
     return SmolRTSP_DeserializeResultOk;
 }

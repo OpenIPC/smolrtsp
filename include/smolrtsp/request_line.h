@@ -42,6 +42,7 @@ void SmolRTSP_RequestLine_serialize(
  * @pre @p lhs shall not be `NULL`.
  * @pre @p rhs shall not be `NULL`.
  */
-bool SmolRTSP_RequestLine_eq(const SmolRTSP_RequestLine *lhs, const SmolRTSP_RequestLine *rhs);
+bool SmolRTSP_RequestLine_eq(
+    const SmolRTSP_RequestLine *restrict lhs, const SmolRTSP_RequestLine *restrict rhs);
 
 #endif // SMOLRTSP_REQUEST_LINE_H

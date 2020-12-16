@@ -8,11 +8,12 @@
 
 #include <smolrtsp/deserialization.h>
 #include <smolrtsp/header_map.h>
+#include <smolrtsp/opaque_type.h>
 
-struct SmolRTSP_HeaderMapDeserializer;
-typedef struct SmolRTSP_HeaderMapDeserializer SmolRTSP_HeaderMapDeserializer;
+SMOLRTSP_OPAQUE_TYPE(SmolRTSP_HeaderMapDeserializer);
 
-SmolRTSP_HeaderMapDeserializer *SmolRTSP_HeaderMapDeserializer_new(void);
+SmolRTSP_HeaderMapDeserializer *
+SmolRTSP_HeaderMapDeserializer_new(size_t size, SmolRTSP_Header headers[static size]);
 void SmolRTSP_HeaderMapDeserializer_free(SmolRTSP_HeaderMapDeserializer *self);
 
 SmolRTSP_HeaderMap SmolRTSP_HeaderMapDeserializer_inner(SmolRTSP_HeaderMapDeserializer *self);

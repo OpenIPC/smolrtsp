@@ -1,4 +1,5 @@
-#include "../deser_aux.h"
+#include "../matching.h"
+#include <smolrtsp/crlf.h>
 #include <smolrtsp/deserializers/header.h>
 
 #include <assert.h>
@@ -41,28 +42,30 @@ SmolRTSP_DeserializeResult SmolRTSP_HeaderDeserializer_deserialize(
     assert(self);
     assert(!SmolRTSP_Slice_is_null(data));
 
-    const char *str = data.data;
+    const char *str = data.ptr;
     size_t size = data.size;
 
     SmolRTSP_Header header;
     size_t bytes_read = 0;
 
-    MATCH(SmolRTSP_match_whitespaces(&size, &str, &bytes_read));
-    header.key.data = str;
-    MATCH(SmolRTSP_match_header_name(&size, &str, &bytes_read));
-    header.key.size = str - (const char *)header.key.data;
+    MATCH(SmolRTSP_match_whitespaces(&data, &bytes_read));
+    header.key.ptr = data.ptr;
+    MATCH(SmolRTSP_match_header_name(&data, &bytes_read));
+    header.key.size = (const char *)data.ptr - (const char *)header.key.ptr;
 
-    MATCH(SmolRTSP_match_whitespaces(&size, &str, &bytes_read));
-    EXPECT(size, str, bytes_read, ':');
-    MATCH(SmolRTSP_match_whitespaces(&size, &str, &bytes_read));
+    MATCH(SmolRTSP_match_whitespaces(&data, &bytes_read));
+    MATCH(SmolRTSP_match_char(&data, &bytes_read, ':'));
+    MATCH(SmolRTSP_match_whitespaces(&data, &bytes_read));
 
-    header.value.data = str;
+    header.value.ptr = data.ptr;
 
-    MATCH(SmolRTSP_match_crlf(&size, &str, &bytes_read));
-    header.value.size = str - (const char *)header.value.data - 2;
+    MATCH(SmolRTSP_match_until_crlf(&data, &bytes_read));
+    header.value.size =
+        (const char *)data.ptr - (const char *)header.value.ptr - strlen(SMOLRTSP_CRLF) - 1;
 
     self->inner = header;
     self->bytes_read += bytes_read;
+    self->bytes_read--;
 
     return SmolRTSP_DeserializeResultOk;
 }

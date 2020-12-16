@@ -1,6 +1,9 @@
 /**
  * @file
  * @brief A slice of data.
+ *
+ * A slice is null if its pointer to data is `NULL`. A slice is empty is its size compares equal to
+ * zero.
  */
 
 #ifndef SMOLRTSP_SLICE_H
@@ -15,7 +18,7 @@
  * An immutable slice of data.
  */
 typedef struct {
-    const void *data;
+    const void *ptr;
 
     /**
      * A size in bytes of \link #data \endlink.
@@ -23,24 +26,32 @@ typedef struct {
     size_t size;
 } SmolRTSP_Slice;
 
+/**
+ * Constructs a slice.
+ *
+ * @pre The first @p size bytes of @p data must be available for reading.
+ */
 SmolRTSP_Slice SmolRTSP_Slice_new(const void *data, size_t size);
 
 /**
- * Returns a null immutable slice.
- *
- * @post \link #SmolRTSP_Slice.data \endlink is `NULL`.
- * @post \link #SmolRTSP_Slice.size \endlink is 0.
+ * Returns a null slice.
  */
 SmolRTSP_Slice SmolRTSP_Slice_null(void);
 
 /**
- * Decides whether @p self is a null slice or not.
+ * Checks whether @p self is a null slice or not.
  *
  * @return `true` if @p self is a null slice, otherwise `false`.
- *
- * @pre @p self shall not be `NULL`.
  */
 bool SmolRTSP_Slice_is_null(SmolRTSP_Slice self);
+
+/**
+ * Advances @P self by @p offset bytes.
+ *
+ * @pre @p self is not a null slice.
+ * @pre `offset <= self.size`.
+ */
+SmolRTSP_Slice SmolRTSP_Slice_advance(SmolRTSP_Slice self, size_t offset);
 
 /**
  * Constructs a slice from @p str.
@@ -56,8 +67,10 @@ SmolRTSP_Slice SmolRTSP_Slice_from_str(const char *str);
  *
  * @pre @p lhs shall not be `NULL`.
  * @pre @p rhs shall not be `NULL`.
+ *
+ * @note Null slices compare equal with each other.
  */
-bool SmolRTSP_Slice_eq(const SmolRTSP_Slice *lhs, const SmolRTSP_Slice *rhs);
+bool SmolRTSP_Slice_eq(const SmolRTSP_Slice *restrict lhs, const SmolRTSP_Slice *restrict rhs);
 
 /**
  * Serializes @p self into @p user_writer.
@@ -66,6 +79,7 @@ bool SmolRTSP_Slice_eq(const SmolRTSP_Slice *lhs, const SmolRTSP_Slice *rhs);
  *
  * @pre @p self shall not be `NULL`.
  * @pre @p user_writer shall not be `NULL`.
+ * @pre @p self shall not be a null slice.
  */
 void SmolRTSP_Slice_serialize(
     const SmolRTSP_Slice *restrict self, SmolRTSP_UserWriter user_writer, void *user_cx);
@@ -74,7 +88,7 @@ void SmolRTSP_Slice_serialize(
  * A mutable slice of data.
  */
 typedef struct {
-    void *data;
+    void *ptr;
 
     /**
      * A size in bytes of \link #data \endlink.
@@ -83,10 +97,14 @@ typedef struct {
 } SmolRTSP_MutSlice;
 
 /**
- * Returns a null immutable slice.
+ * Constructs a slice.
  *
- * @post \link #SmolRTSP_Slice.data \endlink is `NULL`.
- * @post \link #SmolRTSP_Slice.size \endlink is 0.
+ * @pre The first @p size bytes of @p data must be available for reading and writing.
+ */
+SmolRTSP_MutSlice SmolRTSP_MutSlice_new(void *data, size_t size);
+
+/**
+ * Returns a null slice.
  */
 SmolRTSP_MutSlice SmolRTSP_MutSlice_null(void);
 
@@ -94,10 +112,16 @@ SmolRTSP_MutSlice SmolRTSP_MutSlice_null(void);
  * Decides whether @p self is a null slice or not.
  *
  * @return `true` if @p self is a null slice, otherwise `false`.
- *
- * @pre @p self shall not be `NULL`.
  */
 bool SmolRTSP_MutSlice_is_null(SmolRTSP_MutSlice self);
+
+/**
+ * Advances @P self by @p offset bytes.
+ *
+ * @pre @p self is not a null slice.
+ * @pre `offset <= self.size`.
+ */
+SmolRTSP_MutSlice SmolRTSP_MutSlice_advance(SmolRTSP_MutSlice self, size_t offset);
 
 /**
  * Constructs a slice from @p str.
@@ -113,8 +137,11 @@ SmolRTSP_MutSlice SmolRTSP_MutSlice_from_str(char *str);
  *
  * @pre @p lhs shall not be `NULL`.
  * @pre @p rhs shall not be `NULL`.
+ *
+ * @note Null slices compare equal with each other.
  */
-bool SmolRTSP_MutSlice_eq(const SmolRTSP_MutSlice *lhs, const SmolRTSP_MutSlice *rhs);
+bool SmolRTSP_MutSlice_eq(
+    const SmolRTSP_MutSlice *restrict lhs, const SmolRTSP_MutSlice *restrict rhs);
 
 /**
  * Serializes @p self into @p user_writer.
@@ -123,14 +150,13 @@ bool SmolRTSP_MutSlice_eq(const SmolRTSP_MutSlice *lhs, const SmolRTSP_MutSlice 
  *
  * @pre @p self shall not be `NULL`.
  * @pre @p user_writer shall not be `NULL`.
+ * @pre @p self shall not be a null slice.
  */
 void SmolRTSP_MutSlice_serialize(
     const SmolRTSP_MutSlice *restrict self, SmolRTSP_UserWriter user_writer, void *user_cx);
 
 /**
  * Casts @p self to an immutable slice.
- *
- * @pre @p self shall not be `NULL`.
  */
 SmolRTSP_Slice SmolRTSP_MutSlice_to_const(SmolRTSP_MutSlice self);
 

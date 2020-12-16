@@ -1,5 +1,5 @@
 #include "../aux.h"
-#include "../deser_aux.h"
+#include "../matching.h"
 #include <smolrtsp/deserializers/method.h>
 
 #include <assert.h>
@@ -41,18 +41,15 @@ SmolRTSP_DeserializeResult SmolRTSP_MethodDeserializer_deserialize(
     assert(self);
     assert(!SmolRTSP_Slice_is_null(data));
 
-    const char *str = data.data;
-    const size_t size = data.size;
+    size_t bytes_read = 0;
 
-    SmolRTSP_Method method;
-    int bytes_read;
-
-    MATCH(SmolRTSP_parse(
-        SMOLRTSP_METHOD_SIZE, size, str, "%" STRINGIFY(SMOLRTSP_METHOD_SIZE) "s%n", 1, method.data,
-        &bytes_read));
+    MATCH(SmolRTSP_match_whitespaces(&data, &bytes_read));
+    const char *method = data.ptr;
+    MATCH(SmolRTSP_match_ident(&data, &bytes_read));
+    const size_t method_size = (const char *)data.ptr - method;
 
     self->bytes_read += bytes_read;
-    strncpy(self->inner.data, method.data, sizeof(method.data));
+    self->inner = SmolRTSP_Slice_new(method, method_size);
 
     return SmolRTSP_DeserializeResultOk;
 }

@@ -1,4 +1,5 @@
-#include "deser_aux.h"
+#include "matching.h"
+#include <smolrtsp/crlf.h>
 #include <smolrtsp/header_map.h>
 
 #include <assert.h>
@@ -9,9 +10,9 @@ SmolRTSP_HeaderMap_find(SmolRTSP_HeaderMap *restrict self, const char *restrict 
     assert(self);
     assert(key);
 
-    const SmolRTSP_Slice key_slice = {.data = key, .size = strlen(key)};
+    const SmolRTSP_Slice key_slice = {.ptr = key, .size = strlen(key)};
 
-    for (size_t i = 0; i < self->count; i++) {
+    for (size_t i = 0; i < self->len; i++) {
         if (SmolRTSP_Slice_eq(&self->headers[i].key, &key_slice)) {
             return self->headers[i].value;
         }
@@ -25,28 +26,48 @@ void SmolRTSP_HeaderMap_serialize(
     assert(self);
     assert(user_writer);
 
-    for (size_t i = 0; i < self->count; i++) {
+    for (size_t i = 0; i < self->len; i++) {
         SmolRTSP_Header_serialize(&self->headers[i], user_writer, user_cx);
     }
 
-    user_writer(strlen(CRLF), CRLF, user_cx);
+    user_writer(strlen(SMOLRTSP_CRLF), SMOLRTSP_CRLF, user_cx);
 }
 
-bool SmolRTSP_HeaderMap_eq(const SmolRTSP_HeaderMap *lhs, const SmolRTSP_HeaderMap *rhs) {
+bool SmolRTSP_HeaderMap_eq(
+    const SmolRTSP_HeaderMap *restrict lhs, const SmolRTSP_HeaderMap *restrict rhs) {
     assert(lhs);
     assert(rhs);
 
-    if (lhs->count != rhs->count) {
+    if (lhs->len != rhs->len) {
         return false;
     }
 
-    const size_t count = lhs->count;
+    const size_t len = lhs->len;
 
-    for (size_t i = 0; i < count; i++) {
+    for (size_t i = 0; i < len; i++) {
         if (!SmolRTSP_Header_eq(&lhs->headers[i], &rhs->headers[i])) {
             return false;
         }
     }
 
     return true;
+}
+
+bool SmolRTSP_HeaderMap_is_full(const SmolRTSP_HeaderMap self) {
+    return self.len == self.size;
+}
+
+void SmolRTSP_HeaderMap_pretty_print_to_file(const SmolRTSP_HeaderMap *self, FILE *stream) {
+    assert(self);
+    assert(stream);
+
+    for (size_t i = 0; i < self->len; i++) {
+        SmolRTSP_Header_pretty_print_to_file(&self->headers[i], stream);
+    }
+}
+
+void SmolRTSP_HeaderMap_pretty_print(const SmolRTSP_HeaderMap *self) {
+    assert(self);
+
+    SmolRTSP_HeaderMap_pretty_print_to_file(self, stdout);
 }

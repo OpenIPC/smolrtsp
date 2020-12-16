@@ -8,9 +8,9 @@
 
 #include <smolrtsp/deserialization.h>
 #include <smolrtsp/header.h>
+#include <smolrtsp/opaque_type.h>
 
-struct SmolRTSP_HeaderDeserializer;
-typedef struct SmolRTSP_HeaderDeserializer SmolRTSP_HeaderDeserializer;
+SMOLRTSP_OPAQUE_TYPE(SmolRTSP_HeaderDeserializer);
 
 SmolRTSP_HeaderDeserializer *SmolRTSP_HeaderDeserializer_new(void);
 void SmolRTSP_HeaderDeserializer_free(SmolRTSP_HeaderDeserializer *self);

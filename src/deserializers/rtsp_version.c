@@ -1,9 +1,9 @@
-#include "../deser_aux.h"
+#include "../matching.h"
 #include <smolrtsp/deserializers/rtsp_version.h>
-#include <smolrtsp/limits.h>
 
 #include <assert.h>
 #include <inttypes.h>
+#include <stdio.h>
 #include <stdlib.h>
 
 struct SmolRTSP_RTSPVersionDeserializer {
@@ -42,22 +42,33 @@ SmolRTSP_DeserializeResult SmolRTSP_RTSPVersionDeserializer_deserialize(
     assert(self);
     assert(!SmolRTSP_Slice_is_null(data));
 
-    const char *str = data.data;
-    const size_t size = data.size;
-
-    SmolRTSP_RTSPVersion version;
     size_t bytes_read = 0;
 
-    MATCH(SmolRTSP_match_whitespaces(&size, &str, &bytes_read));
+    MATCH(SmolRTSP_match_whitespaces(&data, &bytes_read));
+    MATCH(SmolRTSP_match_str(&data, &bytes_read, "RTSP/"));
 
-    int bytes_read_int;
-    MATCH(SmolRTSP_parse(
-        SMOLRTSP_RTSP_VERSION_SIZE, size, str, "RTSP/%" SCNuLEAST8 ".%" SCNuLEAST8 "%n", 2,
-        &version.major, &version.minor, &bytes_read_int));
+    const char *major = data.ptr;
+    MATCH(SmolRTSP_match_numeric(&data, &bytes_read));
+    const size_t major_size = (const char *)data.ptr - major;
+    MATCH(SmolRTSP_match_char(&data, &bytes_read, '.'));
+    const char *minor = data.ptr;
+    MATCH(SmolRTSP_match_numeric(&data, &bytes_read));
+    const size_t minor_size = (const char *)data.ptr - minor;
+
+    uint_least8_t major_int;
+    char format[50];
+    snprintf(format, sizeof(format), "%%%zd" SCNuLEAST16, major_size);
+    int rc = sscanf(major, format, &major_int);
+    assert(rc == 1);
+
+    uint_least8_t minor_int;
+    snprintf(format, sizeof(format), "%%%zd" SCNuLEAST16, minor_size);
+    rc = sscanf(minor, format, &minor_int);
+    assert(rc == 1);
 
     self->bytes_read += bytes_read;
-    self->bytes_read += bytes_read_int;
-    self->inner = version;
+    self->inner.major = major_int;
+    self->inner.minor = minor_int;
 
     return SmolRTSP_DeserializeResultOk;
 }

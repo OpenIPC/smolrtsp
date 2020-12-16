@@ -8,9 +8,9 @@
 
 #include <smolrtsp/deserialization.h>
 #include <smolrtsp/message_body.h>
+#include <smolrtsp/opaque_type.h>
 
-struct SmolRTSP_MessageBodyDeserializer;
-typedef struct SmolRTSP_MessageBodyDeserializer SmolRTSP_MessageBodyDeserializer;
+SMOLRTSP_OPAQUE_TYPE(SmolRTSP_MessageBodyDeserializer);
 
 SmolRTSP_MessageBodyDeserializer *SmolRTSP_MessageBodyDeserializer_new(size_t content_length);
 void SmolRTSP_MessageBodyDeserializer_free(SmolRTSP_MessageBodyDeserializer *self);

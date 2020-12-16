@@ -38,6 +38,7 @@ void SmolRTSP_RTSPVersion_serialize(
  * @pre @p lhs shall not be `NULL`.
  * @pre @p rhs shall not be `NULL`.
  */
-bool SmolRTSP_RTSPVersion_eq(const SmolRTSP_RTSPVersion *lhs, const SmolRTSP_RTSPVersion *rhs);
+bool SmolRTSP_RTSPVersion_eq(
+    const SmolRTSP_RTSPVersion *restrict lhs, const SmolRTSP_RTSPVersion *restrict rhs);
 
 #endif // SMOLRTSP_RTSP_VERSION_H

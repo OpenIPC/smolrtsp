@@ -8,9 +8,9 @@
 
 #include <smolrtsp/crlf.h>
 #include <smolrtsp/deserialization.h>
+#include <smolrtsp/opaque_type.h>
 
-struct SmolRTSP_CRLFDeserializer;
-typedef struct SmolRTSP_CRLFDeserializer SmolRTSP_CRLFDeserializer;
+SMOLRTSP_OPAQUE_TYPE(SmolRTSP_CRLFDeserializer);
 
 SmolRTSP_CRLFDeserializer *SmolRTSP_CRLFDeserializer_new(void);
 void SmolRTSP_CRLFDeserializer_free(SmolRTSP_CRLFDeserializer *self);

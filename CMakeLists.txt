@@ -6,7 +6,6 @@ include_directories(include libs)
 add_library(
   smolrtsp
   include/smolrtsp.h
-  include/smolrtsp/limits.h
   src/aux.h
   include/smolrtsp/deserializers.h
   include/smolrtsp/user_writer.h
@@ -23,13 +22,9 @@ add_library(
   include/smolrtsp/request_line.h
   include/smolrtsp/crlf.h
   include/smolrtsp/slice.h
-  src/message_body.c
-  src/reason_phrase.c
-  src/request_uri.c
   src/status_code.c
   src/rtsp_version.c
   src/request.c
-  src/method.c
   src/header.c
   src/header_map.c
   src/request_line.c
@@ -56,7 +51,9 @@ add_library(
   src/deserializers/request_line.c
   src/deserializers/crlf.c
   src/deserializers/header.c
-  src/deser_aux.h
-  src/deser_aux.c)
+  src/matching.h
+  src/matching.c)
+
+target_link_libraries(smolrtsp m)
 
 set_target_properties(smolrtsp PROPERTIES C_STANDARD 11 C_STANDARD_REQUIRED ON)

@@ -1,4 +1,4 @@
-#include "../deser_aux.h"
+#include "../matching.h"
 #include <smolrtsp/deserializers/crlf.h>
 #include <smolrtsp/deserializers/method.h>
 #include <smolrtsp/deserializers/request_line.h>
@@ -117,7 +117,7 @@ SmolRTSP_DeserializeResult SmolRTSP_RequestLineDeserializer_deserialize(
     assert(self);
     assert(!SmolRTSP_Slice_is_null(data));
 
-    const char *str = data.data;
+    const char *str = data.ptr;
     size_t size = data.size;
 
     SmolRTSP_DeserializeResult res;

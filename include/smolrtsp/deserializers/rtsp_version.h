@@ -7,10 +7,10 @@
 #define SMOLRTSP_DESERIALIZERS_RTSP_VERSION_H
 
 #include <smolrtsp/deserialization.h>
+#include <smolrtsp/opaque_type.h>
 #include <smolrtsp/rtsp_version.h>
 
-struct SmolRTSP_RTSPVersionDeserializer;
-typedef struct SmolRTSP_RTSPVersionDeserializer SmolRTSP_RTSPVersionDeserializer;
+SMOLRTSP_OPAQUE_TYPE(SmolRTSP_RTSPVersionDeserializer);
 
 SmolRTSP_RTSPVersionDeserializer *SmolRTSP_RTSPVersionDeserializer_new(void);
 void SmolRTSP_RTSPVersionDeserializer_free(SmolRTSP_RTSPVersionDeserializer *self);

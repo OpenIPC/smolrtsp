@@ -7,10 +7,10 @@
 #define SMOLRTSP_DESERIALIZERS_REQUEST_URI_H
 
 #include <smolrtsp/deserialization.h>
+#include <smolrtsp/opaque_type.h>
 #include <smolrtsp/request_uri.h>
 
-struct SmolRTSP_RequestURIDeserializer;
-typedef struct SmolRTSP_RequestURIDeserializer SmolRTSP_RequestURIDeserializer;
+SMOLRTSP_OPAQUE_TYPE(SmolRTSP_RequestURIDeserializer);
 
 SmolRTSP_RequestURIDeserializer *SmolRTSP_RequestURIDeserializer_new(void);
 void SmolRTSP_RequestURIDeserializer_free(SmolRTSP_RequestURIDeserializer *self);

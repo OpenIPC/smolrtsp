@@ -8,11 +8,11 @@ static void check(const char *code, SmolRTSP_StatusCode expected) {
     SmolRTSP_StatusCodeDeserializer *deser = SmolRTSP_StatusCodeDeserializer_new();
     ASSERT_NE(deser, NULL);
 
-    SmolRTSP_DeserializeResult res =
+    const SmolRTSP_DeserializeResult res =
         SmolRTSP_StatusCodeDeserializer_deserialize(deser, SmolRTSP_Slice_new(code, strlen(code)));
-    ASSERT_EQ(res, SmolRTSP_DeserializeResultOk);
+    const SmolRTSP_StatusCode inner = SmolRTSP_StatusCodeDeserializer_inner(deser);
 
-    SmolRTSP_StatusCode inner = SmolRTSP_StatusCodeDeserializer_inner(deser);
+    ASSERT_EQ(res, SmolRTSP_DeserializeResultOk);
     ASSERT_EQ(inner, expected);
 
     SmolRTSP_StatusCodeDeserializer_free(deser);

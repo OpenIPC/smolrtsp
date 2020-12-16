@@ -8,20 +8,20 @@ static void check(const char *phrase, SmolRTSP_ReasonPhrase expected) {
     SmolRTSP_ReasonPhraseDeserializer *deser = SmolRTSP_ReasonPhraseDeserializer_new();
     ASSERT_NE(deser, NULL);
 
-    SmolRTSP_DeserializeResult res = SmolRTSP_ReasonPhraseDeserializer_deserialize(
+    const SmolRTSP_DeserializeResult res = SmolRTSP_ReasonPhraseDeserializer_deserialize(
         deser, SmolRTSP_Slice_new(phrase, strlen(phrase)));
-    ASSERT_EQ(res, SmolRTSP_DeserializeResultOk);
+    const SmolRTSP_ReasonPhrase inner = SmolRTSP_ReasonPhraseDeserializer_inner(deser);
 
-    SmolRTSP_ReasonPhrase inner = SmolRTSP_ReasonPhraseDeserializer_inner(deser);
-    ASSERT(SmolRTSP_ReasonPhrase_eq(&inner, &expected));
+    ASSERT_EQ(res, SmolRTSP_DeserializeResultOk);
+    ASSERT(SmolRTSP_Slice_eq(&inner, &expected));
 
     SmolRTSP_ReasonPhraseDeserializer_free(deser);
 }
 
 TEST(test_deserializers_reason_phrase) {
-    check("Moved Temporarily", (SmolRTSP_ReasonPhrase){"Moved Temporarily"});
-    check("Forbidden", (SmolRTSP_ReasonPhrase){"Forbidden"});
+    check("Moved Temporarily", SmolRTSP_Slice_from_str("Moved Temporarily"));
+    check("Forbidden", SmolRTSP_Slice_from_str("Forbidden"));
     check(
         "Header Field Not Valid for Resource",
-        (SmolRTSP_ReasonPhrase){"Header Field Not Valid for Resource"});
+        SmolRTSP_Slice_from_str("Header Field Not Valid for Resource"));
 }

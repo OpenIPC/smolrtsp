@@ -8,10 +8,10 @@ static void check(const char *version, SmolRTSP_RTSPVersion expected) {
     SmolRTSP_RTSPVersionDeserializer *deser = SmolRTSP_RTSPVersionDeserializer_new();
     ASSERT_NE(deser, NULL);
 
-    SmolRTSP_DeserializeResult res = SmolRTSP_RTSPVersionDeserializer_deserialize(
+    const SmolRTSP_DeserializeResult res = SmolRTSP_RTSPVersionDeserializer_deserialize(
         deser, SmolRTSP_Slice_new(version, strlen(version)));
-    SmolRTSP_RTSPVersion inner = SmolRTSP_RTSPVersionDeserializer_inner(deser);
-    size_t bytes_read = SmolRTSP_RTSPVersionDeserializer_bytes_read(deser);
+    const SmolRTSP_RTSPVersion inner = SmolRTSP_RTSPVersionDeserializer_inner(deser);
+    const size_t bytes_read = SmolRTSP_RTSPVersionDeserializer_bytes_read(deser);
 
     ASSERT_EQ(res, SmolRTSP_DeserializeResultOk);
     ASSERT_EQ(bytes_read, strlen(version));

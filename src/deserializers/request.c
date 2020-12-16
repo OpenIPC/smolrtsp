@@ -1,4 +1,4 @@
-#include "../deser_aux.h"
+#include "../matching.h"
 #include <smolrtsp/deserializers/header_map.h>
 #include <smolrtsp/deserializers/message_body.h>
 #include <smolrtsp/deserializers/request.h>
@@ -20,7 +20,8 @@ typedef enum {
     InitDeserializersResultErr,
 } InitDeserializersResult;
 
-static InitDeserializersResult InnerDeserializers_init(InnerDeserializers *self) {
+static InitDeserializersResult InnerDeserializers_init(
+    InnerDeserializers *self, size_t size, SmolRTSP_Header headers[static size]) {
 #define INIT(expr)                                                                                 \
     do {                                                                                           \
         if ((expr) == NULL) {                                                                      \
@@ -29,7 +30,7 @@ static InitDeserializersResult InnerDeserializers_init(InnerDeserializers *self)
     } while (false)
 
     INIT(self->start_line = SmolRTSP_RequestLineDeserializer_new());
-    INIT(self->header_map = SmolRTSP_HeaderMapDeserializer_new());
+    INIT(self->header_map = SmolRTSP_HeaderMapDeserializer_new(size, headers));
     self->body = NULL;
 
 #undef INIT
@@ -48,7 +49,11 @@ struct SmolRTSP_RequestDeserializer {
     InnerDeserializers inner_deserializers;
 };
 
-SmolRTSP_RequestDeserializer *SmolRTSP_RequestDeserializer_new(void) {
+SmolRTSP_RequestDeserializer *
+SmolRTSP_RequestDeserializer_new(size_t size, SmolRTSP_Header headers[static size]) {
+    assert(size >= 0);
+    assert(headers);
+
     SmolRTSP_RequestDeserializer *self;
     if ((self = malloc(sizeof(*self))) == NULL) {
         return NULL;
@@ -56,7 +61,8 @@ SmolRTSP_RequestDeserializer *SmolRTSP_RequestDeserializer_new(void) {
 
     self->state = SmolRTSP_RequestDeserializerStateStart;
     self->bytes_read = 0;
-    if (InnerDeserializers_init(&self->inner_deserializers) == InitDeserializersResultErr) {
+    if (InnerDeserializers_init(&self->inner_deserializers, size, headers) ==
+        InitDeserializersResultErr) {
         free(self);
         return NULL;
     }
@@ -124,7 +130,7 @@ SmolRTSP_DeserializeResult SmolRTSP_RequestDeserializer_deserialize(
     assert(self);
     assert(!SmolRTSP_Slice_is_null(data));
 
-    const char *str = data.data;
+    const char *str = data.ptr;
     size_t size = data.size;
 
     SmolRTSP_DeserializeResult res;
@@ -160,7 +166,7 @@ static InitBodyDeserializerResult init_body_deserializer(SmolRTSP_RequestDeseria
 
     if (SmolRTSP_Slice_is_null(content_length_slice)) {
         content_length = 0;
-    } else if (sscanf(content_length_slice.data, "%zd", &content_length) != 1) {
+    } else if (sscanf(content_length_slice.ptr, "%zd", &content_length) != 1) {
         self->state = SmolRTSP_RequestDeserializerStateContentLengthErr;
         return InitBodyDeserializerResultInvalidContentLength;
     }

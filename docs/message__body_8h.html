@@ -65,8 +65,7 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Data Structures</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#typedef-members">Typedefs</a>  </div>
   <div class="headertitle">
 <div class="title">message_body.h File Reference</div>  </div>
 </div><!--header-->
@@ -74,15 +73,14 @@ $(function() {
 
 <p>An RTSP message body.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &lt;<a class="el" href="user__writer_8h_source.html">smolrtsp/user_writer.h</a>&gt;</code><br />
-<code>#include &lt;stdbool.h&gt;</code><br />
-<code>#include &lt;stddef.h&gt;</code><br />
+<div class="textblock"><code>#include &lt;<a class="el" href="slice_8h_source.html">smolrtsp/slice.h</a>&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for message_body.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="message__body_8h__incl.png" border="0" usemap="#include_2smolrtsp_2message__body_8h" alt=""/></div>
 <map name="include_2smolrtsp_2message__body_8h" id="include_2smolrtsp_2message__body_8h">
-<area shape="rect" id="node2" href="user__writer_8h.html" title="A user&#45;supplied writer interface. " alt="" coords="5,95,156,121"/>
+<area shape="rect" id="node2" href="slice_8h.html" title="A slice of data. " alt="" coords="137,95,251,121"/>
+<area shape="rect" id="node3" href="user__writer_8h.html" title="A user&#45;supplied writer interface. " alt="" coords="5,169,156,196"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -101,98 +99,26 @@ This graph shows which files directly or indirectly include this file:</div>
 </div>
 <p><a href="message__body_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
-Data Structures</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structSmolRTSP__MessageBody.html">SmolRTSP_MessageBody</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
-Functions</h2></td></tr>
-<tr class="memitem:ae9ce124724f7e6be7b06fee62a40a23d"><td class="memItemLeft" align="right" valign="top"><a id="ae9ce124724f7e6be7b06fee62a40a23d"></a>
-<a class="el" href="structSmolRTSP__MessageBody.html">SmolRTSP_MessageBody</a>&#160;</td><td class="memItemRight" valign="bottom"><b>SmolRTSP_MessageBody_empty</b> (void)</td></tr>
-<tr class="separator:ae9ce124724f7e6be7b06fee62a40a23d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5c4961a77209adf2cab05b8c2c7240cc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="message__body_8h.html#a5c4961a77209adf2cab05b8c2c7240cc">SmolRTSP_MessageBody_serialize</a> (const <a class="el" href="structSmolRTSP__MessageBody.html">SmolRTSP_MessageBody</a> *restrict self, <a class="el" href="user__writer_8h.html#a1a92950ede72b9e938c684396bf0e34b">SmolRTSP_UserWriter</a> user_writer, void *user_cx)</td></tr>
-<tr class="separator:a5c4961a77209adf2cab05b8c2c7240cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0e3f608797474d7e16351e01d2005259"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="message__body_8h.html#a0e3f608797474d7e16351e01d2005259">SmolRTSP_MessageBody_eq</a> (const <a class="el" href="structSmolRTSP__MessageBody.html">SmolRTSP_MessageBody</a> *lhs, const <a class="el" href="structSmolRTSP__MessageBody.html">SmolRTSP_MessageBody</a> *rhs)</td></tr>
-<tr class="separator:a0e3f608797474d7e16351e01d2005259"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:a27aa7f21f414448fb81f57d4d274c6b1"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="structSmolRTSP__Slice.html">SmolRTSP_Slice</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="message__body_8h.html#a27aa7f21f414448fb81f57d4d274c6b1">SmolRTSP_MessageBody</a></td></tr>
+<tr class="separator:a27aa7f21f414448fb81f57d4d274c6b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>An RTSP message body. </p>
-</div><h2 class="groupheader">Function Documentation</h2>
-<a id="a0e3f608797474d7e16351e01d2005259"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0e3f608797474d7e16351e01d2005259">&#9670;&nbsp;</a></span>SmolRTSP_MessageBody_eq()</h2>
+</div><h2 class="groupheader">Typedef Documentation</h2>
+<a id="a27aa7f21f414448fb81f57d4d274c6b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a27aa7f21f414448fb81f57d4d274c6b1">&#9670;&nbsp;</a></span>SmolRTSP_MessageBody</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool SmolRTSP_MessageBody_eq </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="structSmolRTSP__MessageBody.html">SmolRTSP_MessageBody</a> *&#160;</td>
-          <td class="paramname"><em>lhs</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="structSmolRTSP__MessageBody.html">SmolRTSP_MessageBody</a> *&#160;</td>
-          <td class="paramname"><em>rhs</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
+          <td class="memname">typedef <a class="el" href="structSmolRTSP__Slice.html">SmolRTSP_Slice</a> <a class="el" href="message__body_8h.html#a27aa7f21f414448fb81f57d4d274c6b1">SmolRTSP_MessageBody</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Compares <code>lhs</code> with <code>rhs</code> for equality.</p>
-<dl class="section return"><dt>Returns</dt><dd><code>true</code> if <code>lhs</code> and  are equal, <code>false</code> otherwise.</dd></dl>
-<dl class="section pre"><dt>Precondition</dt><dd><code>lhs</code> shall not be <code>NULL</code>. </dd>
-<dd>
-<code>rhs</code> shall not be <code>NULL</code>. </dd></dl>
-
-</div>
-</div>
-<a id="a5c4961a77209adf2cab05b8c2c7240cc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5c4961a77209adf2cab05b8c2c7240cc">&#9670;&nbsp;</a></span>SmolRTSP_MessageBody_serialize()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void SmolRTSP_MessageBody_serialize </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="structSmolRTSP__MessageBody.html">SmolRTSP_MessageBody</a> *restrict&#160;</td>
-          <td class="paramname"><em>self</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="user__writer_8h.html#a1a92950ede72b9e938c684396bf0e34b">SmolRTSP_UserWriter</a>&#160;</td>
-          <td class="paramname"><em>user_writer</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">void *&#160;</td>
-          <td class="paramname"><em>user_cx</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Serializes <code>self</code> into <code>user_writer</code>.</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">user_cx</td><td>Some value provided to <code>user_writer</code> on each write.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section pre"><dt>Precondition</dt><dd><code>self</code> shall not be <code>NULL</code>. </dd>
-<dd>
-<code>user_writer</code> shall not be <code>NULL</code>. </dd></dl>
+<p>An RTSP message body. </p>
 
 </div>
 </div>

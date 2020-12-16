@@ -65,7 +65,6 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">reason_phrase.h File Reference</div>  </div>
@@ -75,6 +74,7 @@ $(function() {
 <p>An RTSP reason phrase deserializer.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;<a class="el" href="deserialization_8h_source.html">smolrtsp/deserialization.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="opaque__type_8h_source.html">smolrtsp/opaque_type.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="reason__phrase_8h_source.html">smolrtsp/reason_phrase.h</a>&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for reason_phrase.h:</div>
@@ -82,9 +82,10 @@ Include dependency graph for reason_phrase.h:</div>
 <div class="center"><img src="deserializers_2reason__phrase_8h__incl.png" border="0" usemap="#include_2smolrtsp_2deserializers_2reason__phrase_8h" alt=""/></div>
 <map name="include_2smolrtsp_2deserializers_2reason__phrase_8h" id="include_2smolrtsp_2deserializers_2reason__phrase_8h">
 <area shape="rect" id="node2" href="deserialization_8h.html" title="Auxiliary declarations for deserialization. " alt="" coords="5,95,176,121"/>
-<area shape="rect" id="node4" href="reason__phrase_8h.html" title="An RTSP reason phrase. " alt="" coords="215,95,387,121"/>
-<area shape="rect" id="node5" href="limits_8h.html" title="Implementation limits. " alt="" coords="99,169,218,196"/>
-<area shape="rect" id="node6" href="user__writer_8h.html" title="A user&#45;supplied writer interface. " alt="" coords="242,169,393,196"/>
+<area shape="rect" id="node7" href="opaque__type_8h.html" title="A convenient macro for declaring opaque data types. " alt="" coords="201,95,362,121"/>
+<area shape="rect" id="node8" href="reason__phrase_8h.html" title="An RTSP reason phrase. " alt="" coords="386,95,558,121"/>
+<area shape="rect" id="node3" href="slice_8h.html" title="A slice of data. " alt="" coords="159,169,273,196"/>
+<area shape="rect" id="node4" href="user__writer_8h.html" title="A user&#45;supplied writer interface. " alt="" coords="278,244,429,271"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -99,14 +100,11 @@ This graph shows which files directly or indirectly include this file:</div>
 </div>
 <p><a href="deserializers_2reason__phrase_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
-Typedefs</h2></td></tr>
-<tr class="memitem:ae1dbbf54922ce4eab8eda07209b8f353"><td class="memItemLeft" align="right" valign="top"><a id="ae1dbbf54922ce4eab8eda07209b8f353"></a>
-typedef struct SmolRTSP_ReasonPhraseDeserializer&#160;</td><td class="memItemRight" valign="bottom"><b>SmolRTSP_ReasonPhraseDeserializer</b></td></tr>
-<tr class="separator:ae1dbbf54922ce4eab8eda07209b8f353"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:ac420f78d76370e13b1c32ffcc89ebc89"><td class="memItemLeft" align="right" valign="top"><a id="ac420f78d76370e13b1c32ffcc89ebc89"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>SMOLRTSP_OPAQUE_TYPE</b> (SmolRTSP_ReasonPhraseDeserializer)</td></tr>
+<tr class="separator:ac420f78d76370e13b1c32ffcc89ebc89"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1a49302355bb6f94563042c8303245de"><td class="memItemLeft" align="right" valign="top"><a id="a1a49302355bb6f94563042c8303245de"></a>
 SmolRTSP_ReasonPhraseDeserializer *&#160;</td><td class="memItemRight" valign="bottom"><b>SmolRTSP_ReasonPhraseDeserializer_new</b> (void)</td></tr>
 <tr class="separator:a1a49302355bb6f94563042c8303245de"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -114,14 +112,14 @@ SmolRTSP_ReasonPhraseDeserializer *&#160;</td><td class="memItemRight" valign="b
 void&#160;</td><td class="memItemRight" valign="bottom"><b>SmolRTSP_ReasonPhraseDeserializer_free</b> (SmolRTSP_ReasonPhraseDeserializer *self)</td></tr>
 <tr class="separator:a51778138c351a7ca25999fbddc5e2221"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a33f839f89072addcaa3cb6b79244ec26"><td class="memItemLeft" align="right" valign="top"><a id="a33f839f89072addcaa3cb6b79244ec26"></a>
-<a class="el" href="structSmolRTSP__ReasonPhrase.html">SmolRTSP_ReasonPhrase</a>&#160;</td><td class="memItemRight" valign="bottom"><b>SmolRTSP_ReasonPhraseDeserializer_inner</b> (SmolRTSP_ReasonPhraseDeserializer *self)</td></tr>
+<a class="el" href="reason__phrase_8h.html#aba9e301673d88a59cfa6a61d9261803f">SmolRTSP_ReasonPhrase</a>&#160;</td><td class="memItemRight" valign="bottom"><b>SmolRTSP_ReasonPhraseDeserializer_inner</b> (SmolRTSP_ReasonPhraseDeserializer *self)</td></tr>
 <tr class="separator:a33f839f89072addcaa3cb6b79244ec26"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acdb7e4ea3102afba1b1cc42e6f9bd62c"><td class="memItemLeft" align="right" valign="top"><a id="acdb7e4ea3102afba1b1cc42e6f9bd62c"></a>
 size_t&#160;</td><td class="memItemRight" valign="bottom"><b>SmolRTSP_ReasonPhraseDeserializer_bytes_read</b> (SmolRTSP_ReasonPhraseDeserializer *self)</td></tr>
 <tr class="separator:acdb7e4ea3102afba1b1cc42e6f9bd62c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af87ef47274f82f6d271b13274bd658c7"><td class="memItemLeft" align="right" valign="top"><a id="af87ef47274f82f6d271b13274bd658c7"></a>
-<a class="el" href="deserialization_8h.html#ae48e6153945b03facaae8f3fde4d08b4">SmolRTSP_DeserializeResult</a>&#160;</td><td class="memItemRight" valign="bottom"><b>SmolRTSP_ReasonPhraseDeserializer_deserialize</b> (SmolRTSP_ReasonPhraseDeserializer *restrict self, SmolRTSP_Slice data)</td></tr>
-<tr class="separator:af87ef47274f82f6d271b13274bd658c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16350457495936cb9ff509cbe18c6f4a"><td class="memItemLeft" align="right" valign="top"><a id="a16350457495936cb9ff509cbe18c6f4a"></a>
+<a class="el" href="deserialization_8h.html#ae48e6153945b03facaae8f3fde4d08b4">SmolRTSP_DeserializeResult</a>&#160;</td><td class="memItemRight" valign="bottom"><b>SmolRTSP_ReasonPhraseDeserializer_deserialize</b> (SmolRTSP_ReasonPhraseDeserializer *restrict self, <a class="el" href="structSmolRTSP__Slice.html">SmolRTSP_Slice</a> data)</td></tr>
+<tr class="separator:a16350457495936cb9ff509cbe18c6f4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>An RTSP reason phrase deserializer. </p>

@@ -65,7 +65,6 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">crlf.h File Reference</div>  </div>
@@ -76,26 +75,27 @@ $(function() {
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;<a class="el" href="crlf_8h_source.html">smolrtsp/crlf.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="deserialization_8h_source.html">smolrtsp/deserialization.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="opaque__type_8h_source.html">smolrtsp/opaque_type.h</a>&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for crlf.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="deserializers_2crlf_8h__incl.png" border="0" usemap="#include_2smolrtsp_2deserializers_2crlf_8h" alt=""/></div>
 <map name="include_2smolrtsp_2deserializers_2crlf_8h" id="include_2smolrtsp_2deserializers_2crlf_8h">
 <area shape="rect" id="node2" href="crlf_8h.html" title="CRLF, &quot;
-<area shape="rect" id="node3" href="deserialization_8h.html" title="Auxiliary declarations for deserialization. " alt="" coords="135,95,306,121"/>
+<area shape="rect" id="node3" href="deserialization_8h.html" title="Auxiliary declarations for deserialization. " alt="" coords="198,95,369,121"/>
+<area shape="rect" id="node8" href="opaque__type_8h.html" title="A convenient macro for declaring opaque data types. " alt="" coords="393,95,555,121"/>
+<area shape="rect" id="node4" href="slice_8h.html" title="A slice of data. " alt="" coords="165,169,279,196"/>
+<area shape="rect" id="node5" href="user__writer_8h.html" title="A user&#45;supplied writer interface. " alt="" coords="5,244,156,271"/>
 </map>
 </div>
 </div>
 <p><a href="deserializers_2crlf_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
-Typedefs</h2></td></tr>
-<tr class="memitem:a601da4ba26e8e02170ae818dba3a5c3f"><td class="memItemLeft" align="right" valign="top"><a id="a601da4ba26e8e02170ae818dba3a5c3f"></a>
-typedef struct SmolRTSP_CRLFDeserializer&#160;</td><td class="memItemRight" valign="bottom"><b>SmolRTSP_CRLFDeserializer</b></td></tr>
-<tr class="separator:a601da4ba26e8e02170ae818dba3a5c3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:a03c890d13e0b524b6d7a03aca7dcc03a"><td class="memItemLeft" align="right" valign="top"><a id="a03c890d13e0b524b6d7a03aca7dcc03a"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>SMOLRTSP_OPAQUE_TYPE</b> (SmolRTSP_CRLFDeserializer)</td></tr>
+<tr class="separator:a03c890d13e0b524b6d7a03aca7dcc03a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2ee0558ff3c8ce2e80eb3ab9c6e9f765"><td class="memItemLeft" align="right" valign="top"><a id="a2ee0558ff3c8ce2e80eb3ab9c6e9f765"></a>
 SmolRTSP_CRLFDeserializer *&#160;</td><td class="memItemRight" valign="bottom"><b>SmolRTSP_CRLFDeserializer_new</b> (void)</td></tr>
 <tr class="separator:a2ee0558ff3c8ce2e80eb3ab9c6e9f765"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -108,9 +108,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>SmolRTSP_CRLFDeserial
 <tr class="memitem:a2190c1b53864d5a15dcc3869bff2ed12"><td class="memItemLeft" align="right" valign="top"><a id="a2190c1b53864d5a15dcc3869bff2ed12"></a>
 size_t&#160;</td><td class="memItemRight" valign="bottom"><b>SmolRTSP_CRLFDeserializer_bytes_read</b> (SmolRTSP_CRLFDeserializer *self)</td></tr>
 <tr class="separator:a2190c1b53864d5a15dcc3869bff2ed12"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a117c792620115f7bdaf3551c767186eb"><td class="memItemLeft" align="right" valign="top"><a id="a117c792620115f7bdaf3551c767186eb"></a>
-<a class="el" href="deserialization_8h.html#ae48e6153945b03facaae8f3fde4d08b4">SmolRTSP_DeserializeResult</a>&#160;</td><td class="memItemRight" valign="bottom"><b>SmolRTSP_CRLFDeserializer_deserialize</b> (SmolRTSP_CRLFDeserializer *restrict self, SmolRTSP_Slice data)</td></tr>
-<tr class="separator:a117c792620115f7bdaf3551c767186eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ecfbf59d3479d3b6b9a7224daa62fb1"><td class="memItemLeft" align="right" valign="top"><a id="a6ecfbf59d3479d3b6b9a7224daa62fb1"></a>
+<a class="el" href="deserialization_8h.html#ae48e6153945b03facaae8f3fde4d08b4">SmolRTSP_DeserializeResult</a>&#160;</td><td class="memItemRight" valign="bottom"><b>SmolRTSP_CRLFDeserializer_deserialize</b> (SmolRTSP_CRLFDeserializer *restrict self, <a class="el" href="structSmolRTSP__Slice.html">SmolRTSP_Slice</a> data)</td></tr>
+<tr class="separator:a6ecfbf59d3479d3b6b9a7224daa62fb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A CRLF deserializer. </p>

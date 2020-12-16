@@ -11,7 +11,6 @@
 #include <smolrtsp/deserializers.h>
 #include <smolrtsp/header.h>
 #include <smolrtsp/header_map.h>
-#include <smolrtsp/limits.h>
 #include <smolrtsp/message_body.h>
 #include <smolrtsp/method.h>
 #include <smolrtsp/reason_phrase.h>

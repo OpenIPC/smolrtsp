@@ -65,7 +65,6 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">request_uri.h File Reference</div>  </div>
@@ -75,6 +74,7 @@ $(function() {
 <p>An RTSP request URI deserializer.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;<a class="el" href="deserialization_8h_source.html">smolrtsp/deserialization.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="opaque__type_8h_source.html">smolrtsp/opaque_type.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="request__uri_8h_source.html">smolrtsp/request_uri.h</a>&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for request_uri.h:</div>
@@ -82,9 +82,10 @@ Include dependency graph for request_uri.h:</div>
 <div class="center"><img src="deserializers_2request__uri_8h__incl.png" border="0" usemap="#include_2smolrtsp_2deserializers_2request__uri_8h" alt=""/></div>
 <map name="include_2smolrtsp_2deserializers_2request__uri_8h" id="include_2smolrtsp_2deserializers_2request__uri_8h">
 <area shape="rect" id="node2" href="deserialization_8h.html" title="Auxiliary declarations for deserialization. " alt="" coords="5,95,176,121"/>
-<area shape="rect" id="node4" href="request__uri_8h.html" title="An RTSP request URI. " alt="" coords="218,95,369,121"/>
-<area shape="rect" id="node5" href="limits_8h.html" title="Implementation limits. " alt="" coords="94,169,213,196"/>
-<area shape="rect" id="node6" href="user__writer_8h.html" title="A user&#45;supplied writer interface. " alt="" coords="237,169,387,196"/>
+<area shape="rect" id="node7" href="opaque__type_8h.html" title="A convenient macro for declaring opaque data types. " alt="" coords="201,95,362,121"/>
+<area shape="rect" id="node8" href="request__uri_8h.html" title="An RTSP request URI. " alt="" coords="386,95,537,121"/>
+<area shape="rect" id="node3" href="slice_8h.html" title="A slice of data. " alt="" coords="159,169,273,196"/>
+<area shape="rect" id="node4" href="user__writer_8h.html" title="A user&#45;supplied writer interface. " alt="" coords="278,244,429,271"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -99,14 +100,11 @@ This graph shows which files directly or indirectly include this file:</div>
 </div>
 <p><a href="deserializers_2request__uri_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
-Typedefs</h2></td></tr>
-<tr class="memitem:adad55b6cb1c788ecbf1eb169aa11d1e4"><td class="memItemLeft" align="right" valign="top"><a id="adad55b6cb1c788ecbf1eb169aa11d1e4"></a>
-typedef struct SmolRTSP_RequestURIDeserializer&#160;</td><td class="memItemRight" valign="bottom"><b>SmolRTSP_RequestURIDeserializer</b></td></tr>
-<tr class="separator:adad55b6cb1c788ecbf1eb169aa11d1e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:a40e24198adb391892ea7a0dd05f4f8d3"><td class="memItemLeft" align="right" valign="top"><a id="a40e24198adb391892ea7a0dd05f4f8d3"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>SMOLRTSP_OPAQUE_TYPE</b> (SmolRTSP_RequestURIDeserializer)</td></tr>
+<tr class="separator:a40e24198adb391892ea7a0dd05f4f8d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae2aa645921e323c613b4fbf95e1e520e"><td class="memItemLeft" align="right" valign="top"><a id="ae2aa645921e323c613b4fbf95e1e520e"></a>
 SmolRTSP_RequestURIDeserializer *&#160;</td><td class="memItemRight" valign="bottom"><b>SmolRTSP_RequestURIDeserializer_new</b> (void)</td></tr>
 <tr class="separator:ae2aa645921e323c613b4fbf95e1e520e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -114,14 +112,14 @@ SmolRTSP_RequestURIDeserializer *&#160;</td><td class="memItemRight" valign="bot
 void&#160;</td><td class="memItemRight" valign="bottom"><b>SmolRTSP_RequestURIDeserializer_free</b> (SmolRTSP_RequestURIDeserializer *self)</td></tr>
 <tr class="separator:a73e3e8883140a67c2eec52ed733addd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aece434c8f7df27cf7068bf9913836590"><td class="memItemLeft" align="right" valign="top"><a id="aece434c8f7df27cf7068bf9913836590"></a>
-<a class="el" href="structSmolRTSP__RequestURI.html">SmolRTSP_RequestURI</a>&#160;</td><td class="memItemRight" valign="bottom"><b>SmolRTSP_RequestURIDeserializer_inner</b> (SmolRTSP_RequestURIDeserializer *self)</td></tr>
+<a class="el" href="request__uri_8h.html#aea4c6987d0730ef10e3cf04d25dfebd4">SmolRTSP_RequestURI</a>&#160;</td><td class="memItemRight" valign="bottom"><b>SmolRTSP_RequestURIDeserializer_inner</b> (SmolRTSP_RequestURIDeserializer *self)</td></tr>
 <tr class="separator:aece434c8f7df27cf7068bf9913836590"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a009b007448d3e808536efebdc1898b53"><td class="memItemLeft" align="right" valign="top"><a id="a009b007448d3e808536efebdc1898b53"></a>
 size_t&#160;</td><td class="memItemRight" valign="bottom"><b>SmolRTSP_RequestURIDeserializer_bytes_read</b> (SmolRTSP_RequestURIDeserializer *self)</td></tr>
 <tr class="separator:a009b007448d3e808536efebdc1898b53"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5d39ab80f76276064c8cdebe6da6b5ab"><td class="memItemLeft" align="right" valign="top"><a id="a5d39ab80f76276064c8cdebe6da6b5ab"></a>
-<a class="el" href="deserialization_8h.html#ae48e6153945b03facaae8f3fde4d08b4">SmolRTSP_DeserializeResult</a>&#160;</td><td class="memItemRight" valign="bottom"><b>SmolRTSP_RequestURIDeserializer_deserialize</b> (SmolRTSP_RequestURIDeserializer *restrict self, SmolRTSP_Slice data)</td></tr>
-<tr class="separator:a5d39ab80f76276064c8cdebe6da6b5ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a143827cbf915edb6f3ee96d3c84e2e62"><td class="memItemLeft" align="right" valign="top"><a id="a143827cbf915edb6f3ee96d3c84e2e62"></a>
+<a class="el" href="deserialization_8h.html#ae48e6153945b03facaae8f3fde4d08b4">SmolRTSP_DeserializeResult</a>&#160;</td><td class="memItemRight" valign="bottom"><b>SmolRTSP_RequestURIDeserializer_deserialize</b> (SmolRTSP_RequestURIDeserializer *restrict self, <a class="el" href="structSmolRTSP__Slice.html">SmolRTSP_Slice</a> data)</td></tr>
+<tr class="separator:a143827cbf915edb6f3ee96d3c84e2e62"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>An RTSP request URI deserializer. </p>

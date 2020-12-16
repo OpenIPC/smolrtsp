@@ -8,9 +8,9 @@
 
 #include <smolrtsp/deserialization.h>
 #include <smolrtsp/method.h>
+#include <smolrtsp/opaque_type.h>
 
-struct SmolRTSP_MethodDeserializer;
-typedef struct SmolRTSP_MethodDeserializer SmolRTSP_MethodDeserializer;
+SMOLRTSP_OPAQUE_TYPE(SmolRTSP_MethodDeserializer);
 
 SmolRTSP_MethodDeserializer *SmolRTSP_MethodDeserializer_new(void);
 void SmolRTSP_MethodDeserializer_free(SmolRTSP_MethodDeserializer *self);

@@ -7,10 +7,10 @@
 #define SMOLRTSP_DESERIALIZERS_STATUS_CODE_H
 
 #include <smolrtsp/deserialization.h>
+#include <smolrtsp/opaque_type.h>
 #include <smolrtsp/status_code.h>
 
-struct SmolRTSP_StatusCodeDeserializer;
-typedef struct SmolRTSP_StatusCodeDeserializer SmolRTSP_StatusCodeDeserializer;
+SMOLRTSP_OPAQUE_TYPE(SmolRTSP_StatusCodeDeserializer);
 
 SmolRTSP_StatusCodeDeserializer *SmolRTSP_StatusCodeDeserializer_new(void);
 void SmolRTSP_StatusCodeDeserializer_free(SmolRTSP_StatusCodeDeserializer *self);

@@ -29,6 +29,7 @@ typedef struct {
  * @pre @p lhs shall not be `NULL`.
  * @pre @p rhs shall not be `NULL`.
  */
-bool SmolRTSP_Request_eq(const SmolRTSP_Request *lhs, const SmolRTSP_Request *rhs);
+bool SmolRTSP_Request_eq(
+    const SmolRTSP_Request *restrict lhs, const SmolRTSP_Request *restrict rhs);
 
 #endif // SMOLRTSP_REQUEST_H

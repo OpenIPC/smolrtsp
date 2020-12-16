@@ -6,11 +6,11 @@
 #ifndef SMOLRTSP_HEADER_H
 #define SMOLRTSP_HEADER_H
 
-#include <smolrtsp/limits.h>
 #include <smolrtsp/slice.h>
 #include <smolrtsp/user_writer.h>
 
 #include <stdbool.h>
+#include <stdio.h>
 
 /**
  * An RTSP header.
@@ -79,6 +79,9 @@ void SmolRTSP_Header_serialize(
  * @pre @p lhs shall not be `NULL`.
  * @pre @p rhs shall not be `NULL`.
  */
-bool SmolRTSP_Header_eq(const SmolRTSP_Header *lhs, const SmolRTSP_Header *rhs);
+bool SmolRTSP_Header_eq(const SmolRTSP_Header *restrict lhs, const SmolRTSP_Header *restrict rhs);
+
+void SmolRTSP_Header_pretty_print_to_file(const SmolRTSP_Header *self, FILE *stream);
+void SmolRTSP_Header_pretty_print(const SmolRTSP_Header *self);
 
 #endif // SMOLRTSP_HEADER_H

@@ -1,4 +1,5 @@
 #include "../../src/aux.h"
+#include <smolrtsp/crlf.h>
 #include <smolrtsp/deserializers/header_map.h>
 
 #include <string.h>
@@ -6,13 +7,14 @@
 #include "../nala.h"
 
 static void check(const char *header_map, SmolRTSP_HeaderMap expected) {
-    SmolRTSP_HeaderMapDeserializer *deser = SmolRTSP_HeaderMapDeserializer_new();
+    SmolRTSP_Header headers[3];
+    SmolRTSP_HeaderMapDeserializer *deser = SmolRTSP_HeaderMapDeserializer_new(3, headers);
     ASSERT_NE(deser, NULL);
 
-    SmolRTSP_DeserializeResult res = SmolRTSP_HeaderMapDeserializer_deserialize(
+    const SmolRTSP_DeserializeResult res = SmolRTSP_HeaderMapDeserializer_deserialize(
         deser, SmolRTSP_Slice_new(header_map, strlen(header_map)));
-    SmolRTSP_HeaderMap inner = SmolRTSP_HeaderMapDeserializer_inner(deser);
-    size_t bytes_read = SmolRTSP_HeaderMapDeserializer_bytes_read(deser);
+    const SmolRTSP_HeaderMap inner = SmolRTSP_HeaderMapDeserializer_inner(deser);
+    const size_t bytes_read = SmolRTSP_HeaderMapDeserializer_bytes_read(deser);
 
     ASSERT_EQ(res, SmolRTSP_DeserializeResultOk);
     ASSERT_EQ(bytes_read, strlen(header_map));
@@ -22,34 +24,31 @@ static void check(const char *header_map, SmolRTSP_HeaderMap expected) {
 }
 
 TEST(test_deserializers_header_map) {
+    SmolRTSP_Header headers[] = {
+        {
+            SmolRTSP_Slice_from_str(SMOLRTSP_HEADER_NAME_CONTENT_LENGTH),
+            SmolRTSP_Slice_from_str("10"),
+        },
+        {
+            SmolRTSP_Slice_from_str(SMOLRTSP_HEADER_NAME_ACCEPT_LANGUAGE),
+            SmolRTSP_Slice_from_str("English"),
+        },
+        {
+            SmolRTSP_Slice_from_str(SMOLRTSP_HEADER_NAME_CONTENT_TYPE),
+            SmolRTSP_Slice_from_str("application/octet-stream"),
+        },
+    };
+
     const SmolRTSP_HeaderMap expected = {
-        .count = 3,
-        .headers =
-            {
-                {
-                    SMOLRTSP_HEADER_NAME_CONTENT_LENGTH,
-                    strlen(SMOLRTSP_HEADER_NAME_CONTENT_LENGTH),
-                    "10",
-                    strlen("10"),
-                },
-                {
-                    SMOLRTSP_HEADER_NAME_ACCEPT_LANGUAGE,
-                    strlen(SMOLRTSP_HEADER_NAME_ACCEPT_LANGUAGE),
-                    "English",
-                    strlen("English"),
-                },
-                {
-                    SMOLRTSP_HEADER_NAME_CONTENT_TYPE,
-                    strlen(SMOLRTSP_HEADER_NAME_CONTENT_TYPE),
-                    "application/octet-stream",
-                    strlen("application/octet-stream"),
-                },
-            },
+        .len = 3,
+        .size = 3,
+        .headers = headers,
     };
 
     const char *header_map = SMOLRTSP_HEADER_NAME_CONTENT_LENGTH
-        ": 10" CRLF SMOLRTSP_HEADER_NAME_ACCEPT_LANGUAGE
-        ": English" CRLF SMOLRTSP_HEADER_NAME_CONTENT_TYPE ": application/octet-stream" CRLF CRLF;
+        ": 10" SMOLRTSP_CRLF SMOLRTSP_HEADER_NAME_ACCEPT_LANGUAGE
+        ": English" SMOLRTSP_CRLF SMOLRTSP_HEADER_NAME_CONTENT_TYPE
+        ": application/octet-stream" SMOLRTSP_CRLF SMOLRTSP_CRLF;
 
     check(header_map, expected);
 }

@@ -1,5 +1,4 @@
-#include "deser_aux.h"
-#include <smolrtsp/limits.h>
+#include "matching.h"
 #include <smolrtsp/rtsp_version.h>
 
 #include <assert.h>
@@ -23,7 +22,8 @@ void SmolRTSP_RTSPVersion_serialize(
     user_writer(strlen(major), (const void *)major, user_cx);
 }
 
-bool SmolRTSP_RTSPVersion_eq(const SmolRTSP_RTSPVersion *lhs, const SmolRTSP_RTSPVersion *rhs) {
+bool SmolRTSP_RTSPVersion_eq(
+    const SmolRTSP_RTSPVersion *restrict lhs, const SmolRTSP_RTSPVersion *restrict rhs) {
     assert(lhs);
     assert(rhs);
 
