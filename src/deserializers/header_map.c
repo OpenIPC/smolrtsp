@@ -1,5 +1,5 @@
 #include "../aux.h"
-#include "../matching.h"
+#include "../match.h"
 #include <smolrtsp/deserializers/header.h>
 #include <smolrtsp/deserializers/header_map.h>
 
@@ -44,17 +44,19 @@ size_t SmolRTSP_HeaderMapDeserializer_bytes_read(SmolRTSP_HeaderMapDeserializer 
 }
 
 SmolRTSP_DeserializeResult SmolRTSP_HeaderMapDeserializer_deserialize(
-    SmolRTSP_HeaderMapDeserializer *restrict self, SmolRTSP_Slice data) {
+    SmolRTSP_HeaderMapDeserializer *restrict self, SmolRTSP_Slice *restrict data) {
     assert(self);
-    assert(!SmolRTSP_Slice_is_null(data));
+    assert(data);
+    assert(!SmolRTSP_Slice_is_null(*data));
 
     while (true) {
-        if (data.size < 2) {
+        if (data->size < 2) {
             return SmolRTSP_DeserializeResultNeedMore;
         }
 
-        if (((const char *)data.ptr)[0] == '\r' && ((const char *)data.ptr)[1] == '\n') {
+        if (((const char *)data->ptr)[0] == '\r' && ((const char *)data->ptr)[1] == '\n') {
             self->bytes_read += 2;
+            *data = SmolRTSP_Slice_advance(*data, 2);
             return SmolRTSP_DeserializeResultOk;
         }
 
@@ -69,7 +71,6 @@ SmolRTSP_DeserializeResult SmolRTSP_HeaderMapDeserializer_deserialize(
 
         MATCH(SmolRTSP_HeaderDeserializer_deserialize(deser, data));
         const size_t bytes_read = SmolRTSP_HeaderDeserializer_bytes_read(deser);
-        data = SmolRTSP_Slice_advance(data, bytes_read);
         self->bytes_read += bytes_read;
         self->inner.headers[self->inner.len] = SmolRTSP_HeaderDeserializer_inner(deser);
         self->inner.len++;

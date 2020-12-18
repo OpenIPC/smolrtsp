@@ -8,8 +8,4 @@
 
 #define SMOLRTSP_CRLF "\r\n"
 
-typedef struct {
-    char nothing;
-} SmolRTSP_CRLF;
-
 #endif // SMOLRTSP_CRLF_H

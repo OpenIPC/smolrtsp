@@ -1,5 +1,5 @@
 #include "../aux.h"
-#include "../matching.h"
+#include "../match.h"
 #include <smolrtsp/deserializers/request_uri.h>
 
 #include <assert.h>
@@ -37,16 +37,17 @@ size_t SmolRTSP_RequestURIDeserializer_bytes_read(SmolRTSP_RequestURIDeserialize
 }
 
 SmolRTSP_DeserializeResult SmolRTSP_RequestURIDeserializer_deserialize(
-    SmolRTSP_RequestURIDeserializer *restrict self, SmolRTSP_Slice data) {
+    SmolRTSP_RequestURIDeserializer *restrict self, SmolRTSP_Slice *restrict data) {
     assert(self);
-    assert(!SmolRTSP_Slice_is_null(data));
+    assert(data);
+    assert(!SmolRTSP_Slice_is_null(*data));
 
     size_t bytes_read = 0;
 
-    MATCH(SmolRTSP_match_whitespaces(&data, &bytes_read));
-    const char *uri = data.ptr;
-    MATCH(SmolRTSP_match_non_whitespaces(&data, &bytes_read));
-    const size_t uri_size = (const char *)data.ptr - uri;
+    MATCH(SmolRTSP_match_whitespaces(data, &bytes_read));
+    const char *uri = data->ptr;
+    MATCH(SmolRTSP_match_non_whitespaces(data, &bytes_read));
+    const size_t uri_size = (const char *)data->ptr - uri;
 
     self->bytes_read += bytes_read;
     self->inner = SmolRTSP_Slice_new(uri, uri_size);

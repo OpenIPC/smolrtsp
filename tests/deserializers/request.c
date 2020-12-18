@@ -10,15 +10,16 @@ static void check(const char *header, SmolRTSP_Request expected) {
     SmolRTSP_RequestDeserializer *deser = SmolRTSP_RequestDeserializer_new(3, headers);
     ASSERT_NE(deser, NULL);
 
-    const SmolRTSP_DeserializeResult res =
-        SmolRTSP_RequestDeserializer_deserialize(deser, SmolRTSP_Slice_new(header, strlen(header)));
+    SmolRTSP_Slice data = SmolRTSP_Slice_from_str(header);
+    const SmolRTSP_DeserializeResult res = SmolRTSP_RequestDeserializer_deserialize(deser, &data);
     const SmolRTSP_Request inner = SmolRTSP_RequestDeserializer_inner(deser);
     const size_t bytes_read = SmolRTSP_RequestDeserializer_bytes_read(deser);
     const SmolRTSP_RequestDeserializerState state = SmolRTSP_RequestDeserializer_state(deser);
 
     ASSERT_EQ(res, SmolRTSP_DeserializeResultOk);
     ASSERT_EQ(bytes_read, strlen(header));
-    ASSERT_EQ(state, SmolRTSP_RequestDeserializerStateMessageBodyParsed);
+    ASSERT(state.is_ok);
+    ASSERT_EQ(state.in_progress, SmolRTSP_RequestDeserializerStateInProgressDone);
     ASSERT(SmolRTSP_Request_eq(&inner, &expected));
 
     SmolRTSP_RequestDeserializer_free(deser);
@@ -27,15 +28,15 @@ static void check(const char *header, SmolRTSP_Request expected) {
 TEST(test_deserializers_request) {
     SmolRTSP_Header headers[] = {
         {
-            SmolRTSP_Slice_from_str(SMOLRTSP_HEADER_NAME_CONTENT_LENGTH),
+            SMOLRTSP_HEADER_NAME_CONTENT_LENGTH,
             SmolRTSP_Slice_from_str("10"),
         },
         {
-            SmolRTSP_Slice_from_str(SMOLRTSP_HEADER_NAME_ACCEPT_LANGUAGE),
+            SMOLRTSP_HEADER_NAME_ACCEPT_LANGUAGE,
             SmolRTSP_Slice_from_str("English"),
         },
         {
-            SmolRTSP_Slice_from_str(SMOLRTSP_HEADER_NAME_CONTENT_TYPE),
+            SMOLRTSP_HEADER_NAME_CONTENT_TYPE,
             SmolRTSP_Slice_from_str("application/octet-stream"),
         },
     };
@@ -57,10 +58,10 @@ TEST(test_deserializers_request) {
     };
 
     const char *request =
-        "DESCRIBE http://example.com RTSP/1.1" SMOLRTSP_CRLF SMOLRTSP_HEADER_NAME_CONTENT_LENGTH
-        ": 10" SMOLRTSP_CRLF SMOLRTSP_HEADER_NAME_ACCEPT_LANGUAGE
-        ": English" SMOLRTSP_CRLF SMOLRTSP_HEADER_NAME_CONTENT_TYPE
-        ": application/octet-stream" SMOLRTSP_CRLF SMOLRTSP_CRLF "0123456789";
+        "DESCRIBE http://example.com RTSP/1.1\r\n"
+        "Content-Length: 10\r\nAccept-Language: English\r\nContent-Type: "
+        "application/octet-stream\r\n\r\n"
+        "0123456789";
 
     check(request, expected);
 }

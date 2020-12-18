@@ -16,8 +16,7 @@ add_executable(
   deserializers/request_uri.c
   deserializers/request.c
   deserializers/rtsp_version.c
-  deserializers/status_code.c
-  deserializers/crlf.c)
+  deserializers/status_code.c)
 
 add_subdirectory(.. build)
 target_link_libraries(tests smolrtsp)

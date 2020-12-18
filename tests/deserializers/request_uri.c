@@ -8,8 +8,9 @@ static void check(const char *uri, SmolRTSP_RequestURI expected) {
     SmolRTSP_RequestURIDeserializer *deser = SmolRTSP_RequestURIDeserializer_new();
     ASSERT_NE(deser, NULL);
 
+    SmolRTSP_Slice data = SmolRTSP_Slice_from_str(uri);
     const SmolRTSP_DeserializeResult res =
-        SmolRTSP_RequestURIDeserializer_deserialize(deser, SmolRTSP_Slice_new(uri, strlen(uri)));
+        SmolRTSP_RequestURIDeserializer_deserialize(deser, &data);
     const SmolRTSP_RequestURI inner = SmolRTSP_RequestURIDeserializer_inner(deser);
     const size_t bytes_read = SmolRTSP_RequestURIDeserializer_bytes_read(deser);
 

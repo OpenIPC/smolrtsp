@@ -1814,7 +1814,7 @@ static void print_usage_and_exit(const char *program_name_p, int exit_code)
            "Run tests.\n"
            "\n"
            "positional arguments:\n"
-           "  test-pattern                  Only run tests matching given pattern. "
+           "  test-pattern                  Only run tests match given pattern. "
            "'^' matches\n"
            "                                the beginning and '$' matches the end "
            "of the test\n"

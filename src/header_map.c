@@ -1,19 +1,16 @@
-#include "matching.h"
+#include "match.h"
 #include <smolrtsp/crlf.h>
 #include <smolrtsp/header_map.h>
 
 #include <assert.h>
 #include <string.h>
 
-SmolRTSP_Slice
-SmolRTSP_HeaderMap_find(SmolRTSP_HeaderMap *restrict self, const char *restrict key) {
+SmolRTSP_Slice SmolRTSP_HeaderMap_find(SmolRTSP_HeaderMap *restrict self, SmolRTSP_Slice key) {
     assert(self);
-    assert(key);
-
-    const SmolRTSP_Slice key_slice = {.ptr = key, .size = strlen(key)};
+    assert(!SmolRTSP_Slice_is_null(key));
 
     for (size_t i = 0; i < self->len; i++) {
-        if (SmolRTSP_Slice_eq(&self->headers[i].key, &key_slice)) {
+        if (SmolRTSP_Slice_eq(&self->headers[i].key, &key)) {
             return self->headers[i].value;
         }
     }

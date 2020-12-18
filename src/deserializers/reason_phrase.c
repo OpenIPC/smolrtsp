@@ -1,5 +1,5 @@
 #include "../aux.h"
-#include "../matching.h"
+#include "../match.h"
 #include <smolrtsp/crlf.h>
 #include <smolrtsp/deserializers/reason_phrase.h>
 
@@ -39,18 +39,19 @@ size_t SmolRTSP_ReasonPhraseDeserializer_bytes_read(SmolRTSP_ReasonPhraseDeseria
 }
 
 SmolRTSP_DeserializeResult SmolRTSP_ReasonPhraseDeserializer_deserialize(
-    SmolRTSP_ReasonPhraseDeserializer *restrict self, SmolRTSP_Slice data) {
+    SmolRTSP_ReasonPhraseDeserializer *restrict self, SmolRTSP_Slice *restrict data) {
     assert(self);
-    assert(!SmolRTSP_Slice_is_null(data));
+    assert(data);
+    assert(!SmolRTSP_Slice_is_null(*data));
 
     size_t bytes_read = 0;
 
-    MATCH(SmolRTSP_match_whitespaces(&data, &bytes_read));
-    const char *phrase = data.ptr;
-    MATCH(SmolRTSP_match_until_crlf(&data, &bytes_read));
-    const size_t phrase_size = (const char *)data.ptr - phrase - strlen(SMOLRTSP_CRLF);
+    MATCH(SmolRTSP_match_whitespaces(data, &bytes_read));
+    const char *phrase = data->ptr;
+    MATCH(SmolRTSP_match_until_crlf(data, &bytes_read));
+    const size_t phrase_size = (const char *)data->ptr - phrase - strlen(SMOLRTSP_CRLF);
 
-    self->bytes_read += bytes_read;
+    self->bytes_read = bytes_read;
     self->inner = SmolRTSP_Slice_new(phrase, phrase_size);
 
     return SmolRTSP_DeserializeResultOk;

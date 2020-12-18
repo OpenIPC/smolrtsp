@@ -16,11 +16,22 @@ bool SmolRTSP_Slice_is_null(SmolRTSP_Slice self) {
     return self.ptr == NULL;
 }
 
+bool SmolRTSP_Slice_is_empty(SmolRTSP_Slice self) {
+    return self.size == 0;
+}
+
 SmolRTSP_Slice SmolRTSP_Slice_advance(SmolRTSP_Slice self, size_t offset) {
     assert(!SmolRTSP_Slice_is_null(self));
     assert(offset <= self.size);
 
     return SmolRTSP_Slice_new(self.ptr + offset, self.size - offset);
+}
+
+SmolRTSP_Slice SmolRTSP_Slice_go_back(SmolRTSP_Slice self, size_t offset) {
+    assert(!SmolRTSP_Slice_is_null(self));
+    assert(offset <= self.size);
+
+    return SmolRTSP_Slice_new(self.ptr - offset, self.size + offset);
 }
 
 SmolRTSP_Slice SmolRTSP_Slice_from_str(const char *str) {
@@ -40,6 +51,7 @@ bool SmolRTSP_Slice_eq(const SmolRTSP_Slice *restrict lhs, const SmolRTSP_Slice 
     }
 
     if (lhs->size != rhs->size) {
+        printf("%zd|%zd\n", lhs->size, rhs->size);
         return false;
     }
 
@@ -56,6 +68,32 @@ void SmolRTSP_Slice_serialize(
     user_writer(self->size, self->ptr, user_cx);
 }
 
+void SmolRTSP_Slice_print_s_to_file(SmolRTSP_Slice data, FILE *stream) {
+    assert(!SmolRTSP_Slice_is_null(data));
+
+    fwrite(data.ptr, 1, data.size, stream);
+}
+
+void SmolRTSP_Slice_print_s(SmolRTSP_Slice data) {
+    assert(!SmolRTSP_Slice_is_null(data));
+
+    SmolRTSP_Slice_print_s_to_file(data, stdout);
+}
+
+void SmolRTSP_Slice_print_s_to_file_ln(SmolRTSP_Slice data, FILE *stream) {
+    assert(!SmolRTSP_Slice_is_null(data));
+
+    SmolRTSP_Slice_print_s_to_file(data, stream);
+    fprintf(stream, "\n");
+}
+
+void SmolRTSP_Slice_print_s_ln(SmolRTSP_Slice data) {
+    assert(!SmolRTSP_Slice_is_null(data));
+
+    SmolRTSP_Slice_print_s(data);
+    puts("");
+}
+
 SmolRTSP_MutSlice SmolRTSP_MutSlice_new(void *data, size_t size) {
     return (SmolRTSP_MutSlice){.ptr = data, .size = size};
 }
@@ -66,6 +104,10 @@ SmolRTSP_MutSlice SmolRTSP_MutSlice_null(void) {
 
 bool SmolRTSP_MutSlice_is_null(SmolRTSP_MutSlice self) {
     return SmolRTSP_Slice_is_null(SmolRTSP_MutSlice_to_const(self));
+}
+
+bool SmolRTSP_MutSlice_is_empty(SmolRTSP_MutSlice self) {
+    return SmolRTSP_Slice_is_empty(SmolRTSP_MutSlice_to_const(self));
 }
 
 SmolRTSP_MutSlice SmolRTSP_MutSlice_advance(SmolRTSP_MutSlice self, size_t offset) {

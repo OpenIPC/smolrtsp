@@ -20,7 +20,6 @@ typedef struct {
     SmolRTSP_Method method;
     SmolRTSP_RequestURI uri;
     SmolRTSP_RTSPVersion version;
-    SmolRTSP_CRLF crlf;
 } SmolRTSP_RequestLine;
 
 /**

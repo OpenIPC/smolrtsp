@@ -9,15 +9,17 @@ static void check(const char *line, SmolRTSP_RequestLine expected) {
     SmolRTSP_RequestLineDeserializer *deser = SmolRTSP_RequestLineDeserializer_new();
     ASSERT_NE(deser, NULL);
 
+    SmolRTSP_Slice data = SmolRTSP_Slice_from_str(line);
     const SmolRTSP_DeserializeResult res =
-        SmolRTSP_RequestLineDeserializer_deserialize(deser, SmolRTSP_Slice_from_str(line));
+        SmolRTSP_RequestLineDeserializer_deserialize(deser, &data);
     const SmolRTSP_RequestLine inner = SmolRTSP_RequestLineDeserializer_inner(deser);
     const size_t bytes_read = SmolRTSP_RequestLineDeserializer_bytes_read(deser);
     const SmolRTSP_RequestLineDeserializerState state =
         SmolRTSP_RequestLineDeserializer_state(deser);
 
     ASSERT_EQ(res, SmolRTSP_DeserializeResultOk);
-    ASSERT_EQ(state, SmolRTSP_RequestLineDeserializerStateCRLFParsed);
+    ASSERT(state.is_ok);
+    ASSERT_EQ(state.in_progress, SmolRTSP_RequestLineDeserializerStateInProgressDone);
     ASSERT_EQ(bytes_read, strlen(line));
     ASSERT(SmolRTSP_RequestLine_eq(&inner, &expected));
 

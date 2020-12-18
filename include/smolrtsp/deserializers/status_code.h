@@ -19,6 +19,6 @@ SmolRTSP_StatusCode SmolRTSP_StatusCodeDeserializer_inner(SmolRTSP_StatusCodeDes
 size_t SmolRTSP_StatusCodeDeserializer_bytes_read(SmolRTSP_StatusCodeDeserializer *self);
 
 SmolRTSP_DeserializeResult SmolRTSP_StatusCodeDeserializer_deserialize(
-    SmolRTSP_StatusCodeDeserializer *restrict self, SmolRTSP_Slice data);
+    SmolRTSP_StatusCodeDeserializer *restrict self, SmolRTSP_Slice *restrict data);
 
 #endif // SMOLRTSP_DESERIALIZERS_STATUS_CODE_H

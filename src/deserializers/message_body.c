@@ -27,23 +27,23 @@ void SmolRTSP_MessageBodyDeserializer_free(SmolRTSP_MessageBodyDeserializer *sel
 SmolRTSP_MessageBody
 SmolRTSP_MessageBodyDeserializer_inner(SmolRTSP_MessageBodyDeserializer *self) {
     assert(self);
+
     return self->inner;
 }
 
 size_t SmolRTSP_MessageBodyDeserializer_bytes_read(SmolRTSP_MessageBodyDeserializer *self) {
     assert(self);
+
     return self->bytes_read;
 }
 
 SmolRTSP_DeserializeResult SmolRTSP_MessageBodyDeserializer_deserialize(
-    SmolRTSP_MessageBodyDeserializer *restrict self, SmolRTSP_Slice data) {
+    SmolRTSP_MessageBodyDeserializer *restrict self, SmolRTSP_Slice *restrict data) {
     assert(self);
-    assert(!SmolRTSP_Slice_is_null(data));
+    assert(data);
+    assert(!SmolRTSP_Slice_is_null(*data));
 
-    const char *str = data.ptr;
-    const size_t size = data.size;
-
-    if (size < self->inner.size) {
+    if (data->size < self->inner.size) {
         return SmolRTSP_DeserializeResultNeedMore;
     }
 
@@ -52,7 +52,8 @@ SmolRTSP_DeserializeResult SmolRTSP_MessageBodyDeserializer_deserialize(
         return SmolRTSP_DeserializeResultOk;
     }
 
-    self->inner.ptr = str;
-    self->bytes_read += self->inner.size;
+    self->inner.ptr = data->ptr;
+    self->bytes_read = self->inner.size;
+    *data = SmolRTSP_Slice_advance(*data, self->bytes_read);
     return SmolRTSP_DeserializeResultOk;
 }

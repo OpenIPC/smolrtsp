@@ -20,6 +20,6 @@ SmolRTSP_ReasonPhraseDeserializer_inner(SmolRTSP_ReasonPhraseDeserializer *self)
 size_t SmolRTSP_ReasonPhraseDeserializer_bytes_read(SmolRTSP_ReasonPhraseDeserializer *self);
 
 SmolRTSP_DeserializeResult SmolRTSP_ReasonPhraseDeserializer_deserialize(
-    SmolRTSP_ReasonPhraseDeserializer *restrict self, SmolRTSP_Slice data);
+    SmolRTSP_ReasonPhraseDeserializer *restrict self, SmolRTSP_Slice *restrict data);
 
 #endif // SMOLRTSP_DESERIALIZERS_REASON_PHRASE_H

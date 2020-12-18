@@ -16,14 +16,13 @@
         }                                                                                          \
     } while (false)
 
-typedef bool (*SmolRTSP_Matcher)(const char *sub_str, void *cx);
+typedef bool (*SmolRTSP_Matcher)(char c, void *cx);
 
 SmolRTSP_DeserializeResult SmolRTSP_match_until(
-    SmolRTSP_Slice *restrict data, size_t *restrict bytes_read, SmolRTSP_Matcher matcher, void *cx,
-    size_t matched_str_len);
+    SmolRTSP_Slice *restrict data, size_t *restrict bytes_read, SmolRTSP_Matcher matcher, void *cx);
 
 SmolRTSP_DeserializeResult SmolRTSP_match_until_str(
-    SmolRTSP_Slice *restrict data, size_t *restrict bytes_read, const char *restrict expected_str);
+    SmolRTSP_Slice *restrict data, size_t *restrict bytes_read, const char *restrict str);
 
 SmolRTSP_DeserializeResult
 SmolRTSP_match_until_crlf(SmolRTSP_Slice *restrict data, size_t *restrict bytes_read);
@@ -32,7 +31,7 @@ SmolRTSP_DeserializeResult
 SmolRTSP_match_char(SmolRTSP_Slice *restrict data, size_t *restrict bytes_read, char c);
 
 SmolRTSP_DeserializeResult SmolRTSP_match_str(
-    SmolRTSP_Slice *restrict data, size_t *restrict bytes_read, const char *restrict expected_str);
+    SmolRTSP_Slice *restrict data, size_t *restrict bytes_read, const char *restrict str);
 
 SmolRTSP_DeserializeResult
 SmolRTSP_match_whitespaces(SmolRTSP_Slice *restrict data, size_t *restrict bytes_read);

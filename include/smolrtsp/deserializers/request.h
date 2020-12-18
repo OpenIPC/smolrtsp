@@ -13,14 +13,15 @@
 SMOLRTSP_OPAQUE_TYPE(SmolRTSP_RequestDeserializer);
 
 typedef enum {
-    SmolRTSP_RequestDeserializerStateStart,
-    SmolRTSP_RequestDeserializerStateRequestLineParsed,
-    SmolRTSP_RequestDeserializerStateHeaderMapParsed,
-    SmolRTSP_RequestDeserializerStateMessageBodyParsed,
-    SmolRTSP_RequestDeserializerStateRequestLineErr,
-    SmolRTSP_RequestDeserializerStateHeaderMapErr,
-    SmolRTSP_RequestDeserializerStateMessageBodyErr,
-    SmolRTSP_RequestDeserializerStateContentLengthErr,
+    SmolRTSP_RequestDeserializerStateInProgressRequestLine,
+    SmolRTSP_RequestDeserializerStateInProgressHeaderMap,
+    SmolRTSP_RequestDeserializerStateInProgressMessageBody,
+    SmolRTSP_RequestDeserializerStateInProgressDone,
+} SmolRTSP_RequestDeserializerStateInProgress;
+
+typedef struct {
+    SmolRTSP_RequestDeserializerStateInProgress in_progress;
+    bool is_ok;
 } SmolRTSP_RequestDeserializerState;
 
 SmolRTSP_RequestDeserializer *
@@ -34,6 +35,6 @@ SmolRTSP_Request SmolRTSP_RequestDeserializer_inner(SmolRTSP_RequestDeserializer
 size_t SmolRTSP_RequestDeserializer_bytes_read(SmolRTSP_RequestDeserializer *self);
 
 SmolRTSP_DeserializeResult SmolRTSP_RequestDeserializer_deserialize(
-    SmolRTSP_RequestDeserializer *restrict self, SmolRTSP_Slice data);
+    SmolRTSP_RequestDeserializer *restrict self, SmolRTSP_Slice *restrict data);
 
 #endif // SMOLRTSP_DESERIALIZERS_REQUEST_H

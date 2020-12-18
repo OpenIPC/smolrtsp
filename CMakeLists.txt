@@ -38,7 +38,6 @@ add_library(
   include/smolrtsp/deserializers/request_uri.h
   include/smolrtsp/deserializers/request.h
   include/smolrtsp/deserializers/request_line.h
-  include/smolrtsp/deserializers/crlf.h
   include/smolrtsp/deserializers/header.h
   src/deserializers/header_map.c
   src/deserializers/message_body.c
@@ -49,10 +48,9 @@ add_library(
   src/deserializers/request_uri.c
   src/deserializers/request.c
   src/deserializers/request_line.c
-  src/deserializers/crlf.c
   src/deserializers/header.c
-  src/matching.h
-  src/matching.c)
+  src/match.h
+  src/match.c)
 
 target_link_libraries(smolrtsp m)
 

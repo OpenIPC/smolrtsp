@@ -33,10 +33,9 @@ typedef struct {
  * Returns a value associated with @p key within @p map.
  *
  * @pre @p map shall not be `NULL`.
- * @pre @p key shall not be `NULL`.
- * @pre @p key shall be a null-terminated string.
+ * @pre @p key shall not be a null slice.
  */
-SmolRTSP_Slice SmolRTSP_HeaderMap_find(SmolRTSP_HeaderMap *restrict map, const char *restrict key);
+SmolRTSP_Slice SmolRTSP_HeaderMap_find(SmolRTSP_HeaderMap *restrict self, SmolRTSP_Slice key);
 
 /**
  * Serializes @p self into @p user_writer.

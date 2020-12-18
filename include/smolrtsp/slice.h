@@ -13,6 +13,7 @@
 
 #include <stdbool.h>
 #include <stddef.h>
+#include <stdio.h>
 
 /**
  * An immutable slice of data.
@@ -34,7 +35,7 @@ typedef struct {
 SmolRTSP_Slice SmolRTSP_Slice_new(const void *data, size_t size);
 
 /**
- * Returns a null slice.
+ * Returns a null and empty slice.
  */
 SmolRTSP_Slice SmolRTSP_Slice_null(void);
 
@@ -46,12 +47,29 @@ SmolRTSP_Slice SmolRTSP_Slice_null(void);
 bool SmolRTSP_Slice_is_null(SmolRTSP_Slice self);
 
 /**
- * Advances @P self by @p offset bytes.
+ * Checks whether @p self is an empty slice or not.
+ *
+ * @return `true` if @p self is an empty slice, otherwise `false`.
+ */
+bool SmolRTSP_Slice_is_empty(SmolRTSP_Slice self);
+
+/**
+ * Advances @p self by @p offset bytes.
  *
  * @pre @p self is not a null slice.
  * @pre `offset <= self.size`.
+ * @pre A memory area [`self.size + offset`; `self.size - offset`) must be available for reading.
  */
 SmolRTSP_Slice SmolRTSP_Slice_advance(SmolRTSP_Slice self, size_t offset);
+
+/**
+ * Moves @p self by @p offset positions to the left.
+ *
+ * @pre @p self is not a null slice.
+ * @pre `offset <= self.size`.
+ * @pre A memory area [`self.size - offset`; `self.size + offset`) must be available for reading.
+ */
+SmolRTSP_Slice SmolRTSP_Slice_go_back(SmolRTSP_Slice self, size_t offset);
 
 /**
  * Constructs a slice from @p str.
@@ -85,6 +103,34 @@ void SmolRTSP_Slice_serialize(
     const SmolRTSP_Slice *restrict self, SmolRTSP_UserWriter user_writer, void *user_cx);
 
 /**
+ * Prints @p data to @p stream.
+ *
+ * @pre @p self shall not be a null slice.
+ */
+void SmolRTSP_Slice_print_s_to_file(SmolRTSP_Slice self, FILE *stream);
+
+/**
+ * Prints @p data to `stdout`.
+ *
+ * @pre @p self shall not be a null slice.
+ */
+void SmolRTSP_Slice_print_s(SmolRTSP_Slice self);
+
+/**
+ * The same as #SmolRTSP_Slice_print_s_to_file but places `\n` afterwards.
+ *
+ * @pre @p self shall not be a null slice.
+ */
+void SmolRTSP_Slice_print_s_to_file_ln(SmolRTSP_Slice self, FILE *stream);
+
+/**
+ * The same as #SmolRTSP_Slice_print_s but places `\n` afterwards.
+ *
+ * @pre @p self shall not be a null slice.
+ */
+void SmolRTSP_Slice_print_s_ln(SmolRTSP_Slice self);
+
+/**
  * A mutable slice of data.
  */
 typedef struct {
@@ -104,7 +150,7 @@ typedef struct {
 SmolRTSP_MutSlice SmolRTSP_MutSlice_new(void *data, size_t size);
 
 /**
- * Returns a null slice.
+ * Returns a null and empty slice.
  */
 SmolRTSP_MutSlice SmolRTSP_MutSlice_null(void);
 
@@ -116,7 +162,14 @@ SmolRTSP_MutSlice SmolRTSP_MutSlice_null(void);
 bool SmolRTSP_MutSlice_is_null(SmolRTSP_MutSlice self);
 
 /**
- * Advances @P self by @p offset bytes.
+ * Checks whether @p self is an empty slice or not.
+ *
+ * @return `true` if @p self is an empty slice, otherwise `false`.
+ */
+bool SmolRTSP_MutSlice_is_empty(SmolRTSP_MutSlice self);
+
+/**
+ * Advances @p self by @p offset bytes.
  *
  * @pre @p self is not a null slice.
  * @pre `offset <= self.size`.
