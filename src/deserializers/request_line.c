@@ -1,10 +1,10 @@
+#include "../correctness.h"
 #include "../match.h"
 #include <smolrtsp/deserializers/method.h>
 #include <smolrtsp/deserializers/request_line.h>
 #include <smolrtsp/deserializers/request_uri.h>
 #include <smolrtsp/deserializers/rtsp_version.h>
 
-#include <assert.h>
 #include <stdbool.h>
 #include <stdlib.h>
 
@@ -50,7 +50,7 @@ SmolRTSP_RequestLineDeserializer *SmolRTSP_RequestLineDeserializer_new(void) {
 }
 
 void SmolRTSP_RequestLineDeserializer_free(SmolRTSP_RequestLineDeserializer *self) {
-    assert(self);
+    precondition(self);
 
     SmolRTSP_MethodDeserializer_free(self->deserializers.method);
     SmolRTSP_RequestURIDeserializer_free(self->deserializers.uri);
@@ -60,29 +60,29 @@ void SmolRTSP_RequestLineDeserializer_free(SmolRTSP_RequestLineDeserializer *sel
 
 SmolRTSP_RequestLineDeserializerState
 SmolRTSP_RequestLineDeserializer_state(const SmolRTSP_RequestLineDeserializer *self) {
-    assert(self);
+    precondition(self);
 
     return self->state;
 }
 
 SmolRTSP_RequestLine
 SmolRTSP_RequestLineDeserializer_inner(SmolRTSP_RequestLineDeserializer *self) {
-    assert(self);
+    precondition(self);
 
     return self->inner;
 }
 
 size_t SmolRTSP_RequestLineDeserializer_bytes_read(SmolRTSP_RequestLineDeserializer *self) {
-    assert(self);
+    precondition(self);
 
     return self->bytes_read;
 }
 
 SmolRTSP_DeserializeResult SmolRTSP_RequestLineDeserializer_deserialize(
     SmolRTSP_RequestLineDeserializer *restrict self, SmolRTSP_Slice *restrict data) {
-    assert(self);
-    assert(data);
-    assert(!SmolRTSP_Slice_is_null(*data));
+    precondition(self);
+    precondition(data);
+    precondition(!SmolRTSP_Slice_is_null(*data));
 
     // TODO: Make an eDSL for this shit.
     if (self->state.in_progress == SmolRTSP_RequestLineDeserializerStateInProgressMethod) {

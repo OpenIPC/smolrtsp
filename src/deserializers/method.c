@@ -1,8 +1,8 @@
 #include "../aux.h"
+#include "../correctness.h"
 #include "../match.h"
 #include <smolrtsp/deserializers/method.h>
 
-#include <assert.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -27,20 +27,22 @@ void SmolRTSP_MethodDeserializer_free(SmolRTSP_MethodDeserializer *self) {
 }
 
 SmolRTSP_Method SmolRTSP_MethodDeserializer_inner(SmolRTSP_MethodDeserializer *self) {
-    assert(self);
+    precondition(self);
+
     return self->inner;
 }
 
 size_t SmolRTSP_MethodDeserializer_bytes_read(SmolRTSP_MethodDeserializer *self) {
-    assert(self);
+    precondition(self);
+
     return self->bytes_read;
 }
 
 SmolRTSP_DeserializeResult SmolRTSP_MethodDeserializer_deserialize(
     SmolRTSP_MethodDeserializer *restrict self, SmolRTSP_Slice *restrict data) {
-    assert(self);
-    assert(data);
-    assert(!SmolRTSP_Slice_is_null(*data));
+    precondition(self);
+    precondition(data);
+    precondition(!SmolRTSP_Slice_is_null(*data));
 
     size_t bytes_read = 0;
 

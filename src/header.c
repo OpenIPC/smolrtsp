@@ -1,13 +1,13 @@
+#include "correctness.h"
 #include "match.h"
 #include <smolrtsp/header.h>
 
-#include <assert.h>
 #include <string.h>
 
 void SmolRTSP_Header_serialize(
     const SmolRTSP_Header *restrict self, SmolRTSP_UserWriter user_writer, void *user_cx) {
-    assert(self);
-    assert(user_writer);
+    precondition(self);
+    precondition(user_writer);
 
     SmolRTSP_Slice_serialize(&self->key, user_writer, user_cx);
     user_writer(strlen(": "), ": ", user_cx);
@@ -15,15 +15,15 @@ void SmolRTSP_Header_serialize(
 }
 
 bool SmolRTSP_Header_eq(const SmolRTSP_Header *restrict lhs, const SmolRTSP_Header *restrict rhs) {
-    assert(lhs);
-    assert(rhs);
+    precondition(lhs);
+    precondition(rhs);
 
     return SmolRTSP_Slice_eq(&lhs->key, &rhs->key) && SmolRTSP_Slice_eq(&lhs->value, &rhs->value);
 }
 
 void SmolRTSP_Header_pretty_print_to_file(const SmolRTSP_Header *self, FILE *stream) {
-    assert(self);
-    assert(stream);
+    precondition(self);
+    precondition(stream);
 
     fprintf(
         stream, "%.*s: %.*s\n", (int)self->key.size, (const char *)self->key.ptr,
@@ -31,7 +31,7 @@ void SmolRTSP_Header_pretty_print_to_file(const SmolRTSP_Header *self, FILE *str
 }
 
 void SmolRTSP_Header_pretty_print(const SmolRTSP_Header *self) {
-    assert(self);
+    precondition(self);
 
     SmolRTSP_Header_pretty_print_to_file(self, stdout);
 }

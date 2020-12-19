@@ -1,18 +1,18 @@
 #include "match.h"
 #include "aux.h"
+#include "correctness.h"
 #include <smolrtsp/crlf.h>
 
-#include <assert.h>
 #include <ctype.h>
 #include <string.h>
 
 SmolRTSP_DeserializeResult SmolRTSP_match_until(
     SmolRTSP_Slice *restrict data, size_t *restrict bytes_read, SmolRTSP_Matcher matcher,
     void *cx) {
-    assert(data);
-    assert(bytes_read);
-    assert(matcher);
-    assert(!SmolRTSP_Slice_is_null(*data));
+    precondition(data);
+    precondition(bytes_read);
+    precondition(matcher);
+    precondition(!SmolRTSP_Slice_is_null(*data));
 
     while (!SmolRTSP_Slice_is_empty(*data)) {
         if (!matcher(*(const char *)data->ptr, cx)) {
@@ -70,14 +70,14 @@ static bool is_str_recognised(size_t state, const char *str) {
 
 SmolRTSP_DeserializeResult SmolRTSP_match_until_str(
     SmolRTSP_Slice *restrict data, size_t *restrict bytes_read, const char *restrict str) {
-    assert(data);
-    assert(bytes_read);
-    assert(str);
-    assert(!SmolRTSP_Slice_is_null(*data));
+    precondition(data);
+    precondition(bytes_read);
+    precondition(str);
+    precondition(!SmolRTSP_Slice_is_null(*data));
 
     const size_t str_len = strlen(str);
 
-    assert(str_len > 0);
+    precondition(str_len > 0);
 
     if (data->size < strlen(str)) {
         return SmolRTSP_DeserializeResultNeedMore;
@@ -102,25 +102,25 @@ SmolRTSP_DeserializeResult SmolRTSP_match_until_str(
 
 SmolRTSP_DeserializeResult
 SmolRTSP_match_until_crlf(SmolRTSP_Slice *restrict data, size_t *restrict bytes_read) {
-    assert(data);
-    assert(bytes_read);
+    precondition(data);
+    precondition(bytes_read);
 
     return SmolRTSP_match_until_str(data, bytes_read, SMOLRTSP_CRLF);
 }
 
 SmolRTSP_DeserializeResult
 SmolRTSP_match_char(SmolRTSP_Slice *restrict data, size_t *restrict bytes_read, char c) {
-    assert(data);
-    assert(bytes_read);
+    precondition(data);
+    precondition(bytes_read);
 
     return SmolRTSP_match_until(data, bytes_read, char_matcher, &c);
 }
 
 SmolRTSP_DeserializeResult SmolRTSP_match_str(
     SmolRTSP_Slice *restrict data, size_t *restrict bytes_read, const char *restrict str) {
-    assert(data);
-    assert(bytes_read);
-    assert(str);
+    precondition(data);
+    precondition(bytes_read);
+    precondition(str);
 
     const size_t str_len = strlen(str);
 
@@ -139,8 +139,8 @@ SmolRTSP_DeserializeResult SmolRTSP_match_str(
 
 SmolRTSP_DeserializeResult
 SmolRTSP_match_whitespaces(SmolRTSP_Slice *restrict data, size_t *restrict bytes_read) {
-    assert(data);
-    assert(bytes_read);
+    precondition(data);
+    precondition(bytes_read);
 
     void *cx = NULL;
     return SmolRTSP_match_until(data, bytes_read, whitespace_matcher, cx);
@@ -148,8 +148,8 @@ SmolRTSP_match_whitespaces(SmolRTSP_Slice *restrict data, size_t *restrict bytes
 
 SmolRTSP_DeserializeResult
 SmolRTSP_match_non_whitespaces(SmolRTSP_Slice *restrict data, size_t *restrict bytes_read) {
-    assert(data);
-    assert(bytes_read);
+    precondition(data);
+    precondition(bytes_read);
 
     void *cx = NULL;
     return SmolRTSP_match_until(data, bytes_read, non_whitespace_matcher, cx);
@@ -157,8 +157,8 @@ SmolRTSP_match_non_whitespaces(SmolRTSP_Slice *restrict data, size_t *restrict b
 
 SmolRTSP_DeserializeResult
 SmolRTSP_match_numeric(SmolRTSP_Slice *restrict data, size_t *restrict bytes_read) {
-    assert(data);
-    assert(bytes_read);
+    precondition(data);
+    precondition(bytes_read);
 
     void *cx = NULL;
     return SmolRTSP_match_until(data, bytes_read, numeric_matcher, cx);
@@ -166,8 +166,8 @@ SmolRTSP_match_numeric(SmolRTSP_Slice *restrict data, size_t *restrict bytes_rea
 
 SmolRTSP_DeserializeResult
 SmolRTSP_match_ident(SmolRTSP_Slice *restrict data, size_t *restrict bytes_read) {
-    assert(data);
-    assert(bytes_read);
+    precondition(data);
+    precondition(bytes_read);
 
     void *cx = NULL;
     return SmolRTSP_match_until(data, bytes_read, ident_matcher, cx);
@@ -175,8 +175,8 @@ SmolRTSP_match_ident(SmolRTSP_Slice *restrict data, size_t *restrict bytes_read)
 
 SmolRTSP_DeserializeResult
 SmolRTSP_match_header_name(SmolRTSP_Slice *restrict data, size_t *restrict bytes_read) {
-    assert(data);
-    assert(bytes_read);
+    precondition(data);
+    precondition(bytes_read);
 
     void *cx = NULL;
     return SmolRTSP_match_until(data, bytes_read, header_name_char_matcher, cx);

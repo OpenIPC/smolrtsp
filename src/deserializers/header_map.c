@@ -1,9 +1,9 @@
 #include "../aux.h"
+#include "../correctness.h"
 #include "../match.h"
 #include <smolrtsp/deserializers/header.h>
 #include <smolrtsp/deserializers/header_map.h>
 
-#include <assert.h>
 #include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
@@ -15,8 +15,8 @@ struct SmolRTSP_HeaderMapDeserializer {
 
 SmolRTSP_HeaderMapDeserializer *
 SmolRTSP_HeaderMapDeserializer_new(size_t size, SmolRTSP_Header headers[static size]) {
-    assert(size >= 0);
-    assert(headers);
+    precondition(size >= 0);
+    precondition(headers);
 
     SmolRTSP_HeaderMapDeserializer *self;
     if ((self = malloc(sizeof(*self))) == NULL) {
@@ -34,20 +34,22 @@ void SmolRTSP_HeaderMapDeserializer_free(SmolRTSP_HeaderMapDeserializer *self) {
 }
 
 SmolRTSP_HeaderMap SmolRTSP_HeaderMapDeserializer_inner(SmolRTSP_HeaderMapDeserializer *self) {
-    assert(self);
+    precondition(self);
+
     return self->inner;
 }
 
 size_t SmolRTSP_HeaderMapDeserializer_bytes_read(SmolRTSP_HeaderMapDeserializer *self) {
-    assert(self);
+    precondition(self);
+
     return self->bytes_read;
 }
 
 SmolRTSP_DeserializeResult SmolRTSP_HeaderMapDeserializer_deserialize(
     SmolRTSP_HeaderMapDeserializer *restrict self, SmolRTSP_Slice *restrict data) {
-    assert(self);
-    assert(data);
-    assert(!SmolRTSP_Slice_is_null(*data));
+    precondition(self);
+    precondition(data);
+    precondition(!SmolRTSP_Slice_is_null(*data));
 
     while (true) {
         if (data->size < 2) {

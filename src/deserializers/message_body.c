@@ -1,6 +1,6 @@
+#include "../correctness.h"
 #include <smolrtsp/deserializers/message_body.h>
 
-#include <assert.h>
 #include <stdlib.h>
 
 struct SmolRTSP_MessageBodyDeserializer {
@@ -26,22 +26,22 @@ void SmolRTSP_MessageBodyDeserializer_free(SmolRTSP_MessageBodyDeserializer *sel
 
 SmolRTSP_MessageBody
 SmolRTSP_MessageBodyDeserializer_inner(SmolRTSP_MessageBodyDeserializer *self) {
-    assert(self);
+    precondition(self);
 
     return self->inner;
 }
 
 size_t SmolRTSP_MessageBodyDeserializer_bytes_read(SmolRTSP_MessageBodyDeserializer *self) {
-    assert(self);
+    precondition(self);
 
     return self->bytes_read;
 }
 
 SmolRTSP_DeserializeResult SmolRTSP_MessageBodyDeserializer_deserialize(
     SmolRTSP_MessageBodyDeserializer *restrict self, SmolRTSP_Slice *restrict data) {
-    assert(self);
-    assert(data);
-    assert(!SmolRTSP_Slice_is_null(*data));
+    precondition(self);
+    precondition(data);
+    precondition(!SmolRTSP_Slice_is_null(*data));
 
     if (data->size < self->inner.size) {
         return SmolRTSP_DeserializeResultNeedMore;

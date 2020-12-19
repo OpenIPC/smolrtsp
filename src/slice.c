@@ -1,7 +1,7 @@
 #include "aux.h"
+#include "correctness.h"
 #include <smolrtsp/slice.h>
 
-#include <assert.h>
 #include <string.h>
 
 SmolRTSP_Slice SmolRTSP_Slice_new(const void *data, size_t size) {
@@ -21,15 +21,15 @@ bool SmolRTSP_Slice_is_empty(SmolRTSP_Slice self) {
 }
 
 SmolRTSP_Slice SmolRTSP_Slice_advance(SmolRTSP_Slice self, size_t offset) {
-    assert(!SmolRTSP_Slice_is_null(self));
-    assert(offset <= self.size);
+    precondition(!SmolRTSP_Slice_is_null(self));
+    precondition(offset <= self.size);
 
     return SmolRTSP_Slice_new(self.ptr + offset, self.size - offset);
 }
 
 SmolRTSP_Slice SmolRTSP_Slice_go_back(SmolRTSP_Slice self, size_t offset) {
-    assert(!SmolRTSP_Slice_is_null(self));
-    assert(offset <= self.size);
+    precondition(!SmolRTSP_Slice_is_null(self));
+    precondition(offset <= self.size);
 
     return SmolRTSP_Slice_new(self.ptr - offset, self.size + offset);
 }
@@ -43,8 +43,8 @@ SmolRTSP_Slice SmolRTSP_Slice_from_str(const char *str) {
 }
 
 bool SmolRTSP_Slice_eq(const SmolRTSP_Slice *restrict lhs, const SmolRTSP_Slice *restrict rhs) {
-    assert(lhs);
-    assert(rhs);
+    precondition(lhs);
+    precondition(rhs);
 
     if (SmolRTSP_Slice_is_null(*lhs) && SmolRTSP_Slice_is_null(*rhs)) {
         return true;
@@ -61,34 +61,34 @@ bool SmolRTSP_Slice_eq(const SmolRTSP_Slice *restrict lhs, const SmolRTSP_Slice 
 
 void SmolRTSP_Slice_serialize(
     const SmolRTSP_Slice *restrict self, SmolRTSP_UserWriter user_writer, void *user_cx) {
-    assert(self);
-    assert(user_writer);
-    assert(!SmolRTSP_Slice_is_null(*self));
+    precondition(self);
+    precondition(user_writer);
+    precondition(!SmolRTSP_Slice_is_null(*self));
 
     user_writer(self->size, self->ptr, user_cx);
 }
 
 void SmolRTSP_Slice_print_s_to_file(SmolRTSP_Slice data, FILE *stream) {
-    assert(!SmolRTSP_Slice_is_null(data));
+    precondition(!SmolRTSP_Slice_is_null(data));
 
     fwrite(data.ptr, 1, data.size, stream);
 }
 
 void SmolRTSP_Slice_print_s(SmolRTSP_Slice data) {
-    assert(!SmolRTSP_Slice_is_null(data));
+    precondition(!SmolRTSP_Slice_is_null(data));
 
     SmolRTSP_Slice_print_s_to_file(data, stdout);
 }
 
 void SmolRTSP_Slice_print_s_to_file_ln(SmolRTSP_Slice data, FILE *stream) {
-    assert(!SmolRTSP_Slice_is_null(data));
+    precondition(!SmolRTSP_Slice_is_null(data));
 
     SmolRTSP_Slice_print_s_to_file(data, stream);
     fprintf(stream, "\n");
 }
 
 void SmolRTSP_Slice_print_s_ln(SmolRTSP_Slice data) {
-    assert(!SmolRTSP_Slice_is_null(data));
+    precondition(!SmolRTSP_Slice_is_null(data));
 
     SmolRTSP_Slice_print_s(data);
     puts("");
@@ -111,8 +111,8 @@ bool SmolRTSP_MutSlice_is_empty(SmolRTSP_MutSlice self) {
 }
 
 SmolRTSP_MutSlice SmolRTSP_MutSlice_advance(SmolRTSP_MutSlice self, size_t offset) {
-    assert(!SmolRTSP_MutSlice_is_null(self));
-    assert(offset <= self.size);
+    precondition(!SmolRTSP_MutSlice_is_null(self));
+    precondition(offset <= self.size);
 
     return SmolRTSP_MutSlice_new(self.ptr + offset, self.size - offset);
 }
@@ -127,8 +127,8 @@ SmolRTSP_MutSlice SmolRTSP_MutSlice_from_str(char *str) {
 
 bool SmolRTSP_MutSlice_eq(
     const SmolRTSP_MutSlice *restrict lhs, const SmolRTSP_MutSlice *restrict rhs) {
-    assert(lhs);
-    assert(rhs);
+    precondition(lhs);
+    precondition(rhs);
 
     return SmolRTSP_Slice_eq(
         OBJ(SmolRTSP_Slice, SmolRTSP_MutSlice_to_const(*lhs)),
@@ -137,8 +137,8 @@ bool SmolRTSP_MutSlice_eq(
 
 void SmolRTSP_MutSlice_serialize(
     const SmolRTSP_MutSlice *restrict self, SmolRTSP_UserWriter user_writer, void *user_cx) {
-    assert(self);
-    assert(user_writer);
+    precondition(self);
+    precondition(user_writer);
 
     SmolRTSP_Slice_serialize(
         OBJ(SmolRTSP_Slice, SmolRTSP_MutSlice_to_const(*self)), user_writer, user_cx);

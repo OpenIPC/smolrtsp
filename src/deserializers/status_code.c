@@ -1,7 +1,7 @@
+#include "../correctness.h"
 #include "../match.h"
 #include <smolrtsp/deserializers/status_code.h>
 
-#include <assert.h>
 #include <inttypes.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -26,20 +26,22 @@ void SmolRTSP_StatusCodeDeserializer_free(SmolRTSP_StatusCodeDeserializer *self)
 }
 
 SmolRTSP_StatusCode SmolRTSP_StatusCodeDeserializer_inner(SmolRTSP_StatusCodeDeserializer *self) {
-    assert(self);
+    precondition(self);
+
     return self->inner;
 }
 
 size_t SmolRTSP_StatusCodeDeserializer_bytes_read(SmolRTSP_StatusCodeDeserializer *self) {
-    assert(self);
+    precondition(self);
+
     return self->bytes_read;
 }
 
 SmolRTSP_DeserializeResult SmolRTSP_StatusCodeDeserializer_deserialize(
     SmolRTSP_StatusCodeDeserializer *restrict self, SmolRTSP_Slice *restrict data) {
-    assert(self);
-    assert(data);
-    assert(!SmolRTSP_Slice_is_null(*data));
+    precondition(self);
+    precondition(data);
+    precondition(!SmolRTSP_Slice_is_null(*data));
 
     size_t bytes_read = 0;
 
@@ -52,7 +54,7 @@ SmolRTSP_DeserializeResult SmolRTSP_StatusCodeDeserializer_deserialize(
     char format[50];
     snprintf(format, sizeof(format), "%%%zd" SCNuLEAST16, code_size);
     int rc = sscanf(code, format, &code_int);
-    assert(rc == 1);
+    precondition(rc == 1);
 
     self->bytes_read = bytes_read;
     self->inner = code_int;

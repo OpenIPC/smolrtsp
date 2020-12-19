@@ -1,8 +1,8 @@
 #include "../aux.h"
+#include "../correctness.h"
 #include "../match.h"
 #include <smolrtsp/deserializers/request_uri.h>
 
-#include <assert.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -27,20 +27,22 @@ void SmolRTSP_RequestURIDeserializer_free(SmolRTSP_RequestURIDeserializer *self)
 }
 
 SmolRTSP_RequestURI SmolRTSP_RequestURIDeserializer_inner(SmolRTSP_RequestURIDeserializer *self) {
-    assert(self);
+    precondition(self);
+
     return self->inner;
 }
 
 size_t SmolRTSP_RequestURIDeserializer_bytes_read(SmolRTSP_RequestURIDeserializer *self) {
-    assert(self);
+    precondition(self);
+
     return self->bytes_read;
 }
 
 SmolRTSP_DeserializeResult SmolRTSP_RequestURIDeserializer_deserialize(
     SmolRTSP_RequestURIDeserializer *restrict self, SmolRTSP_Slice *restrict data) {
-    assert(self);
-    assert(data);
-    assert(!SmolRTSP_Slice_is_null(*data));
+    precondition(self);
+    precondition(data);
+    precondition(!SmolRTSP_Slice_is_null(*data));
 
     size_t bytes_read = 0;
 

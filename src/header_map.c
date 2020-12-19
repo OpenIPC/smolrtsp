@@ -1,13 +1,13 @@
+#include "correctness.h"
 #include "match.h"
 #include <smolrtsp/crlf.h>
 #include <smolrtsp/header_map.h>
 
-#include <assert.h>
 #include <string.h>
 
 SmolRTSP_Slice SmolRTSP_HeaderMap_find(SmolRTSP_HeaderMap *restrict self, SmolRTSP_Slice key) {
-    assert(self);
-    assert(!SmolRTSP_Slice_is_null(key));
+    precondition(self);
+    precondition(!SmolRTSP_Slice_is_null(key));
 
     for (size_t i = 0; i < self->len; i++) {
         if (SmolRTSP_Slice_eq(&self->headers[i].key, &key)) {
@@ -20,8 +20,8 @@ SmolRTSP_Slice SmolRTSP_HeaderMap_find(SmolRTSP_HeaderMap *restrict self, SmolRT
 
 void SmolRTSP_HeaderMap_serialize(
     const SmolRTSP_HeaderMap *restrict self, SmolRTSP_UserWriter user_writer, void *user_cx) {
-    assert(self);
-    assert(user_writer);
+    precondition(self);
+    precondition(user_writer);
 
     for (size_t i = 0; i < self->len; i++) {
         SmolRTSP_Header_serialize(&self->headers[i], user_writer, user_cx);
@@ -32,8 +32,8 @@ void SmolRTSP_HeaderMap_serialize(
 
 bool SmolRTSP_HeaderMap_eq(
     const SmolRTSP_HeaderMap *restrict lhs, const SmolRTSP_HeaderMap *restrict rhs) {
-    assert(lhs);
-    assert(rhs);
+    precondition(lhs);
+    precondition(rhs);
 
     if (lhs->len != rhs->len) {
         return false;
@@ -55,8 +55,8 @@ bool SmolRTSP_HeaderMap_is_full(const SmolRTSP_HeaderMap self) {
 }
 
 void SmolRTSP_HeaderMap_pretty_print_to_file(const SmolRTSP_HeaderMap *self, FILE *stream) {
-    assert(self);
-    assert(stream);
+    precondition(self);
+    precondition(stream);
 
     for (size_t i = 0; i < self->len; i++) {
         SmolRTSP_Header_pretty_print_to_file(&self->headers[i], stream);
@@ -64,7 +64,7 @@ void SmolRTSP_HeaderMap_pretty_print_to_file(const SmolRTSP_HeaderMap *self, FIL
 }
 
 void SmolRTSP_HeaderMap_pretty_print(const SmolRTSP_HeaderMap *self) {
-    assert(self);
+    precondition(self);
 
     SmolRTSP_HeaderMap_pretty_print_to_file(self, stdout);
 }

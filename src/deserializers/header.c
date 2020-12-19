@@ -1,8 +1,8 @@
+#include "../correctness.h"
 #include "../match.h"
 #include <smolrtsp/crlf.h>
 #include <smolrtsp/deserializers/header.h>
 
-#include <assert.h>
 #include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
@@ -28,19 +28,21 @@ void SmolRTSP_HeaderDeserializer_free(SmolRTSP_HeaderDeserializer *self) {
 }
 
 SmolRTSP_Header SmolRTSP_HeaderDeserializer_inner(SmolRTSP_HeaderDeserializer *self) {
-    assert(self);
+    precondition(self);
+
     return self->inner;
 }
 
 size_t SmolRTSP_HeaderDeserializer_bytes_read(SmolRTSP_HeaderDeserializer *self) {
-    assert(self);
+    precondition(self);
+
     return self->bytes_read;
 }
 
 SmolRTSP_DeserializeResult SmolRTSP_HeaderDeserializer_deserialize(
     SmolRTSP_HeaderDeserializer *restrict self, SmolRTSP_Slice *restrict data) {
-    assert(self);
-    assert(!SmolRTSP_Slice_is_null(*data));
+    precondition(self);
+    precondition(!SmolRTSP_Slice_is_null(*data));
 
     SmolRTSP_Header header;
     size_t bytes_read = 0;

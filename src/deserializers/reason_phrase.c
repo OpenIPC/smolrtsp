@@ -1,9 +1,9 @@
 #include "../aux.h"
+#include "../correctness.h"
 #include "../match.h"
 #include <smolrtsp/crlf.h>
 #include <smolrtsp/deserializers/reason_phrase.h>
 
-#include <assert.h>
 #include <stdlib.h>
 #include <string.h>
 
@@ -29,20 +29,22 @@ void SmolRTSP_ReasonPhraseDeserializer_free(SmolRTSP_ReasonPhraseDeserializer *s
 
 SmolRTSP_ReasonPhrase
 SmolRTSP_ReasonPhraseDeserializer_inner(SmolRTSP_ReasonPhraseDeserializer *self) {
-    assert(self);
+    precondition(self);
+
     return self->inner;
 }
 
 size_t SmolRTSP_ReasonPhraseDeserializer_bytes_read(SmolRTSP_ReasonPhraseDeserializer *self) {
-    assert(self);
+    precondition(self);
+
     return self->bytes_read;
 }
 
 SmolRTSP_DeserializeResult SmolRTSP_ReasonPhraseDeserializer_deserialize(
     SmolRTSP_ReasonPhraseDeserializer *restrict self, SmolRTSP_Slice *restrict data) {
-    assert(self);
-    assert(data);
-    assert(!SmolRTSP_Slice_is_null(*data));
+    precondition(self);
+    precondition(data);
+    precondition(!SmolRTSP_Slice_is_null(*data));
 
     size_t bytes_read = 0;
 
