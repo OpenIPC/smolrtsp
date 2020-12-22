@@ -54,17 +54,17 @@ bool SmolRTSP_HeaderMap_is_full(const SmolRTSP_HeaderMap self) {
     return self.len == self.size;
 }
 
-void SmolRTSP_HeaderMap_pretty_print_to_file(const SmolRTSP_HeaderMap *self, FILE *stream) {
+void SmolRTSP_HeaderMap_dbg_to_file(const SmolRTSP_HeaderMap *self, FILE *stream) {
     precondition(self);
     precondition(stream);
 
     for (size_t i = 0; i < self->len; i++) {
-        SmolRTSP_Header_pretty_print_to_file(&self->headers[i], stream);
+        SmolRTSP_Header_dbg_to_file(&self->headers[i], stream);
     }
 }
 
-void SmolRTSP_HeaderMap_pretty_print(const SmolRTSP_HeaderMap *self) {
+void SmolRTSP_HeaderMap_dbg(const SmolRTSP_HeaderMap *self) {
     precondition(self);
 
-    SmolRTSP_HeaderMap_pretty_print_to_file(self, stdout);
+    SmolRTSP_HeaderMap_dbg_to_file(self, stdout);
 }

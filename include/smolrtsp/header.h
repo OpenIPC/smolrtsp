@@ -81,7 +81,21 @@ void SmolRTSP_Header_serialize(
  */
 bool SmolRTSP_Header_eq(const SmolRTSP_Header *restrict lhs, const SmolRTSP_Header *restrict rhs);
 
-void SmolRTSP_Header_pretty_print_to_file(const SmolRTSP_Header *self, FILE *stream);
-void SmolRTSP_Header_pretty_print(const SmolRTSP_Header *self);
+/**
+ * Pretty-prints @p self to @p stream.
+ *
+ * @pre @p self shall not be `NULL`.
+ * @pre `self.key` and `self.value` shall not be null-slices.
+ * @pre @p stream shall not be `NULL`.
+ */
+void SmolRTSP_Header_dbg_to_file(const SmolRTSP_Header *self, FILE *stream);
+
+/**
+ * Pretty-prints @p self to `stdout`.
+ *
+ * @pre @p self shall not be `NULL`.
+ * @pre `self.key` and `self.value` shall not be null-slices.
+ */
+void SmolRTSP_Header_dbg(const SmolRTSP_Header *self);
 
 #endif // SMOLRTSP_HEADER_H

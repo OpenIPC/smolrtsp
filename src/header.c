@@ -21,17 +21,17 @@ bool SmolRTSP_Header_eq(const SmolRTSP_Header *restrict lhs, const SmolRTSP_Head
     return SmolRTSP_Slice_eq(&lhs->key, &rhs->key) && SmolRTSP_Slice_eq(&lhs->value, &rhs->value);
 }
 
-void SmolRTSP_Header_pretty_print_to_file(const SmolRTSP_Header *self, FILE *stream) {
+void SmolRTSP_Header_dbg_to_file(const SmolRTSP_Header *self, FILE *stream) {
     precondition(self);
     precondition(stream);
 
     fprintf(
-        stream, "%.*s: %.*s\n", (int)self->key.size, (const char *)self->key.ptr,
+        stream, "'%.*s': '%.*s'\n", (int)self->key.size, (const char *)self->key.ptr,
         (int)self->value.size, (const char *)self->value.ptr);
 }
 
-void SmolRTSP_Header_pretty_print(const SmolRTSP_Header *self) {
+void SmolRTSP_Header_dbg(const SmolRTSP_Header *self) {
     precondition(self);
 
-    SmolRTSP_Header_pretty_print_to_file(self, stdout);
+    SmolRTSP_Header_dbg_to_file(self, stdout);
 }
