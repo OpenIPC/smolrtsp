@@ -1,6 +1,6 @@
 /**
  * @file
- * @brief A slice of data.
+ *  A slice of data.
  *
  * A slice is null if its pointer to data is `NULL`. A slice is empty is its size compares equal to
  * zero.

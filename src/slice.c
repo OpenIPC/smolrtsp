@@ -1,4 +1,4 @@
-#include "aux.h"
+#include "aux_macros.h"
 #include "correctness.h"
 #include <smolrtsp/slice.h>
 

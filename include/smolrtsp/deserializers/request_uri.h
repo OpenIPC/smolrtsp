@@ -1,6 +1,6 @@
 /**
  * @file
- * @brief An RTSP request URI deserializer.
+ *  An RTSP request URI deserializer.
  */
 
 #ifndef SMOLRTSP_DESERIALIZERS_REQUEST_URI_H
@@ -10,6 +10,9 @@
 #include <smolrtsp/opaque_type.h>
 #include <smolrtsp/request_uri.h>
 
+/**
+ * A deserializer of an RTSP request URI.
+ */
 SMOLRTSP_OPAQUE_TYPE(SmolRTSP_RequestURIDeserializer);
 
 SmolRTSP_RequestURIDeserializer *SmolRTSP_RequestURIDeserializer_new(void);

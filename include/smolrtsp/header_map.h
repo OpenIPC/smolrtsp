@@ -1,6 +1,6 @@
 /**
  * @file
- * @brief An RTSP header map.
+ * An RTSP header map.
  */
 
 #ifndef SMOLRTSP_HEADER_MAP_H
@@ -43,7 +43,7 @@ SmolRTSP_Slice SmolRTSP_HeaderMap_find(SmolRTSP_HeaderMap *restrict self, SmolRT
  * @param[in] user_cx Some value provided to @p user_writer on each write.
  *
  * @pre @p self shall not be `NULL`.
- * @pre All header keys and values in @p self shall not be null slices.
+ * @pre First `self.len` header keys and values in @p self shall not be null slices.
  * @pre @p user_writer shall not be `NULL`.
  */
 void SmolRTSP_HeaderMap_serialize(
@@ -71,7 +71,7 @@ bool SmolRTSP_HeaderMap_is_full(const SmolRTSP_HeaderMap self);
  * Pretty-prints @p self to @p stream.
  *
  * @pre @p self shall not be `NULL`.
- * @pre All header keys and values in @p self shall not be null slices.
+ * @pre First `self.len` header keys and values in @p self shall not be null slices.
  * @pre @p stream shall not be `NULL`.
  */
 void SmolRTSP_HeaderMap_dbg_to_file(const SmolRTSP_HeaderMap *self, FILE *stream);
@@ -80,7 +80,7 @@ void SmolRTSP_HeaderMap_dbg_to_file(const SmolRTSP_HeaderMap *self, FILE *stream
  * Pretty-prints @p self to `stdout`.
  *
  * @pre @p self shall not be `NULL`.
- * @pre All header keys and values in @p self shall not be null slices.
+ * @pre First `self.len` header keys and values in @p self shall not be null slices.
  */
 void SmolRTSP_HeaderMap_dbg(const SmolRTSP_HeaderMap *self);
 

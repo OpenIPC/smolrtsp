@@ -1,6 +1,6 @@
 /**
  * @file
- * @brief A convenient macro for declaring opaque data types.
+ *  A convenient macro for declaring opaque data types.
  */
 
 #ifndef SMOLRTS_OPAQUE_TYPE_H

@@ -16,10 +16,10 @@ void SmolRTSP_RTSPVersion_serialize(
     snprintf(minor, sizeof(minor), "%" PRIuLEAST8, self->minor);
     snprintf(major, sizeof(major), "%" PRIuLEAST8, self->major);
 
-    user_writer(strlen(rtsp_slash), (const void *)rtsp_slash, user_cx);
-    user_writer(strlen(minor), (const void *)minor, user_cx);
-    user_writer(strlen(dot), (const void *)dot, user_cx);
-    user_writer(strlen(major), (const void *)major, user_cx);
+    user_writer(strlen(rtsp_slash), rtsp_slash, user_cx);
+    user_writer(strlen(minor), minor, user_cx);
+    user_writer(strlen(dot), dot, user_cx);
+    user_writer(strlen(major), major, user_cx);
 }
 
 bool SmolRTSP_RTSPVersion_eq(

@@ -1,4 +1,3 @@
-#include "../../src/aux.h"
 #include <smolrtsp/crlf.h>
 #include <smolrtsp/deserializers/header.h>
 
@@ -10,7 +9,7 @@ static void check(const char *header, SmolRTSP_Header expected) {
     SmolRTSP_HeaderDeserializer *deser = SmolRTSP_HeaderDeserializer_new();
     ASSERT_NE(deser, NULL);
 
-    const SmolRTSP_Slice data = SmolRTSP_Slice_from_str(header);
+    SmolRTSP_Slice data = SmolRTSP_Slice_from_str(header);
     const SmolRTSP_DeserializeResult res = SmolRTSP_HeaderDeserializer_deserialize(deser, &data);
     const SmolRTSP_Header inner = SmolRTSP_HeaderDeserializer_inner(deser);
     const size_t bytes_read = SmolRTSP_HeaderDeserializer_bytes_read(deser);

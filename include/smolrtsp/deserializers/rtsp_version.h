@@ -1,6 +1,6 @@
 /**
  * @file
- * @brief An RTSP version deserializer.
+ *  An RTSP version deserializer.
  */
 
 #ifndef SMOLRTSP_DESERIALIZERS_RTSP_VERSION_H
@@ -10,6 +10,9 @@
 #include <smolrtsp/opaque_type.h>
 #include <smolrtsp/rtsp_version.h>
 
+/**
+ * A deserializer of an RTSP version.
+ */
 SMOLRTSP_OPAQUE_TYPE(SmolRTSP_RTSPVersionDeserializer);
 
 SmolRTSP_RTSPVersionDeserializer *SmolRTSP_RTSPVersionDeserializer_new(void);

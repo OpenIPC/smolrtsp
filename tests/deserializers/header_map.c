@@ -1,4 +1,3 @@
-#include "../../src/aux.h"
 #include <smolrtsp/crlf.h>
 #include <smolrtsp/deserializers/header_map.h>
 

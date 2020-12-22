@@ -1,6 +1,6 @@
 /**
  * @file
- * @brief Re-exports all the functionality.
+ *  Re-exports all the functionality.
  */
 
 #ifndef SMOLRTSP_H

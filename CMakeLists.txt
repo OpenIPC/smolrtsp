@@ -6,7 +6,6 @@ include_directories(include libs)
 add_library(
   smolrtsp
   include/smolrtsp.h
-  src/aux.h
   include/smolrtsp/deserializers.h
   include/smolrtsp/user_writer.h
   include/smolrtsp/message_body.h
@@ -22,6 +21,7 @@ add_library(
   include/smolrtsp/request_line.h
   include/smolrtsp/crlf.h
   include/smolrtsp/slice.h
+  src/aux_macros.h
   src/status_code.c
   src/rtsp_version.c
   src/request.c

@@ -1,6 +1,6 @@
 /**
  * @file
- * @brief An RTSP header map deserializer.
+ *  An RTSP header map deserializer.
  */
 
 #ifndef SMOLRTSP_DESERIALIZERS_HEADER_MAP_H
@@ -10,6 +10,9 @@
 #include <smolrtsp/header_map.h>
 #include <smolrtsp/opaque_type.h>
 
+/**
+ * A deserializer of an RTSP header map.
+ */
 SMOLRTSP_OPAQUE_TYPE(SmolRTSP_HeaderMapDeserializer);
 
 SmolRTSP_HeaderMapDeserializer *

@@ -1,6 +1,6 @@
 /**
  * @file
- * @brief An RTSP header.
+ * An RTSP header.
  */
 
 #ifndef SMOLRTSP_HEADER_H

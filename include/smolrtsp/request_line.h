@@ -1,6 +1,6 @@
 /**
  * @file
- * @brief An RTSP request line.
+ *  An RTSP request line.
  */
 
 #ifndef SMOLRTSP_REQUEST_LINE_H

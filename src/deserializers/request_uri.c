@@ -1,4 +1,3 @@
-#include "../aux.h"
 #include "../correctness.h"
 #include "../match.h"
 #include <smolrtsp/deserializers/request_uri.h>

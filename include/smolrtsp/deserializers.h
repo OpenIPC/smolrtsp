@@ -1,6 +1,6 @@
 /**
  * @file
- * @brief A collection of RTSP types deserializers.
+ *  A collection of RTSP types deserializers.
  */
 
 #ifndef SMOLRTSP_DESERIALIERS_H

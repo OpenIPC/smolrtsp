@@ -1,6 +1,6 @@
 /**
  * @file
- * @brief An RTSP method deserializer.
+ *  An RTSP method deserializer.
  */
 
 #ifndef SMOLRTSP_DESERIALIZERS_METHOD_H
@@ -10,6 +10,9 @@
 #include <smolrtsp/method.h>
 #include <smolrtsp/opaque_type.h>
 
+/**
+ * A deserializer of an RTSP method.
+ */
 SMOLRTSP_OPAQUE_TYPE(SmolRTSP_MethodDeserializer);
 
 SmolRTSP_MethodDeserializer *SmolRTSP_MethodDeserializer_new(void);

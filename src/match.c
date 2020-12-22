@@ -1,5 +1,4 @@
 #include "match.h"
-#include "aux.h"
 #include "correctness.h"
 #include <smolrtsp/crlf.h>
 

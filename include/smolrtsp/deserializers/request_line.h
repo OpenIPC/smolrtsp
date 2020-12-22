@@ -1,6 +1,6 @@
 /**
  * @file
- * @brief An RTSP request line deserializer.
+ *  An RTSP request line deserializer.
  */
 
 #ifndef SMOLRTSP_DESERIALIZERS_REQUEST_LINE_H
@@ -10,11 +10,18 @@
 #include <smolrtsp/opaque_type.h>
 #include <smolrtsp/request_line.h>
 
+/**
+ * A deserializer of an RTSP request line.
+ */
 SMOLRTSP_OPAQUE_TYPE(SmolRTSP_RequestLineDeserializer);
 
 SmolRTSP_RequestLineDeserializer *SmolRTSP_RequestLineDeserializer_new(void);
 void SmolRTSP_RequestLineDeserializer_free(SmolRTSP_RequestLineDeserializer *self);
 
+/**
+ * Which member of an RTSP request line is being parsed right now by
+ * #SmolRTSP_RequestLineDeserializer.
+ */
 typedef enum {
     SmolRTSP_RequestLineDeserializerStateInProgressMethod,
     SmolRTSP_RequestLineDeserializerStateInProgressRequestURI,
@@ -23,6 +30,9 @@ typedef enum {
     SmolRTSP_RequestLineDeserializerStateInProgressDone,
 } SmolRTSP_RequestLineDeserializerStateInProgress;
 
+/**
+ * A state in which #SmolRTSP_RequestLineDeserializer is located.
+ */
 typedef struct {
     SmolRTSP_RequestLineDeserializerStateInProgress in_progress;
     bool is_ok;

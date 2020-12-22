@@ -1,6 +1,6 @@
 /**
  * @file
- * @brief An RTSP message body deserializer.
+ *  An RTSP message body deserializer.
  */
 
 #ifndef SMOLRTSP_DESERIALIZERS_MESSAGE_BODY_H
@@ -10,6 +10,9 @@
 #include <smolrtsp/message_body.h>
 #include <smolrtsp/opaque_type.h>
 
+/**
+ * A deserializer of an RTSP message body.
+ */
 SMOLRTSP_OPAQUE_TYPE(SmolRTSP_MessageBodyDeserializer);
 
 SmolRTSP_MessageBodyDeserializer *SmolRTSP_MessageBodyDeserializer_new(size_t content_length);

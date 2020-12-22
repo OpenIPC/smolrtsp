@@ -1,4 +1,3 @@
-#include "../../src/aux.h"
 #include <smolrtsp/deserializers/request.h>
 
 #include <string.h>

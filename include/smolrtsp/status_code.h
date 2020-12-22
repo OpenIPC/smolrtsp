@@ -1,6 +1,6 @@
 /**
  * @file
- * @brief An RTSP status code.
+ *  An RTSP status code.
  */
 
 #ifndef SMOLRTSP_STATUS_CODE_H

@@ -1,6 +1,6 @@
 /**
  * @file
- * @brief An RTSP reason phrase deserializer.
+ *  An RTSP reason phrase deserializer.
  */
 
 #ifndef SMOLRTSP_DESERIALIZERS_REASON_PHRASE_H
@@ -10,6 +10,9 @@
 #include <smolrtsp/opaque_type.h>
 #include <smolrtsp/reason_phrase.h>
 
+/**
+ * A deserializer of an RTSP reason phrase.
+ */
 SMOLRTSP_OPAQUE_TYPE(SmolRTSP_ReasonPhraseDeserializer);
 
 SmolRTSP_ReasonPhraseDeserializer *SmolRTSP_ReasonPhraseDeserializer_new(void);
