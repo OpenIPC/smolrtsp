@@ -11,7 +11,7 @@
     do {                                                                                           \
         const SmolRTSP_DeserializeResult deserialize_res_var = deserialize_res;                    \
         if (deserialize_res_var == SmolRTSP_DeserializeResultErr ||                                \
-            deserialize_res_var == SmolRTSP_DeserializeResultNeedMore) {                           \
+            deserialize_res_var == SmolRTSP_DeserializeResultPending) {                            \
             return deserialize_res_var;                                                            \
         }                                                                                          \
     } while (false)

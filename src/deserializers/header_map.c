@@ -52,7 +52,7 @@ SmolRTSP_DeserializeResult SmolRTSP_HeaderMapDeserializer_deserialize(
 
     while (true) {
         if (data->size < 2) {
-            return SmolRTSP_DeserializeResultNeedMore;
+            return SmolRTSP_DeserializeResultPending;
         }
 
         if (((const char *)data->ptr)[0] == '\r' && ((const char *)data->ptr)[1] == '\n') {

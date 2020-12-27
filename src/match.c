@@ -79,7 +79,7 @@ SmolRTSP_DeserializeResult SmolRTSP_match_until_str(
     precondition(str_len > 0);
 
     if (data->size < strlen(str)) {
-        return SmolRTSP_DeserializeResultNeedMore;
+        return SmolRTSP_DeserializeResultPending;
     }
 
     // An NFA (non-determenistic finite automaton) converted to DFA (determenistic) to recognise a
@@ -96,7 +96,7 @@ SmolRTSP_DeserializeResult SmolRTSP_match_until_str(
         }
     }
 
-    return SmolRTSP_DeserializeResultNeedMore;
+    return SmolRTSP_DeserializeResultPending;
 }
 
 SmolRTSP_DeserializeResult
@@ -124,7 +124,7 @@ SmolRTSP_DeserializeResult SmolRTSP_match_str(
     const size_t str_len = strlen(str);
 
     if (data->size < str_len) {
-        return SmolRTSP_DeserializeResultNeedMore;
+        return SmolRTSP_DeserializeResultPending;
     }
 
     if (memcmp(data->ptr, str, str_len) == 0) {

@@ -27,7 +27,7 @@ typedef enum {
     /**
      * A deserializer need more data to continue.
      */
-    SmolRTSP_DeserializeResultNeedMore,
+    SmolRTSP_DeserializeResultPending,
 } SmolRTSP_DeserializeResult;
 
 #endif // SMOLRTSP_DESERIALIZATION_H

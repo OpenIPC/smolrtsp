@@ -44,7 +44,7 @@ SmolRTSP_DeserializeResult SmolRTSP_MessageBodyDeserializer_deserialize(
     precondition(!SmolRTSP_Slice_is_null(*data));
 
     if (data->size < self->inner.size) {
-        return SmolRTSP_DeserializeResultNeedMore;
+        return SmolRTSP_DeserializeResultPending;
     }
 
     if (self->inner.size == 0) {
