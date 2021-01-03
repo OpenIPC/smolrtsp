@@ -8,7 +8,7 @@ static void check(const char *uri, SmolRTSP_RequestURI expected) {
     SmolRTSP_RequestURIDeserializer *deser = SmolRTSP_RequestURIDeserializer_new();
     ASSERT_NE(deser, NULL);
 
-    SmolRTSP_Slice data = SmolRTSP_Slice_from_str(uri);
+    Slice99 data = Slice99_from_str((char *)uri);
     const SmolRTSP_DeserializeResult res =
         SmolRTSP_RequestURIDeserializer_deserialize(deser, &data);
     const SmolRTSP_RequestURI inner = SmolRTSP_RequestURIDeserializer_inner(deser);
@@ -16,12 +16,12 @@ static void check(const char *uri, SmolRTSP_RequestURI expected) {
 
     ASSERT_EQ(res, SmolRTSP_DeserializeResultOk);
     ASSERT_EQ(bytes_read, strlen(uri));
-    ASSERT(SmolRTSP_Slice_eq(&inner, &expected));
+    ASSERT(Slice99_primitive_eq(inner, expected));
 
     SmolRTSP_RequestURIDeserializer_free(deser);
 }
 
 TEST(test_deserializers_request_uri) {
-    check("blah-blah-blah", SmolRTSP_Slice_from_str("blah-blah-blah"));
-    check("http://example.com", SmolRTSP_Slice_from_str("http://example.com"));
+    check("blah-blah-blah", Slice99_from_str("blah-blah-blah"));
+    check("http://example.com", Slice99_from_str("http://example.com"));
 }

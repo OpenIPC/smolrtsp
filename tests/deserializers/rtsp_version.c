@@ -8,7 +8,7 @@ static void check(const char *version, SmolRTSP_RTSPVersion expected) {
     SmolRTSP_RTSPVersionDeserializer *deser = SmolRTSP_RTSPVersionDeserializer_new();
     ASSERT_NE(deser, NULL);
 
-    SmolRTSP_Slice data = SmolRTSP_Slice_from_str(version);
+    Slice99 data = Slice99_from_str((char *)version);
     const SmolRTSP_DeserializeResult res =
         SmolRTSP_RTSPVersionDeserializer_deserialize(deser, &data);
     const SmolRTSP_RTSPVersion inner = SmolRTSP_RTSPVersionDeserializer_inner(deser);

@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.0)
 project(smolrtsp LANGUAGES C)
 
-include_directories(include libs)
+include_directories(include libs/slice99)
 
 add_library(
   smolrtsp
@@ -20,7 +20,6 @@ add_library(
   include/smolrtsp/header_map.h
   include/smolrtsp/request_line.h
   include/smolrtsp/crlf.h
-  include/smolrtsp/slice.h
   src/aux_macros.h
   src/status_code.c
   src/rtsp_version.c
@@ -28,7 +27,6 @@ add_library(
   src/header.c
   src/header_map.c
   src/request_line.c
-  src/slice.c
   include/smolrtsp/deserializers/header_map.h
   include/smolrtsp/deserializers/message_body.h
   include/smolrtsp/deserializers/method.h

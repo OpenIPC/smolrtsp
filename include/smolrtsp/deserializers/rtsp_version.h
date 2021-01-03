@@ -22,6 +22,6 @@ SmolRTSP_RTSPVersion SmolRTSP_RTSPVersionDeserializer_inner(SmolRTSP_RTSPVersion
 size_t SmolRTSP_RTSPVersionDeserializer_bytes_read(SmolRTSP_RTSPVersionDeserializer *self);
 
 SmolRTSP_DeserializeResult SmolRTSP_RTSPVersionDeserializer_deserialize(
-    SmolRTSP_RTSPVersionDeserializer *restrict self, SmolRTSP_Slice *restrict data);
+    SmolRTSP_RTSPVersionDeserializer *restrict self, Slice99 *restrict data);
 
 #endif // SMOLRTSP_DESERIALIZERS_RTSP_VERSION_H

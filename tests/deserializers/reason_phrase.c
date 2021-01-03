@@ -6,13 +6,13 @@
 #include "../nala.h"
 
 static void check(const char *phrase) {
-    SmolRTSP_ReasonPhrase expected = SmolRTSP_Slice_from_str(phrase);
-    expected.size -= strlen(SMOLRTSP_CRLF);
+    SmolRTSP_ReasonPhrase expected = Slice99_from_str((char *)phrase);
+    expected.len -= strlen(SMOLRTSP_CRLF);
 
     SmolRTSP_ReasonPhraseDeserializer *deser = SmolRTSP_ReasonPhraseDeserializer_new();
     ASSERT_NE(deser, NULL);
 
-    SmolRTSP_Slice data = SmolRTSP_Slice_from_str(phrase);
+    Slice99 data = Slice99_from_str((char *)phrase);
     const SmolRTSP_DeserializeResult res =
         SmolRTSP_ReasonPhraseDeserializer_deserialize(deser, &data);
     const SmolRTSP_ReasonPhrase inner = SmolRTSP_ReasonPhraseDeserializer_inner(deser);
@@ -20,7 +20,7 @@ static void check(const char *phrase) {
 
     ASSERT_EQ(res, SmolRTSP_DeserializeResultOk);
     ASSERT_EQ(bytes_read, strlen(phrase));
-    ASSERT(SmolRTSP_Slice_eq(&inner, &expected));
+    ASSERT(Slice99_primitive_eq(inner, expected));
 
     SmolRTSP_ReasonPhraseDeserializer_free(deser);
 }

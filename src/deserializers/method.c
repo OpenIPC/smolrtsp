@@ -38,20 +38,18 @@ size_t SmolRTSP_MethodDeserializer_bytes_read(SmolRTSP_MethodDeserializer *self)
 }
 
 SmolRTSP_DeserializeResult SmolRTSP_MethodDeserializer_deserialize(
-    SmolRTSP_MethodDeserializer *restrict self, SmolRTSP_Slice *restrict data) {
+    SmolRTSP_MethodDeserializer *restrict self, Slice99 *restrict data) {
     precondition(self);
     precondition(data);
-    precondition(!SmolRTSP_Slice_is_null(*data));
 
     size_t bytes_read = 0;
 
     MATCH(SmolRTSP_match_whitespaces(data, &bytes_read));
-    const char *method = data->ptr;
+    self->inner.ptr = data->ptr;
     MATCH(SmolRTSP_match_ident(data, &bytes_read));
-    const size_t method_size = (const char *)data->ptr - method;
+    self->inner = Slice99_from_ptrdiff(self->inner.ptr, data->ptr, sizeof(char));
 
     self->bytes_read = bytes_read;
-    self->inner = SmolRTSP_Slice_new(method, method_size);
 
     return SmolRTSP_DeserializeResultOk;
 }

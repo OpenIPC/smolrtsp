@@ -40,10 +40,9 @@ size_t SmolRTSP_RTSPVersionDeserializer_bytes_read(SmolRTSP_RTSPVersionDeseriali
 }
 
 SmolRTSP_DeserializeResult SmolRTSP_RTSPVersionDeserializer_deserialize(
-    SmolRTSP_RTSPVersionDeserializer *restrict self, SmolRTSP_Slice *restrict data) {
+    SmolRTSP_RTSPVersionDeserializer *restrict self, Slice99 *restrict data) {
     precondition(self);
     precondition(data);
-    precondition(!SmolRTSP_Slice_is_null(*data));
 
     size_t bytes_read = 0;
 

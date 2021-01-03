@@ -81,10 +81,9 @@ size_t SmolRTSP_RequestDeserializer_bytes_read(SmolRTSP_RequestDeserializer *sel
 }
 
 SmolRTSP_DeserializeResult SmolRTSP_RequestDeserializer_deserialize(
-    SmolRTSP_RequestDeserializer *restrict self, SmolRTSP_Slice *restrict data) {
+    SmolRTSP_RequestDeserializer *restrict self, Slice99 *restrict data) {
     precondition(self);
     precondition(data);
-    precondition(!SmolRTSP_Slice_is_null(*data));
 
     // TODO: Make an eDSL for this shit.
     if (self->state.in_progress == SmolRTSP_RequestDeserializerStateInProgressRequestLine) {
@@ -105,11 +104,12 @@ SmolRTSP_DeserializeResult SmolRTSP_RequestDeserializer_deserialize(
         self->state.in_progress = SmolRTSP_RequestDeserializerStateInProgressMessageBody;
     }
 
-    SmolRTSP_Slice content_length_slice =
-        SmolRTSP_HeaderMap_find(&self->inner.header_map, SMOLRTSP_HEADER_NAME_CONTENT_LENGTH);
+    bool is_found;
+    Slice99 content_length_slice = SmolRTSP_HeaderMap_find(
+        &self->inner.header_map, SMOLRTSP_HEADER_NAME_CONTENT_LENGTH, &is_found);
 
     size_t content_length;
-    if (SmolRTSP_Slice_is_null(content_length_slice)) {
+    if (!is_found) {
         content_length = 0;
     } else if (sscanf(content_length_slice.ptr, "%zd", &content_length) != 1) {
         // TODO: Handle this error in a proper way.

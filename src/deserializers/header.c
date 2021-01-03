@@ -40,27 +40,26 @@ size_t SmolRTSP_HeaderDeserializer_bytes_read(SmolRTSP_HeaderDeserializer *self)
 }
 
 SmolRTSP_DeserializeResult SmolRTSP_HeaderDeserializer_deserialize(
-    SmolRTSP_HeaderDeserializer *restrict self, SmolRTSP_Slice *restrict data) {
+    SmolRTSP_HeaderDeserializer *restrict self, Slice99 *restrict data) {
     precondition(self);
-    precondition(!SmolRTSP_Slice_is_null(*data));
 
     SmolRTSP_Header header;
     size_t bytes_read = 0;
 
     MATCH(SmolRTSP_match_whitespaces(data, &bytes_read));
-    header.key.ptr = data->ptr;
+    header.key = *data;
     MATCH(SmolRTSP_match_header_name(data, &bytes_read));
-    header.key.size = (const char *)data->ptr - (const char *)header.key.ptr;
+    header.key = Slice99_from_ptrdiff(header.key.ptr, data->ptr, sizeof(char));
 
     MATCH(SmolRTSP_match_whitespaces(data, &bytes_read));
     MATCH(SmolRTSP_match_char(data, &bytes_read, ':'));
     MATCH(SmolRTSP_match_whitespaces(data, &bytes_read));
 
-    header.value.ptr = data->ptr;
+    header.value = *data;
 
     MATCH(SmolRTSP_match_until_crlf(data, &bytes_read));
-    header.value.size =
-        (const char *)data->ptr - (const char *)header.value.ptr - strlen(SMOLRTSP_CRLF);
+    header.value =
+        Slice99_from_ptrdiff(header.value.ptr, data->ptr - strlen(SMOLRTSP_CRLF), sizeof(char));
 
     self->inner = header;
     self->bytes_read += bytes_read;

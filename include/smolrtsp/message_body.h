@@ -6,11 +6,11 @@
 #ifndef SMOLRTSP_MESSAGE_BODY_H
 #define SMOLRTSP_MESSAGE_BODY_H
 
-#include <smolrtsp/slice.h>
+#include <slice99.h>
 
 /**
  * An RTSP message body.
  */
-typedef SmolRTSP_Slice SmolRTSP_MessageBody;
+typedef Slice99 SmolRTSP_MessageBody;
 
 #endif // SMOLRTSP_MESSAGE_BODY_H

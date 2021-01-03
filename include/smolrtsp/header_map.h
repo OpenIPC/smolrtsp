@@ -35,7 +35,8 @@ typedef struct {
  * @pre @p map shall not be `NULL`.
  * @pre @p key shall not be a null slice.
  */
-SmolRTSP_Slice SmolRTSP_HeaderMap_find(SmolRTSP_HeaderMap *restrict self, SmolRTSP_Slice key);
+Slice99
+SmolRTSP_HeaderMap_find(SmolRTSP_HeaderMap *restrict self, Slice99 key, bool *restrict is_found);
 
 /**
  * Serializes @p self into @p user_writer.

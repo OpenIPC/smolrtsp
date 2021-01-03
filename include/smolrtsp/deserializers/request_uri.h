@@ -22,6 +22,6 @@ SmolRTSP_RequestURI SmolRTSP_RequestURIDeserializer_inner(SmolRTSP_RequestURIDes
 size_t SmolRTSP_RequestURIDeserializer_bytes_read(SmolRTSP_RequestURIDeserializer *self);
 
 SmolRTSP_DeserializeResult SmolRTSP_RequestURIDeserializer_deserialize(
-    SmolRTSP_RequestURIDeserializer *restrict self, SmolRTSP_Slice *restrict data);
+    SmolRTSP_RequestURIDeserializer *restrict self, Slice99 *restrict data);
 
 #endif // SMOLRTSP_DESERIALIZERS_REQUEST_URI_H

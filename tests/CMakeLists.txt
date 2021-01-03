@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.0)
 project(tests LANGUAGES C)
 
-include_directories(../include)
+include_directories(../include ../libs/slice99)
 
 add_executable(
   tests

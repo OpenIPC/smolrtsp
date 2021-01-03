@@ -8,7 +8,7 @@ static void check(const char *line, SmolRTSP_RequestLine expected) {
     SmolRTSP_RequestLineDeserializer *deser = SmolRTSP_RequestLineDeserializer_new();
     ASSERT_NE(deser, NULL);
 
-    SmolRTSP_Slice data = SmolRTSP_Slice_from_str(line);
+    Slice99 data = Slice99_from_str((char *)line);
     const SmolRTSP_DeserializeResult res =
         SmolRTSP_RequestLineDeserializer_deserialize(deser, &data);
     const SmolRTSP_RequestLine inner = SmolRTSP_RequestLineDeserializer_inner(deser);
@@ -30,7 +30,7 @@ TEST(test_deserializers_request_line) {
         "DESCRIBE http://example.com RTSP/1.1" SMOLRTSP_CRLF,
         (SmolRTSP_RequestLine){
             .method = SMOLRTSP_METHOD_DESCRIBE,
-            .uri = SmolRTSP_Slice_from_str("http://example.com"),
+            .uri = Slice99_from_str("http://example.com"),
             .version = {.major = 1, .minor = 1},
         });
 }

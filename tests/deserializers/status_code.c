@@ -8,7 +8,7 @@ static void check(const char *code, SmolRTSP_StatusCode expected) {
     SmolRTSP_StatusCodeDeserializer *deser = SmolRTSP_StatusCodeDeserializer_new();
     ASSERT_NE(deser, NULL);
 
-    SmolRTSP_Slice data = SmolRTSP_Slice_from_str(code);
+    Slice99 data = Slice99_from_str((char *)code);
     const SmolRTSP_DeserializeResult res =
         SmolRTSP_StatusCodeDeserializer_deserialize(deser, &data);
     const SmolRTSP_StatusCode inner = SmolRTSP_StatusCodeDeserializer_inner(deser);

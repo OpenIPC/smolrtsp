@@ -8,5 +8,5 @@ bool SmolRTSP_Request_eq(
 
     return SmolRTSP_RequestLine_eq(&lhs->start_line, &rhs->start_line) &&
            SmolRTSP_HeaderMap_eq(&lhs->header_map, &rhs->header_map) &&
-           SmolRTSP_Slice_eq(&lhs->body, &rhs->body);
+           Slice99_primitive_eq(lhs->body, rhs->body);
 }

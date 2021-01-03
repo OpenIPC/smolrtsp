@@ -22,6 +22,6 @@ SmolRTSP_Header SmolRTSP_HeaderDeserializer_inner(SmolRTSP_HeaderDeserializer *s
 size_t SmolRTSP_HeaderDeserializer_bytes_read(SmolRTSP_HeaderDeserializer *self);
 
 SmolRTSP_DeserializeResult SmolRTSP_HeaderDeserializer_deserialize(
-    SmolRTSP_HeaderDeserializer *restrict self, SmolRTSP_Slice *restrict data);
+    SmolRTSP_HeaderDeserializer *restrict self, Slice99 *restrict data);
 
 #endif // SMOLRTSP_DESERIALIZERS_HEADER_H

@@ -45,6 +45,6 @@ SmolRTSP_RequestLine SmolRTSP_RequestLineDeserializer_inner(SmolRTSP_RequestLine
 size_t SmolRTSP_RequestLineDeserializer_bytes_read(SmolRTSP_RequestLineDeserializer *self);
 
 SmolRTSP_DeserializeResult SmolRTSP_RequestLineDeserializer_deserialize(
-    SmolRTSP_RequestLineDeserializer *restrict self, SmolRTSP_Slice *restrict data);
+    SmolRTSP_RequestLineDeserializer *restrict self, Slice99 *restrict data);
 
 #endif // SMOLRTSP_DESERIALIZERS_REQUEST_LINE_H

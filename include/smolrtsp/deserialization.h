@@ -6,8 +6,9 @@
 #ifndef SMOLRTSP_DESERIALIZATION_H
 #define SMOLRTSP_DESERIALIZATION_H
 
-#include <smolrtsp/slice.h>
+#define SLICE99_INCLUDE_IO
 
+#include <slice99.h>
 #include <stddef.h>
 
 /**

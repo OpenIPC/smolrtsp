@@ -45,19 +45,18 @@ size_t SmolRTSP_HeaderMapDeserializer_bytes_read(SmolRTSP_HeaderMapDeserializer 
 }
 
 SmolRTSP_DeserializeResult SmolRTSP_HeaderMapDeserializer_deserialize(
-    SmolRTSP_HeaderMapDeserializer *restrict self, SmolRTSP_Slice *restrict data) {
+    SmolRTSP_HeaderMapDeserializer *restrict self, Slice99 *restrict data) {
     precondition(self);
     precondition(data);
-    precondition(!SmolRTSP_Slice_is_null(*data));
 
     while (true) {
-        if (data->size < 2) {
+        if (data->len < 2) {
             return SmolRTSP_DeserializeResultPending;
         }
 
         if (((const char *)data->ptr)[0] == '\r' && ((const char *)data->ptr)[1] == '\n') {
             self->bytes_read += 2;
-            *data = SmolRTSP_Slice_advance(*data, 2);
+            *data = Slice99_sub(*data, 2, data->len);
             return SmolRTSP_DeserializeResultOk;
         }
 

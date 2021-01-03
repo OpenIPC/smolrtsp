@@ -9,7 +9,7 @@ static void check(const char *header, SmolRTSP_Request expected) {
     SmolRTSP_RequestDeserializer *deser = SmolRTSP_RequestDeserializer_new(3, headers);
     ASSERT_NE(deser, NULL);
 
-    SmolRTSP_Slice data = SmolRTSP_Slice_from_str(header);
+    Slice99 data = Slice99_from_str((char *)header);
     const SmolRTSP_DeserializeResult res = SmolRTSP_RequestDeserializer_deserialize(deser, &data);
     const SmolRTSP_Request inner = SmolRTSP_RequestDeserializer_inner(deser);
     const size_t bytes_read = SmolRTSP_RequestDeserializer_bytes_read(deser);
@@ -28,15 +28,15 @@ TEST(test_deserializers_request) {
     SmolRTSP_Header headers[] = {
         {
             SMOLRTSP_HEADER_NAME_CONTENT_LENGTH,
-            SmolRTSP_Slice_from_str("10"),
+            Slice99_from_str("10"),
         },
         {
             SMOLRTSP_HEADER_NAME_ACCEPT_LANGUAGE,
-            SmolRTSP_Slice_from_str("English"),
+            Slice99_from_str("English"),
         },
         {
             SMOLRTSP_HEADER_NAME_CONTENT_TYPE,
-            SmolRTSP_Slice_from_str("application/octet-stream"),
+            Slice99_from_str("application/octet-stream"),
         },
     };
 
@@ -44,7 +44,7 @@ TEST(test_deserializers_request) {
         .start_line =
             {
                 .method = SMOLRTSP_METHOD_DESCRIBE,
-                .uri = SmolRTSP_Slice_from_str("http://example.com"),
+                .uri = Slice99_from_str("http://example.com"),
                 .version = {.major = 1, .minor = 1},
             },
         .header_map =
@@ -53,7 +53,7 @@ TEST(test_deserializers_request) {
                 .size = 3,
                 .headers = headers,
             },
-        .body = SmolRTSP_Slice_from_str("0123456789"),
+        .body = Slice99_from_str("0123456789"),
     };
 
     const char *request =

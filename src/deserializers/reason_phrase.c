@@ -18,6 +18,7 @@ SmolRTSP_ReasonPhraseDeserializer *SmolRTSP_ReasonPhraseDeserializer_new(void) {
     }
 
     self->bytes_read = 0;
+    self->inner.item_size = sizeof(char);
 
     return self;
 }
@@ -40,20 +41,19 @@ size_t SmolRTSP_ReasonPhraseDeserializer_bytes_read(SmolRTSP_ReasonPhraseDeseria
 }
 
 SmolRTSP_DeserializeResult SmolRTSP_ReasonPhraseDeserializer_deserialize(
-    SmolRTSP_ReasonPhraseDeserializer *restrict self, SmolRTSP_Slice *restrict data) {
+    SmolRTSP_ReasonPhraseDeserializer *restrict self, Slice99 *restrict data) {
     precondition(self);
     precondition(data);
-    precondition(!SmolRTSP_Slice_is_null(*data));
 
     size_t bytes_read = 0;
 
     MATCH(SmolRTSP_match_whitespaces(data, &bytes_read));
-    const char *phrase = data->ptr;
+    self->inner.ptr = data->ptr;
     MATCH(SmolRTSP_match_until_crlf(data, &bytes_read));
-    const size_t phrase_size = (const char *)data->ptr - phrase - strlen(SMOLRTSP_CRLF);
+    self->inner =
+        Slice99_from_ptrdiff(self->inner.ptr, data->ptr - strlen(SMOLRTSP_CRLF), sizeof(char));
 
     self->bytes_read = bytes_read;
-    self->inner = SmolRTSP_Slice_new(phrase, phrase_size);
 
     return SmolRTSP_DeserializeResultOk;
 }

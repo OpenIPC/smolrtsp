@@ -14,7 +14,8 @@ SmolRTSP_MessageBodyDeserializer *SmolRTSP_MessageBodyDeserializer_new(size_t co
         return NULL;
     }
 
-    self->inner.size = content_length;
+    self->inner.len = content_length;
+    self->inner.item_size = sizeof(char);
     self->bytes_read = 0;
 
     return self;
@@ -38,22 +39,21 @@ size_t SmolRTSP_MessageBodyDeserializer_bytes_read(SmolRTSP_MessageBodyDeseriali
 }
 
 SmolRTSP_DeserializeResult SmolRTSP_MessageBodyDeserializer_deserialize(
-    SmolRTSP_MessageBodyDeserializer *restrict self, SmolRTSP_Slice *restrict data) {
+    SmolRTSP_MessageBodyDeserializer *restrict self, Slice99 *restrict data) {
     precondition(self);
     precondition(data);
-    precondition(!SmolRTSP_Slice_is_null(*data));
 
-    if (data->size < self->inner.size) {
+    if (Slice99_size(*data) < Slice99_size(self->inner)) {
         return SmolRTSP_DeserializeResultPending;
     }
 
-    if (self->inner.size == 0) {
-        self->inner = SmolRTSP_Slice_null();
+    if (Slice99_size(self->inner) == 0) {
+        self->inner = Slice99_empty(sizeof(char));
         return SmolRTSP_DeserializeResultOk;
     }
 
     self->inner.ptr = data->ptr;
-    self->bytes_read = self->inner.size;
-    *data = SmolRTSP_Slice_advance(*data, self->bytes_read);
+    self->bytes_read = Slice99_size(self->inner);
+    *data = Slice99_sub(*data, self->bytes_read, data->len);
     return SmolRTSP_DeserializeResultOk;
 }

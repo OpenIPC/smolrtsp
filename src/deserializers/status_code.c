@@ -38,10 +38,9 @@ size_t SmolRTSP_StatusCodeDeserializer_bytes_read(SmolRTSP_StatusCodeDeserialize
 }
 
 SmolRTSP_DeserializeResult SmolRTSP_StatusCodeDeserializer_deserialize(
-    SmolRTSP_StatusCodeDeserializer *restrict self, SmolRTSP_Slice *restrict data) {
+    SmolRTSP_StatusCodeDeserializer *restrict self, Slice99 *restrict data) {
     precondition(self);
     precondition(data);
-    precondition(!SmolRTSP_Slice_is_null(*data));
 
     size_t bytes_read = 0;
 

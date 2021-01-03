@@ -79,10 +79,9 @@ size_t SmolRTSP_RequestLineDeserializer_bytes_read(SmolRTSP_RequestLineDeseriali
 }
 
 SmolRTSP_DeserializeResult SmolRTSP_RequestLineDeserializer_deserialize(
-    SmolRTSP_RequestLineDeserializer *restrict self, SmolRTSP_Slice *restrict data) {
+    SmolRTSP_RequestLineDeserializer *restrict self, Slice99 *restrict data) {
     precondition(self);
     precondition(data);
-    precondition(!SmolRTSP_Slice_is_null(*data));
 
     // TODO: Make an eDSL for this shit.
     if (self->state.in_progress == SmolRTSP_RequestLineDeserializerStateInProgressMethod) {
