@@ -36,4 +36,4 @@ jobs:
         ./tests
 
     - name: Check code formatting
-      run: ./scripts/check-fmt.sh
+      run: bash scripts/check-fmt.sh
