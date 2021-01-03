@@ -66,12 +66,12 @@ typedef uint_least16_t SmolRTSP_StatusCode;
 #define SMOLRTSP_STATUS_CODE_PROXY_UNAVAILABLE                      553
 
 /**
- * Serializes @p self into @p user_writer.
+ * Serializes @p self to @p user_writer.
  *
  * @param[in] user_cx Some value provided to @p user_writer on each write.
  *
- * @pre @p self shall not be `NULL`.
- * @pre @p user_writer shall not be `NULL`.
+ * @pre `self != NULL`
+ * @pre `user_writer != NULL`
  */
 void SmolRTSP_StatusCode_serialize(
     const SmolRTSP_StatusCode *restrict self, SmolRTSP_UserWriter user_writer, void *user_cx);

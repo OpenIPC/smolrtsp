@@ -62,40 +62,38 @@ typedef struct {
 #define SMOLRTSP_HEADER_NAME_WWW_AUTHENTICATE   (Slice99_from_str("WWW-Authenticate"))
 
 /**
- * Serializes @p self into @p user_writer.
+ * Serializes @p self to @p user_writer.
  *
  * @param[in] user_cx Some value provided to @p user_writer on each write.
  *
- * @pre @p self shall not be `NULL`.
- * @pre @p user_writer shall not be `NULL`.
+ * @pre `self != NULL`
+ * @pre `user_writer != NULL`
  */
 void SmolRTSP_Header_serialize(
     const SmolRTSP_Header *restrict self, SmolRTSP_UserWriter user_writer, void *user_cx);
 
 /**
- * Compares @p lhs with @p rhs for equality.
+ * Tests @p lhs and @p rhs for equality.
  *
  * @return `true` if @p lhs and @rhs are equal, `false` otherwise.
  *
- * @pre @p lhs shall not be `NULL`.
- * @pre @p rhs shall not be `NULL`.
+ * @pre `lhs != NULL`
+ * @pre `rhs != NULL`
  */
 bool SmolRTSP_Header_eq(const SmolRTSP_Header *restrict lhs, const SmolRTSP_Header *restrict rhs);
 
 /**
  * Pretty-prints @p self to @p stream.
  *
- * @pre @p self shall not be `NULL`.
- * @pre `self.key` and `self.value` shall not be null-slices.
- * @pre @p stream shall not be `NULL`.
+ * @pre `self != NULL`
+ * @pre `stream != NULL`
  */
 void SmolRTSP_Header_dbg_to_file(const SmolRTSP_Header *self, FILE *stream);
 
 /**
  * Pretty-prints @p self to `stdout`.
  *
- * @pre @p self shall not be `NULL`.
- * @pre `self.key` and `self.value` shall not be null-slices.
+ * @pre `self != NULL`
  */
 void SmolRTSP_Header_dbg(const SmolRTSP_Header *self);
 

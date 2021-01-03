@@ -22,12 +22,12 @@ typedef struct {
 } SmolRTSP_Request;
 
 /**
- * Compares @p lhs with @p rhs for equality.
+ * Tests @p lhs and @p rhs for equality.
  *
  * @return `true` if @p lhs and @rhs are equal, `false` otherwise.
  *
- * @pre @p lhs shall not be `NULL`.
- * @pre @p rhs shall not be `NULL`.
+ * `lhs != NULL`
+ * `rhs != NULL`
  */
 bool SmolRTSP_Request_eq(
     const SmolRTSP_Request *restrict lhs, const SmolRTSP_Request *restrict rhs);

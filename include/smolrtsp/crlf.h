@@ -7,7 +7,7 @@
 #define SMOLRTSP_CRLF_H
 
 /**
- * Carriage return + line feed, `"\r\n"`.
+ * Carriage return + line feed, i.e. `"\r\n"`.
  */
 #define SMOLRTSP_CRLF "\r\n"
 
