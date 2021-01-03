@@ -21,19 +21,10 @@ jobs:
       run: sudo apt-get install clang-tools
 
     - name: CMake build
-      run: |
-        mkdir build
-        cd build
-        cmake ..
-        scan-build --use-analyzer /usr/bin/clang cmake -DCMAKE_C_COMPILER=clang --build .
+      run: bash scripts/build.sh
 
     - name: Tests
-      run: |
-        mkdir tests/build
-        cd tests/build
-        cmake ..
-        cmake --build .
-        ./tests
+      run: bash scripts/test.sh
 
     - name: Check code formatting
       run: bash scripts/check-fmt.sh
