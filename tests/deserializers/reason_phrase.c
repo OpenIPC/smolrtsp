@@ -1,4 +1,3 @@
-#include <smolrtsp/crlf.h>
 #include <smolrtsp/deserializers/reason_phrase.h>
 
 #include <string.h>
@@ -7,7 +6,7 @@
 
 static void check(const char *phrase) {
     SmolRTSP_ReasonPhrase expected = Slice99_from_str((char *)phrase);
-    expected.len -= strlen(SMOLRTSP_CRLF);
+    expected.len -= strlen("\r\n");
 
     SmolRTSP_ReasonPhraseDeserializer *deser = SmolRTSP_ReasonPhraseDeserializer_new();
     ASSERT_NE(deser, NULL);
@@ -26,7 +25,7 @@ static void check(const char *phrase) {
 }
 
 TEST(test_deserializers_reason_phrase) {
-    check("Moved Temporarily" SMOLRTSP_CRLF);
-    check("Forbidden" SMOLRTSP_CRLF);
-    check("Header Field Not Valid for Resource" SMOLRTSP_CRLF);
+    check("Moved Temporarily" "\r\n");
+    check("Forbidden" "\r\n");
+    check("Header Field Not Valid for Resource" "\r\n");
 }

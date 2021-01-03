@@ -1,6 +1,5 @@
 #include "correctness.h"
 #include "match.h"
-#include <smolrtsp/crlf.h>
 #include <smolrtsp/header_map.h>
 
 #include <string.h>
@@ -29,7 +28,7 @@ void SmolRTSP_HeaderMap_serialize(
         SmolRTSP_Header_serialize(&self->headers[i], user_writer, user_cx);
     }
 
-    user_writer(strlen(SMOLRTSP_CRLF), SMOLRTSP_CRLF, user_cx);
+    user_writer(strlen("\r\n"), "\r\n", user_cx);
 }
 
 bool SmolRTSP_HeaderMap_eq(

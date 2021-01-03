@@ -14,7 +14,7 @@ void SmolRTSP_RequestLine_serialize(
     user_writer(Slice99_size(self->method), self->method.ptr, user_cx);
     user_writer(Slice99_size(self->uri), self->uri.ptr, user_cx);
     SmolRTSP_RTSPVersion_serialize(&self->version, user_writer, user_cx);
-    user_writer(strlen(SMOLRTSP_CRLF), SMOLRTSP_CRLF, user_cx);
+    user_writer(strlen("\r\n"), "\r\n", user_cx);
 }
 
 bool SmolRTSP_RequestLine_eq(

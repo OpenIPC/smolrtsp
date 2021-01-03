@@ -27,7 +27,7 @@ static void check(const char *line, SmolRTSP_RequestLine expected) {
 
 TEST(test_deserializers_request_line) {
     check(
-        "DESCRIBE http://example.com RTSP/1.1" SMOLRTSP_CRLF,
+        "DESCRIBE http://example.com RTSP/1.1" "\r\n",
         (SmolRTSP_RequestLine){
             .method = SMOLRTSP_METHOD_DESCRIBE,
             .uri = Slice99_from_str("http://example.com"),

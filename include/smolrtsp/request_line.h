@@ -6,7 +6,6 @@
 #ifndef SMOLRTSP_REQUEST_LINE_H
 #define SMOLRTSP_REQUEST_LINE_H
 
-#include <smolrtsp/crlf.h>
 #include <smolrtsp/method.h>
 #include <smolrtsp/request_uri.h>
 #include <smolrtsp/rtsp_version.h>
