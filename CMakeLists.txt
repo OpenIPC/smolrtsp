@@ -20,7 +20,6 @@ add_library(
   include/smolrtsp/header_map.h
   include/smolrtsp/request_line.h
   include/smolrtsp/crlf.h
-  src/aux_macros.h
   src/status_code.c
   src/rtsp_version.c
   src/request.c
