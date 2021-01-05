@@ -14,11 +14,12 @@ add_library(
   include/smolrtsp/status_code.h
   include/smolrtsp/rtsp_version.h
   include/smolrtsp/request.h
+  include/smolrtsp/request_line.h
   include/smolrtsp/response.h
+  include/smolrtsp/response_line.h
   include/smolrtsp/method.h
   include/smolrtsp/header.h
   include/smolrtsp/header_map.h
-  include/smolrtsp/request_line.h
   include/smolrtsp/crlf.h
   src/status_code.c
   src/rtsp_version.c
