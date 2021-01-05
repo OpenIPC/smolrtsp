@@ -1,4 +1,3 @@
-#include <smolrtsp/crlf.h>
 #include <smolrtsp/deserializers/header.h>
 
 #include <string.h>

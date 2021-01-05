@@ -1,6 +1,5 @@
 #include "../correctness.h"
 #include "../match.h"
-#include <smolrtsp/crlf.h>
 #include <smolrtsp/deserializers/header.h>
 
 #include <stdbool.h>
@@ -58,8 +57,7 @@ SmolRTSP_DeserializeResult SmolRTSP_HeaderDeserializer_deserialize(
     header.value = *data;
 
     MATCH(SmolRTSP_match_until_crlf(data, &bytes_read));
-    header.value =
-        Slice99_from_ptrdiff(header.value.ptr, data->ptr - strlen(SMOLRTSP_CRLF), sizeof(char));
+    header.value = Slice99_from_ptrdiff(header.value.ptr, data->ptr - strlen("\r\n"), sizeof(char));
 
     self->inner = header;
     self->bytes_read += bytes_read;

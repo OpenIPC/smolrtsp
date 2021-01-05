@@ -1,6 +1,5 @@
 #include "match.h"
 #include "correctness.h"
-#include <smolrtsp/crlf.h>
 
 #include <ctype.h>
 #include <string.h>
@@ -101,7 +100,7 @@ SmolRTSP_match_until_crlf(Slice99 *restrict data, size_t *restrict bytes_read) {
     precondition(data);
     precondition(bytes_read);
 
-    return SmolRTSP_match_until_str(data, bytes_read, SMOLRTSP_CRLF);
+    return SmolRTSP_match_until_str(data, bytes_read, "\r\n");
 }
 
 SmolRTSP_DeserializeResult

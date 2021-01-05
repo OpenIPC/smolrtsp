@@ -1,18 +1,14 @@
 #include "correctness.h"
 #include "match.h"
-#include <smolrtsp/crlf.h>
 #include <smolrtsp/header_map.h>
 
 #include <string.h>
 
-Slice99
-SmolRTSP_HeaderMap_find(SmolRTSP_HeaderMap *restrict self, Slice99 key, bool *restrict is_found) {
-    precondition(self);
-
-    for (size_t i = 0; i < self->len; i++) {
-        if (Slice99_primitive_eq(self->headers[i].key, key)) {
+Slice99 SmolRTSP_HeaderMap_find(SmolRTSP_HeaderMap self, Slice99 key, bool *restrict is_found) {
+    for (size_t i = 0; i < self.len; i++) {
+        if (Slice99_primitive_eq(self.headers[i].key, key)) {
             *is_found = true;
-            return self->headers[i].value;
+            return self.headers[i].value;
         }
     }
 
@@ -29,7 +25,7 @@ void SmolRTSP_HeaderMap_serialize(
         SmolRTSP_Header_serialize(&self->headers[i], user_writer, user_cx);
     }
 
-    user_writer(strlen(SMOLRTSP_CRLF), SMOLRTSP_CRLF, user_cx);
+    user_writer(strlen("\r\n"), "\r\n", user_cx);
 }
 
 bool SmolRTSP_HeaderMap_eq(

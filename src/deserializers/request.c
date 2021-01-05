@@ -106,7 +106,7 @@ SmolRTSP_DeserializeResult SmolRTSP_RequestDeserializer_deserialize(
 
     bool is_found;
     Slice99 content_length_slice = SmolRTSP_HeaderMap_find(
-        &self->inner.header_map, SMOLRTSP_HEADER_NAME_CONTENT_LENGTH, &is_found);
+        self->inner.header_map, SMOLRTSP_HEADER_NAME_CONTENT_LENGTH, &is_found);
 
     size_t content_length;
     if (!is_found) {

@@ -20,13 +20,14 @@ add_library(
   include/smolrtsp/method.h
   include/smolrtsp/header.h
   include/smolrtsp/header_map.h
-  include/smolrtsp/crlf.h
   src/status_code.c
   src/rtsp_version.c
   src/request.c
+  src/request_line.c
+  src/response.c
+  src/response_line.c
   src/header.c
   src/header_map.c
-  src/request_line.c
   include/smolrtsp/deserializers/header_map.h
   include/smolrtsp/deserializers/message_body.h
   include/smolrtsp/deserializers/method.h

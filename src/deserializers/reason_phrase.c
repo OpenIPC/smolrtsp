@@ -1,6 +1,5 @@
 #include "../correctness.h"
 #include "../match.h"
-#include <smolrtsp/crlf.h>
 #include <smolrtsp/deserializers/reason_phrase.h>
 
 #include <stdlib.h>
@@ -50,8 +49,7 @@ SmolRTSP_DeserializeResult SmolRTSP_ReasonPhraseDeserializer_deserialize(
     MATCH(SmolRTSP_match_whitespaces(data, &bytes_read));
     self->inner.ptr = data->ptr;
     MATCH(SmolRTSP_match_until_crlf(data, &bytes_read));
-    self->inner =
-        Slice99_from_ptrdiff(self->inner.ptr, data->ptr - strlen(SMOLRTSP_CRLF), sizeof(char));
+    self->inner = Slice99_from_ptrdiff(self->inner.ptr, data->ptr - strlen("\r\n"), sizeof(char));
 
     self->bytes_read = bytes_read;
 

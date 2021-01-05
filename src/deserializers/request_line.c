@@ -107,7 +107,7 @@ SmolRTSP_DeserializeResult SmolRTSP_RequestLineDeserializer_deserialize(
     }
 
     if (self->state.in_progress == SmolRTSP_RequestLineDeserializerStateInProgressCRLF) {
-        MATCH(SmolRTSP_match_str(data, &self->bytes_read, SMOLRTSP_CRLF));
+        MATCH(SmolRTSP_match_str(data, &self->bytes_read, "\r\n"));
         self->state.in_progress = SmolRTSP_RequestLineDeserializerStateInProgressDone;
     }
 
