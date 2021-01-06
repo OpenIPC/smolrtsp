@@ -9,12 +9,12 @@ static void check(const char *code, SmolRTSP_StatusCode expected) {
     ASSERT_NE(deser, NULL);
 
     Slice99 data = Slice99_from_str((char *)code);
+    SmolRTSP_StatusCode result;
     const SmolRTSP_DeserializeResult res =
-        SmolRTSP_StatusCodeDeserializer_deserialize(deser, &data);
-    const SmolRTSP_StatusCode inner = SmolRTSP_StatusCodeDeserializer_inner(deser);
+        SmolRTSP_StatusCodeDeserializer_deserialize(deser, &result, &data);
 
     ASSERT_EQ(res, SmolRTSP_DeserializeResultOk);
-    ASSERT_EQ(inner, expected);
+    ASSERT_EQ(result, expected);
 
     SmolRTSP_StatusCodeDeserializer_free(deser);
 }

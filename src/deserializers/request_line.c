@@ -10,7 +10,6 @@
 
 struct SmolRTSP_RequestLineDeserializer {
     SmolRTSP_RequestLineDeserializerState state;
-    SmolRTSP_RequestLine inner;
     size_t bytes_read;
 
     struct {
@@ -65,13 +64,6 @@ SmolRTSP_RequestLineDeserializer_state(const SmolRTSP_RequestLineDeserializer *s
     return self->state;
 }
 
-SmolRTSP_RequestLine
-SmolRTSP_RequestLineDeserializer_inner(SmolRTSP_RequestLineDeserializer *self) {
-    precondition(self);
-
-    return self->inner;
-}
-
 size_t SmolRTSP_RequestLineDeserializer_bytes_read(SmolRTSP_RequestLineDeserializer *self) {
     precondition(self);
 
@@ -79,28 +71,30 @@ size_t SmolRTSP_RequestLineDeserializer_bytes_read(SmolRTSP_RequestLineDeseriali
 }
 
 SmolRTSP_DeserializeResult SmolRTSP_RequestLineDeserializer_deserialize(
-    SmolRTSP_RequestLineDeserializer *restrict self, Slice99 *restrict data) {
+    SmolRTSP_RequestLineDeserializer *restrict self, SmolRTSP_RequestLine *restrict result,
+    Slice99 *restrict data) {
     precondition(self);
+    precondition(result);
     precondition(data);
 
     // TODO: Make an eDSL for this shit.
     if (self->state.in_progress == SmolRTSP_RequestLineDeserializerStateInProgressMethod) {
-        MATCH(SmolRTSP_MethodDeserializer_deserialize(self->deserializers.method, data));
-        self->inner.method = SmolRTSP_MethodDeserializer_inner(self->deserializers.method);
+        MATCH(SmolRTSP_MethodDeserializer_deserialize(
+            self->deserializers.method, &result->method, data));
         self->bytes_read += SmolRTSP_MethodDeserializer_bytes_read(self->deserializers.method);
         self->state.in_progress = SmolRTSP_RequestLineDeserializerStateInProgressRequestURI;
     }
 
     if (self->state.in_progress == SmolRTSP_RequestLineDeserializerStateInProgressRequestURI) {
-        MATCH(SmolRTSP_RequestURIDeserializer_deserialize(self->deserializers.uri, data));
-        self->inner.uri = SmolRTSP_RequestURIDeserializer_inner(self->deserializers.uri);
+        MATCH(SmolRTSP_RequestURIDeserializer_deserialize(
+            self->deserializers.uri, &result->uri, data));
         self->bytes_read += SmolRTSP_RequestURIDeserializer_bytes_read(self->deserializers.uri);
         self->state.in_progress = SmolRTSP_RequestLineDeserializerStateInProgressRTSPVersion;
     }
 
     if (self->state.in_progress == SmolRTSP_RequestLineDeserializerStateInProgressRTSPVersion) {
-        MATCH(SmolRTSP_RTSPVersionDeserializer_deserialize(self->deserializers.version, data));
-        self->inner.version = SmolRTSP_RTSPVersionDeserializer_inner(self->deserializers.version);
+        MATCH(SmolRTSP_RTSPVersionDeserializer_deserialize(
+            self->deserializers.version, &result->version, data));
         self->bytes_read +=
             SmolRTSP_RTSPVersionDeserializer_bytes_read(self->deserializers.version);
         self->state.in_progress = SmolRTSP_RequestLineDeserializerStateInProgressCRLF;

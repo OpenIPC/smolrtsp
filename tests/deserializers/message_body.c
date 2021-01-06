@@ -9,12 +9,12 @@ static void check(size_t size, const char *body, SmolRTSP_MessageBody expected) 
     ASSERT_NE(deser, NULL);
 
     Slice99 data = Slice99_new((char *)body, sizeof(char), size);
+    SmolRTSP_MessageBody result;
     const SmolRTSP_DeserializeResult res =
-        SmolRTSP_MessageBodyDeserializer_deserialize(deser, &data);
-    const SmolRTSP_MessageBody inner = SmolRTSP_MessageBodyDeserializer_inner(deser);
+        SmolRTSP_MessageBodyDeserializer_deserialize(deser, &result, &data);
 
     ASSERT_EQ(res, SmolRTSP_DeserializeResultOk);
-    ASSERT(Slice99_primitive_eq(inner, expected));
+    ASSERT(Slice99_primitive_eq(result, expected));
 
     SmolRTSP_MessageBodyDeserializer_free(deser);
 }

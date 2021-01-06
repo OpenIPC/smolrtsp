@@ -6,7 +6,6 @@
 #include <string.h>
 
 struct SmolRTSP_ReasonPhraseDeserializer {
-    SmolRTSP_ReasonPhrase inner;
     size_t bytes_read;
 };
 
@@ -17,20 +16,12 @@ SmolRTSP_ReasonPhraseDeserializer *SmolRTSP_ReasonPhraseDeserializer_new(void) {
     }
 
     self->bytes_read = 0;
-    self->inner.item_size = sizeof(char);
 
     return self;
 }
 
 void SmolRTSP_ReasonPhraseDeserializer_free(SmolRTSP_ReasonPhraseDeserializer *self) {
     free(self);
-}
-
-SmolRTSP_ReasonPhrase
-SmolRTSP_ReasonPhraseDeserializer_inner(SmolRTSP_ReasonPhraseDeserializer *self) {
-    precondition(self);
-
-    return self->inner;
 }
 
 size_t SmolRTSP_ReasonPhraseDeserializer_bytes_read(SmolRTSP_ReasonPhraseDeserializer *self) {
@@ -40,16 +31,18 @@ size_t SmolRTSP_ReasonPhraseDeserializer_bytes_read(SmolRTSP_ReasonPhraseDeseria
 }
 
 SmolRTSP_DeserializeResult SmolRTSP_ReasonPhraseDeserializer_deserialize(
-    SmolRTSP_ReasonPhraseDeserializer *restrict self, Slice99 *restrict data) {
+    SmolRTSP_ReasonPhraseDeserializer *restrict self, SmolRTSP_ReasonPhrase *restrict result,
+    Slice99 *restrict data) {
     precondition(self);
+    precondition(result);
     precondition(data);
 
     size_t bytes_read = 0;
 
     MATCH(SmolRTSP_match_whitespaces(data, &bytes_read));
-    self->inner.ptr = data->ptr;
+    result->ptr = data->ptr;
     MATCH(SmolRTSP_match_until_crlf(data, &bytes_read));
-    self->inner = Slice99_from_ptrdiff(self->inner.ptr, data->ptr - strlen("\r\n"), sizeof(char));
+    *result = Slice99_from_ptrdiff(result->ptr, data->ptr - strlen("\r\n"), sizeof(char));
 
     self->bytes_read = bytes_read;
 

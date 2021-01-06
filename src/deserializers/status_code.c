@@ -7,7 +7,6 @@
 #include <stdlib.h>
 
 struct SmolRTSP_StatusCodeDeserializer {
-    SmolRTSP_StatusCode inner;
     size_t bytes_read;
 };
 
@@ -25,12 +24,6 @@ void SmolRTSP_StatusCodeDeserializer_free(SmolRTSP_StatusCodeDeserializer *self)
     free(self);
 }
 
-SmolRTSP_StatusCode SmolRTSP_StatusCodeDeserializer_inner(SmolRTSP_StatusCodeDeserializer *self) {
-    precondition(self);
-
-    return self->inner;
-}
-
 size_t SmolRTSP_StatusCodeDeserializer_bytes_read(SmolRTSP_StatusCodeDeserializer *self) {
     precondition(self);
 
@@ -38,8 +31,10 @@ size_t SmolRTSP_StatusCodeDeserializer_bytes_read(SmolRTSP_StatusCodeDeserialize
 }
 
 SmolRTSP_DeserializeResult SmolRTSP_StatusCodeDeserializer_deserialize(
-    SmolRTSP_StatusCodeDeserializer *restrict self, Slice99 *restrict data) {
+    SmolRTSP_StatusCodeDeserializer *restrict self, SmolRTSP_StatusCode *restrict result,
+    Slice99 *restrict data) {
     precondition(self);
+    precondition(result);
     precondition(data);
 
     size_t bytes_read = 0;
@@ -56,7 +51,7 @@ SmolRTSP_DeserializeResult SmolRTSP_StatusCodeDeserializer_deserialize(
     precondition(rc == 1);
 
     self->bytes_read = bytes_read;
-    self->inner = code_int;
+    *result = code_int;
 
     return SmolRTSP_DeserializeResultOk;
 }

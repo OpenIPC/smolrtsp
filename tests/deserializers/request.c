@@ -5,13 +5,20 @@
 #include "../nala.h"
 
 static void check(const char *header, SmolRTSP_Request expected) {
-    SmolRTSP_Header headers[3];
-    SmolRTSP_RequestDeserializer *deser = SmolRTSP_RequestDeserializer_new(3, headers);
+    SmolRTSP_RequestDeserializer *deser = SmolRTSP_RequestDeserializer_new();
     ASSERT_NE(deser, NULL);
 
     Slice99 data = Slice99_from_str((char *)header);
-    const SmolRTSP_DeserializeResult res = SmolRTSP_RequestDeserializer_deserialize(deser, &data);
-    const SmolRTSP_Request inner = SmolRTSP_RequestDeserializer_inner(deser);
+    SmolRTSP_Request result = {
+        .header_map =
+            {
+                .headers = (SmolRTSP_Header[3]){0},
+                .len = 0,
+                .size = 3,
+            },
+    };
+    const SmolRTSP_DeserializeResult res =
+        SmolRTSP_RequestDeserializer_deserialize(deser, &result, &data);
     const size_t bytes_read = SmolRTSP_RequestDeserializer_bytes_read(deser);
     const SmolRTSP_RequestDeserializerState state = SmolRTSP_RequestDeserializer_state(deser);
 
@@ -19,7 +26,7 @@ static void check(const char *header, SmolRTSP_Request expected) {
     ASSERT_EQ(bytes_read, strlen(header));
     ASSERT(state.is_ok);
     ASSERT_EQ(state.in_progress, SmolRTSP_RequestDeserializerStateInProgressDone);
-    ASSERT(SmolRTSP_Request_eq(&inner, &expected));
+    ASSERT(SmolRTSP_Request_eq(&result, &expected));
 
     SmolRTSP_RequestDeserializer_free(deser);
 }

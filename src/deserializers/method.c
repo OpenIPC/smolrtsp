@@ -6,7 +6,6 @@
 #include <string.h>
 
 struct SmolRTSP_MethodDeserializer {
-    SmolRTSP_Method inner;
     size_t bytes_read;
 };
 
@@ -25,12 +24,6 @@ void SmolRTSP_MethodDeserializer_free(SmolRTSP_MethodDeserializer *self) {
     free(self);
 }
 
-SmolRTSP_Method SmolRTSP_MethodDeserializer_inner(SmolRTSP_MethodDeserializer *self) {
-    precondition(self);
-
-    return self->inner;
-}
-
 size_t SmolRTSP_MethodDeserializer_bytes_read(SmolRTSP_MethodDeserializer *self) {
     precondition(self);
 
@@ -38,16 +31,18 @@ size_t SmolRTSP_MethodDeserializer_bytes_read(SmolRTSP_MethodDeserializer *self)
 }
 
 SmolRTSP_DeserializeResult SmolRTSP_MethodDeserializer_deserialize(
-    SmolRTSP_MethodDeserializer *restrict self, Slice99 *restrict data) {
+    SmolRTSP_MethodDeserializer *restrict self, SmolRTSP_Method *restrict result,
+    Slice99 *restrict data) {
     precondition(self);
+    precondition(result);
     precondition(data);
 
     size_t bytes_read = 0;
 
     MATCH(SmolRTSP_match_whitespaces(data, &bytes_read));
-    self->inner.ptr = data->ptr;
+    result->ptr = data->ptr;
     MATCH(SmolRTSP_match_ident(data, &bytes_read));
-    self->inner = Slice99_from_ptrdiff(self->inner.ptr, data->ptr, sizeof(char));
+    *result = Slice99_from_ptrdiff(result->ptr, data->ptr, sizeof(char));
 
     self->bytes_read = bytes_read;
 

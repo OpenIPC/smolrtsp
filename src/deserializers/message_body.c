@@ -4,8 +4,8 @@
 #include <stdlib.h>
 
 struct SmolRTSP_MessageBodyDeserializer {
-    SmolRTSP_MessageBody inner;
     size_t bytes_read;
+    size_t content_length;
 };
 
 SmolRTSP_MessageBodyDeserializer *SmolRTSP_MessageBodyDeserializer_new(size_t content_length) {
@@ -14,8 +14,7 @@ SmolRTSP_MessageBodyDeserializer *SmolRTSP_MessageBodyDeserializer_new(size_t co
         return NULL;
     }
 
-    self->inner.len = content_length;
-    self->inner.item_size = sizeof(char);
+    self->content_length = content_length;
     self->bytes_read = 0;
 
     return self;
@@ -25,13 +24,6 @@ void SmolRTSP_MessageBodyDeserializer_free(SmolRTSP_MessageBodyDeserializer *sel
     free(self);
 }
 
-SmolRTSP_MessageBody
-SmolRTSP_MessageBodyDeserializer_inner(SmolRTSP_MessageBodyDeserializer *self) {
-    precondition(self);
-
-    return self->inner;
-}
-
 size_t SmolRTSP_MessageBodyDeserializer_bytes_read(SmolRTSP_MessageBodyDeserializer *self) {
     precondition(self);
 
@@ -39,21 +31,23 @@ size_t SmolRTSP_MessageBodyDeserializer_bytes_read(SmolRTSP_MessageBodyDeseriali
 }
 
 SmolRTSP_DeserializeResult SmolRTSP_MessageBodyDeserializer_deserialize(
-    SmolRTSP_MessageBodyDeserializer *restrict self, Slice99 *restrict data) {
+    SmolRTSP_MessageBodyDeserializer *restrict self, SmolRTSP_MessageBody *restrict result,
+    Slice99 *restrict data) {
     precondition(self);
+    precondition(result);
     precondition(data);
 
-    if (Slice99_size(*data) < Slice99_size(self->inner)) {
+    if (Slice99_size(*data) < self->content_length) {
         return SmolRTSP_DeserializeResultPending;
     }
 
-    if (Slice99_size(self->inner) == 0) {
-        self->inner = Slice99_empty(sizeof(char));
+    if (0 == self->content_length) {
+        *result = Slice99_empty(sizeof(char));
         return SmolRTSP_DeserializeResultOk;
     }
 
-    self->inner.ptr = data->ptr;
-    self->bytes_read = Slice99_size(self->inner);
+    *result = Slice99_new(data->ptr, sizeof(char), self->content_length);
+    self->bytes_read = self->content_length;
     *data = Slice99_sub(*data, self->bytes_read, data->len);
     return SmolRTSP_DeserializeResultOk;
 }

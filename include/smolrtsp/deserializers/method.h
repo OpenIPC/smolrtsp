@@ -18,10 +18,10 @@ SMOLRTSP_OPAQUE_TYPE(SmolRTSP_MethodDeserializer);
 SmolRTSP_MethodDeserializer *SmolRTSP_MethodDeserializer_new(void);
 void SmolRTSP_MethodDeserializer_free(SmolRTSP_MethodDeserializer *self);
 
-SmolRTSP_Method SmolRTSP_MethodDeserializer_inner(SmolRTSP_MethodDeserializer *self);
 size_t SmolRTSP_MethodDeserializer_bytes_read(SmolRTSP_MethodDeserializer *self);
 
 SmolRTSP_DeserializeResult SmolRTSP_MethodDeserializer_deserialize(
-    SmolRTSP_MethodDeserializer *restrict self, Slice99 *restrict data);
+    SmolRTSP_MethodDeserializer *restrict self, SmolRTSP_Method *restrict result,
+    Slice99 *restrict data);
 
 #endif // SMOLRTSP_DESERIALIZERS_METHOD_H

@@ -9,13 +9,14 @@ static void check(const char *method, SmolRTSP_Method expected) {
     ASSERT_NE(deser, NULL);
 
     Slice99 data = Slice99_from_str((char *)method);
-    const SmolRTSP_DeserializeResult res = SmolRTSP_MethodDeserializer_deserialize(deser, &data);
-    const SmolRTSP_Method inner = SmolRTSP_MethodDeserializer_inner(deser);
+    SmolRTSP_Method result;
+    const SmolRTSP_DeserializeResult res =
+        SmolRTSP_MethodDeserializer_deserialize(deser, &result, &data);
     const size_t bytes_read = SmolRTSP_MethodDeserializer_bytes_read(deser);
 
     ASSERT_EQ(res, SmolRTSP_DeserializeResultOk);
     ASSERT_EQ(bytes_read, strlen(method));
-    ASSERT(Slice99_primitive_eq(inner, expected));
+    ASSERT(Slice99_primitive_eq(result, expected));
 
     SmolRTSP_MethodDeserializer_free(deser);
 }

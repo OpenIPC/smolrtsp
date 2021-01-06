@@ -5,18 +5,22 @@
 #include "../nala.h"
 
 static void check(const char *header_map, SmolRTSP_HeaderMap expected) {
-    SmolRTSP_Header headers[3];
-    SmolRTSP_HeaderMapDeserializer *deser = SmolRTSP_HeaderMapDeserializer_new(3, headers);
+    SmolRTSP_HeaderMap result = {
+        .headers = (SmolRTSP_Header[3]){0},
+        .len = 0,
+        .size = 3,
+    };
+    SmolRTSP_HeaderMapDeserializer *deser = SmolRTSP_HeaderMapDeserializer_new();
     ASSERT_NE(deser, NULL);
 
     Slice99 data = Slice99_from_str((char *)header_map);
-    const SmolRTSP_DeserializeResult res = SmolRTSP_HeaderMapDeserializer_deserialize(deser, &data);
-    const SmolRTSP_HeaderMap inner = SmolRTSP_HeaderMapDeserializer_inner(deser);
+    const SmolRTSP_DeserializeResult res =
+        SmolRTSP_HeaderMapDeserializer_deserialize(deser, &result, &data);
     const size_t bytes_read = SmolRTSP_HeaderMapDeserializer_bytes_read(deser);
 
     ASSERT_EQ(res, SmolRTSP_DeserializeResultOk);
     ASSERT_EQ(bytes_read, strlen(header_map));
-    ASSERT(SmolRTSP_HeaderMap_eq(&inner, &expected));
+    ASSERT(SmolRTSP_HeaderMap_eq(&result, &expected));
 
     SmolRTSP_HeaderMapDeserializer_free(deser);
 }

@@ -33,17 +33,16 @@ typedef struct {
     bool is_ok;
 } SmolRTSP_RequestDeserializerState;
 
-SmolRTSP_RequestDeserializer *
-SmolRTSP_RequestDeserializer_new(size_t size, SmolRTSP_Header headers[static size]);
+SmolRTSP_RequestDeserializer *SmolRTSP_RequestDeserializer_new(void);
 void SmolRTSP_RequestDeserializer_free(SmolRTSP_RequestDeserializer *self);
 
 SmolRTSP_RequestDeserializerState
 SmolRTSP_RequestDeserializer_state(const SmolRTSP_RequestDeserializer *self);
 
-SmolRTSP_Request SmolRTSP_RequestDeserializer_inner(SmolRTSP_RequestDeserializer *self);
 size_t SmolRTSP_RequestDeserializer_bytes_read(SmolRTSP_RequestDeserializer *self);
 
 SmolRTSP_DeserializeResult SmolRTSP_RequestDeserializer_deserialize(
-    SmolRTSP_RequestDeserializer *restrict self, Slice99 *restrict data);
+    SmolRTSP_RequestDeserializer *restrict self, SmolRTSP_Request *restrict result,
+    Slice99 *restrict data);
 
 #endif // SMOLRTSP_DESERIALIZERS_REQUEST_H

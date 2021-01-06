@@ -4,7 +4,7 @@
 void SmolRTSP_Response_serialize(
     const SmolRTSP_Response *restrict self, SmolRTSP_UserWriter user_writer, void *user_cx) {
     precondition(self);
-    precondition(user_cx);
+    precondition(user_writer);
 
     SmolRTSP_ResponseLine_serialize(&self->start_line, user_writer, user_cx);
     SmolRTSP_HeaderMap_serialize(&self->header_map, user_writer, user_cx);

@@ -18,10 +18,10 @@ SMOLRTSP_OPAQUE_TYPE(SmolRTSP_RequestURIDeserializer);
 SmolRTSP_RequestURIDeserializer *SmolRTSP_RequestURIDeserializer_new(void);
 void SmolRTSP_RequestURIDeserializer_free(SmolRTSP_RequestURIDeserializer *self);
 
-SmolRTSP_RequestURI SmolRTSP_RequestURIDeserializer_inner(SmolRTSP_RequestURIDeserializer *self);
 size_t SmolRTSP_RequestURIDeserializer_bytes_read(SmolRTSP_RequestURIDeserializer *self);
 
 SmolRTSP_DeserializeResult SmolRTSP_RequestURIDeserializer_deserialize(
-    SmolRTSP_RequestURIDeserializer *restrict self, Slice99 *restrict data);
+    SmolRTSP_RequestURIDeserializer *restrict self, SmolRTSP_RequestURI *restrict result,
+    Slice99 *restrict data);
 
 #endif // SMOLRTSP_DESERIALIZERS_REQUEST_URI_H

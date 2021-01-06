@@ -9,14 +9,14 @@ static void check(const char *version, SmolRTSP_RTSPVersion expected) {
     ASSERT_NE(deser, NULL);
 
     Slice99 data = Slice99_from_str((char *)version);
+    SmolRTSP_RTSPVersion result;
     const SmolRTSP_DeserializeResult res =
-        SmolRTSP_RTSPVersionDeserializer_deserialize(deser, &data);
-    const SmolRTSP_RTSPVersion inner = SmolRTSP_RTSPVersionDeserializer_inner(deser);
+        SmolRTSP_RTSPVersionDeserializer_deserialize(deser, &result, &data);
     const size_t bytes_read = SmolRTSP_RTSPVersionDeserializer_bytes_read(deser);
 
     ASSERT_EQ(res, SmolRTSP_DeserializeResultOk);
     ASSERT_EQ(bytes_read, strlen(version));
-    ASSERT(SmolRTSP_RTSPVersion_eq(&inner, &expected));
+    ASSERT(SmolRTSP_RTSPVersion_eq(&result, &expected));
 
     SmolRTSP_RTSPVersionDeserializer_free(deser);
 }

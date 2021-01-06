@@ -9,13 +9,14 @@ static void check(const char *header, SmolRTSP_Header expected) {
     ASSERT_NE(deser, NULL);
 
     Slice99 data = Slice99_from_str((char *)header);
-    const SmolRTSP_DeserializeResult res = SmolRTSP_HeaderDeserializer_deserialize(deser, &data);
-    const SmolRTSP_Header inner = SmolRTSP_HeaderDeserializer_inner(deser);
+    SmolRTSP_Header result;
+    const SmolRTSP_DeserializeResult res =
+        SmolRTSP_HeaderDeserializer_deserialize(deser, &result, &data);
     const size_t bytes_read = SmolRTSP_HeaderDeserializer_bytes_read(deser);
 
     ASSERT_EQ(res, SmolRTSP_DeserializeResultOk);
     ASSERT_EQ(bytes_read, strlen(header));
-    ASSERT(SmolRTSP_Header_eq(&inner, &expected));
+    ASSERT(SmolRTSP_Header_eq(&result, &expected));
 
     SmolRTSP_HeaderDeserializer_free(deser);
 }

@@ -9,9 +9,9 @@ static void check(const char *line, SmolRTSP_RequestLine expected) {
     ASSERT_NE(deser, NULL);
 
     Slice99 data = Slice99_from_str((char *)line);
+    SmolRTSP_RequestLine result;
     const SmolRTSP_DeserializeResult res =
-        SmolRTSP_RequestLineDeserializer_deserialize(deser, &data);
-    const SmolRTSP_RequestLine inner = SmolRTSP_RequestLineDeserializer_inner(deser);
+        SmolRTSP_RequestLineDeserializer_deserialize(deser, &result, &data);
     const size_t bytes_read = SmolRTSP_RequestLineDeserializer_bytes_read(deser);
     const SmolRTSP_RequestLineDeserializerState state =
         SmolRTSP_RequestLineDeserializer_state(deser);
@@ -20,14 +20,15 @@ static void check(const char *line, SmolRTSP_RequestLine expected) {
     ASSERT(state.is_ok);
     ASSERT_EQ(state.in_progress, SmolRTSP_RequestLineDeserializerStateInProgressDone);
     ASSERT_EQ(bytes_read, strlen(line));
-    ASSERT(SmolRTSP_RequestLine_eq(&inner, &expected));
+    ASSERT(SmolRTSP_RequestLine_eq(&result, &expected));
 
     SmolRTSP_RequestLineDeserializer_free(deser);
 }
 
 TEST(test_deserializers_request_line) {
     check(
-        "DESCRIBE http://example.com RTSP/1.1" "\r\n",
+        "DESCRIBE http://example.com RTSP/1.1"
+        "\r\n",
         (SmolRTSP_RequestLine){
             .method = SMOLRTSP_METHOD_DESCRIBE,
             .uri = Slice99_from_str("http://example.com"),

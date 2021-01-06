@@ -12,20 +12,26 @@ static void check(const char *phrase) {
     ASSERT_NE(deser, NULL);
 
     Slice99 data = Slice99_from_str((char *)phrase);
+    SmolRTSP_ReasonPhrase result;
     const SmolRTSP_DeserializeResult res =
-        SmolRTSP_ReasonPhraseDeserializer_deserialize(deser, &data);
-    const SmolRTSP_ReasonPhrase inner = SmolRTSP_ReasonPhraseDeserializer_inner(deser);
+        SmolRTSP_ReasonPhraseDeserializer_deserialize(deser, &result, &data);
     const size_t bytes_read = SmolRTSP_ReasonPhraseDeserializer_bytes_read(deser);
 
     ASSERT_EQ(res, SmolRTSP_DeserializeResultOk);
     ASSERT_EQ(bytes_read, strlen(phrase));
-    ASSERT(Slice99_primitive_eq(inner, expected));
+    ASSERT(Slice99_primitive_eq(result, expected));
 
     SmolRTSP_ReasonPhraseDeserializer_free(deser);
 }
 
 TEST(test_deserializers_reason_phrase) {
-    check("Moved Temporarily" "\r\n");
-    check("Forbidden" "\r\n");
-    check("Header Field Not Valid for Resource" "\r\n");
+    check(
+        "Moved Temporarily"
+        "\r\n");
+    check(
+        "Forbidden"
+        "\r\n");
+    check(
+        "Header Field Not Valid for Resource"
+        "\r\n");
 }
