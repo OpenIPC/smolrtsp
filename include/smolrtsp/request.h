@@ -35,23 +35,17 @@ void SmolRTSP_Response_serialize(
 /**
  * A state in which #SmolRTSP_RequestDeserializer is located.
  */
-typedef struct {
-    /**
-     * Which member of an RTSP request is being parsed right now by #SmolRTSP_RequestDeserializer.
-     */
-    enum {
-        SmolRTSP_RequestDeserializerStateRequestLine,
-        SmolRTSP_RequestDeserializerStateHeaderMap,
-        SmolRTSP_RequestDeserializerStateMessageBody,
-        SmolRTSP_RequestDeserializerStateDone,
-    } in_progress;
-    bool is_ok;
-    SmolRTSP_RequestLineDeserializerState start_line;
+typedef enum {
+    SmolRTSP_RequestDeserializerStateRequestLine,
+    SmolRTSP_RequestDeserializerStateHeaderMap,
+    SmolRTSP_RequestDeserializerStateMessageBody,
+    SmolRTSP_RequestDeserializerStateDone,
 } SmolRTSP_RequestDeserializerState;
 
 SmolRTSP_DeserializeResult SmolRTSP_Request_deserialize(
     SmolRTSP_Request *restrict self, Slice99 *restrict data, size_t *restrict bytes_read,
-    SmolRTSP_RequestDeserializerState *restrict state);
+    SmolRTSP_RequestDeserializerState *restrict state,
+    SmolRTSP_RequestLineDeserializerState *restrict start_line_state);
 
 /**
  * Tests @p lhs and @p rhs for equality.

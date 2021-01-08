@@ -23,28 +23,30 @@ SmolRTSP_DeserializeResult SmolRTSP_RequestLine_deserialize(
     precondition(bytes_read);
     precondition(state);
 
-    // TODO: Make a eDSL for this shit.
-    if (state->in_progress == SmolRTSP_RequestLineDeserializerStateMethod) {
-        MATCH(SmolRTSP_Method_deserialize(&self->method, data, bytes_read));
-        state->in_progress = SmolRTSP_RequestLineDeserializerStateRequestURI;
-    }
+#define TRY_PARSE(if_state, expr)                                                                  \
+    do {                                                                                           \
+        if (*state == if_state) {                                                                  \
+            MATCH(expr);                                                                           \
+            (*state)++;                                                                            \
+        }                                                                                          \
+    } while (0)
 
-    if (state->in_progress == SmolRTSP_RequestLineDeserializerStateRequestURI) {
-        MATCH(SmolRTSP_RequestURI_deserialize(&self->uri, data, bytes_read));
-        state->in_progress = SmolRTSP_RequestLineDeserializerStateRTSPVersion;
-    }
+    TRY_PARSE(
+        SmolRTSP_RequestLineDeserializerStateMethod,
+        SmolRTSP_Method_deserialize(&self->method, data, bytes_read));
 
-    if (state->in_progress == SmolRTSP_RequestLineDeserializerStateRTSPVersion) {
-        MATCH(SmolRTSP_RTSPVersion_deserialize(&self->version, data, bytes_read));
-        state->in_progress = SmolRTSP_RequestLineDeserializerStateCRLF;
-    }
-    size_t bytes_read_temp = 0;
-    if (state->in_progress == SmolRTSP_RequestLineDeserializerStateCRLF) {
-        MATCH(SmolRTSP_match_str(data, &bytes_read_temp, "\r\n"));
-        state->in_progress = SmolRTSP_RequestLineDeserializerStateDone;
-    }
+    TRY_PARSE(
+        SmolRTSP_RequestLineDeserializerStateRequestURI,
+        SmolRTSP_RequestURI_deserialize(&self->uri, data, bytes_read));
 
-    *bytes_read += bytes_read_temp;
+    TRY_PARSE(
+        SmolRTSP_RequestLineDeserializerStateRTSPVersion,
+        SmolRTSP_RTSPVersion_deserialize(&self->version, data, bytes_read));
+
+    TRY_PARSE(
+        SmolRTSP_RequestLineDeserializerStateCRLF, SmolRTSP_match_str(data, bytes_read, "\r\n"));
+
+#undef TRY_PARSE
 
     return SmolRTSP_DeserializeResultOk;
 }

@@ -14,40 +14,46 @@ void SmolRTSP_Response_serialize(
 
 SmolRTSP_DeserializeResult SmolRTSP_Request_deserialize(
     SmolRTSP_Request *restrict self, Slice99 *restrict data, size_t *restrict bytes_read,
-    SmolRTSP_RequestDeserializerState *restrict state) {
+    SmolRTSP_RequestDeserializerState *restrict state,
+    SmolRTSP_RequestLineDeserializerState *restrict start_line_state) {
     precondition(self);
     precondition(data);
     precondition(bytes_read);
     precondition(state);
 
-    // TODO: Make a eDSL for this shit.
-    if (state->in_progress == SmolRTSP_RequestDeserializerStateRequestLine) {
-        MATCH(SmolRTSP_RequestLine_deserialize(
-            &self->start_line, data, bytes_read, &state->start_line));
-        state->in_progress = SmolRTSP_RequestDeserializerStateHeaderMap;
-    }
+#define TRY_PARSE(if_state, expr)                                                                  \
+    do {                                                                                           \
+        if (*state == if_state) {                                                                  \
+            MATCH(expr);                                                                           \
+            (*state)++;                                                                            \
+        }                                                                                          \
+    } while (0)
 
-    if (state->in_progress == SmolRTSP_RequestDeserializerStateHeaderMap) {
-        MATCH(SmolRTSP_HeaderMap_deserialize(&self->header_map, data, bytes_read));
-        state->in_progress = SmolRTSP_RequestDeserializerStateMessageBody;
-    }
+    TRY_PARSE(
+        SmolRTSP_RequestDeserializerStateRequestLine,
+        SmolRTSP_RequestLine_deserialize(&self->start_line, data, bytes_read, start_line_state));
+
+    TRY_PARSE(
+        SmolRTSP_RequestDeserializerStateHeaderMap,
+        SmolRTSP_HeaderMap_deserialize(&self->header_map, data, bytes_read));
 
     bool is_found;
     Slice99 content_length_slice =
         SmolRTSP_HeaderMap_find(self->header_map, SMOLRTSP_HEADER_NAME_CONTENT_LENGTH, &is_found);
 
-    size_t content_length;
-    if (!is_found) {
-        content_length = 0;
-    } else if (sscanf(content_length_slice.ptr, "%zd", &content_length) != 1) {
-        // TODO: Handle this error in a proper way.
-        abort();
+    size_t content_length = 0;
+    if (is_found) {
+        if (sscanf(content_length_slice.ptr, "%zd", &content_length) != 1) {
+            // TODO: Handle this error in a proper way.
+            abort();
+        }
     }
 
-    if (state->in_progress == SmolRTSP_RequestDeserializerStateMessageBody) {
-        MATCH(SmolRTSP_MessageBody_deserialize(&self->body, data, bytes_read, content_length));
-        state->in_progress = SmolRTSP_RequestDeserializerStateDone;
-    }
+    TRY_PARSE(
+        SmolRTSP_RequestDeserializerStateMessageBody,
+        SmolRTSP_MessageBody_deserialize(&self->body, data, bytes_read, content_length));
+
+#undef TRY_PARSE
 
     return SmolRTSP_DeserializeResultOk;
 }

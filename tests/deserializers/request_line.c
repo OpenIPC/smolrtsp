@@ -7,17 +7,13 @@
 static void check(const char *line, SmolRTSP_RequestLine expected) {
     Slice99 data = Slice99_from_str((char *)line);
     SmolRTSP_RequestLine result;
-    SmolRTSP_RequestLineDeserializerState state = {
-        SmolRTSP_RequestLineDeserializerStateMethod,
-        true,
-    };
+    SmolRTSP_RequestLineDeserializerState state = SmolRTSP_RequestLineDeserializerStateMethod;
     size_t bytes_read = 0;
     const SmolRTSP_DeserializeResult res =
         SmolRTSP_RequestLine_deserialize(&result, &data, &bytes_read, &state);
 
     ASSERT_EQ(res, SmolRTSP_DeserializeResultOk);
-    ASSERT(state.is_ok);
-    ASSERT_EQ(state.in_progress, SmolRTSP_RequestLineDeserializerStateDone);
+    ASSERT_EQ(state, SmolRTSP_RequestLineDeserializerStateDone);
     ASSERT_EQ(bytes_read, strlen(line));
     ASSERT(SmolRTSP_RequestLine_eq(&result, &expected));
 }

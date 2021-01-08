@@ -36,19 +36,12 @@ void SmolRTSP_RequestLine_serialize(
 /**
  * A state in which #SmolRTSP_RequestLineDeserializer is located.
  */
-typedef struct {
-    /**
-     * Which member of an RTSP request line is being parsed right now by
-     * #SmolRTSP_RequestLineDeserializer.
-     */
-    enum {
-        SmolRTSP_RequestLineDeserializerStateMethod,
-        SmolRTSP_RequestLineDeserializerStateRequestURI,
-        SmolRTSP_RequestLineDeserializerStateRTSPVersion,
-        SmolRTSP_RequestLineDeserializerStateCRLF,
-        SmolRTSP_RequestLineDeserializerStateDone,
-    } in_progress;
-    bool is_ok;
+typedef enum {
+    SmolRTSP_RequestLineDeserializerStateMethod,
+    SmolRTSP_RequestLineDeserializerStateRequestURI,
+    SmolRTSP_RequestLineDeserializerStateRTSPVersion,
+    SmolRTSP_RequestLineDeserializerStateCRLF,
+    SmolRTSP_RequestLineDeserializerStateDone,
 } SmolRTSP_RequestLineDeserializerState;
 
 SmolRTSP_DeserializeResult SmolRTSP_RequestLine_deserialize(
