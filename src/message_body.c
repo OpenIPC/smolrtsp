@@ -18,6 +18,6 @@ SmolRTSP_DeserializeResult SmolRTSP_MessageBody_deserialize(
 
     *self = Slice99_new(data->ptr, sizeof(char), content_length);
     *data = Slice99_advance(*data, content_length);
-    
+
     return SmolRTSP_DeserializeResultOk;
 }
