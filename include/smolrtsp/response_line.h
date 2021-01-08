@@ -1,3 +1,8 @@
+/**
+ * @file
+ * An RTSP response line.
+ */
+
 #ifndef SMOLRTSP_RESPONSE_LINE_H
 #define SMOLRTSP_RESPONSE_LINE_H
 
@@ -9,8 +14,19 @@
  * An RTSP response line.
  */
 typedef struct {
+    /**
+     * The RTSP version used.
+     */
     SmolRTSP_RTSPVersion version;
+
+    /**
+     * The status code.
+     */
     SmolRTSP_StatusCode code;
+
+    /**
+     * The reason phrase.
+     */
     SmolRTSP_ReasonPhrase reason;
 } SmolRTSP_ResponseLine;
 

@@ -14,8 +14,19 @@
  * An RTSP response.
  */
 typedef struct {
+    /**
+     * The response line.
+     */
     SmolRTSP_ResponseLine start_line;
+
+    /**
+     * The header map.
+     */
     SmolRTSP_HeaderMap header_map;
+
+    /**
+     * The message body.
+     */
     SmolRTSP_MessageBody body;
 } SmolRTSP_Response;
 

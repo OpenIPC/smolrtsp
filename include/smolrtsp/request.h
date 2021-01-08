@@ -16,8 +16,19 @@
  * An RTSP request.
  */
 typedef struct {
+    /**
+     * The request line.
+     */
     SmolRTSP_RequestLine start_line;
+
+    /**
+     * The header map.
+     */
     SmolRTSP_HeaderMap header_map;
+
+    /**
+     * The message body.
+     */
     SmolRTSP_MessageBody body;
 } SmolRTSP_Request;
 
@@ -32,7 +43,7 @@ void SmolRTSP_Response_serialize(
     SmolRTSP_Request self, SmolRTSP_UserWriter user_writer, void *user_cx);
 
 /**
- * A state in which #SmolRTSP_RequestDeserializer is located.
+ * A state of deserialization of #SmolRTSP_Request.
  */
 typedef enum {
     SmolRTSP_RequestDeserializerStateRequestLine,

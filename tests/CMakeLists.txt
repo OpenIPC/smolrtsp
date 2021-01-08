@@ -7,16 +7,16 @@ add_executable(
   tests
   nala.h
   nala.c
-  deserializers/header_map.c
-  deserializers/header.c
-  deserializers/message_body.c
-  deserializers/method.c
-  deserializers/reason_phrase.c
-  deserializers/request_line.c
-  deserializers/request_uri.c
-  deserializers/request.c
-  deserializers/rtsp_version.c
-  deserializers/status_code.c)
+  header_map.c
+  header.c
+  message_body.c
+  method.c
+  reason_phrase.c
+  request_line.c
+  request_uri.c
+  request.c
+  rtsp_version.c
+  status_code.c)
 
 add_subdirectory(.. build)
 target_link_libraries(tests smolrtsp)

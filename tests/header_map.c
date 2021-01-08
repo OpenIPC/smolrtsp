@@ -2,7 +2,7 @@
 
 #include <string.h>
 
-#include "../nala.h"
+#include "nala.h"
 
 static void check(const char *header_map, SmolRTSP_HeaderMap expected) {
     SmolRTSP_HeaderMap result = {
@@ -18,7 +18,7 @@ static void check(const char *header_map, SmolRTSP_HeaderMap expected) {
     ASSERT(SmolRTSP_HeaderMap_eq(result, expected));
 }
 
-TEST(test_deserializers_header_map) {
+TEST(deserialize_header_map) {
     SmolRTSP_Header headers[] = {
         {
             SMOLRTSP_HEADER_NAME_CONTENT_LENGTH,

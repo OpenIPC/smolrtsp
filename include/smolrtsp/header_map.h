@@ -17,15 +17,18 @@
  * An RTSP header map.
  */
 typedef struct {
+    /**
+     * The pointer to an array of headers;
+     */
     SmolRTSP_Header *headers;
 
     /**
-     * The count of elements currently in \link #headers \endlink.
+     * The count of elements currently in #headers.
      */
     size_t len;
 
     /**
-     * The count of elements \link #SmolRTSP_HeaderMap.headers \endlink is able to contain.
+     * The count of elements #headers is able to contain.
      */
     size_t size;
 } SmolRTSP_HeaderMap;

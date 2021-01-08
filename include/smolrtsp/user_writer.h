@@ -1,6 +1,6 @@
 /**
  * @file
- *  A user-supplied writer interface.
+ * The writer interface.
  */
 
 #ifndef SMOLRTSP_USER_WRITER_H
