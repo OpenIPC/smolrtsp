@@ -6,9 +6,12 @@
 #ifndef SMOLRTSP_STATUS_CODE_H
 #define SMOLRTSP_STATUS_CODE_H
 
+#include <smolrtsp/deserialization.h>
 #include <smolrtsp/user_writer.h>
 
 #include <stdint.h>
+
+#include <slice99.h>
 
 /**
  * An RTSP status code.
@@ -75,5 +78,8 @@ typedef uint_least16_t SmolRTSP_StatusCode;
  */
 void SmolRTSP_StatusCode_serialize(
     const SmolRTSP_StatusCode *restrict self, SmolRTSP_UserWriter user_writer, void *user_cx);
+
+SmolRTSP_DeserializeResult SmolRTSP_StatusCode_deserialize(
+    SmolRTSP_StatusCode *restrict self, Slice99 *restrict data, size_t *restrict bytes_read);
 
 #endif // SMOLRTSP_STATUS_CODE_H

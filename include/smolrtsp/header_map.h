@@ -6,6 +6,7 @@
 #ifndef SMOLRTSP_HEADER_MAP_H
 #define SMOLRTSP_HEADER_MAP_H
 
+#include <smolrtsp/deserialization.h>
 #include <smolrtsp/header.h>
 
 #include <stdbool.h>
@@ -44,6 +45,9 @@ Slice99 SmolRTSP_HeaderMap_find(SmolRTSP_HeaderMap self, Slice99 key, bool *rest
  */
 void SmolRTSP_HeaderMap_serialize(
     const SmolRTSP_HeaderMap *restrict self, SmolRTSP_UserWriter user_writer, void *user_cx);
+
+SmolRTSP_DeserializeResult SmolRTSP_HeaderMap_deserialize(
+    SmolRTSP_HeaderMap *restrict self, Slice99 *restrict data, size_t *restrict bytes_read);
 
 /**
  * Tests @p lhs and @p rhs for equality.

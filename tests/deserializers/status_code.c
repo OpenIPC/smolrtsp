@@ -1,22 +1,19 @@
-#include <smolrtsp/deserializers/status_code.h>
+#include <smolrtsp/status_code.h>
 
 #include <string.h>
 
 #include "../nala.h"
 
 static void check(const char *code, SmolRTSP_StatusCode expected) {
-    SmolRTSP_StatusCodeDeserializer *deser = SmolRTSP_StatusCodeDeserializer_new();
-    ASSERT_NE(deser, NULL);
+    size_t bytes_read = 0;
 
     Slice99 data = Slice99_from_str((char *)code);
     SmolRTSP_StatusCode result;
     const SmolRTSP_DeserializeResult res =
-        SmolRTSP_StatusCodeDeserializer_deserialize(deser, &result, &data);
+        SmolRTSP_StatusCode_deserialize(&result, &data, &bytes_read);
 
     ASSERT_EQ(res, SmolRTSP_DeserializeResultOk);
     ASSERT_EQ(result, expected);
-
-    SmolRTSP_StatusCodeDeserializer_free(deser);
 }
 
 TEST(test_deserializers_status_code) {

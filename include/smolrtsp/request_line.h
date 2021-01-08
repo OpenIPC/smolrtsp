@@ -1,3 +1,4 @@
+
 /**
  * @file
  *  An RTSP request line.
@@ -31,6 +32,28 @@ typedef struct {
  */
 void SmolRTSP_RequestLine_serialize(
     const SmolRTSP_RequestLine *restrict self, SmolRTSP_UserWriter user_writer, void *user_cx);
+
+/**
+ * A state in which #SmolRTSP_RequestLineDeserializer is located.
+ */
+typedef struct {
+    /**
+     * Which member of an RTSP request line is being parsed right now by
+     * #SmolRTSP_RequestLineDeserializer.
+     */
+    enum {
+        SmolRTSP_RequestLineDeserializerStateMethod,
+        SmolRTSP_RequestLineDeserializerStateRequestURI,
+        SmolRTSP_RequestLineDeserializerStateRTSPVersion,
+        SmolRTSP_RequestLineDeserializerStateCRLF,
+        SmolRTSP_RequestLineDeserializerStateDone,
+    } in_progress;
+    bool is_ok;
+} SmolRTSP_RequestLineDeserializerState;
+
+SmolRTSP_DeserializeResult SmolRTSP_RequestLine_deserialize(
+    SmolRTSP_RequestLine *restrict self, Slice99 *restrict data, size_t *restrict bytes_read,
+    SmolRTSP_RequestLineDeserializerState *restrict state);
 
 /**
  * Tests @p lhs and @p rhs for equality.

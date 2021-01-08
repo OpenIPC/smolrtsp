@@ -28,6 +28,34 @@ void SmolRTSP_HeaderMap_serialize(
     user_writer(strlen("\r\n"), "\r\n", user_cx);
 }
 
+SmolRTSP_DeserializeResult SmolRTSP_HeaderMap_deserialize(
+    SmolRTSP_HeaderMap *restrict self, Slice99 *restrict data, size_t *restrict bytes_read) {
+    precondition(self);
+    precondition(data);
+    precondition(bytes_read);
+
+    while (true) {
+        if (data->len < 2) {
+            return SmolRTSP_DeserializeResultPending;
+        }
+
+        if (((const char *)data->ptr)[0] == '\r' && ((const char *)data->ptr)[1] == '\n') {
+            *bytes_read += 2;
+            *data = Slice99_sub(*data, 2, data->len);
+            return SmolRTSP_DeserializeResultOk;
+        }
+
+        if (SmolRTSP_HeaderMap_is_full(*self)) {
+            return SmolRTSP_DeserializeResultErr;
+        }
+
+        SmolRTSP_Header header;
+        MATCH(SmolRTSP_Header_deserialize(&header, data, bytes_read));
+        self->headers[self->len] = header;
+        self->len++;
+    }
+}
+
 bool SmolRTSP_HeaderMap_eq(
     const SmolRTSP_HeaderMap *restrict lhs, const SmolRTSP_HeaderMap *restrict rhs) {
     precondition(lhs);

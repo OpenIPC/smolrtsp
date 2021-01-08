@@ -1,28 +1,25 @@
-#include <smolrtsp/deserializers/request_line.h>
+#include <smolrtsp/request_line.h>
 
 #include <string.h>
 
 #include "../nala.h"
 
 static void check(const char *line, SmolRTSP_RequestLine expected) {
-    SmolRTSP_RequestLineDeserializer *deser = SmolRTSP_RequestLineDeserializer_new();
-    ASSERT_NE(deser, NULL);
-
     Slice99 data = Slice99_from_str((char *)line);
     SmolRTSP_RequestLine result;
+    SmolRTSP_RequestLineDeserializerState state = {
+        SmolRTSP_RequestLineDeserializerStateMethod,
+        true,
+    };
+    size_t bytes_read = 0;
     const SmolRTSP_DeserializeResult res =
-        SmolRTSP_RequestLineDeserializer_deserialize(deser, &result, &data);
-    const size_t bytes_read = SmolRTSP_RequestLineDeserializer_bytes_read(deser);
-    const SmolRTSP_RequestLineDeserializerState state =
-        SmolRTSP_RequestLineDeserializer_state(deser);
+        SmolRTSP_RequestLine_deserialize(&result, &data, &bytes_read, &state);
 
     ASSERT_EQ(res, SmolRTSP_DeserializeResultOk);
     ASSERT(state.is_ok);
-    ASSERT_EQ(state.in_progress, SmolRTSP_RequestLineDeserializerStateInProgressDone);
+    ASSERT_EQ(state.in_progress, SmolRTSP_RequestLineDeserializerStateDone);
     ASSERT_EQ(bytes_read, strlen(line));
     ASSERT(SmolRTSP_RequestLine_eq(&result, &expected));
-
-    SmolRTSP_RequestLineDeserializer_free(deser);
 }
 
 TEST(test_deserializers_request_line) {

@@ -1,24 +1,18 @@
-#include <smolrtsp/deserializers/method.h>
+#include <smolrtsp/method.h>
 
 #include <string.h>
 
 #include "../nala.h"
 
 static void check(const char *method, SmolRTSP_Method expected) {
-    SmolRTSP_MethodDeserializer *deser = SmolRTSP_MethodDeserializer_new();
-    ASSERT_NE(deser, NULL);
-
     Slice99 data = Slice99_from_str((char *)method);
+    size_t bytes_read = 0;
     SmolRTSP_Method result;
-    const SmolRTSP_DeserializeResult res =
-        SmolRTSP_MethodDeserializer_deserialize(deser, &result, &data);
-    const size_t bytes_read = SmolRTSP_MethodDeserializer_bytes_read(deser);
+    const SmolRTSP_DeserializeResult res = SmolRTSP_Method_deserialize(&result, &data, &bytes_read);
 
     ASSERT_EQ(res, SmolRTSP_DeserializeResultOk);
     ASSERT_EQ(bytes_read, strlen(method));
     ASSERT(Slice99_primitive_eq(result, expected));
-
-    SmolRTSP_MethodDeserializer_free(deser);
 }
 
 TEST(test_deserializers_method) {

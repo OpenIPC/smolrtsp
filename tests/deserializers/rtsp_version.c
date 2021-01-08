@@ -1,24 +1,19 @@
-#include <smolrtsp/deserializers/rtsp_version.h>
+#include <smolrtsp/rtsp_version.h>
 
 #include <string.h>
 
 #include "../nala.h"
 
 static void check(const char *version, SmolRTSP_RTSPVersion expected) {
-    SmolRTSP_RTSPVersionDeserializer *deser = SmolRTSP_RTSPVersionDeserializer_new();
-    ASSERT_NE(deser, NULL);
-
     Slice99 data = Slice99_from_str((char *)version);
     SmolRTSP_RTSPVersion result;
+    size_t bytes_read = 0;
     const SmolRTSP_DeserializeResult res =
-        SmolRTSP_RTSPVersionDeserializer_deserialize(deser, &result, &data);
-    const size_t bytes_read = SmolRTSP_RTSPVersionDeserializer_bytes_read(deser);
+        SmolRTSP_RTSPVersion_deserialize(&result, &data, &bytes_read);
 
     ASSERT_EQ(res, SmolRTSP_DeserializeResultOk);
     ASSERT_EQ(bytes_read, strlen(version));
     ASSERT(SmolRTSP_RTSPVersion_eq(&result, &expected));
-
-    SmolRTSP_RTSPVersionDeserializer_free(deser);
 }
 
 TEST(test_deserializers_rtsp_version) {

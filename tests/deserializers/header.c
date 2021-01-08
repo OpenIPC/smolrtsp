@@ -1,24 +1,19 @@
-#include <smolrtsp/deserializers/header.h>
+#include <smolrtsp/header.h>
 
 #include <string.h>
 
 #include "../nala.h"
 
 static void check(const char *header, SmolRTSP_Header expected) {
-    SmolRTSP_HeaderDeserializer *deser = SmolRTSP_HeaderDeserializer_new();
-    ASSERT_NE(deser, NULL);
+    size_t bytes_read = 0;
 
     Slice99 data = Slice99_from_str((char *)header);
     SmolRTSP_Header result;
-    const SmolRTSP_DeserializeResult res =
-        SmolRTSP_HeaderDeserializer_deserialize(deser, &result, &data);
-    const size_t bytes_read = SmolRTSP_HeaderDeserializer_bytes_read(deser);
+    const SmolRTSP_DeserializeResult res = SmolRTSP_Header_deserialize(&result, &data, &bytes_read);
 
     ASSERT_EQ(res, SmolRTSP_DeserializeResultOk);
     ASSERT_EQ(bytes_read, strlen(header));
     ASSERT(SmolRTSP_Header_eq(&result, &expected));
-
-    SmolRTSP_HeaderDeserializer_free(deser);
 }
 
 TEST(test_deserializers_header) {

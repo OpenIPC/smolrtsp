@@ -6,6 +6,7 @@
 #ifndef SMOLRTSP_HEADER_H
 #define SMOLRTSP_HEADER_H
 
+#include <smolrtsp/deserialization.h>
 #include <smolrtsp/user_writer.h>
 
 #include <stdbool.h>
@@ -71,6 +72,9 @@ typedef struct {
  */
 void SmolRTSP_Header_serialize(
     const SmolRTSP_Header *restrict self, SmolRTSP_UserWriter user_writer, void *user_cx);
+
+SmolRTSP_DeserializeResult SmolRTSP_Header_deserialize(
+    SmolRTSP_Header *restrict self, Slice99 *restrict data, size_t *restrict bytes_read);
 
 /**
  * Tests @p lhs and @p rhs for equality.

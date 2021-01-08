@@ -6,6 +6,8 @@
 #ifndef SMOLRTSP_METHOD_H
 #define SMOLRTSP_METHOD_H
 
+#include <smolrtsp/deserialization.h>
+
 #include <slice99.h>
 
 /**
@@ -24,5 +26,8 @@ typedef Slice99 SmolRTSP_Method;
 #define SMOLRTSP_METHOD_SET_PARAMETER (Slice99_from_str("SET_PARAMETER"))
 #define SMOLRTSP_METHOD_REDIRECT      (Slice99_from_str("REDIRECT"))
 #define SMOLRTSP_METHOD_RECORD        (Slice99_from_str("RECORD"))
+
+SmolRTSP_DeserializeResult SmolRTSP_Method_deserialize(
+    SmolRTSP_Method *restrict self, Slice99 *restrict data, size_t *restrict bytes_read);
 
 #endif // SMOLRTSP_METHOD_H

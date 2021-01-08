@@ -1,24 +1,19 @@
-#include <smolrtsp/deserializers/request_uri.h>
+#include <smolrtsp/request_uri.h>
 
 #include <string.h>
 
 #include "../nala.h"
 
 static void check(const char *uri, SmolRTSP_RequestURI expected) {
-    SmolRTSP_RequestURIDeserializer *deser = SmolRTSP_RequestURIDeserializer_new();
-    ASSERT_NE(deser, NULL);
-
     Slice99 data = Slice99_from_str((char *)uri);
     SmolRTSP_RequestURI result;
+    size_t bytes_read = 0;
     const SmolRTSP_DeserializeResult res =
-        SmolRTSP_RequestURIDeserializer_deserialize(deser, &result, &data);
-    const size_t bytes_read = SmolRTSP_RequestURIDeserializer_bytes_read(deser);
+        SmolRTSP_RequestURI_deserialize(&result, &data, &bytes_read);
 
     ASSERT_EQ(res, SmolRTSP_DeserializeResultOk);
     ASSERT_EQ(bytes_read, strlen(uri));
     ASSERT(Slice99_primitive_eq(result, expected));
-
-    SmolRTSP_RequestURIDeserializer_free(deser);
 }
 
 TEST(test_deserializers_request_uri) {

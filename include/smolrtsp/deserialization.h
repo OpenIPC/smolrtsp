@@ -8,8 +8,9 @@
 
 #define SLICE99_INCLUDE_IO
 
-#include <slice99.h>
 #include <stddef.h>
+
+#include <slice99.h>
 
 /**
  * A result of each call to a deserializer.
