@@ -1,6 +1,6 @@
 #include "correctness.h"
-#include <smolrtsp/status_code.h>
 #include "match.h"
+#include <smolrtsp/status_code.h>
 
 #include <inttypes.h>
 #include <stdio.h>
