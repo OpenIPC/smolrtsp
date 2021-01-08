@@ -26,11 +26,10 @@ typedef struct {
  *
  * @param[in] user_cx Some value provided to @p user_writer on each write.
  *
- * @pre `self != NULL`
  * @pre `user_writer != NULL`
  */
 void SmolRTSP_Response_serialize(
-    const SmolRTSP_Request *restrict self, SmolRTSP_UserWriter user_writer, void *user_cx);
+    SmolRTSP_Request self, SmolRTSP_UserWriter user_writer, void *user_cx);
 
 /**
  * A state in which #SmolRTSP_RequestDeserializer is located.
@@ -43,7 +42,7 @@ typedef enum {
 } SmolRTSP_RequestDeserializerState;
 
 SmolRTSP_DeserializeResult SmolRTSP_Request_deserialize(
-    SmolRTSP_Request *restrict self, Slice99 *restrict data, size_t *restrict bytes_read,
+    SmolRTSP_Request *restrict self, Slice99 *restrict data,
     SmolRTSP_RequestDeserializerState *restrict state,
     SmolRTSP_RequestLineDeserializerState *restrict start_line_state);
 
@@ -51,11 +50,7 @@ SmolRTSP_DeserializeResult SmolRTSP_Request_deserialize(
  * Tests @p lhs and @p rhs for equality.
  *
  * @return `true` if @p lhs and @rhs are equal, `false` otherwise.
- *
- * `lhs != NULL`
- * `rhs != NULL`
  */
-bool SmolRTSP_Request_eq(
-    const SmolRTSP_Request *restrict lhs, const SmolRTSP_Request *restrict rhs);
+bool SmolRTSP_Request_eq(SmolRTSP_Request lhs, SmolRTSP_Request rhs);
 
 #endif // SMOLRTSP_REQUEST_H

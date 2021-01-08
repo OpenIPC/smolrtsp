@@ -73,13 +73,12 @@ typedef uint_least16_t SmolRTSP_StatusCode;
  *
  * @param[in] user_cx Some value provided to @p user_writer on each write.
  *
- * @pre `self != NULL`
  * @pre `user_writer != NULL`
  */
 void SmolRTSP_StatusCode_serialize(
-    const SmolRTSP_StatusCode *restrict self, SmolRTSP_UserWriter user_writer, void *user_cx);
+    SmolRTSP_StatusCode self, SmolRTSP_UserWriter user_writer, void *user_cx);
 
-SmolRTSP_DeserializeResult SmolRTSP_StatusCode_deserialize(
-    SmolRTSP_StatusCode *restrict self, Slice99 *restrict data, size_t *restrict bytes_read);
+SmolRTSP_DeserializeResult
+SmolRTSP_StatusCode_deserialize(SmolRTSP_StatusCode *restrict self, Slice99 *restrict data);
 
 #endif // SMOLRTSP_STATUS_CODE_H

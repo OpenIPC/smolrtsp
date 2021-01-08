@@ -27,7 +27,7 @@ typedef Slice99 SmolRTSP_Method;
 #define SMOLRTSP_METHOD_REDIRECT      (Slice99_from_str("REDIRECT"))
 #define SMOLRTSP_METHOD_RECORD        (Slice99_from_str("RECORD"))
 
-SmolRTSP_DeserializeResult SmolRTSP_Method_deserialize(
-    SmolRTSP_Method *restrict self, Slice99 *restrict data, size_t *restrict bytes_read);
+SmolRTSP_DeserializeResult
+SmolRTSP_Method_deserialize(SmolRTSP_Method *restrict self, Slice99 *restrict data);
 
 #endif // SMOLRTSP_METHOD_H

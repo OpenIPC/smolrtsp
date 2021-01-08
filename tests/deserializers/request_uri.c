@@ -7,12 +7,9 @@
 static void check(const char *uri, SmolRTSP_RequestURI expected) {
     Slice99 data = Slice99_from_str((char *)uri);
     SmolRTSP_RequestURI result;
-    size_t bytes_read = 0;
-    const SmolRTSP_DeserializeResult res =
-        SmolRTSP_RequestURI_deserialize(&result, &data, &bytes_read);
+    const SmolRTSP_DeserializeResult res = SmolRTSP_RequestURI_deserialize(&result, &data);
 
     ASSERT_EQ(res, SmolRTSP_DeserializeResultOk);
-    ASSERT_EQ(bytes_read, strlen(uri));
     ASSERT(Slice99_primitive_eq(result, expected));
 }
 

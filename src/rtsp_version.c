@@ -1,5 +1,5 @@
 #include "correctness.h"
-#include "match.h"
+#include "parsing.h"
 #include <smolrtsp/rtsp_version.h>
 
 #include <inttypes.h>
@@ -7,14 +7,13 @@
 #include <string.h>
 
 void SmolRTSP_RTSPVersion_serialize(
-    const SmolRTSP_RTSPVersion *restrict self, SmolRTSP_UserWriter user_writer, void *user_cx) {
-    precondition(self);
+    SmolRTSP_RTSPVersion self, SmolRTSP_UserWriter user_writer, void *user_cx) {
     precondition(user_writer);
 
     static const char rtsp_slash[] = "RTSP/", dot[] = ".";
     char minor[3], major[3];
-    snprintf(minor, sizeof(minor), "%" PRIuLEAST8, self->minor);
-    snprintf(major, sizeof(major), "%" PRIuLEAST8, self->major);
+    snprintf(minor, sizeof(minor), "%" PRIuLEAST8, self.minor);
+    snprintf(major, sizeof(major), "%" PRIuLEAST8, self.major);
 
     user_writer(strlen(rtsp_slash), rtsp_slash, user_cx);
     user_writer(strlen(minor), minor, user_cx);
@@ -22,47 +21,44 @@ void SmolRTSP_RTSPVersion_serialize(
     user_writer(strlen(major), major, user_cx);
 }
 
-SmolRTSP_DeserializeResult SmolRTSP_RTSPVersion_deserialize(
-    SmolRTSP_RTSPVersion *restrict self, Slice99 *restrict data, size_t *restrict bytes_read) {
+SmolRTSP_DeserializeResult
+SmolRTSP_RTSPVersion_deserialize(SmolRTSP_RTSPVersion *restrict self, Slice99 *restrict data) {
     precondition(self);
     precondition(data);
-    precondition(bytes_read);
 
     size_t bytes_read_temp = 0;
 
-    MATCH(SmolRTSP_match_whitespaces(data, &bytes_read_temp));
-    MATCH(SmolRTSP_match_str(data, &bytes_read_temp, "RTSP/"));
+    MATCH(SmolRTSP_match_whitespaces(data));
+    MATCH(SmolRTSP_match_str(data, "RTSP/"));
 
-    const char *major = data->ptr;
-    MATCH(SmolRTSP_match_numeric(data, &bytes_read_temp));
-    const size_t major_size = (const char *)data->ptr - major;
-    MATCH(SmolRTSP_match_char(data, &bytes_read_temp, '.'));
-    const char *minor = data->ptr;
-    MATCH(SmolRTSP_match_numeric(data, &bytes_read_temp));
-    const size_t minor_size = (const char *)data->ptr - minor;
+    Slice99 major = *data;
+    MATCH(SmolRTSP_match_numeric(data));
+    major = Slice99_from_ptrdiff(major.ptr, data->ptr, sizeof(char));
+    MATCH(SmolRTSP_match_char(data, '.'));
+
+    Slice99 minor = *data;
+    MATCH(SmolRTSP_match_numeric(data));
+    minor = Slice99_from_ptrdiff(minor.ptr, data->ptr, sizeof(char));
 
     uint_least8_t major_int;
     char format[50];
-    snprintf(format, sizeof(format), "%%%zd" SCNuLEAST16, major_size);
-    int rc = sscanf(major, format, &major_int);
-    precondition(rc == 1);
+    snprintf(format, sizeof(format), "%%%zd" SCNuLEAST16, major.len);
+    if (sscanf(major.ptr, format, &major_int) != 1) {
+        return SmolRTSP_DeserializeResultErr;
+    }
 
     uint_least8_t minor_int;
-    snprintf(format, sizeof(format), "%%%zd" SCNuLEAST16, minor_size);
-    rc = sscanf(minor, format, &minor_int);
-    precondition(rc == 1);
+    snprintf(format, sizeof(format), "%%%zd" SCNuLEAST16, minor.len);
+    if (sscanf(minor.ptr, format, &minor_int) != 1) {
+        return SmolRTSP_DeserializeResultErr;
+    }
 
-    *bytes_read += bytes_read_temp;
     self->major = major_int;
     self->minor = minor_int;
 
     return SmolRTSP_DeserializeResultOk;
 }
 
-bool SmolRTSP_RTSPVersion_eq(
-    const SmolRTSP_RTSPVersion *restrict lhs, const SmolRTSP_RTSPVersion *restrict rhs) {
-    precondition(lhs);
-    precondition(rhs);
-
-    return lhs->major == rhs->major && lhs->minor == rhs->minor;
+bool SmolRTSP_RTSPVersion_eq(SmolRTSP_RTSPVersion lhs, SmolRTSP_RTSPVersion rhs) {
+    return lhs.major == rhs.major && lhs.minor == rhs.minor;
 }

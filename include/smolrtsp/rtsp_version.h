@@ -25,24 +25,19 @@ typedef struct {
  *
  * @param[in] user_cx Some value provided to @p user_writer on each write.
  *
- * @pre `self != NULL`
  * @pre `user_writer != NULL`
  */
 void SmolRTSP_RTSPVersion_serialize(
-    const SmolRTSP_RTSPVersion *restrict self, SmolRTSP_UserWriter user_writer, void *user_cx);
+    SmolRTSP_RTSPVersion self, SmolRTSP_UserWriter user_writer, void *user_cx);
 
-SmolRTSP_DeserializeResult SmolRTSP_RTSPVersion_deserialize(
-    SmolRTSP_RTSPVersion *restrict self, Slice99 *restrict data, size_t *restrict bytes_read);
+SmolRTSP_DeserializeResult
+SmolRTSP_RTSPVersion_deserialize(SmolRTSP_RTSPVersion *restrict self, Slice99 *restrict data);
 
 /**
  * Tests @p lhs and @p rhs for equality.
  *
  * @return `true` if @p lhs and @rhs are equal, `false` otherwise.
- *
- * @pre `lhs != NULL`
- * @pre `rhs != NULL`
  */
-bool SmolRTSP_RTSPVersion_eq(
-    const SmolRTSP_RTSPVersion *restrict lhs, const SmolRTSP_RTSPVersion *restrict rhs);
+bool SmolRTSP_RTSPVersion_eq(SmolRTSP_RTSPVersion lhs, SmolRTSP_RTSPVersion rhs);
 
 #endif // SMOLRTSP_RTSP_VERSION_H

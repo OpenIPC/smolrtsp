@@ -11,15 +11,11 @@ static void check(const char *header_map, SmolRTSP_HeaderMap expected) {
         .size = 3,
     };
 
-    size_t bytes_read = 0;
-
     Slice99 data = Slice99_from_str((char *)header_map);
-    const SmolRTSP_DeserializeResult res =
-        SmolRTSP_HeaderMap_deserialize(&result, &data, &bytes_read);
+    const SmolRTSP_DeserializeResult res = SmolRTSP_HeaderMap_deserialize(&result, &data);
 
     ASSERT_EQ(res, SmolRTSP_DeserializeResultOk);
-    ASSERT_EQ(bytes_read, strlen(header_map));
-    ASSERT(SmolRTSP_HeaderMap_eq(&result, &expected));
+    ASSERT(SmolRTSP_HeaderMap_eq(result, expected));
 }
 
 TEST(test_deserializers_header_map) {

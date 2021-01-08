@@ -14,17 +14,15 @@ static void check(const char *header, SmolRTSP_Request expected) {
                 .size = 3,
             },
     };
-    size_t bytes_read = 0;
     SmolRTSP_RequestDeserializerState state = SmolRTSP_RequestDeserializerStateRequestLine;
     SmolRTSP_RequestLineDeserializerState start_line_state =
         SmolRTSP_RequestLineDeserializerStateMethod;
     const SmolRTSP_DeserializeResult res =
-        SmolRTSP_Request_deserialize(&result, &data, &bytes_read, &state, &start_line_state);
+        SmolRTSP_Request_deserialize(&result, &data, &state, &start_line_state);
 
     ASSERT_EQ(res, SmolRTSP_DeserializeResultOk);
-    ASSERT_EQ(bytes_read, strlen(header));
     ASSERT_EQ(state, SmolRTSP_RequestDeserializerStateDone);
-    ASSERT(SmolRTSP_Request_eq(&result, &expected));
+    ASSERT(SmolRTSP_Request_eq(result, expected));
 }
 
 TEST(test_deserializers_request) {

@@ -6,12 +6,10 @@
 
 static void check(const char *method, SmolRTSP_Method expected) {
     Slice99 data = Slice99_from_str((char *)method);
-    size_t bytes_read = 0;
     SmolRTSP_Method result;
-    const SmolRTSP_DeserializeResult res = SmolRTSP_Method_deserialize(&result, &data, &bytes_read);
+    const SmolRTSP_DeserializeResult res = SmolRTSP_Method_deserialize(&result, &data);
 
     ASSERT_EQ(res, SmolRTSP_DeserializeResultOk);
-    ASSERT_EQ(bytes_read, strlen(method));
     ASSERT(Slice99_primitive_eq(result, expected));
 }
 

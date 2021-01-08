@@ -1,22 +1,20 @@
-#include "match.h"
+#include "parsing.h"
 #include "correctness.h"
 
 #include <ctype.h>
 #include <string.h>
 
-SmolRTSP_DeserializeResult SmolRTSP_match_until(
-    Slice99 *restrict data, size_t *restrict bytes_read, SmolRTSP_Matcher matcher, void *cx) {
+SmolRTSP_DeserializeResult
+SmolRTSP_match_until(Slice99 *restrict data, SmolRTSP_Matcher matcher, void *cx) {
     precondition(data);
-    precondition(bytes_read);
     precondition(matcher);
 
     while (!Slice99_is_empty(*data)) {
-        if (!matcher(*(const char *)data->ptr, cx)) {
+        if (!matcher(*(char *)data->ptr, cx)) {
             return SmolRTSP_DeserializeResultOk;
         }
 
-        *data = Slice99_sub(*data, 1, data->len);
-        (*bytes_read)++;
+        *data = Slice99_advance(*data, 1);
     }
 
     return SmolRTSP_DeserializeResultOk;
@@ -64,10 +62,9 @@ static bool is_str_recognised(size_t state, const char *str) {
     return str[state] == '\0';
 }
 
-SmolRTSP_DeserializeResult SmolRTSP_match_until_str(
-    Slice99 *restrict data, size_t *restrict bytes_read, const char *restrict str) {
+SmolRTSP_DeserializeResult
+SmolRTSP_match_until_str(Slice99 *restrict data, const char *restrict str) {
     precondition(data);
-    precondition(bytes_read);
     precondition(str);
 
     const size_t str_len = strlen(str);
@@ -85,7 +82,6 @@ SmolRTSP_DeserializeResult SmolRTSP_match_until_str(
         states[0] = match_str_transition(*(const char *)data->ptr, states[0], str);
         states[1] = match_str_transition(*(const char *)data->ptr, states[1], str);
         *data = Slice99_sub(*data, 1, data->len);
-        (*bytes_read)++;
 
         if (is_str_recognised(states[0], str) || is_str_recognised(states[1], str)) {
             return SmolRTSP_DeserializeResultOk;
@@ -95,26 +91,20 @@ SmolRTSP_DeserializeResult SmolRTSP_match_until_str(
     return SmolRTSP_DeserializeResultPending;
 }
 
-SmolRTSP_DeserializeResult
-SmolRTSP_match_until_crlf(Slice99 *restrict data, size_t *restrict bytes_read) {
+SmolRTSP_DeserializeResult SmolRTSP_match_until_crlf(Slice99 *restrict data) {
     precondition(data);
-    precondition(bytes_read);
 
-    return SmolRTSP_match_until_str(data, bytes_read, "\r\n");
+    return SmolRTSP_match_until_str(data, "\r\n");
 }
 
-SmolRTSP_DeserializeResult
-SmolRTSP_match_char(Slice99 *restrict data, size_t *restrict bytes_read, char c) {
+SmolRTSP_DeserializeResult SmolRTSP_match_char(Slice99 *restrict data, char c) {
     precondition(data);
-    precondition(bytes_read);
 
-    return SmolRTSP_match_until(data, bytes_read, char_matcher, &c);
+    return SmolRTSP_match_until(data, char_matcher, &c);
 }
 
-SmolRTSP_DeserializeResult
-SmolRTSP_match_str(Slice99 *restrict data, size_t *restrict bytes_read, const char *restrict str) {
+SmolRTSP_DeserializeResult SmolRTSP_match_str(Slice99 *restrict data, const char *restrict str) {
     precondition(data);
-    precondition(bytes_read);
     precondition(str);
 
     const size_t str_len = strlen(str);
@@ -124,55 +114,39 @@ SmolRTSP_match_str(Slice99 *restrict data, size_t *restrict bytes_read, const ch
     }
 
     if (memcmp(data->ptr, str, str_len) == 0) {
-        *data = Slice99_sub(*data, str_len, data->len);
-        *bytes_read += str_len;
+        *data = Slice99_advance(*data, str_len);
         return SmolRTSP_DeserializeResultOk;
     }
 
     return SmolRTSP_DeserializeResultErr;
 }
 
-SmolRTSP_DeserializeResult
-SmolRTSP_match_whitespaces(Slice99 *restrict data, size_t *restrict bytes_read) {
+SmolRTSP_DeserializeResult SmolRTSP_match_whitespaces(Slice99 *restrict data) {
     precondition(data);
-    precondition(bytes_read);
 
-    void *cx = NULL;
-    return SmolRTSP_match_until(data, bytes_read, whitespace_matcher, cx);
+    return SmolRTSP_match_until(data, whitespace_matcher, NULL);
 }
 
-SmolRTSP_DeserializeResult
-SmolRTSP_match_non_whitespaces(Slice99 *restrict data, size_t *restrict bytes_read) {
+SmolRTSP_DeserializeResult SmolRTSP_match_non_whitespaces(Slice99 *restrict data) {
     precondition(data);
-    precondition(bytes_read);
 
-    void *cx = NULL;
-    return SmolRTSP_match_until(data, bytes_read, non_whitespace_matcher, cx);
+    return SmolRTSP_match_until(data, non_whitespace_matcher, NULL);
 }
 
-SmolRTSP_DeserializeResult
-SmolRTSP_match_numeric(Slice99 *restrict data, size_t *restrict bytes_read) {
+SmolRTSP_DeserializeResult SmolRTSP_match_numeric(Slice99 *restrict data) {
     precondition(data);
-    precondition(bytes_read);
 
-    void *cx = NULL;
-    return SmolRTSP_match_until(data, bytes_read, numeric_matcher, cx);
+    return SmolRTSP_match_until(data, numeric_matcher, NULL);
 }
 
-SmolRTSP_DeserializeResult
-SmolRTSP_match_ident(Slice99 *restrict data, size_t *restrict bytes_read) {
+SmolRTSP_DeserializeResult SmolRTSP_match_ident(Slice99 *restrict data) {
     precondition(data);
-    precondition(bytes_read);
 
-    void *cx = NULL;
-    return SmolRTSP_match_until(data, bytes_read, ident_matcher, cx);
+    return SmolRTSP_match_until(data, ident_matcher, NULL);
 }
 
-SmolRTSP_DeserializeResult
-SmolRTSP_match_header_name(Slice99 *restrict data, size_t *restrict bytes_read) {
+SmolRTSP_DeserializeResult SmolRTSP_match_header_name(Slice99 *restrict data) {
     precondition(data);
-    precondition(bytes_read);
 
-    void *cx = NULL;
-    return SmolRTSP_match_until(data, bytes_read, header_name_char_matcher, cx);
+    return SmolRTSP_match_until(data, header_name_char_matcher, NULL);
 }

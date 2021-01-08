@@ -18,7 +18,14 @@
  * An RTSP header.
  */
 typedef struct {
+    /**
+     * The key of this header.
+     */
     Slice99 key;
+
+    /**
+     * The value of this header.
+     */
     Slice99 value;
 } SmolRTSP_Header;
 
@@ -67,38 +74,31 @@ typedef struct {
  *
  * @param[in] user_cx Some value provided to @p user_writer on each write.
  *
- * @pre `self != NULL`
  * @pre `user_writer != NULL`
  */
 void SmolRTSP_Header_serialize(
-    const SmolRTSP_Header *restrict self, SmolRTSP_UserWriter user_writer, void *user_cx);
+    SmolRTSP_Header self, SmolRTSP_UserWriter user_writer, void *user_cx);
 
-SmolRTSP_DeserializeResult SmolRTSP_Header_deserialize(
-    SmolRTSP_Header *restrict self, Slice99 *restrict data, size_t *restrict bytes_read);
+SmolRTSP_DeserializeResult
+SmolRTSP_Header_deserialize(SmolRTSP_Header *restrict self, Slice99 *restrict data);
 
 /**
  * Tests @p lhs and @p rhs for equality.
  *
  * @return `true` if @p lhs and @rhs are equal, `false` otherwise.
- *
- * @pre `lhs != NULL`
- * @pre `rhs != NULL`
  */
-bool SmolRTSP_Header_eq(const SmolRTSP_Header *restrict lhs, const SmolRTSP_Header *restrict rhs);
+bool SmolRTSP_Header_eq(SmolRTSP_Header lhs, SmolRTSP_Header rhs);
 
 /**
  * Pretty-prints @p self to @p stream.
  *
- * @pre `self != NULL`
  * @pre `stream != NULL`
  */
-void SmolRTSP_Header_dbg_to_file(const SmolRTSP_Header *self, FILE *stream);
+void SmolRTSP_Header_dbg_to_file(SmolRTSP_Header self, FILE *stream);
 
 /**
  * Pretty-prints @p self to `stdout`.
- *
- * @pre `self != NULL`
  */
-void SmolRTSP_Header_dbg(const SmolRTSP_Header *self);
+void SmolRTSP_Header_dbg(SmolRTSP_Header self);
 
 #endif // SMOLRTSP_HEADER_H

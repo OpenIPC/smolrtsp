@@ -8,15 +8,11 @@ static void check(const char *phrase) {
     SmolRTSP_ReasonPhrase expected = Slice99_from_str((char *)phrase);
     expected.len -= strlen("\r\n");
 
-    size_t bytes_read = 0;
-
     Slice99 data = Slice99_from_str((char *)phrase);
     SmolRTSP_ReasonPhrase result;
-    const SmolRTSP_DeserializeResult res =
-        SmolRTSP_ReasonPhrase_deserialize(&result, &data, &bytes_read);
+    const SmolRTSP_DeserializeResult res = SmolRTSP_ReasonPhrase_deserialize(&result, &data);
 
     ASSERT_EQ(res, SmolRTSP_DeserializeResultOk);
-    ASSERT_EQ(bytes_read, strlen(phrase));
     ASSERT(Slice99_primitive_eq(result, expected));
 }
 

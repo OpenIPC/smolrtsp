@@ -15,7 +15,7 @@
  */
 typedef Slice99 SmolRTSP_RequestURI;
 
-SmolRTSP_DeserializeResult SmolRTSP_RequestURI_deserialize(
-    SmolRTSP_RequestURI *restrict self, Slice99 *restrict data, size_t *restrict bytes_read);
+SmolRTSP_DeserializeResult
+SmolRTSP_RequestURI_deserialize(SmolRTSP_RequestURI *restrict self, Slice99 *restrict data);
 
 #endif // SMOLRTSP_REQUEST_URI_H

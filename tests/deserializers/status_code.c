@@ -5,12 +5,9 @@
 #include "../nala.h"
 
 static void check(const char *code, SmolRTSP_StatusCode expected) {
-    size_t bytes_read = 0;
-
     Slice99 data = Slice99_from_str((char *)code);
     SmolRTSP_StatusCode result;
-    const SmolRTSP_DeserializeResult res =
-        SmolRTSP_StatusCode_deserialize(&result, &data, &bytes_read);
+    const SmolRTSP_DeserializeResult res = SmolRTSP_StatusCode_deserialize(&result, &data);
 
     ASSERT_EQ(res, SmolRTSP_DeserializeResultOk);
     ASSERT_EQ(result, expected);

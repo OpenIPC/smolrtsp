@@ -1,41 +1,31 @@
 #include "correctness.h"
-#include "match.h"
+#include "parsing.h"
 #include <smolrtsp/request.h>
 
 void SmolRTSP_Response_serialize(
-    const SmolRTSP_Request *restrict self, SmolRTSP_UserWriter user_writer, void *user_cx) {
-    precondition(self);
+    SmolRTSP_Request self, SmolRTSP_UserWriter user_writer, void *user_cx) {
     precondition(user_writer);
 
-    SmolRTSP_RequestLine_serialize(&self->start_line, user_writer, user_cx);
-    SmolRTSP_HeaderMap_serialize(&self->header_map, user_writer, user_cx);
-    user_writer(self->body.len, self->body.ptr, user_cx);
+    SmolRTSP_RequestLine_serialize(self.start_line, user_writer, user_cx);
+    SmolRTSP_HeaderMap_serialize(self.header_map, user_writer, user_cx);
+    user_writer(self.body.len, self.body.ptr, user_cx);
 }
 
 SmolRTSP_DeserializeResult SmolRTSP_Request_deserialize(
-    SmolRTSP_Request *restrict self, Slice99 *restrict data, size_t *restrict bytes_read,
+    SmolRTSP_Request *restrict self, Slice99 *restrict data,
     SmolRTSP_RequestDeserializerState *restrict state,
     SmolRTSP_RequestLineDeserializerState *restrict start_line_state) {
     precondition(self);
     precondition(data);
-    precondition(bytes_read);
     precondition(state);
-
-#define TRY_PARSE(if_state, expr)                                                                  \
-    do {                                                                                           \
-        if (*state == if_state) {                                                                  \
-            MATCH(expr);                                                                           \
-            (*state)++;                                                                            \
-        }                                                                                          \
-    } while (0)
 
     TRY_PARSE(
         SmolRTSP_RequestDeserializerStateRequestLine,
-        SmolRTSP_RequestLine_deserialize(&self->start_line, data, bytes_read, start_line_state));
+        SmolRTSP_RequestLine_deserialize(&self->start_line, data, start_line_state));
 
     TRY_PARSE(
         SmolRTSP_RequestDeserializerStateHeaderMap,
-        SmolRTSP_HeaderMap_deserialize(&self->header_map, data, bytes_read));
+        SmolRTSP_HeaderMap_deserialize(&self->header_map, data));
 
     bool is_found;
     Slice99 content_length_slice =
@@ -51,19 +41,13 @@ SmolRTSP_DeserializeResult SmolRTSP_Request_deserialize(
 
     TRY_PARSE(
         SmolRTSP_RequestDeserializerStateMessageBody,
-        SmolRTSP_MessageBody_deserialize(&self->body, data, bytes_read, content_length));
-
-#undef TRY_PARSE
+        SmolRTSP_MessageBody_deserialize(&self->body, data, content_length));
 
     return SmolRTSP_DeserializeResultOk;
 }
 
-bool SmolRTSP_Request_eq(
-    const SmolRTSP_Request *restrict lhs, const SmolRTSP_Request *restrict rhs) {
-    precondition(lhs);
-    precondition(rhs);
-
-    return SmolRTSP_RequestLine_eq(&lhs->start_line, &rhs->start_line) &&
-           SmolRTSP_HeaderMap_eq(&lhs->header_map, &rhs->header_map) &&
-           Slice99_primitive_eq(lhs->body, rhs->body);
+bool SmolRTSP_Request_eq(SmolRTSP_Request lhs, SmolRTSP_Request rhs) {
+    return SmolRTSP_RequestLine_eq(lhs.start_line, rhs.start_line) &&
+           SmolRTSP_HeaderMap_eq(lhs.header_map, rhs.header_map) &&
+           Slice99_primitive_eq(lhs.body, rhs.body);
 }

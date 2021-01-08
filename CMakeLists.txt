@@ -32,8 +32,8 @@ add_library(
   src/method.c
   src/header.c
   src/header_map.c
-  src/match.h
-  src/match.c)
+  src/parsing.h
+  src/parsing.c)
 
 target_link_libraries(smolrtsp m)
 

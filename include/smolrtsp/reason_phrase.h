@@ -15,7 +15,7 @@
  */
 typedef Slice99 SmolRTSP_ReasonPhrase;
 
-SmolRTSP_DeserializeResult SmolRTSP_ReasonPhrase_deserialize(
-    SmolRTSP_ReasonPhrase *restrict self, Slice99 *restrict data, size_t *restrict bytes_read);
+SmolRTSP_DeserializeResult
+SmolRTSP_ReasonPhrase_deserialize(SmolRTSP_ReasonPhrase *restrict self, Slice99 *restrict data);
 
 #endif // SMOLRTSP_REASON_PHRASE_H

@@ -1,21 +1,18 @@
 #include "correctness.h"
-#include "match.h"
+#include "parsing.h"
 #include <smolrtsp/method.h>
 
-SmolRTSP_DeserializeResult SmolRTSP_Method_deserialize(
-    SmolRTSP_Method *restrict self, Slice99 *restrict data, size_t *restrict bytes_read) {
+SmolRTSP_DeserializeResult
+SmolRTSP_Method_deserialize(SmolRTSP_Method *restrict self, Slice99 *restrict data) {
     precondition(self);
     precondition(data);
-    precondition(bytes_read);
 
-    size_t bytes_read_temp = 0;
+    MATCH(SmolRTSP_match_whitespaces(data));
+    Slice99 method = *data;
+    MATCH(SmolRTSP_match_ident(data));
+    method = Slice99_from_ptrdiff(method.ptr, data->ptr, sizeof(char));
 
-    MATCH(SmolRTSP_match_whitespaces(data, &bytes_read_temp));
-    self->ptr = data->ptr;
-    MATCH(SmolRTSP_match_ident(data, &bytes_read_temp));
-    *self = Slice99_from_ptrdiff(self->ptr, data->ptr, sizeof(char));
-
-    *bytes_read = bytes_read_temp;
+    *self = method;
 
     return SmolRTSP_DeserializeResultOk;
 }

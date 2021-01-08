@@ -5,15 +5,12 @@
 #include "../nala.h"
 
 static void check(const char *header, SmolRTSP_Header expected) {
-    size_t bytes_read = 0;
-
     Slice99 data = Slice99_from_str((char *)header);
     SmolRTSP_Header result;
-    const SmolRTSP_DeserializeResult res = SmolRTSP_Header_deserialize(&result, &data, &bytes_read);
+    const SmolRTSP_DeserializeResult res = SmolRTSP_Header_deserialize(&result, &data);
 
     ASSERT_EQ(res, SmolRTSP_DeserializeResultOk);
-    ASSERT_EQ(bytes_read, strlen(header));
-    ASSERT(SmolRTSP_Header_eq(&result, &expected));
+    ASSERT(SmolRTSP_Header_eq(result, expected));
 }
 
 TEST(test_deserializers_header) {
