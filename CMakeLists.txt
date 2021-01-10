@@ -1,6 +1,10 @@
 cmake_minimum_required(VERSION 3.0)
 project(smolrtsp LANGUAGES C)
 
+if(CMAKE_C_COMPILER_ID STREQUAL "GNU")
+  add_compile_options(-Wall)
+endif()
+
 include_directories(include libs/slice99)
 
 add_library(

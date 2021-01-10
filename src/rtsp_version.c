@@ -26,8 +26,6 @@ SmolRTSP_RTSPVersion_deserialize(SmolRTSP_RTSPVersion *restrict self, Slice99 *r
     precondition(self);
     precondition(data);
 
-    size_t bytes_read_temp = 0;
-
     MATCH(SmolRTSP_match_whitespaces(data));
     MATCH(SmolRTSP_match_str(data, "RTSP/"));
 

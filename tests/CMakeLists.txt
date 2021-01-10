@@ -1,6 +1,10 @@
 cmake_minimum_required(VERSION 3.0)
 project(tests LANGUAGES C)
 
+if(CMAKE_C_COMPILER_ID STREQUAL "GNU")
+  add_compile_options(-Wall)
+endif()
+
 include_directories(../include ../libs/slice99)
 
 add_executable(
@@ -12,9 +16,11 @@ add_executable(
   message_body.c
   method.c
   reason_phrase.c
-  request_line.c
-  request_uri.c
   request.c
+  request_line.c
+  response.c
+  response_line.c
+  request_uri.c
   rtsp_version.c
   status_code.c)
 

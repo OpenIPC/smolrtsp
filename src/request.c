@@ -2,7 +2,7 @@
 #include "parsing.h"
 #include <smolrtsp/request.h>
 
-void SmolRTSP_Response_serialize(
+void SmolRTSP_Request_serialize(
     SmolRTSP_Request self, SmolRTSP_UserWriter user_writer, void *user_cx) {
     precondition(user_writer);
 

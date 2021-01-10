@@ -39,7 +39,7 @@ typedef struct {
  *
  * @pre `user_writer != NULL`
  */
-void SmolRTSP_Response_serialize(
+void SmolRTSP_Request_serialize(
     SmolRTSP_Request self, SmolRTSP_UserWriter user_writer, void *user_cx);
 
 /**

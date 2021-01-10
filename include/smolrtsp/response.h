@@ -41,6 +41,21 @@ void SmolRTSP_Response_serialize(
     SmolRTSP_Response self, SmolRTSP_UserWriter user_writer, void *user_cx);
 
 /**
+ * A state of deserialization of #SmolRTSP_Response.
+ */
+typedef enum {
+    SmolRTSP_ResponseDeserializerStateResponseLine,
+    SmolRTSP_ResponseDeserializerStateHeaderMap,
+    SmolRTSP_ResponseDeserializerStateMessageBody,
+    SmolRTSP_ResponseDeserializerStateDone,
+} SmolRTSP_ResponseDeserializerState;
+
+SmolRTSP_DeserializeResult SmolRTSP_Response_deserialize(
+    SmolRTSP_Response *restrict self, Slice99 *restrict data,
+    SmolRTSP_ResponseDeserializerState *restrict state,
+    SmolRTSP_ResponseLineDeserializerState *restrict start_line_state);
+
+/**
  * Tests @p lhs and @p rhs for equality.
  *
  * @return `true` if @p lhs and @rhs are equal, `false` otherwise.

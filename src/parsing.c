@@ -71,7 +71,7 @@ SmolRTSP_match_until_str(Slice99 *restrict data, const char *restrict str) {
 
     precondition(str_len > 0);
 
-    if (data->len < strlen(str)) {
+    if (data->len < str_len) {
         return SmolRTSP_DeserializeResultPending;
     }
 
@@ -81,7 +81,8 @@ SmolRTSP_match_until_str(Slice99 *restrict data, const char *restrict str) {
     while (!Slice99_is_empty(*data)) {
         states[0] = match_str_transition(*(const char *)data->ptr, states[0], str);
         states[1] = match_str_transition(*(const char *)data->ptr, states[1], str);
-        *data = Slice99_sub(*data, 1, data->len);
+
+        *data = Slice99_advance(*data, 1);
 
         if (is_str_recognised(states[0], str) || is_str_recognised(states[1], str)) {
             return SmolRTSP_DeserializeResultOk;
