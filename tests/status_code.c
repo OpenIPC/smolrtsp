@@ -15,6 +15,4 @@ static void check(Slice99 code, SmolRTSP_StatusCode expected) {
 TEST(deserialize_status_code) {
     check(Slice99_from_str("404"), SMOLRTSP_STATUS_CODE_NOT_FOUND);
     check(Slice99_from_str("100"), SMOLRTSP_STATUS_CODE_CONTINUE);
-    check(Slice99_from_str("452"), SMOLRTSP_STATUS_CODE_RESERVED);
-    check(Slice99_from_str("466"), SMOLRTSP_STATUS_CODE_KEY_MANAGEMENT_ERROR);
 }
