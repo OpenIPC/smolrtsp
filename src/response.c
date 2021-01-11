@@ -18,7 +18,7 @@ SmolRTSP_DeserializeResult SmolRTSP_Response_deserialize(
     precondition(self);
     precondition(data);
     precondition(state);
-    precondition(start_line_state);]
+    precondition(start_line_state);
 
     TRY_PARSE(
         SmolRTSP_ResponseDeserializerStateResponseLine,
