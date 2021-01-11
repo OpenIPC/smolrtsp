@@ -14,6 +14,14 @@
 #include <stdbool.h>
 
 /**
+ * The start state of #SmolRTSP_RequestLineDeserializerState.
+ */
+#define SMOLRTSP_REQUEST_LINE_DESERIALIZER_START_STATE                                             \
+    (SmolRTSP_RequestLineDeserializerState) {                                                      \
+        .tag = SmolRTSP_RequestLineDeserializerStateMethod,                                        \
+    }
+
+/**
  * An RTSP request line.
  */
 typedef struct {
@@ -48,12 +56,17 @@ void SmolRTSP_RequestLine_serialize(
 /**
  * A state of deserialization of #SmolRTSP_RequestLine.
  */
-typedef enum {
-    SmolRTSP_RequestLineDeserializerStateMethod,
-    SmolRTSP_RequestLineDeserializerStateRequestURI,
-    SmolRTSP_RequestLineDeserializerStateRTSPVersion,
-    SmolRTSP_RequestLineDeserializerStateCRLF,
-    SmolRTSP_RequestLineDeserializerStateDone,
+typedef struct {
+    /**
+     * What part of a request line is being deserialized right now.
+     */
+    enum {
+        SmolRTSP_RequestLineDeserializerStateMethod,
+        SmolRTSP_RequestLineDeserializerStateRequestURI,
+        SmolRTSP_RequestLineDeserializerStateRTSPVersion,
+        SmolRTSP_RequestLineDeserializerStateCRLF,
+        SmolRTSP_RequestLineDeserializerStateDone,
+    } tag;
 } SmolRTSP_RequestLineDeserializerState;
 
 /**

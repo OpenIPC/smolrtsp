@@ -6,11 +6,11 @@
 
 static void check(Slice99 line, SmolRTSP_RequestLine expected) {
     SmolRTSP_RequestLine result;
-    SmolRTSP_RequestLineDeserializerState state = SmolRTSP_RequestLineDeserializerStateMethod;
+    SmolRTSP_RequestLineDeserializerState state = SMOLRTSP_REQUEST_LINE_DESERIALIZER_START_STATE;
     const SmolRTSP_DeserializeResult res = SmolRTSP_RequestLine_deserialize(&result, &line, &state);
 
     ASSERT_EQ(res, SmolRTSP_DeserializeResultOk);
-    ASSERT_EQ(state, SmolRTSP_RequestLineDeserializerStateDone);
+    ASSERT_EQ(state.tag, SmolRTSP_RequestLineDeserializerStateDone);
     ASSERT(SmolRTSP_RequestLine_eq(result, expected));
 }
 

@@ -4,8 +4,7 @@
 
 static void check(Slice99 response_line, SmolRTSP_ResponseLine expected) {
     SmolRTSP_ResponseLine result;
-    SmolRTSP_ResponseLineDeserializerState state =
-        SmolRTSP_ResponseLineDeserializerStateRTSPVersion;
+    SmolRTSP_ResponseLineDeserializerState state = SMOLRTSP_RESPONSE_LINE_DESERIALIZER_START_STATE;
     const SmolRTSP_DeserializeResult res =
         SmolRTSP_ResponseLine_deserialize(&result, &response_line, &state);
 

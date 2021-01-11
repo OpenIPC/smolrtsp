@@ -18,9 +18,9 @@
 
 #define TRY_PARSE(if_state, expr)                                                                  \
     do {                                                                                           \
-        if (*state == if_state) {                                                                  \
+        if (state->tag == if_state) {                                                              \
             MATCH(expr);                                                                           \
-            (*state)++;                                                                            \
+            state->tag++;                                                                          \
         }                                                                                          \
     } while (0)
 

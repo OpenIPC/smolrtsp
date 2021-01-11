@@ -13,16 +13,14 @@ void SmolRTSP_Response_serialize(
 
 SmolRTSP_DeserializeResult SmolRTSP_Response_deserialize(
     SmolRTSP_Response *restrict self, Slice99 *restrict data,
-    SmolRTSP_ResponseDeserializerState *restrict state,
-    SmolRTSP_ResponseLineDeserializerState *restrict start_line_state) {
+    SmolRTSP_ResponseDeserializerState *restrict state) {
     precondition(self);
     precondition(data);
     precondition(state);
-    precondition(start_line_state);
 
     TRY_PARSE(
         SmolRTSP_ResponseDeserializerStateResponseLine,
-        SmolRTSP_ResponseLine_deserialize(&self->start_line, data, start_line_state));
+        SmolRTSP_ResponseLine_deserialize(&self->start_line, data, &state->start_line));
 
     TRY_PARSE(
         SmolRTSP_ResponseDeserializerStateHeaderMap,

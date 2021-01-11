@@ -11,6 +11,15 @@
 #include <smolrtsp/response_line.h>
 
 /**
+ * The start state of #SmolRTSP_ResponseDeserializerState.
+ */
+#define SMOLRTSP_RESPONSE_DESERIALIZER_START_STATE                                                 \
+    (SmolRTSP_ResponseDeserializerState) {                                                         \
+        .start_line = SMOLRTSP_RESPONSE_LINE_DESERIALIZER_START_STATE,                             \
+        .tag = SmolRTSP_ResponseDeserializerStateResponseLine,                                     \
+    }
+
+/**
  * An RTSP response.
  */
 typedef struct {
@@ -45,11 +54,21 @@ void SmolRTSP_Response_serialize(
 /**
  * A state of deserialization of #SmolRTSP_Response.
  */
-typedef enum {
-    SmolRTSP_ResponseDeserializerStateResponseLine,
-    SmolRTSP_ResponseDeserializerStateHeaderMap,
-    SmolRTSP_ResponseDeserializerStateMessageBody,
-    SmolRTSP_ResponseDeserializerStateDone,
+typedef struct {
+    /**
+     * The state of a response line being deserialized.
+     */
+    SmolRTSP_ResponseLineDeserializerState start_line;
+
+    /**
+     * What part of a response is being deserialized right now.
+     */
+    enum {
+        SmolRTSP_ResponseDeserializerStateResponseLine,
+        SmolRTSP_ResponseDeserializerStateHeaderMap,
+        SmolRTSP_ResponseDeserializerStateMessageBody,
+        SmolRTSP_ResponseDeserializerStateDone,
+    } tag;
 } SmolRTSP_ResponseDeserializerState;
 
 /**
@@ -58,12 +77,10 @@ typedef enum {
  * @pre `self != NULL`
  * @pre `data != NULL`
  * @pre `state != NULL`
- * @pre `start_line_state != NULL`
  */
 SmolRTSP_DeserializeResult SmolRTSP_Response_deserialize(
     SmolRTSP_Response *restrict self, Slice99 *restrict data,
-    SmolRTSP_ResponseDeserializerState *restrict state,
-    SmolRTSP_ResponseLineDeserializerState *restrict start_line_state);
+    SmolRTSP_ResponseDeserializerState *restrict state);
 
 /**
  * Tests @p lhs and @p rhs for equality.

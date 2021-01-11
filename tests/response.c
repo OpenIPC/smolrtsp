@@ -11,11 +11,9 @@ static void check(Slice99 response, SmolRTSP_Response expected) {
                 .size = 3,
             },
     };
-    SmolRTSP_ResponseDeserializerState state = SmolRTSP_ResponseDeserializerStateResponseLine;
-    SmolRTSP_ResponseLineDeserializerState start_line_state =
-        SmolRTSP_ResponseLineDeserializerStateRTSPVersion;
+    SmolRTSP_ResponseDeserializerState state = SMOLRTSP_RESPONSE_DESERIALIZER_START_STATE;
     const SmolRTSP_DeserializeResult res =
-        SmolRTSP_Response_deserialize(&result, &response, &state, &start_line_state);
+        SmolRTSP_Response_deserialize(&result, &response, &state);
 
     ASSERT_EQ(res, SmolRTSP_DeserializeResultOk);
     ASSERT(SmolRTSP_Response_eq(result, expected));

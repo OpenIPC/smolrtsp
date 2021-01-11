@@ -13,14 +13,11 @@ static void check(Slice99 request, SmolRTSP_Request expected) {
                 .size = 3,
             },
     };
-    SmolRTSP_RequestDeserializerState state = SmolRTSP_RequestDeserializerStateRequestLine;
-    SmolRTSP_RequestLineDeserializerState start_line_state =
-        SmolRTSP_RequestLineDeserializerStateMethod;
-    const SmolRTSP_DeserializeResult res =
-        SmolRTSP_Request_deserialize(&result, &request, &state, &start_line_state);
+    SmolRTSP_RequestDeserializerState state = SMOLRTSP_REQUEST_DESERIALIZER_START_STATE;
+    const SmolRTSP_DeserializeResult res = SmolRTSP_Request_deserialize(&result, &request, &state);
 
     ASSERT_EQ(res, SmolRTSP_DeserializeResultOk);
-    ASSERT_EQ(state, SmolRTSP_RequestDeserializerStateDone);
+    ASSERT_EQ(state.tag, SmolRTSP_RequestDeserializerStateDone);
     ASSERT(SmolRTSP_Request_eq(result, expected));
 }
 

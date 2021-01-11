@@ -11,6 +11,14 @@
 #include <smolrtsp/status_code.h>
 
 /**
+ * The start state of #SmolRTSP_ResponseLineDeserializerState.
+ */
+#define SMOLRTSP_RESPONSE_LINE_DESERIALIZER_START_STATE                                            \
+    (SmolRTSP_ResponseLineDeserializerState) {                                                     \
+        .tag = SmolRTSP_ResponseLineDeserializerStateRTSPVersion,                                  \
+    }
+
+/**
  * An RTSP response line.
  */
 typedef struct {
@@ -45,11 +53,16 @@ void SmolRTSP_ResponseLine_serialize(
 /**
  * A state of deserialization of #SmolRTSP_ResponseLine.
  */
-typedef enum {
-    SmolRTSP_ResponseLineDeserializerStateRTSPVersion,
-    SmolRTSP_ResponseLineDeserializerStateStatusCode,
-    SmolRTSP_ResponseLineDeserializerStateReasonPhrase,
-    SmolRTSP_ResponseLineDeserializerStateDone,
+typedef struct {
+    /**
+     * What part of a respnose line is being deserialized right now.
+     */
+    enum {
+        SmolRTSP_ResponseLineDeserializerStateRTSPVersion,
+        SmolRTSP_ResponseLineDeserializerStateStatusCode,
+        SmolRTSP_ResponseLineDeserializerStateReasonPhrase,
+        SmolRTSP_ResponseLineDeserializerStateDone,
+    } tag;
 } SmolRTSP_ResponseLineDeserializerState;
 
 /**
