@@ -15,6 +15,12 @@
  */
 typedef Slice99 SmolRTSP_RequestURI;
 
+/**
+ * Deserializes @p data into @p self.
+ *
+ * @pre `self != NULL`
+ * @pre `data != NULL`
+ */
 SmolRTSP_DeserializeResult
 SmolRTSP_RequestURI_deserialize(SmolRTSP_RequestURI *restrict self, Slice99 *restrict data);
 

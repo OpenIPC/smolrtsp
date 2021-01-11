@@ -15,8 +15,10 @@ SmolRTSP_DeserializeResult SmolRTSP_Response_deserialize(
     SmolRTSP_Response *restrict self, Slice99 *restrict data,
     SmolRTSP_ResponseDeserializerState *restrict state,
     SmolRTSP_ResponseLineDeserializerState *restrict start_line_state) {
+    precondition(self);
     precondition(data);
     precondition(state);
+    precondition(start_line_state);]
 
     TRY_PARSE(
         SmolRTSP_ResponseDeserializerStateResponseLine,

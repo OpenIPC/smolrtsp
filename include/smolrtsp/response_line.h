@@ -33,6 +33,8 @@ typedef struct {
 /**
  * Serializes @p self into @p user_writer.
  *
+ * @param[in] self The instance to be serialized.
+ * @param[in] user_writer The function to be provided with serialized data (possibly in chunks).
  * @param[in] user_cx Some value provided to @p user_writer on each write.
  *
  * @pre `user_writer != NULL`
@@ -41,7 +43,7 @@ void SmolRTSP_ResponseLine_serialize(
     SmolRTSP_ResponseLine self, SmolRTSP_UserWriter user_writer, void *user_cx);
 
 /**
- * A state of deserialization of #SmolRTSP_RequestLine.
+ * A state of deserialization of #SmolRTSP_ResponseLine.
  */
 typedef enum {
     SmolRTSP_ResponseLineDeserializerStateRTSPVersion,
@@ -50,6 +52,13 @@ typedef enum {
     SmolRTSP_ResponseLineDeserializerStateDone,
 } SmolRTSP_ResponseLineDeserializerState;
 
+/**
+ * Deserializes @p data into @p self.
+ *
+ * @pre `self != NULL`
+ * @pre `data != NULL`
+ * @pre `state != NULL`
+ */
 SmolRTSP_DeserializeResult SmolRTSP_ResponseLine_deserialize(
     SmolRTSP_ResponseLine *restrict self, Slice99 *restrict data,
     SmolRTSP_ResponseLineDeserializerState *restrict state);
@@ -57,7 +66,7 @@ SmolRTSP_DeserializeResult SmolRTSP_ResponseLine_deserialize(
 /**
  * Tests @p lhs and @p rhs for equality.
  *
- * @return `true` if @p lhs and @rhs are equal, `false` otherwise.
+ * @return `true` if @p lhs and @p rhs are equal, `false` otherwise.
  */
 bool SmolRTSP_ResponseLine_eq(SmolRTSP_ResponseLine lhs, SmolRTSP_ResponseLine rhs);
 

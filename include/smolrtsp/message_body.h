@@ -15,6 +15,12 @@
  */
 typedef Slice99 SmolRTSP_MessageBody;
 
+/**
+ * Deserializes @p data into @p self.
+ *
+ * @pre `self != NULL`
+ * @pre `data != NULL`
+ */
 SmolRTSP_DeserializeResult SmolRTSP_MessageBody_deserialize(
     SmolRTSP_MessageBody *restrict self, Slice99 *restrict data, size_t content_length);
 

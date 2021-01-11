@@ -41,6 +41,8 @@ Slice99 SmolRTSP_HeaderMap_find(SmolRTSP_HeaderMap self, Slice99 key, bool *rest
 /**
  * Serializes @p self to @p user_writer.
  *
+ * @param[in] self The instance to be serialized.
+ * @param[in] user_writer The function to be provided with serialized data (possibly in chunks).
  * @param[in] user_cx Some value provided to @p user_writer on each write.
  *
  * @pre `user_writer != NULL`
@@ -48,13 +50,19 @@ Slice99 SmolRTSP_HeaderMap_find(SmolRTSP_HeaderMap self, Slice99 key, bool *rest
 void SmolRTSP_HeaderMap_serialize(
     SmolRTSP_HeaderMap self, SmolRTSP_UserWriter user_writer, void *user_cx);
 
+/**
+ * Deserializes @p data into @p self.
+ *
+ * @pre `self != NULL`
+ * @pre `data != NULL`
+ */
 SmolRTSP_DeserializeResult
 SmolRTSP_HeaderMap_deserialize(SmolRTSP_HeaderMap *restrict self, Slice99 *restrict data);
 
 /**
  * Tests @p lhs and @p rhs for equality.
  *
- * @return `true` if @p lhs and @rhs are equal, `false` otherwise.
+ * @return `true` if @p lhs and @p rhs are equal, `false` otherwise.
  */
 bool SmolRTSP_HeaderMap_eq(SmolRTSP_HeaderMap lhs, SmolRTSP_HeaderMap rhs);
 

@@ -35,6 +35,8 @@ typedef struct {
 /**
  * Serializes @p self into @p user_writer.
  *
+ * @param[in] self The instance to be serialized.
+ * @param[in] user_writer The function to be provided with serialized data (possibly in chunks).
  * @param[in] user_cx Some value provided to @p user_writer on each write.
  *
  * @pre `user_writer != NULL`
@@ -52,6 +54,14 @@ typedef enum {
     SmolRTSP_RequestDeserializerStateDone,
 } SmolRTSP_RequestDeserializerState;
 
+/**
+ * Deserializes @p data into @p self.
+ *
+ * @pre `self != NULL`
+ * @pre `data != NULL`
+ * @pre `state != NULL`
+ * @pre `start_line_state != NULL`
+ */
 SmolRTSP_DeserializeResult SmolRTSP_Request_deserialize(
     SmolRTSP_Request *restrict self, Slice99 *restrict data,
     SmolRTSP_RequestDeserializerState *restrict state,
@@ -60,7 +70,7 @@ SmolRTSP_DeserializeResult SmolRTSP_Request_deserialize(
 /**
  * Tests @p lhs and @p rhs for equality.
  *
- * @return `true` if @p lhs and @rhs are equal, `false` otherwise.
+ * @return `true` if @p lhs and @p rhs are equal, `false` otherwise.
  */
 bool SmolRTSP_Request_eq(SmolRTSP_Request lhs, SmolRTSP_Request rhs);
 
