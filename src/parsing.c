@@ -5,7 +5,7 @@
 #include <string.h>
 
 SmolRTSP_DeserializeResult
-SmolRTSP_match_until(Slice99 *restrict data, SmolRTSP_Matcher matcher, void *cx) {
+SmolRTSP_match_until(Slice99 *restrict data, bool (*matcher)(char c, void *cx), void *cx) {
     precondition(data);
     precondition(matcher);
 
@@ -17,7 +17,7 @@ SmolRTSP_match_until(Slice99 *restrict data, SmolRTSP_Matcher matcher, void *cx)
         *data = Slice99_advance(*data, 1);
     }
 
-    return SmolRTSP_DeserializeResultOk;
+    return SmolRTSP_DeserializeResultPending;
 }
 
 static bool whitespace_matcher(char c, void *cx) {

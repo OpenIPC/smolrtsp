@@ -4,8 +4,7 @@
 
 #include "nala.h"
 
-static void check(Slice99 uri) {
-    SmolRTSP_RequestURI expected = uri;
+static void check(Slice99 uri, SmolRTSP_RequestURI expected) {
     SmolRTSP_RequestURI result;
     const SmolRTSP_DeserializeResult res = SmolRTSP_RequestURI_deserialize(&result, &uri);
 
@@ -14,6 +13,6 @@ static void check(Slice99 uri) {
 }
 
 TEST(deserialize_request_uri) {
-    check(Slice99_from_str("blah-blah-blah"));
-    check(Slice99_from_str("http://example.com"));
+    check(Slice99_from_str("blah-blah-blah "), Slice99_from_str("blah-blah-blah"));
+    check(Slice99_from_str("http://example.com "), Slice99_from_str("http://example.com"));
 }

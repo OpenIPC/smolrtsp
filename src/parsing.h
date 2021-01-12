@@ -24,10 +24,8 @@
         }                                                                                          \
     } while (0)
 
-typedef bool (*SmolRTSP_Matcher)(char c, void *cx);
-
 SmolRTSP_DeserializeResult
-SmolRTSP_match_until(Slice99 *restrict data, SmolRTSP_Matcher matcher, void *cx);
+SmolRTSP_match_until(Slice99 *restrict data, bool (*matcher)(char c, void *cx), void *cx);
 SmolRTSP_DeserializeResult
 SmolRTSP_match_until_str(Slice99 *restrict data, const char *restrict str);
 
