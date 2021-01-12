@@ -1,18 +1,35 @@
 #include <smolrtsp/status_code.h>
 
-#include <string.h>
-
 #include "nala.h"
 
-static void check(Slice99 code, SmolRTSP_StatusCode expected) {
+static void assert_pending(Slice99 input) {
     SmolRTSP_StatusCode result;
-    const SmolRTSP_DeserializeResult res = SmolRTSP_StatusCode_deserialize(&result, &code);
+    SmolRTSP_DeserializeResult res = SmolRTSP_StatusCode_deserialize(&result, &input);
+    ASSERT_EQ(res, SmolRTSP_DeserializeResultPending);
+}
 
+static void assert_ok(Slice99 input, SmolRTSP_StatusCode expected) {
+    SmolRTSP_StatusCode result;
+    SmolRTSP_DeserializeResult res = SmolRTSP_StatusCode_deserialize(&result, &input);
     ASSERT_EQ(res, SmolRTSP_DeserializeResultOk);
-    ASSERT_EQ(result, expected);
+    ASSERT(result == expected);
+}
+
+static void assert_err(Slice99 input) {
+    SmolRTSP_StatusCode result;
+    SmolRTSP_DeserializeResult res = SmolRTSP_StatusCode_deserialize(&result, &input);
+    ASSERT_EQ(res, SmolRTSP_DeserializeResultErr);
 }
 
 TEST(deserialize_status_code) {
-    check(Slice99_from_str("404 "), SMOLRTSP_STATUS_CODE_NOT_FOUND);
-    check(Slice99_from_str("100 "), SMOLRTSP_STATUS_CODE_CONTINUE);
+    const Slice99 input = Slice99_from_str("404 ");
+
+    for (size_t i = 0; i < input.len - 1; i++) {
+        assert_pending(Slice99_update_len(input, i));
+    }
+
+    assert_ok(input, SMOLRTSP_STATUS_CODE_NOT_FOUND);
+
+    assert_err(Slice99_from_str("blah"));
+    assert_err(Slice99_from_str("~ 2424 blah"));
 }

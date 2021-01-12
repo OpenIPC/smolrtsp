@@ -1,22 +1,26 @@
 #include <smolrtsp/reason_phrase.h>
 
-#include <string.h>
-
 #include "nala.h"
 
-static void check(Slice99 phrase) {
-    Slice99 expected = phrase;
-    expected.len -= strlen("\r\n");
-
+static void assert_pending(Slice99 input) {
     SmolRTSP_ReasonPhrase result;
-    const SmolRTSP_DeserializeResult res = SmolRTSP_ReasonPhrase_deserialize(&result, &phrase);
+    SmolRTSP_DeserializeResult res = SmolRTSP_ReasonPhrase_deserialize(&result, &input);
+    ASSERT_EQ(res, SmolRTSP_DeserializeResultPending);
+}
 
+static void assert_ok(Slice99 input, SmolRTSP_ReasonPhrase expected) {
+    SmolRTSP_ReasonPhrase result;
+    SmolRTSP_DeserializeResult res = SmolRTSP_ReasonPhrase_deserialize(&result, &input);
     ASSERT_EQ(res, SmolRTSP_DeserializeResultOk);
     ASSERT(Slice99_primitive_eq(result, expected));
 }
 
 TEST(deserialize_reason_phrase) {
-    check(Slice99_from_str("Moved Temporarily\r\n"));
-    check(Slice99_from_str("Forbidden\r\n"));
-    check(Slice99_from_str("Header Field Not Valid for Resource\r\n"));
+    const Slice99 input = Slice99_from_str("Moved Temporarily\r\n");
+
+    for (size_t i = 0; i < input.len - 1; i++) {
+        assert_pending(Slice99_update_len(input, i));
+    }
+
+    assert_ok(input, Slice99_from_str("Moved Temporarily"));
 }

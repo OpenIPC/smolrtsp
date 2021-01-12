@@ -1,18 +1,26 @@
 #include <smolrtsp/request_uri.h>
 
-#include <string.h>
-
 #include "nala.h"
 
-static void check(Slice99 uri, SmolRTSP_RequestURI expected) {
+static void assert_pending(Slice99 input) {
     SmolRTSP_RequestURI result;
-    const SmolRTSP_DeserializeResult res = SmolRTSP_RequestURI_deserialize(&result, &uri);
+    SmolRTSP_DeserializeResult res = SmolRTSP_RequestURI_deserialize(&result, &input);
+    ASSERT_EQ(res, SmolRTSP_DeserializeResultPending);
+}
 
+static void assert_ok(Slice99 input, SmolRTSP_RequestURI expected) {
+    SmolRTSP_RequestURI result;
+    SmolRTSP_DeserializeResult res = SmolRTSP_RequestURI_deserialize(&result, &input);
     ASSERT_EQ(res, SmolRTSP_DeserializeResultOk);
     ASSERT(Slice99_primitive_eq(result, expected));
 }
 
 TEST(deserialize_request_uri) {
-    check(Slice99_from_str("blah-blah-blah "), Slice99_from_str("blah-blah-blah"));
-    check(Slice99_from_str("http://example.com "), Slice99_from_str("http://example.com"));
+    const Slice99 input = Slice99_from_str("http://example.com ");
+
+    for (size_t i = 0; i < input.len - 1; i++) {
+        assert_pending(Slice99_update_len(input, i));
+    }
+
+    assert_ok(input, Slice99_from_str("http://example.com"));
 }

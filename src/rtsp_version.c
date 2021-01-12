@@ -33,7 +33,6 @@ SmolRTSP_RTSPVersion_deserialize(SmolRTSP_RTSPVersion *restrict self, Slice99 *r
     MATCH(SmolRTSP_match_numeric(data));
     major = Slice99_from_ptrdiff(major.ptr, data->ptr, sizeof(char));
     MATCH(SmolRTSP_match_char(data, '.'));
-
     Slice99 minor = *data;
     MATCH(SmolRTSP_match_numeric(data));
     minor = Slice99_from_ptrdiff(minor.ptr, data->ptr, sizeof(char));

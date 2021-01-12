@@ -2,6 +2,7 @@
 #include "correctness.h"
 
 #include <ctype.h>
+#include <math.h>
 #include <string.h>
 
 SmolRTSP_DeserializeResult
@@ -110,16 +111,17 @@ SmolRTSP_DeserializeResult SmolRTSP_match_str(Slice99 *restrict data, const char
 
     const size_t str_len = strlen(str);
 
+    const bool are_coinciding = memcmp(data->ptr, str, fmin(data->len, str_len)) == 0;
+    if (!are_coinciding) {
+        return SmolRTSP_DeserializeResultErr;
+    }
+
     if (data->len < str_len) {
         return SmolRTSP_DeserializeResultPending;
     }
 
-    if (memcmp(data->ptr, str, str_len) == 0) {
-        *data = Slice99_advance(*data, str_len);
-        return SmolRTSP_DeserializeResultOk;
-    }
-
-    return SmolRTSP_DeserializeResultErr;
+    *data = Slice99_advance(*data, str_len);
+    return SmolRTSP_DeserializeResultOk;
 }
 
 SmolRTSP_DeserializeResult SmolRTSP_match_whitespaces(Slice99 *restrict data) {
@@ -137,17 +139,43 @@ SmolRTSP_DeserializeResult SmolRTSP_match_non_whitespaces(Slice99 *restrict data
 SmolRTSP_DeserializeResult SmolRTSP_match_numeric(Slice99 *restrict data) {
     precondition(data);
 
-    return SmolRTSP_match_until(data, numeric_matcher, NULL);
+    const Slice99 backup = *data;
+
+    const SmolRTSP_DeserializeResult res = SmolRTSP_match_until(data, numeric_matcher, NULL);
+    const bool not_numeric = backup.len == data->len && backup.ptr == data->ptr && data->len > 0;
+    if (not_numeric) {
+        return SmolRTSP_DeserializeResultErr;
+    }
+
+    return res;
 }
 
 SmolRTSP_DeserializeResult SmolRTSP_match_ident(Slice99 *restrict data) {
     precondition(data);
 
-    return SmolRTSP_match_until(data, ident_matcher, NULL);
+    const Slice99 backup = *data;
+
+    const SmolRTSP_DeserializeResult res = SmolRTSP_match_until(data, ident_matcher, NULL);
+    const bool not_ident = backup.len == data->len && backup.ptr == data->ptr && data->len > 0;
+    if (not_ident) {
+        return SmolRTSP_DeserializeResultErr;
+    }
+
+    return res;
 }
 
 SmolRTSP_DeserializeResult SmolRTSP_match_header_name(Slice99 *restrict data) {
     precondition(data);
 
-    return SmolRTSP_match_until(data, header_name_char_matcher, NULL);
+    const Slice99 backup = *data;
+
+    const SmolRTSP_DeserializeResult res =
+        SmolRTSP_match_until(data, header_name_char_matcher, NULL);
+    const bool not_header_name =
+        backup.len == data->len && backup.ptr == data->ptr && data->len > 0;
+    if (not_header_name) {
+        return SmolRTSP_DeserializeResultErr;
+    }
+
+    return res;
 }

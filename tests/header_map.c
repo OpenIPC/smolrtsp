@@ -1,48 +1,69 @@
 #include <smolrtsp/header_map.h>
 
-#include <string.h>
-
 #include "nala.h"
 
-static void check(const char *header_map, SmolRTSP_HeaderMap expected) {
+static void assert_pending(Slice99 input) {
     SmolRTSP_HeaderMap result = {
         .headers = (SmolRTSP_Header[3]){0},
         .len = 0,
         .size = 3,
     };
+    SmolRTSP_DeserializeResult res = SmolRTSP_HeaderMap_deserialize(&result, &input);
+    ASSERT_EQ(res, SmolRTSP_DeserializeResultPending);
+}
 
-    Slice99 data = Slice99_from_str((char *)header_map);
-    const SmolRTSP_DeserializeResult res = SmolRTSP_HeaderMap_deserialize(&result, &data);
-
+static void assert_ok(Slice99 input, SmolRTSP_HeaderMap expected) {
+    SmolRTSP_HeaderMap result = {
+        .headers = (SmolRTSP_Header[3]){0},
+        .len = 0,
+        .size = 3,
+    };
+    SmolRTSP_DeserializeResult res = SmolRTSP_HeaderMap_deserialize(&result, &input);
     ASSERT_EQ(res, SmolRTSP_DeserializeResultOk);
     ASSERT(SmolRTSP_HeaderMap_eq(result, expected));
 }
 
-TEST(deserialize_header_map) {
-    SmolRTSP_Header headers[] = {
-        {
-            SMOLRTSP_HEADER_NAME_CONTENT_LENGTH,
-            Slice99_from_str("10"),
-        },
-        {
-            SMOLRTSP_HEADER_NAME_ACCEPT_LANGUAGE,
-            Slice99_from_str("English"),
-        },
-        {
-            SMOLRTSP_HEADER_NAME_CONTENT_TYPE,
-            Slice99_from_str("application/octet-stream"),
-        },
+static void assert_err(Slice99 input) {
+    SmolRTSP_HeaderMap result = {
+        .headers = (SmolRTSP_Header[3]){0},
+        .len = 0,
+        .size = 3,
     };
+    SmolRTSP_DeserializeResult res = SmolRTSP_HeaderMap_deserialize(&result, &input);
+    ASSERT_EQ(res, SmolRTSP_DeserializeResultErr);
+}
 
+TEST(deserialize_header_map) {
     const SmolRTSP_HeaderMap expected = {
         .len = 3,
         .size = 3,
-        .headers = headers,
+        .headers =
+            (SmolRTSP_Header[]){
+                {
+                    SMOLRTSP_HEADER_NAME_CONTENT_LENGTH,
+                    Slice99_from_str("10"),
+                },
+                {
+                    SMOLRTSP_HEADER_NAME_ACCEPT_LANGUAGE,
+                    Slice99_from_str("English"),
+                },
+                {
+                    SMOLRTSP_HEADER_NAME_CONTENT_TYPE,
+                    Slice99_from_str("application/octet-stream"),
+                },
+            },
     };
 
-    const char *header_map =
+    const Slice99 input = Slice99_from_str(
         "Content-Length: 10\r\nAccept-Language: English\r\nContent-Type: "
-        "application/octet-stream\r\n\r\n";
+        "application/octet-stream\r\n\r\n");
 
-    check(header_map, expected);
+    for (size_t i = 0; i < input.len - 1; i++) {
+        assert_pending(Slice99_update_len(input, i));
+    }
+
+    assert_ok(input, expected);
+
+    assert_err(Slice99_from_str("~29838"));
+    assert_err(Slice99_from_str("Content-Length: 10\r\n38@@2: 10"));
 }
