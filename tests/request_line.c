@@ -13,26 +13,22 @@ TEST(deserialize_request_line) {
     SmolRTSP_RequestLine result;
     SmolRTSP_DeserializeResult res;
 
-    res = SmolRTSP_RequestLine_deserialize(
-        &result, (Slice99[]){Slice99_from_str("DESCRIBE ")}, &state);
-    ASSERT_EQ(res, SmolRTSP_DeserializeResultPending);
-    ASSERT_EQ(state.tag, SmolRTSP_RequestLineDeserializerStateRequestURI);
+#define CHECK(data, expected_res, expected_state)                                                  \
+    res = SmolRTSP_RequestLine_deserialize(&result, (Slice99[]){Slice99_from_str(data)}, &state);  \
+    ASSERT_EQ(res, SmolRTSP_DeserializeResult##expected_res);                                      \
+    ASSERT_EQ(state.tag, SmolRTSP_RequestLineDeserializerState##expected_state)
+
+    CHECK("DESCRIBE ", Pending, RequestURI);
     assert(Slice99_primitive_eq(result.method, expected.method));
 
-    res = SmolRTSP_RequestLine_deserialize(
-        &result, (Slice99[]){Slice99_from_str("http://example.com ")}, &state);
-    ASSERT_EQ(res, SmolRTSP_DeserializeResultPending);
-    ASSERT_EQ(state.tag, SmolRTSP_RequestLineDeserializerStateRTSPVersion);
+    CHECK("http://example.com ", Pending, RTSPVersion);
     assert(Slice99_primitive_eq(result.uri, expected.uri));
 
-    res = SmolRTSP_RequestLine_deserialize(
-        &result, (Slice99[]){Slice99_from_str("RTSP/1.1\r")}, &state);
-    ASSERT_EQ(res, SmolRTSP_DeserializeResultPending);
-    ASSERT_EQ(state.tag, SmolRTSP_RequestLineDeserializerStateCRLF);
+    CHECK("RTSP/1.1\r", Pending, CRLF);
     assert(SmolRTSP_RequestLine_eq(result, expected));
 
-    res = SmolRTSP_RequestLine_deserialize(&result, (Slice99[]){Slice99_from_str("\r\n")}, &state);
-    ASSERT_EQ(res, SmolRTSP_DeserializeResultOk);
-    ASSERT_EQ(state.tag, SmolRTSP_RequestLineDeserializerStateDone);
+    CHECK("\r\n", Ok, Done);
     assert(SmolRTSP_RequestLine_eq(result, expected));
+
+#undef CHECK
 }

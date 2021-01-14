@@ -44,34 +44,25 @@ TEST(deserialize_response) {
     };
     SmolRTSP_DeserializeResult res;
 
-    res = SmolRTSP_Response_deserialize(
-        &result, (Slice99[]){Slice99_from_str("RTSP/1.1 200 OK\r\n")}, &state);
-    ASSERT_EQ(res, SmolRTSP_DeserializeResultPending);
-    ASSERT_EQ(state.tag, SmolRTSP_ResponseDeserializerStateHeaderMap);
+#define CHECK(data, expected_res, expected_state)                                                  \
+    res = SmolRTSP_Response_deserialize(&result, (Slice99[]){Slice99_from_str(data)}, &state);     \
+    ASSERT_EQ(res, SmolRTSP_DeserializeResult##expected_res);                                      \
+    ASSERT_EQ(state.tag, SmolRTSP_ResponseDeserializerState##expected_state)
+
+    CHECK("RTSP/1.1 200 OK\r\n", Pending, HeaderMap);
     assert(SmolRTSP_ResponseLine_eq(result.start_line, expected.start_line));
 
-    res = SmolRTSP_Response_deserialize(
-        &result, (Slice99[]){Slice99_from_str("Content-Length: 10\r\n")}, &state);
-    ASSERT_EQ(res, SmolRTSP_DeserializeResultPending);
-    ASSERT_EQ(state.tag, SmolRTSP_ResponseDeserializerStateHeaderMap);
+    CHECK("Content-Length: 10\r\n", Pending, HeaderMap);
     assert(SmolRTSP_Header_eq(result.header_map.headers[0], expected.header_map.headers[0]));
 
-    res = SmolRTSP_Response_deserialize(
-        &result, (Slice99[]){Slice99_from_str("Accept-Language: English\r\n")}, &state);
-    ASSERT_EQ(res, SmolRTSP_DeserializeResultPending);
-    ASSERT_EQ(state.tag, SmolRTSP_ResponseDeserializerStateHeaderMap);
+    CHECK("Accept-Language: English\r\n", Pending, HeaderMap);
     assert(SmolRTSP_Header_eq(result.header_map.headers[1], expected.header_map.headers[1]));
 
-    res = SmolRTSP_Response_deserialize(
-        &result, (Slice99[]){Slice99_from_str("Content-Type: application/octet-stream\r\n")},
-        &state);
-    ASSERT_EQ(res, SmolRTSP_DeserializeResultPending);
-    ASSERT_EQ(state.tag, SmolRTSP_ResponseDeserializerStateHeaderMap);
+    CHECK("Content-Type: application/octet-stream\r\n", Pending, HeaderMap);
     assert(SmolRTSP_Header_eq(result.header_map.headers[2], expected.header_map.headers[2]));
 
-    res = SmolRTSP_Response_deserialize(
-        &result, (Slice99[]){Slice99_from_str("\r\n0123456789")}, &state);
-    ASSERT_EQ(res, SmolRTSP_DeserializeResultOk);
-    ASSERT_EQ(state.tag, SmolRTSP_ResponseDeserializerStateDone);
+    CHECK("\r\n0123456789", Ok, Done);
     assert(SmolRTSP_Response_eq(result, expected));
+
+#undef CHECK
 }

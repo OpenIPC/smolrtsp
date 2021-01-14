@@ -13,20 +13,19 @@ TEST(deserialize_response_line) {
     SmolRTSP_ResponseLine result;
     SmolRTSP_DeserializeResult res;
 
-    res = SmolRTSP_ResponseLine_deserialize(
-        &result, (Slice99[]){Slice99_from_str("RTSP/1.1 ")}, &state);
-    ASSERT_EQ(res, SmolRTSP_DeserializeResultPending);
-    ASSERT_EQ(state.tag, SmolRTSP_ResponseLineDeserializerStateStatusCode);
+#define CHECK(data, expected_res, expected_state)                                                  \
+    res = SmolRTSP_ResponseLine_deserialize(&result, (Slice99[]){Slice99_from_str(data)}, &state); \
+    ASSERT_EQ(res, SmolRTSP_DeserializeResult##expected_res);                                      \
+    ASSERT_EQ(state.tag, SmolRTSP_ResponseLineDeserializerState##expected_state)
+
+    CHECK("RTSP/1.1 ", Pending, StatusCode);
     assert(SmolRTSP_RTSPVersion_eq(result.version, expected.version));
 
-    res = SmolRTSP_ResponseLine_deserialize(&result, (Slice99[]){Slice99_from_str("200 ")}, &state);
-    ASSERT_EQ(res, SmolRTSP_DeserializeResultPending);
-    ASSERT_EQ(state.tag, SmolRTSP_ResponseLineDeserializerStateReasonPhrase);
+    CHECK("200 ", Pending, ReasonPhrase);
     assert(result.code == expected.code);
 
-    res =
-        SmolRTSP_ResponseLine_deserialize(&result, (Slice99[]){Slice99_from_str("OK\r\n")}, &state);
-    ASSERT_EQ(res, SmolRTSP_DeserializeResultOk);
-    ASSERT_EQ(state.tag, SmolRTSP_ResponseLineDeserializerStateDone);
+    CHECK("OK\r\n", Ok, Done);
     assert(SmolRTSP_ResponseLine_eq(result, expected));
+
+#undef CHECK
 }
