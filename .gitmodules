@@ -1,6 +1,6 @@
 [submodule "run-clang-format"]
 	path = run-clang-format
 	url = https://github.com/Sarcasm/run-clang-format.git
-[submodule "libs/slice99"]
-	path = libs/slice99
+[submodule "tests/slice99"]
+	path = tests/slice99
 	url = https://github.com/Hirrolot/slice99.git

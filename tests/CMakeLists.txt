@@ -5,7 +5,7 @@ if(CMAKE_C_COMPILER_ID STREQUAL "GNU")
   add_compile_options(-Wall)
 endif()
 
-include_directories(../include ../libs/slice99)
+include_directories(../include slice99)
 
 add_executable(
   tests
