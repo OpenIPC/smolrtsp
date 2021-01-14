@@ -9,3 +9,19 @@
 
 [array slicing]: https://en.wikipedia.org/wiki/Array_slicing
 [slice99]: https://github.com/Hirrolot/slice99
+
+## Installation
+
+ 1. Clone https://github.com/Hirrolot/smolrtsp and https://github.com/Hirrolot/slice99 to your project.
+ 2. Include the `smolrtsp/include` and `slice99` directories (`-I`). In case of CMake:
+
+```cmake
+target_include_directories(<target> <INTERFACE|PUBLIC|PRIVATE> smolrtsp/include slice99)
+```
+
+ 3. Add smolrtsp to your build process. In case of CMake:
+
+```cmake
+add_subdirectory(smolrtsp [binary_dir])
+target_link_libraries(<target> smolrtsp)
+```
