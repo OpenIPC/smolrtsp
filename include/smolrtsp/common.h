@@ -1,12 +1,10 @@
 /**
  * @file
- *  Auxiliary declarations for deserialization.
+ * Common stuff.
  */
 
-#ifndef SMOLRTSP_DESERIALIZATION_H
-#define SMOLRTSP_DESERIALIZATION_H
-
-#define SLICE99_INCLUDE_IO
+#ifndef SMOLRTSP_COMMON_H
+#define SMOLRTSP_COMMON_H
 
 #include <stddef.h>
 
@@ -32,4 +30,9 @@ typedef enum {
     SmolRTSP_DeserializeResultPending,
 } SmolRTSP_DeserializeResult;
 
-#endif // SMOLRTSP_DESERIALIZATION_H
+/**
+ * Carriage-return + new-line represented as a data slice.
+ */
+#define SMOLRTSP_CRLF (Slice99_from_str("\r\n"))
+
+#endif // SMOLRTSP_COMMON_H

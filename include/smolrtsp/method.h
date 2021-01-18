@@ -6,7 +6,7 @@
 #ifndef SMOLRTSP_METHOD_H
 #define SMOLRTSP_METHOD_H
 
-#include <smolrtsp/deserialization.h>
+#include <smolrtsp/common.h>
 
 #include <slice99.h>
 

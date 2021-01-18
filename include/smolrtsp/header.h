@@ -6,7 +6,7 @@
 #ifndef SMOLRTSP_HEADER_H
 #define SMOLRTSP_HEADER_H
 
-#include <smolrtsp/deserialization.h>
+#include <smolrtsp/common.h>
 #include <smolrtsp/user_writer.h>
 
 #include <stdbool.h>

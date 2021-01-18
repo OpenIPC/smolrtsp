@@ -6,7 +6,7 @@
 #ifndef SMOLRTSP_H
 #define SMOLRTSP_H
 
-#include <smolrtsp/deserialization.h>
+#include <smolrtsp/common.h>
 #include <smolrtsp/header.h>
 #include <smolrtsp/header_map.h>
 #include <smolrtsp/message_body.h>

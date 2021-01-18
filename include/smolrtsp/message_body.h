@@ -6,7 +6,7 @@
 #ifndef SMOLRTSP_MESSAGE_BODY_H
 #define SMOLRTSP_MESSAGE_BODY_H
 
-#include <smolrtsp/deserialization.h>
+#include <smolrtsp/common.h>
 
 #include <slice99.h>
 

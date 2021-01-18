@@ -6,7 +6,7 @@
 #ifndef SMOLRTSP_RTSP_VERSION_H
 #define SMOLRTSP_RTSP_VERSION_H
 
-#include <smolrtsp/deserialization.h>
+#include <smolrtsp/common.h>
 #include <smolrtsp/user_writer.h>
 
 #include <stdbool.h>

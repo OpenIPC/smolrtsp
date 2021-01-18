@@ -11,7 +11,7 @@ void SmolRTSP_RequestLine_serialize(
     user_writer(self.method, user_cx);
     user_writer(self.uri, user_cx);
     SmolRTSP_RTSPVersion_serialize(self.version, user_writer, user_cx);
-    user_writer(Slice99_from_str("\r\n"), user_cx);
+    user_writer(SMOLRTSP_CRLF, user_cx);
 }
 
 SmolRTSP_DeserializeResult SmolRTSP_RequestLine_deserialize(
