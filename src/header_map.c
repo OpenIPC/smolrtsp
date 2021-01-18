@@ -24,7 +24,7 @@ void SmolRTSP_HeaderMap_serialize(
         SmolRTSP_Header_serialize(self.headers[i], user_writer, user_cx);
     }
 
-    user_writer(strlen("\r\n"), "\r\n", user_cx);
+    user_writer(Slice99_from_str("\r\n"), user_cx);
 }
 
 SmolRTSP_DeserializeResult

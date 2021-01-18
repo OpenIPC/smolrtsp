@@ -12,7 +12,7 @@ void SmolRTSP_StatusCode_serialize(
 
     char buffer[6];
     snprintf(buffer, sizeof(buffer), "%" PRIuLEAST16, self);
-    user_writer(strlen(buffer), buffer, user_cx);
+    user_writer(Slice99_from_str(buffer), user_cx);
 }
 
 SmolRTSP_DeserializeResult

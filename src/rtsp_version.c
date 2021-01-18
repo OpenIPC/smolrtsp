@@ -15,10 +15,10 @@ void SmolRTSP_RTSPVersion_serialize(
     snprintf(minor, sizeof(minor), "%" PRIuLEAST8, self.minor);
     snprintf(major, sizeof(major), "%" PRIuLEAST8, self.major);
 
-    user_writer(strlen(rtsp_slash), rtsp_slash, user_cx);
-    user_writer(strlen(minor), minor, user_cx);
-    user_writer(strlen(dot), dot, user_cx);
-    user_writer(strlen(major), major, user_cx);
+    user_writer(Slice99_from_str(rtsp_slash), user_cx);
+    user_writer(Slice99_from_str(minor), user_cx);
+    user_writer(Slice99_from_str(dot), user_cx);
+    user_writer(Slice99_from_str(major), user_cx);
 }
 
 SmolRTSP_DeserializeResult

@@ -8,9 +8,9 @@ void SmolRTSP_Header_serialize(
     SmolRTSP_Header self, SmolRTSP_UserWriter user_writer, void *user_cx) {
     precondition(user_writer);
 
-    user_writer(Slice99_size(self.key), self.key.ptr, user_cx);
-    user_writer(strlen(": "), ": ", user_cx);
-    user_writer(Slice99_size(self.value), self.value.ptr, user_cx);
+    user_writer(self.key, user_cx);
+    user_writer(Slice99_from_str(": "), user_cx);
+    user_writer(self.value, user_cx);
 }
 
 SmolRTSP_DeserializeResult

@@ -8,7 +8,7 @@ void SmolRTSP_Request_serialize(
 
     SmolRTSP_RequestLine_serialize(self.start_line, user_writer, user_cx);
     SmolRTSP_HeaderMap_serialize(self.header_map, user_writer, user_cx);
-    user_writer(self.body.len, self.body.ptr, user_cx);
+    user_writer(self.body, user_cx);
 }
 
 SmolRTSP_DeserializeResult SmolRTSP_Request_deserialize(

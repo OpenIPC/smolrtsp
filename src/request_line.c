@@ -8,10 +8,10 @@ void SmolRTSP_RequestLine_serialize(
     SmolRTSP_RequestLine self, SmolRTSP_UserWriter user_writer, void *user_cx) {
     precondition(user_writer);
 
-    user_writer(Slice99_size(self.method), self.method.ptr, user_cx);
-    user_writer(Slice99_size(self.uri), self.uri.ptr, user_cx);
+    user_writer(self.method, user_cx);
+    user_writer(self.uri, user_cx);
     SmolRTSP_RTSPVersion_serialize(self.version, user_writer, user_cx);
-    user_writer(strlen("\r\n"), "\r\n", user_cx);
+    user_writer(Slice99_from_str("\r\n"), user_cx);
 }
 
 SmolRTSP_DeserializeResult SmolRTSP_RequestLine_deserialize(
