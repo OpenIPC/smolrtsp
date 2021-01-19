@@ -1,6 +1,16 @@
 /**
  * @file
- *  Re-exports all the functionality.
+ * Re-exports all the functionality.
+ */
+
+/**
+ * @mainpage
+ *
+ * A small, portable, extensible RTSP 1.0 implementation in C99.<br>
+ *
+ * See the <a href="files.html">file list</a> for the available abstractions. See <a
+ * href="https://github.com/Hirrolot/smolrtsp">our official GitHub repository</a> for a high-level
+ * overview.
  */
 
 #ifndef SMOLRTSP_H
