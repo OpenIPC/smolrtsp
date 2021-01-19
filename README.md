@@ -25,3 +25,5 @@ target_include_directories(<target> <INTERFACE|PUBLIC|PRIVATE> smolrtsp/include 
 add_subdirectory(smolrtsp [binary_dir])
 target_link_libraries(<target> smolrtsp)
 ```
+
+If you want to build a shared library, enable the compile-time CMake option `SMOLRTSP_SHARED`; otherwise, smolrtsp will be compiled as a static library.
