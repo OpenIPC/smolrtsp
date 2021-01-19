@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.0)
 project(smolrtsp LANGUAGES C)
 
-option(SMOLRTSP_STATIC "Build a static library" ON)
+option(SMOLRTSP_SHARED "Build a shared library" OFF)
 
 if(CMAKE_C_COMPILER_ID STREQUAL "GNU")
   add_compile_options(-Wall)
@@ -13,10 +13,10 @@ file(GLOB sources include/smolrtsp.h
 
 include_directories(include)
 
-if(SMOLRTSP_STATIC)
-  add_library(smolrtsp STATIC ${sources})
-else()
+if(SMOLRTSP_SHARED)
   add_library(smolrtsp SHARED ${sources})
+else()
+  add_library(smolrtsp STATIC ${sources})
 endif()
 
 target_link_libraries(smolrtsp m)
