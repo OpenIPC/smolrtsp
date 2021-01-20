@@ -11,6 +11,7 @@ void SmolRTSP_Header_serialize(
     user_writer(self.key, user_cx);
     user_writer(Slice99_from_str(": "), user_cx);
     user_writer(self.value, user_cx);
+    user_writer(SMOLRTSP_CRLF, user_cx);
 }
 
 SmolRTSP_DeserializeResult
