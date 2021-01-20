@@ -28,6 +28,14 @@ typedef struct {
 } SmolRTSP_RTSPVersion;
 
 /**
+ * Creates a new RTSP version.
+ *
+ * @param[in] major The major number.
+ * @param[in] minor The minor number.
+ */
+SmolRTSP_RTSPVersion SmolRTSP_RTSPVersion_new(uint_least8_t major, uint_least8_t minor);
+
+/**
  * Serializes @p self to @p user_writer.
  *
  * @param[in] self The instance to be serialized.

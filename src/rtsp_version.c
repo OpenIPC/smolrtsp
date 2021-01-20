@@ -6,6 +6,10 @@
 #include <stdio.h>
 #include <string.h>
 
+SmolRTSP_RTSPVersion SmolRTSP_RTSPVersion_new(uint_least8_t major, uint_least8_t minor) {
+    return (SmolRTSP_RTSPVersion){.major = major, .minor = minor};
+}
+
 void SmolRTSP_RTSPVersion_serialize(
     SmolRTSP_RTSPVersion self, SmolRTSP_UserWriter user_writer, void *user_cx) {
     precondition(user_writer);
