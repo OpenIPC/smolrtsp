@@ -13,6 +13,18 @@
 #include <stddef.h>
 #include <stdio.h>
 
+#include <slice99.h>
+
+/**
+ * Creates new #SmolRTSP_HeaderMap from an array expression of #SmolRTSP_Header.
+ */
+#define SMOLRTSP_HEADER_MAP_FROM_ARRAY(...)                                                        \
+    ((SmolRTSP_HeaderMap){                                                                         \
+        .headers = (__VA_ARGS__),                                                                  \
+        .len = Slice99_array_len(__VA_ARGS__),                                                     \
+        .size = Slice99_array_len(__VA_ARGS__),                                                    \
+    })
+
 /**
  * An RTSP header map.
  */
