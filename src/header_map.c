@@ -31,12 +31,12 @@ SmolRTSP_HeaderMap_deserialize(SmolRTSP_HeaderMap *restrict self, Slice99 *restr
     precondition(data);
 
     while (true) {
-        if (data->len < 2) {
+        if (data->len < SMOLRTSP_CRLF.len) {
             return SmolRTSP_DeserializeResultPending;
         }
 
-        if (((const char *)data->ptr)[0] == '\r' && ((const char *)data->ptr)[1] == '\n') {
-            *data = Slice99_advance(*data, 2);
+        if (Slice99_primitive_starts_with(*data, SMOLRTSP_CRLF)) {
+            *data = Slice99_advance(*data, SMOLRTSP_CRLF.len);
             return SmolRTSP_DeserializeResultOk;
         }
 
