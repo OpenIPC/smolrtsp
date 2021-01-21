@@ -31,7 +31,10 @@ SmolRTSP_DeserializeResult SmolRTSP_Response_deserialize(
 
     size_t content_length_int = 0;
     if (content_length.exists) {
-        if (sscanf(content_length.slice.ptr, "%zd", &content_length_int) != 1) {
+        char fmt[50];
+        snprintf(fmt, sizeof(fmt), "%%%zdzd", content_length.slice.len);
+
+        if (sscanf(content_length.slice.ptr, fmt, &content_length_int) != 1) {
             // TODO: Handle this error in a proper way.
             abort();
         }
