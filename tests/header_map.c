@@ -3,32 +3,20 @@
 #include "nala.h"
 
 static void assert_pending(Slice99 input) {
-    SmolRTSP_HeaderMap result = {
-        .headers = (SmolRTSP_Header[3]){0},
-        .len = 0,
-        .size = 3,
-    };
+    SmolRTSP_HeaderMap result = SmolRTSP_HeaderMap_with_capacity(3);
     SmolRTSP_DeserializeResult res = SmolRTSP_HeaderMap_deserialize(&result, &input);
     ASSERT_EQ(res, SmolRTSP_DeserializeResultPending);
 }
 
 static void assert_ok(Slice99 input, SmolRTSP_HeaderMap expected) {
-    SmolRTSP_HeaderMap result = {
-        .headers = (SmolRTSP_Header[3]){0},
-        .len = 0,
-        .size = 3,
-    };
+    SmolRTSP_HeaderMap result = SmolRTSP_HeaderMap_with_capacity(3);
     SmolRTSP_DeserializeResult res = SmolRTSP_HeaderMap_deserialize(&result, &input);
     ASSERT_EQ(res, SmolRTSP_DeserializeResultOk);
     ASSERT(SmolRTSP_HeaderMap_eq(result, expected));
 }
 
 static void assert_err(Slice99 input) {
-    SmolRTSP_HeaderMap result = {
-        .headers = (SmolRTSP_Header[3]){0},
-        .len = 0,
-        .size = 3,
-    };
+    SmolRTSP_HeaderMap result = SmolRTSP_HeaderMap_with_capacity(3);
     SmolRTSP_DeserializeResult res = SmolRTSP_HeaderMap_deserialize(&result, &input);
     ASSERT_EQ(res, SmolRTSP_DeserializeResultErr);
 }

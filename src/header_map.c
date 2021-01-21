@@ -68,7 +68,7 @@ bool SmolRTSP_HeaderMap_eq(SmolRTSP_HeaderMap lhs, SmolRTSP_HeaderMap rhs) {
 }
 
 bool SmolRTSP_HeaderMap_is_full(SmolRTSP_HeaderMap self) {
-    return self.len == self.size;
+    return self.len == self.capacity;
 }
 
 void SmolRTSP_HeaderMap_dbg_to_file(SmolRTSP_HeaderMap self, FILE *stream) {

@@ -28,14 +28,7 @@ TEST(deserialize_request) {
     };
 
     SmolRTSP_RequestDeserializerState state = SMOLRTSP_REQUEST_DESERIALIZER_START_STATE;
-    SmolRTSP_Request result = {
-        .header_map =
-            {
-                .headers = (SmolRTSP_Header[3]){0},
-                .len = 0,
-                .size = 3,
-            },
-    };
+    SmolRTSP_Request result = {.header_map = SmolRTSP_HeaderMap_with_capacity(3)};
     SmolRTSP_DeserializeResult res;
 
 #define CHECK(data, expected_res, expected_state)                                                  \

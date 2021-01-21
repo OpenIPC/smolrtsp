@@ -22,7 +22,17 @@
     ((SmolRTSP_HeaderMap){                                                                         \
         .headers = (__VA_ARGS__),                                                                  \
         .len = Slice99_array_len(__VA_ARGS__),                                                     \
-        .size = Slice99_array_len(__VA_ARGS__),                                                    \
+        .capacity = Slice99_array_len(__VA_ARGS__),                                                \
+    })
+
+/**
+ * Creates new #SmolRTSP_HeaderMap with a specified capacity and the length of zero.
+ */
+#define SmolRTSP_HeaderMap_with_capacity(capacity_)                                                \
+    ((SmolRTSP_HeaderMap){                                                                         \
+        .headers = (SmolRTSP_Header[capacity_]){0},                                                \
+        .len = 0,                                                                                  \
+        .capacity = capacity_,                                                                     \
     })
 
 /**
@@ -42,7 +52,7 @@ typedef struct {
     /**
      * The count of elements #headers is able to contain.
      */
-    size_t size;
+    size_t capacity;
 } SmolRTSP_HeaderMap;
 
 /**
