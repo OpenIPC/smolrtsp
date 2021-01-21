@@ -48,7 +48,7 @@ typedef struct {
 /**
  * Returns a value associated with @p key within @p self.
  */
-Slice99 SmolRTSP_HeaderMap_find(SmolRTSP_HeaderMap self, Slice99 key, bool *restrict is_found);
+Slice99Maybe SmolRTSP_HeaderMap_find(SmolRTSP_HeaderMap self, Slice99 key);
 
 /**
  * Serializes @p self to @p user_writer.

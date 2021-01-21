@@ -4,16 +4,14 @@
 
 #include <string.h>
 
-Slice99 SmolRTSP_HeaderMap_find(SmolRTSP_HeaderMap self, Slice99 key, bool *restrict is_found) {
+Slice99Maybe SmolRTSP_HeaderMap_find(SmolRTSP_HeaderMap self, Slice99 key) {
     for (size_t i = 0; i < self.len; i++) {
         if (Slice99_primitive_eq(self.headers[i].key, key)) {
-            *is_found = true;
-            return self.headers[i].value;
+            return Slice99Maybe_just(self.headers[i].value);
         }
     }
 
-    *is_found = false;
-    return Slice99_empty(1);
+    return Slice99Maybe_nothing();
 }
 
 void SmolRTSP_HeaderMap_serialize(

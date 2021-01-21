@@ -26,13 +26,12 @@ SmolRTSP_DeserializeResult SmolRTSP_Response_deserialize(
         SmolRTSP_ResponseDeserializerStateHeaderMap,
         SmolRTSP_HeaderMap_deserialize(&self->header_map, data));
 
-    bool is_found;
-    Slice99 content_length_slice =
-        SmolRTSP_HeaderMap_find(self->header_map, SMOLRTSP_HEADER_NAME_CONTENT_LENGTH, &is_found);
+    Slice99Maybe content_length =
+        SmolRTSP_HeaderMap_find(self->header_map, SMOLRTSP_HEADER_NAME_CONTENT_LENGTH);
 
-    size_t content_length = 0;
-    if (is_found) {
-        if (sscanf(content_length_slice.ptr, "%zd", &content_length) != 1) {
+    size_t content_length_int = 0;
+    if (content_length.exists) {
+        if (sscanf(content_length.slice.ptr, "%zd", &content_length_int) != 1) {
             // TODO: Handle this error in a proper way.
             abort();
         }
@@ -40,7 +39,7 @@ SmolRTSP_DeserializeResult SmolRTSP_Response_deserialize(
 
     TRY_PARSE(
         SmolRTSP_ResponseDeserializerStateMessageBody,
-        SmolRTSP_MessageBody_deserialize(&self->body, data, content_length));
+        SmolRTSP_MessageBody_deserialize(&self->body, data, content_length_int));
 
     return SmolRTSP_DeserializeResultOk;
 }
