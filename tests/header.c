@@ -22,7 +22,8 @@ static void assert_err(Slice99 input) {
 }
 
 TEST(deserialize_header) {
-    const Slice99 input = Slice99_from_str("Content-Length: 1556\r\n");
+    const Slice99 input =
+        Slice99_from_str("User-Agent: LibVLC/3.0.8 (LIVE555 Streaming Media v2018.02.18)\r\n");
 
     for (size_t i = 0; i < input.len - 1; i++) {
         assert_pending(Slice99_update_len(input, i));
@@ -30,8 +31,8 @@ TEST(deserialize_header) {
 
     assert_ok(
         input, (SmolRTSP_Header){
-                   SMOLRTSP_HEADER_NAME_CONTENT_LENGTH,
-                   Slice99_from_str("1556"),
+                   SMOLRTSP_HEADER_NAME_USER_AGENT,
+                   Slice99_from_str("LibVLC/3.0.8 (LIVE555 Streaming Media v2018.02.18)"),
                });
 
     assert_err(Slice99_from_str("~@~"));
