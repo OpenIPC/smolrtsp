@@ -66,3 +66,36 @@ TEST(deserialize_response) {
 
 #undef CHECK
 }
+
+TEST(serialize_response) {
+    char buffer[500] = {0};
+
+    const SmolRTSP_Response response = {
+        .start_line =
+            {
+                .version = SmolRTSP_RTSPVersion_new(1, 0),
+                .code = SMOLRTSP_STATUS_CODE_OK,
+                .reason = Slice99_from_str("OK"),
+            },
+        .header_map = SMOLRTSP_HEADER_MAP_FROM_ARRAY((SmolRTSP_Header[]){
+            {
+                SMOLRTSP_HEADER_NAME_CONTENT_LENGTH,
+                Slice99_from_str("123"),
+            },
+            {
+                SMOLRTSP_HEADER_NAME_CONTENT_TYPE,
+                Slice99_from_str("application/octet-stream"),
+            },
+        }),
+        .body = Slice99_from_str("1234567890"),
+    };
+
+    SmolRTSP_Response_serialize(response, smolrtsp_char_buffer_writer, buffer);
+
+    ASSERT_EQ(
+        strcmp(
+            buffer,
+            "RTSP/1.0 200 OK\r\nContent-Length: 123\r\nContent-Type: "
+            "application/octet-stream\r\n\r\n1234567890"),
+        0);
+}

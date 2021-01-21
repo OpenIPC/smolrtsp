@@ -67,3 +67,23 @@ TEST(deserialize_header_map) {
     assert_err(Slice99_from_str("~29838"));
     assert_err(Slice99_from_str("Content-Length: 10\r\n38@@2: 10"));
 }
+
+TEST(serialize_header_map) {
+    char buffer[500] = {0};
+
+    const SmolRTSP_HeaderMap map = SMOLRTSP_HEADER_MAP_FROM_ARRAY((SmolRTSP_Header[]){
+        {
+            SMOLRTSP_HEADER_NAME_CONTENT_LENGTH,
+            Slice99_from_str("123"),
+        },
+        {
+            SMOLRTSP_HEADER_NAME_CONTENT_TYPE,
+            Slice99_from_str("application/octet-stream"),
+        },
+    });
+
+    SmolRTSP_HeaderMap_serialize(map, smolrtsp_char_buffer_writer, buffer);
+
+    ASSERT_EQ(
+        strcmp(buffer, "Content-Length: 123\r\nContent-Type: application/octet-stream\r\n\r\n"), 0);
+}

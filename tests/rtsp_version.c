@@ -33,3 +33,12 @@ TEST(deserialize_rtsp_version) {
     assert_err(Slice99_from_str("192"));
     assert_err(Slice99_from_str(" ~ RTSP/"));
 }
+
+TEST(serialize_rtsp_version) {
+    char buffer[20] = {0};
+
+    SmolRTSP_RTSPVersion_serialize(
+        SmolRTSP_RTSPVersion_new(1, 0), smolrtsp_char_buffer_writer, buffer);
+
+    ASSERT_EQ(strcmp(buffer, "RTSP/1.0"), 0);
+}

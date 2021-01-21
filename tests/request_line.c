@@ -32,3 +32,17 @@ TEST(deserialize_request_line) {
 
 #undef CHECK
 }
+
+TEST(serialize_request_line) {
+    char buffer[100] = {0};
+
+    const SmolRTSP_RequestLine line = {
+        .method = SMOLRTSP_METHOD_DESCRIBE,
+        .uri = Slice99_from_str("http://example.com"),
+        .version = SmolRTSP_RTSPVersion_new(1, 0),
+    };
+
+    SmolRTSP_RequestLine_serialize(line, smolrtsp_char_buffer_writer, buffer);
+
+    ASSERT_EQ(strcmp(buffer, "DESCRIBE http://example.com RTSP/1.0\r\n"), 0);
+}

@@ -36,3 +36,16 @@ TEST(deserialize_header) {
 
     assert_err(Slice99_from_str("~@~"));
 }
+
+TEST(serialize_header) {
+    char buffer[200] = {0};
+
+    const SmolRTSP_Header header = {
+        SMOLRTSP_HEADER_NAME_CONTENT_LENGTH,
+        Slice99_from_str("123"),
+    };
+
+    SmolRTSP_Header_serialize(header, smolrtsp_char_buffer_writer, buffer);
+
+    ASSERT_EQ(strcmp(buffer, "Content-Length: 123\r\n"), 0);
+}

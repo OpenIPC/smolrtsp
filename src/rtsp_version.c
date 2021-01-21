@@ -15,14 +15,14 @@ void SmolRTSP_RTSPVersion_serialize(
     precondition(user_writer);
 
     const Slice99 rtsp_slash = Slice99_from_str("RTSP/"), dot = Slice99_from_str(".");
-    char minor[3], major[3];
-    snprintf(minor, sizeof(minor), "%" PRIuLEAST8, self.minor);
+    char major[3], minor[3];
     snprintf(major, sizeof(major), "%" PRIuLEAST8, self.major);
+    snprintf(minor, sizeof(minor), "%" PRIuLEAST8, self.minor);
 
     user_writer(rtsp_slash, user_cx);
-    user_writer(Slice99_from_str(minor), user_cx);
-    user_writer(dot, user_cx);
     user_writer(Slice99_from_str(major), user_cx);
+    user_writer(dot, user_cx);
+    user_writer(Slice99_from_str(minor), user_cx);
 }
 
 SmolRTSP_DeserializeResult

@@ -9,7 +9,9 @@ void SmolRTSP_RequestLine_serialize(
     precondition(user_writer);
 
     user_writer(self.method, user_cx);
+    user_writer(Slice99_from_str(" "), user_cx);
     user_writer(self.uri, user_cx);
+    user_writer(Slice99_from_str(" "), user_cx);
     SmolRTSP_RTSPVersion_serialize(self.version, user_writer, user_cx);
     user_writer(SMOLRTSP_CRLF, user_cx);
 }

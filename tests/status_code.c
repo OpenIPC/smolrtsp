@@ -33,3 +33,12 @@ TEST(deserialize_status_code) {
     assert_err(Slice99_from_str("blah"));
     assert_err(Slice99_from_str("~ 2424 blah"));
 }
+
+TEST(serialize_status_code) {
+    char buffer[20] = {0};
+
+    SmolRTSP_StatusCode_serialize(
+        SMOLRTSP_STATUS_CODE_NOT_FOUND, smolrtsp_char_buffer_writer, buffer);
+
+    ASSERT_EQ(strcmp(buffer, "404"), 0);
+}

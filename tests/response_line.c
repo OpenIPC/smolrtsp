@@ -29,3 +29,17 @@ TEST(deserialize_response_line) {
 
 #undef CHECK
 }
+
+TEST(serialize_response_line) {
+    char buffer[100] = {0};
+
+    const SmolRTSP_ResponseLine line = {
+        .version = SmolRTSP_RTSPVersion_new(1, 0),
+        .code = SMOLRTSP_STATUS_CODE_OK,
+        .reason = Slice99_from_str("OK"),
+    };
+
+    SmolRTSP_ResponseLine_serialize(line, smolrtsp_char_buffer_writer, buffer);
+
+    ASSERT_EQ(strcmp(buffer, "RTSP/1.0 200 OK\r\n"), 0);
+}
