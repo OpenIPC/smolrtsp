@@ -10,26 +10,20 @@ TEST(deserialize_request) {
                 .uri = Slice99_from_str("http://example.com"),
                 .version = {.major = 1, .minor = 1},
             },
-        .header_map =
+        .header_map = SMOLRTSP_HEADER_MAP_FROM_ARRAY((SmolRTSP_Header[]){
             {
-                .len = 3,
-                .size = 3,
-                .headers =
-                    (SmolRTSP_Header[]){
-                        {
-                            SMOLRTSP_HEADER_NAME_CONTENT_LENGTH,
-                            Slice99_from_str("10"),
-                        },
-                        {
-                            SMOLRTSP_HEADER_NAME_ACCEPT_LANGUAGE,
-                            Slice99_from_str("English"),
-                        },
-                        {
-                            SMOLRTSP_HEADER_NAME_CONTENT_TYPE,
-                            Slice99_from_str("application/octet-stream"),
-                        },
-                    },
+                SMOLRTSP_HEADER_NAME_CONTENT_LENGTH,
+                Slice99_from_str("10"),
             },
+            {
+                SMOLRTSP_HEADER_NAME_ACCEPT_LANGUAGE,
+                Slice99_from_str("English"),
+            },
+            {
+                SMOLRTSP_HEADER_NAME_CONTENT_TYPE,
+                Slice99_from_str("application/octet-stream"),
+            },
+        }),
         .body = Slice99_from_str("0123456789"),
     };
 

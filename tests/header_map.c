@@ -34,25 +34,20 @@ static void assert_err(Slice99 input) {
 }
 
 TEST(deserialize_header_map) {
-    const SmolRTSP_HeaderMap expected = {
-        .len = 3,
-        .size = 3,
-        .headers =
-            (SmolRTSP_Header[]){
-                {
-                    SMOLRTSP_HEADER_NAME_CONTENT_LENGTH,
-                    Slice99_from_str("10"),
-                },
-                {
-                    SMOLRTSP_HEADER_NAME_ACCEPT_LANGUAGE,
-                    Slice99_from_str("English"),
-                },
-                {
-                    SMOLRTSP_HEADER_NAME_CONTENT_TYPE,
-                    Slice99_from_str("application/octet-stream"),
-                },
-            },
-    };
+    const SmolRTSP_HeaderMap expected = SMOLRTSP_HEADER_MAP_FROM_ARRAY((SmolRTSP_Header[]){
+        {
+            SMOLRTSP_HEADER_NAME_CONTENT_LENGTH,
+            Slice99_from_str("10"),
+        },
+        {
+            SMOLRTSP_HEADER_NAME_ACCEPT_LANGUAGE,
+            Slice99_from_str("English"),
+        },
+        {
+            SMOLRTSP_HEADER_NAME_CONTENT_TYPE,
+            Slice99_from_str("application/octet-stream"),
+        },
+    });
 
     const Slice99 input = Slice99_from_str(
         "Content-Length: 10\r\nAccept-Language: English\r\nContent-Type: "
