@@ -22,7 +22,7 @@ static void assert_err(Slice99 input) {
 }
 
 TEST(deserialize_header_map) {
-    const SmolRTSP_HeaderMap expected = SMOLRTSP_HEADER_MAP_FROM_ARRAY((SmolRTSP_Header[]){
+    const SmolRTSP_HeaderMap expected = SmolRTSP_HeaderMap_from_array((SmolRTSP_Header[]){
         {
             SMOLRTSP_HEADER_NAME_CONTENT_LENGTH,
             Slice99_from_str("10"),
@@ -54,7 +54,7 @@ TEST(deserialize_header_map) {
 TEST(serialize_header_map) {
     char buffer[500] = {0};
 
-    const SmolRTSP_HeaderMap map = SMOLRTSP_HEADER_MAP_FROM_ARRAY((SmolRTSP_Header[]){
+    const SmolRTSP_HeaderMap map = SmolRTSP_HeaderMap_from_array((SmolRTSP_Header[]){
         {
             SMOLRTSP_HEADER_NAME_CONTENT_LENGTH,
             Slice99_from_str("123"),

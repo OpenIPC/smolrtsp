@@ -18,7 +18,7 @@
 /**
  * Creates new #SmolRTSP_HeaderMap from an array expression of #SmolRTSP_Header.
  */
-#define SMOLRTSP_HEADER_MAP_FROM_ARRAY(...)                                                        \
+#define SmolRTSP_HeaderMap_from_array(...)                                                         \
     ((SmolRTSP_HeaderMap){                                                                         \
         .headers = (__VA_ARGS__),                                                                  \
         .len = Slice99_array_len(__VA_ARGS__),                                                     \

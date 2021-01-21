@@ -10,7 +10,7 @@ TEST(deserialize_response) {
                 .code = SMOLRTSP_STATUS_CODE_OK,
                 .reason = Slice99_from_str("OK"),
             },
-        .header_map = SMOLRTSP_HEADER_MAP_FROM_ARRAY((SmolRTSP_Header[]){
+        .header_map = SmolRTSP_HeaderMap_from_array((SmolRTSP_Header[]){
             {
                 SMOLRTSP_HEADER_NAME_CONTENT_LENGTH,
                 Slice99_from_str("10"),
@@ -64,7 +64,7 @@ TEST(serialize_response) {
                 .code = SMOLRTSP_STATUS_CODE_OK,
                 .reason = Slice99_from_str("OK"),
             },
-        .header_map = SMOLRTSP_HEADER_MAP_FROM_ARRAY((SmolRTSP_Header[]){
+        .header_map = SmolRTSP_HeaderMap_from_array((SmolRTSP_Header[]){
             {
                 SMOLRTSP_HEADER_NAME_CONTENT_LENGTH,
                 Slice99_from_str("123"),

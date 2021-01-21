@@ -10,7 +10,7 @@ TEST(deserialize_request) {
                 .uri = Slice99_from_str("http://example.com"),
                 .version = {.major = 1, .minor = 1},
             },
-        .header_map = SMOLRTSP_HEADER_MAP_FROM_ARRAY((SmolRTSP_Header[]){
+        .header_map = SmolRTSP_HeaderMap_from_array((SmolRTSP_Header[]){
             {
                 SMOLRTSP_HEADER_NAME_CONTENT_LENGTH,
                 Slice99_from_str("10"),
@@ -64,7 +64,7 @@ TEST(serialize_request) {
                 .uri = Slice99_from_str("http://example.com"),
                 .version = SmolRTSP_RTSPVersion_new(1, 0),
             },
-        .header_map = SMOLRTSP_HEADER_MAP_FROM_ARRAY((SmolRTSP_Header[]){
+        .header_map = SmolRTSP_HeaderMap_from_array((SmolRTSP_Header[]){
             {
                 SMOLRTSP_HEADER_NAME_CONTENT_LENGTH,
                 Slice99_from_str("123"),
