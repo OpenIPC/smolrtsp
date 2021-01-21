@@ -10,7 +10,7 @@ void SmolRTSP_StatusCode_serialize(
     SmolRTSP_StatusCode self, SmolRTSP_UserWriter user_writer, void *user_cx) {
     precondition(user_writer);
 
-    char buffer[6];
+    char buffer[50];
     snprintf(buffer, sizeof(buffer), "%" PRIuLEAST16, self);
     user_writer(Slice99_from_str(buffer), user_cx);
 }
@@ -26,9 +26,9 @@ SmolRTSP_StatusCode_deserialize(SmolRTSP_StatusCode *restrict self, Slice99 *res
     code = Slice99_from_ptrdiff(code.ptr, data->ptr, sizeof(char));
 
     SmolRTSP_StatusCode code_int;
-    char format[50];
-    snprintf(format, sizeof(format), "%%%zd" SCNuLEAST16, code.len);
-    if (sscanf(code.ptr, format, &code_int) != 1) {
+    char fmt[50];
+    snprintf(fmt, sizeof(fmt), "%%%zd" SCNuLEAST16, code.len);
+    if (sscanf(code.ptr, fmt, &code_int) != 1) {
         return SmolRTSP_DeserializeResultErr;
     }
 

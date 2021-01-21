@@ -41,16 +41,16 @@ SmolRTSP_RTSPVersion_deserialize(SmolRTSP_RTSPVersion *restrict self, Slice99 *r
     MATCH(SmolRTSP_match_numeric(data));
     minor = Slice99_from_ptrdiff(minor.ptr, data->ptr, sizeof(char));
 
-    uint_least8_t major_int;
-    char format[50];
-    snprintf(format, sizeof(format), "%%%zd" SCNuLEAST16, major.len);
-    if (sscanf(major.ptr, format, &major_int) != 1) {
+    uint_least8_t major_int, minor_int;
+    char fmt[50];
+
+    snprintf(fmt, sizeof(fmt), "%%%zd" SCNuLEAST16, major.len);
+    if (sscanf(major.ptr, fmt, &major_int) != 1) {
         return SmolRTSP_DeserializeResultErr;
     }
 
-    uint_least8_t minor_int;
-    snprintf(format, sizeof(format), "%%%zd" SCNuLEAST16, minor.len);
-    if (sscanf(minor.ptr, format, &minor_int) != 1) {
+    snprintf(fmt, sizeof(fmt), "%%%zd" SCNuLEAST16, minor.len);
+    if (sscanf(minor.ptr, fmt, &minor_int) != 1) {
         return SmolRTSP_DeserializeResultErr;
     }
 
