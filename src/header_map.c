@@ -4,6 +4,10 @@
 
 #include <string.h>
 
+SmolRTSP_HeaderMap SmolRTSP_HeaderMap_empty(void) {
+    return (SmolRTSP_HeaderMap){.headers = NULL, .len = 0, .capacity = 0};
+}
+
 Slice99Maybe SmolRTSP_HeaderMap_find(SmolRTSP_HeaderMap self, Slice99 key) {
     for (size_t i = 0; i < self.len; i++) {
         if (Slice99_primitive_eq(self.headers[i].key, key)) {

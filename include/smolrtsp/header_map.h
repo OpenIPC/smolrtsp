@@ -56,6 +56,11 @@ typedef struct {
 } SmolRTSP_HeaderMap;
 
 /**
+ * Returns the empty header map.
+ */
+SmolRTSP_HeaderMap SmolRTSP_HeaderMap_empty(void);
+
+/**
  * Returns a value associated with @p key within @p self.
  */
 Slice99Maybe SmolRTSP_HeaderMap_find(SmolRTSP_HeaderMap self, Slice99 key);
