@@ -4,6 +4,7 @@
 
 #include <inttypes.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 SmolRTSP_RTSPVersion SmolRTSP_RTSPVersion_new(uint_least8_t major, uint_least8_t minor) {
@@ -14,15 +15,17 @@ void SmolRTSP_RTSPVersion_serialize(
     SmolRTSP_RTSPVersion self, SmolRTSP_UserWriter user_writer, void *user_cx) {
     precondition(user_writer);
 
-    const Slice99 rtsp_slash = Slice99_from_str("RTSP/"), dot = Slice99_from_str(".");
-    char major[3], minor[3];
-    snprintf(major, sizeof(major), "%" PRIuLEAST8, self.major);
-    snprintf(minor, sizeof(minor), "%" PRIuLEAST8, self.minor);
+    const char *fmt = "RTSP/%" PRIuLEAST8 ".%" PRIuLEAST8;
 
-    user_writer(rtsp_slash, user_cx);
-    user_writer(Slice99_from_str(major), user_cx);
-    user_writer(dot, user_cx);
-    user_writer(Slice99_from_str(minor), user_cx);
+    const size_t buffer_size = snprintf(NULL, 0, fmt, self.major, self.minor) + 1;
+
+    char *buffer = malloc(buffer_size);
+    invariant(buffer);
+    snprintf(buffer, buffer_size, fmt, self.major, self.minor);
+
+    user_writer(Slice99_from_str(buffer), user_cx);
+
+    free(buffer);
 }
 
 SmolRTSP_DeserializeResult
