@@ -1,6 +1,9 @@
+#include <smolrtsp/request.h>
+
 #include "correctness.h"
 #include "parsing.h"
-#include <smolrtsp/request.h>
+
+#include <stdlib.h>
 
 void SmolRTSP_Request_serialize(
     SmolRTSP_Request self, SmolRTSP_UserWriter user_writer, void *user_cx) {

@@ -1,6 +1,9 @@
+#include <smolrtsp/response.h>
+
 #include "correctness.h"
 #include "parsing.h"
-#include <smolrtsp/response.h>
+
+#include <stdlib.h>
 
 void SmolRTSP_Response_serialize(
     SmolRTSP_Response self, SmolRTSP_UserWriter user_writer, void *user_cx) {
