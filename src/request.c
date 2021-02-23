@@ -34,7 +34,7 @@ SmolRTSP_DeserializeResult SmolRTSP_Request_deserialize(
 
     size_t content_length_int = 0;
     if (content_length.exists) {
-        char fmt[50];
+        char fmt[64];
         snprintf(fmt, sizeof(fmt), "%%%zdzd", content_length.slice.len);
 
         if (sscanf(content_length.slice.ptr, fmt, &content_length_int) != 1) {
