@@ -22,7 +22,8 @@ add_executable(
   response_line.c
   request_uri.c
   rtsp_version.c
-  status_code.c)
+  status_code.c
+  util.c)
 
 add_subdirectory(.. build)
 target_link_libraries(tests smolrtsp)
