@@ -166,7 +166,7 @@ void nala_traceback_print(
     const char *prefix_p, const char *header_p, nala_traceback_skip_filter_t skip_filter,
     void *arg_p);
 
-#include "nala.h"
+#include "nala/nala.h"
 // #include "diff/diff.h"
 #ifndef NALA_DIFF_H
 #define NALA_DIFF_H

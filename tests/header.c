@@ -1,6 +1,6 @@
 #include <smolrtsp/header.h>
 
-#include "nala.h"
+#include "nala/nala.h"
 
 static void assert_pending(Slice99 input) {
     SmolRTSP_Header result;

@@ -1,6 +1,6 @@
 #include <smolrtsp/response_line.h>
 
-#include "nala.h"
+#include "nala/nala.h"
 
 TEST(deserialize_response_line) {
     const SmolRTSP_ResponseLine expected = {

@@ -1,6 +1,6 @@
 #include <smolrtsp/request.h>
 
-#include "nala.h"
+#include "nala/nala.h"
 
 TEST(deserialize_request) {
     const SmolRTSP_Request expected = {

@@ -1,6 +1,6 @@
 #include <smolrtsp/message_body.h>
 
-#include "nala.h"
+#include "nala/nala.h"
 
 static void assert_pending(Slice99 input, size_t content_length) {
     SmolRTSP_MessageBody result;

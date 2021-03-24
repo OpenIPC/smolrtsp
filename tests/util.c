@@ -1,6 +1,6 @@
 #include <smolrtsp/util.h>
 
-#include "nala.h"
+#include "nala/nala.h"
 
 TEST(parse_lower_transport) {
     SmolRTSP_LowerTransport lower_transport;

@@ -1,5 +1,5 @@
 #!/bin/bash
 
-find include src tests -iname *.h -o -iname *.c \
-    -path tests/build -path tests/slice99 -prune \
-    | xargs clang-format -i
+find include src tests \
+    \( -path tests/build -o -path tests/nala \) -prune -false -o \
+    \( -iname "*.h" \) -or \( -iname "*.c" \) | xargs clang-format -i

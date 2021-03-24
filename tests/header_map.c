@@ -1,6 +1,6 @@
 #include <smolrtsp/header_map.h>
 
-#include "nala.h"
+#include "nala/nala.h"
 
 static void assert_pending(Slice99 input) {
     SmolRTSP_HeaderMap result = SmolRTSP_HeaderMap_with_capacity(3);
