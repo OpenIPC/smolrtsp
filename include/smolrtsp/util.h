@@ -48,4 +48,19 @@ int SmolRTSP_parse_lower_transport(SmolRTSP_LowerTransport *restrict result, Sli
  */
 int SmolRTSP_parse_client_port(int *restrict rtp_port, int *restrict rtcp_port, Slice99 value);
 
+/**
+ * Extracts the `interleaved` parameter from the header value @p value.
+ *
+ * @param[in] value The value of the `Transport` header.
+ *
+ * @return -1 on error, 0 on success.
+ *
+ * @pre `rtp_chn_id != NULL`
+ * @pre `rtcp_chn_id != NULL`
+ *
+ * @note If an RTCP channel ID is not specified, @p rtcp_chn_id will be set to -1.
+ */
+int SmolRTSP_parse_interleaved_chn_id(
+    int *restrict rtp_chn_id, int *restrict rtcp_chn_id, Slice99 value);
+
 #endif // SMOLRTSP_UTIL_H
