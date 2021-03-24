@@ -9,8 +9,8 @@ include_directories(../include slice99)
 
 add_executable(
   tests
-  nala.h
-  nala.c
+  nala/nala.h
+  nala/nala.c
   header_map.c
   header.c
   message_body.c
