@@ -84,5 +84,5 @@ void SmolRTSP_HeaderMap_dbg_to_file(SmolRTSP_HeaderMap self, FILE *stream) {
 }
 
 void SmolRTSP_HeaderMap_dbg(SmolRTSP_HeaderMap self) {
-    SmolRTSP_HeaderMap_dbg_to_file(self, stdout);
+    SmolRTSP_HeaderMap_dbg_to_file(self, stderr);
 }

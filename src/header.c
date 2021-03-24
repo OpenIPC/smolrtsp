@@ -52,5 +52,5 @@ void SmolRTSP_Header_dbg_to_file(SmolRTSP_Header self, FILE *stream) {
 }
 
 void SmolRTSP_Header_dbg(SmolRTSP_Header self) {
-    SmolRTSP_Header_dbg_to_file(self, stdout);
+    SmolRTSP_Header_dbg_to_file(self, stderr);
 }
