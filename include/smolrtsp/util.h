@@ -26,6 +26,12 @@ typedef enum {
 } SmolRTSP_LowerTransport;
 
 /**
+ * Converts @p self to a string representation (`"TCP"` for #SmolRTSP_LowerTransport_TCP and `"UDP"`
+ * for #SmolRTSP_LowerTransport_UDP).
+ */
+const char *SmolRTSP_LowerTransport_str(SmolRTSP_LowerTransport self);
+
+/**
  * Extracts the lower transport from the header value @p value.
  *
  * @param[in] value The value of the `Transport` header.

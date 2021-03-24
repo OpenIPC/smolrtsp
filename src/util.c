@@ -5,6 +5,15 @@
 #include "correctness.h"
 #include "parsing.h"
 
+const char *SmolRTSP_LowerTransport_str(SmolRTSP_LowerTransport self) {
+    switch (self) {
+    case SmolRTSP_LowerTransport_TCP:
+        return "TCP";
+    case SmolRTSP_LowerTransport_UDP:
+        return "UDP";
+    }
+}
+
 int SmolRTSP_parse_lower_transport(SmolRTSP_LowerTransport *restrict result, Slice99 value) {
     precondition(result);
 
