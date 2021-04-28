@@ -1,6 +1,7 @@
+#include <smolrtsp/request_uri.h>
+
 #include "correctness.h"
 #include "parsing.h"
-#include <smolrtsp/request_uri.h>
 
 SmolRTSP_DeserializeResult
 SmolRTSP_RequestURI_deserialize(SmolRTSP_RequestURI *restrict self, Slice99 *restrict data) {

@@ -71,7 +71,7 @@ typedef Slice99 SmolRTSP_Method;
 #define SMOLRTSP_METHOD_RECORD (Slice99_from_str("RECORD"))
 
 /**
- * Deserializes @p data into @p self.
+ * Deserializes @p data to @p self.
  *
  * @pre `self != NULL`
  * @pre `data != NULL`

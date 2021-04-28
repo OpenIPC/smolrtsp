@@ -1,6 +1,7 @@
+#include <smolrtsp/request_line.h>
+
 #include "correctness.h"
 #include "parsing.h"
-#include <smolrtsp/request_line.h>
 
 #include <string.h>
 

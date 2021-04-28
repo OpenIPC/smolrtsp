@@ -66,7 +66,7 @@ typedef struct {
 } SmolRTSP_ResponseLineDeserializerState;
 
 /**
- * Deserializes @p data into @p self.
+ * Deserializes @p data to @p self.
  *
  * @pre `self != NULL`
  * @pre `data != NULL`

@@ -1,9 +1,9 @@
-#define SLICE99_INCLUDE_IO
-
 #include <smolrtsp/util.h>
 
 #include "correctness.h"
 #include "parsing.h"
+
+#include <stdio.h>
 
 const char *SmolRTSP_LowerTransport_str(SmolRTSP_LowerTransport self) {
     switch (self) {

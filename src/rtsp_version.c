@@ -1,6 +1,7 @@
+#include <smolrtsp/rtsp_version.h>
+
 #include "correctness.h"
 #include "parsing.h"
-#include <smolrtsp/rtsp_version.h>
 
 #include <inttypes.h>
 #include <stdio.h>

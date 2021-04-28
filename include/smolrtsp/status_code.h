@@ -251,7 +251,7 @@ void SmolRTSP_StatusCode_serialize(
     SmolRTSP_StatusCode self, SmolRTSP_UserWriter user_writer, void *user_cx);
 
 /**
- * Deserializes @p data into @p self.
+ * Deserializes @p data to @p self.
  *
  * @pre `self != NULL`
  * @pre `data != NULL`

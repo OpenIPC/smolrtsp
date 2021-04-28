@@ -1,6 +1,7 @@
+#include <smolrtsp/message_body.h>
+
 #include "correctness.h"
 #include "parsing.h"
-#include <smolrtsp/message_body.h>
 
 SmolRTSP_DeserializeResult SmolRTSP_MessageBody_deserialize(
     SmolRTSP_MessageBody *restrict self, Slice99 *restrict data, size_t content_length) {

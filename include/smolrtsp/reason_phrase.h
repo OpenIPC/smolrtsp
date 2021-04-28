@@ -16,7 +16,7 @@
 typedef Slice99 SmolRTSP_ReasonPhrase;
 
 /**
- * Deserializes @p data into @p self.
+ * Deserializes @p data to @p self.
  *
  * @pre `self != NULL`
  * @pre `data != NULL`

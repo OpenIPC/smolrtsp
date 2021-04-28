@@ -1,6 +1,7 @@
+#include <smolrtsp/method.h>
+
 #include "correctness.h"
 #include "parsing.h"
-#include <smolrtsp/method.h>
 
 SmolRTSP_DeserializeResult
 SmolRTSP_Method_deserialize(SmolRTSP_Method *restrict self, Slice99 *restrict data) {

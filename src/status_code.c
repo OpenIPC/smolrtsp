@@ -1,6 +1,7 @@
+#include <smolrtsp/status_code.h>
+
 #include "correctness.h"
 #include "parsing.h"
-#include <smolrtsp/status_code.h>
 
 #include <inttypes.h>
 #include <stdio.h>

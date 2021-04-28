@@ -78,7 +78,7 @@ void SmolRTSP_HeaderMap_serialize(
     SmolRTSP_HeaderMap self, SmolRTSP_UserWriter user_writer, void *user_cx);
 
 /**
- * Deserializes @p data into @p self.
+ * Deserializes @p data to @p self.
  *
  * @pre `self != NULL`
  * @pre `data != NULL`
@@ -94,7 +94,7 @@ SmolRTSP_HeaderMap_deserialize(SmolRTSP_HeaderMap *restrict self, Slice99 *restr
 bool SmolRTSP_HeaderMap_eq(SmolRTSP_HeaderMap lhs, SmolRTSP_HeaderMap rhs);
 
 /**
- * Decides whether @p self is full (no more space left for an additional header) or not.
+ * Tests whether @p self is full (no more space left for an additional header) or not.
  *
  * @return `true` if @p self is full, `false` otherwise
  */
