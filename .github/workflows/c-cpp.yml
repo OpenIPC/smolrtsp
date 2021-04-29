@@ -17,9 +17,6 @@ jobs:
     - name: Update Git submodules
       run: git submodule update --init tests/slice99
 
-    - name: CMake build
-      run: bash scripts/build.sh
-
     - name: Tests
       run: bash scripts/test.sh
 
