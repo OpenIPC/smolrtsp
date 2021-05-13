@@ -13,7 +13,7 @@
 /**
  * The start state of #SmolRTSP_ResponseLineDeserializerState.
  */
-#define SMOLRTSP_RESPONSE_LINE_DESERIALIZER_START_STATE                                            \
+#define SMOLRTSP_RESPONSE_LINE_DESERIALIZER_STATE_INIT                                             \
     (SmolRTSP_ResponseLineDeserializerState) {                                                     \
         .tag = SmolRTSP_ResponseLineDeserializerStateRTSPVersion,                                  \
     }

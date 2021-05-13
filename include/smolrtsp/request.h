@@ -15,9 +15,9 @@
 /**
  * The start state of #SmolRTSP_RequestDeserializerState.
  */
-#define SMOLRTSP_REQUEST_DESERIALIZER_START_STATE                                                  \
+#define SMOLRTSP_REQUEST_DESERIALIZER_STATE_INIT                                                   \
     (SmolRTSP_RequestDeserializerState) {                                                          \
-        .start_line = SMOLRTSP_REQUEST_LINE_DESERIALIZER_START_STATE,                              \
+        .start_line = SMOLRTSP_REQUEST_LINE_DESERIALIZER_STATE_INIT,                               \
         .tag = SmolRTSP_RequestDeserializerStateRequestLine,                                       \
     }
 

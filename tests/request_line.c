@@ -9,7 +9,7 @@ TEST(deserialize_request_line) {
         .version = {.major = 1, .minor = 1},
     };
 
-    SmolRTSP_RequestLineDeserializerState state = SMOLRTSP_REQUEST_LINE_DESERIALIZER_START_STATE;
+    SmolRTSP_RequestLineDeserializerState state = SMOLRTSP_REQUEST_LINE_DESERIALIZER_STATE_INIT;
     SmolRTSP_RequestLine result;
     SmolRTSP_DeserializeResult res;
 

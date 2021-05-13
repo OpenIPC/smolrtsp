@@ -27,7 +27,7 @@ TEST(deserialize_response) {
         .body = Slice99_from_str("0123456789"),
     };
 
-    SmolRTSP_ResponseDeserializerState state = SMOLRTSP_RESPONSE_DESERIALIZER_START_STATE;
+    SmolRTSP_ResponseDeserializerState state = SMOLRTSP_RESPONSE_DESERIALIZER_STATE_INIT;
     SmolRTSP_Response result = {.header_map = SmolRTSP_HeaderMap_with_capacity(3)};
     SmolRTSP_DeserializeResult res;
 

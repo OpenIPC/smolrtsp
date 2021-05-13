@@ -9,7 +9,7 @@ TEST(deserialize_response_line) {
         .reason = Slice99_from_str("OK"),
     };
 
-    SmolRTSP_ResponseLineDeserializerState state = SMOLRTSP_RESPONSE_LINE_DESERIALIZER_START_STATE;
+    SmolRTSP_ResponseLineDeserializerState state = SMOLRTSP_RESPONSE_LINE_DESERIALIZER_STATE_INIT;
     SmolRTSP_ResponseLine result;
     SmolRTSP_DeserializeResult res;
 
