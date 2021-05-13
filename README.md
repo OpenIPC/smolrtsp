@@ -17,14 +17,14 @@
 
 ## Installation
 
- 1. Clone [Smolrtsp] and [Slice99] to your project.
- 2. Include the `smolrtsp/include` and `slice99` directories (`-I`). In the case of CMake:
+ 1. Clone [Smolrtsp] and [Slice99] to your project. You can use [Git submodules].
+ 2. Include the `smolrtsp/include` and `slice99` directories:
 
 ```cmake
 target_include_directories(<target> <INTERFACE|PUBLIC|PRIVATE> smolrtsp/include slice99)
 ```
 
- 3. Add Smolrtsp to your build process. In the case of CMake:
+ 3. Build and link Smolrtsp:
 
 ```cmake
 add_subdirectory(smolrtsp [binary_dir])
@@ -35,3 +35,4 @@ If you want to build a shared library, enable the compile-time CMake option `SMO
 
 [Smolrtsp]: https://github.com/Hirrolot/smolrtsp
 [Slice99]: https://github.com/Hirrolot/slice99
+[Git submodules]: https://git-scm.com/book/en/v2/Git-Tools-Submodules
