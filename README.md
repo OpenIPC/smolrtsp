@@ -3,13 +3,15 @@
 
 ## Highlights
 
- - **Portable.** Smolrtsp is merely a set of [DTO]s accompanied with (de)serializers and other auxiliary routines. It neither depends on OS-specific functionality nor restricts contexts in which your code must be executed: you can use it everywhere you have a C99-compliant compiler and the C standard library.
+ - **Small.** Smolrtsp is merely a set of [data transfer objects (DTO)] accompanied with (de)serializers and some auxiliary routines.
+
+ - **Portable.** Smolrtsp does not prescribe contexts in which your code must be executed.
 
  - **Extensible.** Although Smolrtsp exposes common RTSP methods, headers, and so on, it also allows custom values to be specified in the same way.
 
  - **Zero-copy.** Smolrtsp does not copy user-supplied data -- instead it uses [array slicing] via [Slice99].
 
-[DTO]: https://en.wikipedia.org/wiki/Data_transfer_object
+[data transfer objects (DTO)]: https://en.wikipedia.org/wiki/Data_transfer_object
 [array slicing]: https://en.wikipedia.org/wiki/Array_slicing
 [Slice99]: https://github.com/Hirrolot/slice99
 
@@ -22,7 +24,7 @@
 target_include_directories(<target> <INTERFACE|PUBLIC|PRIVATE> smolrtsp/include slice99)
 ```
 
- 3. Add Smolrtsp to your build process. In case of CMake:
+ 3. Add Smolrtsp to your build process. In the case of CMake:
 
 ```cmake
 add_subdirectory(smolrtsp [binary_dir])
