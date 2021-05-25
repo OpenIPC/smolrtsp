@@ -29,15 +29,16 @@ SmolRTSP_DeserializeResult SmolRTSP_Request_deserialize(
         SmolRTSP_RequestDeserializerStateHeaderMap,
         SmolRTSP_HeaderMap_deserialize(&self->header_map, data));
 
-    Slice99Maybe content_length =
-        SmolRTSP_HeaderMap_find(self->header_map, SMOLRTSP_HEADER_NAME_CONTENT_LENGTH);
-
+    Slice99 content_length;
     size_t content_length_int = 0;
-    if (content_length.exists) {
-        char fmt[64];
-        snprintf(fmt, sizeof(fmt), "%%%zdzd", content_length.slice.len);
+    const bool content_length_is_found = SmolRTSP_HeaderMap_find(
+        self->header_map, SMOLRTSP_HEADER_NAME_CONTENT_LENGTH, &content_length);
 
-        if (sscanf(content_length.slice.ptr, fmt, &content_length_int) != 1) {
+    if (content_length_is_found) {
+        char fmt[64];
+        snprintf(fmt, sizeof(fmt), "%%%zdzd", content_length.len);
+
+        if (sscanf(content_length.ptr, fmt, &content_length_int) != 1) {
             // TODO: Handle this error in a proper way.
             abort();
         }

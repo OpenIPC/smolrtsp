@@ -9,14 +9,17 @@ SmolRTSP_HeaderMap SmolRTSP_HeaderMap_empty(void) {
     return (SmolRTSP_HeaderMap){.headers = NULL, .len = 0, .capacity = 0};
 }
 
-Slice99Maybe SmolRTSP_HeaderMap_find(SmolRTSP_HeaderMap self, Slice99 key) {
+bool SmolRTSP_HeaderMap_find(SmolRTSP_HeaderMap self, Slice99 key, Slice99 *restrict value) {
+    precondition(value);
+
     for (size_t i = 0; i < self.len; i++) {
         if (Slice99_primitive_eq(self.headers[i].key, key)) {
-            return Slice99Maybe_just(self.headers[i].value);
+            *value = self.headers[i].value;
+            return true;
         }
     }
 
-    return Slice99Maybe_nothing();
+    return false;
 }
 
 void SmolRTSP_HeaderMap_serialize(

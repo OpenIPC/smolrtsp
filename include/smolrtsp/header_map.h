@@ -61,9 +61,16 @@ typedef struct {
 SmolRTSP_HeaderMap SmolRTSP_HeaderMap_empty(void);
 
 /**
- * Returns a value associated with @p key within @p self.
+ * Finds a value associated with @p key within @p self.
+ *
+ * If @p key has been found within @p self, this function assigns @p value to this key (no copying
+ * occurs) and returns `true`. Otherwise, returns `false` and @p value remains unchanged.
+ *
+ * @param[in] self The header map to be searched for @p key.
+ * @param[in] key The key to be searched in @p self.
+ * @param[out] value The header value to be assigned, if found.
  */
-Slice99Maybe SmolRTSP_HeaderMap_find(SmolRTSP_HeaderMap self, Slice99 key);
+bool SmolRTSP_HeaderMap_find(SmolRTSP_HeaderMap self, Slice99 key, Slice99 *restrict value);
 
 /**
  * Serializes @p self to @p user_writer.
