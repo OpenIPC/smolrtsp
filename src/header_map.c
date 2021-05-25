@@ -22,6 +22,11 @@ bool SmolRTSP_HeaderMap_find(SmolRTSP_HeaderMap self, Slice99 key, Slice99 *rest
     return false;
 }
 
+bool SmolRTSP_HeaderMap_key_is_present(SmolRTSP_HeaderMap self, Slice99 key) {
+    Slice99 value;
+    return SmolRTSP_HeaderMap_find(self, key, &value);
+}
+
 void SmolRTSP_HeaderMap_serialize(
     SmolRTSP_HeaderMap self, SmolRTSP_UserWriter user_writer, void *user_cx) {
     precondition(user_writer);

@@ -73,6 +73,11 @@ SmolRTSP_HeaderMap SmolRTSP_HeaderMap_empty(void);
 bool SmolRTSP_HeaderMap_find(SmolRTSP_HeaderMap self, Slice99 key, Slice99 *restrict value);
 
 /**
+ * Returns whether @p key is present in @p self.
+ */
+bool SmolRTSP_HeaderMap_key_is_present(SmolRTSP_HeaderMap self, Slice99 key);
+
+/**
  * Serializes @p self to @p user_writer.
  *
  * @param[in] self The instance to be serialized.
