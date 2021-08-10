@@ -48,12 +48,12 @@ SmolRTSP_RTSPVersion_deserialize(SmolRTSP_RTSPVersion *restrict self, Slice99 *r
     uint_least8_t major_int, minor_int;
     char fmt[64];
 
-    snprintf(fmt, sizeof(fmt), "%%%zd" SCNuLEAST16, major.len);
+    snprintf(fmt, sizeof(fmt), "%%%zd" SCNuLEAST8, major.len);
     if (sscanf(major.ptr, fmt, &major_int) != 1) {
         return SmolRTSP_DeserializeResultErr;
     }
 
-    snprintf(fmt, sizeof(fmt), "%%%zd" SCNuLEAST16, minor.len);
+    snprintf(fmt, sizeof(fmt), "%%%zd" SCNuLEAST8, minor.len);
     if (sscanf(minor.ptr, fmt, &minor_int) != 1) {
         return SmolRTSP_DeserializeResultErr;
     }
