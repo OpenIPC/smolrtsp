@@ -2,7 +2,8 @@ cmake_minimum_required(VERSION 3.0)
 project(tests LANGUAGES C)
 
 if(CMAKE_C_COMPILER_ID STREQUAL "GNU")
-  add_compile_options(-Wall)
+  add_compile_options(-Wall -fsanitize=address)
+  add_link_options(-fsanitize=address)
 endif()
 
 include_directories(../include slice99)
