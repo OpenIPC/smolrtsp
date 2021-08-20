@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.0)
 project(tests LANGUAGES C)
 
-if(CMAKE_C_COMPILER_ID STREQUAL "GNU")
-  add_compile_options(-Wall -fsanitize=address)
+if(CMAKE_C_COMPILER_ID STREQUAL "GNU" OR CMAKE_C_COMPILER_ID STREQUAL "Clang")
+  add_compile_options(-Wall -Wextra -fsanitize=address)
   add_link_options(-fsanitize=address)
 endif()
 

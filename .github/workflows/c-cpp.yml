@@ -7,9 +7,14 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
+  test:
+    strategy:
+      matrix:
+        compiler: [gcc, clang]
 
     runs-on: ubuntu-latest
+    env:
+      CC: ${{ matrix.compiler }}
 
     steps:
     - uses: actions/checkout@v2
@@ -20,5 +25,14 @@ jobs:
     - name: Tests
       run: bash scripts/test.sh
 
-    - name: Check code formatting
-      run: bash scripts/check-fmt.sh
+  check-fmt:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Download run-clang-format
+        run: git submodule update --init run-clang-format
+
+      - name: Check code formatting
+        run: bash scripts/check-fmt.sh
