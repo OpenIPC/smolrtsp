@@ -24,8 +24,8 @@ typedef void (*SmolRTSP_UserWriter)(CharSlice99 data, void *user_cx);
  * @param[in] data The slice to the supplied data.
  * @param[out] buffer The character buffer to write to.
  *
- * @pre @p buffer shall be capable of holding `CharSlice99_size(data)` more characters, as required by
- * `strncat`.
+ * @pre @p buffer shall be capable of holding `CharSlice99_size(data)` more characters, as required
+ * by `strncat`.
  */
 void smolrtsp_char_buffer_writer(CharSlice99 data, void *buffer);
 

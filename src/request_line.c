@@ -42,6 +42,7 @@ SmolRTSP_DeserializeResult SmolRTSP_RequestLine_deserialize(
 }
 
 bool SmolRTSP_RequestLine_eq(SmolRTSP_RequestLine lhs, SmolRTSP_RequestLine rhs) {
-    return CharSlice99_primitive_eq(lhs.method, rhs.method) && CharSlice99_primitive_eq(lhs.uri, rhs.uri) &&
+    return CharSlice99_primitive_eq(lhs.method, rhs.method) &&
+           CharSlice99_primitive_eq(lhs.uri, rhs.uri) &&
            SmolRTSP_RTSPVersion_eq(lhs.version, rhs.version);
 }

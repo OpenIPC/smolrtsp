@@ -9,7 +9,8 @@ SmolRTSP_HeaderMap SmolRTSP_HeaderMap_empty(void) {
     return (SmolRTSP_HeaderMap){.headers = NULL, .len = 0, .capacity = 0};
 }
 
-bool SmolRTSP_HeaderMap_find(SmolRTSP_HeaderMap self, CharSlice99 key, CharSlice99 *restrict value) {
+bool SmolRTSP_HeaderMap_find(
+    SmolRTSP_HeaderMap self, CharSlice99 key, CharSlice99 *restrict value) {
     precondition(value);
 
     for (size_t i = 0; i < self.len; i++) {

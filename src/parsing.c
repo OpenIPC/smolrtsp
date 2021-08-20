@@ -106,7 +106,8 @@ SmolRTSP_DeserializeResult SmolRTSP_match_char(CharSlice99 *restrict data, char 
     return SmolRTSP_match_until(data, char_matcher, &c);
 }
 
-SmolRTSP_DeserializeResult SmolRTSP_match_str(CharSlice99 *restrict data, const char *restrict str) {
+SmolRTSP_DeserializeResult
+SmolRTSP_match_str(CharSlice99 *restrict data, const char *restrict str) {
     precondition(data);
     precondition(str);
 
