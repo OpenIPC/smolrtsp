@@ -33,6 +33,6 @@ typedef enum {
 /**
  * Carriage-return + new-line represented as a data slice.
  */
-#define SMOLRTSP_CRLF (Slice99_from_str("\r\n"))
+#define SMOLRTSP_CRLF CharSlice99_from_str("\r\n")
 
 #endif // SMOLRTSP_COMMON_H

@@ -13,7 +13,7 @@
 /**
  * An RTSP request URI.
  */
-typedef Slice99 SmolRTSP_RequestURI;
+typedef CharSlice99 SmolRTSP_RequestURI;
 
 /**
  * Deserializes @p data to @p self.
@@ -22,6 +22,6 @@ typedef Slice99 SmolRTSP_RequestURI;
  * @pre `data != NULL`
  */
 SmolRTSP_DeserializeResult
-SmolRTSP_RequestURI_deserialize(SmolRTSP_RequestURI *restrict self, Slice99 *restrict data);
+SmolRTSP_RequestURI_deserialize(SmolRTSP_RequestURI *restrict self, CharSlice99 *restrict data);
 
 #endif // SMOLRTSP_REQUEST_URI_H

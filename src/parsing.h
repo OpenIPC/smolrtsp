@@ -25,17 +25,17 @@
     } while (0)
 
 SmolRTSP_DeserializeResult
-SmolRTSP_match_until(Slice99 *restrict data, bool (*matcher)(char c, void *cx), void *cx);
+SmolRTSP_match_until(CharSlice99 *restrict data, bool (*matcher)(char c, void *cx), void *cx);
 SmolRTSP_DeserializeResult
-SmolRTSP_match_until_str(Slice99 *restrict data, const char *restrict str);
+SmolRTSP_match_until_str(CharSlice99 *restrict data, const char *restrict str);
 
-SmolRTSP_DeserializeResult SmolRTSP_match_until_crlf(Slice99 *restrict data);
-SmolRTSP_DeserializeResult SmolRTSP_match_char(Slice99 *restrict data, char c);
-SmolRTSP_DeserializeResult SmolRTSP_match_str(Slice99 *restrict data, const char *restrict str);
-SmolRTSP_DeserializeResult SmolRTSP_match_whitespaces(Slice99 *restrict data);
-SmolRTSP_DeserializeResult SmolRTSP_match_non_whitespaces(Slice99 *restrict data);
-SmolRTSP_DeserializeResult SmolRTSP_match_numeric(Slice99 *restrict data);
-SmolRTSP_DeserializeResult SmolRTSP_match_ident(Slice99 *restrict data);
-SmolRTSP_DeserializeResult SmolRTSP_match_header_name(Slice99 *restrict data);
+SmolRTSP_DeserializeResult SmolRTSP_match_until_crlf(CharSlice99 *restrict data);
+SmolRTSP_DeserializeResult SmolRTSP_match_char(CharSlice99 *restrict data, char c);
+SmolRTSP_DeserializeResult SmolRTSP_match_str(CharSlice99 *restrict data, const char *restrict str);
+SmolRTSP_DeserializeResult SmolRTSP_match_whitespaces(CharSlice99 *restrict data);
+SmolRTSP_DeserializeResult SmolRTSP_match_non_whitespaces(CharSlice99 *restrict data);
+SmolRTSP_DeserializeResult SmolRTSP_match_numeric(CharSlice99 *restrict data);
+SmolRTSP_DeserializeResult SmolRTSP_match_ident(CharSlice99 *restrict data);
+SmolRTSP_DeserializeResult SmolRTSP_match_header_name(CharSlice99 *restrict data);
 
 #endif // SMOLRTSP_PARSING_H

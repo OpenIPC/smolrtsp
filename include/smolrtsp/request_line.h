@@ -77,7 +77,7 @@ typedef struct {
  * @pre `state != NULL`
  */
 SmolRTSP_DeserializeResult SmolRTSP_RequestLine_deserialize(
-    SmolRTSP_RequestLine *restrict self, Slice99 *restrict data,
+    SmolRTSP_RequestLine *restrict self, CharSlice99 *restrict data,
     SmolRTSP_RequestLineDeserializerState *restrict state);
 
 /**

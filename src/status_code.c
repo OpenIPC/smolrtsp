@@ -13,18 +13,18 @@ void SmolRTSP_StatusCode_serialize(
 
     char buffer[64];
     snprintf(buffer, sizeof(buffer), "%" PRIuLEAST16, self);
-    user_writer(Slice99_from_str(buffer), user_cx);
+    user_writer(CharSlice99_from_str(buffer), user_cx);
 }
 
 SmolRTSP_DeserializeResult
-SmolRTSP_StatusCode_deserialize(SmolRTSP_StatusCode *restrict self, Slice99 *restrict data) {
+SmolRTSP_StatusCode_deserialize(SmolRTSP_StatusCode *restrict self, CharSlice99 *restrict data) {
     precondition(self);
     precondition(data);
 
     MATCH(SmolRTSP_match_whitespaces(data));
-    Slice99 code = *data;
+    CharSlice99 code = *data;
     MATCH(SmolRTSP_match_numeric(data));
-    code = Slice99_from_ptrdiff(code.ptr, data->ptr, sizeof(char));
+    code = CharSlice99_from_ptrdiff(code.ptr, data->ptr);
 
     SmolRTSP_StatusCode code_int;
     char fmt[64];

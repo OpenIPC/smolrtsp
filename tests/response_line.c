@@ -6,7 +6,7 @@ TEST(deserialize_response_line) {
     const SmolRTSP_ResponseLine expected = {
         .version = {.major = 1, .minor = 1},
         .code = SMOLRTSP_STATUS_CODE_OK,
-        .reason = Slice99_from_str("OK"),
+        .reason = CharSlice99_from_str("OK"),
     };
 
     SmolRTSP_ResponseLineDeserializerState state = SMOLRTSP_RESPONSE_LINE_DESERIALIZER_STATE_INIT;
@@ -14,7 +14,8 @@ TEST(deserialize_response_line) {
     SmolRTSP_DeserializeResult res;
 
 #define CHECK(data, expected_res, expected_state)                                                  \
-    res = SmolRTSP_ResponseLine_deserialize(&result, (Slice99[]){Slice99_from_str(data)}, &state); \
+    res = SmolRTSP_ResponseLine_deserialize(                                                       \
+        &result, (CharSlice99[]){CharSlice99_from_str(data)}, &state);                             \
     ASSERT_EQ(res, SmolRTSP_DeserializeResult##expected_res);                                      \
     ASSERT_EQ(state.tag, SmolRTSP_ResponseLineDeserializerState##expected_state)
 
@@ -36,7 +37,7 @@ TEST(serialize_response_line) {
     const SmolRTSP_ResponseLine line = {
         .version = SmolRTSP_RTSPVersion_new(1, 0),
         .code = SMOLRTSP_STATUS_CODE_OK,
-        .reason = Slice99_from_str("OK"),
+        .reason = CharSlice99_from_str("OK"),
     };
 
     SmolRTSP_ResponseLine_serialize(line, smolrtsp_char_buffer_writer, buffer);

@@ -9,11 +9,11 @@ SmolRTSP_HeaderMap SmolRTSP_HeaderMap_empty(void) {
     return (SmolRTSP_HeaderMap){.headers = NULL, .len = 0, .capacity = 0};
 }
 
-bool SmolRTSP_HeaderMap_find(SmolRTSP_HeaderMap self, Slice99 key, Slice99 *restrict value) {
+bool SmolRTSP_HeaderMap_find(SmolRTSP_HeaderMap self, CharSlice99 key, CharSlice99 *restrict value) {
     precondition(value);
 
     for (size_t i = 0; i < self.len; i++) {
-        if (Slice99_primitive_eq(self.headers[i].key, key)) {
+        if (CharSlice99_primitive_eq(self.headers[i].key, key)) {
             *value = self.headers[i].value;
             return true;
         }
@@ -22,8 +22,8 @@ bool SmolRTSP_HeaderMap_find(SmolRTSP_HeaderMap self, Slice99 key, Slice99 *rest
     return false;
 }
 
-bool SmolRTSP_HeaderMap_key_is_present(SmolRTSP_HeaderMap self, Slice99 key) {
-    Slice99 value;
+bool SmolRTSP_HeaderMap_key_is_present(SmolRTSP_HeaderMap self, CharSlice99 key) {
+    CharSlice99 value;
     return SmolRTSP_HeaderMap_find(self, key, &value);
 }
 
@@ -39,7 +39,7 @@ void SmolRTSP_HeaderMap_serialize(
 }
 
 SmolRTSP_DeserializeResult
-SmolRTSP_HeaderMap_deserialize(SmolRTSP_HeaderMap *restrict self, Slice99 *restrict data) {
+SmolRTSP_HeaderMap_deserialize(SmolRTSP_HeaderMap *restrict self, CharSlice99 *restrict data) {
     precondition(self);
     precondition(data);
 
@@ -48,8 +48,8 @@ SmolRTSP_HeaderMap_deserialize(SmolRTSP_HeaderMap *restrict self, Slice99 *restr
             return SmolRTSP_DeserializeResultPending;
         }
 
-        if (Slice99_primitive_starts_with(*data, SMOLRTSP_CRLF)) {
-            *data = Slice99_advance(*data, SMOLRTSP_CRLF.len);
+        if (CharSlice99_primitive_starts_with(*data, SMOLRTSP_CRLF)) {
+            *data = CharSlice99_advance(*data, SMOLRTSP_CRLF.len);
             return SmolRTSP_DeserializeResultOk;
         }
 

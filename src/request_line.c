@@ -10,15 +10,15 @@ void SmolRTSP_RequestLine_serialize(
     precondition(user_writer);
 
     user_writer(self.method, user_cx);
-    user_writer(Slice99_from_str(" "), user_cx);
+    user_writer(CharSlice99_from_str(" "), user_cx);
     user_writer(self.uri, user_cx);
-    user_writer(Slice99_from_str(" "), user_cx);
+    user_writer(CharSlice99_from_str(" "), user_cx);
     SmolRTSP_RTSPVersion_serialize(self.version, user_writer, user_cx);
     user_writer(SMOLRTSP_CRLF, user_cx);
 }
 
 SmolRTSP_DeserializeResult SmolRTSP_RequestLine_deserialize(
-    SmolRTSP_RequestLine *restrict self, Slice99 *restrict data,
+    SmolRTSP_RequestLine *restrict self, CharSlice99 *restrict data,
     SmolRTSP_RequestLineDeserializerState *restrict state) {
     precondition(self);
     precondition(data);
@@ -42,6 +42,6 @@ SmolRTSP_DeserializeResult SmolRTSP_RequestLine_deserialize(
 }
 
 bool SmolRTSP_RequestLine_eq(SmolRTSP_RequestLine lhs, SmolRTSP_RequestLine rhs) {
-    return Slice99_primitive_eq(lhs.method, rhs.method) && Slice99_primitive_eq(lhs.uri, rhs.uri) &&
+    return CharSlice99_primitive_eq(lhs.method, rhs.method) && CharSlice99_primitive_eq(lhs.uri, rhs.uri) &&
            SmolRTSP_RTSPVersion_eq(lhs.version, rhs.version);
 }

@@ -13,7 +13,7 @@
 /**
  * An RTSP message body.
  */
-typedef Slice99 SmolRTSP_MessageBody;
+typedef CharSlice99 SmolRTSP_MessageBody;
 
 /**
  * Deserializes @p data to @p self.
@@ -22,6 +22,6 @@ typedef Slice99 SmolRTSP_MessageBody;
  * @pre `data != NULL`
  */
 SmolRTSP_DeserializeResult SmolRTSP_MessageBody_deserialize(
-    SmolRTSP_MessageBody *restrict self, Slice99 *restrict data, size_t content_length);
+    SmolRTSP_MessageBody *restrict self, CharSlice99 *restrict data, size_t content_length);
 
 #endif // SMOLRTSP_MESSAGE_BODY_H

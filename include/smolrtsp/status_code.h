@@ -257,6 +257,6 @@ void SmolRTSP_StatusCode_serialize(
  * @pre `data != NULL`
  */
 SmolRTSP_DeserializeResult
-SmolRTSP_StatusCode_deserialize(SmolRTSP_StatusCode *restrict self, Slice99 *restrict data);
+SmolRTSP_StatusCode_deserialize(SmolRTSP_StatusCode *restrict self, CharSlice99 *restrict data);
 
 #endif // SMOLRTSP_STATUS_CODE_H

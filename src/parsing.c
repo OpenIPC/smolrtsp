@@ -7,16 +7,16 @@
 #include <string.h>
 
 SmolRTSP_DeserializeResult
-SmolRTSP_match_until(Slice99 *restrict data, bool (*matcher)(char c, void *cx), void *cx) {
+SmolRTSP_match_until(CharSlice99 *restrict data, bool (*matcher)(char c, void *cx), void *cx) {
     precondition(data);
     precondition(matcher);
 
-    while (!Slice99_is_empty(*data)) {
+    while (!CharSlice99_is_empty(*data)) {
         if (!matcher(*(char *)data->ptr, cx)) {
             return SmolRTSP_DeserializeResultOk;
         }
 
-        *data = Slice99_advance(*data, 1);
+        *data = CharSlice99_advance(*data, 1);
     }
 
     return SmolRTSP_DeserializeResultPending;
@@ -65,7 +65,7 @@ static bool is_str_recognised(size_t state, const char *str) {
 }
 
 SmolRTSP_DeserializeResult
-SmolRTSP_match_until_str(Slice99 *restrict data, const char *restrict str) {
+SmolRTSP_match_until_str(CharSlice99 *restrict data, const char *restrict str) {
     precondition(data);
     precondition(str);
 
@@ -80,11 +80,11 @@ SmolRTSP_match_until_str(Slice99 *restrict data, const char *restrict str) {
     // An NFA (non-determenistic finite automaton) converted to DFA (determenistic) to recognise a
     // substring in O(data->size).
     size_t states[2] = {0};
-    while (!Slice99_is_empty(*data)) {
+    while (!CharSlice99_is_empty(*data)) {
         states[0] = match_str_transition(*(const char *)data->ptr, states[0], str);
         states[1] = match_str_transition(*(const char *)data->ptr, states[1], str);
 
-        *data = Slice99_advance(*data, 1);
+        *data = CharSlice99_advance(*data, 1);
 
         if (is_str_recognised(states[0], str) || is_str_recognised(states[1], str)) {
             return SmolRTSP_DeserializeResultOk;
@@ -94,19 +94,19 @@ SmolRTSP_match_until_str(Slice99 *restrict data, const char *restrict str) {
     return SmolRTSP_DeserializeResultPending;
 }
 
-SmolRTSP_DeserializeResult SmolRTSP_match_until_crlf(Slice99 *restrict data) {
+SmolRTSP_DeserializeResult SmolRTSP_match_until_crlf(CharSlice99 *restrict data) {
     precondition(data);
 
     return SmolRTSP_match_until_str(data, "\r\n");
 }
 
-SmolRTSP_DeserializeResult SmolRTSP_match_char(Slice99 *restrict data, char c) {
+SmolRTSP_DeserializeResult SmolRTSP_match_char(CharSlice99 *restrict data, char c) {
     precondition(data);
 
     return SmolRTSP_match_until(data, char_matcher, &c);
 }
 
-SmolRTSP_DeserializeResult SmolRTSP_match_str(Slice99 *restrict data, const char *restrict str) {
+SmolRTSP_DeserializeResult SmolRTSP_match_str(CharSlice99 *restrict data, const char *restrict str) {
     precondition(data);
     precondition(str);
 
@@ -121,26 +121,26 @@ SmolRTSP_DeserializeResult SmolRTSP_match_str(Slice99 *restrict data, const char
         return SmolRTSP_DeserializeResultPending;
     }
 
-    *data = Slice99_advance(*data, str_len);
+    *data = CharSlice99_advance(*data, str_len);
     return SmolRTSP_DeserializeResultOk;
 }
 
-SmolRTSP_DeserializeResult SmolRTSP_match_whitespaces(Slice99 *restrict data) {
+SmolRTSP_DeserializeResult SmolRTSP_match_whitespaces(CharSlice99 *restrict data) {
     precondition(data);
 
     return SmolRTSP_match_until(data, whitespace_matcher, NULL);
 }
 
-SmolRTSP_DeserializeResult SmolRTSP_match_non_whitespaces(Slice99 *restrict data) {
+SmolRTSP_DeserializeResult SmolRTSP_match_non_whitespaces(CharSlice99 *restrict data) {
     precondition(data);
 
     return SmolRTSP_match_until(data, non_whitespace_matcher, NULL);
 }
 
-SmolRTSP_DeserializeResult SmolRTSP_match_numeric(Slice99 *restrict data) {
+SmolRTSP_DeserializeResult SmolRTSP_match_numeric(CharSlice99 *restrict data) {
     precondition(data);
 
-    const Slice99 backup = *data;
+    const CharSlice99 backup = *data;
 
     const SmolRTSP_DeserializeResult res = SmolRTSP_match_until(data, numeric_matcher, NULL);
     const bool not_numeric = backup.len == data->len && backup.ptr == data->ptr && data->len > 0;
@@ -151,10 +151,10 @@ SmolRTSP_DeserializeResult SmolRTSP_match_numeric(Slice99 *restrict data) {
     return res;
 }
 
-SmolRTSP_DeserializeResult SmolRTSP_match_ident(Slice99 *restrict data) {
+SmolRTSP_DeserializeResult SmolRTSP_match_ident(CharSlice99 *restrict data) {
     precondition(data);
 
-    const Slice99 backup = *data;
+    const CharSlice99 backup = *data;
 
     const SmolRTSP_DeserializeResult res = SmolRTSP_match_until(data, ident_matcher, NULL);
     const bool not_ident = backup.len == data->len && backup.ptr == data->ptr && data->len > 0;
@@ -165,10 +165,10 @@ SmolRTSP_DeserializeResult SmolRTSP_match_ident(Slice99 *restrict data) {
     return res;
 }
 
-SmolRTSP_DeserializeResult SmolRTSP_match_header_name(Slice99 *restrict data) {
+SmolRTSP_DeserializeResult SmolRTSP_match_header_name(CharSlice99 *restrict data) {
     precondition(data);
 
-    const Slice99 backup = *data;
+    const CharSlice99 backup = *data;
 
     const SmolRTSP_DeserializeResult res =
         SmolRTSP_match_until(data, header_name_char_matcher, NULL);

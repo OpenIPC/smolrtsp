@@ -15,7 +15,7 @@ void SmolRTSP_Response_serialize(
 }
 
 SmolRTSP_DeserializeResult SmolRTSP_Response_deserialize(
-    SmolRTSP_Response *restrict self, Slice99 *restrict data,
+    SmolRTSP_Response *restrict self, CharSlice99 *restrict data,
     SmolRTSP_ResponseDeserializerState *restrict state) {
     precondition(self);
     precondition(data);
@@ -29,7 +29,7 @@ SmolRTSP_DeserializeResult SmolRTSP_Response_deserialize(
         SmolRTSP_ResponseDeserializerStateHeaderMap,
         SmolRTSP_HeaderMap_deserialize(&self->header_map, data));
 
-    Slice99 content_length;
+    CharSlice99 content_length;
     size_t content_length_int = 0;
     const bool content_length_is_found = SmolRTSP_HeaderMap_find(
         self->header_map, SMOLRTSP_HEADER_NAME_CONTENT_LENGTH, &content_length);
@@ -54,5 +54,5 @@ SmolRTSP_DeserializeResult SmolRTSP_Response_deserialize(
 bool SmolRTSP_Response_eq(SmolRTSP_Response lhs, SmolRTSP_Response rhs) {
     return SmolRTSP_ResponseLine_eq(lhs.start_line, rhs.start_line) &&
            SmolRTSP_HeaderMap_eq(lhs.header_map, rhs.header_map) &&
-           Slice99_primitive_eq(lhs.body, rhs.body);
+           CharSlice99_primitive_eq(lhs.body, rhs.body);
 }

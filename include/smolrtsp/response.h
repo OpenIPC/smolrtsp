@@ -79,7 +79,7 @@ typedef struct {
  * @pre `state != NULL`
  */
 SmolRTSP_DeserializeResult SmolRTSP_Response_deserialize(
-    SmolRTSP_Response *restrict self, Slice99 *restrict data,
+    SmolRTSP_Response *restrict self, CharSlice99 *restrict data,
     SmolRTSP_ResponseDeserializerState *restrict state);
 
 /**

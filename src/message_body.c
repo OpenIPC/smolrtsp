@@ -4,21 +4,21 @@
 #include "parsing.h"
 
 SmolRTSP_DeserializeResult SmolRTSP_MessageBody_deserialize(
-    SmolRTSP_MessageBody *restrict self, Slice99 *restrict data, size_t content_length) {
+    SmolRTSP_MessageBody *restrict self, CharSlice99 *restrict data, size_t content_length) {
     precondition(self);
     precondition(data);
 
-    if (Slice99_size(*data) < content_length) {
+    if (CharSlice99_size(*data) < content_length) {
         return SmolRTSP_DeserializeResultPending;
     }
 
     if (0 == content_length) {
-        *self = Slice99_empty(sizeof(char));
+        *self = CharSlice99_empty();
         return SmolRTSP_DeserializeResultOk;
     }
 
-    *self = Slice99_new(data->ptr, sizeof(char), content_length);
-    *data = Slice99_advance(*data, content_length);
+    *self = CharSlice99_new(data->ptr, content_length);
+    *data = CharSlice99_advance(*data, content_length);
 
     return SmolRTSP_DeserializeResultOk;
 }

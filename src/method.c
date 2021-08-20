@@ -4,14 +4,14 @@
 #include "parsing.h"
 
 SmolRTSP_DeserializeResult
-SmolRTSP_Method_deserialize(SmolRTSP_Method *restrict self, Slice99 *restrict data) {
+SmolRTSP_Method_deserialize(SmolRTSP_Method *restrict self, CharSlice99 *restrict data) {
     precondition(self);
     precondition(data);
 
     MATCH(SmolRTSP_match_whitespaces(data));
-    Slice99 method = *data;
+    CharSlice99 method = *data;
     MATCH(SmolRTSP_match_ident(data));
-    method = Slice99_from_ptrdiff(method.ptr, data->ptr, sizeof(char));
+    method = CharSlice99_from_ptrdiff(method.ptr, data->ptr);
 
     *self = method;
 

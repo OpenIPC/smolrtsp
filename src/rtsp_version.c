@@ -24,26 +24,26 @@ void SmolRTSP_RTSPVersion_serialize(
     invariant(buffer);
     snprintf(buffer, buffer_size, fmt, self.major, self.minor);
 
-    user_writer(Slice99_from_str(buffer), user_cx);
+    user_writer(CharSlice99_from_str(buffer), user_cx);
 
     free(buffer);
 }
 
 SmolRTSP_DeserializeResult
-SmolRTSP_RTSPVersion_deserialize(SmolRTSP_RTSPVersion *restrict self, Slice99 *restrict data) {
+SmolRTSP_RTSPVersion_deserialize(SmolRTSP_RTSPVersion *restrict self, CharSlice99 *restrict data) {
     precondition(self);
     precondition(data);
 
     MATCH(SmolRTSP_match_whitespaces(data));
     MATCH(SmolRTSP_match_str(data, "RTSP/"));
 
-    Slice99 major = *data;
+    CharSlice99 major = *data;
     MATCH(SmolRTSP_match_numeric(data));
-    major = Slice99_from_ptrdiff(major.ptr, data->ptr, sizeof(char));
+    major = CharSlice99_from_ptrdiff(major.ptr, data->ptr);
     MATCH(SmolRTSP_match_char(data, '.'));
-    Slice99 minor = *data;
+    CharSlice99 minor = *data;
     MATCH(SmolRTSP_match_numeric(data));
-    minor = Slice99_from_ptrdiff(minor.ptr, data->ptr, sizeof(char));
+    minor = CharSlice99_from_ptrdiff(minor.ptr, data->ptr);
 
     uint_least8_t major_int, minor_int;
     char fmt[64];

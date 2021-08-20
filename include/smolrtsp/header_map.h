@@ -70,12 +70,12 @@ SmolRTSP_HeaderMap SmolRTSP_HeaderMap_empty(void);
  * @param[in] key The key to be searched in @p self.
  * @param[out] value The header value to be assigned, if found.
  */
-bool SmolRTSP_HeaderMap_find(SmolRTSP_HeaderMap self, Slice99 key, Slice99 *restrict value);
+bool SmolRTSP_HeaderMap_find(SmolRTSP_HeaderMap self, CharSlice99 key, CharSlice99 *restrict value);
 
 /**
  * Returns whether @p key is present in @p self.
  */
-bool SmolRTSP_HeaderMap_key_is_present(SmolRTSP_HeaderMap self, Slice99 key);
+bool SmolRTSP_HeaderMap_key_is_present(SmolRTSP_HeaderMap self, CharSlice99 key);
 
 /**
  * Serializes @p self to @p user_writer.
@@ -96,7 +96,7 @@ void SmolRTSP_HeaderMap_serialize(
  * @pre `data != NULL`
  */
 SmolRTSP_DeserializeResult
-SmolRTSP_HeaderMap_deserialize(SmolRTSP_HeaderMap *restrict self, Slice99 *restrict data);
+SmolRTSP_HeaderMap_deserialize(SmolRTSP_HeaderMap *restrict self, CharSlice99 *restrict data);
 
 /**
  * Tests @p lhs and @p rhs for equality.

@@ -13,7 +13,7 @@
 /**
  * An RTSP reason phrase.
  */
-typedef Slice99 SmolRTSP_ReasonPhrase;
+typedef CharSlice99 SmolRTSP_ReasonPhrase;
 
 /**
  * Deserializes @p data to @p self.
@@ -22,6 +22,6 @@ typedef Slice99 SmolRTSP_ReasonPhrase;
  * @pre `data != NULL`
  */
 SmolRTSP_DeserializeResult
-SmolRTSP_ReasonPhrase_deserialize(SmolRTSP_ReasonPhrase *restrict self, Slice99 *restrict data);
+SmolRTSP_ReasonPhrase_deserialize(SmolRTSP_ReasonPhrase *restrict self, CharSlice99 *restrict data);
 
 #endif // SMOLRTSP_REASON_PHRASE_H

@@ -16,7 +16,7 @@
  * @param[in] data The slice to the supplied data.
  * @param user_cx The user-supplied value.
  */
-typedef void (*SmolRTSP_UserWriter)(Slice99 data, void *user_cx);
+typedef void (*SmolRTSP_UserWriter)(CharSlice99 data, void *user_cx);
 
 /**
  * A writer which appends @p data to the array of characters @p buffer.
@@ -24,10 +24,10 @@ typedef void (*SmolRTSP_UserWriter)(Slice99 data, void *user_cx);
  * @param[in] data The slice to the supplied data.
  * @param[out] buffer The character buffer to write to.
  *
- * @pre @p buffer shall be capable of holding `Slice99_size(data)` more characters, as required by
+ * @pre @p buffer shall be capable of holding `CharSlice99_size(data)` more characters, as required by
  * `strncat`.
  */
-void smolrtsp_char_buffer_writer(Slice99 data, void *buffer);
+void smolrtsp_char_buffer_writer(CharSlice99 data, void *buffer);
 
 /**
  * A user writer which writes @p data to the file stream @p stream.
@@ -35,6 +35,6 @@ void smolrtsp_char_buffer_writer(Slice99 data, void *buffer);
  * @param[in] data The slice to the supplied data.
  * @param[out] stream The file stream of type `FILE *` to write to.
  */
-void smolrtsp_file_stream_writer(Slice99 data, void *stream);
+void smolrtsp_file_stream_writer(CharSlice99 data, void *stream);
 
 #endif // SMOLRTSP_USER_WRITER_H

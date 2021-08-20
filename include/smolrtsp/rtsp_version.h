@@ -54,7 +54,7 @@ void SmolRTSP_RTSPVersion_serialize(
  * @pre `data != NULL`
  */
 SmolRTSP_DeserializeResult
-SmolRTSP_RTSPVersion_deserialize(SmolRTSP_RTSPVersion *restrict self, Slice99 *restrict data);
+SmolRTSP_RTSPVersion_deserialize(SmolRTSP_RTSPVersion *restrict self, CharSlice99 *restrict data);
 
 /**
  * Tests @p lhs and @p rhs for equality.

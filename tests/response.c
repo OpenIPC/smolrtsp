@@ -8,23 +8,23 @@ TEST(deserialize_response) {
             {
                 .version = {.major = 1, .minor = 1},
                 .code = SMOLRTSP_STATUS_CODE_OK,
-                .reason = Slice99_from_str("OK"),
+                .reason = CharSlice99_from_str("OK"),
             },
         .header_map = SmolRTSP_HeaderMap_from_array((SmolRTSP_Header[]){
             {
                 SMOLRTSP_HEADER_NAME_CONTENT_LENGTH,
-                Slice99_from_str("10"),
+                CharSlice99_from_str("10"),
             },
             {
                 SMOLRTSP_HEADER_NAME_ACCEPT_LANGUAGE,
-                Slice99_from_str("English"),
+                CharSlice99_from_str("English"),
             },
             {
                 SMOLRTSP_HEADER_NAME_CONTENT_TYPE,
-                Slice99_from_str("application/octet-stream"),
+                CharSlice99_from_str("application/octet-stream"),
             },
         }),
-        .body = Slice99_from_str("0123456789"),
+        .body = CharSlice99_from_str("0123456789"),
     };
 
     SmolRTSP_ResponseDeserializerState state = SMOLRTSP_RESPONSE_DESERIALIZER_STATE_INIT;
@@ -32,7 +32,8 @@ TEST(deserialize_response) {
     SmolRTSP_DeserializeResult res;
 
 #define CHECK(data, expected_res, expected_state)                                                  \
-    res = SmolRTSP_Response_deserialize(&result, (Slice99[]){Slice99_from_str(data)}, &state);     \
+    res = SmolRTSP_Response_deserialize(                                                           \
+        &result, (CharSlice99[]){CharSlice99_from_str(data)}, &state);                             \
     ASSERT_EQ(res, SmolRTSP_DeserializeResult##expected_res);                                      \
     ASSERT_EQ(state.tag, SmolRTSP_ResponseDeserializerState##expected_state)
 
@@ -62,19 +63,19 @@ TEST(serialize_response) {
             {
                 .version = SmolRTSP_RTSPVersion_new(1, 0),
                 .code = SMOLRTSP_STATUS_CODE_OK,
-                .reason = Slice99_from_str("OK"),
+                .reason = CharSlice99_from_str("OK"),
             },
         .header_map = SmolRTSP_HeaderMap_from_array((SmolRTSP_Header[]){
             {
                 SMOLRTSP_HEADER_NAME_CONTENT_LENGTH,
-                Slice99_from_str("123"),
+                CharSlice99_from_str("123"),
             },
             {
                 SMOLRTSP_HEADER_NAME_CONTENT_TYPE,
-                Slice99_from_str("application/octet-stream"),
+                CharSlice99_from_str("application/octet-stream"),
             },
         }),
-        .body = Slice99_from_str("1234567890"),
+        .body = CharSlice99_from_str("1234567890"),
     };
 
     SmolRTSP_Response_serialize(response, smolrtsp_char_buffer_writer, buffer);

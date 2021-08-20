@@ -2,20 +2,20 @@
 
 #include "nala/nala.h"
 
-static void assert_pending(Slice99 input) {
+static void assert_pending(CharSlice99 input) {
     SmolRTSP_HeaderMap result = SmolRTSP_HeaderMap_with_capacity(3);
     SmolRTSP_DeserializeResult res = SmolRTSP_HeaderMap_deserialize(&result, &input);
     ASSERT_EQ(res, SmolRTSP_DeserializeResultPending);
 }
 
-static void assert_ok(Slice99 input, SmolRTSP_HeaderMap expected) {
+static void assert_ok(CharSlice99 input, SmolRTSP_HeaderMap expected) {
     SmolRTSP_HeaderMap result = SmolRTSP_HeaderMap_with_capacity(3);
     SmolRTSP_DeserializeResult res = SmolRTSP_HeaderMap_deserialize(&result, &input);
     ASSERT_EQ(res, SmolRTSP_DeserializeResultOk);
     ASSERT(SmolRTSP_HeaderMap_eq(result, expected));
 }
 
-static void assert_err(Slice99 input) {
+static void assert_err(CharSlice99 input) {
     SmolRTSP_HeaderMap result = SmolRTSP_HeaderMap_with_capacity(3);
     SmolRTSP_DeserializeResult res = SmolRTSP_HeaderMap_deserialize(&result, &input);
     ASSERT_EQ(res, SmolRTSP_DeserializeResultErr);
@@ -25,15 +25,15 @@ static void assert_err(Slice99 input) {
     SmolRTSP_HeaderMap_from_array((SmolRTSP_Header[]){                                             \
         {                                                                                          \
             SMOLRTSP_HEADER_NAME_CONTENT_LENGTH,                                                   \
-            Slice99_from_str("10"),                                                                \
+            CharSlice99_from_str("10"),                                                            \
         },                                                                                         \
         {                                                                                          \
             SMOLRTSP_HEADER_NAME_ACCEPT_LANGUAGE,                                                  \
-            Slice99_from_str("English"),                                                           \
+            CharSlice99_from_str("English"),                                                       \
         },                                                                                         \
         {                                                                                          \
             SMOLRTSP_HEADER_NAME_CONTENT_TYPE,                                                     \
-            Slice99_from_str("application/octet-stream"),                                          \
+            CharSlice99_from_str("application/octet-stream"),                                      \
         },                                                                                         \
     })
 
@@ -44,16 +44,16 @@ static void assert_err(Slice99 input) {
 TEST(deserialize_header_map) {
     const SmolRTSP_HeaderMap expected = HEADER_MAP;
 
-    const Slice99 input = Slice99_from_str(HEADER_MAP_STR);
+    const CharSlice99 input = CharSlice99_from_str(HEADER_MAP_STR);
 
     for (size_t i = 0; i < input.len - 1; i++) {
-        assert_pending(Slice99_update_len(input, i));
+        assert_pending(CharSlice99_update_len(input, i));
     }
 
     assert_ok(input, expected);
 
-    assert_err(Slice99_from_str("~29838"));
-    assert_err(Slice99_from_str("Content-Length: 10\r\n38@@2: 10"));
+    assert_err(CharSlice99_from_str("~29838"));
+    assert_err(CharSlice99_from_str("Content-Length: 10\r\n38@@2: 10"));
 }
 
 TEST(serialize_header_map) {
@@ -65,12 +65,12 @@ TEST(serialize_header_map) {
 }
 
 TEST(find) {
-    Slice99 content_length;
+    CharSlice99 content_length;
     const bool content_length_is_found =
         SmolRTSP_HeaderMap_find(HEADER_MAP, SMOLRTSP_HEADER_NAME_CONTENT_LENGTH, &content_length);
 
     ASSERT(content_length_is_found);
-    ASSERT(Slice99_primitive_eq(content_length, Slice99_from_str("10")));
+    ASSERT(CharSlice99_primitive_eq(content_length, CharSlice99_from_str("10")));
 }
 
 TEST(key_is_present) {
