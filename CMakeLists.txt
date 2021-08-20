@@ -3,10 +3,6 @@ project(smolrtsp LANGUAGES C)
 
 option(SMOLRTSP_SHARED "Build a shared library" OFF)
 
-if(CMAKE_C_COMPILER_ID STREQUAL "GNU")
-  add_compile_options(-Wall)
-endif()
-
 set(SOURCES
     include/smolrtsp/common.h
     include/smolrtsp/header_map.h
