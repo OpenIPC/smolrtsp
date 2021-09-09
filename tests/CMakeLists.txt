@@ -24,6 +24,7 @@ add_executable(
   request_uri.c
   rtsp_version.c
   status_code.c
+  sdp.c
   util.c)
 
 add_subdirectory(.. build)

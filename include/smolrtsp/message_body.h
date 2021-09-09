@@ -1,6 +1,6 @@
 /**
  * @file
- *  An RTSP message body.
+ * An RTSP message body.
  */
 
 #ifndef SMOLRTSP_MESSAGE_BODY_H

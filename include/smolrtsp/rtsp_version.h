@@ -1,6 +1,6 @@
 /**
  * @file
- *  An RTSP version.
+ * An RTSP version.
  */
 
 #ifndef SMOLRTSP_RTSP_VERSION_H

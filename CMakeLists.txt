@@ -17,6 +17,7 @@ set(SOURCES
     include/smolrtsp/response.h
     include/smolrtsp/rtsp_version.h
     include/smolrtsp/status_code.h
+    include/smolrtsp/sdp.h
     include/smolrtsp/user_writer.h
     include/smolrtsp/util.h
     src/correctness.h
@@ -34,6 +35,7 @@ set(SOURCES
     src/response.c
     src/rtsp_version.c
     src/status_code.c
+    src/sdp.c
     src/user_writer.c
     src/util.c)
 

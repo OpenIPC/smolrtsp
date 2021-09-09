@@ -1,6 +1,6 @@
 /**
  * @file
- *  An RTSP method.
+ * An RTSP method.
  */
 
 #ifndef SMOLRTSP_METHOD_H

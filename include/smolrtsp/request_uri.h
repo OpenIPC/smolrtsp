@@ -1,6 +1,6 @@
 /**
  * @file
- *  An RTSP request URI.
+ * An RTSP request URI.
  */
 
 #ifndef SMOLRTSP_REQUEST_URI_H
