@@ -20,9 +20,13 @@ const char *SmolRTSP_SdpLineType_str(SmolRTSP_SdpLineType self) {
     }
 }
 
-void SmolRTSP_SdpLineType_serialize(
-    SmolRTSP_SdpLineType self, SmolRTSP_UserWriter user_writer, void *user_cx) {
-    precondition(user_writer);
+void SmolRTSP_SdpLine_serialize(
+    SmolRTSP_SdpLine self, SmolRTSP_UserWriter user_writer, void *user_cx) {
 
-    user_writer(CharSlice99_from_str((char *)SmolRTSP_SdpLineType_str(self)), user_cx);
+    const char *ty = SmolRTSP_SdpLineType_str(self.ty);
+
+    user_writer(CharSlice99_from_str((char *)ty), user_cx);
+    user_writer(CharSlice99_from_str("="), user_cx);
+    user_writer(self.value, user_cx);
+    user_writer(SMOLRTSP_CRLF, user_cx);
 }

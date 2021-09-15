@@ -21,13 +21,15 @@ TEST(sdp_line_type_str) {
 #undef X
 }
 
-TEST(serialize_sdp_line_type) {
+TEST(serialize_sdp_line) {
     char buffer[20] = {0};
 
 #define X(variant, expected)                                                                       \
     {                                                                                              \
-        SmolRTSP_SdpLineType_serialize(variant, smolrtsp_char_buffer_writer, buffer);              \
-        ASSERT_EQ(strcmp(buffer, expected), 0);                                                    \
+        SmolRTSP_SdpLine_serialize(                                                                \
+            (SmolRTSP_SdpLine){.ty = variant, .value = CharSlice99_from_str("abc")},               \
+            smolrtsp_char_buffer_writer, buffer);                                                  \
+        ASSERT_EQ(strcmp(buffer, expected "=abc\r\n"), 0);                                         \
         buffer[0] = '\0';                                                                          \
     }
 

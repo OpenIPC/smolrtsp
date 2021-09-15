@@ -52,6 +52,21 @@ typedef enum {
 } SmolRTSP_SdpLineType;
 
 /**
+ * An SDP line.
+ */
+typedef struct {
+    /**
+     * The type of this line.
+     */
+    SmolRTSP_SdpLineType ty;
+
+    /**
+     * The value of this line.
+     */
+    CharSlice99 value;
+} SmolRTSP_SdpLine;
+
+/**
  * Maps @p self to a constant null-terminated string.
  */
 const char *SmolRTSP_SdpLineType_str(SmolRTSP_SdpLineType self);
@@ -65,7 +80,7 @@ const char *SmolRTSP_SdpLineType_str(SmolRTSP_SdpLineType self);
  *
  * @pre `user_writer != NULL`
  */
-void SmolRTSP_SdpLineType_serialize(
-    SmolRTSP_SdpLineType self, SmolRTSP_UserWriter user_writer, void *user_cx);
+void SmolRTSP_SdpLine_serialize(
+    SmolRTSP_SdpLine self, SmolRTSP_UserWriter user_writer, void *user_cx);
 
 #endif // SMOLRTSP_SDP_H
