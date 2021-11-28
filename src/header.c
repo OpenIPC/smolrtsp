@@ -1,13 +1,13 @@
 #include <smolrtsp/header.h>
 
-#include "correctness.h"
 #include "parsing.h"
 
+#include <assert.h>
 #include <string.h>
 
 void SmolRTSP_Header_serialize(
     SmolRTSP_Header self, SmolRTSP_UserWriter user_writer, void *user_cx) {
-    precondition(user_writer);
+    assert(user_writer);
 
     user_writer(self.key, user_cx);
     user_writer(CharSlice99_from_str(": "), user_cx);
@@ -17,8 +17,8 @@ void SmolRTSP_Header_serialize(
 
 SmolRTSP_DeserializeResult
 SmolRTSP_Header_deserialize(SmolRTSP_Header *restrict self, CharSlice99 *restrict data) {
-    precondition(self);
-    precondition(data);
+    assert(self);
+    assert(data);
 
     SmolRTSP_Header header;
 
@@ -46,7 +46,7 @@ bool SmolRTSP_Header_eq(SmolRTSP_Header lhs, SmolRTSP_Header rhs) {
 }
 
 void SmolRTSP_Header_dbg_to_file(SmolRTSP_Header self, FILE *stream) {
-    precondition(stream);
+    assert(stream);
 
     fprintf(
         stream, "'%.*s': '%.*s'\n", (int)CharSlice99_size(self.key), (const char *)self.key.ptr,

@@ -20,7 +20,6 @@ set(SOURCES
     include/smolrtsp/sdp.h
     include/smolrtsp/user_writer.h
     include/smolrtsp/util.h
-    src/correctness.h
     src/header_map.c
     src/header.c
     src/message_body.c

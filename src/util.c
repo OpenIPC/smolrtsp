@@ -1,8 +1,8 @@
 #include <smolrtsp/util.h>
 
-#include "correctness.h"
 #include "parsing.h"
 
+#include <assert.h>
 #include <stdio.h>
 
 const char *SmolRTSP_LowerTransport_str(SmolRTSP_LowerTransport self) {
@@ -13,7 +13,7 @@ const char *SmolRTSP_LowerTransport_str(SmolRTSP_LowerTransport self) {
 }
 
 int SmolRTSP_parse_lower_transport(SmolRTSP_LowerTransport *restrict result, CharSlice99 value) {
-    precondition(result);
+    assert(result);
 
     const CharSlice99 start = value;
 
@@ -39,8 +39,8 @@ int SmolRTSP_parse_lower_transport(SmolRTSP_LowerTransport *restrict result, Cha
 }
 
 int SmolRTSP_parse_client_port(int *restrict rtp_port, int *restrict rtcp_port, CharSlice99 value) {
-    precondition(rtp_port);
-    precondition(rtcp_port);
+    assert(rtp_port);
+    assert(rtcp_port);
 
     if (SmolRTSP_match_until_str(&value, "client_port=") != SmolRTSP_DeserializeResult_Ok) {
         return -1;
@@ -73,8 +73,8 @@ int SmolRTSP_parse_client_port(int *restrict rtp_port, int *restrict rtcp_port, 
 
 int SmolRTSP_parse_interleaved_chn_id(
     int *restrict rtp_chn_id, int *restrict rtcp_chn_id, CharSlice99 value) {
-    precondition(rtp_chn_id);
-    precondition(rtcp_chn_id);
+    assert(rtp_chn_id);
+    assert(rtcp_chn_id);
 
     if (SmolRTSP_match_until_str(&value, "interleaved=") != SmolRTSP_DeserializeResult_Ok) {
         return -1;

@@ -1,15 +1,14 @@
 #include "parsing.h"
 
-#include "correctness.h"
-
+#include <assert.h>
 #include <ctype.h>
 #include <math.h>
 #include <string.h>
 
 SmolRTSP_DeserializeResult
 SmolRTSP_match_until(CharSlice99 *restrict data, bool (*matcher)(char c, void *cx), void *cx) {
-    precondition(data);
-    precondition(matcher);
+    assert(data);
+    assert(matcher);
 
     while (!CharSlice99_is_empty(*data)) {
         if (!matcher(*(char *)data->ptr, cx)) {
@@ -66,12 +65,12 @@ static bool is_str_recognised(size_t state, const char *str) {
 
 SmolRTSP_DeserializeResult
 SmolRTSP_match_until_str(CharSlice99 *restrict data, const char *restrict str) {
-    precondition(data);
-    precondition(str);
+    assert(data);
+    assert(str);
 
     const size_t str_len = strlen(str);
 
-    precondition(str_len > 0);
+    assert(str_len > 0);
 
     if (data->len < str_len) {
         return SmolRTSP_DeserializeResult_Pending;
@@ -95,21 +94,21 @@ SmolRTSP_match_until_str(CharSlice99 *restrict data, const char *restrict str) {
 }
 
 SmolRTSP_DeserializeResult SmolRTSP_match_until_crlf(CharSlice99 *restrict data) {
-    precondition(data);
+    assert(data);
 
     return SmolRTSP_match_until_str(data, "\r\n");
 }
 
 SmolRTSP_DeserializeResult SmolRTSP_match_char(CharSlice99 *restrict data, char c) {
-    precondition(data);
+    assert(data);
 
     return SmolRTSP_match_until(data, char_matcher, &c);
 }
 
 SmolRTSP_DeserializeResult
 SmolRTSP_match_str(CharSlice99 *restrict data, const char *restrict str) {
-    precondition(data);
-    precondition(str);
+    assert(data);
+    assert(str);
 
     const size_t str_len = strlen(str);
 
@@ -127,19 +126,19 @@ SmolRTSP_match_str(CharSlice99 *restrict data, const char *restrict str) {
 }
 
 SmolRTSP_DeserializeResult SmolRTSP_match_whitespaces(CharSlice99 *restrict data) {
-    precondition(data);
+    assert(data);
 
     return SmolRTSP_match_until(data, whitespace_matcher, NULL);
 }
 
 SmolRTSP_DeserializeResult SmolRTSP_match_non_whitespaces(CharSlice99 *restrict data) {
-    precondition(data);
+    assert(data);
 
     return SmolRTSP_match_until(data, non_whitespace_matcher, NULL);
 }
 
 SmolRTSP_DeserializeResult SmolRTSP_match_numeric(CharSlice99 *restrict data) {
-    precondition(data);
+    assert(data);
 
     const CharSlice99 backup = *data;
 
@@ -153,7 +152,7 @@ SmolRTSP_DeserializeResult SmolRTSP_match_numeric(CharSlice99 *restrict data) {
 }
 
 SmolRTSP_DeserializeResult SmolRTSP_match_ident(CharSlice99 *restrict data) {
-    precondition(data);
+    assert(data);
 
     const CharSlice99 backup = *data;
 
@@ -167,7 +166,7 @@ SmolRTSP_DeserializeResult SmolRTSP_match_ident(CharSlice99 *restrict data) {
 }
 
 SmolRTSP_DeserializeResult SmolRTSP_match_header_name(CharSlice99 *restrict data) {
-    precondition(data);
+    assert(data);
 
     const CharSlice99 backup = *data;
 

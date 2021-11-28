@@ -1,13 +1,13 @@
 #include <smolrtsp/request_line.h>
 
-#include "correctness.h"
 #include "parsing.h"
 
+#include <assert.h>
 #include <string.h>
 
 void SmolRTSP_RequestLine_serialize(
     SmolRTSP_RequestLine self, SmolRTSP_UserWriter user_writer, void *user_cx) {
-    precondition(user_writer);
+    assert(user_writer);
 
     user_writer(self.method, user_cx);
     user_writer(CharSlice99_from_str(" "), user_cx);
@@ -20,9 +20,9 @@ void SmolRTSP_RequestLine_serialize(
 SmolRTSP_DeserializeResult SmolRTSP_RequestLine_deserialize(
     SmolRTSP_RequestLine *restrict self, CharSlice99 *restrict data,
     SmolRTSP_RequestLineDeserializerState *restrict state) {
-    precondition(self);
-    precondition(data);
-    precondition(state);
+    assert(self);
+    assert(data);
+    assert(state);
 
     TRY_PARSE(
         SmolRTSP_RequestLineDeserializerState_Method,

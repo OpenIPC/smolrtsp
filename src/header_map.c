@@ -1,8 +1,8 @@
 #include <smolrtsp/header_map.h>
 
-#include "correctness.h"
 #include "parsing.h"
 
+#include <assert.h>
 #include <string.h>
 
 SmolRTSP_HeaderMap SmolRTSP_HeaderMap_empty(void) {
@@ -11,7 +11,7 @@ SmolRTSP_HeaderMap SmolRTSP_HeaderMap_empty(void) {
 
 bool SmolRTSP_HeaderMap_find(
     SmolRTSP_HeaderMap self, CharSlice99 key, CharSlice99 *restrict value) {
-    precondition(value);
+    assert(value);
 
     for (size_t i = 0; i < self.len; i++) {
         if (CharSlice99_primitive_eq(self.headers[i].key, key)) {
@@ -30,7 +30,7 @@ bool SmolRTSP_HeaderMap_key_is_present(SmolRTSP_HeaderMap self, CharSlice99 key)
 
 void SmolRTSP_HeaderMap_serialize(
     SmolRTSP_HeaderMap self, SmolRTSP_UserWriter user_writer, void *user_cx) {
-    precondition(user_writer);
+    assert(user_writer);
 
     for (size_t i = 0; i < self.len; i++) {
         SmolRTSP_Header_serialize(self.headers[i], user_writer, user_cx);
@@ -41,8 +41,8 @@ void SmolRTSP_HeaderMap_serialize(
 
 SmolRTSP_DeserializeResult
 SmolRTSP_HeaderMap_deserialize(SmolRTSP_HeaderMap *restrict self, CharSlice99 *restrict data) {
-    precondition(self);
-    precondition(data);
+    assert(self);
+    assert(data);
 
     while (true) {
         if (data->len < SMOLRTSP_CRLF.len) {
@@ -86,7 +86,7 @@ bool SmolRTSP_HeaderMap_is_full(SmolRTSP_HeaderMap self) {
 }
 
 void SmolRTSP_HeaderMap_dbg_to_file(SmolRTSP_HeaderMap self, FILE *stream) {
-    precondition(stream);
+    assert(stream);
 
     for (size_t i = 0; i < self.len; i++) {
         SmolRTSP_Header_dbg_to_file(self.headers[i], stream);

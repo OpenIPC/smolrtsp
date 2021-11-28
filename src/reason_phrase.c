@@ -1,12 +1,13 @@
 #include <smolrtsp/reason_phrase.h>
 
-#include "correctness.h"
 #include "parsing.h"
+
+#include <assert.h>
 
 SmolRTSP_DeserializeResult SmolRTSP_ReasonPhrase_deserialize(
     SmolRTSP_ReasonPhrase *restrict self, CharSlice99 *restrict data) {
-    precondition(self);
-    precondition(data);
+    assert(self);
+    assert(data);
 
     MATCH(SmolRTSP_match_whitespaces(data));
     CharSlice99 phrase = *data;

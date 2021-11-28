@@ -1,12 +1,13 @@
 #include <smolrtsp/method.h>
 
-#include "correctness.h"
 #include "parsing.h"
+
+#include <assert.h>
 
 SmolRTSP_DeserializeResult
 SmolRTSP_Method_deserialize(SmolRTSP_Method *restrict self, CharSlice99 *restrict data) {
-    precondition(self);
-    precondition(data);
+    assert(self);
+    assert(data);
 
     MATCH(SmolRTSP_match_whitespaces(data));
     CharSlice99 method = *data;

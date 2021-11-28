@@ -1,15 +1,15 @@
 #include <smolrtsp/status_code.h>
 
-#include "correctness.h"
 #include "parsing.h"
 
+#include <assert.h>
 #include <inttypes.h>
 #include <stdio.h>
 #include <string.h>
 
 void SmolRTSP_StatusCode_serialize(
     SmolRTSP_StatusCode self, SmolRTSP_UserWriter user_writer, void *user_cx) {
-    precondition(user_writer);
+    assert(user_writer);
 
     char buffer[64];
     snprintf(buffer, sizeof(buffer), "%" PRIuLEAST16, self);
@@ -18,8 +18,8 @@ void SmolRTSP_StatusCode_serialize(
 
 SmolRTSP_DeserializeResult
 SmolRTSP_StatusCode_deserialize(SmolRTSP_StatusCode *restrict self, CharSlice99 *restrict data) {
-    precondition(self);
-    precondition(data);
+    assert(self);
+    assert(data);
 
     MATCH(SmolRTSP_match_whitespaces(data));
     CharSlice99 code = *data;

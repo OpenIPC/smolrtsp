@@ -1,8 +1,8 @@
 #include <smolrtsp/rtsp_version.h>
 
-#include "correctness.h"
 #include "parsing.h"
 
+#include <assert.h>
 #include <inttypes.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -14,14 +14,14 @@ SmolRTSP_RtspVersion SmolRTSP_RtspVersion_new(uint_least8_t major, uint_least8_t
 
 void SmolRTSP_RtspVersion_serialize(
     SmolRTSP_RtspVersion self, SmolRTSP_UserWriter user_writer, void *user_cx) {
-    precondition(user_writer);
+    assert(user_writer);
 
     const char *fmt = "RTSP/%" PRIuLEAST8 ".%" PRIuLEAST8;
 
     const size_t buffer_size = snprintf(NULL, 0, fmt, self.major, self.minor) + 1;
 
     char *buffer = malloc(buffer_size);
-    invariant(buffer);
+    assert(buffer);
     snprintf(buffer, buffer_size, fmt, self.major, self.minor);
 
     user_writer(CharSlice99_from_str(buffer), user_cx);
@@ -31,8 +31,8 @@ void SmolRTSP_RtspVersion_serialize(
 
 SmolRTSP_DeserializeResult
 SmolRTSP_RtspVersion_deserialize(SmolRTSP_RtspVersion *restrict self, CharSlice99 *restrict data) {
-    precondition(self);
-    precondition(data);
+    assert(self);
+    assert(data);
 
     MATCH(SmolRTSP_match_whitespaces(data));
     MATCH(SmolRTSP_match_str(data, "RTSP/"));

@@ -1,8 +1,8 @@
 #include <smolrtsp/sdp.h>
 
-#include "correctness.h"
 #include "parsing.h"
 
+#include <assert.h>
 #include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>

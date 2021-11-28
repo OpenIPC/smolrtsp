@@ -1,12 +1,13 @@
 #include <smolrtsp/request_uri.h>
 
-#include "correctness.h"
 #include "parsing.h"
+
+#include <assert.h>
 
 SmolRTSP_DeserializeResult
 SmolRTSP_RequestURI_deserialize(SmolRTSP_RequestURI *restrict self, CharSlice99 *restrict data) {
-    precondition(self);
-    precondition(data);
+    assert(self);
+    assert(data);
 
     MATCH(SmolRTSP_match_whitespaces(data));
     CharSlice99 uri = *data;
