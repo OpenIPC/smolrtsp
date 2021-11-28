@@ -16,7 +16,7 @@
 #define SMOLRTSP_RESPONSE_DESERIALIZER_STATE_INIT                                                  \
     (SmolRTSP_ResponseDeserializerState) {                                                         \
         .start_line = SMOLRTSP_RESPONSE_LINE_DESERIALIZER_STATE_INIT,                              \
-        .tag = SmolRTSP_ResponseDeserializerStateResponseLine,                                     \
+        .tag = SmolRTSP_ResponseDeserializerState_ResponseLine,                                    \
     }
 
 /**
@@ -64,10 +64,10 @@ typedef struct {
      * What part of a response is being deserialized right now.
      */
     enum {
-        SmolRTSP_ResponseDeserializerStateResponseLine,
-        SmolRTSP_ResponseDeserializerStateHeaderMap,
-        SmolRTSP_ResponseDeserializerStateMessageBody,
-        SmolRTSP_ResponseDeserializerStateDone,
+        SmolRTSP_ResponseDeserializerState_ResponseLine,
+        SmolRTSP_ResponseDeserializerState_HeaderMap,
+        SmolRTSP_ResponseDeserializerState_MessageBody,
+        SmolRTSP_ResponseDeserializerState_Done,
     } tag;
 } SmolRTSP_ResponseDeserializerState;
 

@@ -22,11 +22,11 @@ SmolRTSP_DeserializeResult SmolRTSP_Request_deserialize(
     precondition(state);
 
     TRY_PARSE(
-        SmolRTSP_RequestDeserializerStateRequestLine,
+        SmolRTSP_RequestDeserializerState_RequestLine,
         SmolRTSP_RequestLine_deserialize(&self->start_line, data, &state->start_line));
 
     TRY_PARSE(
-        SmolRTSP_RequestDeserializerStateHeaderMap,
+        SmolRTSP_RequestDeserializerState_HeaderMap,
         SmolRTSP_HeaderMap_deserialize(&self->header_map, data));
 
     CharSlice99 content_length;
@@ -45,10 +45,10 @@ SmolRTSP_DeserializeResult SmolRTSP_Request_deserialize(
     }
 
     TRY_PARSE(
-        SmolRTSP_RequestDeserializerStateMessageBody,
+        SmolRTSP_RequestDeserializerState_MessageBody,
         SmolRTSP_MessageBody_deserialize(&self->body, data, content_length_int));
 
-    return SmolRTSP_DeserializeResultOk;
+    return SmolRTSP_DeserializeResult_Ok;
 }
 
 bool SmolRTSP_Request_eq(SmolRTSP_Request lhs, SmolRTSP_Request rhs) {

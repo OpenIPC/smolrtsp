@@ -10,11 +10,11 @@
 #define MATCH(deserialize_res)                                                                     \
     do {                                                                                           \
         const SmolRTSP_DeserializeResult deserialize_res_var = deserialize_res;                    \
-        if (deserialize_res_var == SmolRTSP_DeserializeResultErr ||                                \
-            deserialize_res_var == SmolRTSP_DeserializeResultPending) {                            \
+        if (deserialize_res_var == SmolRTSP_DeserializeResult_Err ||                               \
+            deserialize_res_var == SmolRTSP_DeserializeResult_Pending) {                           \
             return deserialize_res_var;                                                            \
         }                                                                                          \
-    } while (false)
+    } while (0)
 
 #define TRY_PARSE(if_state, expr)                                                                  \
     do {                                                                                           \

@@ -46,16 +46,16 @@ SmolRTSP_HeaderMap_deserialize(SmolRTSP_HeaderMap *restrict self, CharSlice99 *r
 
     while (true) {
         if (data->len < SMOLRTSP_CRLF.len) {
-            return SmolRTSP_DeserializeResultPending;
+            return SmolRTSP_DeserializeResult_Pending;
         }
 
         if (CharSlice99_primitive_starts_with(*data, SMOLRTSP_CRLF)) {
             *data = CharSlice99_advance(*data, SMOLRTSP_CRLF.len);
-            return SmolRTSP_DeserializeResultOk;
+            return SmolRTSP_DeserializeResult_Ok;
         }
 
         if (SmolRTSP_HeaderMap_is_full(*self)) {
-            return SmolRTSP_DeserializeResultErr;
+            return SmolRTSP_DeserializeResult_Err;
         }
 
         SmolRTSP_Header header;

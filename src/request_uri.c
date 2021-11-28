@@ -15,5 +15,5 @@ SmolRTSP_RequestURI_deserialize(SmolRTSP_RequestURI *restrict self, CharSlice99 
 
     *self = uri;
 
-    return SmolRTSP_DeserializeResultOk;
+    return SmolRTSP_DeserializeResult_Ok;
 }

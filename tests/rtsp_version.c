@@ -3,22 +3,22 @@
 #include "nala/nala.h"
 
 static void assert_pending(CharSlice99 input) {
-    SmolRTSP_RTSPVersion result;
-    SmolRTSP_DeserializeResult res = SmolRTSP_RTSPVersion_deserialize(&result, &input);
-    ASSERT_EQ(res, SmolRTSP_DeserializeResultPending);
+    SmolRTSP_RtspVersion result;
+    SmolRTSP_DeserializeResult res = SmolRTSP_RtspVersion_deserialize(&result, &input);
+    ASSERT_EQ(res, SmolRTSP_DeserializeResult_Pending);
 }
 
-static void assert_ok(CharSlice99 input, SmolRTSP_RTSPVersion expected) {
-    SmolRTSP_RTSPVersion result;
-    SmolRTSP_DeserializeResult res = SmolRTSP_RTSPVersion_deserialize(&result, &input);
-    ASSERT_EQ(res, SmolRTSP_DeserializeResultOk);
-    ASSERT(SmolRTSP_RTSPVersion_eq(result, expected));
+static void assert_ok(CharSlice99 input, SmolRTSP_RtspVersion expected) {
+    SmolRTSP_RtspVersion result;
+    SmolRTSP_DeserializeResult res = SmolRTSP_RtspVersion_deserialize(&result, &input);
+    ASSERT_EQ(res, SmolRTSP_DeserializeResult_Ok);
+    ASSERT(SmolRTSP_RtspVersion_eq(result, expected));
 }
 
 static void assert_err(CharSlice99 input) {
-    SmolRTSP_RTSPVersion result;
-    SmolRTSP_DeserializeResult res = SmolRTSP_RTSPVersion_deserialize(&result, &input);
-    ASSERT_EQ(res, SmolRTSP_DeserializeResultErr);
+    SmolRTSP_RtspVersion result;
+    SmolRTSP_DeserializeResult res = SmolRTSP_RtspVersion_deserialize(&result, &input);
+    ASSERT_EQ(res, SmolRTSP_DeserializeResult_Err);
 }
 
 TEST(deserialize_rtsp_version) {
@@ -28,7 +28,7 @@ TEST(deserialize_rtsp_version) {
         assert_pending(CharSlice99_update_len(input, i));
     }
 
-    assert_ok(input, (SmolRTSP_RTSPVersion){.major = 1, .minor = 1});
+    assert_ok(input, (SmolRTSP_RtspVersion){.major = 1, .minor = 1});
 
     assert_err(CharSlice99_from_str("192"));
     assert_err(CharSlice99_from_str(" ~ RTSP/"));
@@ -37,8 +37,8 @@ TEST(deserialize_rtsp_version) {
 TEST(serialize_rtsp_version) {
     char buffer[20] = {0};
 
-    SmolRTSP_RTSPVersion_serialize(
-        SmolRTSP_RTSPVersion_new(1, 0), smolrtsp_char_buffer_writer, buffer);
+    SmolRTSP_RtspVersion_serialize(
+        SmolRTSP_RtspVersion_new(1, 0), smolrtsp_char_buffer_writer, buffer);
 
     ASSERT_EQ(strcmp(buffer, "RTSP/1.0"), 0);
 }

@@ -17,17 +17,17 @@ typedef enum {
     /**
      * All data have been parsed successfully.
      */
-    SmolRTSP_DeserializeResultOk,
+    SmolRTSP_DeserializeResult_Ok,
 
     /**
      * Something wrong happened.
      */
-    SmolRTSP_DeserializeResultErr,
+    SmolRTSP_DeserializeResult_Err,
 
     /**
      * A deserializer need more data to continue.
      */
-    SmolRTSP_DeserializeResultPending,
+    SmolRTSP_DeserializeResult_Pending,
 } SmolRTSP_DeserializeResult;
 
 /**

@@ -18,7 +18,7 @@
  */
 #define SMOLRTSP_REQUEST_LINE_DESERIALIZER_STATE_INIT                                              \
     (SmolRTSP_RequestLineDeserializerState) {                                                      \
-        .tag = SmolRTSP_RequestLineDeserializerStateMethod,                                        \
+        .tag = SmolRTSP_RequestLineDeserializerState_Method,                                       \
     }
 
 /**
@@ -38,7 +38,7 @@ typedef struct {
     /**
      * The RTSP version used.
      */
-    SmolRTSP_RTSPVersion version;
+    SmolRTSP_RtspVersion version;
 } SmolRTSP_RequestLine;
 
 /**
@@ -61,11 +61,11 @@ typedef struct {
      * What part of a request line is being deserialized right now.
      */
     enum {
-        SmolRTSP_RequestLineDeserializerStateMethod,
-        SmolRTSP_RequestLineDeserializerStateRequestURI,
-        SmolRTSP_RequestLineDeserializerStateRTSPVersion,
-        SmolRTSP_RequestLineDeserializerStateCRLF,
-        SmolRTSP_RequestLineDeserializerStateDone,
+        SmolRTSP_RequestLineDeserializerState_Method,
+        SmolRTSP_RequestLineDeserializerState_RequestURI,
+        SmolRTSP_RequestLineDeserializerState_RtspVersion,
+        SmolRTSP_RequestLineDeserializerState_Crlf,
+        SmolRTSP_RequestLineDeserializerState_Done,
     } tag;
 } SmolRTSP_RequestLineDeserializerState;
 

@@ -37,7 +37,7 @@ SmolRTSP_Header_deserialize(SmolRTSP_Header *restrict self, CharSlice99 *restric
 
     *self = header;
 
-    return SmolRTSP_DeserializeResultOk;
+    return SmolRTSP_DeserializeResult_Ok;
 }
 
 bool SmolRTSP_Header_eq(SmolRTSP_Header lhs, SmolRTSP_Header rhs) {

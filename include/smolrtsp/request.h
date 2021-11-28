@@ -18,7 +18,7 @@
 #define SMOLRTSP_REQUEST_DESERIALIZER_STATE_INIT                                                   \
     (SmolRTSP_RequestDeserializerState) {                                                          \
         .start_line = SMOLRTSP_REQUEST_LINE_DESERIALIZER_STATE_INIT,                               \
-        .tag = SmolRTSP_RequestDeserializerStateRequestLine,                                       \
+        .tag = SmolRTSP_RequestDeserializerState_RequestLine,                                      \
     }
 
 /**
@@ -66,10 +66,10 @@ typedef struct {
      * What part of a request is being deserialized right now.
      */
     enum {
-        SmolRTSP_RequestDeserializerStateRequestLine,
-        SmolRTSP_RequestDeserializerStateHeaderMap,
-        SmolRTSP_RequestDeserializerStateMessageBody,
-        SmolRTSP_RequestDeserializerStateDone,
+        SmolRTSP_RequestDeserializerState_RequestLine,
+        SmolRTSP_RequestDeserializerState_HeaderMap,
+        SmolRTSP_RequestDeserializerState_MessageBody,
+        SmolRTSP_RequestDeserializerState_Done,
     } tag;
 } SmolRTSP_RequestDeserializerState;
 

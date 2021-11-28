@@ -15,7 +15,7 @@
  */
 #define SMOLRTSP_RESPONSE_LINE_DESERIALIZER_STATE_INIT                                             \
     (SmolRTSP_ResponseLineDeserializerState) {                                                     \
-        .tag = SmolRTSP_ResponseLineDeserializerStateRTSPVersion,                                  \
+        .tag = SmolRTSP_ResponseLineDeserializerState_RtspVersion,                                 \
     }
 
 /**
@@ -25,7 +25,7 @@ typedef struct {
     /**
      * The RTSP version used.
      */
-    SmolRTSP_RTSPVersion version;
+    SmolRTSP_RtspVersion version;
 
     /**
      * The status code.
@@ -58,10 +58,10 @@ typedef struct {
      * What part of a respnose line is being deserialized right now.
      */
     enum {
-        SmolRTSP_ResponseLineDeserializerStateRTSPVersion,
-        SmolRTSP_ResponseLineDeserializerStateStatusCode,
-        SmolRTSP_ResponseLineDeserializerStateReasonPhrase,
-        SmolRTSP_ResponseLineDeserializerStateDone,
+        SmolRTSP_ResponseLineDeserializerState_RtspVersion,
+        SmolRTSP_ResponseLineDeserializerState_StatusCode,
+        SmolRTSP_ResponseLineDeserializerState_ReasonPhrase,
+        SmolRTSP_ResponseLineDeserializerState_Done,
     } tag;
 } SmolRTSP_ResponseLineDeserializerState;
 

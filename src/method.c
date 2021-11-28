@@ -15,5 +15,5 @@ SmolRTSP_Method_deserialize(SmolRTSP_Method *restrict self, CharSlice99 *restric
 
     *self = method;
 
-    return SmolRTSP_DeserializeResultOk;
+    return SmolRTSP_DeserializeResult_Ok;
 }

@@ -15,5 +15,5 @@ SmolRTSP_DeserializeResult SmolRTSP_ReasonPhrase_deserialize(
 
     *self = phrase;
 
-    return SmolRTSP_DeserializeResultOk;
+    return SmolRTSP_DeserializeResult_Ok;
 }

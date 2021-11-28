@@ -30,10 +30,10 @@ SmolRTSP_StatusCode_deserialize(SmolRTSP_StatusCode *restrict self, CharSlice99 
     char fmt[64];
     snprintf(fmt, sizeof(fmt), "%%%zd" SCNuLEAST16, code.len);
     if (sscanf(code.ptr, fmt, &code_int) != 1) {
-        return SmolRTSP_DeserializeResultErr;
+        return SmolRTSP_DeserializeResult_Err;
     }
 
     *self = code_int;
 
-    return SmolRTSP_DeserializeResultOk;
+    return SmolRTSP_DeserializeResult_Ok;
 }

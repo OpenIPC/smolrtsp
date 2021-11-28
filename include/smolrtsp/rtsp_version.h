@@ -25,7 +25,7 @@ typedef struct {
      * The minor number.
      */
     uint_least8_t minor;
-} SmolRTSP_RTSPVersion;
+} SmolRTSP_RtspVersion;
 
 /**
  * Creates a new RTSP version.
@@ -33,7 +33,7 @@ typedef struct {
  * @param[in] major The major number.
  * @param[in] minor The minor number.
  */
-SmolRTSP_RTSPVersion SmolRTSP_RTSPVersion_new(uint_least8_t major, uint_least8_t minor);
+SmolRTSP_RtspVersion SmolRTSP_RtspVersion_new(uint_least8_t major, uint_least8_t minor);
 
 /**
  * Serializes @p self to @p user_writer.
@@ -44,8 +44,8 @@ SmolRTSP_RTSPVersion SmolRTSP_RTSPVersion_new(uint_least8_t major, uint_least8_t
  *
  * @pre `user_writer != NULL`
  */
-void SmolRTSP_RTSPVersion_serialize(
-    SmolRTSP_RTSPVersion self, SmolRTSP_UserWriter user_writer, void *user_cx);
+void SmolRTSP_RtspVersion_serialize(
+    SmolRTSP_RtspVersion self, SmolRTSP_UserWriter user_writer, void *user_cx);
 
 /**
  * Deserializes @p data to @p self.
@@ -54,13 +54,13 @@ void SmolRTSP_RTSPVersion_serialize(
  * @pre `data != NULL`
  */
 SmolRTSP_DeserializeResult
-SmolRTSP_RTSPVersion_deserialize(SmolRTSP_RTSPVersion *restrict self, CharSlice99 *restrict data);
+SmolRTSP_RtspVersion_deserialize(SmolRTSP_RtspVersion *restrict self, CharSlice99 *restrict data);
 
 /**
  * Tests @p lhs and @p rhs for equality.
  *
  * @return `true` if @p lhs and @p rhs are equal, `false` otherwise.
  */
-bool SmolRTSP_RTSPVersion_eq(SmolRTSP_RTSPVersion lhs, SmolRTSP_RTSPVersion rhs);
+bool SmolRTSP_RtspVersion_eq(SmolRTSP_RtspVersion lhs, SmolRTSP_RtspVersion rhs);
 
 #endif // SMOLRTSP_RTSP_VERSION_H
