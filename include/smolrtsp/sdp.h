@@ -12,44 +12,9 @@
 #include <slice99.h>
 
 /**
- * An SDP line type.
+ * An SDP type (one character).
  */
-typedef enum {
-    /**
-     * Protocol Version (`v=`).
-     */
-    SmolRTSP_SdpLineType_Version,
-
-    /**
-     * Origin (`o=`).
-     */
-    SmolRTSP_SdpLineType_Origin,
-
-    /**
-     * Session Name (`s=`).
-     */
-    SmolRTSP_SdpLineType_SessionName,
-
-    /**
-     * Connection Data (`c=`).
-     */
-    SmolRTSP_SdpLineType_Connection,
-
-    /**
-     * Media Descriptions (`m=`).
-     */
-    SmolRTSP_SdpLineType_Media,
-
-    /**
-     * Attributes (`a=`).
-     */
-    SmolRTSP_SdpLineType_Attr,
-
-    /**
-     * Timing (`t=`).
-     */
-    SmolRTSP_SdpLineType_Time,
-} SmolRTSP_SdpLineType;
+typedef char SmolRTSP_SdpType;
 
 /**
  * An SDP line.
@@ -58,18 +23,13 @@ typedef struct {
     /**
      * The type of this line.
      */
-    SmolRTSP_SdpLineType ty;
+    SmolRTSP_SdpType ty;
 
     /**
      * The value of this line.
      */
     CharSlice99 value;
 } SmolRTSP_SdpLine;
-
-/**
- * Maps @p self to a constant null-terminated string.
- */
-const char *SmolRTSP_SdpLineType_str(SmolRTSP_SdpLineType self);
 
 /**
  * Serializes @p self to @p user_writer.
@@ -82,5 +42,80 @@ const char *SmolRTSP_SdpLineType_str(SmolRTSP_SdpLineType self);
  */
 void SmolRTSP_SdpLine_serialize(
     SmolRTSP_SdpLine self, SmolRTSP_UserWriter user_writer, void *user_cx);
+
+/**
+ * Protocol Version (`v=`).
+ */
+#define SMOLRTSP_SDP_TYPE_VERSION 'v'
+
+/**
+ * Origin (`o=`).
+ */
+#define SMOLRTSP_SDP_TYPE_ORIGIN 'o'
+
+/**
+ * Session Name (`s=`).
+ */
+#define SMOLRTSP_SDP_TYPE_SESSION_NAME 's'
+
+/**
+ * Session Information (`i=`).
+ */
+#define SMOLRTSP_SDP_TYPE_INFO 'i'
+
+/**
+ * URI (`u=`).
+ */
+#define SMOLRTSP_SDP_TYPE_URI 'u'
+
+/**
+ * Email Address (`e=`).
+ */
+#define SMOLRTSP_SDP_TYPE_EMAIL 'e'
+
+/**
+ * Phone Number (`p=`).
+ */
+#define SMOLRTSP_SDP_TYPE_PHONE 'p'
+
+/**
+ * Connection Data (`c=`).
+ */
+#define SMOLRTSP_SDP_TYPE_CONNECTION 'c'
+
+/**
+ * Bandwidth (`b=`).
+ */
+#define SMOLRTSP_SDP_TYPE_BANDWIDTH 'b'
+
+/**
+ * Timing (`t=`).
+ */
+#define SMOLRTSP_SDP_TYPE_TIME 't'
+
+/**
+ * Repeat Times (`r=`).
+ */
+#define SMOLRTSP_SDP_REPEAT 'r'
+
+/**
+ * Time Zones (`z=`).
+ */
+#define SMOLRTSP_SDP_TIME_ZONES 'z'
+
+/**
+ * Encryption Keys (`k=`).
+ */
+#define SMOLRTSP_SDP_ENCRYPTION_KEYS 'k'
+
+/**
+ * Attributes (`a=`).
+ */
+#define SMOLRTSP_SDP_TYPE_ATTR 'a'
+
+/**
+ * Media Descriptions (`m=`).
+ */
+#define SMOLRTSP_SDP_TYPE_MEDIA 'm'
 
 #endif // SMOLRTSP_SDP_H
