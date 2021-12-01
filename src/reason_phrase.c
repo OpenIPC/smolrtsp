@@ -4,8 +4,8 @@
 
 #include <assert.h>
 
-SmolRTSP_DeserializeResult SmolRTSP_ReasonPhrase_deserialize(
-    SmolRTSP_ReasonPhrase *restrict self, CharSlice99 *restrict data) {
+SmolRTSP_ParseResult
+SmolRTSP_ReasonPhrase_parse(SmolRTSP_ReasonPhrase *restrict self, CharSlice99 *restrict data) {
     assert(self);
     assert(data);
 
@@ -16,5 +16,5 @@ SmolRTSP_DeserializeResult SmolRTSP_ReasonPhrase_deserialize(
 
     *self = phrase;
 
-    return SmolRTSP_DeserializeResult_Ok;
+    return SmolRTSP_ParseResult_Ok;
 }

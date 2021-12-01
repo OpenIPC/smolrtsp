@@ -18,7 +18,7 @@ void SmolRTSP_ResponseLine_serialize(
     user_writer(SMOLRTSP_CRLF, user_cx);
 }
 
-SmolRTSP_DeserializeResult SmolRTSP_ResponseLine_deserialize(
+SmolRTSP_ParseResult SmolRTSP_ResponseLine_parse(
     SmolRTSP_ResponseLine *restrict self, CharSlice99 *restrict data,
     SmolRTSP_ResponseLineDeserializerState *restrict state) {
     assert(self);
@@ -27,17 +27,17 @@ SmolRTSP_DeserializeResult SmolRTSP_ResponseLine_deserialize(
 
     TRY_PARSE(
         SmolRTSP_ResponseLineDeserializerState_RtspVersion,
-        SmolRTSP_RtspVersion_deserialize(&self->version, data));
+        SmolRTSP_RtspVersion_parse(&self->version, data));
 
     TRY_PARSE(
         SmolRTSP_ResponseLineDeserializerState_StatusCode,
-        SmolRTSP_StatusCode_deserialize(&self->code, data));
+        SmolRTSP_StatusCode_parse(&self->code, data));
 
     TRY_PARSE(
         SmolRTSP_ResponseLineDeserializerState_ReasonPhrase,
-        SmolRTSP_ReasonPhrase_deserialize(&self->reason, data));
+        SmolRTSP_ReasonPhrase_parse(&self->reason, data));
 
-    return SmolRTSP_DeserializeResult_Ok;
+    return SmolRTSP_ParseResult_Ok;
 }
 
 bool SmolRTSP_ResponseLine_eq(SmolRTSP_ResponseLine lhs, SmolRTSP_ResponseLine rhs) {

@@ -21,7 +21,7 @@ typedef CharSlice99 SmolRTSP_ReasonPhrase;
  * @pre `self != NULL`
  * @pre `data != NULL`
  */
-SmolRTSP_DeserializeResult
-SmolRTSP_ReasonPhrase_deserialize(SmolRTSP_ReasonPhrase *restrict self, CharSlice99 *restrict data);
+SmolRTSP_ParseResult
+SmolRTSP_ReasonPhrase_parse(SmolRTSP_ReasonPhrase *restrict self, CharSlice99 *restrict data);
 
 #endif // SMOLRTSP_REASON_PHRASE_H

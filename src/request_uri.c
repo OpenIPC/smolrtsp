@@ -4,8 +4,8 @@
 
 #include <assert.h>
 
-SmolRTSP_DeserializeResult
-SmolRTSP_RequestURI_deserialize(SmolRTSP_RequestURI *restrict self, CharSlice99 *restrict data) {
+SmolRTSP_ParseResult
+SmolRTSP_RequestURI_parse(SmolRTSP_RequestURI *restrict self, CharSlice99 *restrict data) {
     assert(self);
     assert(data);
 
@@ -16,5 +16,5 @@ SmolRTSP_RequestURI_deserialize(SmolRTSP_RequestURI *restrict self, CharSlice99 
 
     *self = uri;
 
-    return SmolRTSP_DeserializeResult_Ok;
+    return SmolRTSP_ParseResult_Ok;
 }

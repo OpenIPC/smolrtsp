@@ -4,8 +4,8 @@
 
 #include <assert.h>
 
-SmolRTSP_DeserializeResult
-SmolRTSP_Method_deserialize(SmolRTSP_Method *restrict self, CharSlice99 *restrict data) {
+SmolRTSP_ParseResult
+SmolRTSP_Method_parse(SmolRTSP_Method *restrict self, CharSlice99 *restrict data) {
     assert(self);
     assert(data);
 
@@ -16,5 +16,5 @@ SmolRTSP_Method_deserialize(SmolRTSP_Method *restrict self, CharSlice99 *restric
 
     *self = method;
 
-    return SmolRTSP_DeserializeResult_Ok;
+    return SmolRTSP_ParseResult_Ok;
 }

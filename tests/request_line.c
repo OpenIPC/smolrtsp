@@ -11,12 +11,12 @@ TEST(deserialize_request_line) {
 
     SmolRTSP_RequestLineDeserializerState state = SMOLRTSP_REQUEST_LINE_DESERIALIZER_STATE_INIT;
     SmolRTSP_RequestLine result;
-    SmolRTSP_DeserializeResult res;
+    SmolRTSP_ParseResult res;
 
 #define CHECK(data, expected_res, expected_state)                                                  \
-    res = SmolRTSP_RequestLine_deserialize(                                                        \
-        &result, (CharSlice99[]){CharSlice99_from_str(data)}, &state);                             \
-    ASSERT_EQ(res, SmolRTSP_DeserializeResult_##expected_res);                                     \
+    res =                                                                                          \
+        SmolRTSP_RequestLine_parse(&result, (CharSlice99[]){CharSlice99_from_str(data)}, &state);  \
+    ASSERT_EQ(res, SmolRTSP_ParseResult_##expected_res);                                           \
     ASSERT_EQ(state.tag, SmolRTSP_RequestLineDeserializerState_##expected_state)
 
     CHECK("DESCRIBE ", Pending, RequestURI);
@@ -40,7 +40,7 @@ TEST(serialize_request_line) {
     const SmolRTSP_RequestLine line = {
         .method = SMOLRTSP_METHOD_DESCRIBE,
         .uri = CharSlice99_from_str("http://example.com"),
-        .version = SmolRTSP_RtspVersion_new(1, 0),
+        .version = (SmolRTSP_RtspVersion){1, 0},
     };
 
     SmolRTSP_RequestLine_serialize(line, smolrtsp_char_buffer_writer, buffer);

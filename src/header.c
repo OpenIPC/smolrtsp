@@ -16,8 +16,8 @@ void SmolRTSP_Header_serialize(
     user_writer(SMOLRTSP_CRLF, user_cx);
 }
 
-SmolRTSP_DeserializeResult
-SmolRTSP_Header_deserialize(SmolRTSP_Header *restrict self, CharSlice99 *restrict data) {
+SmolRTSP_ParseResult
+SmolRTSP_Header_parse(SmolRTSP_Header *restrict self, CharSlice99 *restrict data) {
     assert(self);
     assert(data);
 
@@ -38,7 +38,7 @@ SmolRTSP_Header_deserialize(SmolRTSP_Header *restrict self, CharSlice99 *restric
 
     *self = header;
 
-    return SmolRTSP_DeserializeResult_Ok;
+    return SmolRTSP_ParseResult_Ok;
 }
 
 bool SmolRTSP_Header_eq(SmolRTSP_Header lhs, SmolRTSP_Header rhs) {

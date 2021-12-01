@@ -36,8 +36,8 @@ void SmolRTSP_StatusCode_serialize(
  * @pre `self != NULL`
  * @pre `data != NULL`
  */
-SmolRTSP_DeserializeResult
-SmolRTSP_StatusCode_deserialize(SmolRTSP_StatusCode *restrict self, CharSlice99 *restrict data);
+SmolRTSP_ParseResult
+SmolRTSP_StatusCode_parse(SmolRTSP_StatusCode *restrict self, CharSlice99 *restrict data);
 
 /**
  * `Continue`.

@@ -4,21 +4,21 @@
 
 static void assert_pending(CharSlice99 input) {
     SmolRTSP_HeaderMap result = SmolRTSP_HeaderMap_with_capacity(3);
-    SmolRTSP_DeserializeResult res = SmolRTSP_HeaderMap_deserialize(&result, &input);
-    ASSERT_EQ(res, SmolRTSP_DeserializeResult_Pending);
+    SmolRTSP_ParseResult res = SmolRTSP_HeaderMap_parse(&result, &input);
+    ASSERT_EQ(res, SmolRTSP_ParseResult_Pending);
 }
 
 static void assert_ok(CharSlice99 input, SmolRTSP_HeaderMap expected) {
     SmolRTSP_HeaderMap result = SmolRTSP_HeaderMap_with_capacity(3);
-    SmolRTSP_DeserializeResult res = SmolRTSP_HeaderMap_deserialize(&result, &input);
-    ASSERT_EQ(res, SmolRTSP_DeserializeResult_Ok);
+    SmolRTSP_ParseResult res = SmolRTSP_HeaderMap_parse(&result, &input);
+    ASSERT_EQ(res, SmolRTSP_ParseResult_Ok);
     ASSERT(SmolRTSP_HeaderMap_eq(result, expected));
 }
 
 static void assert_err(CharSlice99 input) {
     SmolRTSP_HeaderMap result = SmolRTSP_HeaderMap_with_capacity(3);
-    SmolRTSP_DeserializeResult res = SmolRTSP_HeaderMap_deserialize(&result, &input);
-    ASSERT_EQ(res, SmolRTSP_DeserializeResult_Err);
+    SmolRTSP_ParseResult res = SmolRTSP_HeaderMap_parse(&result, &input);
+    ASSERT_EQ(res, SmolRTSP_ParseResult_Err);
 }
 
 #define HEADER_MAP                                                                                 \

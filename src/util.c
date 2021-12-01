@@ -17,7 +17,7 @@ int SmolRTSP_parse_lower_transport(SmolRTSP_LowerTransport *restrict result, Cha
 
     const CharSlice99 start = value;
 
-    if (smolrtsp_match_until_str(&value, ";") != SmolRTSP_DeserializeResult_Ok) {
+    if (smolrtsp_match_until_str(&value, ";") != SmolRTSP_ParseResult_Ok) {
         return -1;
     }
 
@@ -42,16 +42,16 @@ int SmolRTSP_parse_client_port(int *restrict rtp_port, int *restrict rtcp_port, 
     assert(rtp_port);
     assert(rtcp_port);
 
-    if (smolrtsp_match_until_str(&value, "client_port=") != SmolRTSP_DeserializeResult_Ok) {
+    if (smolrtsp_match_until_str(&value, "client_port=") != SmolRTSP_ParseResult_Ok) {
         return -1;
     }
 
     const CharSlice99 rtp_port_start = value;
 
-    if (smolrtsp_match_numeric(&value) != SmolRTSP_DeserializeResult_Ok) {
+    if (smolrtsp_match_numeric(&value) != SmolRTSP_ParseResult_Ok) {
         return -1;
     }
-    if (smolrtsp_match_char(&value, '-') != SmolRTSP_DeserializeResult_Ok) {
+    if (smolrtsp_match_char(&value, '-') != SmolRTSP_ParseResult_Ok) {
         return -1;
     }
 
@@ -76,12 +76,12 @@ int SmolRTSP_parse_interleaved_chn_id(
     assert(rtp_chn_id);
     assert(rtcp_chn_id);
 
-    if (smolrtsp_match_until_str(&value, "interleaved=") != SmolRTSP_DeserializeResult_Ok) {
+    if (smolrtsp_match_until_str(&value, "interleaved=") != SmolRTSP_ParseResult_Ok) {
         return -1;
     }
 
     const CharSlice99 rtp_chn_id_start = value;
-    if (smolrtsp_match_numeric(&value) == SmolRTSP_DeserializeResult_Err) {
+    if (smolrtsp_match_numeric(&value) == SmolRTSP_ParseResult_Err) {
         return -1;
     }
 
@@ -91,7 +91,7 @@ int SmolRTSP_parse_interleaved_chn_id(
     }
 
     int rtcp_port_temp = -1;
-    if (smolrtsp_match_char(&value, '-') == SmolRTSP_DeserializeResult_Ok) {
+    if (smolrtsp_match_char(&value, '-') == SmolRTSP_ParseResult_Ok) {
         const CharSlice99 rtcp_chn_id_start = value;
 
         if (sscanf(CharSlice99_c_str(rtcp_chn_id_start, (char[128]){0}), "%d", &rtcp_port_temp) !=

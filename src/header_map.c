@@ -40,27 +40,27 @@ void SmolRTSP_HeaderMap_serialize(
     user_writer(SMOLRTSP_CRLF, user_cx);
 }
 
-SmolRTSP_DeserializeResult
-SmolRTSP_HeaderMap_deserialize(SmolRTSP_HeaderMap *restrict self, CharSlice99 *restrict data) {
+SmolRTSP_ParseResult
+SmolRTSP_HeaderMap_parse(SmolRTSP_HeaderMap *restrict self, CharSlice99 *restrict data) {
     assert(self);
     assert(data);
 
     while (true) {
         if (data->len < SMOLRTSP_CRLF.len) {
-            return SmolRTSP_DeserializeResult_Pending;
+            return SmolRTSP_ParseResult_Pending;
         }
 
         if (CharSlice99_primitive_starts_with(*data, SMOLRTSP_CRLF)) {
             *data = CharSlice99_advance(*data, SMOLRTSP_CRLF.len);
-            return SmolRTSP_DeserializeResult_Ok;
+            return SmolRTSP_ParseResult_Ok;
         }
 
         if (SmolRTSP_HeaderMap_is_full(*self)) {
-            return SmolRTSP_DeserializeResult_Err;
+            return SmolRTSP_ParseResult_Err;
         }
 
         SmolRTSP_Header header;
-        MATCH(SmolRTSP_Header_deserialize(&header, data));
+        MATCH(SmolRTSP_Header_parse(&header, data));
         self->headers[self->len] = header;
         self->len++;
     }

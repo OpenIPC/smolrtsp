@@ -23,7 +23,7 @@ typedef CharSlice99 SmolRTSP_MessageBody;
  * @pre `self != NULL`
  * @pre `data != NULL`
  */
-SmolRTSP_DeserializeResult SmolRTSP_MessageBody_deserialize(
+SmolRTSP_ParseResult SmolRTSP_MessageBody_parse(
     SmolRTSP_MessageBody *restrict self, CharSlice99 *restrict data, size_t content_length);
 
 #endif // SMOLRTSP_MESSAGE_BODY_H

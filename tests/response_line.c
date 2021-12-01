@@ -11,12 +11,12 @@ TEST(deserialize_response_line) {
 
     SmolRTSP_ResponseLineDeserializerState state = SMOLRTSP_RESPONSE_LINE_DESERIALIZER_STATE_INIT;
     SmolRTSP_ResponseLine result;
-    SmolRTSP_DeserializeResult res;
+    SmolRTSP_ParseResult res;
 
 #define CHECK(data, expected_res, expected_state)                                                  \
-    res = SmolRTSP_ResponseLine_deserialize(                                                       \
-        &result, (CharSlice99[]){CharSlice99_from_str(data)}, &state);                             \
-    ASSERT_EQ(res, SmolRTSP_DeserializeResult_##expected_res);                                     \
+    res =                                                                                          \
+        SmolRTSP_ResponseLine_parse(&result, (CharSlice99[]){CharSlice99_from_str(data)}, &state); \
+    ASSERT_EQ(res, SmolRTSP_ParseResult_##expected_res);                                           \
     ASSERT_EQ(state.tag, SmolRTSP_ResponseLineDeserializerState_##expected_state)
 
     CHECK("RTSP/1.1 ", Pending, StatusCode);
@@ -35,7 +35,7 @@ TEST(serialize_response_line) {
     char buffer[100] = {0};
 
     const SmolRTSP_ResponseLine line = {
-        .version = SmolRTSP_RtspVersion_new(1, 0),
+        .version = (SmolRTSP_RtspVersion){1, 0},
         .code = SMOLRTSP_STATUS_CODE_OK,
         .reason = CharSlice99_from_str("OK"),
     };

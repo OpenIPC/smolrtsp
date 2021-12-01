@@ -25,8 +25,8 @@ void SmolRTSP_RtspVersion_serialize(
     free(buffer);
 }
 
-SmolRTSP_DeserializeResult
-SmolRTSP_RtspVersion_deserialize(SmolRTSP_RtspVersion *restrict self, CharSlice99 *restrict data) {
+SmolRTSP_ParseResult
+SmolRTSP_RtspVersion_parse(SmolRTSP_RtspVersion *restrict self, CharSlice99 *restrict data) {
     assert(self);
     assert(data);
 
@@ -46,18 +46,18 @@ SmolRTSP_RtspVersion_deserialize(SmolRTSP_RtspVersion *restrict self, CharSlice9
 
     snprintf(fmt, sizeof(fmt), "%%%zd" SCNuLEAST8, major.len);
     if (sscanf(major.ptr, fmt, &major_int) != 1) {
-        return SmolRTSP_DeserializeResult_Err;
+        return SmolRTSP_ParseResult_Err;
     }
 
     snprintf(fmt, sizeof(fmt), "%%%zd" SCNuLEAST8, minor.len);
     if (sscanf(minor.ptr, fmt, &minor_int) != 1) {
-        return SmolRTSP_DeserializeResult_Err;
+        return SmolRTSP_ParseResult_Err;
     }
 
     self->major = major_int;
     self->minor = minor_int;
 
-    return SmolRTSP_DeserializeResult_Ok;
+    return SmolRTSP_ParseResult_Ok;
 }
 
 bool SmolRTSP_RtspVersion_eq(SmolRTSP_RtspVersion lhs, SmolRTSP_RtspVersion rhs) {

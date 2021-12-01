@@ -16,8 +16,8 @@ void SmolRTSP_StatusCode_serialize(
     user_writer(CharSlice99_from_str(buffer), user_cx);
 }
 
-SmolRTSP_DeserializeResult
-SmolRTSP_StatusCode_deserialize(SmolRTSP_StatusCode *restrict self, CharSlice99 *restrict data) {
+SmolRTSP_ParseResult
+SmolRTSP_StatusCode_parse(SmolRTSP_StatusCode *restrict self, CharSlice99 *restrict data) {
     assert(self);
     assert(data);
 
@@ -30,10 +30,10 @@ SmolRTSP_StatusCode_deserialize(SmolRTSP_StatusCode *restrict self, CharSlice99 
     char fmt[64];
     snprintf(fmt, sizeof(fmt), "%%%zd" SCNuLEAST16, code.len);
     if (sscanf(code.ptr, fmt, &code_int) != 1) {
-        return SmolRTSP_DeserializeResult_Err;
+        return SmolRTSP_ParseResult_Err;
     }
 
     *self = code_int;
 
-    return SmolRTSP_DeserializeResult_Ok;
+    return SmolRTSP_ParseResult_Ok;
 }

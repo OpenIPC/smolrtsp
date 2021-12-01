@@ -4,21 +4,21 @@
 
 static void assert_pending(CharSlice99 input) {
     SmolRTSP_Method result;
-    SmolRTSP_DeserializeResult res = SmolRTSP_Method_deserialize(&result, &input);
-    ASSERT_EQ(res, SmolRTSP_DeserializeResult_Pending);
+    SmolRTSP_ParseResult res = SmolRTSP_Method_parse(&result, &input);
+    ASSERT_EQ(res, SmolRTSP_ParseResult_Pending);
 }
 
 static void assert_ok(CharSlice99 input, SmolRTSP_Method expected) {
     SmolRTSP_Method result;
-    SmolRTSP_DeserializeResult res = SmolRTSP_Method_deserialize(&result, &input);
-    ASSERT_EQ(res, SmolRTSP_DeserializeResult_Ok);
+    SmolRTSP_ParseResult res = SmolRTSP_Method_parse(&result, &input);
+    ASSERT_EQ(res, SmolRTSP_ParseResult_Ok);
     ASSERT(CharSlice99_primitive_eq(result, expected));
 }
 
 static void assert_err(CharSlice99 input) {
     SmolRTSP_Method result;
-    SmolRTSP_DeserializeResult res = SmolRTSP_Method_deserialize(&result, &input);
-    ASSERT_EQ(res, SmolRTSP_DeserializeResult_Err);
+    SmolRTSP_ParseResult res = SmolRTSP_Method_parse(&result, &input);
+    ASSERT_EQ(res, SmolRTSP_ParseResult_Err);
 }
 
 TEST(deserialize_method) {

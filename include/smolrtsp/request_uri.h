@@ -21,7 +21,7 @@ typedef CharSlice99 SmolRTSP_RequestURI;
  * @pre `self != NULL`
  * @pre `data != NULL`
  */
-SmolRTSP_DeserializeResult
-SmolRTSP_RequestURI_deserialize(SmolRTSP_RequestURI *restrict self, CharSlice99 *restrict data);
+SmolRTSP_ParseResult
+SmolRTSP_RequestURI_parse(SmolRTSP_RequestURI *restrict self, CharSlice99 *restrict data);
 
 #endif // SMOLRTSP_REQUEST_URI_H

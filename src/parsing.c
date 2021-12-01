@@ -5,20 +5,20 @@
 #include <math.h>
 #include <string.h>
 
-SmolRTSP_DeserializeResult
+SmolRTSP_ParseResult
 smolrtsp_match_until(CharSlice99 *restrict data, bool (*matcher)(char c, void *cx), void *cx) {
     assert(data);
     assert(matcher);
 
     while (!CharSlice99_is_empty(*data)) {
         if (!matcher(*(char *)data->ptr, cx)) {
-            return SmolRTSP_DeserializeResult_Ok;
+            return SmolRTSP_ParseResult_Ok;
         }
 
         *data = CharSlice99_advance(*data, 1);
     }
 
-    return SmolRTSP_DeserializeResult_Pending;
+    return SmolRTSP_ParseResult_Pending;
 }
 
 static bool whitespace_matcher(char c, void *cx) {
@@ -63,7 +63,7 @@ static bool is_str_recognised(size_t state, const char *str) {
     return str[state] == '\0';
 }
 
-SmolRTSP_DeserializeResult
+SmolRTSP_ParseResult
 smolrtsp_match_until_str(CharSlice99 *restrict data, const char *restrict str) {
     assert(data);
     assert(str);
@@ -73,7 +73,7 @@ smolrtsp_match_until_str(CharSlice99 *restrict data, const char *restrict str) {
     assert(str_len > 0);
 
     if (data->len < str_len) {
-        return SmolRTSP_DeserializeResult_Pending;
+        return SmolRTSP_ParseResult_Pending;
     }
 
     // An NFA (non-determenistic finite automaton) converted to DFA (determenistic) to recognise a
@@ -86,27 +86,26 @@ smolrtsp_match_until_str(CharSlice99 *restrict data, const char *restrict str) {
         *data = CharSlice99_advance(*data, 1);
 
         if (is_str_recognised(states[0], str) || is_str_recognised(states[1], str)) {
-            return SmolRTSP_DeserializeResult_Ok;
+            return SmolRTSP_ParseResult_Ok;
         }
     }
 
-    return SmolRTSP_DeserializeResult_Pending;
+    return SmolRTSP_ParseResult_Pending;
 }
 
-SmolRTSP_DeserializeResult smolrtsp_match_until_crlf(CharSlice99 *restrict data) {
+SmolRTSP_ParseResult smolrtsp_match_until_crlf(CharSlice99 *restrict data) {
     assert(data);
 
     return smolrtsp_match_until_str(data, "\r\n");
 }
 
-SmolRTSP_DeserializeResult smolrtsp_match_char(CharSlice99 *restrict data, char c) {
+SmolRTSP_ParseResult smolrtsp_match_char(CharSlice99 *restrict data, char c) {
     assert(data);
 
     return smolrtsp_match_until(data, char_matcher, &c);
 }
 
-SmolRTSP_DeserializeResult
-smolrtsp_match_str(CharSlice99 *restrict data, const char *restrict str) {
+SmolRTSP_ParseResult smolrtsp_match_str(CharSlice99 *restrict data, const char *restrict str) {
     assert(data);
     assert(str);
 
@@ -114,68 +113,67 @@ smolrtsp_match_str(CharSlice99 *restrict data, const char *restrict str) {
 
     const bool are_coinciding = memcmp(data->ptr, str, fmin(data->len, str_len)) == 0;
     if (!are_coinciding) {
-        return SmolRTSP_DeserializeResult_Err;
+        return SmolRTSP_ParseResult_Err;
     }
 
     if (data->len < str_len) {
-        return SmolRTSP_DeserializeResult_Pending;
+        return SmolRTSP_ParseResult_Pending;
     }
 
     *data = CharSlice99_advance(*data, str_len);
-    return SmolRTSP_DeserializeResult_Ok;
+    return SmolRTSP_ParseResult_Ok;
 }
 
-SmolRTSP_DeserializeResult smolrtsp_match_whitespaces(CharSlice99 *restrict data) {
+SmolRTSP_ParseResult smolrtsp_match_whitespaces(CharSlice99 *restrict data) {
     assert(data);
 
     return smolrtsp_match_until(data, whitespace_matcher, NULL);
 }
 
-SmolRTSP_DeserializeResult smolrtsp_match_non_whitespaces(CharSlice99 *restrict data) {
+SmolRTSP_ParseResult smolrtsp_match_non_whitespaces(CharSlice99 *restrict data) {
     assert(data);
 
     return smolrtsp_match_until(data, non_whitespace_matcher, NULL);
 }
 
-SmolRTSP_DeserializeResult smolrtsp_match_numeric(CharSlice99 *restrict data) {
+SmolRTSP_ParseResult smolrtsp_match_numeric(CharSlice99 *restrict data) {
     assert(data);
 
     const CharSlice99 backup = *data;
 
-    const SmolRTSP_DeserializeResult res = smolrtsp_match_until(data, numeric_matcher, NULL);
+    const SmolRTSP_ParseResult res = smolrtsp_match_until(data, numeric_matcher, NULL);
     const bool not_numeric = backup.len == data->len && backup.ptr == data->ptr && data->len > 0;
     if (not_numeric) {
-        return SmolRTSP_DeserializeResult_Err;
+        return SmolRTSP_ParseResult_Err;
     }
 
     return res;
 }
 
-SmolRTSP_DeserializeResult smolrtsp_match_ident(CharSlice99 *restrict data) {
+SmolRTSP_ParseResult smolrtsp_match_ident(CharSlice99 *restrict data) {
     assert(data);
 
     const CharSlice99 backup = *data;
 
-    const SmolRTSP_DeserializeResult res = smolrtsp_match_until(data, ident_matcher, NULL);
+    const SmolRTSP_ParseResult res = smolrtsp_match_until(data, ident_matcher, NULL);
     const bool not_ident = backup.len == data->len && backup.ptr == data->ptr && data->len > 0;
     if (not_ident) {
-        return SmolRTSP_DeserializeResult_Err;
+        return SmolRTSP_ParseResult_Err;
     }
 
     return res;
 }
 
-SmolRTSP_DeserializeResult smolrtsp_match_header_name(CharSlice99 *restrict data) {
+SmolRTSP_ParseResult smolrtsp_match_header_name(CharSlice99 *restrict data) {
     assert(data);
 
     const CharSlice99 backup = *data;
 
-    const SmolRTSP_DeserializeResult res =
-        smolrtsp_match_until(data, header_name_char_matcher, NULL);
+    const SmolRTSP_ParseResult res = smolrtsp_match_until(data, header_name_char_matcher, NULL);
     const bool not_header_name =
         backup.len == data->len && backup.ptr == data->ptr && data->len > 0;
     if (not_header_name) {
-        return SmolRTSP_DeserializeResult_Err;
+        return SmolRTSP_ParseResult_Err;
     }
 
     return res;

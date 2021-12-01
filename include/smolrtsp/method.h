@@ -21,8 +21,8 @@ typedef CharSlice99 SmolRTSP_Method;
  * @pre `self != NULL`
  * @pre `data != NULL`
  */
-SmolRTSP_DeserializeResult
-SmolRTSP_Method_deserialize(SmolRTSP_Method *restrict self, CharSlice99 *restrict data);
+SmolRTSP_ParseResult
+SmolRTSP_Method_parse(SmolRTSP_Method *restrict self, CharSlice99 *restrict data);
 
 /**
  * `OPTIONS`.

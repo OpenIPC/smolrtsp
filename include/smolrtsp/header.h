@@ -47,8 +47,8 @@ void SmolRTSP_Header_serialize(
  * @pre `self != NULL`
  * @pre `data != NULL`
  */
-SmolRTSP_DeserializeResult
-SmolRTSP_Header_deserialize(SmolRTSP_Header *restrict self, CharSlice99 *restrict data);
+SmolRTSP_ParseResult
+SmolRTSP_Header_parse(SmolRTSP_Header *restrict self, CharSlice99 *restrict data);
 
 /**
  * Tests @p lhs and @p rhs for equality.

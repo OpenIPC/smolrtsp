@@ -4,22 +4,22 @@
 
 #include <assert.h>
 
-SmolRTSP_DeserializeResult SmolRTSP_MessageBody_deserialize(
+SmolRTSP_ParseResult SmolRTSP_MessageBody_parse(
     SmolRTSP_MessageBody *restrict self, CharSlice99 *restrict data, size_t content_length) {
     assert(self);
     assert(data);
 
     if (CharSlice99_size(*data) < content_length) {
-        return SmolRTSP_DeserializeResult_Pending;
+        return SmolRTSP_ParseResult_Pending;
     }
 
     if (0 == content_length) {
         *self = CharSlice99_empty();
-        return SmolRTSP_DeserializeResult_Ok;
+        return SmolRTSP_ParseResult_Ok;
     }
 
     *self = CharSlice99_new(data->ptr, content_length);
     *data = CharSlice99_advance(*data, content_length);
 
-    return SmolRTSP_DeserializeResult_Ok;
+    return SmolRTSP_ParseResult_Ok;
 }

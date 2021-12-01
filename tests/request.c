@@ -29,12 +29,11 @@ TEST(deserialize_request) {
 
     SmolRTSP_RequestDeserializerState state = SMOLRTSP_REQUEST_DESERIALIZER_STATE_INIT;
     SmolRTSP_Request result = {.header_map = SmolRTSP_HeaderMap_with_capacity(3)};
-    SmolRTSP_DeserializeResult res;
+    SmolRTSP_ParseResult res;
 
 #define CHECK(data, expected_res, expected_state)                                                  \
-    res = SmolRTSP_Request_deserialize(                                                            \
-        &result, (CharSlice99[]){CharSlice99_from_str(data)}, &state);                             \
-    ASSERT_EQ(res, SmolRTSP_DeserializeResult_##expected_res);                                     \
+    res = SmolRTSP_Request_parse(&result, (CharSlice99[]){CharSlice99_from_str(data)}, &state);    \
+    ASSERT_EQ(res, SmolRTSP_ParseResult_##expected_res);                                           \
     ASSERT_EQ(state.tag, SmolRTSP_RequestDeserializerState_##expected_state)
 
     CHECK("DESCRIBE http://example.com RTSP/1.1\r\n", Pending, HeaderMap);
@@ -63,7 +62,7 @@ TEST(serialize_request) {
             {
                 .method = SMOLRTSP_METHOD_DESCRIBE,
                 .uri = CharSlice99_from_str("http://example.com"),
-                .version = SmolRTSP_RtspVersion_new(1, 0),
+                .version = (SmolRTSP_RtspVersion){1, 0},
             },
         .header_map = SmolRTSP_HeaderMap_from_array((SmolRTSP_Header[]){
             {
