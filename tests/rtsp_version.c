@@ -21,7 +21,7 @@ static void assert_err(CharSlice99 input) {
     ASSERT_EQ(res, SmolRTSP_ParseResult_Err);
 }
 
-TEST(deserialize_rtsp_version) {
+TEST(parse_rtsp_version) {
     const CharSlice99 input = CharSlice99_from_str("RTSP/1.1 ");
 
     for (size_t i = 0; i < input.len - 1; i++) {

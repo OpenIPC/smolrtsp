@@ -21,7 +21,7 @@ static void assert_err(CharSlice99 input) {
     ASSERT_EQ(res, SmolRTSP_ParseResult_Err);
 }
 
-TEST(deserialize_header) {
+TEST(parse_header) {
     const CharSlice99 input =
         CharSlice99_from_str("User-Agent: LibVLC/3.0.8 (LIVE555 Streaming Media v2018.02.18)\r\n");
 

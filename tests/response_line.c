@@ -2,14 +2,14 @@
 
 #include "nala/nala.h"
 
-TEST(deserialize_response_line) {
+TEST(parse_response_line) {
     const SmolRTSP_ResponseLine expected = {
         .version = {.major = 1, .minor = 1},
         .code = SMOLRTSP_STATUS_CODE_OK,
         .reason = CharSlice99_from_str("OK"),
     };
 
-    SmolRTSP_ResponseLineDeserializerState state = SMOLRTSP_RESPONSE_LINE_DESERIALIZER_STATE_INIT;
+    SmolRTSP_ResponseLineParseState state = SMOLRTSP_RESPONSE_LINE_PARSE_STATE_INIT;
     SmolRTSP_ResponseLine result;
     SmolRTSP_ParseResult res;
 
@@ -17,7 +17,7 @@ TEST(deserialize_response_line) {
     res =                                                                                          \
         SmolRTSP_ResponseLine_parse(&result, (CharSlice99[]){CharSlice99_from_str(data)}, &state); \
     ASSERT_EQ(res, SmolRTSP_ParseResult_##expected_res);                                           \
-    ASSERT_EQ(state.tag, SmolRTSP_ResponseLineDeserializerState_##expected_state)
+    ASSERT_EQ(state.tag, SmolRTSP_ResponseLineParseState_##expected_state)
 
     CHECK("RTSP/1.1 ", Pending, StatusCode);
     assert(SmolRTSP_RtspVersion_eq(result.version, expected.version));

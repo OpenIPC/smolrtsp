@@ -16,7 +16,7 @@
 typedef CharSlice99 SmolRTSP_Method;
 
 /**
- * Deserializes @p data to @p self.
+ * Parses @p data to @p self.
  *
  * @pre `self != NULL`
  * @pre `data != NULL`

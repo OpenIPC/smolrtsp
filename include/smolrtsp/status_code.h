@@ -21,8 +21,8 @@ typedef uint_least16_t SmolRTSP_StatusCode;
 /**
  * Serializes @p self to @p user_writer.
  *
- * @param[in] self The instance to be serialized.
- * @param[in] user_writer The function to be provided with serialized data (possibly in chunks).
+ * @param[in] self The instance to be serialised.
+ * @param[in] user_writer The function to be provided with serialised data (possibly in chunks).
  * @param[in] user_cx Some value provided to @p user_writer on each write.
  *
  * @pre `user_writer != NULL`
@@ -31,7 +31,7 @@ void SmolRTSP_StatusCode_serialize(
     SmolRTSP_StatusCode self, SmolRTSP_UserWriter user_writer, void *user_cx);
 
 /**
- * Deserializes @p data to @p self.
+ * Parses @p data to @p self.
  *
  * @pre `self != NULL`
  * @pre `data != NULL`

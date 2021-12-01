@@ -20,23 +20,21 @@ void SmolRTSP_RequestLine_serialize(
 
 SmolRTSP_ParseResult SmolRTSP_RequestLine_parse(
     SmolRTSP_RequestLine *restrict self, CharSlice99 *restrict data,
-    SmolRTSP_RequestLineDeserializerState *restrict state) {
+    SmolRTSP_RequestLineParseState *restrict state) {
     assert(self);
     assert(data);
     assert(state);
 
-    TRY_PARSE(
-        SmolRTSP_RequestLineDeserializerState_Method, SmolRTSP_Method_parse(&self->method, data));
+    TRY_PARSE(SmolRTSP_RequestLineParseState_Method, SmolRTSP_Method_parse(&self->method, data));
 
     TRY_PARSE(
-        SmolRTSP_RequestLineDeserializerState_RequestURI,
-        SmolRTSP_RequestURI_parse(&self->uri, data));
+        SmolRTSP_RequestLineParseState_RequestURI, SmolRTSP_RequestURI_parse(&self->uri, data));
 
     TRY_PARSE(
-        SmolRTSP_RequestLineDeserializerState_RtspVersion,
+        SmolRTSP_RequestLineParseState_RtspVersion,
         SmolRTSP_RtspVersion_parse(&self->version, data));
 
-    TRY_PARSE(SmolRTSP_RequestLineDeserializerState_Crlf, smolrtsp_match_str(data, "\r\n"));
+    TRY_PARSE(SmolRTSP_RequestLineParseState_Crlf, smolrtsp_match_str(data, "\r\n"));
 
     return SmolRTSP_ParseResult_Ok;
 }

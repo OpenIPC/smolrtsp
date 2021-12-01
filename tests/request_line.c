@@ -2,14 +2,14 @@
 
 #include "nala/nala.h"
 
-TEST(deserialize_request_line) {
+TEST(parse_request_line) {
     const SmolRTSP_RequestLine expected = {
         .method = SMOLRTSP_METHOD_DESCRIBE,
         .uri = CharSlice99_from_str("http://example.com"),
         .version = {.major = 1, .minor = 1},
     };
 
-    SmolRTSP_RequestLineDeserializerState state = SMOLRTSP_REQUEST_LINE_DESERIALIZER_STATE_INIT;
+    SmolRTSP_RequestLineParseState state = SMOLRTSP_REQUEST_LINE_PARSE_STATE_INIT;
     SmolRTSP_RequestLine result;
     SmolRTSP_ParseResult res;
 
@@ -17,7 +17,7 @@ TEST(deserialize_request_line) {
     res =                                                                                          \
         SmolRTSP_RequestLine_parse(&result, (CharSlice99[]){CharSlice99_from_str(data)}, &state);  \
     ASSERT_EQ(res, SmolRTSP_ParseResult_##expected_res);                                           \
-    ASSERT_EQ(state.tag, SmolRTSP_RequestLineDeserializerState_##expected_state)
+    ASSERT_EQ(state.tag, SmolRTSP_RequestLineParseState_##expected_state)
 
     CHECK("DESCRIBE ", Pending, RequestURI);
     assert(CharSlice99_primitive_eq(result.method, expected.method));

@@ -33,8 +33,8 @@ typedef struct {
 /**
  * Serializes @p self to @p user_writer.
  *
- * @param[in] self The instance to be serialized.
- * @param[in] user_writer The function to be provided with serialized data (possibly in chunks).
+ * @param[in] self The instance to be serialised.
+ * @param[in] user_writer The function to be provided with serialised data (possibly in chunks).
  * @param[in] user_cx Some value provided to @p user_writer on each write.
  *
  * @pre `user_writer != NULL`

@@ -14,12 +14,12 @@
 #include <stdbool.h>
 
 /**
- * The start state of #SmolRTSP_RequestDeserializerState.
+ * The start state of #SmolRTSP_RequestParseState.
  */
-#define SMOLRTSP_REQUEST_DESERIALIZER_STATE_INIT                                                   \
-    (SmolRTSP_RequestDeserializerState) {                                                          \
-        .start_line = SMOLRTSP_REQUEST_LINE_DESERIALIZER_STATE_INIT,                               \
-        .tag = SmolRTSP_RequestDeserializerState_RequestLine,                                      \
+#define SMOLRTSP_REQUEST_PARSE_STATE_INIT                                                          \
+    (SmolRTSP_RequestParseState) {                                                                 \
+        .start_line = SMOLRTSP_REQUEST_LINE_PARSE_STATE_INIT,                                      \
+        .tag = SmolRTSP_RequestParseState_RequestLine,                                             \
     }
 
 /**
@@ -45,8 +45,8 @@ typedef struct {
 /**
  * Serializes @p self into @p user_writer.
  *
- * @param[in] self The instance to be serialized.
- * @param[in] user_writer The function to be provided with serialized data (possibly in chunks).
+ * @param[in] self The instance to be serialised.
+ * @param[in] user_writer The function to be provided with serialised data (possibly in chunks).
  * @param[in] user_cx Some value provided to @p user_writer on each write.
  *
  * @pre `user_writer != NULL`
@@ -55,27 +55,27 @@ void SmolRTSP_Request_serialize(
     SmolRTSP_Request self, SmolRTSP_UserWriter user_writer, void *user_cx);
 
 /**
- * A state of deserialization of #SmolRTSP_Request.
+ * A state of parsing of #SmolRTSP_Request.
  */
 typedef struct {
     /**
-     * The state of a request line being deserialized.
+     * The state of a request line being parsed.
      */
-    SmolRTSP_RequestLineDeserializerState start_line;
+    SmolRTSP_RequestLineParseState start_line;
 
     /**
-     * What part of a request is being deserialized right now.
+     * What part of a request is being parsed right now.
      */
     enum {
-        SmolRTSP_RequestDeserializerState_RequestLine,
-        SmolRTSP_RequestDeserializerState_HeaderMap,
-        SmolRTSP_RequestDeserializerState_MessageBody,
-        SmolRTSP_RequestDeserializerState_Done,
+        SmolRTSP_RequestParseState_RequestLine,
+        SmolRTSP_RequestParseState_HeaderMap,
+        SmolRTSP_RequestParseState_MessageBody,
+        SmolRTSP_RequestParseState_Done,
     } tag;
-} SmolRTSP_RequestDeserializerState;
+} SmolRTSP_RequestParseState;
 
 /**
- * Deserializes @p data to @p self.
+ * Parses @p data to @p self.
  *
  * @pre `self != NULL`
  * @pre `data != NULL`
@@ -83,7 +83,7 @@ typedef struct {
  */
 SmolRTSP_ParseResult SmolRTSP_Request_parse(
     SmolRTSP_Request *restrict self, CharSlice99 *restrict data,
-    SmolRTSP_RequestDeserializerState *restrict state);
+    SmolRTSP_RequestParseState *restrict state);
 
 /**
  * Tests @p lhs and @p rhs for equality.

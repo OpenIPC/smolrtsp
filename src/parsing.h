@@ -9,12 +9,12 @@
 
 #include <slice99.h>
 
-#define MATCH(deserialize_res)                                                                     \
+#define MATCH(parse_res)                                                                           \
     do {                                                                                           \
-        const SmolRTSP_ParseResult deserialize_res_var = deserialize_res;                          \
-        if (deserialize_res_var == SmolRTSP_ParseResult_Err ||                                     \
-            deserialize_res_var == SmolRTSP_ParseResult_Pending) {                                 \
-            return deserialize_res_var;                                                            \
+        const SmolRTSP_ParseResult parse_res_var = parse_res;                                      \
+        if (parse_res_var == SmolRTSP_ParseResult_Err ||                                           \
+            parse_res_var == SmolRTSP_ParseResult_Pending) {                                       \
+            return parse_res_var;                                                                  \
         }                                                                                          \
     } while (0)
 

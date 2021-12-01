@@ -21,7 +21,7 @@ static void assert_err(CharSlice99 input) {
     ASSERT_EQ(res, SmolRTSP_ParseResult_Err);
 }
 
-TEST(deserialize_method) {
+TEST(parse_method) {
     assert_ok(CharSlice99_from_str("OPTIONS "), SMOLRTSP_METHOD_OPTIONS);
     assert_ok(CharSlice99_from_str("DESCRIBE "), SMOLRTSP_METHOD_DESCRIBE);
     assert_ok(CharSlice99_from_str("ANNOUNCE "), SMOLRTSP_METHOD_ANNOUNCE);

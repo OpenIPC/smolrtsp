@@ -16,11 +16,11 @@
 #include <stdbool.h>
 
 /**
- * The start state of #SmolRTSP_RequestLineDeserializerState.
+ * The start state of #SmolRTSP_RequestLineParseState.
  */
-#define SMOLRTSP_REQUEST_LINE_DESERIALIZER_STATE_INIT                                              \
-    (SmolRTSP_RequestLineDeserializerState) {                                                      \
-        .tag = SmolRTSP_RequestLineDeserializerState_Method,                                       \
+#define SMOLRTSP_REQUEST_LINE_PARSE_STATE_INIT                                                     \
+    (SmolRTSP_RequestLineParseState) {                                                             \
+        .tag = SmolRTSP_RequestLineParseState_Method,                                              \
     }
 
 /**
@@ -46,8 +46,8 @@ typedef struct {
 /**
  * Serializes @p self to @p user_writer.
  *
- * @param[in] self The instance to be serialized.
- * @param[in] user_writer The function to be provided with serialized data (possibly in chunks).
+ * @param[in] self The instance to be serialised.
+ * @param[in] user_writer The function to be provided with serialised data (possibly in chunks).
  * @param[in] user_cx Some value provided to @p user_writer on each write.
  *
  * @pre `user_writer != NULL`
@@ -56,23 +56,23 @@ void SmolRTSP_RequestLine_serialize(
     SmolRTSP_RequestLine self, SmolRTSP_UserWriter user_writer, void *user_cx);
 
 /**
- * A state of deserialization of #SmolRTSP_RequestLine.
+ * A state of parsing of #SmolRTSP_RequestLine.
  */
 typedef struct {
     /**
-     * What part of a request line is being deserialized right now.
+     * What part of a request line is being parsed right now.
      */
     enum {
-        SmolRTSP_RequestLineDeserializerState_Method,
-        SmolRTSP_RequestLineDeserializerState_RequestURI,
-        SmolRTSP_RequestLineDeserializerState_RtspVersion,
-        SmolRTSP_RequestLineDeserializerState_Crlf,
-        SmolRTSP_RequestLineDeserializerState_Done,
+        SmolRTSP_RequestLineParseState_Method,
+        SmolRTSP_RequestLineParseState_RequestURI,
+        SmolRTSP_RequestLineParseState_RtspVersion,
+        SmolRTSP_RequestLineParseState_Crlf,
+        SmolRTSP_RequestLineParseState_Done,
     } tag;
-} SmolRTSP_RequestLineDeserializerState;
+} SmolRTSP_RequestLineParseState;
 
 /**
- * Deserializes @p data to @p self.
+ * Parses @p data to @p self.
  *
  * @pre `self != NULL`
  * @pre `data != NULL`
@@ -80,7 +80,7 @@ typedef struct {
  */
 SmolRTSP_ParseResult SmolRTSP_RequestLine_parse(
     SmolRTSP_RequestLine *restrict self, CharSlice99 *restrict data,
-    SmolRTSP_RequestLineDeserializerState *restrict state);
+    SmolRTSP_RequestLineParseState *restrict state);
 
 /**
  * Tests @p lhs and @p rhs for equality.

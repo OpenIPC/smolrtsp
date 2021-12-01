@@ -12,11 +12,11 @@
 #include <smolrtsp/status_code.h>
 
 /**
- * The start state of #SmolRTSP_ResponseLineDeserializerState.
+ * The start state of #SmolRTSP_ResponseLineParseState.
  */
-#define SMOLRTSP_RESPONSE_LINE_DESERIALIZER_STATE_INIT                                             \
-    (SmolRTSP_ResponseLineDeserializerState) {                                                     \
-        .tag = SmolRTSP_ResponseLineDeserializerState_RtspVersion,                                 \
+#define SMOLRTSP_RESPONSE_LINE_PARSE_STATE_INIT                                                    \
+    (SmolRTSP_ResponseLineParseState) {                                                            \
+        .tag = SmolRTSP_ResponseLineParseState_RtspVersion,                                        \
     }
 
 /**
@@ -42,8 +42,8 @@ typedef struct {
 /**
  * Serializes @p self into @p user_writer.
  *
- * @param[in] self The instance to be serialized.
- * @param[in] user_writer The function to be provided with serialized data (possibly in chunks).
+ * @param[in] self The instance to be serialised.
+ * @param[in] user_writer The function to be provided with serialised data (possibly in chunks).
  * @param[in] user_cx Some value provided to @p user_writer on each write.
  *
  * @pre `user_writer != NULL`
@@ -52,22 +52,22 @@ void SmolRTSP_ResponseLine_serialize(
     SmolRTSP_ResponseLine self, SmolRTSP_UserWriter user_writer, void *user_cx);
 
 /**
- * A state of deserialization of #SmolRTSP_ResponseLine.
+ * A state of parsing of #SmolRTSP_ResponseLine.
  */
 typedef struct {
     /**
-     * What part of a respnose line is being deserialized right now.
+     * What part of a respnose line is being parsed right now.
      */
     enum {
-        SmolRTSP_ResponseLineDeserializerState_RtspVersion,
-        SmolRTSP_ResponseLineDeserializerState_StatusCode,
-        SmolRTSP_ResponseLineDeserializerState_ReasonPhrase,
-        SmolRTSP_ResponseLineDeserializerState_Done,
+        SmolRTSP_ResponseLineParseState_RtspVersion,
+        SmolRTSP_ResponseLineParseState_StatusCode,
+        SmolRTSP_ResponseLineParseState_ReasonPhrase,
+        SmolRTSP_ResponseLineParseState_Done,
     } tag;
-} SmolRTSP_ResponseLineDeserializerState;
+} SmolRTSP_ResponseLineParseState;
 
 /**
- * Deserializes @p data to @p self.
+ * Parses @p data to @p self.
  *
  * @pre `self != NULL`
  * @pre `data != NULL`
@@ -75,7 +75,7 @@ typedef struct {
  */
 SmolRTSP_ParseResult SmolRTSP_ResponseLine_parse(
     SmolRTSP_ResponseLine *restrict self, CharSlice99 *restrict data,
-    SmolRTSP_ResponseLineDeserializerState *restrict state);
+    SmolRTSP_ResponseLineParseState *restrict state);
 
 /**
  * Tests @p lhs and @p rhs for equality.

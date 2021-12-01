@@ -21,7 +21,7 @@ static void assert_err(CharSlice99 input) {
     ASSERT_EQ(res, SmolRTSP_ParseResult_Err);
 }
 
-TEST(deserialize_status_code) {
+TEST(parse_status_code) {
     const CharSlice99 input = CharSlice99_from_str("404 ");
 
     for (size_t i = 0; i < input.len - 1; i++) {

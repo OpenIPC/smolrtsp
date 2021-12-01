@@ -16,7 +16,7 @@
 typedef CharSlice99 SmolRTSP_ReasonPhrase;
 
 /**
- * Deserializes @p data to @p self.
+ * Parses @p data to @p self.
  *
  * @pre `self != NULL`
  * @pre `data != NULL`

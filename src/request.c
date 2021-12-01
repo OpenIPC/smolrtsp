@@ -16,18 +16,17 @@ void SmolRTSP_Request_serialize(
 
 SmolRTSP_ParseResult SmolRTSP_Request_parse(
     SmolRTSP_Request *restrict self, CharSlice99 *restrict data,
-    SmolRTSP_RequestDeserializerState *restrict state) {
+    SmolRTSP_RequestParseState *restrict state) {
     assert(self);
     assert(data);
     assert(state);
 
     TRY_PARSE(
-        SmolRTSP_RequestDeserializerState_RequestLine,
+        SmolRTSP_RequestParseState_RequestLine,
         SmolRTSP_RequestLine_parse(&self->start_line, data, &state->start_line));
 
     TRY_PARSE(
-        SmolRTSP_RequestDeserializerState_HeaderMap,
-        SmolRTSP_HeaderMap_parse(&self->header_map, data));
+        SmolRTSP_RequestParseState_HeaderMap, SmolRTSP_HeaderMap_parse(&self->header_map, data));
 
     CharSlice99 content_length;
     size_t content_length_int = 0;
@@ -45,7 +44,7 @@ SmolRTSP_ParseResult SmolRTSP_Request_parse(
     }
 
     TRY_PARSE(
-        SmolRTSP_RequestDeserializerState_MessageBody,
+        SmolRTSP_RequestParseState_MessageBody,
         SmolRTSP_MessageBody_parse(&self->body, data, content_length_int));
 
     return SmolRTSP_ParseResult_Ok;

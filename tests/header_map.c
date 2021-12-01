@@ -41,7 +41,7 @@ static void assert_err(CharSlice99 input) {
     "Content-Length: 10\r\nAccept-Language: English\r\nContent-Type: "                             \
     "application/octet-stream\r\n\r\n"
 
-TEST(deserialize_header_map) {
+TEST(parse_header_map) {
     const SmolRTSP_HeaderMap expected = HEADER_MAP;
 
     const CharSlice99 input = CharSlice99_from_str(HEADER_MAP_STR);

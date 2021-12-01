@@ -7,7 +7,7 @@
 #define SMOLRTSP_COMMON_H
 
 /**
- * A result of each call to a deserializer.
+ * A result of each call to a parser.
  */
 typedef enum {
     /**
@@ -21,7 +21,7 @@ typedef enum {
     SmolRTSP_ParseResult_Err,
 
     /**
-     * A deserializer need more data to continue.
+     * A parser need more data to continue.
      */
     SmolRTSP_ParseResult_Pending,
 } SmolRTSP_ParseResult;

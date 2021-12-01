@@ -2,7 +2,7 @@
 
 #include "nala/nala.h"
 
-TEST(deserialize_request) {
+TEST(parse_request) {
     const SmolRTSP_Request expected = {
         .start_line =
             {
@@ -27,14 +27,14 @@ TEST(deserialize_request) {
         .body = CharSlice99_from_str("0123456789"),
     };
 
-    SmolRTSP_RequestDeserializerState state = SMOLRTSP_REQUEST_DESERIALIZER_STATE_INIT;
+    SmolRTSP_RequestParseState state = SMOLRTSP_REQUEST_PARSE_STATE_INIT;
     SmolRTSP_Request result = {.header_map = SmolRTSP_HeaderMap_with_capacity(3)};
     SmolRTSP_ParseResult res;
 
 #define CHECK(data, expected_res, expected_state)                                                  \
     res = SmolRTSP_Request_parse(&result, (CharSlice99[]){CharSlice99_from_str(data)}, &state);    \
     ASSERT_EQ(res, SmolRTSP_ParseResult_##expected_res);                                           \
-    ASSERT_EQ(state.tag, SmolRTSP_RequestDeserializerState_##expected_state)
+    ASSERT_EQ(state.tag, SmolRTSP_RequestParseState_##expected_state)
 
     CHECK("DESCRIBE http://example.com RTSP/1.1\r\n", Pending, HeaderMap);
     assert(SmolRTSP_RequestLine_eq(result.start_line, expected.start_line));

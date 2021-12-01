@@ -15,7 +15,7 @@ static void assert_ok(CharSlice99 input, SmolRTSP_ReasonPhrase expected) {
     ASSERT(CharSlice99_primitive_eq(result, expected));
 }
 
-TEST(deserialize_reason_phrase) {
+TEST(parse_reason_phrase) {
     const CharSlice99 input = CharSlice99_from_str("Moved Temporarily\r\n");
 
     for (size_t i = 0; i < input.len - 1; i++) {

@@ -15,7 +15,7 @@ static void assert_ok(CharSlice99 input, SmolRTSP_RequestURI expected) {
     ASSERT(CharSlice99_primitive_eq(result, expected));
 }
 
-TEST(deserialize_request_uri) {
+TEST(parse_request_uri) {
     const CharSlice99 input = CharSlice99_from_str("http://example.com ");
 
     for (size_t i = 0; i < input.len - 1; i++) {

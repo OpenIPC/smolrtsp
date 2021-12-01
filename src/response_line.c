@@ -20,21 +20,20 @@ void SmolRTSP_ResponseLine_serialize(
 
 SmolRTSP_ParseResult SmolRTSP_ResponseLine_parse(
     SmolRTSP_ResponseLine *restrict self, CharSlice99 *restrict data,
-    SmolRTSP_ResponseLineDeserializerState *restrict state) {
+    SmolRTSP_ResponseLineParseState *restrict state) {
     assert(self);
     assert(data);
     assert(state);
 
     TRY_PARSE(
-        SmolRTSP_ResponseLineDeserializerState_RtspVersion,
+        SmolRTSP_ResponseLineParseState_RtspVersion,
         SmolRTSP_RtspVersion_parse(&self->version, data));
 
     TRY_PARSE(
-        SmolRTSP_ResponseLineDeserializerState_StatusCode,
-        SmolRTSP_StatusCode_parse(&self->code, data));
+        SmolRTSP_ResponseLineParseState_StatusCode, SmolRTSP_StatusCode_parse(&self->code, data));
 
     TRY_PARSE(
-        SmolRTSP_ResponseLineDeserializerState_ReasonPhrase,
+        SmolRTSP_ResponseLineParseState_ReasonPhrase,
         SmolRTSP_ReasonPhrase_parse(&self->reason, data));
 
     return SmolRTSP_ParseResult_Ok;
