@@ -38,7 +38,7 @@ TEST(serialize_rtsp_version) {
     char buffer[20] = {0};
 
     SmolRTSP_RtspVersion_serialize(
-        SmolRTSP_RtspVersion_new(1, 0), smolrtsp_char_buffer_writer, buffer);
+        (SmolRTSP_RtspVersion){1, 0}, smolrtsp_char_buffer_writer, buffer);
 
     ASSERT_EQ(strcmp(buffer, "RTSP/1.0"), 0);
 }

@@ -8,10 +8,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-SmolRTSP_RtspVersion SmolRTSP_RtspVersion_new(uint_least8_t major, uint_least8_t minor) {
-    return (SmolRTSP_RtspVersion){.major = major, .minor = minor};
-}
-
 void SmolRTSP_RtspVersion_serialize(
     SmolRTSP_RtspVersion self, SmolRTSP_UserWriter user_writer, void *user_cx) {
     assert(user_writer);
