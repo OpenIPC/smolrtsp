@@ -28,7 +28,7 @@ typedef struct {
 } SmolRTSP_RtspVersion;
 
 /**
- * Serializes @p self to @p user_writer.
+ * Serialises @p self to @p user_writer.
  *
  * @param[in] self The instance to be serialised.
  * @param[in] user_writer The function to be provided with serialised data (possibly in chunks).

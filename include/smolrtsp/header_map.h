@@ -78,7 +78,7 @@ bool SmolRTSP_HeaderMap_find(SmolRTSP_HeaderMap self, CharSlice99 key, CharSlice
 bool SmolRTSP_HeaderMap_key_is_present(SmolRTSP_HeaderMap self, CharSlice99 key);
 
 /**
- * Serializes @p self to @p user_writer.
+ * Serialises @p self to @p user_writer.
  *
  * @param[in] self The instance to be serialised.
  * @param[in] user_writer The function to be provided with serialised data (possibly in chunks).

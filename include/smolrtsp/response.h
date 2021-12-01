@@ -41,7 +41,7 @@ typedef struct {
 } SmolRTSP_Response;
 
 /**
- * Serializes @p self into @p user_writer.
+ * Serialises @p self into @p user_writer.
  *
  * @param[in] self The instance to be serialised.
  * @param[in] user_writer The function to be provided with serialised data (possibly in chunks).
