@@ -37,7 +37,7 @@ SmolRTSP_DeserializeResult SmolRTSP_RequestLine_deserialize(
         SmolRTSP_RequestLineDeserializerState_RtspVersion,
         SmolRTSP_RtspVersion_deserialize(&self->version, data));
 
-    TRY_PARSE(SmolRTSP_RequestLineDeserializerState_Crlf, SmolRTSP_match_str(data, "\r\n"));
+    TRY_PARSE(SmolRTSP_RequestLineDeserializerState_Crlf, smolrtsp_match_str(data, "\r\n"));
 
     return SmolRTSP_DeserializeResult_Ok;
 }

@@ -23,17 +23,17 @@ SmolRTSP_Header_deserialize(SmolRTSP_Header *restrict self, CharSlice99 *restric
 
     SmolRTSP_Header header;
 
-    MATCH(SmolRTSP_match_whitespaces(data));
+    MATCH(smolrtsp_match_whitespaces(data));
     header.key = *data;
-    MATCH(SmolRTSP_match_header_name(data));
+    MATCH(smolrtsp_match_header_name(data));
     header.key = CharSlice99_from_ptrdiff(header.key.ptr, data->ptr);
 
-    MATCH(SmolRTSP_match_whitespaces(data));
-    MATCH(SmolRTSP_match_char(data, ':'));
-    MATCH(SmolRTSP_match_whitespaces(data));
+    MATCH(smolrtsp_match_whitespaces(data));
+    MATCH(smolrtsp_match_char(data, ':'));
+    MATCH(smolrtsp_match_whitespaces(data));
 
     header.value = *data;
-    MATCH(SmolRTSP_match_until_crlf(data));
+    MATCH(smolrtsp_match_until_crlf(data));
     header.value = CharSlice99_from_ptrdiff(header.value.ptr, data->ptr - strlen("\r\n"));
 
     *self = header;

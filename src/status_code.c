@@ -21,9 +21,9 @@ SmolRTSP_StatusCode_deserialize(SmolRTSP_StatusCode *restrict self, CharSlice99 
     assert(self);
     assert(data);
 
-    MATCH(SmolRTSP_match_whitespaces(data));
+    MATCH(smolrtsp_match_whitespaces(data));
     CharSlice99 code = *data;
-    MATCH(SmolRTSP_match_numeric(data));
+    MATCH(smolrtsp_match_numeric(data));
     code = CharSlice99_from_ptrdiff(code.ptr, data->ptr);
 
     SmolRTSP_StatusCode code_int;

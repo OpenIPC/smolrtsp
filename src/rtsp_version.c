@@ -34,15 +34,15 @@ SmolRTSP_RtspVersion_deserialize(SmolRTSP_RtspVersion *restrict self, CharSlice9
     assert(self);
     assert(data);
 
-    MATCH(SmolRTSP_match_whitespaces(data));
-    MATCH(SmolRTSP_match_str(data, "RTSP/"));
+    MATCH(smolrtsp_match_whitespaces(data));
+    MATCH(smolrtsp_match_str(data, "RTSP/"));
 
     CharSlice99 major = *data;
-    MATCH(SmolRTSP_match_numeric(data));
+    MATCH(smolrtsp_match_numeric(data));
     major = CharSlice99_from_ptrdiff(major.ptr, data->ptr);
-    MATCH(SmolRTSP_match_char(data, '.'));
+    MATCH(smolrtsp_match_char(data, '.'));
     CharSlice99 minor = *data;
-    MATCH(SmolRTSP_match_numeric(data));
+    MATCH(smolrtsp_match_numeric(data));
     minor = CharSlice99_from_ptrdiff(minor.ptr, data->ptr);
 
     uint_least8_t major_int, minor_int;

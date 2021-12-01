@@ -9,9 +9,9 @@ SmolRTSP_RequestURI_deserialize(SmolRTSP_RequestURI *restrict self, CharSlice99 
     assert(self);
     assert(data);
 
-    MATCH(SmolRTSP_match_whitespaces(data));
+    MATCH(smolrtsp_match_whitespaces(data));
     CharSlice99 uri = *data;
-    MATCH(SmolRTSP_match_non_whitespaces(data));
+    MATCH(smolrtsp_match_non_whitespaces(data));
     uri = CharSlice99_from_ptrdiff(uri.ptr, data->ptr);
 
     *self = uri;

@@ -9,9 +9,9 @@ SmolRTSP_DeserializeResult SmolRTSP_ReasonPhrase_deserialize(
     assert(self);
     assert(data);
 
-    MATCH(SmolRTSP_match_whitespaces(data));
+    MATCH(smolrtsp_match_whitespaces(data));
     CharSlice99 phrase = *data;
-    MATCH(SmolRTSP_match_until_crlf(data));
+    MATCH(smolrtsp_match_until_crlf(data));
     phrase = CharSlice99_from_ptrdiff(phrase.ptr, data->ptr - strlen("\r\n"));
 
     *self = phrase;

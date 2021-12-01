@@ -9,9 +9,9 @@ SmolRTSP_Method_deserialize(SmolRTSP_Method *restrict self, CharSlice99 *restric
     assert(self);
     assert(data);
 
-    MATCH(SmolRTSP_match_whitespaces(data));
+    MATCH(smolrtsp_match_whitespaces(data));
     CharSlice99 method = *data;
-    MATCH(SmolRTSP_match_ident(data));
+    MATCH(smolrtsp_match_ident(data));
     method = CharSlice99_from_ptrdiff(method.ptr, data->ptr);
 
     *self = method;

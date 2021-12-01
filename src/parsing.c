@@ -6,7 +6,7 @@
 #include <string.h>
 
 SmolRTSP_DeserializeResult
-SmolRTSP_match_until(CharSlice99 *restrict data, bool (*matcher)(char c, void *cx), void *cx) {
+smolrtsp_match_until(CharSlice99 *restrict data, bool (*matcher)(char c, void *cx), void *cx) {
     assert(data);
     assert(matcher);
 
@@ -64,7 +64,7 @@ static bool is_str_recognised(size_t state, const char *str) {
 }
 
 SmolRTSP_DeserializeResult
-SmolRTSP_match_until_str(CharSlice99 *restrict data, const char *restrict str) {
+smolrtsp_match_until_str(CharSlice99 *restrict data, const char *restrict str) {
     assert(data);
     assert(str);
 
@@ -93,20 +93,20 @@ SmolRTSP_match_until_str(CharSlice99 *restrict data, const char *restrict str) {
     return SmolRTSP_DeserializeResult_Pending;
 }
 
-SmolRTSP_DeserializeResult SmolRTSP_match_until_crlf(CharSlice99 *restrict data) {
+SmolRTSP_DeserializeResult smolrtsp_match_until_crlf(CharSlice99 *restrict data) {
     assert(data);
 
-    return SmolRTSP_match_until_str(data, "\r\n");
+    return smolrtsp_match_until_str(data, "\r\n");
 }
 
-SmolRTSP_DeserializeResult SmolRTSP_match_char(CharSlice99 *restrict data, char c) {
+SmolRTSP_DeserializeResult smolrtsp_match_char(CharSlice99 *restrict data, char c) {
     assert(data);
 
-    return SmolRTSP_match_until(data, char_matcher, &c);
+    return smolrtsp_match_until(data, char_matcher, &c);
 }
 
 SmolRTSP_DeserializeResult
-SmolRTSP_match_str(CharSlice99 *restrict data, const char *restrict str) {
+smolrtsp_match_str(CharSlice99 *restrict data, const char *restrict str) {
     assert(data);
     assert(str);
 
@@ -125,24 +125,24 @@ SmolRTSP_match_str(CharSlice99 *restrict data, const char *restrict str) {
     return SmolRTSP_DeserializeResult_Ok;
 }
 
-SmolRTSP_DeserializeResult SmolRTSP_match_whitespaces(CharSlice99 *restrict data) {
+SmolRTSP_DeserializeResult smolrtsp_match_whitespaces(CharSlice99 *restrict data) {
     assert(data);
 
-    return SmolRTSP_match_until(data, whitespace_matcher, NULL);
+    return smolrtsp_match_until(data, whitespace_matcher, NULL);
 }
 
-SmolRTSP_DeserializeResult SmolRTSP_match_non_whitespaces(CharSlice99 *restrict data) {
+SmolRTSP_DeserializeResult smolrtsp_match_non_whitespaces(CharSlice99 *restrict data) {
     assert(data);
 
-    return SmolRTSP_match_until(data, non_whitespace_matcher, NULL);
+    return smolrtsp_match_until(data, non_whitespace_matcher, NULL);
 }
 
-SmolRTSP_DeserializeResult SmolRTSP_match_numeric(CharSlice99 *restrict data) {
+SmolRTSP_DeserializeResult smolrtsp_match_numeric(CharSlice99 *restrict data) {
     assert(data);
 
     const CharSlice99 backup = *data;
 
-    const SmolRTSP_DeserializeResult res = SmolRTSP_match_until(data, numeric_matcher, NULL);
+    const SmolRTSP_DeserializeResult res = smolrtsp_match_until(data, numeric_matcher, NULL);
     const bool not_numeric = backup.len == data->len && backup.ptr == data->ptr && data->len > 0;
     if (not_numeric) {
         return SmolRTSP_DeserializeResult_Err;
@@ -151,12 +151,12 @@ SmolRTSP_DeserializeResult SmolRTSP_match_numeric(CharSlice99 *restrict data) {
     return res;
 }
 
-SmolRTSP_DeserializeResult SmolRTSP_match_ident(CharSlice99 *restrict data) {
+SmolRTSP_DeserializeResult smolrtsp_match_ident(CharSlice99 *restrict data) {
     assert(data);
 
     const CharSlice99 backup = *data;
 
-    const SmolRTSP_DeserializeResult res = SmolRTSP_match_until(data, ident_matcher, NULL);
+    const SmolRTSP_DeserializeResult res = smolrtsp_match_until(data, ident_matcher, NULL);
     const bool not_ident = backup.len == data->len && backup.ptr == data->ptr && data->len > 0;
     if (not_ident) {
         return SmolRTSP_DeserializeResult_Err;
@@ -165,13 +165,13 @@ SmolRTSP_DeserializeResult SmolRTSP_match_ident(CharSlice99 *restrict data) {
     return res;
 }
 
-SmolRTSP_DeserializeResult SmolRTSP_match_header_name(CharSlice99 *restrict data) {
+SmolRTSP_DeserializeResult smolrtsp_match_header_name(CharSlice99 *restrict data) {
     assert(data);
 
     const CharSlice99 backup = *data;
 
     const SmolRTSP_DeserializeResult res =
-        SmolRTSP_match_until(data, header_name_char_matcher, NULL);
+        smolrtsp_match_until(data, header_name_char_matcher, NULL);
     const bool not_header_name =
         backup.len == data->len && backup.ptr == data->ptr && data->len > 0;
     if (not_header_name) {
