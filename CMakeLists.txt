@@ -3,7 +3,7 @@ project(smolrtsp LANGUAGES C)
 
 option(SMOLRTSP_SHARED "Build a shared library" OFF)
 
-set(SOURCES
+set(SMOLRTSP_SOURCES
     include/smolrtsp/common.h
     include/smolrtsp/header_map.h
     include/smolrtsp/header.h
@@ -20,6 +20,7 @@ set(SOURCES
     include/smolrtsp/sdp.h
     include/smolrtsp/user_writer.h
     include/smolrtsp/util.h
+    src/common.h
     src/header_map.c
     src/header.c
     src/message_body.c
@@ -41,9 +42,9 @@ set(SOURCES
 include_directories(include)
 
 if(SMOLRTSP_SHARED)
-  add_library(smolrtsp SHARED ${SOURCES})
+  add_library(smolrtsp SHARED ${SMOLRTSP_SOURCES})
 else()
-  add_library(smolrtsp STATIC ${SOURCES})
+  add_library(smolrtsp STATIC ${SMOLRTSP_SOURCES})
 endif()
 
 target_link_libraries(smolrtsp m)

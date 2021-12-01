@@ -30,6 +30,46 @@ typedef struct {
 } SmolRTSP_Header;
 
 /**
+ * Serializes @p self to @p user_writer.
+ *
+ * @param[in] self The instance to be serialized.
+ * @param[in] user_writer The function to be provided with serialized data (possibly in chunks).
+ * @param[in] user_cx Some value provided to @p user_writer on each write.
+ *
+ * @pre `user_writer != NULL`
+ */
+void SmolRTSP_Header_serialize(
+    SmolRTSP_Header self, SmolRTSP_UserWriter user_writer, void *user_cx);
+
+/**
+ * Deserializes @p data to @p self.
+ *
+ * @pre `self != NULL`
+ * @pre `data != NULL`
+ */
+SmolRTSP_DeserializeResult
+SmolRTSP_Header_deserialize(SmolRTSP_Header *restrict self, CharSlice99 *restrict data);
+
+/**
+ * Tests @p lhs and @p rhs for equality.
+ *
+ * @return `true` if @p lhs and @p rhs are equal, `false` otherwise.
+ */
+bool SmolRTSP_Header_eq(SmolRTSP_Header lhs, SmolRTSP_Header rhs);
+
+/**
+ * Pretty-prints @p self to @p stream.
+ *
+ * @pre `stream != NULL`
+ */
+void SmolRTSP_Header_dbg_to_file(SmolRTSP_Header self, FILE *stream);
+
+/**
+ * Pretty-prints @p self to `stdout`.
+ */
+void SmolRTSP_Header_dbg(SmolRTSP_Header self);
+
+/**
  * `Accept`.
  */
 #define SMOLRTSP_HEADER_NAME_ACCEPT (CharSlice99_from_str("Accept"))
@@ -223,45 +263,5 @@ typedef struct {
  * `WWW-Authenticate`.
  */
 #define SMOLRTSP_HEADER_NAME_WWW_AUTHENTICATE (CharSlice99_from_str("WWW-Authenticate"))
-
-/**
- * Serializes @p self to @p user_writer.
- *
- * @param[in] self The instance to be serialized.
- * @param[in] user_writer The function to be provided with serialized data (possibly in chunks).
- * @param[in] user_cx Some value provided to @p user_writer on each write.
- *
- * @pre `user_writer != NULL`
- */
-void SmolRTSP_Header_serialize(
-    SmolRTSP_Header self, SmolRTSP_UserWriter user_writer, void *user_cx);
-
-/**
- * Deserializes @p data to @p self.
- *
- * @pre `self != NULL`
- * @pre `data != NULL`
- */
-SmolRTSP_DeserializeResult
-SmolRTSP_Header_deserialize(SmolRTSP_Header *restrict self, CharSlice99 *restrict data);
-
-/**
- * Tests @p lhs and @p rhs for equality.
- *
- * @return `true` if @p lhs and @p rhs are equal, `false` otherwise.
- */
-bool SmolRTSP_Header_eq(SmolRTSP_Header lhs, SmolRTSP_Header rhs);
-
-/**
- * Pretty-prints @p self to @p stream.
- *
- * @pre `stream != NULL`
- */
-void SmolRTSP_Header_dbg_to_file(SmolRTSP_Header self, FILE *stream);
-
-/**
- * Pretty-prints @p self to `stdout`.
- */
-void SmolRTSP_Header_dbg(SmolRTSP_Header self);
 
 #endif // SMOLRTSP_HEADER_H

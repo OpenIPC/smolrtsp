@@ -1,5 +1,6 @@
 #include <smolrtsp/sdp.h>
 
+#include "common.h"
 #include "parsing.h"
 
 #include <assert.h>

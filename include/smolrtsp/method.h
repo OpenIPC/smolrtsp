@@ -16,6 +16,15 @@
 typedef CharSlice99 SmolRTSP_Method;
 
 /**
+ * Deserializes @p data to @p self.
+ *
+ * @pre `self != NULL`
+ * @pre `data != NULL`
+ */
+SmolRTSP_DeserializeResult
+SmolRTSP_Method_deserialize(SmolRTSP_Method *restrict self, CharSlice99 *restrict data);
+
+/**
  * `OPTIONS`.
  */
 #define SMOLRTSP_METHOD_OPTIONS (CharSlice99_from_str("OPTIONS"))
@@ -69,14 +78,5 @@ typedef CharSlice99 SmolRTSP_Method;
  * `RECORD`.
  */
 #define SMOLRTSP_METHOD_RECORD (CharSlice99_from_str("RECORD"))
-
-/**
- * Deserializes @p data to @p self.
- *
- * @pre `self != NULL`
- * @pre `data != NULL`
- */
-SmolRTSP_DeserializeResult
-SmolRTSP_Method_deserialize(SmolRTSP_Method *restrict self, CharSlice99 *restrict data);
 
 #endif // SMOLRTSP_METHOD_H

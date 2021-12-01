@@ -19,6 +19,27 @@
 typedef uint_least16_t SmolRTSP_StatusCode;
 
 /**
+ * Serializes @p self to @p user_writer.
+ *
+ * @param[in] self The instance to be serialized.
+ * @param[in] user_writer The function to be provided with serialized data (possibly in chunks).
+ * @param[in] user_cx Some value provided to @p user_writer on each write.
+ *
+ * @pre `user_writer != NULL`
+ */
+void SmolRTSP_StatusCode_serialize(
+    SmolRTSP_StatusCode self, SmolRTSP_UserWriter user_writer, void *user_cx);
+
+/**
+ * Deserializes @p data to @p self.
+ *
+ * @pre `self != NULL`
+ * @pre `data != NULL`
+ */
+SmolRTSP_DeserializeResult
+SmolRTSP_StatusCode_deserialize(SmolRTSP_StatusCode *restrict self, CharSlice99 *restrict data);
+
+/**
  * `Continue`.
  */
 #define SMOLRTSP_STATUS_CODE_CONTINUE 100
@@ -237,26 +258,5 @@ typedef uint_least16_t SmolRTSP_StatusCode;
  * `Option not supported`.
  */
 #define SMOLRTSP_STATUS_CODE_OPTION_NOT_SUPPORTED 551
-
-/**
- * Serializes @p self to @p user_writer.
- *
- * @param[in] self The instance to be serialized.
- * @param[in] user_writer The function to be provided with serialized data (possibly in chunks).
- * @param[in] user_cx Some value provided to @p user_writer on each write.
- *
- * @pre `user_writer != NULL`
- */
-void SmolRTSP_StatusCode_serialize(
-    SmolRTSP_StatusCode self, SmolRTSP_UserWriter user_writer, void *user_cx);
-
-/**
- * Deserializes @p data to @p self.
- *
- * @pre `self != NULL`
- * @pre `data != NULL`
- */
-SmolRTSP_DeserializeResult
-SmolRTSP_StatusCode_deserialize(SmolRTSP_StatusCode *restrict self, CharSlice99 *restrict data);
 
 #endif // SMOLRTSP_STATUS_CODE_H

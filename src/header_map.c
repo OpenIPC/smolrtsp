@@ -1,5 +1,6 @@
 #include <smolrtsp/header_map.h>
 
+#include "common.h"
 #include "parsing.h"
 
 #include <assert.h>

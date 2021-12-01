@@ -8,6 +8,8 @@
 
 #include <smolrtsp/common.h>
 
+#include <stddef.h>
+
 #include <slice99.h>
 
 /**

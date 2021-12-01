@@ -7,6 +7,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
+#include <slice99.h>
+
 #define MATCH(deserialize_res)                                                                     \
     do {                                                                                           \
         const SmolRTSP_DeserializeResult deserialize_res_var = deserialize_res;                    \

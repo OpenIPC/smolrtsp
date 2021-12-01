@@ -6,7 +6,6 @@
 #ifndef SMOLRTSP_SDP_H
 #define SMOLRTSP_SDP_H
 
-#include <smolrtsp/common.h>
 #include <smolrtsp/user_writer.h>
 
 #include <slice99.h>
