@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.0.2)
 project(smolrtsp LANGUAGES C)
 
 option(SMOLRTSP_SHARED "Build a shared library" OFF)
@@ -39,14 +39,23 @@ set(SMOLRTSP_SOURCES
     src/user_writer.c
     src/util.c)
 
-include_directories(include)
-
 if(SMOLRTSP_SHARED)
   add_library(smolrtsp SHARED ${SMOLRTSP_SOURCES})
 else()
   add_library(smolrtsp STATIC ${SMOLRTSP_SOURCES})
 endif()
 
-target_link_libraries(smolrtsp m)
+include(FetchContent)
+
+FetchContent_Declare(
+    slice99
+    URL https://github.com/Hirrolot/slice99/archive/refs/tags/v0.7.1.tar.gz
+)
+
+FetchContent_MakeAvailable(slice99)
+
+target_include_directories(smolrtsp PUBLIC include)
+target_link_libraries(smolrtsp PRIVATE m)
+target_link_libraries(smolrtsp PUBLIC slice99)
 
 set_target_properties(smolrtsp PROPERTIES C_STANDARD 99 C_STANDARD_REQUIRED ON)

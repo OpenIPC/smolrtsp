@@ -1,12 +1,15 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.0.2)
 project(tests LANGUAGES C)
 
-if(CMAKE_C_COMPILER_ID STREQUAL "GNU" OR CMAKE_C_COMPILER_ID STREQUAL "Clang")
-  add_compile_options(-Wall -Wextra -fsanitize=address)
+if(CMAKE_C_COMPILER_ID STREQUAL "Clang")
+  add_compile_options(-Weverything -fsanitize=address)
+  add_link_options(-fsanitize=address)
+elseif(CMAKE_C_COMPILER_ID STREQUAL "GNU")
+  add_compile_options(-Wall -Wextra -pedantic -fsanitize=address)
   add_link_options(-fsanitize=address)
 endif()
 
-include_directories(../include slice99)
+add_subdirectory(.. build)
 
 add_executable(
   tests
@@ -27,7 +30,6 @@ add_executable(
   sdp.c
   util.c)
 
-add_subdirectory(.. build)
 target_link_libraries(tests smolrtsp)
 
 set_target_properties(tests PROPERTIES C_STANDARD 99 C_STANDARD_REQUIRED ON)
