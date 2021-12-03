@@ -32,4 +32,4 @@ add_executable(
 
 target_link_libraries(tests smolrtsp)
 
-set_target_properties(tests PROPERTIES C_STANDARD 99 C_STANDARD_REQUIRED ON)
+set_target_properties(tests PROPERTIES C_STANDARD 11 C_STANDARD_REQUIRED ON)
