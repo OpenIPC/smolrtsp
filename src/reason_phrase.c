@@ -5,16 +5,17 @@
 #include <assert.h>
 
 SmolRTSP_ParseResult
-SmolRTSP_ReasonPhrase_parse(SmolRTSP_ReasonPhrase *restrict self, CharSlice99 *restrict data) {
+SmolRTSP_ReasonPhrase_parse(SmolRTSP_ReasonPhrase *restrict self, CharSlice99 input) {
     assert(self);
-    assert(data);
 
-    MATCH(smolrtsp_match_whitespaces(data));
-    CharSlice99 phrase = *data;
-    MATCH(smolrtsp_match_until_crlf(data));
-    phrase = CharSlice99_from_ptrdiff(phrase.ptr, data->ptr - strlen("\r\n"));
+    const CharSlice99 backup = input;
+
+    MATCH(smolrtsp_match_whitespaces(input));
+    CharSlice99 phrase = input;
+    MATCH(smolrtsp_match_until_crlf(input));
+    phrase = CharSlice99_from_ptrdiff(phrase.ptr, input.ptr - strlen("\r\n"));
 
     *self = phrase;
 
-    return SmolRTSP_ParseResult_Ok;
+    return SmolRTSP_ParseResult_complete(input.ptr - backup.ptr);
 }

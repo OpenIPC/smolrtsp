@@ -93,10 +93,8 @@ void SmolRTSP_HeaderMap_serialize(
  * Parses @p data to @p self.
  *
  * @pre `self != NULL`
- * @pre `data != NULL`
  */
-SmolRTSP_ParseResult
-SmolRTSP_HeaderMap_parse(SmolRTSP_HeaderMap *restrict self, CharSlice99 *restrict data);
+SmolRTSP_ParseResult SmolRTSP_HeaderMap_parse(SmolRTSP_HeaderMap *restrict self, CharSlice99 input);
 
 /**
  * Tests @p lhs and @p rhs for equality.

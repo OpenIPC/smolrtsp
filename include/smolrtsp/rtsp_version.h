@@ -43,10 +43,9 @@ void SmolRTSP_RtspVersion_serialize(
  * Parses @p data to @p self.
  *
  * @pre `self != NULL`
- * @pre `data != NULL`
  */
 SmolRTSP_ParseResult
-SmolRTSP_RtspVersion_parse(SmolRTSP_RtspVersion *restrict self, CharSlice99 *restrict data);
+SmolRTSP_RtspVersion_parse(SmolRTSP_RtspVersion *restrict self, CharSlice99 input);
 
 /**
  * Tests @p lhs and @p rhs for equality.

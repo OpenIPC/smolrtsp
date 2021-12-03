@@ -4,22 +4,24 @@
 
 static void assert_pending(CharSlice99 input) {
     SmolRTSP_RtspVersion result;
-    SmolRTSP_ParseResult res = SmolRTSP_RtspVersion_parse(&result, &input);
-    ASSERT_EQ(res, SmolRTSP_ParseResult_Pending);
+    SmolRTSP_ParseResult res = SmolRTSP_RtspVersion_parse(&result, input);
+    ASSERT(SmolRTSP_ParseResult_is_partial(res));
 }
 
 static void assert_ok(CharSlice99 input, SmolRTSP_RtspVersion expected) {
     SmolRTSP_RtspVersion result;
-    SmolRTSP_ParseResult res = SmolRTSP_RtspVersion_parse(&result, &input);
-    ASSERT_EQ(res, SmolRTSP_ParseResult_Ok);
+    SmolRTSP_ParseResult res = SmolRTSP_RtspVersion_parse(&result, input);
+    ASSERT(SmolRTSP_ParseResult_is_complete(res));
     ASSERT(SmolRTSP_RtspVersion_eq(result, expected));
 }
 
 static void assert_err(CharSlice99 input) {
     SmolRTSP_RtspVersion result;
-    SmolRTSP_ParseResult res = SmolRTSP_RtspVersion_parse(&result, &input);
-    ASSERT_EQ(res, SmolRTSP_ParseResult_Err);
+    SmolRTSP_ParseResult res = SmolRTSP_RtspVersion_parse(&result, input);
+    ASSERT(MATCHES(res, SmolRTSP_ParseResult_Failure));
 }
+
+SmolRTSP_ParseResult smolrtsp_match_numeric(CharSlice99 input);
 
 TEST(parse_rtsp_version) {
     const CharSlice99 input = CharSlice99_from_str("RTSP/1.1 ");

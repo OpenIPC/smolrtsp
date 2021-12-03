@@ -76,11 +76,10 @@ typedef struct {
  * Parses @p data to @p self.
  *
  * @pre `self != NULL`
- * @pre `data != NULL`
  * @pre `state != NULL`
  */
 SmolRTSP_ParseResult SmolRTSP_Response_parse(
-    SmolRTSP_Response *restrict self, CharSlice99 *restrict data,
+    SmolRTSP_Response *restrict self, CharSlice99 input,
     SmolRTSP_ResponseParseState *restrict state);
 
 /**

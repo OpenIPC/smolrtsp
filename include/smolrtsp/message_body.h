@@ -21,9 +21,8 @@ typedef CharSlice99 SmolRTSP_MessageBody;
  * Parses @p data to @p self.
  *
  * @pre `self != NULL`
- * @pre `data != NULL`
  */
 SmolRTSP_ParseResult SmolRTSP_MessageBody_parse(
-    SmolRTSP_MessageBody *restrict self, CharSlice99 *restrict data, size_t content_length);
+    SmolRTSP_MessageBody *restrict self, CharSlice99 input, size_t content_length);
 
 #endif // SMOLRTSP_MESSAGE_BODY_H

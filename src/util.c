@@ -1,3 +1,5 @@
+// TODO: do something with this bullshit.
+
 #include <smolrtsp/util.h>
 
 #include "parsing.h"
@@ -12,17 +14,30 @@ const char *SmolRTSP_LowerTransport_str(SmolRTSP_LowerTransport self) {
     }
 }
 
+#define ENSURE_SUCCESS(res)                                                                        \
+    match(res) {                                                                                   \
+        of(SmolRTSP_ParseResult_Success, status) {                                                 \
+            if (!status->is_complete) {                                                            \
+                return -1;                                                                         \
+            }                                                                                      \
+                                                                                                   \
+            value = CharSlice99_advance(value, status->offset);                                    \
+        }                                                                                          \
+        otherwise {                                                                                \
+            return -1;                                                                             \
+        }                                                                                          \
+    }
+
 int SmolRTSP_parse_lower_transport(SmolRTSP_LowerTransport *restrict result, CharSlice99 value) {
     assert(result);
 
-    const CharSlice99 start = value;
+    const CharSlice99 backup = value;
 
-    if (smolrtsp_match_until_str(&value, ";") != SmolRTSP_ParseResult_Ok) {
-        return -1;
-    }
+    const SmolRTSP_ParseResult res = smolrtsp_match_until_str(value, ";");
+    ENSURE_SUCCESS(res);
 
     const CharSlice99 transport_specifier =
-        CharSlice99_from_ptrdiff(start.ptr, (char *)value.ptr - 1);
+        CharSlice99_from_ptrdiff(backup.ptr, (char *)value.ptr - 1);
 
     if (CharSlice99_primitive_ends_with(transport_specifier, CharSlice99_from_str("UDP"))) {
         *result = SmolRTSP_LowerTransport_UDP;
@@ -42,18 +57,16 @@ int SmolRTSP_parse_client_port(int *restrict rtp_port, int *restrict rtcp_port, 
     assert(rtp_port);
     assert(rtcp_port);
 
-    if (smolrtsp_match_until_str(&value, "client_port=") != SmolRTSP_ParseResult_Ok) {
-        return -1;
-    }
+    SmolRTSP_ParseResult res = smolrtsp_match_until_str(value, "client_port=");
+    ENSURE_SUCCESS(res);
 
     const CharSlice99 rtp_port_start = value;
 
-    if (smolrtsp_match_numeric(&value) != SmolRTSP_ParseResult_Ok) {
-        return -1;
-    }
-    if (smolrtsp_match_char(&value, '-') != SmolRTSP_ParseResult_Ok) {
-        return -1;
-    }
+    res = smolrtsp_match_numeric(value);
+    ENSURE_SUCCESS(res);
+
+    res = smolrtsp_match_char(value, '-');
+    ENSURE_SUCCESS(res);
 
     const CharSlice99 rtcp_port_start = value;
 
@@ -76,27 +89,43 @@ int SmolRTSP_parse_interleaved_chn_id(
     assert(rtp_chn_id);
     assert(rtcp_chn_id);
 
-    if (smolrtsp_match_until_str(&value, "interleaved=") != SmolRTSP_ParseResult_Ok) {
-        return -1;
-    }
+    SmolRTSP_ParseResult res = smolrtsp_match_until_str(value, "interleaved=");
+    ENSURE_SUCCESS(res);
 
     const CharSlice99 rtp_chn_id_start = value;
-    if (smolrtsp_match_numeric(&value) == SmolRTSP_ParseResult_Err) {
-        return -1;
+
+    res = smolrtsp_match_numeric(value);
+
+    // If the result is partial, it means we have reached the end of the string. It is okay since
+    // the value can be something like `RTP/AVP/UDP;unicast;interleaved=204`.
+    ifLet(res, SmolRTSP_ParseResult_Success, status) {
+        if (!status->is_complete) {
+            status->is_complete = true;
+        }
     }
+
+    ENSURE_SUCCESS(res);
 
     int rtp_port_temp;
     if (sscanf(CharSlice99_c_str(rtp_chn_id_start, (char[128]){0}), "%d", &rtp_port_temp) != 1) {
+        puts("fkf");
         return -1;
     }
 
     int rtcp_port_temp = -1;
-    if (smolrtsp_match_char(&value, '-') == SmolRTSP_ParseResult_Ok) {
-        const CharSlice99 rtcp_chn_id_start = value;
+    res = smolrtsp_match_char(value, '-');
 
-        if (sscanf(CharSlice99_c_str(rtcp_chn_id_start, (char[128]){0}), "%d", &rtcp_port_temp) !=
-            1) {
-            return -1;
+    ifLet(res, SmolRTSP_ParseResult_Success, status) {
+        if (status->is_complete) {
+            value = CharSlice99_advance(value, status->offset);
+            const CharSlice99 rtcp_chn_id_start = value;
+
+            if (sscanf(
+                    CharSlice99_c_str(rtcp_chn_id_start, (char[128]){0}), "%d", &rtcp_port_temp) !=
+                1) {
+                puts("f");
+                return -1;
+            }
         }
     }
 

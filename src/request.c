@@ -15,18 +15,19 @@ void SmolRTSP_Request_serialize(
 }
 
 SmolRTSP_ParseResult SmolRTSP_Request_parse(
-    SmolRTSP_Request *restrict self, CharSlice99 *restrict data,
+    SmolRTSP_Request *restrict self, CharSlice99 input,
     SmolRTSP_RequestParseState *restrict state) {
     assert(self);
-    assert(data);
     assert(state);
+
+    const CharSlice99 backup = input;
 
     TRY_PARSE(
         SmolRTSP_RequestParseState_RequestLine,
-        SmolRTSP_RequestLine_parse(&self->start_line, data, &state->start_line));
+        SmolRTSP_RequestLine_parse(&self->start_line, input, &state->start_line));
 
     TRY_PARSE(
-        SmolRTSP_RequestParseState_HeaderMap, SmolRTSP_HeaderMap_parse(&self->header_map, data));
+        SmolRTSP_RequestParseState_HeaderMap, SmolRTSP_HeaderMap_parse(&self->header_map, input));
 
     CharSlice99 content_length;
     size_t content_length_int = 0;
@@ -45,9 +46,9 @@ SmolRTSP_ParseResult SmolRTSP_Request_parse(
 
     TRY_PARSE(
         SmolRTSP_RequestParseState_MessageBody,
-        SmolRTSP_MessageBody_parse(&self->body, data, content_length_int));
+        SmolRTSP_MessageBody_parse(&self->body, input, content_length_int));
 
-    return SmolRTSP_ParseResult_Ok;
+    return SmolRTSP_ParseResult_complete(input.ptr - backup.ptr);
 }
 
 bool SmolRTSP_Request_eq(SmolRTSP_Request lhs, SmolRTSP_Request rhs) {

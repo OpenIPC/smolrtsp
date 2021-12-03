@@ -1,6 +1,6 @@
 #include <smolrtsp/response_line.h>
 
-#include "common.h"
+#include "crlf.h"
 #include "parsing.h"
 
 #include <assert.h>
@@ -19,24 +19,25 @@ void SmolRTSP_ResponseLine_serialize(
 }
 
 SmolRTSP_ParseResult SmolRTSP_ResponseLine_parse(
-    SmolRTSP_ResponseLine *restrict self, CharSlice99 *restrict data,
+    SmolRTSP_ResponseLine *restrict self, CharSlice99 input,
     SmolRTSP_ResponseLineParseState *restrict state) {
     assert(self);
-    assert(data);
     assert(state);
+
+    const CharSlice99 backup = input;
 
     TRY_PARSE(
         SmolRTSP_ResponseLineParseState_RtspVersion,
-        SmolRTSP_RtspVersion_parse(&self->version, data));
+        SmolRTSP_RtspVersion_parse(&self->version, input));
 
     TRY_PARSE(
-        SmolRTSP_ResponseLineParseState_StatusCode, SmolRTSP_StatusCode_parse(&self->code, data));
+        SmolRTSP_ResponseLineParseState_StatusCode, SmolRTSP_StatusCode_parse(&self->code, input));
 
     TRY_PARSE(
         SmolRTSP_ResponseLineParseState_ReasonPhrase,
-        SmolRTSP_ReasonPhrase_parse(&self->reason, data));
+        SmolRTSP_ReasonPhrase_parse(&self->reason, input));
 
-    return SmolRTSP_ParseResult_Ok;
+    return SmolRTSP_ParseResult_complete(input.ptr - backup.ptr);
 }
 
 bool SmolRTSP_ResponseLine_eq(SmolRTSP_ResponseLine lhs, SmolRTSP_ResponseLine rhs) {

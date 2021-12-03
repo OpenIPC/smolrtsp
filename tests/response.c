@@ -31,24 +31,30 @@ TEST(parse_response) {
     SmolRTSP_Response result = {.header_map = SmolRTSP_HeaderMap_with_capacity(3)};
     SmolRTSP_ParseResult res;
 
-#define CHECK(data, expected_res, expected_state)                                                  \
-    res = SmolRTSP_Response_parse(&result, (CharSlice99[]){CharSlice99_from_str(data)}, &state);   \
-    ASSERT_EQ(res, SmolRTSP_ParseResult_##expected_res);                                           \
-    ASSERT_EQ(state.tag, SmolRTSP_ResponseParseState_##expected_state)
+#define CHECK(data, expected_state)                                                                \
+    do {                                                                                           \
+        res = SmolRTSP_Response_parse(&result, CharSlice99_from_str(data), &state);                \
+        ASSERT_EQ(state.tag, SmolRTSP_ResponseParseState_##expected_state);                        \
+    } while (0)
 
-    CHECK("RTSP/1.1 200 OK\r\n", Pending, HeaderMap);
+    CHECK("RTSP/1.1 200 OK\r\n", HeaderMap);
+    ASSERT(SmolRTSP_ParseResult_is_partial(res));
     assert(SmolRTSP_ResponseLine_eq(result.start_line, expected.start_line));
 
-    CHECK("Content-Length: 10\r\n", Pending, HeaderMap);
+    CHECK("Content-Length: 10\r\n", HeaderMap);
+    ASSERT(SmolRTSP_ParseResult_is_partial(res));
     assert(SmolRTSP_Header_eq(result.header_map.headers[0], expected.header_map.headers[0]));
 
-    CHECK("Accept-Language: English\r\n", Pending, HeaderMap);
+    CHECK("Accept-Language: English\r\n", HeaderMap);
+    ASSERT(SmolRTSP_ParseResult_is_partial(res));
     assert(SmolRTSP_Header_eq(result.header_map.headers[1], expected.header_map.headers[1]));
 
-    CHECK("Content-Type: application/octet-stream\r\n", Pending, HeaderMap);
+    CHECK("Content-Type: application/octet-stream\r\n", HeaderMap);
+    ASSERT(SmolRTSP_ParseResult_is_partial(res));
     assert(SmolRTSP_Header_eq(result.header_map.headers[2], expected.header_map.headers[2]));
 
-    CHECK("\r\n0123456789", Ok, Done);
+    CHECK("\r\n0123456789", Done);
+    ASSERT(SmolRTSP_ParseResult_is_complete(res));
     assert(SmolRTSP_Response_eq(result, expected));
 
 #undef CHECK

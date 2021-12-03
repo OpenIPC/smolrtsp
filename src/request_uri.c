@@ -5,16 +5,17 @@
 #include <assert.h>
 
 SmolRTSP_ParseResult
-SmolRTSP_RequestURI_parse(SmolRTSP_RequestURI *restrict self, CharSlice99 *restrict data) {
+SmolRTSP_RequestURI_parse(SmolRTSP_RequestURI *restrict self, CharSlice99 input) {
     assert(self);
-    assert(data);
 
-    MATCH(smolrtsp_match_whitespaces(data));
-    CharSlice99 uri = *data;
-    MATCH(smolrtsp_match_non_whitespaces(data));
-    uri = CharSlice99_from_ptrdiff(uri.ptr, data->ptr);
+    const CharSlice99 backup = input;
+
+    MATCH(smolrtsp_match_whitespaces(input));
+    CharSlice99 uri = input;
+    MATCH(smolrtsp_match_non_whitespaces(input));
+    uri = CharSlice99_from_ptrdiff(uri.ptr, input.ptr);
 
     *self = uri;
 
-    return SmolRTSP_ParseResult_Ok;
+    return SmolRTSP_ParseResult_complete(input.ptr - backup.ptr);
 }

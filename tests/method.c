@@ -4,21 +4,21 @@
 
 static void assert_pending(CharSlice99 input) {
     SmolRTSP_Method result;
-    SmolRTSP_ParseResult res = SmolRTSP_Method_parse(&result, &input);
-    ASSERT_EQ(res, SmolRTSP_ParseResult_Pending);
+    SmolRTSP_ParseResult res = SmolRTSP_Method_parse(&result, input);
+    ASSERT(SmolRTSP_ParseResult_is_partial(res));
 }
 
 static void assert_ok(CharSlice99 input, SmolRTSP_Method expected) {
     SmolRTSP_Method result;
-    SmolRTSP_ParseResult res = SmolRTSP_Method_parse(&result, &input);
-    ASSERT_EQ(res, SmolRTSP_ParseResult_Ok);
+    SmolRTSP_ParseResult res = SmolRTSP_Method_parse(&result, input);
+    ASSERT(SmolRTSP_ParseResult_is_complete(res));
     ASSERT(CharSlice99_primitive_eq(result, expected));
 }
 
 static void assert_err(CharSlice99 input) {
     SmolRTSP_Method result;
-    SmolRTSP_ParseResult res = SmolRTSP_Method_parse(&result, &input);
-    ASSERT_EQ(res, SmolRTSP_ParseResult_Err);
+    SmolRTSP_ParseResult res = SmolRTSP_Method_parse(&result, input);
+    ASSERT(MATCHES(res, SmolRTSP_ParseResult_Failure));
 }
 
 TEST(parse_method) {

@@ -2,23 +2,24 @@
 
 #include <assert.h>
 #include <ctype.h>
-#include <math.h>
 #include <string.h>
 
 SmolRTSP_ParseResult
-smolrtsp_match_until(CharSlice99 *restrict data, bool (*matcher)(char c, void *cx), void *cx) {
-    assert(data);
+smolrtsp_match_until(CharSlice99 input, bool (*matcher)(char c, void *ctx), void *ctx) {
     assert(matcher);
 
-    while (!CharSlice99_is_empty(*data)) {
-        if (!matcher(*(char *)data->ptr, cx)) {
-            return SmolRTSP_ParseResult_Ok;
+    size_t offset = 0;
+
+    while (!CharSlice99_is_empty(input)) {
+        if (!matcher(*(char *)input.ptr, ctx)) {
+            return SmolRTSP_ParseResult_complete(offset);
         }
 
-        *data = CharSlice99_advance(*data, 1);
+        input = CharSlice99_advance(input, 1);
+        offset++;
     }
 
-    return SmolRTSP_ParseResult_Pending;
+    return SmolRTSP_ParseResult_partial(offset);
 }
 
 static bool whitespace_matcher(char c, void *cx) {
@@ -51,129 +52,120 @@ static bool char_matcher(char c, void *cx) {
     return c == expected;
 }
 
-static size_t match_str_transition(char c, const size_t state, const char *str) {
-    if (c == str[state]) {
-        return state + 1;
-    }
-
-    return 0;
-}
-
-static bool is_str_recognised(size_t state, const char *str) {
-    return str[state] == '\0';
-}
-
-SmolRTSP_ParseResult
-smolrtsp_match_until_str(CharSlice99 *restrict data, const char *restrict str) {
-    assert(data);
+SmolRTSP_ParseResult smolrtsp_match_until_str(CharSlice99 input, const char *restrict str) {
     assert(str);
 
     const size_t str_len = strlen(str);
-
     assert(str_len > 0);
 
-    if (data->len < str_len) {
-        return SmolRTSP_ParseResult_Pending;
+    size_t offset = 0;
+
+    if (input.len < str_len) {
+        return SmolRTSP_ParseResult_partial(offset);
     }
 
     // An NFA (non-determenistic finite automaton) converted to DFA (determenistic) to recognise a
-    // substring in O(data->size).
+    // substring in O(input.size).
     size_t states[2] = {0};
-    while (!CharSlice99_is_empty(*data)) {
-        states[0] = match_str_transition(*(const char *)data->ptr, states[0], str);
-        states[1] = match_str_transition(*(const char *)data->ptr, states[1], str);
+    while (!CharSlice99_is_empty(input)) {
 
-        *data = CharSlice99_advance(*data, 1);
+#define TRANSITION(c, state, str) ((c) == (str)[(state)] ? (state) + 1 : 0)
 
-        if (is_str_recognised(states[0], str) || is_str_recognised(states[1], str)) {
-            return SmolRTSP_ParseResult_Ok;
+        states[0] = TRANSITION(*input.ptr, states[0], str);
+        states[1] = TRANSITION(*input.ptr, states[1], str);
+
+#undef TRANSITION
+
+        input = CharSlice99_advance(input, 1);
+        offset++;
+
+#define IS_RECOGNIZED(state, str) ('\0' == (str)[(state)])
+
+        if (IS_RECOGNIZED(states[0], str) || IS_RECOGNIZED(states[1], str)) {
+            return SmolRTSP_ParseResult_complete(offset);
         }
+
+#undef IS_RECOGNIZED
     }
 
-    return SmolRTSP_ParseResult_Pending;
+    return SmolRTSP_ParseResult_partial(offset);
 }
 
-SmolRTSP_ParseResult smolrtsp_match_until_crlf(CharSlice99 *restrict data) {
-    assert(data);
-
-    return smolrtsp_match_until_str(data, "\r\n");
+SmolRTSP_ParseResult smolrtsp_match_until_crlf(CharSlice99 input) {
+    return smolrtsp_match_until_str(input, "\r\n");
 }
 
-SmolRTSP_ParseResult smolrtsp_match_char(CharSlice99 *restrict data, char c) {
-    assert(data);
-
-    return smolrtsp_match_until(data, char_matcher, &c);
+SmolRTSP_ParseResult smolrtsp_match_char(CharSlice99 input, char c) {
+    return smolrtsp_match_until(input, char_matcher, &c);
 }
 
-SmolRTSP_ParseResult smolrtsp_match_str(CharSlice99 *restrict data, const char *restrict str) {
-    assert(data);
+SmolRTSP_ParseResult smolrtsp_match_str(CharSlice99 input, const char *restrict str) {
     assert(str);
 
     const size_t str_len = strlen(str);
 
-    const bool are_coinciding = memcmp(data->ptr, str, fmin(data->len, str_len)) == 0;
+    size_t offset = 0;
+
+    const size_t min_len = input.len < str_len ? input.len : str_len;
+
+    const bool are_coinciding = memcmp(input.ptr, str, min_len) == 0;
     if (!are_coinciding) {
-        return SmolRTSP_ParseResult_Err;
+        CharSlice99 expected = CharSlice99_from_str((char *)str),
+                    actual = CharSlice99_sub(input, 0, min_len);
+        return SmolRTSP_ParseResult_Failure(SmolRTSP_ParseError_StrMismatch(expected, actual));
     }
 
-    if (data->len < str_len) {
-        return SmolRTSP_ParseResult_Pending;
+    if (input.len < str_len) {
+        return SmolRTSP_ParseResult_partial(offset);
     }
 
-    *data = CharSlice99_advance(*data, str_len);
-    return SmolRTSP_ParseResult_Ok;
+    input = CharSlice99_advance(input, str_len);
+    offset += str_len;
+    return SmolRTSP_ParseResult_complete(offset);
 }
 
-SmolRTSP_ParseResult smolrtsp_match_whitespaces(CharSlice99 *restrict data) {
-    assert(data);
-
-    return smolrtsp_match_until(data, whitespace_matcher, NULL);
+SmolRTSP_ParseResult smolrtsp_match_whitespaces(CharSlice99 input) {
+    return smolrtsp_match_until(input, whitespace_matcher, NULL);
 }
 
-SmolRTSP_ParseResult smolrtsp_match_non_whitespaces(CharSlice99 *restrict data) {
-    assert(data);
-
-    return smolrtsp_match_until(data, non_whitespace_matcher, NULL);
+SmolRTSP_ParseResult smolrtsp_match_non_whitespaces(CharSlice99 input) {
+    return smolrtsp_match_until(input, non_whitespace_matcher, NULL);
 }
 
-SmolRTSP_ParseResult smolrtsp_match_numeric(CharSlice99 *restrict data) {
-    assert(data);
+SmolRTSP_ParseResult smolrtsp_match_numeric(CharSlice99 input) {
+    const SmolRTSP_ParseResult res = smolrtsp_match_until(input, numeric_matcher, NULL);
 
-    const CharSlice99 backup = *data;
-
-    const SmolRTSP_ParseResult res = smolrtsp_match_until(data, numeric_matcher, NULL);
-    const bool not_numeric = backup.len == data->len && backup.ptr == data->ptr && data->len > 0;
-    if (not_numeric) {
-        return SmolRTSP_ParseResult_Err;
-    }
-
-    return res;
-}
-
-SmolRTSP_ParseResult smolrtsp_match_ident(CharSlice99 *restrict data) {
-    assert(data);
-
-    const CharSlice99 backup = *data;
-
-    const SmolRTSP_ParseResult res = smolrtsp_match_until(data, ident_matcher, NULL);
-    const bool not_ident = backup.len == data->len && backup.ptr == data->ptr && data->len > 0;
-    if (not_ident) {
-        return SmolRTSP_ParseResult_Err;
+    ifLet(res, SmolRTSP_ParseResult_Success, status) {
+        const bool not_numeric = 0 == status->offset;
+        if (status->is_complete && not_numeric) {
+            return SmolRTSP_ParseResult_Failure(SmolRTSP_ParseError_Int(input));
+        }
     }
 
     return res;
 }
 
-SmolRTSP_ParseResult smolrtsp_match_header_name(CharSlice99 *restrict data) {
-    assert(data);
+SmolRTSP_ParseResult smolrtsp_match_ident(CharSlice99 input) {
+    const SmolRTSP_ParseResult res = smolrtsp_match_until(input, ident_matcher, NULL);
 
-    const CharSlice99 backup = *data;
+    ifLet(res, SmolRTSP_ParseResult_Success, status) {
+        const bool not_ident = 0 == status->offset;
+        if (status->is_complete && not_ident) {
+            return SmolRTSP_ParseResult_Failure(SmolRTSP_ParseError_Ident(input));
+        }
+    }
 
-    const SmolRTSP_ParseResult res = smolrtsp_match_until(data, header_name_char_matcher, NULL);
-    const bool not_header_name =
-        backup.len == data->len && backup.ptr == data->ptr && data->len > 0;
-    if (not_header_name) {
-        return SmolRTSP_ParseResult_Err;
+    return res;
+}
+
+SmolRTSP_ParseResult smolrtsp_match_header_name(CharSlice99 input) {
+    const SmolRTSP_ParseResult res = smolrtsp_match_until(input, header_name_char_matcher, NULL);
+
+    ifLet(res, SmolRTSP_ParseResult_Success, status) {
+        const bool not_header_name = 0 == status->offset;
+        if (status->is_complete && not_header_name) {
+            return SmolRTSP_ParseResult_Failure(SmolRTSP_ParseError_HeaderName(input));
+        }
     }
 
     return res;

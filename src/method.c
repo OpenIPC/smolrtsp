@@ -4,17 +4,17 @@
 
 #include <assert.h>
 
-SmolRTSP_ParseResult
-SmolRTSP_Method_parse(SmolRTSP_Method *restrict self, CharSlice99 *restrict data) {
+SmolRTSP_ParseResult SmolRTSP_Method_parse(SmolRTSP_Method *restrict self, CharSlice99 input) {
     assert(self);
-    assert(data);
 
-    MATCH(smolrtsp_match_whitespaces(data));
-    CharSlice99 method = *data;
-    MATCH(smolrtsp_match_ident(data));
-    method = CharSlice99_from_ptrdiff(method.ptr, data->ptr);
+    const CharSlice99 backup = input;
+
+    MATCH(smolrtsp_match_whitespaces(input));
+    CharSlice99 method = input;
+    MATCH(smolrtsp_match_ident(input));
+    method = CharSlice99_from_ptrdiff(method.ptr, input.ptr);
 
     *self = method;
 
-    return SmolRTSP_ParseResult_Ok;
+    return SmolRTSP_ParseResult_complete(input.ptr - backup.ptr);
 }

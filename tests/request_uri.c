@@ -4,14 +4,14 @@
 
 static void assert_pending(CharSlice99 input) {
     SmolRTSP_RequestURI result;
-    SmolRTSP_ParseResult res = SmolRTSP_RequestURI_parse(&result, &input);
-    ASSERT_EQ(res, SmolRTSP_ParseResult_Pending);
+    SmolRTSP_ParseResult res = SmolRTSP_RequestURI_parse(&result, input);
+    ASSERT(SmolRTSP_ParseResult_is_partial(res));
 }
 
 static void assert_ok(CharSlice99 input, SmolRTSP_RequestURI expected) {
     SmolRTSP_RequestURI result;
-    SmolRTSP_ParseResult res = SmolRTSP_RequestURI_parse(&result, &input);
-    ASSERT_EQ(res, SmolRTSP_ParseResult_Ok);
+    SmolRTSP_ParseResult res = SmolRTSP_RequestURI_parse(&result, input);
+    ASSERT(SmolRTSP_ParseResult_is_complete(res));
     ASSERT(CharSlice99_primitive_eq(result, expected));
 }
 

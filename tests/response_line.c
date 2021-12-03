@@ -13,19 +13,22 @@ TEST(parse_response_line) {
     SmolRTSP_ResponseLine result;
     SmolRTSP_ParseResult res;
 
-#define CHECK(data, expected_res, expected_state)                                                  \
-    res =                                                                                          \
-        SmolRTSP_ResponseLine_parse(&result, (CharSlice99[]){CharSlice99_from_str(data)}, &state); \
-    ASSERT_EQ(res, SmolRTSP_ParseResult_##expected_res);                                           \
-    ASSERT_EQ(state.tag, SmolRTSP_ResponseLineParseState_##expected_state)
+#define CHECK(data, expected_state)                                                                \
+    do {                                                                                           \
+        res = SmolRTSP_ResponseLine_parse(&result, CharSlice99_from_str(data), &state);            \
+        ASSERT_EQ(state.tag, SmolRTSP_ResponseLineParseState_##expected_state);                    \
+    } while (0)
 
-    CHECK("RTSP/1.1 ", Pending, StatusCode);
+    CHECK("RTSP/1.1 ", StatusCode);
+    ASSERT(SmolRTSP_ParseResult_is_partial(res));
     assert(SmolRTSP_RtspVersion_eq(result.version, expected.version));
 
-    CHECK("200 ", Pending, ReasonPhrase);
+    CHECK("200 ", ReasonPhrase);
+    ASSERT(SmolRTSP_ParseResult_is_partial(res));
     assert(result.code == expected.code);
 
-    CHECK("OK\r\n", Ok, Done);
+    CHECK("OK\r\n", Done);
+    ASSERT(SmolRTSP_ParseResult_is_complete(res));
     assert(SmolRTSP_ResponseLine_eq(result, expected));
 
 #undef CHECK

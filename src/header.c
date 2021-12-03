@@ -1,6 +1,6 @@
 #include <smolrtsp/header.h>
 
-#include "common.h"
+#include "crlf.h"
 #include "parsing.h"
 
 #include <assert.h>
@@ -16,29 +16,29 @@ void SmolRTSP_Header_serialize(
     user_writer(SMOLRTSP_CRLF, user_cx);
 }
 
-SmolRTSP_ParseResult
-SmolRTSP_Header_parse(SmolRTSP_Header *restrict self, CharSlice99 *restrict data) {
+SmolRTSP_ParseResult SmolRTSP_Header_parse(SmolRTSP_Header *restrict self, CharSlice99 input) {
     assert(self);
-    assert(data);
+
+    const CharSlice99 backup = input;
 
     SmolRTSP_Header header;
 
-    MATCH(smolrtsp_match_whitespaces(data));
-    header.key = *data;
-    MATCH(smolrtsp_match_header_name(data));
-    header.key = CharSlice99_from_ptrdiff(header.key.ptr, data->ptr);
+    MATCH(smolrtsp_match_whitespaces(input));
+    header.key = input;
+    MATCH(smolrtsp_match_header_name(input));
+    header.key = CharSlice99_from_ptrdiff(header.key.ptr, input.ptr);
 
-    MATCH(smolrtsp_match_whitespaces(data));
-    MATCH(smolrtsp_match_char(data, ':'));
-    MATCH(smolrtsp_match_whitespaces(data));
+    MATCH(smolrtsp_match_whitespaces(input));
+    MATCH(smolrtsp_match_char(input, ':'));
+    MATCH(smolrtsp_match_whitespaces(input));
 
-    header.value = *data;
-    MATCH(smolrtsp_match_until_crlf(data));
-    header.value = CharSlice99_from_ptrdiff(header.value.ptr, data->ptr - strlen("\r\n"));
+    header.value = input;
+    MATCH(smolrtsp_match_until_crlf(input));
+    header.value = CharSlice99_from_ptrdiff(header.value.ptr, input.ptr - strlen("\r\n"));
 
     *self = header;
 
-    return SmolRTSP_ParseResult_Ok;
+    return SmolRTSP_ParseResult_complete(input.ptr - backup.ptr);
 }
 
 bool SmolRTSP_Header_eq(SmolRTSP_Header lhs, SmolRTSP_Header rhs) {

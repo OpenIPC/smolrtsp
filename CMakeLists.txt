@@ -20,7 +20,7 @@ set(SMOLRTSP_SOURCES
     include/smolrtsp/sdp.h
     include/smolrtsp/user_writer.h
     include/smolrtsp/util.h
-    src/common.h
+    src/common.c
     src/header_map.c
     src/header.c
     src/message_body.c
@@ -37,12 +37,13 @@ set(SMOLRTSP_SOURCES
     src/status_code.c
     src/sdp.c
     src/user_writer.c
-    src/util.c)
+    src/util.c
+)
 
 if(SMOLRTSP_SHARED)
-  add_library(smolrtsp SHARED ${SMOLRTSP_SOURCES})
+  add_library(${PROJECT_NAME} SHARED ${SMOLRTSP_SOURCES})
 else()
-  add_library(smolrtsp STATIC ${SMOLRTSP_SOURCES})
+  add_library(${PROJECT_NAME} STATIC ${SMOLRTSP_SOURCES})
 endif()
 
 include(FetchContent)
@@ -52,10 +53,20 @@ FetchContent_Declare(
     URL https://github.com/Hirrolot/slice99/archive/refs/tags/v0.7.1.tar.gz
 )
 
-FetchContent_MakeAvailable(slice99)
+FetchContent_Declare(
+    datatype99
+    URL https://github.com/Hirrolot/datatype99/archive/refs/tags/v1.6.0.tar.gz
+)
 
-target_include_directories(smolrtsp PUBLIC include)
-target_link_libraries(smolrtsp PRIVATE m)
-target_link_libraries(smolrtsp PUBLIC slice99)
+FetchContent_MakeAvailable(slice99 datatype99)
 
-set_target_properties(smolrtsp PROPERTIES C_STANDARD 99 C_STANDARD_REQUIRED ON)
+if(CMAKE_C_COMPILER_ID STREQUAL "Clang")
+  target_compile_options(${PROJECT_NAME} PUBLIC -fmacro-backtrace-limit=1)
+elseif(CMAKE_C_COMPILER_ID STREQUAL "GNU")
+  target_compile_options(${PROJECT_NAME} PUBLIC -ftrack-macro-expansion=0)
+endif()
+
+target_include_directories(${PROJECT_NAME} PUBLIC include)
+target_link_libraries(${PROJECT_NAME} PUBLIC slice99 datatype99)
+
+set_target_properties(${PROJECT_NAME} PROPERTIES C_STANDARD 99 C_STANDARD_REQUIRED ON)

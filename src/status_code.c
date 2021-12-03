@@ -17,23 +17,24 @@ void SmolRTSP_StatusCode_serialize(
 }
 
 SmolRTSP_ParseResult
-SmolRTSP_StatusCode_parse(SmolRTSP_StatusCode *restrict self, CharSlice99 *restrict data) {
+SmolRTSP_StatusCode_parse(SmolRTSP_StatusCode *restrict self, CharSlice99 input) {
     assert(self);
-    assert(data);
 
-    MATCH(smolrtsp_match_whitespaces(data));
-    CharSlice99 code = *data;
-    MATCH(smolrtsp_match_numeric(data));
-    code = CharSlice99_from_ptrdiff(code.ptr, data->ptr);
+    const CharSlice99 backup = input;
+
+    MATCH(smolrtsp_match_whitespaces(input));
+    CharSlice99 code = input;
+    MATCH(smolrtsp_match_numeric(input));
+    code = CharSlice99_from_ptrdiff(code.ptr, input.ptr);
 
     SmolRTSP_StatusCode code_int;
     char fmt[64];
     snprintf(fmt, sizeof(fmt), "%%%zd" SCNuLEAST16, code.len);
     if (sscanf(code.ptr, fmt, &code_int) != 1) {
-        return SmolRTSP_ParseResult_Err;
+        return SmolRTSP_ParseResult_Failure(SmolRTSP_ParseError_Int(code));
     }
 
     *self = code_int;
 
-    return SmolRTSP_ParseResult_Ok;
+    return SmolRTSP_ParseResult_complete(input.ptr - backup.ptr);
 }
