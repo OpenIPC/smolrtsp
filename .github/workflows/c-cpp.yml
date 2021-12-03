@@ -20,7 +20,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Update Git submodules
-      run: git submodule update --init tests/slice99 run-clang-format
+      run: git submodule update --init run-clang-format
 
     - name: Tests
       run: bash scripts/test.sh
