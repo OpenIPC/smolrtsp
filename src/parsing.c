@@ -139,7 +139,7 @@ SmolRTSP_ParseResult smolrtsp_match_numeric(CharSlice99 input) {
         const bool not_numeric = 0 == status->offset;
         if (status->is_complete && not_numeric) {
             return SmolRTSP_ParseResult_Failure(
-                SmolRTSP_ParseError_TypeMismatch(SmolRTSP_TypeMismatchErrorKind_Int, input));
+                SmolRTSP_ParseError_TypeMismatch(SmolRTSP_ParseType_Int, input));
         }
     }
 
@@ -153,7 +153,7 @@ SmolRTSP_ParseResult smolrtsp_match_ident(CharSlice99 input) {
         const bool not_ident = 0 == status->offset;
         if (status->is_complete && not_ident) {
             return SmolRTSP_ParseResult_Failure(
-                SmolRTSP_ParseError_TypeMismatch(SmolRTSP_TypeMismatchErrorKind_Ident, input));
+                SmolRTSP_ParseError_TypeMismatch(SmolRTSP_ParseType_Ident, input));
         }
     }
 
@@ -167,7 +167,7 @@ SmolRTSP_ParseResult smolrtsp_match_header_name(CharSlice99 input) {
         const bool not_header_name = 0 == status->offset;
         if (status->is_complete && not_header_name) {
             return SmolRTSP_ParseResult_Failure(
-                SmolRTSP_ParseError_TypeMismatch(SmolRTSP_TypeMismatchErrorKind_HeaderName, input));
+                SmolRTSP_ParseError_TypeMismatch(SmolRTSP_ParseType_HeaderName, input));
         }
     }
 

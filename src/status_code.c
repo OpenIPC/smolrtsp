@@ -32,7 +32,7 @@ SmolRTSP_StatusCode_parse(SmolRTSP_StatusCode *restrict self, CharSlice99 input)
     snprintf(fmt, sizeof(fmt), "%%%zd" SCNuLEAST16, code.len);
     if (sscanf(code.ptr, fmt, &code_int) != 1) {
         return SmolRTSP_ParseResult_Failure(
-            SmolRTSP_ParseError_TypeMismatch(SmolRTSP_TypeMismatchErrorKind_Int, code));
+            SmolRTSP_ParseError_TypeMismatch(SmolRTSP_ParseType_Int, code));
     }
 
     *self = code_int;

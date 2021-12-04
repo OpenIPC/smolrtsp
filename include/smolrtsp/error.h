@@ -6,6 +6,8 @@
 #ifndef SMOLRTSP_COMMON_H
 #define SMOLRTSP_COMMON_H
 
+#include <smolrtsp/user_writer.h>
+
 #include <stdbool.h>
 #include <stddef.h>
 
@@ -17,20 +19,25 @@
  */
 typedef enum {
     /**
-     * Expected an integer.
+     * An integer (`-34`, `0`, `123`).
      */
-    SmolRTSP_TypeMismatchErrorKind_Int,
+    SmolRTSP_ParseType_Int,
 
     /**
-     * Expected an identifier.
+     * An identifier (`abc`).
      */
-    SmolRTSP_TypeMismatchErrorKind_Ident,
+    SmolRTSP_ParseType_Ident,
 
     /**
-     * Expected a header name.
+     * A header name (`Content-Length`, `Authorization`).
      */
-    SmolRTSP_TypeMismatchErrorKind_HeaderName,
-} SmolRTSP_TypeMismatchErrorKind;
+    SmolRTSP_ParseType_HeaderName,
+} SmolRTSP_ParseType;
+
+/**
+ * Returns a string representation of @p self.
+ */
+const char *SmolRTSP_ParseType_str(SmolRTSP_ParseType self);
 
 // clang-format off
 datatype99(
@@ -53,7 +60,7 @@ datatype99(
      * Failed to parse an integer.
      */
     (SmolRTSP_ParseError_TypeMismatch,
-        SmolRTSP_TypeMismatchErrorKind,
+        SmolRTSP_ParseType,
         CharSlice99 /* the erroneous string */),
 
     /**
@@ -62,6 +69,15 @@ datatype99(
     (SmolRTSP_ParseError_HeaderMapOverflow)
 );
 // clang-format on
+
+/**
+ * Prints @p self to @p w.
+ *
+ * @param[in] self The error to print.
+ * @param[in] w The function to be provided with data (possibly in chunks).
+ * @param[in] user_cx Some value provided to @p w on each write.
+ */
+void SmolRTSP_ParseError_print(SmolRTSP_ParseError self, SmolRTSP_UserWriter w, void *user_cx);
 
 typedef struct {
     /**

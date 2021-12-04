@@ -49,13 +49,13 @@ SmolRTSP_RtspVersion_parse(SmolRTSP_RtspVersion *restrict self, CharSlice99 inpu
     snprintf(fmt, sizeof(fmt), "%%%zd" SCNuLEAST8, major.len);
     if (sscanf(major.ptr, fmt, &major_int) != 1) {
         return SmolRTSP_ParseResult_Failure(
-            SmolRTSP_ParseError_TypeMismatch(SmolRTSP_TypeMismatchErrorKind_Int, major));
+            SmolRTSP_ParseError_TypeMismatch(SmolRTSP_ParseType_Int, major));
     }
 
     snprintf(fmt, sizeof(fmt), "%%%zd" SCNuLEAST8, minor.len);
     if (sscanf(minor.ptr, fmt, &minor_int) != 1) {
         return SmolRTSP_ParseResult_Failure(
-            SmolRTSP_ParseError_TypeMismatch(SmolRTSP_TypeMismatchErrorKind_Int, minor));
+            SmolRTSP_ParseError_TypeMismatch(SmolRTSP_ParseType_Int, minor));
     }
 
     self->major = major_int;
