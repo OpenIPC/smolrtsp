@@ -6,7 +6,7 @@
 #ifndef SMOLRTSP_METHOD_H
 #define SMOLRTSP_METHOD_H
 
-#include <smolrtsp/common.h>
+#include <smolrtsp/error.h>
 
 #include <slice99.h>
 

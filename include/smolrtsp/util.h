@@ -6,7 +6,7 @@
 #ifndef SMOLRTSP_UTIL_H
 #define SMOLRTSP_UTIL_H
 
-#include <smolrtsp/common.h>
+#include <smolrtsp/error.h>
 
 #include <slice99.h>
 

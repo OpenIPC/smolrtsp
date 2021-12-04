@@ -6,7 +6,7 @@
 #ifndef SMOLRTSP_REQUEST_H
 #define SMOLRTSP_REQUEST_H
 
-#include <smolrtsp/common.h>
+#include <smolrtsp/error.h>
 #include <smolrtsp/header_map.h>
 #include <smolrtsp/message_body.h>
 #include <smolrtsp/request_line.h>

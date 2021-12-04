@@ -1,4 +1,4 @@
-#include <smolrtsp/common.h>
+#include <smolrtsp/error.h>
 
 SmolRTSP_ParseStatus SmolRTSP_ParseStatus_partial(size_t offset) {
     return (SmolRTSP_ParseStatus){.offset = offset, .is_complete = false};

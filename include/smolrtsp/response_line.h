@@ -6,7 +6,7 @@
 #ifndef SMOLRTSP_RESPONSE_LINE_H
 #define SMOLRTSP_RESPONSE_LINE_H
 
-#include <smolrtsp/common.h>
+#include <smolrtsp/error.h>
 #include <smolrtsp/reason_phrase.h>
 #include <smolrtsp/rtsp_version.h>
 #include <smolrtsp/status_code.h>

@@ -6,7 +6,7 @@
 #ifndef SMOLRTSP_HEADER_MAP_H
 #define SMOLRTSP_HEADER_MAP_H
 
-#include <smolrtsp/common.h>
+#include <smolrtsp/error.h>
 #include <smolrtsp/header.h>
 
 #include <stdbool.h>

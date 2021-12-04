@@ -6,7 +6,7 @@
 #ifndef SMOLRTSP_REASON_PHRASE_H
 #define SMOLRTSP_REASON_PHRASE_H
 
-#include <smolrtsp/common.h>
+#include <smolrtsp/error.h>
 
 #include <slice99.h>
 

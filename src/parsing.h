@@ -1,7 +1,7 @@
 #ifndef SMOLRTSP_PARSING_H
 #define SMOLRTSP_PARSING_H
 
-#include <smolrtsp/common.h>
+#include <smolrtsp/error.h>
 
 #include <stdbool.h>
 #include <stddef.h>

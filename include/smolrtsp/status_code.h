@@ -6,7 +6,7 @@
 #ifndef SMOLRTSP_STATUS_CODE_H
 #define SMOLRTSP_STATUS_CODE_H
 
-#include <smolrtsp/common.h>
+#include <smolrtsp/error.h>
 #include <smolrtsp/user_writer.h>
 
 #include <stdint.h>

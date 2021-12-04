@@ -6,7 +6,7 @@
 #ifndef SMOLRTSP_REQUEST_URI_H
 #define SMOLRTSP_REQUEST_URI_H
 
-#include <smolrtsp/common.h>
+#include <smolrtsp/error.h>
 
 #include <slice99.h>
 
