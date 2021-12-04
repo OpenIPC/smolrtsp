@@ -4,7 +4,7 @@ project(smolrtsp LANGUAGES C)
 option(SMOLRTSP_SHARED "Build a shared library" OFF)
 
 set(SMOLRTSP_SOURCES
-    include/smolrtsp/common.h
+    include/smolrtsp/error.h
     include/smolrtsp/header_map.h
     include/smolrtsp/header.h
     include/smolrtsp/message_body.h
@@ -20,7 +20,7 @@ set(SMOLRTSP_SOURCES
     include/smolrtsp/sdp.h
     include/smolrtsp/user_writer.h
     include/smolrtsp/util.h
-    src/common.c
+    src/error.c
     src/header_map.c
     src/header.c
     src/message_body.c
