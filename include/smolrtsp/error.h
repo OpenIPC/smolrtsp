@@ -12,6 +12,26 @@
 #include <datatype99.h>
 #include <slice99.h>
 
+/**
+ * Possible variants of #SmolRTSP_TypeMismatchError.
+ */
+typedef enum {
+    /**
+     * Expected an integer.
+     */
+    SmolRTSP_TypeMismatchErrorKind_Int,
+
+    /**
+     * Expected an identifier.
+     */
+    SmolRTSP_TypeMismatchErrorKind_Ident,
+
+    /**
+     * Expected a header name.
+     */
+    SmolRTSP_TypeMismatchErrorKind_HeaderName,
+} SmolRTSP_TypeMismatchErrorKind;
+
 // clang-format off
 datatype99(
     SmolRTSP_ParseError,
@@ -30,24 +50,16 @@ datatype99(
         CharSlice99 /* actual */),
 
     /**
-     * An attempt to add a header to a full header map.
-     */
-    (SmolRTSP_ParseError_HeaderMapOverflow),
-
-    /**
      * Failed to parse an integer.
      */
-    (SmolRTSP_ParseError_Int, CharSlice99),
+    (SmolRTSP_ParseError_TypeMismatch,
+        SmolRTSP_TypeMismatchErrorKind,
+        CharSlice99 /* the erroneous string */),
 
     /**
-     * Failed to parse an identifier.
+     * An attempt to add a header to a full header map.
      */
-    (SmolRTSP_ParseError_Ident, CharSlice99),
-
-    /**
-     * Failed to parse a header name.
-     */
-    (SmolRTSP_ParseError_HeaderName, CharSlice99)
+    (SmolRTSP_ParseError_HeaderMapOverflow)
 );
 // clang-format on
 
