@@ -15,7 +15,7 @@
 #include <slice99.h>
 
 /**
- * Possible variants of #SmolRTSP_TypeMismatchError.
+ * Types of data that can be failed to parse.
  */
 typedef enum {
     /**
@@ -50,7 +50,7 @@ datatype99(
         CharSlice99 /* the value of this header */),
 
     /**
-     * Two given strings are ineqal.
+     * Two given strings are uneqal.
      */
     (SmolRTSP_ParseError_StrMismatch,
         CharSlice99 /* expected */,
