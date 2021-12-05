@@ -19,6 +19,26 @@
 typedef void (*SmolRTSP_Writer)(CharSlice99 data, void *ctx);
 
 /**
+ * The same as #smolrtsp_write_slices but calculates an array length from variadic arguments (the
+ * syntactically separated items of the array).
+ */
+#define SMOLRTSP_WRITE_SLICES(w, ctx, ...)                                                         \
+    smolrtsp_write_slices(                                                                         \
+        w, ctx, SLICE99_ARRAY_LEN((const CharSlice99[])__VA_ARGS__),                               \
+        (const CharSlice99[])__VA_ARGS__)
+
+/**
+ * Sequentially writes all items in @p data to @p w.
+ *
+ * @param[in] w The function to be provided with data (possibly in chunks).
+ * @param[in] ctx Some value provided to @p w on each write.
+ * @param[in] len The number of items in @p data.
+ * @param[in] data The data array which will be written to @p w, one-by-one.
+ */
+void smolrtsp_write_slices(
+    SmolRTSP_Writer w, void *ctx, size_t len, const CharSlice99 data[restrict static len]);
+
+/**
  * A writer that appends @p data to the array of characters @p buffer.
  *
  * @param[in] data The slice to the supplied data.

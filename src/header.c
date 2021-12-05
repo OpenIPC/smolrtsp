@@ -9,10 +9,14 @@
 void SmolRTSP_Header_serialize(SmolRTSP_Header self, SmolRTSP_Writer w, void *w_ctx) {
     assert(w);
 
-    w(self.key, w_ctx);
-    w(CharSlice99_from_str(": "), w_ctx);
-    w(self.value, w_ctx);
-    w(SMOLRTSP_CRLF, w_ctx);
+    SMOLRTSP_WRITE_SLICES(
+        w, w_ctx,
+        {
+            self.key,
+            CharSlice99_from_str(": "),
+            self.value,
+            SMOLRTSP_CRLF,
+        });
 }
 
 SmolRTSP_ParseResult SmolRTSP_Header_parse(SmolRTSP_Header *restrict self, CharSlice99 input) {
