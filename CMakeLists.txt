@@ -18,7 +18,7 @@ set(SMOLRTSP_SOURCES
     include/smolrtsp/rtsp_version.h
     include/smolrtsp/status_code.h
     include/smolrtsp/sdp.h
-    include/smolrtsp/user_writer.h
+    include/smolrtsp/writer.h
     include/smolrtsp/util.h
     src/error.c
     src/header_map.c
@@ -36,7 +36,7 @@ set(SMOLRTSP_SOURCES
     src/rtsp_version.c
     src/status_code.c
     src/sdp.c
-    src/user_writer.c
+    src/writer.c
     src/util.c
 )
 

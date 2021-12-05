@@ -1,4 +1,4 @@
-#include <smolrtsp/user_writer.h>
+#include <smolrtsp/writer.h>
 
 #include <stdio.h>
 #include <string.h>

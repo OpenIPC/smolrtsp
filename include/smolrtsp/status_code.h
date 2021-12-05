@@ -7,7 +7,7 @@
 #define SMOLRTSP_STATUS_CODE_H
 
 #include <smolrtsp/error.h>
-#include <smolrtsp/user_writer.h>
+#include <smolrtsp/writer.h>
 
 #include <stdint.h>
 
@@ -19,16 +19,15 @@
 typedef uint_least16_t SmolRTSP_StatusCode;
 
 /**
- * Serialises @p self to @p user_writer.
+ * Serialises @p self into @p w.
  *
  * @param[in] self The instance to be serialised.
- * @param[in] user_writer The function to be provided with serialised data (possibly in chunks).
- * @param[in] user_cx Some value provided to @p user_writer on each write.
+ * @param[in] w The function to be provided with serialised data (possibly in chunks).
+ * @param[in] w_ctx Some value provided to @p w on each write.
  *
- * @pre `user_writer != NULL`
+ * @pre `w != NULL`
  */
-void SmolRTSP_StatusCode_serialize(
-    SmolRTSP_StatusCode self, SmolRTSP_UserWriter user_writer, void *user_cx);
+void SmolRTSP_StatusCode_serialize(SmolRTSP_StatusCode self, SmolRTSP_Writer w, void *w_ctx);
 
 /**
  * Parses @p data to @p self.

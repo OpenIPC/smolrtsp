@@ -7,13 +7,12 @@
 #include <stdio.h>
 #include <string.h>
 
-void SmolRTSP_StatusCode_serialize(
-    SmolRTSP_StatusCode self, SmolRTSP_UserWriter user_writer, void *user_cx) {
-    assert(user_writer);
+void SmolRTSP_StatusCode_serialize(SmolRTSP_StatusCode self, SmolRTSP_Writer w, void *w_ctx) {
+    assert(w);
 
     char buffer[64];
     snprintf(buffer, sizeof(buffer), "%" PRIuLEAST16, self);
-    user_writer(CharSlice99_from_str(buffer), user_cx);
+    w(CharSlice99_from_str(buffer), w_ctx);
 }
 
 SmolRTSP_ParseResult

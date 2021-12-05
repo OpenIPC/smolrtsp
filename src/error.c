@@ -13,29 +13,29 @@ const char *SmolRTSP_ParseType_str(SmolRTSP_ParseType self) {
     }
 }
 
-void SmolRTSP_ParseError_print(SmolRTSP_ParseError self, SmolRTSP_UserWriter w, void *user_cx) {
+void SmolRTSP_ParseError_print(SmolRTSP_ParseError self, SmolRTSP_Writer w, void *w_ctx) {
     match(self) {
         of(SmolRTSP_ParseError_ContentLength, value) {
-            w(CharSlice99_from_str("Invalid Content-Length `"), user_cx);
-            w(*value, user_cx);
-            w(CharSlice99_from_str("`."), user_cx);
+            w(CharSlice99_from_str("Invalid Content-Length `"), w_ctx);
+            w(*value, w_ctx);
+            w(CharSlice99_from_str("`."), w_ctx);
         }
         of(SmolRTSP_ParseError_StrMismatch, expected, actual) {
-            w(CharSlice99_from_str("String mismatch: expected `"), user_cx);
-            w(*expected, user_cx);
-            w(CharSlice99_from_str("`, found `"), user_cx);
-            w(*actual, user_cx);
-            w(CharSlice99_from_str("`."), user_cx);
+            w(CharSlice99_from_str("String mismatch: expected `"), w_ctx);
+            w(*expected, w_ctx);
+            w(CharSlice99_from_str("`, found `"), w_ctx);
+            w(*actual, w_ctx);
+            w(CharSlice99_from_str("`."), w_ctx);
         }
         of(SmolRTSP_ParseError_TypeMismatch, kind, str) {
-            w(CharSlice99_from_str("Type mismatch: expected "), user_cx);
-            w(CharSlice99_from_str((char *)SmolRTSP_ParseType_str(*kind)), user_cx);
-            w(CharSlice99_from_str(", found `"), user_cx);
-            w(*str, user_cx);
-            w(CharSlice99_from_str("`."), user_cx);
+            w(CharSlice99_from_str("Type mismatch: expected "), w_ctx);
+            w(CharSlice99_from_str((char *)SmolRTSP_ParseType_str(*kind)), w_ctx);
+            w(CharSlice99_from_str(", found `"), w_ctx);
+            w(*str, w_ctx);
+            w(CharSlice99_from_str("`."), w_ctx);
         }
         of(SmolRTSP_ParseError_HeaderMapOverflow) {
-            w(CharSlice99_from_str("Not enough space left in the header map."), user_cx);
+            w(CharSlice99_from_str("Not enough space left in the header map."), w_ctx);
         }
     }
 }

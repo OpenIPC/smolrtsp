@@ -6,16 +6,15 @@
 #include <assert.h>
 #include <string.h>
 
-void SmolRTSP_ResponseLine_serialize(
-    SmolRTSP_ResponseLine self, SmolRTSP_UserWriter user_writer, void *user_cx) {
-    assert(user_writer);
+void SmolRTSP_ResponseLine_serialize(SmolRTSP_ResponseLine self, SmolRTSP_Writer w, void *w_ctx) {
+    assert(w);
 
-    SmolRTSP_RtspVersion_serialize(self.version, user_writer, user_cx);
-    user_writer(CharSlice99_from_str(" "), user_cx);
-    SmolRTSP_StatusCode_serialize(self.code, user_writer, user_cx);
-    user_writer(CharSlice99_from_str(" "), user_cx);
-    user_writer(self.reason, user_cx);
-    user_writer(SMOLRTSP_CRLF, user_cx);
+    SmolRTSP_RtspVersion_serialize(self.version, w, w_ctx);
+    w(CharSlice99_from_str(" "), w_ctx);
+    SmolRTSP_StatusCode_serialize(self.code, w, w_ctx);
+    w(CharSlice99_from_str(" "), w_ctx);
+    w(self.reason, w_ctx);
+    w(SMOLRTSP_CRLF, w_ctx);
 }
 
 SmolRTSP_ParseResult SmolRTSP_ResponseLine_parse(

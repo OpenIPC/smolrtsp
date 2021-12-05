@@ -6,7 +6,7 @@
 #ifndef SMOLRTSP_COMMON_H
 #define SMOLRTSP_COMMON_H
 
-#include <smolrtsp/user_writer.h>
+#include <smolrtsp/writer.h>
 
 #include <stdbool.h>
 #include <stddef.h>
@@ -71,13 +71,13 @@ datatype99(
 // clang-format on
 
 /**
- * Prints @p self to @p w.
+ * Prints @p self into @p w.
  *
  * @param[in] self The error to print.
  * @param[in] w The function to be provided with data (possibly in chunks).
- * @param[in] user_cx Some value provided to @p w on each write.
+ * @param[in] w_ctx Some value provided to @p w on each write.
  */
-void SmolRTSP_ParseError_print(SmolRTSP_ParseError self, SmolRTSP_UserWriter w, void *user_cx);
+void SmolRTSP_ParseError_print(SmolRTSP_ParseError self, SmolRTSP_Writer w, void *w_ctx);
 
 typedef struct {
     /**

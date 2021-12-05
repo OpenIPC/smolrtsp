@@ -6,14 +6,13 @@
 #include <assert.h>
 #include <string.h>
 
-void SmolRTSP_Header_serialize(
-    SmolRTSP_Header self, SmolRTSP_UserWriter user_writer, void *user_cx) {
-    assert(user_writer);
+void SmolRTSP_Header_serialize(SmolRTSP_Header self, SmolRTSP_Writer w, void *w_ctx) {
+    assert(w);
 
-    user_writer(self.key, user_cx);
-    user_writer(CharSlice99_from_str(": "), user_cx);
-    user_writer(self.value, user_cx);
-    user_writer(SMOLRTSP_CRLF, user_cx);
+    w(self.key, w_ctx);
+    w(CharSlice99_from_str(": "), w_ctx);
+    w(self.value, w_ctx);
+    w(SMOLRTSP_CRLF, w_ctx);
 }
 
 SmolRTSP_ParseResult SmolRTSP_Header_parse(SmolRTSP_Header *restrict self, CharSlice99 input) {

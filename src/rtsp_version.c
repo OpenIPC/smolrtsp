@@ -8,9 +8,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-void SmolRTSP_RtspVersion_serialize(
-    SmolRTSP_RtspVersion self, SmolRTSP_UserWriter user_writer, void *user_cx) {
-    assert(user_writer);
+void SmolRTSP_RtspVersion_serialize(SmolRTSP_RtspVersion self, SmolRTSP_Writer w, void *w_ctx) {
+    assert(w);
 
     const char *fmt = "RTSP/%" PRIuLEAST8 ".%" PRIuLEAST8;
 
@@ -20,7 +19,7 @@ void SmolRTSP_RtspVersion_serialize(
     assert(buffer);
     snprintf(buffer, buffer_size, fmt, self.major, self.minor);
 
-    user_writer(CharSlice99_from_str(buffer), user_cx);
+    w(CharSlice99_from_str(buffer), w_ctx);
 
     free(buffer);
 }

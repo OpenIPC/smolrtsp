@@ -7,12 +7,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void SmolRTSP_SdpLine_serialize(
-    SmolRTSP_SdpLine self, SmolRTSP_UserWriter user_writer, void *user_cx) {
-    assert(user_cx);
+void SmolRTSP_SdpLine_serialize(SmolRTSP_SdpLine self, SmolRTSP_Writer w, void *w_ctx) {
+    assert(w);
 
-    user_writer(CharSlice99_new(&self.ty, 1), user_cx);
-    user_writer(CharSlice99_from_str("="), user_cx);
-    user_writer(self.value, user_cx);
-    user_writer(SMOLRTSP_CRLF, user_cx);
+    w(CharSlice99_new(&self.ty, 1), w_ctx);
+    w(CharSlice99_from_str("="), w_ctx);
+    w(self.value, w_ctx);
+    w(SMOLRTSP_CRLF, w_ctx);
 }
