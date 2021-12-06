@@ -13,6 +13,9 @@ const char *SmolRTSP_ParseType_str(SmolRTSP_ParseType self) {
     }
 }
 
+#define MAX_STR           10
+#define TRUNCATE_STR(str) ((str).len <= MAX_STR ? (str) : CharSlice99_sub((str), 0, MAX_STR))
+
 void SmolRTSP_ParseError_print(SmolRTSP_ParseError self, SmolRTSP_Writer w, void *w_ctx) {
     match(self) {
         of(SmolRTSP_ParseError_ContentLength, value) {
@@ -20,7 +23,7 @@ void SmolRTSP_ParseError_print(SmolRTSP_ParseError self, SmolRTSP_Writer w, void
                 w, w_ctx,
                 {
                     CharSlice99_from_str("Invalid Content-Length `"),
-                    *value,
+                    TRUNCATE_STR(*value),
                     CharSlice99_from_str("`."),
                 });
         }
@@ -29,9 +32,9 @@ void SmolRTSP_ParseError_print(SmolRTSP_ParseError self, SmolRTSP_Writer w, void
                 w, w_ctx,
                 {
                     CharSlice99_from_str("String mismatch: expected `"),
-                    *expected,
+                    TRUNCATE_STR(*expected),
                     CharSlice99_from_str("`, found `"),
-                    *actual,
+                    TRUNCATE_STR(*actual),
                     CharSlice99_from_str("`."),
                 });
         }
@@ -42,7 +45,7 @@ void SmolRTSP_ParseError_print(SmolRTSP_ParseError self, SmolRTSP_Writer w, void
                     CharSlice99_from_str("Type mismatch: expected "),
                     CharSlice99_from_str((char *)SmolRTSP_ParseType_str(*kind)),
                     CharSlice99_from_str(", found `"),
-                    *str,
+                    TRUNCATE_STR(*str),
                     CharSlice99_from_str("`."),
                 });
         }
@@ -51,6 +54,9 @@ void SmolRTSP_ParseError_print(SmolRTSP_ParseError self, SmolRTSP_Writer w, void
         }
     }
 }
+
+#undef MAX_STR
+#undef TRUNCATE_STR
 
 SmolRTSP_ParseStatus SmolRTSP_ParseStatus_partial(size_t offset) {
     return (SmolRTSP_ParseStatus){.offset = offset, .is_complete = false};
