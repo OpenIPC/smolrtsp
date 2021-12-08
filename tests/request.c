@@ -58,6 +58,27 @@ TEST(parse_request) {
     assert(SmolRTSP_Request_eq(result, expected));
 
 #undef CHECK
+
+    // Test whole request.
+    {
+        SmolRTSP_RequestParseState state = SMOLRTSP_REQUEST_PARSE_STATE_INIT;
+        SmolRTSP_Request result = {.header_map = SmolRTSP_HeaderMap_with_capacity(3)};
+        const CharSlice99 req = CharSlice99_from_str(
+            "DESCRIBE http://example.com RTSP/1.1\r\nAccept-Language: English\r\n\r\n");
+
+        res = SmolRTSP_Request_parse(&result, req, &state);
+
+        match(res) {
+            of(SmolRTSP_ParseResult_Success, status) {
+                ASSERT(status->is_complete);
+                ASSERT(req.len == status->offset);
+            }
+            of(SmolRTSP_ParseResult_Failure, e) {
+                SmolRTSP_ParseError_print(*e, smolrtsp_file_stream_writer, stderr);
+                ASSERT(false);
+            }
+        }
+    }
 }
 
 TEST(serialize_request) {

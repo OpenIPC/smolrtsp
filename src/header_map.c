@@ -43,13 +43,15 @@ SmolRTSP_ParseResult
 SmolRTSP_HeaderMap_parse(SmolRTSP_HeaderMap *restrict self, CharSlice99 input) {
     assert(self);
 
+    const CharSlice99 backup = input;
+
     while (true) {
         if (input.len < SMOLRTSP_CRLF.len) {
             return SmolRTSP_ParseResult_partial(0);
         }
 
         if (CharSlice99_primitive_starts_with(input, SMOLRTSP_CRLF)) {
-            return SmolRTSP_ParseResult_complete(SMOLRTSP_CRLF.len);
+            return SmolRTSP_ParseResult_complete((input.ptr - backup.ptr) + SMOLRTSP_CRLF.len);
         }
 
         if (SmolRTSP_HeaderMap_is_full(*self)) {
