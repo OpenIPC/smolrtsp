@@ -8,6 +8,8 @@
 
 #include <smolrtsp/error.h>
 
+#include <stdint.h>
+
 #include <slice99.h>
 
 /**
@@ -68,5 +70,31 @@ int SmolRTSP_parse_client_port(int *restrict rtp_port, int *restrict rtcp_port, 
  */
 int SmolRTSP_parse_interleaved_chn_id(
     int *restrict rtp_chn_id, int *restrict rtcp_chn_id, CharSlice99 value);
+
+/**
+ * An interleaved binary data header used to mix RTSP requests/responses with streaming data in a
+ * single TCP connection.
+ */
+typedef struct {
+    /**
+     * The one-byte channel identifier.
+     */
+    uint8_t channel_id;
+
+    /**
+     * The length of the encapsulated binary data (network byte order).
+     */
+    uint16_t payload_len;
+} SmolRTSP_InterleavedDataHeader;
+
+/**
+ * Returns #SmolRTSP_InterleavedDataHeader represented as `uint32_t`.
+ */
+uint32_t SmolRTSP_InterleavedDataHeader_as_u32(SmolRTSP_InterleavedDataHeader self);
+
+/**
+ * Returns #SmolRTSP_InterleavedDataHeader from `uint32_t`.
+ */
+SmolRTSP_InterleavedDataHeader SmolRTSP_InterleavedDataHeader_from_u32(uint32_t data);
 
 #endif // SMOLRTSP_UTIL_H

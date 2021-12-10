@@ -69,3 +69,17 @@ TEST(parse_interleaved_chn_id) {
     ASSERT_EQ(rtp_chn_id, 3058);
     ASSERT_EQ(rtcp_chn_id, 3059);
 }
+
+TEST(interleaved_data_as_u32) {
+    const SmolRTSP_InterleavedDataHeader h = {.channel_id = 123, .payload_len = 54321};
+    const uint32_t binary = SmolRTSP_InterleavedDataHeader_as_u32(h);
+
+    ASSERT_EQ(binary, 0xd4317b24);
+}
+
+TEST(interleaved_data_from_u32) {
+    const SmolRTSP_InterleavedDataHeader h = SmolRTSP_InterleavedDataHeader_from_u32(0xd4317b24);
+
+    ASSERT_EQ(h.channel_id, 123);
+    ASSERT_EQ(h.payload_len, 54321);
+}
