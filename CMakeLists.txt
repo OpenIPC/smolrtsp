@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0.2)
+cmake_minimum_required(VERSION 3.16)
 project(smolrtsp LANGUAGES C)
 
 option(SMOLRTSP_SHARED "Build a shared library" OFF)
@@ -50,12 +50,12 @@ include(FetchContent)
 
 FetchContent_Declare(
     slice99
-    URL https://github.com/Hirrolot/slice99/archive/refs/tags/v0.7.1.tar.gz
+    URL https://github.com/Hirrolot/slice99/archive/refs/tags/v0.7.2.tar.gz
 )
 
 FetchContent_Declare(
     datatype99
-    URL https://github.com/Hirrolot/datatype99/archive/refs/tags/v1.6.0.tar.gz
+    URL https://github.com/Hirrolot/datatype99/archive/refs/tags/v1.6.1.tar.gz
 )
 
 FetchContent_MakeAvailable(slice99 datatype99)
