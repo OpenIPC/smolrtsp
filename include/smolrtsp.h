@@ -27,6 +27,7 @@
 #include <smolrtsp/request_uri.h>
 #include <smolrtsp/response.h>
 #include <smolrtsp/response_line.h>
+#include <smolrtsp/rtp.h>
 #include <smolrtsp/rtsp_version.h>
 #include <smolrtsp/sdp.h>
 #include <smolrtsp/status_code.h>
