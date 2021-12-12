@@ -19,12 +19,12 @@ typedef struct {
     /**
      * The major number.
      */
-    uint_least8_t major;
+    uint8_t major;
 
     /**
      * The minor number.
      */
-    uint_least8_t minor;
+    uint8_t minor;
 } SmolRTSP_RtspVersion;
 
 /**

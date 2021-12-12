@@ -11,7 +11,7 @@
 void SmolRTSP_RtspVersion_serialize(SmolRTSP_RtspVersion self, SmolRTSP_Writer w, void *w_ctx) {
     assert(w);
 
-    const char *fmt = "RTSP/%" PRIuLEAST8 ".%" PRIuLEAST8;
+    const char *fmt = "RTSP/%" PRIu8 ".%" PRIu8;
 
     const size_t buffer_size = snprintf(NULL, 0, fmt, self.major, self.minor) + 1;
 
@@ -42,16 +42,16 @@ SmolRTSP_RtspVersion_parse(SmolRTSP_RtspVersion *restrict self, CharSlice99 inpu
     MATCH(smolrtsp_match_numeric(input));
     minor = CharSlice99_from_ptrdiff(minor.ptr, input.ptr);
 
-    uint_least8_t major_int, minor_int;
+    uint8_t major_int, minor_int;
     char fmt[64];
 
-    snprintf(fmt, sizeof(fmt), "%%%zd" SCNuLEAST8, major.len);
+    snprintf(fmt, sizeof(fmt), "%%%zd" SCNu8, major.len);
     if (sscanf(major.ptr, fmt, &major_int) != 1) {
         return SmolRTSP_ParseResult_Failure(
             SmolRTSP_ParseError_TypeMismatch(SmolRTSP_ParseType_Int, major));
     }
 
-    snprintf(fmt, sizeof(fmt), "%%%zd" SCNuLEAST8, minor.len);
+    snprintf(fmt, sizeof(fmt), "%%%zd" SCNu8, minor.len);
     if (sscanf(minor.ptr, fmt, &minor_int) != 1) {
         return SmolRTSP_ParseResult_Failure(
             SmolRTSP_ParseError_TypeMismatch(SmolRTSP_ParseType_Int, minor));

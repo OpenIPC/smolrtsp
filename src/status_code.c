@@ -11,7 +11,7 @@ void SmolRTSP_StatusCode_serialize(SmolRTSP_StatusCode self, SmolRTSP_Writer w, 
     assert(w);
 
     char buffer[64];
-    snprintf(buffer, sizeof(buffer), "%" PRIuLEAST16, self);
+    snprintf(buffer, sizeof(buffer), "%" PRIu16, self);
     w(CharSlice99_from_str(buffer), w_ctx);
 }
 
@@ -28,7 +28,7 @@ SmolRTSP_StatusCode_parse(SmolRTSP_StatusCode *restrict self, CharSlice99 input)
 
     SmolRTSP_StatusCode code_int;
     char fmt[64];
-    snprintf(fmt, sizeof(fmt), "%%%zd" SCNuLEAST16, code.len);
+    snprintf(fmt, sizeof(fmt), "%%%zd" SCNu16, code.len);
     if (sscanf(code.ptr, fmt, &code_int) != 1) {
         return SmolRTSP_ParseResult_Failure(
             SmolRTSP_ParseError_TypeMismatch(SmolRTSP_ParseType_Int, code));

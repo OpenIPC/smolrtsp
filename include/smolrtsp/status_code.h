@@ -16,7 +16,7 @@
 /**
  * An RTSP status code.
  */
-typedef uint_least16_t SmolRTSP_StatusCode;
+typedef uint16_t SmolRTSP_StatusCode;
 
 /**
  * Serialises @p self into @p w.
