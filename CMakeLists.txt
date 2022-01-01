@@ -57,7 +57,7 @@ FetchContent_Declare(
 
 FetchContent_Declare(
     datatype99
-    URL https://github.com/Hirrolot/datatype99/archive/refs/tags/v1.6.1.tar.gz
+    URL https://github.com/Hirrolot/datatype99/archive/refs/tags/v1.6.2.tar.gz
 )
 
 FetchContent_MakeAvailable(slice99 datatype99)
