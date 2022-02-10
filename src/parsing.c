@@ -60,32 +60,16 @@ SmolRTSP_ParseResult smolrtsp_match_until_str(CharSlice99 input, const char *res
 
     size_t offset = 0;
 
-    if (input.len < str_len) {
-        return SmolRTSP_ParseResult_partial(offset);
-    }
-
-    // An NFA (non-determenistic finite automaton) converted to DFA (determenistic) to recognise a
-    // substring in O(input.size).
-    size_t states[2] = {0};
-    while (!CharSlice99_is_empty(input)) {
-
-#define TRANSITION(c, state, str) ((c) == (str)[(state)] ? (state) + 1 : 0)
-
-        states[0] = TRANSITION(*input.ptr, states[0], str);
-        states[1] = TRANSITION(*input.ptr, states[1], str);
-
-#undef TRANSITION
-
-        input = CharSlice99_advance(input, 1);
-        offset++;
-
-#define IS_RECOGNIZED(state, str) ('\0' == (str)[(state)])
-
-        if (IS_RECOGNIZED(states[0], str) || IS_RECOGNIZED(states[1], str)) {
-            return SmolRTSP_ParseResult_complete(offset);
+    for (size_t i = 0; i < input.len; i++) {
+        if (input.len - i < str_len) {
+            return SmolRTSP_ParseResult_partial(offset);
         }
 
-#undef IS_RECOGNIZED
+        if (memcmp(input.ptr + i, str, str_len) == 0) {
+            return SmolRTSP_ParseResult_complete(offset + str_len);
+        }
+
+        offset++;
     }
 
     return SmolRTSP_ParseResult_partial(offset);
@@ -131,6 +115,8 @@ SmolRTSP_ParseResult smolrtsp_match_whitespaces(CharSlice99 input) {
 SmolRTSP_ParseResult smolrtsp_match_non_whitespaces(CharSlice99 input) {
     return smolrtsp_match_until(input, non_whitespace_matcher, NULL);
 }
+
+// TODO: refactor the following functions.
 
 SmolRTSP_ParseResult smolrtsp_match_numeric(CharSlice99 input) {
     const SmolRTSP_ParseResult res = smolrtsp_match_until(input, numeric_matcher, NULL);
