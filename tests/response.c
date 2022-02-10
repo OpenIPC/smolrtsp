@@ -1,8 +1,8 @@
 #include <smolrtsp/response.h>
 
-#include "nala/nala.h"
+#include <greatest.h>
 
-TEST(parse_response) {
+TEST parse_response(void) {
     const SmolRTSP_Response expected = {
         .start_line =
             {
@@ -39,28 +39,30 @@ TEST(parse_response) {
 
     CHECK("RTSP/1.1 200 OK\r\n", HeaderMap);
     ASSERT(SmolRTSP_ParseResult_is_partial(res));
-    assert(SmolRTSP_ResponseLine_eq(result.start_line, expected.start_line));
+    ASSERT(SmolRTSP_ResponseLine_eq(result.start_line, expected.start_line));
 
     CHECK("Content-Length: 10\r\n", HeaderMap);
     ASSERT(SmolRTSP_ParseResult_is_partial(res));
-    assert(SmolRTSP_Header_eq(result.header_map.headers[0], expected.header_map.headers[0]));
+    ASSERT(SmolRTSP_Header_eq(result.header_map.headers[0], expected.header_map.headers[0]));
 
     CHECK("Accept-Language: English\r\n", HeaderMap);
     ASSERT(SmolRTSP_ParseResult_is_partial(res));
-    assert(SmolRTSP_Header_eq(result.header_map.headers[1], expected.header_map.headers[1]));
+    ASSERT(SmolRTSP_Header_eq(result.header_map.headers[1], expected.header_map.headers[1]));
 
     CHECK("Content-Type: application/octet-stream\r\n", HeaderMap);
     ASSERT(SmolRTSP_ParseResult_is_partial(res));
-    assert(SmolRTSP_Header_eq(result.header_map.headers[2], expected.header_map.headers[2]));
+    ASSERT(SmolRTSP_Header_eq(result.header_map.headers[2], expected.header_map.headers[2]));
 
     CHECK("\r\n0123456789", Done);
     ASSERT(SmolRTSP_ParseResult_is_complete(res));
-    assert(SmolRTSP_Response_eq(result, expected));
+    ASSERT(SmolRTSP_Response_eq(result, expected));
 
 #undef CHECK
+
+    PASS();
 }
 
-TEST(serialize_response) {
+TEST serialize_response(void) {
     char buffer[500] = {0};
 
     const SmolRTSP_Response response = {
@@ -91,4 +93,11 @@ TEST(serialize_response) {
             "RTSP/1.0 200 OK\r\nContent-Length: 123\r\nContent-Type: "
             "application/octet-stream\r\n\r\n1234567890"),
         0);
+
+    PASS();
+}
+
+SUITE(response) {
+    RUN_TEST(parse_response);
+    RUN_TEST(serialize_response);
 }

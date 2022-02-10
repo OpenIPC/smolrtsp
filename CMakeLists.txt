@@ -3,6 +3,20 @@ project(smolrtsp LANGUAGES C)
 
 option(SMOLRTSP_SHARED "Build a shared library" OFF)
 
+include(FetchContent)
+
+FetchContent_Declare(
+    slice99
+    URL https://github.com/Hirrolot/slice99/archive/refs/tags/v0.7.2.tar.gz
+)
+
+FetchContent_Declare(
+    datatype99
+    URL https://github.com/Hirrolot/datatype99/archive/refs/tags/v1.6.2.tar.gz
+)
+
+FetchContent_MakeAvailable(slice99 datatype99)
+
 set(SMOLRTSP_SOURCES
     include/smolrtsp/error.h
     include/smolrtsp/header_map.h
@@ -47,20 +61,6 @@ if(SMOLRTSP_SHARED)
 else()
   add_library(${PROJECT_NAME} STATIC ${SMOLRTSP_SOURCES})
 endif()
-
-include(FetchContent)
-
-FetchContent_Declare(
-    slice99
-    URL https://github.com/Hirrolot/slice99/archive/refs/tags/v0.7.2.tar.gz
-)
-
-FetchContent_Declare(
-    datatype99
-    URL https://github.com/Hirrolot/datatype99/archive/refs/tags/v1.6.2.tar.gz
-)
-
-FetchContent_MakeAvailable(slice99 datatype99)
 
 if(CMAKE_C_COMPILER_ID STREQUAL "Clang")
   target_compile_options(${PROJECT_NAME} PRIVATE -fmacro-backtrace-limit=1)

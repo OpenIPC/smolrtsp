@@ -11,10 +11,18 @@ endif()
 
 add_subdirectory(.. build)
 
+include(FetchContent)
+
+FetchContent_Declare(
+  greatest
+  URL https://github.com/silentbicycle/greatest/archive/refs/tags/v1.5.0.tar.gz)
+
+FetchContent_MakeAvailable(greatest)
+FetchContent_GetProperties(greatest)
+
 add_executable(
   tests
-  nala/nala.h
-  nala/nala.c
+  main.c
   header_map.c
   header.c
   message_body.c
@@ -31,5 +39,6 @@ add_executable(
   util.c)
 
 target_link_libraries(tests smolrtsp)
+target_include_directories(tests PRIVATE ${greatest_SOURCE_DIR})
 
 set_target_properties(tests PROPERTIES C_STANDARD 11 C_STANDARD_REQUIRED ON)

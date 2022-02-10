@@ -1,41 +1,50 @@
 #include <smolrtsp/method.h>
 
-#include "nala/nala.h"
+#include <greatest.h>
 
-static void assert_pending(CharSlice99 input) {
+static enum greatest_test_res assert_pending(CharSlice99 input) {
     SmolRTSP_Method result;
     SmolRTSP_ParseResult res = SmolRTSP_Method_parse(&result, input);
     ASSERT(SmolRTSP_ParseResult_is_partial(res));
+    PASS();
 }
 
-static void assert_ok(CharSlice99 input, SmolRTSP_Method expected) {
+static enum greatest_test_res assert_ok(CharSlice99 input, SmolRTSP_Method expected) {
     SmolRTSP_Method result;
     SmolRTSP_ParseResult res = SmolRTSP_Method_parse(&result, input);
     ASSERT(SmolRTSP_ParseResult_is_complete(res));
     ASSERT(CharSlice99_primitive_eq(result, expected));
+    PASS();
 }
 
-static void assert_err(CharSlice99 input) {
+static enum greatest_test_res assert_err(CharSlice99 input) {
     SmolRTSP_Method result;
     SmolRTSP_ParseResult res = SmolRTSP_Method_parse(&result, input);
     ASSERT(MATCHES(res, SmolRTSP_ParseResult_Failure));
+    PASS();
 }
 
-TEST(parse_method) {
-    assert_ok(CharSlice99_from_str("OPTIONS "), SMOLRTSP_METHOD_OPTIONS);
-    assert_ok(CharSlice99_from_str("DESCRIBE "), SMOLRTSP_METHOD_DESCRIBE);
-    assert_ok(CharSlice99_from_str("ANNOUNCE "), SMOLRTSP_METHOD_ANNOUNCE);
-    assert_ok(CharSlice99_from_str("SETUP "), SMOLRTSP_METHOD_SETUP);
-    assert_ok(CharSlice99_from_str("PLAY "), SMOLRTSP_METHOD_PLAY);
-    assert_ok(CharSlice99_from_str("PAUSE "), SMOLRTSP_METHOD_PAUSE);
-    assert_ok(CharSlice99_from_str("TEARDOWN "), SMOLRTSP_METHOD_TEARDOWN);
-    assert_ok(CharSlice99_from_str("GET_PARAMETER "), SMOLRTSP_METHOD_GET_PARAMETER);
-    assert_ok(CharSlice99_from_str("SET_PARAMETER "), SMOLRTSP_METHOD_SET_PARAMETER);
-    assert_ok(CharSlice99_from_str("REDIRECT "), SMOLRTSP_METHOD_REDIRECT);
-    assert_ok(CharSlice99_from_str("RECORD "), SMOLRTSP_METHOD_RECORD);
+TEST parse_method(void) {
+    CHECK_CALL(assert_ok(CharSlice99_from_str("OPTIONS "), SMOLRTSP_METHOD_OPTIONS));
+    CHECK_CALL(assert_ok(CharSlice99_from_str("DESCRIBE "), SMOLRTSP_METHOD_DESCRIBE));
+    CHECK_CALL(assert_ok(CharSlice99_from_str("ANNOUNCE "), SMOLRTSP_METHOD_ANNOUNCE));
+    CHECK_CALL(assert_ok(CharSlice99_from_str("SETUP "), SMOLRTSP_METHOD_SETUP));
+    CHECK_CALL(assert_ok(CharSlice99_from_str("PLAY "), SMOLRTSP_METHOD_PLAY));
+    CHECK_CALL(assert_ok(CharSlice99_from_str("PAUSE "), SMOLRTSP_METHOD_PAUSE));
+    CHECK_CALL(assert_ok(CharSlice99_from_str("TEARDOWN "), SMOLRTSP_METHOD_TEARDOWN));
+    CHECK_CALL(assert_ok(CharSlice99_from_str("GET_PARAMETER "), SMOLRTSP_METHOD_GET_PARAMETER));
+    CHECK_CALL(assert_ok(CharSlice99_from_str("SET_PARAMETER "), SMOLRTSP_METHOD_SET_PARAMETER));
+    CHECK_CALL(assert_ok(CharSlice99_from_str("REDIRECT "), SMOLRTSP_METHOD_REDIRECT));
+    CHECK_CALL(assert_ok(CharSlice99_from_str("RECORD "), SMOLRTSP_METHOD_RECORD));
 
-    assert_pending(CharSlice99_from_str("OPTIONS"));
+    CHECK_CALL(assert_pending(CharSlice99_from_str("OPTIONS")));
 
-    assert_err(CharSlice99_from_str("~123"));
-    assert_err(CharSlice99_from_str("/ hello ~19r world"));
+    CHECK_CALL(assert_err(CharSlice99_from_str("~123")));
+    CHECK_CALL(assert_err(CharSlice99_from_str("/ hello ~19r world")));
+
+    PASS();
+}
+
+SUITE(method) {
+    RUN_TEST(parse_method);
 }

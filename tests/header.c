@@ -1,44 +1,49 @@
 #include <smolrtsp/header.h>
 
-#include "nala/nala.h"
+#include <greatest.h>
 
-static void assert_pending(CharSlice99 input) {
+static enum greatest_test_res assert_pending(CharSlice99 input) {
     SmolRTSP_Header result;
     SmolRTSP_ParseResult res = SmolRTSP_Header_parse(&result, input);
     ASSERT(SmolRTSP_ParseResult_is_partial(res));
+    PASS();
 }
 
-static void assert_ok(CharSlice99 input, SmolRTSP_Header expected) {
+static enum greatest_test_res assert_ok(CharSlice99 input, SmolRTSP_Header expected) {
     SmolRTSP_Header result;
     SmolRTSP_ParseResult res = SmolRTSP_Header_parse(&result, input);
     ASSERT(SmolRTSP_ParseResult_is_complete(res));
     ASSERT(SmolRTSP_Header_eq(result, expected));
+    PASS();
 }
 
-static void assert_err(CharSlice99 input) {
+static enum greatest_test_res assert_err(CharSlice99 input) {
     SmolRTSP_Header result;
     SmolRTSP_ParseResult res = SmolRTSP_Header_parse(&result, input);
     ASSERT(MATCHES(res, SmolRTSP_ParseResult_Failure));
+    PASS();
 }
 
-TEST(parse_header) {
+TEST parse_header(void) {
     const CharSlice99 input =
         CharSlice99_from_str("User-Agent: LibVLC/3.0.8 (LIVE555 Streaming Media v2018.02.18)\r\n");
 
     for (size_t i = 0; i < input.len - 1; i++) {
-        assert_pending(CharSlice99_update_len(input, i));
+        CHECK_CALL(assert_pending(CharSlice99_update_len(input, i)));
     }
 
-    assert_ok(
+    CHECK_CALL(assert_ok(
         input, (SmolRTSP_Header){
                    SMOLRTSP_HEADER_NAME_USER_AGENT,
                    CharSlice99_from_str("LibVLC/3.0.8 (LIVE555 Streaming Media v2018.02.18)"),
-               });
+               }));
 
-    assert_err(CharSlice99_from_str("~@~"));
+    CHECK_CALL(assert_err(CharSlice99_from_str("~@~")));
+
+    PASS();
 }
 
-TEST(serialize_header) {
+TEST serialize_header(void) {
     char buffer[200] = {0};
 
     const SmolRTSP_Header header = {
@@ -49,4 +54,11 @@ TEST(serialize_header) {
     SmolRTSP_Header_serialize(header, smolrtsp_char_buffer_writer, buffer);
 
     ASSERT_EQ(strcmp(buffer, "Content-Length: 123\r\n"), 0);
+
+    PASS();
+}
+
+SUITE(header) {
+    RUN_TEST(parse_header);
+    RUN_TEST(serialize_header);
 }

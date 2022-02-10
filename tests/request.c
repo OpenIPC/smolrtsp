@@ -1,8 +1,8 @@
 #include <smolrtsp/request.h>
 
-#include "nala/nala.h"
+#include <greatest.h>
 
-TEST(parse_request) {
+TEST parse_request(void) {
     const SmolRTSP_Request expected = {
         .start_line =
             {
@@ -39,23 +39,23 @@ TEST(parse_request) {
 
     CHECK("DESCRIBE http://example.com RTSP/1.1\r\n", HeaderMap);
     ASSERT(SmolRTSP_ParseResult_is_partial(res));
-    assert(SmolRTSP_RequestLine_eq(result.start_line, expected.start_line));
+    ASSERT(SmolRTSP_RequestLine_eq(result.start_line, expected.start_line));
 
     CHECK("Content-Length: 10\r\n", HeaderMap);
     ASSERT(SmolRTSP_ParseResult_is_partial(res));
-    assert(SmolRTSP_Header_eq(result.header_map.headers[0], expected.header_map.headers[0]));
+    ASSERT(SmolRTSP_Header_eq(result.header_map.headers[0], expected.header_map.headers[0]));
 
     CHECK("Accept-Language: English\r\n", HeaderMap);
     ASSERT(SmolRTSP_ParseResult_is_partial(res));
-    assert(SmolRTSP_Header_eq(result.header_map.headers[1], expected.header_map.headers[1]));
+    ASSERT(SmolRTSP_Header_eq(result.header_map.headers[1], expected.header_map.headers[1]));
 
     CHECK("Content-Type: application/octet-stream\r\n", HeaderMap);
     ASSERT(SmolRTSP_ParseResult_is_partial(res));
-    assert(SmolRTSP_Header_eq(result.header_map.headers[2], expected.header_map.headers[2]));
+    ASSERT(SmolRTSP_Header_eq(result.header_map.headers[2], expected.header_map.headers[2]));
 
     CHECK("\r\n0123456789", Done);
     ASSERT(SmolRTSP_ParseResult_is_complete(res));
-    assert(SmolRTSP_Request_eq(result, expected));
+    ASSERT(SmolRTSP_Request_eq(result, expected));
 
 #undef CHECK
 
@@ -79,9 +79,11 @@ TEST(parse_request) {
             }
         }
     }
+
+    PASS();
 }
 
-TEST(serialize_request) {
+TEST serialize_request(void) {
     char buffer[500] = {0};
 
     const SmolRTSP_Request request = {
@@ -112,4 +114,11 @@ TEST(serialize_request) {
             "DESCRIBE http://example.com RTSP/1.0\r\nContent-Length: 123\r\nContent-Type: "
             "application/octet-stream\r\n\r\n1234567890"),
         0);
+
+    PASS();
+}
+
+SUITE(request) {
+    RUN_TEST(parse_request);
+    RUN_TEST(serialize_request);
 }
