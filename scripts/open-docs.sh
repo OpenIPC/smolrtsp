@@ -1,3 +1,3 @@
 #!/bin/bash
 
-firefox docs/index.html
+xdg-open docs/index.html
