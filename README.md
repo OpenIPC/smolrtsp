@@ -17,22 +17,21 @@
 
 ## Installation
 
- 1. Clone [Smolrtsp] and [Slice99] to your project. You can use [Git submodules].
- 2. Include the `smolrtsp/include` and `slice99` directories:
+If you use CMake, the recommended way is [`FetchContent`]:
+
+[`FetchContent`]: https://cmake.org/cmake/help/latest/module/FetchContent.html
 
 ```cmake
-target_include_directories(<target> <INTERFACE|PUBLIC|PRIVATE> smolrtsp/include slice99)
+include(FetchContent)
+
+FetchContent_Declare(
+    smolrtsp
+    URL https://github.com/OpenIPC/smolrtsp/archive/refs/tags/v1.2.3.tar.gz # v1.2.3
+)
+
+FetchContent_MakeAvailable(smolrtsp)
+
+target_link_libraries(MyProject smolrtsp)
 ```
 
- 3. Build and link Smolrtsp:
-
-```cmake
-add_subdirectory(smolrtsp [binary_dir])
-target_link_libraries(<target> smolrtsp)
-```
-
-If you want to build a shared library, enable the compile-time CMake option `SMOLRTSP_SHARED`; otherwise, Smolrtsp will be compiled as a static library.
-
-[Smolrtsp]: https://github.com/Hirrolot/smolrtsp
-[Slice99]: https://github.com/Hirrolot/slice99
-[Git submodules]: https://git-scm.com/book/en/v2/Git-Tools-Submodules
+If you want to build a shared library, enable the compile-time CMake option `SMOLRTSP_SHARED`; otherwise, smolrtsp will be compiled as a static library.
