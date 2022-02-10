@@ -19,9 +19,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: Update Git submodules
-      run: git submodule update --init tests/greatest
-
     - name: Tests
       run: bash scripts/test.sh
 
