@@ -5,7 +5,8 @@ if(CMAKE_C_COMPILER_ID STREQUAL "Clang")
   add_compile_options(-Weverything -fsanitize=address -fmacro-backtrace-limit=1)
   add_link_options(-fsanitize=address)
 elseif(CMAKE_C_COMPILER_ID STREQUAL "GNU")
-  add_compile_options(-Wall -Wextra -pedantic -fsanitize=address -ftrack-macro-expansion=0)
+  add_compile_options(-Wall -Wextra -pedantic -fsanitize=address
+    -ftrack-macro-expansion=0 -Wno-misleading-indentation)
   add_link_options(-fsanitize=address)
 endif()
 
