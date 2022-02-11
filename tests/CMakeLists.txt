@@ -1,15 +1,6 @@
 cmake_minimum_required(VERSION 3.0.2)
 project(tests LANGUAGES C)
 
-if(CMAKE_C_COMPILER_ID STREQUAL "Clang")
-  add_compile_options(-Weverything -fsanitize=address -fmacro-backtrace-limit=1)
-  add_link_options(-fsanitize=address)
-elseif(CMAKE_C_COMPILER_ID STREQUAL "GNU")
-  add_compile_options(-Wall -Wextra -pedantic -fsanitize=address
-    -ftrack-macro-expansion=0 -Wno-misleading-indentation)
-  add_link_options(-fsanitize=address)
-endif()
-
 add_subdirectory(.. build)
 
 include(FetchContent)
@@ -38,6 +29,15 @@ add_executable(
   status_code.c
   sdp.c
   util.c)
+
+if(CMAKE_C_COMPILER_ID STREQUAL "Clang")
+  target_compile_options(tests PRIVATE -Weverything -fsanitize=address -fmacro-backtrace-limit=1)
+  target_link_options(tests PRIVATE -fsanitize=address)
+elseif(CMAKE_C_COMPILER_ID STREQUAL "GNU")
+  target_compile_options(tests PRIVATE -Wall -Wextra -pedantic -fsanitize=address
+    -ftrack-macro-expansion=0 -Wno-misleading-indentation)
+  target_link_options(tests PRIVATE -fsanitize=address)
+endif()
 
 target_link_libraries(tests smolrtsp)
 target_include_directories(tests PRIVATE ${greatest_SOURCE_DIR})
