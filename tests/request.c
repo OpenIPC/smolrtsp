@@ -28,7 +28,13 @@ TEST parse_request(void) {
     };
 
     SmolRTSP_RequestParseState state = SMOLRTSP_REQUEST_PARSE_STATE_INIT;
-    SmolRTSP_Request result = {.header_map = SmolRTSP_HeaderMap_with_capacity(3)};
+
+    const size_t headers_len = 3;
+    SmolRTSP_Header *headers = malloc(sizeof headers[0] * headers_len);
+    assert(headers);
+    SmolRTSP_HeaderMap header_map = {.headers = headers, .len = 0, .capacity = headers_len};
+
+    SmolRTSP_Request result = {.header_map = header_map};
     SmolRTSP_ParseResult res;
 
 #define CHECK(data, expected_state)                                                                \
@@ -62,7 +68,13 @@ TEST parse_request(void) {
     // Test whole request.
     {
         SmolRTSP_RequestParseState state = SMOLRTSP_REQUEST_PARSE_STATE_INIT;
-        SmolRTSP_Request result = {.header_map = SmolRTSP_HeaderMap_with_capacity(3)};
+
+        const size_t headers_len = 3;
+        SmolRTSP_Header *headers = malloc(sizeof headers[0] * headers_len);
+        assert(headers);
+        SmolRTSP_HeaderMap header_map = {.headers = headers, .len = 0, .capacity = headers_len};
+
+        SmolRTSP_Request result = {.header_map = header_map};
         const CharSlice99 req = CharSlice99_from_str(
             "DESCRIBE http://example.com RTSP/1.1\r\nAccept-Language: English\r\n\r\n");
 
@@ -78,8 +90,11 @@ TEST parse_request(void) {
                 ASSERT(false);
             }
         }
+
+        free(headers);
     }
 
+    free(headers);
     PASS();
 }
 

@@ -2,25 +2,39 @@
 
 #include <greatest.h>
 
+#include <assert.h>
+
 static enum greatest_test_res assert_pending(CharSlice99 input) {
-    SmolRTSP_HeaderMap result = SmolRTSP_HeaderMap_with_capacity(3);
+    const size_t headers_len = 3;
+    SmolRTSP_Header *headers = malloc(sizeof headers[0] * headers_len);
+    assert(headers);
+    SmolRTSP_HeaderMap result = {.headers = headers, .len = 0, .capacity = headers_len};
     SmolRTSP_ParseResult res = SmolRTSP_HeaderMap_parse(&result, input);
     ASSERT(SmolRTSP_ParseResult_is_partial(res));
+    free(headers);
     PASS();
 }
 
 static enum greatest_test_res assert_ok(CharSlice99 input, SmolRTSP_HeaderMap expected) {
-    SmolRTSP_HeaderMap result = SmolRTSP_HeaderMap_with_capacity(3);
+    const size_t headers_len = 3;
+    SmolRTSP_Header *headers = malloc(sizeof headers[0] * headers_len);
+    assert(headers);
+    SmolRTSP_HeaderMap result = {.headers = headers, .len = 0, .capacity = headers_len};
     SmolRTSP_ParseResult res = SmolRTSP_HeaderMap_parse(&result, input);
     ASSERT(SmolRTSP_ParseResult_is_complete(res));
     ASSERT(SmolRTSP_HeaderMap_eq(result, expected));
+    free(headers);
     PASS();
 }
 
 static enum greatest_test_res assert_err(CharSlice99 input) {
-    SmolRTSP_HeaderMap result = SmolRTSP_HeaderMap_with_capacity(3);
+    const size_t headers_len = 3;
+    SmolRTSP_Header *headers = malloc(sizeof headers[0] * headers_len);
+    assert(headers);
+    SmolRTSP_HeaderMap result = {.headers = headers, .len = 0, .capacity = headers_len};
     SmolRTSP_ParseResult res = SmolRTSP_HeaderMap_parse(&result, input);
     ASSERT(MATCHES(res, SmolRTSP_ParseResult_Failure));
+    free(headers);
     PASS();
 }
 
