@@ -9,6 +9,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -44,6 +51,21 @@ $(function() {
 });
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('rtsp__version_8h_source.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -58,27 +80,30 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_d9df11550791e941c069ba1bdc5c3ae8.html">smolrtsp</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">rtsp_version.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="rtsp__version_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#ifndef SMOLRTSP_RTSP_VERSION_H</span></div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#define SMOLRTSP_RTSP_VERSION_H</span></div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="user__writer_8h.html">smolrtsp/user_writer.h</a>&gt;</span></div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;stdbool.h&gt;</span></div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div><div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="structSmolRTSP__RTSPVersion.html">   17</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    uint_least8_t major;</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    uint_least8_t minor;</div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;} <a class="code" href="structSmolRTSP__RTSPVersion.html">SmolRTSP_RTSPVersion</a>;</div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keywordtype">void</span> <a class="code" href="rtsp__version_8h.html#aaed5a17fdabae3574c10e78ca6d9337e">SmolRTSP_RTSPVersion_serialize</a>(</div><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keyword">const</span> <a class="code" href="structSmolRTSP__RTSPVersion.html">SmolRTSP_RTSPVersion</a> *restrict <span class="keyword">self</span>, <a class="code" href="user__writer_8h.html#a1a92950ede72b9e938c684396bf0e34b">SmolRTSP_UserWriter</a> user_writer, <span class="keywordtype">void</span> *user_cx);</div><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div><div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="rtsp__version_8h.html#ad62ca7d10192b5acdbbe44e472410aa6">SmolRTSP_RTSPVersion_eq</a>(</div><div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keyword">const</span> <a class="code" href="structSmolRTSP__RTSPVersion.html">SmolRTSP_RTSPVersion</a> *restrict lhs, <span class="keyword">const</span> <a class="code" href="structSmolRTSP__RTSPVersion.html">SmolRTSP_RTSPVersion</a> *restrict rhs);</div><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#endif // SMOLRTSP_RTSP_VERSION_H</span></div><div class="ttc" id="user__writer_8h_html_a1a92950ede72b9e938c684396bf0e34b"><div class="ttname"><a href="user__writer_8h.html#a1a92950ede72b9e938c684396bf0e34b">SmolRTSP_UserWriter</a></div><div class="ttdeci">void(* SmolRTSP_UserWriter)(size_t size, const void *data, void *user_cx)</div><div class="ttdef"><b>Definition:</b> user_writer.h:18</div></div>
-<div class="ttc" id="rtsp__version_8h_html_ad62ca7d10192b5acdbbe44e472410aa6"><div class="ttname"><a href="rtsp__version_8h.html#ad62ca7d10192b5acdbbe44e472410aa6">SmolRTSP_RTSPVersion_eq</a></div><div class="ttdeci">bool SmolRTSP_RTSPVersion_eq(const SmolRTSP_RTSPVersion *restrict lhs, const SmolRTSP_RTSPVersion *restrict rhs)</div></div>
-<div class="ttc" id="rtsp__version_8h_html_aaed5a17fdabae3574c10e78ca6d9337e"><div class="ttname"><a href="rtsp__version_8h.html#aaed5a17fdabae3574c10e78ca6d9337e">SmolRTSP_RTSPVersion_serialize</a></div><div class="ttdeci">void SmolRTSP_RTSPVersion_serialize(const SmolRTSP_RTSPVersion *restrict self, SmolRTSP_UserWriter user_writer, void *user_cx)</div></div>
-<div class="ttc" id="structSmolRTSP__RTSPVersion_html"><div class="ttname"><a href="structSmolRTSP__RTSPVersion.html">SmolRTSP_RTSPVersion</a></div><div class="ttdef"><b>Definition:</b> rtsp_version.h:17</div></div>
-<div class="ttc" id="user__writer_8h_html"><div class="ttname"><a href="user__writer_8h.html">user_writer.h</a></div><div class="ttdoc">A user-supplied writer interface. </div></div>
+<a href="rtsp__version_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#ifndef SMOLRTSP_RTSP_VERSION_H</span></div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#define SMOLRTSP_RTSP_VERSION_H</span></div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="error_8h.html">smolrtsp/error.h</a>&gt;</span></div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="writer_8h.html">smolrtsp/writer.h</a>&gt;</span></div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;stdbool.h&gt;</span></div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div><div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="structSmolRTSP__RtspVersion.html">   18</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div><div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="structSmolRTSP__RtspVersion.html#a83fc9b6c7c089790b4771814935fbdfc">   22</a></span>&#160;    uint8_t <a class="code" href="structSmolRTSP__RtspVersion.html#a83fc9b6c7c089790b4771814935fbdfc">major</a>;</div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div><div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="structSmolRTSP__RtspVersion.html#acf216a5856597c53bc709d5477989327">   27</a></span>&#160;    uint8_t <a class="code" href="structSmolRTSP__RtspVersion.html#acf216a5856597c53bc709d5477989327">minor</a>;</div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;} <a class="code" href="structSmolRTSP__RtspVersion.html">SmolRTSP_RtspVersion</a>;</div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div><div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keywordtype">void</span> <a class="code" href="rtsp__version_8h.html#ab57bba27a3f3864602ed6c3e261f193a">SmolRTSP_RtspVersion_serialize</a>(<a class="code" href="structSmolRTSP__RtspVersion.html">SmolRTSP_RtspVersion</a> <span class="keyword">self</span>, <a class="code" href="writer_8h.html#aa2e21ebbbb6e1f16ece430eadbc5662d">SmolRTSP_Writer</a> w, <span class="keywordtype">void</span> *w_ctx);</div><div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;SmolRTSP_ParseResult</div><div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<a class="code" href="rtsp__version_8h.html#a1c79c035eb8a49a51d6faa001ffde116">SmolRTSP_RtspVersion_parse</a>(<a class="code" href="structSmolRTSP__RtspVersion.html">SmolRTSP_RtspVersion</a> *restrict <span class="keyword">self</span>, CharSlice99 input);</div><div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div><div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="rtsp__version_8h.html#a72b6787f1fb8a7c37a9ca98d73326df5">SmolRTSP_RtspVersion_eq</a>(<a class="code" href="structSmolRTSP__RtspVersion.html">SmolRTSP_RtspVersion</a> lhs, <a class="code" href="structSmolRTSP__RtspVersion.html">SmolRTSP_RtspVersion</a> rhs);</div><div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="preprocessor">#endif // SMOLRTSP_RTSP_VERSION_H</span></div><div class="ttc" id="structSmolRTSP__RtspVersion_html_a83fc9b6c7c089790b4771814935fbdfc"><div class="ttname"><a href="structSmolRTSP__RtspVersion.html#a83fc9b6c7c089790b4771814935fbdfc">SmolRTSP_RtspVersion::major</a></div><div class="ttdeci">uint8_t major</div><div class="ttdoc">The major number. </div><div class="ttdef"><b>Definition:</b> rtsp_version.h:22</div></div>
+<div class="ttc" id="rtsp__version_8h_html_a1c79c035eb8a49a51d6faa001ffde116"><div class="ttname"><a href="rtsp__version_8h.html#a1c79c035eb8a49a51d6faa001ffde116">SmolRTSP_RtspVersion_parse</a></div><div class="ttdeci">SmolRTSP_ParseResult SmolRTSP_RtspVersion_parse(SmolRTSP_RtspVersion *restrict self, CharSlice99 input)</div><div class="ttdoc">Parses data to self. </div></div>
+<div class="ttc" id="rtsp__version_8h_html_a72b6787f1fb8a7c37a9ca98d73326df5"><div class="ttname"><a href="rtsp__version_8h.html#a72b6787f1fb8a7c37a9ca98d73326df5">SmolRTSP_RtspVersion_eq</a></div><div class="ttdeci">bool SmolRTSP_RtspVersion_eq(SmolRTSP_RtspVersion lhs, SmolRTSP_RtspVersion rhs)</div><div class="ttdoc">Tests lhs and rhs for equality. </div></div>
+<div class="ttc" id="error_8h_html"><div class="ttname"><a href="error_8h.html">error.h</a></div><div class="ttdoc">Possible errors. </div></div>
+<div class="ttc" id="structSmolRTSP__RtspVersion_html"><div class="ttname"><a href="structSmolRTSP__RtspVersion.html">SmolRTSP_RtspVersion</a></div><div class="ttdoc">An RTSP version. </div><div class="ttdef"><b>Definition:</b> rtsp_version.h:18</div></div>
+<div class="ttc" id="rtsp__version_8h_html_ab57bba27a3f3864602ed6c3e261f193a"><div class="ttname"><a href="rtsp__version_8h.html#ab57bba27a3f3864602ed6c3e261f193a">SmolRTSP_RtspVersion_serialize</a></div><div class="ttdeci">void SmolRTSP_RtspVersion_serialize(SmolRTSP_RtspVersion self, SmolRTSP_Writer w, void *w_ctx)</div><div class="ttdoc">Serialises self into w. </div></div>
+<div class="ttc" id="writer_8h_html"><div class="ttname"><a href="writer_8h.html">writer.h</a></div><div class="ttdoc">The writer interface. </div></div>
+<div class="ttc" id="structSmolRTSP__RtspVersion_html_acf216a5856597c53bc709d5477989327"><div class="ttname"><a href="structSmolRTSP__RtspVersion.html#acf216a5856597c53bc709d5477989327">SmolRTSP_RtspVersion::minor</a></div><div class="ttdeci">uint8_t minor</div><div class="ttdoc">The minor number. </div><div class="ttdef"><b>Definition:</b> rtsp_version.h:27</div></div>
+<div class="ttc" id="writer_8h_html_aa2e21ebbbb6e1f16ece430eadbc5662d"><div class="ttname"><a href="writer_8h.html#aa2e21ebbbb6e1f16ece430eadbc5662d">SmolRTSP_Writer</a></div><div class="ttdeci">void(* SmolRTSP_Writer)(CharSlice99 data, void *ctx)</div><div class="ttdoc">A user-supplied function accepting some data. </div><div class="ttdef"><b>Definition:</b> writer.h:19</div></div>
 </div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.13
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_d9df11550791e941c069ba1bdc5c3ae8.html">smolrtsp</a></li><li class="navelem"><a class="el" href="rtsp__version_8h.html">rtsp_version.h</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
+  </ul>
+</div>
 </body>
 </html>

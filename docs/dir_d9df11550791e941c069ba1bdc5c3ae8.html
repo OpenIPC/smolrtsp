@@ -9,6 +9,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -44,6 +51,21 @@ $(function() {
 });
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('dir_d9df11550791e941c069ba1bdc5c3ae8.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -58,41 +80,16 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_d9df11550791e941c069ba1bdc5c3ae8.html">smolrtsp</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">smolrtsp Directory Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="dynheader">
-Directory dependency graph for smolrtsp:</div>
-<div class="dyncontent">
-<div class="center"><img src="dir_d9df11550791e941c069ba1bdc5c3ae8_dep.png" border="0" usemap="#dir__d9df11550791e941c069ba1bdc5c3ae8__dep" alt="include/smolrtsp"/></div>
-<map name="dir__d9df11550791e941c069ba1bdc5c3ae8__dep" id="dir__d9df11550791e941c069ba1bdc5c3ae8__dep">
-<area shape="rect" id="node2" href="dir_e370b0ca4ecfd7ef093f4b5f93cd1873.html" title="deserializers" alt="" coords="38,159,133,207"/>
-<area shape="rect" id="edge1-headlabel" href="dir_000001_000002.html" title="8" alt="" coords="90,133,98,147"/>
-<area shape="rect" id="clust2" href="dir_d9df11550791e941c069ba1bdc5c3ae8.html" alt="" coords="27,52,144,217"/>
-<area shape="rect" id="clust1" href="dir_d44c64559bbebec7f509842c48db8b23.html" title="include" alt="" coords="16,16,155,228"/>
-</map>
-</div>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="subdirs"></a>
-Directories</h2></td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="files"></a>
 Files</h2></td></tr>
-<tr class="memitem:crlf_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="crlf_8h.html">crlf.h</a> <a href="crlf_8h_source.html">[code]</a></td></tr>
-<tr class="memdesc:crlf_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">CRLF, "\r\n". <br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:deserialization_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="deserialization_8h.html">deserialization.h</a> <a href="deserialization_8h_source.html">[code]</a></td></tr>
-<tr class="memdesc:deserialization_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">Auxiliary declarations for deserialization. <br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:deserializers_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="deserializers_8h.html">deserializers.h</a> <a href="deserializers_8h_source.html">[code]</a></td></tr>
-<tr class="memdesc:deserializers_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">A collection of RTSP types deserializers. <br /></td></tr>
+<tr class="memitem:error_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="error_8h.html">error.h</a> <a href="error_8h_source.html">[code]</a></td></tr>
+<tr class="memdesc:error_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">Possible errors. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:header_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="header_8h.html">header.h</a> <a href="header_8h_source.html">[code]</a></td></tr>
 <tr class="memdesc:header_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">An RTSP header. <br /></td></tr>
@@ -105,9 +102,6 @@ Files</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:method_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="method_8h.html">method.h</a> <a href="method_8h_source.html">[code]</a></td></tr>
 <tr class="memdesc:method_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">An RTSP method. <br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:opaque__type_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="opaque__type_8h.html">opaque_type.h</a> <a href="opaque__type_8h_source.html">[code]</a></td></tr>
-<tr class="memdesc:opaque__type_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">A convenient macro for declaring opaque data types. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:reason__phrase_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="reason__phrase_8h.html">reason_phrase.h</a> <a href="reason__phrase_8h_source.html">[code]</a></td></tr>
 <tr class="memdesc:reason__phrase_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">An RTSP reason phrase. <br /></td></tr>
@@ -124,25 +118,38 @@ Files</h2></td></tr>
 <tr class="memitem:response_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="response_8h.html">response.h</a> <a href="response_8h_source.html">[code]</a></td></tr>
 <tr class="memdesc:response_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">An RTSP response. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:response__line_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="response__line_8h.html">response_line.h</a> <a href="response__line_8h_source.html">[code]</a></td></tr>
+<tr class="memdesc:response__line_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">An RTSP response line. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:rtp_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rtp_8h.html">rtp.h</a> <a href="rtp_8h_source.html">[code]</a></td></tr>
+<tr class="memdesc:rtp_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a href="https://datatracker.ietf.org/doc/html/rfc3550">RFC 3550</a>-compliant RTP implementation. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:rtsp__version_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rtsp__version_8h.html">rtsp_version.h</a> <a href="rtsp__version_8h_source.html">[code]</a></td></tr>
 <tr class="memdesc:rtsp__version_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">An RTSP version. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:slice_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="slice_8h.html">slice.h</a> <a href="slice_8h_source.html">[code]</a></td></tr>
-<tr class="memdesc:slice_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">A slice of data. <br /></td></tr>
+<tr class="memitem:sdp_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sdp_8h.html">sdp.h</a> <a href="sdp_8h_source.html">[code]</a></td></tr>
+<tr class="memdesc:sdp_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a href="https://datatracker.ietf.org/doc/html/rfc4566">RFC 4566</a>-compliant SDP implementation. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:status__code_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="status__code_8h.html">status_code.h</a> <a href="status__code_8h_source.html">[code]</a></td></tr>
 <tr class="memdesc:status__code_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">An RTSP status code. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:user__writer_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="user__writer_8h.html">user_writer.h</a> <a href="user__writer_8h_source.html">[code]</a></td></tr>
-<tr class="memdesc:user__writer_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">A user-supplied writer interface. <br /></td></tr>
+<tr class="memitem:util_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html">util.h</a> <a href="util_8h_source.html">[code]</a></td></tr>
+<tr class="memdesc:util_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">Utilitary stuff. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:writer_8h"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="writer_8h.html">writer.h</a> <a href="writer_8h_source.html">[code]</a></td></tr>
+<tr class="memdesc:writer_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">The writer interface. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.13
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_d9df11550791e941c069ba1bdc5c3ae8.html">smolrtsp</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
+  </ul>
+</div>
 </body>
 </html>

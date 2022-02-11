@@ -9,6 +9,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -44,6 +51,21 @@ $(function() {
 });
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('smolrtsp_8h_source.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -58,38 +80,38 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">smolrtsp.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="smolrtsp_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#ifndef SMOLRTSP_H</span></div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#define SMOLRTSP_H</span></div><div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div><div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="crlf_8h.html">smolrtsp/crlf.h</a>&gt;</span></div><div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="deserialization_8h.html">smolrtsp/deserialization.h</a>&gt;</span></div><div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="deserializers_8h.html">smolrtsp/deserializers.h</a>&gt;</span></div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="header_8h.html">smolrtsp/header.h</a>&gt;</span></div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="header__map_8h.html">smolrtsp/header_map.h</a>&gt;</span></div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="message__body_8h.html">smolrtsp/message_body.h</a>&gt;</span></div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="method_8h.html">smolrtsp/method.h</a>&gt;</span></div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="reason__phrase_8h.html">smolrtsp/reason_phrase.h</a>&gt;</span></div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="request_8h.html">smolrtsp/request.h</a>&gt;</span></div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="request__line_8h.html">smolrtsp/request_line.h</a>&gt;</span></div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="request__uri_8h.html">smolrtsp/request_uri.h</a>&gt;</span></div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="response_8h.html">smolrtsp/response.h</a>&gt;</span></div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="rtsp__version_8h.html">smolrtsp/rtsp_version.h</a>&gt;</span></div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="slice_8h.html">smolrtsp/slice.h</a>&gt;</span></div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="status__code_8h.html">smolrtsp/status_code.h</a>&gt;</span></div><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="user__writer_8h.html">smolrtsp/user_writer.h</a>&gt;</span></div><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#endif // SMOLRTSP_H</span></div><div class="ttc" id="request__line_8h_html"><div class="ttname"><a href="request__line_8h.html">request_line.h</a></div><div class="ttdoc">An RTSP request line. </div></div>
+<a href="smolrtsp_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#ifndef SMOLRTSP_H</span></div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#define SMOLRTSP_H</span></div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div><div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="error_8h.html">smolrtsp/error.h</a>&gt;</span></div><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="header_8h.html">smolrtsp/header.h</a>&gt;</span></div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="header__map_8h.html">smolrtsp/header_map.h</a>&gt;</span></div><div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="message__body_8h.html">smolrtsp/message_body.h</a>&gt;</span></div><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="method_8h.html">smolrtsp/method.h</a>&gt;</span></div><div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="reason__phrase_8h.html">smolrtsp/reason_phrase.h</a>&gt;</span></div><div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="request_8h.html">smolrtsp/request.h</a>&gt;</span></div><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="request__line_8h.html">smolrtsp/request_line.h</a>&gt;</span></div><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="request__uri_8h.html">smolrtsp/request_uri.h</a>&gt;</span></div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="response_8h.html">smolrtsp/response.h</a>&gt;</span></div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="response__line_8h.html">smolrtsp/response_line.h</a>&gt;</span></div><div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="rtp_8h.html">smolrtsp/rtp.h</a>&gt;</span></div><div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="rtsp__version_8h.html">smolrtsp/rtsp_version.h</a>&gt;</span></div><div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="sdp_8h.html">smolrtsp/sdp.h</a>&gt;</span></div><div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="status__code_8h.html">smolrtsp/status_code.h</a>&gt;</span></div><div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="util_8h.html">smolrtsp/util.h</a>&gt;</span></div><div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="writer_8h.html">smolrtsp/writer.h</a>&gt;</span></div><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#endif // SMOLRTSP_H</span></div><div class="ttc" id="request__line_8h_html"><div class="ttname"><a href="request__line_8h.html">request_line.h</a></div><div class="ttdoc">An RTSP request line. </div></div>
 <div class="ttc" id="header_8h_html"><div class="ttname"><a href="header_8h.html">header.h</a></div><div class="ttdoc">An RTSP header. </div></div>
 <div class="ttc" id="message__body_8h_html"><div class="ttname"><a href="message__body_8h.html">message_body.h</a></div><div class="ttdoc">An RTSP message body. </div></div>
 <div class="ttc" id="method_8h_html"><div class="ttname"><a href="method_8h.html">method.h</a></div><div class="ttdoc">An RTSP method. </div></div>
 <div class="ttc" id="reason__phrase_8h_html"><div class="ttname"><a href="reason__phrase_8h.html">reason_phrase.h</a></div><div class="ttdoc">An RTSP reason phrase. </div></div>
+<div class="ttc" id="response__line_8h_html"><div class="ttname"><a href="response__line_8h.html">response_line.h</a></div><div class="ttdoc">An RTSP response line. </div></div>
 <div class="ttc" id="response_8h_html"><div class="ttname"><a href="response_8h.html">response.h</a></div><div class="ttdoc">An RTSP response. </div></div>
+<div class="ttc" id="error_8h_html"><div class="ttname"><a href="error_8h.html">error.h</a></div><div class="ttdoc">Possible errors. </div></div>
 <div class="ttc" id="status__code_8h_html"><div class="ttname"><a href="status__code_8h.html">status_code.h</a></div><div class="ttdoc">An RTSP status code. </div></div>
+<div class="ttc" id="util_8h_html"><div class="ttname"><a href="util_8h.html">util.h</a></div><div class="ttdoc">Utilitary stuff. </div></div>
+<div class="ttc" id="writer_8h_html"><div class="ttname"><a href="writer_8h.html">writer.h</a></div><div class="ttdoc">The writer interface. </div></div>
 <div class="ttc" id="rtsp__version_8h_html"><div class="ttname"><a href="rtsp__version_8h.html">rtsp_version.h</a></div><div class="ttdoc">An RTSP version. </div></div>
-<div class="ttc" id="slice_8h_html"><div class="ttname"><a href="slice_8h.html">slice.h</a></div><div class="ttdoc">A slice of data. </div></div>
-<div class="ttc" id="crlf_8h_html"><div class="ttname"><a href="crlf_8h.html">crlf.h</a></div><div class="ttdoc">CRLF, &quot;\r\n&quot;. </div></div>
 <div class="ttc" id="request_8h_html"><div class="ttname"><a href="request_8h.html">request.h</a></div><div class="ttdoc">An RTSP request. </div></div>
-<div class="ttc" id="user__writer_8h_html"><div class="ttname"><a href="user__writer_8h.html">user_writer.h</a></div><div class="ttdoc">A user-supplied writer interface. </div></div>
-<div class="ttc" id="deserializers_8h_html"><div class="ttname"><a href="deserializers_8h.html">deserializers.h</a></div><div class="ttdoc">A collection of RTSP types deserializers. </div></div>
+<div class="ttc" id="sdp_8h_html"><div class="ttname"><a href="sdp_8h.html">sdp.h</a></div><div class="ttdoc">RFC 4566-compliant SDP implementation. </div></div>
+<div class="ttc" id="rtp_8h_html"><div class="ttname"><a href="rtp_8h.html">rtp.h</a></div><div class="ttdoc">RFC 3550-compliant RTP implementation. </div></div>
 <div class="ttc" id="request__uri_8h_html"><div class="ttname"><a href="request__uri_8h.html">request_uri.h</a></div><div class="ttdoc">An RTSP request URI. </div></div>
-<div class="ttc" id="deserialization_8h_html"><div class="ttname"><a href="deserialization_8h.html">deserialization.h</a></div><div class="ttdoc">Auxiliary declarations for deserialization. </div></div>
 <div class="ttc" id="header__map_8h_html"><div class="ttname"><a href="header__map_8h.html">header_map.h</a></div><div class="ttdoc">An RTSP header map. </div></div>
 </div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.13
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="smolrtsp_8h.html">smolrtsp.h</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
+  </ul>
+</div>
 </body>
 </html>

@@ -9,6 +9,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -45,6 +52,20 @@ $(function() {
 </script>
 <div id="main-nav"></div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('annotated.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -66,24 +87,32 @@ $(function() {
 <div class="contents">
 <div class="textblock">Here are the data structures with brief descriptions:</div><div class="directory">
 <table class="directory">
-<tr id="row_0_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structSmolRTSP__CRLF.html" target="_self">SmolRTSP_CRLF</a></td><td class="desc"></td></tr>
-<tr id="row_1_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structSmolRTSP__Header.html" target="_self">SmolRTSP_Header</a></td><td class="desc"></td></tr>
-<tr id="row_2_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structSmolRTSP__HeaderMap.html" target="_self">SmolRTSP_HeaderMap</a></td><td class="desc"></td></tr>
-<tr id="row_3_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structSmolRTSP__MutSlice.html" target="_self">SmolRTSP_MutSlice</a></td><td class="desc"></td></tr>
-<tr id="row_4_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structSmolRTSP__Request.html" target="_self">SmolRTSP_Request</a></td><td class="desc"></td></tr>
-<tr id="row_5_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structSmolRTSP__RequestLine.html" target="_self">SmolRTSP_RequestLine</a></td><td class="desc"></td></tr>
-<tr id="row_6_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structSmolRTSP__Response.html" target="_self">SmolRTSP_Response</a></td><td class="desc"></td></tr>
-<tr id="row_7_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structSmolRTSP__ResponseLine.html" target="_self">SmolRTSP_ResponseLine</a></td><td class="desc"></td></tr>
-<tr id="row_8_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structSmolRTSP__RTSPVersion.html" target="_self">SmolRTSP_RTSPVersion</a></td><td class="desc"></td></tr>
-<tr id="row_9_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structSmolRTSP__Slice.html" target="_self">SmolRTSP_Slice</a></td><td class="desc"></td></tr>
+<tr id="row_0_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structSmolRTSP__Header.html" target="_self">SmolRTSP_Header</a></td><td class="desc">An RTSP header </td></tr>
+<tr id="row_1_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structSmolRTSP__HeaderMap.html" target="_self">SmolRTSP_HeaderMap</a></td><td class="desc">An RTSP header map </td></tr>
+<tr id="row_2_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structSmolRTSP__InterleavedDataHeader.html" target="_self">SmolRTSP_InterleavedDataHeader</a></td><td class="desc">An interleaved binary data header used to mix RTSP requests/responses with streaming data in a single TCP connection </td></tr>
+<tr id="row_3_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structSmolRTSP__ParseStatus.html" target="_self">SmolRTSP_ParseStatus</a></td><td class="desc"></td></tr>
+<tr id="row_4_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structSmolRTSP__Request.html" target="_self">SmolRTSP_Request</a></td><td class="desc">An RTSP request </td></tr>
+<tr id="row_5_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structSmolRTSP__RequestLine.html" target="_self">SmolRTSP_RequestLine</a></td><td class="desc">An RTSP request line </td></tr>
+<tr id="row_6_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structSmolRTSP__RequestLineParseState.html" target="_self">SmolRTSP_RequestLineParseState</a></td><td class="desc">A state of parsing of <a class="el" href="structSmolRTSP__RequestLine.html" title="An RTSP request line. ">SmolRTSP_RequestLine</a> </td></tr>
+<tr id="row_7_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structSmolRTSP__RequestParseState.html" target="_self">SmolRTSP_RequestParseState</a></td><td class="desc">A state of parsing of <a class="el" href="structSmolRTSP__Request.html" title="An RTSP request. ">SmolRTSP_Request</a> </td></tr>
+<tr id="row_8_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structSmolRTSP__Response.html" target="_self">SmolRTSP_Response</a></td><td class="desc">An RTSP response </td></tr>
+<tr id="row_9_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structSmolRTSP__ResponseLine.html" target="_self">SmolRTSP_ResponseLine</a></td><td class="desc">An RTSP response line </td></tr>
+<tr id="row_10_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structSmolRTSP__ResponseLineParseState.html" target="_self">SmolRTSP_ResponseLineParseState</a></td><td class="desc">A state of parsing of <a class="el" href="structSmolRTSP__ResponseLine.html" title="An RTSP response line. ">SmolRTSP_ResponseLine</a> </td></tr>
+<tr id="row_11_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structSmolRTSP__ResponseParseState.html" target="_self">SmolRTSP_ResponseParseState</a></td><td class="desc">A state of parsing of <a class="el" href="structSmolRTSP__Response.html" title="An RTSP response. ">SmolRTSP_Response</a> </td></tr>
+<tr id="row_12_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structSmolRTSP__RtpHeader.html" target="_self">SmolRTSP_RtpHeader</a></td><td class="desc">An RTP header </td></tr>
+<tr id="row_13_"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structSmolRTSP__RtspVersion.html" target="_self">SmolRTSP_RtspVersion</a></td><td class="desc">An RTSP version </td></tr>
+<tr id="row_14_" class="even"><td class="entry"><span style="width:16px;display:inline-block;">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="structSmolRTSP__SdpLine.html" target="_self">SmolRTSP_SdpLine</a></td><td class="desc">An SDP line </td></tr>
 </table>
 </div><!-- directory -->
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.13
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
+  </ul>
+</div>
 </body>
 </html>

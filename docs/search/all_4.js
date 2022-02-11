@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['message_5fbody_2eh',['message_body.h',['../message__body_8h.html',1,'(Global Namespace)'],['../deserializers_2message__body_8h.html',1,'(Global Namespace)']]],
-  ['method_2eh',['method.h',['../method_8h.html',1,'(Global Namespace)'],['../deserializers_2method_8h.html',1,'(Global Namespace)']]]
+  ['header_2eh',['header.h',['../header_8h.html',1,'']]],
+  ['header_5fmap',['header_map',['../structSmolRTSP__Request.html#a64c4a2150e6ab000d6e5eafc190113f5',1,'SmolRTSP_Request::header_map()'],['../structSmolRTSP__Response.html#abb3baccb3cd9c2ed1575aa3ef2adf5bd',1,'SmolRTSP_Response::header_map()']]],
+  ['header_5fmap_2eh',['header_map.h',['../header__map_8h.html',1,'']]],
+  ['headers',['headers',['../structSmolRTSP__HeaderMap.html#a80917269fb925459ffcbc3a4e42a0ffa',1,'SmolRTSP_HeaderMap']]]
 ];

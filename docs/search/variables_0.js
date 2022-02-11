@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['len',['len',['../structSmolRTSP__HeaderMap.html#afb882150f218ade1e4d0c7afc5d6474d',1,'SmolRTSP_HeaderMap']]]
+  ['body',['body',['../structSmolRTSP__Request.html#a9b9b55bc2e472e6114492db6c7259e0e',1,'SmolRTSP_Request::body()'],['../structSmolRTSP__Response.html#ad6b45278c0e4cb4dd007a5ae8ef6dcd9',1,'SmolRTSP_Response::body()']]]
 ];

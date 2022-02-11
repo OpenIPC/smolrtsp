@@ -1,30 +1,4 @@
 var searchData=
 [
-  ['smolrtsp_5fheader_5feq',['SmolRTSP_Header_eq',['../header_8h.html#aba639092d513753e462c00dc0e3264e6',1,'header.h']]],
-  ['smolrtsp_5fheader_5fserialize',['SmolRTSP_Header_serialize',['../header_8h.html#a08ca910ed388a40f7155dcaa2b9ebb33',1,'header.h']]],
-  ['smolrtsp_5fheadermap_5feq',['SmolRTSP_HeaderMap_eq',['../header__map_8h.html#a308afdbb8010c474caa11188d8f05edf',1,'header_map.h']]],
-  ['smolrtsp_5fheadermap_5ffind',['SmolRTSP_HeaderMap_find',['../header__map_8h.html#a95ec79d7f043d23bbe25219ba9fd900b',1,'header_map.h']]],
-  ['smolrtsp_5fheadermap_5fis_5ffull',['SmolRTSP_HeaderMap_is_full',['../header__map_8h.html#ac651540f3ee6bddb6d762d772c5454cf',1,'header_map.h']]],
-  ['smolrtsp_5fheadermap_5fserialize',['SmolRTSP_HeaderMap_serialize',['../header__map_8h.html#ae974e41ac4e9e38443474906962e0668',1,'header_map.h']]],
-  ['smolrtsp_5fmutslice_5fadvance',['SmolRTSP_MutSlice_advance',['../slice_8h.html#a5ffb331f2d867b4fcd73c979743fc9b0',1,'slice.h']]],
-  ['smolrtsp_5fmutslice_5feq',['SmolRTSP_MutSlice_eq',['../slice_8h.html#a5bb38289290d3d9154e4ecb42ba94dc7',1,'slice.h']]],
-  ['smolrtsp_5fmutslice_5ffrom_5fstr',['SmolRTSP_MutSlice_from_str',['../slice_8h.html#adf6ef0e1ee32ad0524eae2333bf5fea1',1,'slice.h']]],
-  ['smolrtsp_5fmutslice_5fis_5fnull',['SmolRTSP_MutSlice_is_null',['../slice_8h.html#aff0b9abea780692ca6905eb219a8aed5',1,'slice.h']]],
-  ['smolrtsp_5fmutslice_5fnew',['SmolRTSP_MutSlice_new',['../slice_8h.html#ac945eb1f7a1782c4564d175e14869120',1,'slice.h']]],
-  ['smolrtsp_5fmutslice_5fnull',['SmolRTSP_MutSlice_null',['../slice_8h.html#a81911bd5c3a1f23fd081ff2a54cd3d9a',1,'slice.h']]],
-  ['smolrtsp_5fmutslice_5fserialize',['SmolRTSP_MutSlice_serialize',['../slice_8h.html#a9ddb3bfe5f1e89bf70cc4c6525184f83',1,'slice.h']]],
-  ['smolrtsp_5fmutslice_5fto_5fconst',['SmolRTSP_MutSlice_to_const',['../slice_8h.html#ada71d74b41a0649ca44d04f1a9df5cdd',1,'slice.h']]],
-  ['smolrtsp_5frequest_5feq',['SmolRTSP_Request_eq',['../request_8h.html#a47d57c8612a454e49c2ed30195c5120f',1,'request.h']]],
-  ['smolrtsp_5frequestline_5feq',['SmolRTSP_RequestLine_eq',['../request__line_8h.html#af2ef137abf84b9d02679baba33ac9405',1,'request_line.h']]],
-  ['smolrtsp_5frequestline_5fserialize',['SmolRTSP_RequestLine_serialize',['../request__line_8h.html#ae3b25cc1e24379ef60f6e9d875c622f1',1,'request_line.h']]],
-  ['smolrtsp_5frtspversion_5feq',['SmolRTSP_RTSPVersion_eq',['../rtsp__version_8h.html#ad62ca7d10192b5acdbbe44e472410aa6',1,'rtsp_version.h']]],
-  ['smolrtsp_5frtspversion_5fserialize',['SmolRTSP_RTSPVersion_serialize',['../rtsp__version_8h.html#aaed5a17fdabae3574c10e78ca6d9337e',1,'rtsp_version.h']]],
-  ['smolrtsp_5fslice_5fadvance',['SmolRTSP_Slice_advance',['../slice_8h.html#a937b1c4d34496acccd04aa476b98c7c3',1,'slice.h']]],
-  ['smolrtsp_5fslice_5feq',['SmolRTSP_Slice_eq',['../slice_8h.html#ac7f060e3fe0e1d11f477519eb53c6b69',1,'slice.h']]],
-  ['smolrtsp_5fslice_5ffrom_5fstr',['SmolRTSP_Slice_from_str',['../slice_8h.html#ab85cd7fa3b6f238c6539c35a6a7454dd',1,'slice.h']]],
-  ['smolrtsp_5fslice_5fis_5fnull',['SmolRTSP_Slice_is_null',['../slice_8h.html#a545e96c11845ade461f834ac992b5d95',1,'slice.h']]],
-  ['smolrtsp_5fslice_5fnew',['SmolRTSP_Slice_new',['../slice_8h.html#a16277b58556fbb95fc448e8403c0f872',1,'slice.h']]],
-  ['smolrtsp_5fslice_5fnull',['SmolRTSP_Slice_null',['../slice_8h.html#aca8b10b6a75e36a3c5bf9f5b9aca4614',1,'slice.h']]],
-  ['smolrtsp_5fslice_5fserialize',['SmolRTSP_Slice_serialize',['../slice_8h.html#ad684e1f44934401524a1f61a159e0b82',1,'slice.h']]],
-  ['smolrtsp_5fstatuscode_5fserialize',['SmolRTSP_StatusCode_serialize',['../status__code_8h.html#a0bd46089769734a2fd0238feaa0e6591',1,'status_code.h']]]
+  ['datatype99',['datatype99',['../error_8h.html#ab41ae4ba72c9ecf524438fca650c66f8',1,'datatype99(SmolRTSP_ParseError,(SmolRTSP_ParseError_ContentLength, CharSlice99),(SmolRTSP_ParseError_StrMismatch, CharSlice99, CharSlice99),(SmolRTSP_ParseError_TypeMismatch, SmolRTSP_ParseType, CharSlice99),(SmolRTSP_ParseError_HeaderMapOverflow)):&#160;error.h'],['../error_8h.html#a2fb12375da217b97eb1751058324f3e6',1,'datatype99(SmolRTSP_ParseResult,(SmolRTSP_ParseResult_Success, SmolRTSP_ParseStatus),(SmolRTSP_ParseResult_Failure, SmolRTSP_ParseError)):&#160;error.h']]]
 ];

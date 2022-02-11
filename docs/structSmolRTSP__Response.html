@@ -9,6 +9,13 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -44,6 +51,21 @@ $(function() {
 });
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('structSmolRTSP__Response.html','');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -58,7 +80,6 @@ $(function() {
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-attribs">Data Fields</a>  </div>
@@ -66,40 +87,53 @@ $(function() {
 <div class="title">SmolRTSP_Response Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>An RTSP response.  
+ <a href="structSmolRTSP__Response.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="response_8h_source.html">response.h</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for SmolRTSP_Response:</div>
 <div class="dyncontent">
 <div class="center"><img src="structSmolRTSP__Response__coll__graph.png" border="0" usemap="#SmolRTSP__Response_coll__map" alt="Collaboration graph"/></div>
 <map name="SmolRTSP__Response_coll__map" id="SmolRTSP__Response_coll__map">
-<area shape="rect" id="node2" href="structSmolRTSP__Slice.html" title="SmolRTSP_Slice" alt="" coords="40,5,164,32"/>
-<area shape="rect" id="node4" href="structSmolRTSP__Header.html" title="SmolRTSP_Header" alt="" coords="33,109,171,136"/>
-<area shape="rect" id="node5" href="structSmolRTSP__ResponseLine.html" title="SmolRTSP_ResponseLine" alt="" coords="195,109,374,136"/>
-<area shape="rect" id="node3" href="structSmolRTSP__HeaderMap.html" title="SmolRTSP_HeaderMap" alt="" coords="33,199,195,225"/>
-<area shape="rect" id="node6" href="structSmolRTSP__RTSPVersion.html" title="SmolRTSP_RTSPVersion" alt="" coords="197,5,372,32"/>
+<area shape="rect" id="node2" href="structSmolRTSP__HeaderMap.html" title="An RTSP header map. " alt="" coords="5,95,168,121"/>
+<area shape="rect" id="node3" href="structSmolRTSP__Header.html" title="An RTSP header. " alt="" coords="18,5,155,32"/>
+<area shape="rect" id="node4" href="structSmolRTSP__ResponseLine.html" title="An RTSP response line. " alt="" coords="192,95,371,121"/>
+<area shape="rect" id="node5" href="structSmolRTSP__RtspVersion.html" title="An RTSP version. " alt="" coords="198,5,365,32"/>
 </map>
-<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
 <tr class="memitem:a53b691aa7a5ff7188dce016305362438"><td class="memItemLeft" align="right" valign="top"><a id="a53b691aa7a5ff7188dce016305362438"></a>
-<a class="el" href="structSmolRTSP__ResponseLine.html">SmolRTSP_ResponseLine</a>&#160;</td><td class="memItemRight" valign="bottom"><b>start_line</b></td></tr>
+<a class="el" href="structSmolRTSP__ResponseLine.html">SmolRTSP_ResponseLine</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structSmolRTSP__Response.html#a53b691aa7a5ff7188dce016305362438">start_line</a></td></tr>
+<tr class="memdesc:a53b691aa7a5ff7188dce016305362438"><td class="mdescLeft">&#160;</td><td class="mdescRight">The response line. <br /></td></tr>
 <tr class="separator:a53b691aa7a5ff7188dce016305362438"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abb3baccb3cd9c2ed1575aa3ef2adf5bd"><td class="memItemLeft" align="right" valign="top"><a id="abb3baccb3cd9c2ed1575aa3ef2adf5bd"></a>
-<a class="el" href="structSmolRTSP__HeaderMap.html">SmolRTSP_HeaderMap</a>&#160;</td><td class="memItemRight" valign="bottom"><b>header_map</b></td></tr>
+<a class="el" href="structSmolRTSP__HeaderMap.html">SmolRTSP_HeaderMap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structSmolRTSP__Response.html#abb3baccb3cd9c2ed1575aa3ef2adf5bd">header_map</a></td></tr>
+<tr class="memdesc:abb3baccb3cd9c2ed1575aa3ef2adf5bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">The header map. <br /></td></tr>
 <tr class="separator:abb3baccb3cd9c2ed1575aa3ef2adf5bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad6b45278c0e4cb4dd007a5ae8ef6dcd9"><td class="memItemLeft" align="right" valign="top"><a id="ad6b45278c0e4cb4dd007a5ae8ef6dcd9"></a>
-<a class="el" href="message__body_8h.html#a27aa7f21f414448fb81f57d4d274c6b1">SmolRTSP_MessageBody</a>&#160;</td><td class="memItemRight" valign="bottom"><b>body</b></td></tr>
+<a class="el" href="message__body_8h.html#a7cf19e53447cd824890913d713bd5122">SmolRTSP_MessageBody</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structSmolRTSP__Response.html#ad6b45278c0e4cb4dd007a5ae8ef6dcd9">body</a></td></tr>
+<tr class="memdesc:ad6b45278c0e4cb4dd007a5ae8ef6dcd9"><td class="mdescLeft">&#160;</td><td class="mdescRight">The message body. <br /></td></tr>
 <tr class="separator:ad6b45278c0e4cb4dd007a5ae8ef6dcd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<hr/>The documentation for this struct was generated from the following file:<ul>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>An RTSP response. </p>
+</div><hr/>The documentation for this struct was generated from the following file:<ul>
 <li>include/smolrtsp/<a class="el" href="response_8h_source.html">response.h</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.13
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="structSmolRTSP__Response.html">SmolRTSP_Response</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
+  </ul>
+</div>
 </body>
 </html>

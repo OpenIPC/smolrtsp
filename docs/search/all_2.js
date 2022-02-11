@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['header_2eh',['header.h',['../header_8h.html',1,'(Global Namespace)'],['../deserializers_2header_8h.html',1,'(Global Namespace)']]],
-  ['header_5fmap_2eh',['header_map.h',['../header__map_8h.html',1,'(Global Namespace)'],['../deserializers_2header__map_8h.html',1,'(Global Namespace)']]]
+  ['datatype99',['datatype99',['../error_8h.html#ab41ae4ba72c9ecf524438fca650c66f8',1,'datatype99(SmolRTSP_ParseError,(SmolRTSP_ParseError_ContentLength, CharSlice99),(SmolRTSP_ParseError_StrMismatch, CharSlice99, CharSlice99),(SmolRTSP_ParseError_TypeMismatch, SmolRTSP_ParseType, CharSlice99),(SmolRTSP_ParseError_HeaderMapOverflow)):&#160;error.h'],['../error_8h.html#a2fb12375da217b97eb1751058324f3e6',1,'datatype99(SmolRTSP_ParseResult,(SmolRTSP_ParseResult_Success, SmolRTSP_ParseStatus),(SmolRTSP_ParseResult_Failure, SmolRTSP_ParseError)):&#160;error.h']]]
 ];
