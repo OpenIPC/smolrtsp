@@ -31,7 +31,7 @@ add_executable(
   util.c)
 
 if(CMAKE_C_COMPILER_ID STREQUAL "Clang")
-  target_compile_options(tests PRIVATE -Weverything -fsanitize=address -fmacro-backtrace-limit=1)
+  target_compile_options(tests PRIVATE -Wall -Wextra -fsanitize=address -fmacro-backtrace-limit=1)
   target_link_options(tests PRIVATE -fsanitize=address)
 elseif(CMAKE_C_COMPILER_ID STREQUAL "GNU")
   target_compile_options(tests PRIVATE -Wall -Wextra -pedantic -fsanitize=address
