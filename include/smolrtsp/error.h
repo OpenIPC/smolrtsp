@@ -1,6 +1,6 @@
 /**
  * @file
- * Common stuff.
+ * Possible errors.
  */
 
 #ifndef SMOLRTSP_COMMON_H
@@ -39,33 +39,31 @@ typedef enum {
  */
 const char *SmolRTSP_ParseType_str(SmolRTSP_ParseType self);
 
+/**
+ * An error that might occur during parsing.
+ *
+ * ## Variants
+ *
+ *  - `ContentLength` -- An invalid value of the `Content-Length` header was
+ * specified. Arguments:
+ *    1. The value of this header.
+ *  - `StrMismatch` -- Two given strings are uneqal. Arguments:
+ *    1. Expected string.
+ *    2. Actual string.
+ *  - `TypeMismatch` -- Failed to parse an item. Arguments:
+ *    1. A type of item failed to parse.
+ *    2. The erroneous string.
+ *  - `HeaderMapOverflow` -- An attempt to add a header to a full header map.
+ *
+ * See [Datatype99](https://github.com/Hirrolot/datatype99) for the macro usage.
+ */
+
 // clang-format off
 datatype99(
     SmolRTSP_ParseError,
-
-    /**
-     * An invalid value of the `Content-Length` header was specified.
-     */
-    (SmolRTSP_ParseError_ContentLength,
-        CharSlice99 /* the value of this header */),
-
-    /**
-     * Two given strings are uneqal.
-     */
-    (SmolRTSP_ParseError_StrMismatch,
-        CharSlice99 /* expected */,
-        CharSlice99 /* actual */),
-
-    /**
-     * Failed to parse an integer.
-     */
-    (SmolRTSP_ParseError_TypeMismatch,
-        SmolRTSP_ParseType,
-        CharSlice99 /* the erroneous string */),
-
-    /**
-     * An attempt to add a header to a full header map.
-     */
+    (SmolRTSP_ParseError_ContentLength, CharSlice99),
+    (SmolRTSP_ParseError_StrMismatch, CharSlice99, CharSlice99),
+    (SmolRTSP_ParseError_TypeMismatch, SmolRTSP_ParseType, CharSlice99),
     (SmolRTSP_ParseError_HeaderMapOverflow)
 );
 // clang-format on
@@ -100,6 +98,12 @@ SmolRTSP_ParseStatus SmolRTSP_ParseStatus_partial(size_t offset);
  * The same as #SmolRTSP_ParseStatus_partial but for a complete status.
  */
 SmolRTSP_ParseStatus SmolRTSP_ParseStatus_complete(size_t offset);
+
+/**
+ * A result of parsing (either success or failure).
+ *
+ * See [Datatype99](https://github.com/Hirrolot/datatype99) for the macro usage.
+ */
 
 // clang-format off
 datatype99(
