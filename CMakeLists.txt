@@ -15,7 +15,12 @@ FetchContent_Declare(
     URL https://github.com/Hirrolot/datatype99/archive/refs/tags/v1.6.2.tar.gz
 )
 
-FetchContent_MakeAvailable(slice99 datatype99)
+FetchContent_Declare(
+    interface99
+    URL https://github.com/Hirrolot/interface99/archive/refs/tags/v0.8.3.tar.gz
+)
+
+FetchContent_MakeAvailable(slice99 datatype99 interface99)
 
 set(SMOLRTSP_SOURCES
     include/smolrtsp/error.h
@@ -35,6 +40,9 @@ set(SMOLRTSP_SOURCES
     include/smolrtsp/rtp.h
     include/smolrtsp/writer.h
     include/smolrtsp/util.h
+    include/smolrtsp/transport.h
+    include/smolrtsp/droppable.h
+    include/smolrtsp/io_vec.h
     src/error.c
     src/header_map.c
     src/header.c
@@ -54,6 +62,9 @@ set(SMOLRTSP_SOURCES
     src/rtp.c
     src/writer.c
     src/util.c
+    src/transport/tcp.c
+    src/transport/udp.c
+    src/io_vec.c
 )
 
 if(SMOLRTSP_SHARED)
@@ -69,6 +80,6 @@ elseif(CMAKE_C_COMPILER_ID STREQUAL "GNU")
 endif()
 
 target_include_directories(${PROJECT_NAME} PUBLIC include)
-target_link_libraries(${PROJECT_NAME} PUBLIC slice99 datatype99)
+target_link_libraries(${PROJECT_NAME} PUBLIC slice99 datatype99 interface99)
 
 set_target_properties(${PROJECT_NAME} PROPERTIES C_STANDARD 99 C_STANDARD_REQUIRED ON)

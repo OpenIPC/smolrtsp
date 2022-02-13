@@ -28,7 +28,9 @@ add_executable(
   rtsp_version.c
   status_code.c
   sdp.c
-  util.c)
+  util.c
+  io_vec.c
+  transport.c)
 
 if(CMAKE_C_COMPILER_ID STREQUAL "Clang")
   target_compile_options(tests PRIVATE -Wall -Wextra -fsanitize=address -fmacro-backtrace-limit=1)

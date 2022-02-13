@@ -27,11 +27,16 @@
 #include <smolrtsp/request_uri.h>
 #include <smolrtsp/response.h>
 #include <smolrtsp/response_line.h>
-#include <smolrtsp/rtp.h>
 #include <smolrtsp/rtsp_version.h>
-#include <smolrtsp/sdp.h>
 #include <smolrtsp/status_code.h>
 #include <smolrtsp/util.h>
 #include <smolrtsp/writer.h>
+
+#include <smolrtsp/rtp.h>
+#include <smolrtsp/sdp.h>
+
+#include <smolrtsp/droppable.h>
+#include <smolrtsp/io_vec.h>
+#include <smolrtsp/transport.h>
 
 #endif // SMOLRTSP_H
