@@ -72,10 +72,9 @@ datatype99(
  * Prints @p self into @p w.
  *
  * @param[in] self The error to print.
- * @param[in] w The function to be provided with data (possibly in chunks).
- * @param[in] w_ctx Some value provided to @p w on each write.
+ * @param[in] w The writer to be provided with data.
  */
-void SmolRTSP_ParseError_print(SmolRTSP_ParseError self, SmolRTSP_Writer w, void *w_ctx);
+void SmolRTSP_ParseError_print(SmolRTSP_ParseError self, SmolRTSP_Writer w);
 
 typedef struct {
     /**

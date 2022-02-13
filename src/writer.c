@@ -1,28 +1,61 @@
 #include <smolrtsp/writer.h>
 
-#include <stdio.h>
+#include <assert.h>
 #include <string.h>
 
 #include <unistd.h>
 
 void smolrtsp_write_slices(
-    SmolRTSP_Writer w, void *ctx, size_t len, const CharSlice99 data[restrict static len]) {
+    SmolRTSP_Writer w, size_t len, const CharSlice99 data[restrict static len]) {
     for (size_t i = 0; i < len; i++) {
-        w(data[i], ctx);
+        VCALL(w, write, data[i]);
     }
 }
 
-void smolrtsp_char_buffer_writer(CharSlice99 data, void *buffer) {
+typedef char StrcatWriter;
+
+static void StrcatWriter_write(VSelf, CharSlice99 data) {
+    VSELF(StrcatWriter);
+    assert(self);
+
+    strncat(self, data.ptr, data.len);
+}
+
+impl(SmolRTSP_Writer, StrcatWriter);
+
+SmolRTSP_Writer smolrtsp_strcat_writer(char *buffer) {
     assert(buffer);
-    strncat((char *)buffer, data.ptr, data.len);
+    return DYN(StrcatWriter, SmolRTSP_Writer, buffer);
 }
 
-void smolrtsp_file_stream_writer(CharSlice99 data, void *stream) {
+typedef FILE FileWriter;
+
+static void FileWriter_write(VSelf, CharSlice99 data) {
+    VSELF(FileWriter);
+    assert(self);
+
+    fwrite(data.ptr, sizeof(char), data.len, self);
+}
+
+impl(SmolRTSP_Writer, FileWriter);
+
+SmolRTSP_Writer smolrtsp_file_writer(FILE *stream) {
     assert(stream);
-    fwrite(data.ptr, sizeof(char), data.len, (FILE *)stream);
+    return DYN(FileWriter, SmolRTSP_Writer, stream);
 }
 
-void smolrtsp_fd_writer(CharSlice99 data, void *fd_ptr) {
-    assert(fd_ptr);
-    write(*(int *)fd_ptr, data.ptr, data.len);
+typedef int FdWriter;
+
+static void FdWriter_write(VSelf, CharSlice99 data) {
+    VSELF(FdWriter);
+    assert(self);
+
+    write(*self, data.ptr, data.len);
+}
+
+impl(SmolRTSP_Writer, FdWriter);
+
+SmolRTSP_Writer smolrtsp_fd_writer(int *fd) {
+    assert(fd);
+    return DYN(FdWriter, SmolRTSP_Writer, fd);
 }

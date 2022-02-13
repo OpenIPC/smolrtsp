@@ -35,23 +35,22 @@ typedef struct {
  * Serialises @p self into @p w.
  *
  * @param[in] self The instance to be serialised.
- * @param[in] w The function to be provided with serialised data (possibly in chunks).
- * @param[in] w_ctx Some value provided to @p w on each write.
+ * @param[in] w The writer to be provided with serialised data.
  *
- * @pre `w != NULL`
+ * @pre `w.self && w.vptr`
  */
-void SmolRTSP_SdpLine_serialize(SmolRTSP_SdpLine self, SmolRTSP_Writer w, void *w_ctx);
+void SmolRTSP_SdpLine_serialize(SmolRTSP_SdpLine self, SmolRTSP_Writer w);
 
 /**
  * Appends a single SDP line to @p w.
  *
  * This function is equivalent to `SmolRTSP_SdpLine_serialize((SmolRTSP_SdpLine){ty,
- * CharSlice99_from_str(value)}, w, w_ctx)`.
+ * CharSlice99_from_str(value)}, w)`.
  *
  * @pre @p value is a null-terminated string.
- * @pre `w != 0`
+ * @pre `w.self && w.vptr`
  */
-void smolrtsp_sdp_append(SmolRTSP_SdpType ty, const char *value, SmolRTSP_Writer w, void *w_ctx);
+void smolrtsp_sdp_append(SmolRTSP_SdpType ty, const char *value, SmolRTSP_Writer w);
 
 /**
  * Protocol Version (`v=`).

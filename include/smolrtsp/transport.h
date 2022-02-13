@@ -38,14 +38,13 @@ interface99(SmolRTSP_Transport);
 /**
  * Creates a new TCP transport.
  *
- * @param[in] w The function to be provided with data (possibly in chunks).
- * @param[in] w_ctx Some value provided to @p w on each write.
+ * @param[in] w The writer to be provided with data.
  * @param[in] channel_id A one-byte channel identifier, as defined in
  * <https://datatracker.ietf.org/doc/html/rfc2326#section-10.12>.
  *
- * @pre `w != NULL`
+ * @pre `w.self && w.vptr`
  */
-SmolRTSP_Transport smolrtsp_transport_tcp(SmolRTSP_Writer w, void *w_ctx, uint8_t channel_id);
+SmolRTSP_Transport smolrtsp_transport_tcp(SmolRTSP_Writer w, uint8_t channel_id);
 
 /**
  * Creates a new UDP transport.

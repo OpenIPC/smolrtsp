@@ -13,21 +13,19 @@
 
 typedef struct {
     SmolRTSP_Writer w;
-    void *w_ctx;
     int channel_id;
 } SmolRTSP_TcpTransport;
 
 declImpl(SmolRTSP_Droppable, SmolRTSP_TcpTransport);
 declImpl(SmolRTSP_Transport, SmolRTSP_TcpTransport);
 
-SmolRTSP_Transport smolrtsp_transport_tcp(SmolRTSP_Writer w, void *w_ctx, uint8_t channel_id) {
-    assert(w);
+SmolRTSP_Transport smolrtsp_transport_tcp(SmolRTSP_Writer w, uint8_t channel_id) {
+    assert(w.self && w.vptr);
 
     SmolRTSP_TcpTransport *self = malloc(sizeof *self);
     assert(self);
 
     self->w = w;
-    self->w_ctx = w_ctx;
     self->channel_id = channel_id;
 
     return DYN(SmolRTSP_TcpTransport, SmolRTSP_Transport, self);
@@ -54,10 +52,10 @@ static int SmolRTSP_TcpTransport_transmit(VSelf, SmolRTSP_IoVecSlice bufs) {
             .payload_len = htons(total_bytes),
         });
 
-    self->w(CharSlice99_new((char *)&interleaved_data, sizeof interleaved_data), self->w_ctx);
+    VCALL(self->w, write, CharSlice99_new((char *)&interleaved_data, sizeof interleaved_data));
 
     for (size_t i = 0; i < bufs.len; i++) {
-        self->w(CharSlice99_new(bufs.ptr[i].iov_base, bufs.ptr[i].iov_len), self->w_ctx);
+        VCALL(self->w, write, CharSlice99_new(bufs.ptr[i].iov_base, bufs.ptr[i].iov_len));
     }
 
     return 0;

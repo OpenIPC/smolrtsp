@@ -29,14 +29,14 @@ bool SmolRTSP_HeaderMap_key_is_present(SmolRTSP_HeaderMap self, CharSlice99 key)
     return SmolRTSP_HeaderMap_find(self, key, &value);
 }
 
-void SmolRTSP_HeaderMap_serialize(SmolRTSP_HeaderMap self, SmolRTSP_Writer w, void *w_ctx) {
-    assert(w);
+void SmolRTSP_HeaderMap_serialize(SmolRTSP_HeaderMap self, SmolRTSP_Writer w) {
+    assert(w.self && w.vptr);
 
     for (size_t i = 0; i < self.len; i++) {
-        SmolRTSP_Header_serialize(self.headers[i], w, w_ctx);
+        SmolRTSP_Header_serialize(self.headers[i], w);
     }
 
-    w(SMOLRTSP_CRLF, w_ctx);
+    VCALL(w, write, SMOLRTSP_CRLF);
 }
 
 SmolRTSP_ParseResult

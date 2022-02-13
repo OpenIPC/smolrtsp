@@ -7,61 +7,68 @@
 #define SMOLRTSP_USER_WRITER_H
 
 #include <stddef.h>
+#include <stdio.h>
 
+#include <interface99.h>
 #include <slice99.h>
 
 /**
- * A user-supplied function accepting some data.
- *
- * @param[in] data The slice to the supplied data.
- * @param ctx The user-supplied value.
+ * The user-supplied data writer interface.
  */
-typedef void (*SmolRTSP_Writer)(CharSlice99 data, void *ctx);
+#define SmolRTSP_Writer_IFACE                                                                      \
+                                                                                                   \
+    /*                                                                                             \
+     * Writes @p data into itself.                                                                 \
+     *                                                                                             \
+     * @param[in] data The slice to the supplied data.                                             \
+     */                                                                                            \
+    vfunc99(void, write, VSelf99, CharSlice99 data)
+
+/**
+ * Defines the `SmolRTSP_Writer` interface.
+ *
+ * See [Interface99](https://github.com/Hirrolot/interface99) for the macro usage.
+ */
+interface99(SmolRTSP_Writer);
 
 /**
  * The same as #smolrtsp_write_slices but calculates an array length from variadic arguments (the
  * syntactically separated items of the array).
  */
-#define SMOLRTSP_WRITE_SLICES(w, ctx, ...)                                                         \
+#define SMOLRTSP_WRITE_SLICES(w, ...)                                                              \
     smolrtsp_write_slices(                                                                         \
-        w, ctx, SLICE99_ARRAY_LEN((const CharSlice99[])__VA_ARGS__),                               \
-        (const CharSlice99[])__VA_ARGS__)
+        w, SLICE99_ARRAY_LEN((const CharSlice99[])__VA_ARGS__), (const CharSlice99[])__VA_ARGS__)
 
 /**
  * Sequentially writes all items in @p data to @p w.
  *
- * @param[in] w The function to be provided with data (possibly in chunks).
- * @param[in] ctx Some value provided to @p w on each write.
+ * @param[in] w The writer to be provided with data.
  * @param[in] len The number of items in @p data.
  * @param[in] data The data array which will be written to @p w, one-by-one.
  */
 void smolrtsp_write_slices(
-    SmolRTSP_Writer w, void *ctx, size_t len, const CharSlice99 data[restrict static len]);
+    SmolRTSP_Writer w, size_t len, const CharSlice99 data[restrict static len]);
 
 /**
- * A writer that appends @p data to the array of characters @p buffer.
- *
- * @param[in] data The slice to the supplied data.
- * @param[out] buffer The character buffer to write to.
+ * A writer that invokes `strncat` on a provided buffer.
  *
  * @pre @p buffer shall be capable of holding `CharSlice99_size(data)` more characters, as required
  * by `strncat`.
  */
-void smolrtsp_char_buffer_writer(CharSlice99 data, void *buffer);
+SmolRTSP_Writer smolrtsp_strcat_writer(char *buffer);
 
 /**
- * A user that which writes @p data to the file stream @p stream.
+ * A writer that invokes `fwrite` on a provided file pointer.
  *
- * @param[in] data The slice to the supplied data.
- * @param[out] stream The file stream of type `FILE *` to write to.
+ * @pre `stream != NULL`
  */
-void smolrtsp_file_stream_writer(CharSlice99 data, void *stream);
+SmolRTSP_Writer smolrtsp_file_writer(FILE *stream);
 
-/** A writer that writes @p data to a file descriptor @p fd_ptr.
+/**
+ * A writer that invokes `write` on a provided file descriptor.
  *
- * @param[in] data The slice to the supplied data.
- * @param[out] fd_ptr The pointer to a file descriptor (`int`) to write to.
+ * @pre `fd != NULL`
  */
-void smolrtsp_fd_writer(CharSlice99 data, void *fd_ptr);
+SmolRTSP_Writer smolrtsp_fd_writer(int *fd);
 
 #endif // SMOLRTSP_USER_WRITER_H

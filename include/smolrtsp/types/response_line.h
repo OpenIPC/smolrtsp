@@ -43,12 +43,11 @@ typedef struct {
  * Serialises @p self into @p w.
  *
  * @param[in] self The instance to be serialised.
- * @param[in] w The function to be provided with serialised data (possibly in chunks).
- * @param[in] w_ctx Some value provided to @p w on each write.
+ * @param[in] w The writer to be provided with serialised data.
  *
- * @pre `w != NULL`
+ * @pre `w.self && w.vptr`
  */
-void SmolRTSP_ResponseLine_serialize(SmolRTSP_ResponseLine self, SmolRTSP_Writer w, void *w_ctx);
+void SmolRTSP_ResponseLine_serialize(SmolRTSP_ResponseLine self, SmolRTSP_Writer w);
 
 /**
  * A state of parsing of #SmolRTSP_ResponseLine.

@@ -5,12 +5,12 @@
 #include <assert.h>
 #include <stdlib.h>
 
-void SmolRTSP_Request_serialize(SmolRTSP_Request self, SmolRTSP_Writer w, void *w_ctx) {
-    assert(w);
+void SmolRTSP_Request_serialize(SmolRTSP_Request self, SmolRTSP_Writer w) {
+    assert(w.self && w.vptr);
 
-    SmolRTSP_RequestLine_serialize(self.start_line, w, w_ctx);
-    SmolRTSP_HeaderMap_serialize(self.header_map, w, w_ctx);
-    w(self.body, w_ctx);
+    SmolRTSP_RequestLine_serialize(self.start_line, w);
+    SmolRTSP_HeaderMap_serialize(self.header_map, w);
+    VCALL(w, write, self.body);
 }
 
 SmolRTSP_ParseResult SmolRTSP_Request_parse(

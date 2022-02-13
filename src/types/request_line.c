@@ -6,15 +6,15 @@
 #include <assert.h>
 #include <string.h>
 
-void SmolRTSP_RequestLine_serialize(SmolRTSP_RequestLine self, SmolRTSP_Writer w, void *w_ctx) {
-    assert(w);
+void SmolRTSP_RequestLine_serialize(SmolRTSP_RequestLine self, SmolRTSP_Writer w) {
+    assert(w.self && w.vptr);
 
-    w(self.method, w_ctx);
-    w(CharSlice99_from_str(" "), w_ctx);
-    w(self.uri, w_ctx);
-    w(CharSlice99_from_str(" "), w_ctx);
-    SmolRTSP_RtspVersion_serialize(self.version, w, w_ctx);
-    w(SMOLRTSP_CRLF, w_ctx);
+    VCALL(w, write, self.method);
+    VCALL(w, write, CharSlice99_from_str(" "));
+    VCALL(w, write, self.uri);
+    VCALL(w, write, CharSlice99_from_str(" "));
+    SmolRTSP_RtspVersion_serialize(self.version, w);
+    VCALL(w, write, SMOLRTSP_CRLF);
 }
 
 SmolRTSP_ParseResult SmolRTSP_RequestLine_parse(

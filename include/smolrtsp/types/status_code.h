@@ -22,17 +22,14 @@ typedef uint16_t SmolRTSP_StatusCode;
  * Serialises @p self into @p w.
  *
  * @param[in] self The instance to be serialised.
- * @param[in] w The function to be provided with serialised data (possibly in chunks).
- * @param[in] w_ctx Some value provided to @p w on each write.
+ * @param[in] w The writer to be provided with serialised data.
  *
- * @pre `w != NULL`
+ * @pre `w.self && w.vptr`
  */
-void SmolRTSP_StatusCode_serialize(SmolRTSP_StatusCode self, SmolRTSP_Writer w, void *w_ctx);
+void SmolRTSP_StatusCode_serialize(SmolRTSP_StatusCode self, SmolRTSP_Writer w);
 
 /**
  * Parses @p data to @p self.
- *
- * @pre `self != NULL`
  */
 SmolRTSP_ParseResult
 SmolRTSP_StatusCode_parse(SmolRTSP_StatusCode *restrict self, CharSlice99 input);

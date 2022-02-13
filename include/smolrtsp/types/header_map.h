@@ -71,12 +71,11 @@ bool SmolRTSP_HeaderMap_key_is_present(SmolRTSP_HeaderMap self, CharSlice99 key)
  * Serialises @p self into @p w.
  *
  * @param[in] self The instance to be serialised.
- * @param[in] w The function to be provided with serialised data (possibly in chunks).
- * @param[in] w_ctx Some value provided to @p w on each write.
+ * @param[in] w The writer to be provided with serialised data.
  *
- * @pre `w != NULL`
+ * @pre `w.self && w.vptr`
  */
-void SmolRTSP_HeaderMap_serialize(SmolRTSP_HeaderMap self, SmolRTSP_Writer w, void *w_ctx);
+void SmolRTSP_HeaderMap_serialize(SmolRTSP_HeaderMap self, SmolRTSP_Writer w);
 
 /**
  * Parses @p data to @p self.

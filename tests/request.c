@@ -86,7 +86,7 @@ TEST parse_request(void) {
                 ASSERT(req.len == status->offset);
             }
             of(SmolRTSP_ParseResult_Failure, e) {
-                SmolRTSP_ParseError_print(*e, smolrtsp_file_stream_writer, stderr);
+                SmolRTSP_ParseError_print(*e, smolrtsp_file_writer(stderr));
                 ASSERT(false);
             }
         }
@@ -121,7 +121,7 @@ TEST serialize_request(void) {
         .body = CharSlice99_from_str("1234567890"),
     };
 
-    SmolRTSP_Request_serialize(request, smolrtsp_char_buffer_writer, buffer);
+    SmolRTSP_Request_serialize(request, smolrtsp_strcat_writer(buffer));
 
     ASSERT_EQ(
         strcmp(
