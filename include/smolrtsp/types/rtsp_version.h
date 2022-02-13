@@ -3,8 +3,7 @@
  * An RTSP version.
  */
 
-#ifndef SMOLRTSP_RTSP_VERSION_H
-#define SMOLRTSP_RTSP_VERSION_H
+#pragma once
 
 #include <smolrtsp/types/error.h>
 #include <smolrtsp/writer.h>
@@ -51,5 +50,3 @@ SmolRTSP_RtspVersion_parse(SmolRTSP_RtspVersion *restrict self, CharSlice99 inpu
  * @return `true` if @p lhs and @p rhs are equal, `false` otherwise.
  */
 bool SmolRTSP_RtspVersion_eq(SmolRTSP_RtspVersion lhs, SmolRTSP_RtspVersion rhs);
-
-#endif // SMOLRTSP_RTSP_VERSION_H

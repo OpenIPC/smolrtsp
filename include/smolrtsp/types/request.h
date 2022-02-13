@@ -3,9 +3,6 @@
  * An RTSP request.
  */
 
-#ifndef SMOLRTSP_REQUEST_H
-#define SMOLRTSP_REQUEST_H
-
 #include <smolrtsp/types/error.h>
 #include <smolrtsp/types/header_map.h>
 #include <smolrtsp/types/message_body.h>
@@ -87,5 +84,3 @@ SmolRTSP_ParseResult SmolRTSP_Request_parse(
  * @return `true` if @p lhs and @p rhs are equal, `false` otherwise.
  */
 bool SmolRTSP_Request_eq(SmolRTSP_Request lhs, SmolRTSP_Request rhs);
-
-#endif // SMOLRTSP_REQUEST_H

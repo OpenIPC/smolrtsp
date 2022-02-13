@@ -3,8 +3,7 @@
  * The writer interface.
  */
 
-#ifndef SMOLRTSP_USER_WRITER_H
-#define SMOLRTSP_USER_WRITER_H
+#pragma once
 
 #include <stddef.h>
 #include <stdio.h>
@@ -70,5 +69,3 @@ SmolRTSP_Writer smolrtsp_file_writer(FILE *stream);
  * @pre `fd != NULL`
  */
 SmolRTSP_Writer smolrtsp_fd_writer(int *fd);
-
-#endif // SMOLRTSP_USER_WRITER_H

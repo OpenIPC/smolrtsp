@@ -3,8 +3,7 @@
  * An RTSP header map.
  */
 
-#ifndef SMOLRTSP_HEADER_MAP_H
-#define SMOLRTSP_HEADER_MAP_H
+#pragma once
 
 #include <smolrtsp/types/error.h>
 #include <smolrtsp/types/header.h>
@@ -109,5 +108,3 @@ void SmolRTSP_HeaderMap_dbg_to_file(SmolRTSP_HeaderMap self, FILE *stream);
  * Pretty-prints @p self to `stdout`.
  */
 void SmolRTSP_HeaderMap_dbg(SmolRTSP_HeaderMap self);
-
-#endif // SMOLRTSP_HEADER_MAP_H

@@ -1,5 +1,4 @@
-#ifndef SMOLRTSP_PARSING_H
-#define SMOLRTSP_PARSING_H
+#pragma once
 
 #include <smolrtsp/types/error.h>
 
@@ -48,5 +47,3 @@ SmolRTSP_ParseResult smolrtsp_match_non_whitespaces(CharSlice99 input);
 SmolRTSP_ParseResult smolrtsp_match_numeric(CharSlice99 input);
 SmolRTSP_ParseResult smolrtsp_match_ident(CharSlice99 input);
 SmolRTSP_ParseResult smolrtsp_match_header_name(CharSlice99 input);
-
-#endif // SMOLRTSP_PARSING_H

@@ -4,8 +4,7 @@
  * An RTSP request line.
  */
 
-#ifndef SMOLRTSP_REQUEST_LINE_H
-#define SMOLRTSP_REQUEST_LINE_H
+#pragma once
 
 #include <smolrtsp/types/error.h>
 #include <smolrtsp/types/method.h>
@@ -84,5 +83,3 @@ SmolRTSP_ParseResult SmolRTSP_RequestLine_parse(
  * @return `true` if @p lhs and @p rhs are equal, `false` otherwise.
  */
 bool SmolRTSP_RequestLine_eq(SmolRTSP_RequestLine lhs, SmolRTSP_RequestLine rhs);
-
-#endif // SMOLRTSP_REQUEST_LINE_H

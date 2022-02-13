@@ -13,8 +13,7 @@
  * overview.
  */
 
-#ifndef SMOLRTSP_H
-#define SMOLRTSP_H
+#pragma once
 
 #include <smolrtsp/types/error.h>
 #include <smolrtsp/types/header.h>
@@ -38,5 +37,3 @@
 #include <smolrtsp/transport.h>
 #include <smolrtsp/util.h>
 #include <smolrtsp/writer.h>
-
-#endif // SMOLRTSP_H

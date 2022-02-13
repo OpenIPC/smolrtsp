@@ -4,8 +4,7 @@
  * implementation.
  */
 
-#ifndef SMOLRTSP_SDP_H
-#define SMOLRTSP_SDP_H
+#pragma once
 
 #include <smolrtsp/writer.h>
 
@@ -126,5 +125,3 @@ void smolrtsp_sdp_append(SmolRTSP_SdpType ty, const char *value, SmolRTSP_Writer
  * Media Descriptions (`m=`).
  */
 #define SMOLRTSP_SDP_TYPE_MEDIA 'm'
-
-#endif // SMOLRTSP_SDP_H

@@ -3,8 +3,7 @@
  * Utilitary stuff.
  */
 
-#ifndef SMOLRTSP_UTIL_H
-#define SMOLRTSP_UTIL_H
+#pragma once
 
 #include <smolrtsp/types/error.h>
 
@@ -96,5 +95,3 @@ uint32_t SmolRTSP_InterleavedDataHeader_as_u32(SmolRTSP_InterleavedDataHeader se
  * Returns #SmolRTSP_InterleavedDataHeader from `uint32_t`.
  */
 SmolRTSP_InterleavedDataHeader SmolRTSP_InterleavedDataHeader_from_u32(uint32_t data);
-
-#endif // SMOLRTSP_UTIL_H

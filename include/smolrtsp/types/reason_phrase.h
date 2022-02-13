@@ -3,8 +3,7 @@
  * An RTSP reason phrase.
  */
 
-#ifndef SMOLRTSP_REASON_PHRASE_H
-#define SMOLRTSP_REASON_PHRASE_H
+#pragma once
 
 #include <smolrtsp/types/error.h>
 
@@ -22,5 +21,3 @@ typedef CharSlice99 SmolRTSP_ReasonPhrase;
  */
 SmolRTSP_ParseResult
 SmolRTSP_ReasonPhrase_parse(SmolRTSP_ReasonPhrase *restrict self, CharSlice99 data);
-
-#endif // SMOLRTSP_REASON_PHRASE_H

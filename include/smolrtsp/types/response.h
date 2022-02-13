@@ -3,8 +3,7 @@
  * An RTSP response.
  */
 
-#ifndef SMOLRTSP_RESPONSE_H
-#define SMOLRTSP_RESPONSE_H
+#pragma once
 
 #include <smolrtsp/types/error.h>
 #include <smolrtsp/types/header_map.h>
@@ -86,5 +85,3 @@ SmolRTSP_ParseResult SmolRTSP_Response_parse(
  * @return `true` if @p lhs and @p rhs are equal, `false` otherwise.
  */
 bool SmolRTSP_Response_eq(SmolRTSP_Response lhs, SmolRTSP_Response rhs);
-
-#endif // SMOLRTSP_RESPONSE_H

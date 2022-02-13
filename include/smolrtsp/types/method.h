@@ -3,8 +3,7 @@
  * An RTSP method.
  */
 
-#ifndef SMOLRTSP_METHOD_H
-#define SMOLRTSP_METHOD_H
+#pragma once
 
 #include <smolrtsp/types/error.h>
 
@@ -76,5 +75,3 @@ SmolRTSP_ParseResult SmolRTSP_Method_parse(SmolRTSP_Method *restrict self, CharS
  * `RECORD`.
  */
 #define SMOLRTSP_METHOD_RECORD (CharSlice99_from_str("RECORD"))
-
-#endif // SMOLRTSP_METHOD_H

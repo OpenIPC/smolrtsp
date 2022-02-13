@@ -4,8 +4,7 @@
  * implementation.
  */
 
-#ifndef SMOLRTSP_RTP_H
-#define SMOLRTSP_RTP_H
+#pragma once
 
 #include <stdbool.h>
 #include <stddef.h>
@@ -118,5 +117,3 @@ size_t SmolRTSP_RtpHeader_size(SmolRTSP_RtpHeader self);
  * @return The pointer to a passed buffer.
  */
 uint8_t *SmolRTSP_RtpHeader_serialize(SmolRTSP_RtpHeader self, uint8_t buffer[restrict]);
-
-#endif // SMOLRTSP_RTP_H

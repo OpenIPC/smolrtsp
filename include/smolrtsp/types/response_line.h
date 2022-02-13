@@ -3,8 +3,7 @@
  * An RTSP response line.
  */
 
-#ifndef SMOLRTSP_RESPONSE_LINE_H
-#define SMOLRTSP_RESPONSE_LINE_H
+#pragma once
 
 #include <smolrtsp/types/error.h>
 #include <smolrtsp/types/reason_phrase.h>
@@ -80,5 +79,3 @@ SmolRTSP_ParseResult SmolRTSP_ResponseLine_parse(
  * @return `true` if @p lhs and @p rhs are equal, `false` otherwise.
  */
 bool SmolRTSP_ResponseLine_eq(SmolRTSP_ResponseLine lhs, SmolRTSP_ResponseLine rhs);
-
-#endif // SMOLRTSP_RESPONSE_LINE_H

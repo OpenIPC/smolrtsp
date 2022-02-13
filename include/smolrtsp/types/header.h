@@ -3,8 +3,7 @@
  * An RTSP header.
  */
 
-#ifndef SMOLRTSP_HEADER_H
-#define SMOLRTSP_HEADER_H
+#pragma once
 
 #include <smolrtsp/types/error.h>
 #include <smolrtsp/writer.h>
@@ -259,5 +258,3 @@ void SmolRTSP_Header_dbg(SmolRTSP_Header self);
  * `WWW-Authenticate`.
  */
 #define SMOLRTSP_HEADER_NAME_WWW_AUTHENTICATE (CharSlice99_from_str("WWW-Authenticate"))
-
-#endif // SMOLRTSP_HEADER_H

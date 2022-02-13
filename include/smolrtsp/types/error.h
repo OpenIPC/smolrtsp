@@ -3,8 +3,7 @@
  * Possible parsing errors.
  */
 
-#ifndef SMOLRTSP_COMMON_H
-#define SMOLRTSP_COMMON_H
+#pragma once
 
 #include <smolrtsp/writer.h>
 
@@ -132,5 +131,3 @@ bool SmolRTSP_ParseResult_is_partial(SmolRTSP_ParseResult self);
  * The same as #SmolRTSP_ParseResult_is_partial but for a complete result.
  */
 bool SmolRTSP_ParseResult_is_complete(SmolRTSP_ParseResult self);
-
-#endif // SMOLRTSP_COMMON_H

@@ -3,8 +3,7 @@
  *  An RTSP status code.
  */
 
-#ifndef SMOLRTSP_STATUS_CODE_H
-#define SMOLRTSP_STATUS_CODE_H
+#pragma once
 
 #include <smolrtsp/types/error.h>
 #include <smolrtsp/writer.h>
@@ -253,5 +252,3 @@ SmolRTSP_StatusCode_parse(SmolRTSP_StatusCode *restrict self, CharSlice99 input)
  * `Option not supported`.
  */
 #define SMOLRTSP_STATUS_CODE_OPTION_NOT_SUPPORTED 551
-
-#endif // SMOLRTSP_STATUS_CODE_H
