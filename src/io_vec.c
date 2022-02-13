@@ -8,3 +8,7 @@ size_t SmolRTSP_IoVecSlice_len(SmolRTSP_IoVecSlice self) {
 
     return result;
 }
+
+struct iovec smolrtsp_slice_to_iovec(U8Slice99 slice) {
+    return (struct iovec){.iov_base = slice.ptr, .iov_len = slice.len};
+}

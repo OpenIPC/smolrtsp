@@ -15,6 +15,17 @@ TEST io_vec_len(void) {
     PASS();
 }
 
+TEST slice_to_iovec(void) {
+    uint8_t data[] = {1, 2, 3};
+    const struct iovec bufs = smolrtsp_slice_to_iovec((U8Slice99)Slice99_typed_from_array(data));
+
+    ASSERT_EQ(bufs.iov_base, data);
+    ASSERT_EQ(bufs.iov_len, sizeof data);
+
+    PASS();
+}
+
 SUITE(io_vec) {
     RUN_TEST(io_vec_len);
+    RUN_TEST(slice_to_iovec);
 }
