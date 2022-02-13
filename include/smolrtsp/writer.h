@@ -57,4 +57,11 @@ void smolrtsp_char_buffer_writer(CharSlice99 data, void *buffer);
  */
 void smolrtsp_file_stream_writer(CharSlice99 data, void *stream);
 
+/** A writer that writes @p data to a file descriptor @p fd_ptr.
+ *
+ * @param[in] data The slice to the supplied data.
+ * @param[out] fd_ptr The pointer to a file descriptor (`int`) to write to.
+ */
+void smolrtsp_fd_writer(CharSlice99 data, void *fd_ptr);
+
 #endif // SMOLRTSP_USER_WRITER_H
