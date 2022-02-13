@@ -1,3 +1,5 @@
+![OpenIPC Logo](https://cdn.themactep.com/images/logo_openipc.png)
+
 # SmolRTSP
 [![CI](https://github.com/Hirrolot/smolrtsp/workflows/C/C++%20CI/badge.svg)](https://github.com/Hirrolot/smolrtsp/actions)
 [![Docs](https://img.shields.io/badge/docs-latest-blue)](https://openipc.org/smolrtsp/)
