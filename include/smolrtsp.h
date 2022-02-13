@@ -34,6 +34,7 @@
 
 #include <smolrtsp/droppable.h>
 #include <smolrtsp/io_vec.h>
+#include <smolrtsp/rtp_transport.h>
 #include <smolrtsp/transport.h>
 #include <smolrtsp/util.h>
 #include <smolrtsp/writer.h>
