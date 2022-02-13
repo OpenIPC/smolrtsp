@@ -6,8 +6,8 @@
 #ifndef SMOLRTSP_HEADER_MAP_H
 #define SMOLRTSP_HEADER_MAP_H
 
-#include <smolrtsp/error.h>
-#include <smolrtsp/header.h>
+#include <smolrtsp/types/error.h>
+#include <smolrtsp/types/header.h>
 
 #include <stdbool.h>
 #include <stddef.h>

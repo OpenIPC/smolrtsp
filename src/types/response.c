@@ -1,4 +1,4 @@
-#include <smolrtsp/response.h>
+#include <smolrtsp/types/response.h>
 
 #include "parsing.h"
 

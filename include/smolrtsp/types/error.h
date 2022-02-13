@@ -1,6 +1,6 @@
 /**
  * @file
- * Possible errors.
+ * Possible parsing errors.
  */
 
 #ifndef SMOLRTSP_COMMON_H

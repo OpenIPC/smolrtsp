@@ -1,4 +1,4 @@
-#include <smolrtsp/method.h>
+#include <smolrtsp/types/method.h>
 
 #include "parsing.h"
 

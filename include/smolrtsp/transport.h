@@ -1,6 +1,6 @@
 /**
  * @file
- * The RTSP transport interface.
+ * RTSP transport implementations.
  */
 
 #pragma once

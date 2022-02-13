@@ -1,4 +1,4 @@
-#include <smolrtsp/sdp.h>
+#include <smolrtsp/types/sdp.h>
 
 #include "crlf.h"
 #include "parsing.h"

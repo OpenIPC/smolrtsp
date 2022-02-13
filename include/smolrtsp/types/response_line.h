@@ -6,10 +6,10 @@
 #ifndef SMOLRTSP_RESPONSE_LINE_H
 #define SMOLRTSP_RESPONSE_LINE_H
 
-#include <smolrtsp/error.h>
-#include <smolrtsp/reason_phrase.h>
-#include <smolrtsp/rtsp_version.h>
-#include <smolrtsp/status_code.h>
+#include <smolrtsp/types/error.h>
+#include <smolrtsp/types/reason_phrase.h>
+#include <smolrtsp/types/rtsp_version.h>
+#include <smolrtsp/types/status_code.h>
 
 /**
  * The start state of #SmolRTSP_ResponseLineParseState.

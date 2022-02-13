@@ -1,4 +1,4 @@
-#include <smolrtsp/reason_phrase.h>
+#include <smolrtsp/types/reason_phrase.h>
 
 #include <greatest.h>
 

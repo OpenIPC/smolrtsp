@@ -6,7 +6,7 @@
 #ifndef SMOLRTSP_UTIL_H
 #define SMOLRTSP_UTIL_H
 
-#include <smolrtsp/error.h>
+#include <smolrtsp/types/error.h>
 
 #include <stdint.h>
 

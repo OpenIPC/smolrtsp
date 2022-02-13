@@ -2,7 +2,7 @@
 
 #include <smolrtsp/util.h>
 
-#include "parsing.h"
+#include "types/parsing.h"
 
 #include <assert.h>
 #include <stdio.h>

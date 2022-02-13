@@ -6,7 +6,7 @@
 #ifndef SMOLRTSP_RTSP_VERSION_H
 #define SMOLRTSP_RTSP_VERSION_H
 
-#include <smolrtsp/error.h>
+#include <smolrtsp/types/error.h>
 #include <smolrtsp/writer.h>
 
 #include <stdbool.h>

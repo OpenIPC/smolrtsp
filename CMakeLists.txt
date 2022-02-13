@@ -23,43 +23,43 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(slice99 datatype99 interface99)
 
 set(SMOLRTSP_SOURCES
-    include/smolrtsp/error.h
-    include/smolrtsp/header_map.h
-    include/smolrtsp/header.h
-    include/smolrtsp/message_body.h
-    include/smolrtsp/method.h
-    include/smolrtsp/reason_phrase.h
-    include/smolrtsp/request_line.h
-    include/smolrtsp/request_uri.h
-    include/smolrtsp/request.h
-    include/smolrtsp/response_line.h
-    include/smolrtsp/response.h
-    include/smolrtsp/rtsp_version.h
-    include/smolrtsp/status_code.h
-    include/smolrtsp/sdp.h
-    include/smolrtsp/rtp.h
+    include/smolrtsp/types/error.h
+    include/smolrtsp/types/header_map.h
+    include/smolrtsp/types/header.h
+    include/smolrtsp/types/message_body.h
+    include/smolrtsp/types/method.h
+    include/smolrtsp/types/reason_phrase.h
+    include/smolrtsp/types/request_line.h
+    include/smolrtsp/types/request_uri.h
+    include/smolrtsp/types/request.h
+    include/smolrtsp/types/response_line.h
+    include/smolrtsp/types/response.h
+    include/smolrtsp/types/rtsp_version.h
+    include/smolrtsp/types/status_code.h
+    include/smolrtsp/types/sdp.h
+    include/smolrtsp/types/rtp.h
     include/smolrtsp/writer.h
     include/smolrtsp/util.h
     include/smolrtsp/transport.h
     include/smolrtsp/droppable.h
     include/smolrtsp/io_vec.h
-    src/error.c
-    src/header_map.c
-    src/header.c
-    src/message_body.c
-    src/method.c
-    src/parsing.c
-    src/parsing.h
-    src/reason_phrase.c
-    src/request_line.c
-    src/request_uri.c
-    src/request.c
-    src/response_line.c
-    src/response.c
-    src/rtsp_version.c
-    src/status_code.c
-    src/sdp.c
-    src/rtp.c
+    src/types/error.c
+    src/types/header_map.c
+    src/types/header.c
+    src/types/message_body.c
+    src/types/method.c
+    src/types/parsing.c
+    src/types/parsing.h
+    src/types/reason_phrase.c
+    src/types/request_line.c
+    src/types/request_uri.c
+    src/types/request.c
+    src/types/response_line.c
+    src/types/response.c
+    src/types/rtsp_version.c
+    src/types/status_code.c
+    src/types/sdp.c
+    src/types/rtp.c
     src/writer.c
     src/util.c
     src/transport/tcp.c

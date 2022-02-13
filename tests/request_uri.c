@@ -1,4 +1,4 @@
-#include <smolrtsp/request_uri.h>
+#include <smolrtsp/types/request_uri.h>
 
 #include <greatest.h>
 

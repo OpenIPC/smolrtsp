@@ -7,11 +7,10 @@
 #ifndef SMOLRTSP_REQUEST_LINE_H
 #define SMOLRTSP_REQUEST_LINE_H
 
-#include <smolrtsp/error.h>
-
-#include <smolrtsp/method.h>
-#include <smolrtsp/request_uri.h>
-#include <smolrtsp/rtsp_version.h>
+#include <smolrtsp/types/error.h>
+#include <smolrtsp/types/method.h>
+#include <smolrtsp/types/request_uri.h>
+#include <smolrtsp/types/rtsp_version.h>
 
 #include <stdbool.h>
 

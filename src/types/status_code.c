@@ -1,4 +1,4 @@
-#include <smolrtsp/status_code.h>
+#include <smolrtsp/types/status_code.h>
 
 #include "parsing.h"
 

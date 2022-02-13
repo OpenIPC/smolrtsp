@@ -1,4 +1,4 @@
-#include <smolrtsp/request.h>
+#include <smolrtsp/types/request.h>
 
 #include <greatest.h>
 

@@ -1,4 +1,4 @@
-#include <smolrtsp/rtp.h>
+#include <smolrtsp/types/rtp.h>
 
 #include <assert.h>
 #include <string.h>

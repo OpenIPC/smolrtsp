@@ -6,10 +6,10 @@
 #ifndef SMOLRTSP_RESPONSE_H
 #define SMOLRTSP_RESPONSE_H
 
-#include <smolrtsp/error.h>
-#include <smolrtsp/header_map.h>
-#include <smolrtsp/message_body.h>
-#include <smolrtsp/response_line.h>
+#include <smolrtsp/types/error.h>
+#include <smolrtsp/types/header_map.h>
+#include <smolrtsp/types/message_body.h>
+#include <smolrtsp/types/response_line.h>
 
 /**
  * The start state of #SmolRTSP_ResponseParseState.

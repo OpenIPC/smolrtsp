@@ -6,10 +6,10 @@
 #ifndef SMOLRTSP_REQUEST_H
 #define SMOLRTSP_REQUEST_H
 
-#include <smolrtsp/error.h>
-#include <smolrtsp/header_map.h>
-#include <smolrtsp/message_body.h>
-#include <smolrtsp/request_line.h>
+#include <smolrtsp/types/error.h>
+#include <smolrtsp/types/header_map.h>
+#include <smolrtsp/types/message_body.h>
+#include <smolrtsp/types/request_line.h>
 
 #include <stdbool.h>
 

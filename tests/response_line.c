@@ -1,4 +1,4 @@
-#include <smolrtsp/response_line.h>
+#include <smolrtsp/types/response_line.h>
 
 #include <greatest.h>
 

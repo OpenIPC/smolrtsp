@@ -1,4 +1,4 @@
-#include <smolrtsp/rtsp_version.h>
+#include <smolrtsp/types/rtsp_version.h>
 
 #include <greatest.h>
 

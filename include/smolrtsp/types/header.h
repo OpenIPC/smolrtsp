@@ -6,7 +6,7 @@
 #ifndef SMOLRTSP_HEADER_H
 #define SMOLRTSP_HEADER_H
 
-#include <smolrtsp/error.h>
+#include <smolrtsp/types/error.h>
 #include <smolrtsp/writer.h>
 
 #include <stdbool.h>

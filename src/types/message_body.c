@@ -1,4 +1,4 @@
-#include <smolrtsp/message_body.h>
+#include <smolrtsp/types/message_body.h>
 
 #include "parsing.h"
 

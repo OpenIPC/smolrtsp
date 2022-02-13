@@ -1,4 +1,4 @@
-#include <smolrtsp/error.h>
+#include <smolrtsp/types/error.h>
 
 const char *SmolRTSP_ParseType_str(SmolRTSP_ParseType self) {
     switch (self) {

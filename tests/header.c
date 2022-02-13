@@ -1,4 +1,4 @@
-#include <smolrtsp/header.h>
+#include <smolrtsp/types/header.h>
 
 #include <greatest.h>
 

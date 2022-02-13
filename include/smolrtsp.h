@@ -16,27 +16,26 @@
 #ifndef SMOLRTSP_H
 #define SMOLRTSP_H
 
-#include <smolrtsp/error.h>
-#include <smolrtsp/header.h>
-#include <smolrtsp/header_map.h>
-#include <smolrtsp/message_body.h>
-#include <smolrtsp/method.h>
-#include <smolrtsp/reason_phrase.h>
-#include <smolrtsp/request.h>
-#include <smolrtsp/request_line.h>
-#include <smolrtsp/request_uri.h>
-#include <smolrtsp/response.h>
-#include <smolrtsp/response_line.h>
-#include <smolrtsp/rtsp_version.h>
-#include <smolrtsp/status_code.h>
-#include <smolrtsp/util.h>
-#include <smolrtsp/writer.h>
-
-#include <smolrtsp/rtp.h>
-#include <smolrtsp/sdp.h>
+#include <smolrtsp/types/error.h>
+#include <smolrtsp/types/header.h>
+#include <smolrtsp/types/header_map.h>
+#include <smolrtsp/types/message_body.h>
+#include <smolrtsp/types/method.h>
+#include <smolrtsp/types/reason_phrase.h>
+#include <smolrtsp/types/request.h>
+#include <smolrtsp/types/request_line.h>
+#include <smolrtsp/types/request_uri.h>
+#include <smolrtsp/types/response.h>
+#include <smolrtsp/types/response_line.h>
+#include <smolrtsp/types/rtp.h>
+#include <smolrtsp/types/rtsp_version.h>
+#include <smolrtsp/types/sdp.h>
+#include <smolrtsp/types/status_code.h>
 
 #include <smolrtsp/droppable.h>
 #include <smolrtsp/io_vec.h>
 #include <smolrtsp/transport.h>
+#include <smolrtsp/util.h>
+#include <smolrtsp/writer.h>
 
 #endif // SMOLRTSP_H
