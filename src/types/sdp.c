@@ -19,3 +19,10 @@ void SmolRTSP_SdpLine_serialize(SmolRTSP_SdpLine self, SmolRTSP_Writer w, void *
             SMOLRTSP_CRLF,
         });
 }
+
+void smolrtsp_sdp_append(SmolRTSP_SdpType ty, const char *value, SmolRTSP_Writer w, void *w_ctx) {
+    assert(w);
+
+    SmolRTSP_SdpLine_serialize(
+        (SmolRTSP_SdpLine){(ty), CharSlice99_from_str((char *)value)}, w, w_ctx);
+}
