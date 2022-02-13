@@ -6,6 +6,7 @@
 #pragma once
 
 #include <smolrtsp/droppable.h>
+#include <smolrtsp/transport.h>
 
 #include <stdbool.h>
 #include <stdint.h>
