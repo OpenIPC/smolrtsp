@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>smolrtsp: include/smolrtsp/request_line.h File Reference</title>
+<title>smolrtsp: include/smolrtsp/types/request_line.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -92,30 +92,30 @@ $(document).ready(function(){initNavTree('request__line_8h.html','');});
 
 <p>An RTSP request line.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &lt;<a class="el" href="error_8h_source.html">smolrtsp/error.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="method_8h_source.html">smolrtsp/method.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="request__uri_8h_source.html">smolrtsp/request_uri.h</a>&gt;</code><br />
-<code>#include &lt;<a class="el" href="rtsp__version_8h_source.html">smolrtsp/rtsp_version.h</a>&gt;</code><br />
+<div class="textblock"><code>#include &lt;<a class="el" href="error_8h_source.html">smolrtsp/types/error.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="method_8h_source.html">smolrtsp/types/method.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="request__uri_8h_source.html">smolrtsp/types/request_uri.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="rtsp__version_8h_source.html">smolrtsp/types/rtsp_version.h</a>&gt;</code><br />
 <code>#include &lt;stdbool.h&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for request_line.h:</div>
 <div class="dyncontent">
-<div class="center"><img src="request__line_8h__incl.png" border="0" usemap="#include_2smolrtsp_2request__line_8h" alt=""/></div>
-<map name="include_2smolrtsp_2request__line_8h" id="include_2smolrtsp_2request__line_8h">
-<area shape="rect" id="node2" href="error_8h.html" title="Possible errors. " alt="" coords="251,169,365,196"/>
-<area shape="rect" id="node8" href="method_8h.html" title="An RTSP method. " alt="" coords="5,95,136,121"/>
-<area shape="rect" id="node9" href="request__uri_8h.html" title="An RTSP request URI. " alt="" coords="161,95,311,121"/>
-<area shape="rect" id="node10" href="rtsp__version_8h.html" title="An RTSP version. " alt="" coords="387,95,546,121"/>
-<area shape="rect" id="node3" href="writer_8h.html" title="The writer interface. " alt="" coords="371,244,490,271"/>
+<div class="center"><img src="request__line_8h__incl.png" border="0" usemap="#include_2smolrtsp_2types_2request__line_8h" alt=""/></div>
+<map name="include_2smolrtsp_2types_2request__line_8h" id="include_2smolrtsp_2types_2request__line_8h">
+<area shape="rect" id="node2" href="error_8h.html" title="Possible parsing errors. " alt="" coords="241,184,390,211"/>
+<area shape="rect" id="node8" href="method_8h.html" title="An RTSP method. " alt="" coords="5,102,172,129"/>
+<area shape="rect" id="node9" href="request__uri_8h.html" title="An RTSP request URI. " alt="" coords="197,95,351,136"/>
+<area shape="rect" id="node10" href="rtsp__version_8h.html" title="An RTSP version. " alt="" coords="427,95,561,136"/>
+<area shape="rect" id="node3" href="writer_8h.html" title="The writer interface. " alt="" coords="393,259,512,285"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><img src="request__line_8h__dep__incl.png" border="0" usemap="#include_2smolrtsp_2request__line_8hdep" alt=""/></div>
-<map name="include_2smolrtsp_2request__line_8hdep" id="include_2smolrtsp_2request__line_8hdep">
-<area shape="rect" id="node2" href="smolrtsp_8h.html" title="Re&#45;exports all the functionality. " alt="" coords="23,169,151,196"/>
-<area shape="rect" id="node3" href="request_8h.html" title="An RTSP request. " alt="" coords="63,95,237,121"/>
+<div class="center"><img src="request__line_8h__dep__incl.png" border="0" usemap="#include_2smolrtsp_2types_2request__line_8hdep" alt=""/></div>
+<map name="include_2smolrtsp_2types_2request__line_8hdep" id="include_2smolrtsp_2types_2request__line_8hdep">
+<area shape="rect" id="node2" href="smolrtsp_8h.html" title="Re&#45;exports all the functionality. " alt="" coords="18,184,146,211"/>
+<area shape="rect" id="node3" href="request_8h.html" title="An RTSP request. " alt="" coords="63,95,216,136"/>
 </map>
 </div>
 </div>
@@ -162,7 +162,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">(<a class="code" href="structSmolRTSP__RequestLineParseState.html">SmolRTSP_RequestLineParseState</a>) {                                                             \</div><div class="line">        .tag = SmolRTSP_RequestLineParseState_Method,                                              \</div><div class="line">    }</div><div class="ttc" id="structSmolRTSP__RequestLineParseState_html"><div class="ttname"><a href="structSmolRTSP__RequestLineParseState.html">SmolRTSP_RequestLineParseState</a></div><div class="ttdoc">A state of parsing of SmolRTSP_RequestLine. </div><div class="ttdef"><b>Definition:</b> request_line.h:60</div></div>
+<b>Value:</b><div class="fragment"><div class="line">(<a class="code" href="structSmolRTSP__RequestLineParseState.html">SmolRTSP_RequestLineParseState</a>) {                                                             \</div><div class="line">        .tag = SmolRTSP_RequestLineParseState_Method,                                              \</div><div class="line">    }</div><div class="ttc" id="structSmolRTSP__RequestLineParseState_html"><div class="ttname"><a href="structSmolRTSP__RequestLineParseState.html">SmolRTSP_RequestLineParseState</a></div><div class="ttdoc">A state of parsing of SmolRTSP_RequestLine. </div><div class="ttdef"><b>Definition:</b> request_line.h:59</div></div>
 </div><!-- fragment -->
 <p>The start state of <a class="el" href="structSmolRTSP__RequestLineParseState.html" title="A state of parsing of SmolRTSP_RequestLine. ">SmolRTSP_RequestLineParseState</a>. </p>
 
@@ -289,7 +289,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_d9df11550791e941c069ba1bdc5c3ae8.html">smolrtsp</a></li><li class="navelem"><a class="el" href="request__line_8h.html">request_line.h</a></li>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_d9df11550791e941c069ba1bdc5c3ae8.html">smolrtsp</a></li><li class="navelem"><a class="el" href="dir_4977076db269b414a085068955403c20.html">types</a></li><li class="navelem"><a class="el" href="request__line_8h.html">request_line.h</a></li>
     <li class="footer">Generated by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.13 </li>

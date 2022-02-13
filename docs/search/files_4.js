@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['sdp_2eh',['sdp.h',['../sdp_8h.html',1,'']]],
-  ['smolrtsp_2eh',['smolrtsp.h',['../smolrtsp_8h.html',1,'']]],
-  ['status_5fcode_2eh',['status_code.h',['../status__code_8h.html',1,'']]]
+  ['message_5fbody_2eh',['message_body.h',['../message__body_8h.html',1,'']]],
+  ['method_2eh',['method.h',['../method_8h.html',1,'']]]
 ];
