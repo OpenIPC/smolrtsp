@@ -64,6 +64,8 @@ interface99(SmolRTSP_Writer);
  * @param[in] len The number of items in @p data.
  * @param[in] data The data array which will be written to @p w, one-by-one.
  *
+ * @return The number of bytes written or a negative value on error.
+ *
  * @pre `w.self && w.vptr`
  */
 ssize_t
