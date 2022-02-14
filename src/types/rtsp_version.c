@@ -5,23 +5,12 @@
 #include <assert.h>
 #include <inttypes.h>
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 
 ssize_t SmolRTSP_RtspVersion_serialize(SmolRTSP_RtspVersion self, SmolRTSP_Writer w) {
     assert(w.self && w.vptr);
 
-    const char *fmt = "RTSP/%" PRIu8 ".%" PRIu8;
-
-    const size_t buffer_size = snprintf(NULL, 0, fmt, self.major, self.minor) + 1;
-
-    char *buffer = malloc(buffer_size);
-    assert(buffer);
-    snprintf(buffer, buffer_size, fmt, self.major, self.minor);
-
-    const ssize_t result = VCALL(w, write, CharSlice99_from_str(buffer));
-    free(buffer);
-    return result;
+    return VCALL(w, writef, "RTSP/%" PRIu8 ".%" PRIu8, self.major, self.minor);
 }
 
 SmolRTSP_ParseResult
