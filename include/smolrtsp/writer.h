@@ -5,6 +5,7 @@
 
 #pragma once
 
+#include <stdarg.h>
 #include <stddef.h>
 #include <stdio.h>
 
@@ -19,9 +20,23 @@
     /*                                                                                             \
      * Writes @p data into itself.                                                                 \
      *                                                                                             \
-     * @param[in] data The slice to the supplied data.                                             \
+     * @param[in] data The slice of character data to write.                                       \
      */                                                                                            \
-    vfunc99(void, write, VSelf99, CharSlice99 data)
+    vfunc99(void, write, VSelf99, CharSlice99 data)                                                \
+                                                                                                   \
+    /*                                                                                             \
+     * Writes a formatted string into itself.                                                      \
+     *                                                                                             \
+     * @param[in] format The `printf`-like format string.                                          \
+     *                                                                                             \
+     * @return The number of bytes written or a negative value on error.                           \
+     */                                                                                            \
+    vfunc99(int, printf, VSelf99, const char format[restrict], ...)                                \
+                                                                                                   \
+    /*                                                                                             \
+     * The same as `printf` but accepts `va_list`.                                                 \
+     */                                                                                            \
+    vfunc99(int, vprintf, VSelf99, const char format[restrict], va_list ap)
 
 /**
  * Defines the `SmolRTSP_Writer` interface.
