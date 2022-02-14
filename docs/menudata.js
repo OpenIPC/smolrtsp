@@ -41,8 +41,8 @@ var menudata={children:[
 {text:"Globals",url:"globals.html",children:[
 {text:"All",url:"globals.html",children:[
 {text:"d",url:"globals.html#index_d"},
-{text:"i",url:"globals.html#index_i"},
-{text:"s",url:"globals.html#index_s"}]},
+{text:"i",url:"globals_i.html#index_i"},
+{text:"s",url:"globals_s.html#index_s"}]},
 {text:"Functions",url:"globals_func.html",children:[
 {text:"d",url:"globals_func.html#index_d"},
 {text:"i",url:"globals_func.html#index_i"},

@@ -10,5 +10,5 @@ var header__map_8h =
     [ "SmolRTSP_HeaderMap_is_full", "header__map_8h.html#acb680bac79a052bd5da0994c0f25e504", null ],
     [ "SmolRTSP_HeaderMap_key_is_present", "header__map_8h.html#acdedde821299533d99c9ec622cd5d791", null ],
     [ "SmolRTSP_HeaderMap_parse", "header__map_8h.html#ad64642cce9afe73f8a87592f7e52b557", null ],
-    [ "SmolRTSP_HeaderMap_serialize", "header__map_8h.html#a5ff943c9830f08af638424890d6b1f82", null ]
+    [ "SmolRTSP_HeaderMap_serialize", "header__map_8h.html#af8fe3d9abdb64df8c98119496f1228c9", null ]
 ];

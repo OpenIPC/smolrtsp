@@ -1,6 +1,6 @@
 var NAVTREE =
 [
-  [ "smolrtsp", "index.html", [
+  [ "SmolRTSP", "index.html", [
     [ "Data Structures", "annotated.html", [
       [ "Data Structures", "annotated.html", "annotated_dup" ],
       [ "Data Structure Index", "classes.html", null ],
@@ -12,7 +12,7 @@ var NAVTREE =
     [ "Files", null, [
       [ "File List", "files.html", "files" ],
       [ "Globals", "globals.html", [
-        [ "All", "globals.html", null ],
+        [ "All", "globals.html", "globals_dup" ],
         [ "Functions", "globals_func.html", null ],
         [ "Typedefs", "globals_type.html", null ],
         [ "Enumerations", "globals_enum.html", null ],
@@ -26,7 +26,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"structSmolRTSP__RequestLineParseState.html#aab789a463fdcde355e19cd998f32f4a7"
+"structSmolRTSP__ParseStatus.html#a55c57310f78367ffa15b85cd07577db7"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

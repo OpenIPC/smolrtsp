@@ -44,5 +44,5 @@ var header_8h =
     [ "SmolRTSP_Header_dbg_to_file", "header_8h.html#a754f134b79fca3b20470d4cad579f1df", null ],
     [ "SmolRTSP_Header_eq", "header_8h.html#ac7a8b389d793ae1845fb43b8e1023902", null ],
     [ "SmolRTSP_Header_parse", "header_8h.html#a49657e8bd1e5f938c7db75f5c7750a06", null ],
-    [ "SmolRTSP_Header_serialize", "header_8h.html#a5fd8858b8abb110a284c9c5494a07838", null ]
+    [ "SmolRTSP_Header_serialize", "header_8h.html#af4d4002b48bfcfa1e46837052738a43d", null ]
 ];

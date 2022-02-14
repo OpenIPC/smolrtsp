@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>smolrtsp: include/smolrtsp/types/header.h File Reference</title>
+<title>SmolRTSP: include/smolrtsp/types/header.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -28,7 +28,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">smolrtsp
+   <div id="projectname">SmolRTSP
    &#160;<span id="projectnumber">0.1.0</span>
    </div>
    <div id="projectbrief">A small, portable, extensible RTSP 1.0 implementation in C99</div>
@@ -96,14 +96,15 @@ $(document).ready(function(){initNavTree('header_8h.html','');});
 <code>#include &lt;<a class="el" href="writer_8h_source.html">smolrtsp/writer.h</a>&gt;</code><br />
 <code>#include &lt;stdbool.h&gt;</code><br />
 <code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;unistd.h&gt;</code><br />
 <code>#include &lt;slice99.h&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for header.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="header_8h__incl.png" border="0" usemap="#include_2smolrtsp_2types_2header_8h" alt=""/></div>
 <map name="include_2smolrtsp_2types_2header_8h" id="include_2smolrtsp_2types_2header_8h">
-<area shape="rect" id="node2" href="error_8h.html" title="Possible parsing errors. " alt="" coords="145,95,295,121"/>
-<area shape="rect" id="node3" href="writer_8h.html" title="The writer interface. " alt="" coords="22,169,141,196"/>
+<area shape="rect" id="node2" href="error_8h.html" title="Possible parsing errors. " alt="" coords="417,95,567,121"/>
+<area shape="rect" id="node3" href="writer_8h.html" title="The writer interface. " alt="" coords="223,169,342,196"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -112,9 +113,10 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="center"><img src="header_8h__dep__incl.png" border="0" usemap="#include_2smolrtsp_2types_2header_8hdep" alt=""/></div>
 <map name="include_2smolrtsp_2types_2header_8hdep" id="include_2smolrtsp_2types_2header_8hdep">
 <area shape="rect" id="node2" href="smolrtsp_8h.html" title="Re&#45;exports all the functionality. " alt="" coords="69,273,197,300"/>
-<area shape="rect" id="node3" href="header__map_8h.html" title="An RTSP header map. " alt="" coords="88,95,241,136"/>
-<area shape="rect" id="node4" href="request_8h.html" title="An RTSP request. " alt="" coords="113,184,267,225"/>
-<area shape="rect" id="node5" href="response_8h.html" title="An RTSP response. " alt="" coords="291,184,444,225"/>
+<area shape="rect" id="node4" href="header__map_8h.html" title="An RTSP header map. " alt="" coords="88,95,241,136"/>
+<area shape="rect" id="node3" href="rtp__transport_8h.html" title="An RTP data transport. " alt="" coords="65,348,201,389"/>
+<area shape="rect" id="node5" href="request_8h.html" title="An RTSP request. " alt="" coords="113,184,267,225"/>
+<area shape="rect" id="node6" href="response_8h.html" title="An RTSP response. " alt="" coords="291,184,444,225"/>
 </map>
 </div>
 </div>
@@ -287,9 +289,9 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a5fd8858b8abb110a284c9c5494a07838"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="header_8h.html#a5fd8858b8abb110a284c9c5494a07838">SmolRTSP_Header_serialize</a> (<a class="el" href="structSmolRTSP__Header.html">SmolRTSP_Header</a> self, <a class="el" href="writer_8h.html#aa2e21ebbbb6e1f16ece430eadbc5662d">SmolRTSP_Writer</a> w, void *w_ctx)</td></tr>
-<tr class="memdesc:a5fd8858b8abb110a284c9c5494a07838"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serialises <code>self</code> into <code>w</code>.  <a href="#a5fd8858b8abb110a284c9c5494a07838">More...</a><br /></td></tr>
-<tr class="separator:a5fd8858b8abb110a284c9c5494a07838"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4d4002b48bfcfa1e46837052738a43d"><td class="memItemLeft" align="right" valign="top">ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="header_8h.html#af4d4002b48bfcfa1e46837052738a43d">SmolRTSP_Header_serialize</a> (<a class="el" href="structSmolRTSP__Header.html">SmolRTSP_Header</a> self, SmolRTSP_Writer w)</td></tr>
+<tr class="memdesc:af4d4002b48bfcfa1e46837052738a43d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serialises <code>self</code> into <code>w</code>.  <a href="#af4d4002b48bfcfa1e46837052738a43d">More...</a><br /></td></tr>
+<tr class="separator:af4d4002b48bfcfa1e46837052738a43d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a49657e8bd1e5f938c7db75f5c7750a06"><td class="memItemLeft" align="right" valign="top">SmolRTSP_ParseResult&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="header_8h.html#a49657e8bd1e5f938c7db75f5c7750a06">SmolRTSP_Header_parse</a> (<a class="el" href="structSmolRTSP__Header.html">SmolRTSP_Header</a> *restrict self, CharSlice99 input)</td></tr>
 <tr class="memdesc:a49657e8bd1e5f938c7db75f5c7750a06"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses <code>data</code> to <code>self</code>.  <a href="#a49657e8bd1e5f938c7db75f5c7750a06">More...</a><br /></td></tr>
 <tr class="separator:a49657e8bd1e5f938c7db75f5c7750a06"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -400,14 +402,14 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="head
 
 </div>
 </div>
-<a id="a5fd8858b8abb110a284c9c5494a07838"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5fd8858b8abb110a284c9c5494a07838">&#9670;&nbsp;</a></span>SmolRTSP_Header_serialize()</h2>
+<a id="af4d4002b48bfcfa1e46837052738a43d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af4d4002b48bfcfa1e46837052738a43d">&#9670;&nbsp;</a></span>SmolRTSP_Header_serialize()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void SmolRTSP_Header_serialize </td>
+          <td class="memname">ssize_t SmolRTSP_Header_serialize </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structSmolRTSP__Header.html">SmolRTSP_Header</a>&#160;</td>
           <td class="paramname"><em>self</em>, </td>
@@ -415,14 +417,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="head
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="writer_8h.html#aa2e21ebbbb6e1f16ece430eadbc5662d">SmolRTSP_Writer</a>&#160;</td>
-          <td class="paramname"><em>w</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">void *&#160;</td>
-          <td class="paramname"><em>w_ctx</em>&#160;</td>
+          <td class="paramtype">SmolRTSP_Writer&#160;</td>
+          <td class="paramname"><em>w</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -436,12 +432,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="head
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">self</td><td>The instance to be serialised. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">w</td><td>The function to be provided with serialised data (possibly in chunks). </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">w_ctx</td><td>Some value provided to <code>w</code> on each write.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">w</td><td>The writer to be provided with serialised data.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section pre"><dt>Precondition</dt><dd><code>w != NULL</code> </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The number of bytes written or a negative value on error.</dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd><code>w.self &amp;&amp; w.vptr</code> </dd></dl>
 
 </div>
 </div>

@@ -46,5 +46,5 @@ var status__code_8h =
     [ "SMOLRTSP_STATUS_CODE_USE_PROXY", "status__code_8h.html#a4cbdbb738175ce67720033537aba50fe", null ],
     [ "SmolRTSP_StatusCode", "status__code_8h.html#ac339032e6c3031ccc07cdd573bd8352a", null ],
     [ "SmolRTSP_StatusCode_parse", "status__code_8h.html#a1119f2de90c85bc0ebfdf3f770587cf5", null ],
-    [ "SmolRTSP_StatusCode_serialize", "status__code_8h.html#a5e59888b4d01c1a9a489e4fdade7da07", null ]
+    [ "SmolRTSP_StatusCode_serialize", "status__code_8h.html#ab4080989c0aec75d3d76e2ec49df02e8", null ]
 ];
