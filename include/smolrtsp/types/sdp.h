@@ -54,52 +54,52 @@ void smolrtsp_sdp_printf(SmolRTSP_SdpType ty, SmolRTSP_Writer w, const char fmt[
 /**
  * Protocol Version (`v=`).
  */
-#define SMOLRTSP_SDP_TYPE_VERSION 'v'
+#define SMOLRTSP_SDP_VERSION 'v'
 
 /**
  * Origin (`o=`).
  */
-#define SMOLRTSP_SDP_TYPE_ORIGIN 'o'
+#define SMOLRTSP_SDP_ORIGIN 'o'
 
 /**
  * Session Name (`s=`).
  */
-#define SMOLRTSP_SDP_TYPE_SESSION_NAME 's'
+#define SMOLRTSP_SDP_SESSION_NAME 's'
 
 /**
  * Session Information (`i=`).
  */
-#define SMOLRTSP_SDP_TYPE_INFO 'i'
+#define SMOLRTSP_SDP_INFO 'i'
 
 /**
  * URI (`u=`).
  */
-#define SMOLRTSP_SDP_TYPE_URI 'u'
+#define SMOLRTSP_SDP_URI 'u'
 
 /**
  * Email Address (`e=`).
  */
-#define SMOLRTSP_SDP_TYPE_EMAIL 'e'
+#define SMOLRTSP_SDP_EMAIL 'e'
 
 /**
  * Phone Number (`p=`).
  */
-#define SMOLRTSP_SDP_TYPE_PHONE 'p'
+#define SMOLRTSP_SDP_PHONE 'p'
 
 /**
  * Connection Data (`c=`).
  */
-#define SMOLRTSP_SDP_TYPE_CONNECTION 'c'
+#define SMOLRTSP_SDP_CONNECTION 'c'
 
 /**
  * Bandwidth (`b=`).
  */
-#define SMOLRTSP_SDP_TYPE_BANDWIDTH 'b'
+#define SMOLRTSP_SDP_BANDWIDTH 'b'
 
 /**
  * Timing (`t=`).
  */
-#define SMOLRTSP_SDP_TYPE_TIME 't'
+#define SMOLRTSP_SDP_TIME 't'
 
 /**
  * Repeat Times (`r=`).
@@ -119,9 +119,9 @@ void smolrtsp_sdp_printf(SmolRTSP_SdpType ty, SmolRTSP_Writer w, const char fmt[
 /**
  * Attributes (`a=`).
  */
-#define SMOLRTSP_SDP_TYPE_ATTR 'a'
+#define SMOLRTSP_SDP_ATTR 'a'
 
 /**
  * Media Descriptions (`m=`).
  */
-#define SMOLRTSP_SDP_TYPE_MEDIA 'm'
+#define SMOLRTSP_SDP_MEDIA 'm'
