@@ -15,19 +15,19 @@ FetchContent_GetProperties(greatest)
 add_executable(
   tests
   main.c
-  header_map.c
-  header.c
-  message_body.c
-  method.c
-  reason_phrase.c
-  request.c
-  request_line.c
-  response.c
-  response_line.c
-  request_uri.c
-  rtsp_version.c
-  status_code.c
-  sdp.c
+  types/header_map.c
+  types/header.c
+  types/message_body.c
+  types/method.c
+  types/reason_phrase.c
+  types/request.c
+  types/request_line.c
+  types/response.c
+  types/response_line.c
+  types/request_uri.c
+  types/rtsp_version.c
+  types/status_code.c
+  types/sdp.c
   util.c
   writer.c
   io_vec.c
