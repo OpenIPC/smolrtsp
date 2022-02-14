@@ -19,8 +19,15 @@ void SmolRTSP_SdpLine_serialize(SmolRTSP_SdpLine self, SmolRTSP_Writer w) {
            });
 }
 
-void smolrtsp_sdp_append(SmolRTSP_SdpType ty, const char *value, SmolRTSP_Writer w) {
+void smolrtsp_sdp_printf(SmolRTSP_SdpType ty, SmolRTSP_Writer w, const char fmt[restrict], ...) {
     assert(w.self && w.vptr);
 
-    SmolRTSP_SdpLine_serialize((SmolRTSP_SdpLine){(ty), CharSlice99_from_str((char *)value)}, w);
+    va_list ap;
+    va_start(ap, fmt);
+
+    VCALL(w, printf, "%c=", ty);
+    VCALL(w, vprintf, fmt, ap);
+    VCALL(w, write, SMOLRTSP_CRLF);
+
+    va_end(ap);
 }

@@ -27,16 +27,16 @@
     /*                                                                                             \
      * Writes a formatted string into itself.                                                      \
      *                                                                                             \
-     * @param[in] format The `printf`-like format string.                                          \
+     * @param[in] fmt The `printf`-like format string.                                             \
      *                                                                                             \
      * @return The number of bytes written or a negative value on error.                           \
      */                                                                                            \
-    vfunc99(int, printf, VSelf99, const char format[restrict], ...)                                \
+    vfunc99(int, printf, VSelf99, const char fmt[restrict], ...)                                   \
                                                                                                    \
     /*                                                                                             \
      * The same as `printf` but accepts `va_list`.                                                 \
      */                                                                                            \
-    vfunc99(int, vprintf, VSelf99, const char format[restrict], va_list ap)
+    vfunc99(int, vprintf, VSelf99, const char fmt[restrict], va_list ap)
 
 /**
  * Defines the `SmolRTSP_Writer` interface.

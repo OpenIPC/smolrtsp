@@ -41,15 +41,15 @@ typedef struct {
 void SmolRTSP_SdpLine_serialize(SmolRTSP_SdpLine self, SmolRTSP_Writer w);
 
 /**
- * Appends a single SDP line to @p w.
+ * Printfs a single SDP line to @p w.
  *
- * This function is equivalent to `SmolRTSP_SdpLine_serialize((SmolRTSP_SdpLine){ty,
- * CharSlice99_from_str(value)}, w)`.
+ * @param[in] ty The type of the SDP line.
+ * @param[out] w The writer to be provided with SDP data.
+ * @param[in] fmt The `printf`-like format string.
  *
- * @pre @p value is a null-terminated string.
  * @pre `w.self && w.vptr`
  */
-void smolrtsp_sdp_append(SmolRTSP_SdpType ty, const char *value, SmolRTSP_Writer w);
+void smolrtsp_sdp_printf(SmolRTSP_SdpType ty, SmolRTSP_Writer w, const char fmt[restrict], ...);
 
 /**
  * Protocol Version (`v=`).
