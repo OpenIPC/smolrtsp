@@ -53,7 +53,7 @@ TEST serialize_header(void) {
 
     SmolRTSP_Header_serialize(header, smolrtsp_string_writer(buffer));
 
-    ASSERT_EQ(strcmp(buffer, "Content-Length: 123\r\n"), 0);
+    ASSERT_STR_EQ("Content-Length: 123\r\n", buffer);
 
     PASS();
 }

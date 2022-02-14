@@ -46,7 +46,7 @@ TEST serialize_rtsp_version(void) {
 
     SmolRTSP_RtspVersion_serialize((SmolRTSP_RtspVersion){1, 0}, smolrtsp_string_writer(buffer));
 
-    ASSERT_EQ(strcmp(buffer, "RTSP/1.0"), 0);
+    ASSERT_STR_EQ("RTSP/1.0", buffer);
 
     PASS();
 }

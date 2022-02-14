@@ -94,12 +94,10 @@ TEST serialize_response(void) {
 
     SmolRTSP_Response_serialize(response, smolrtsp_string_writer(buffer));
 
-    ASSERT_EQ(
-        strcmp(
-            buffer,
-            "RTSP/1.0 200 OK\r\nContent-Length: 123\r\nContent-Type: "
-            "application/octet-stream\r\n\r\n1234567890"),
-        0);
+    ASSERT_STR_EQ(
+        "RTSP/1.0 200 OK\r\nContent-Length: 123\r\nContent-Type: "
+        "application/octet-stream\r\n\r\n1234567890",
+        buffer);
 
     PASS();
 }

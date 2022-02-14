@@ -123,12 +123,10 @@ TEST serialize_request(void) {
 
     SmolRTSP_Request_serialize(request, smolrtsp_string_writer(buffer));
 
-    ASSERT_EQ(
-        strcmp(
-            buffer,
-            "DESCRIBE http://example.com RTSP/1.0\r\nContent-Length: 123\r\nContent-Type: "
-            "application/octet-stream\r\n\r\n1234567890"),
-        0);
+    ASSERT_STR_EQ(
+        "DESCRIBE http://example.com RTSP/1.0\r\nContent-Length: 123\r\nContent-Type: "
+        "application/octet-stream\r\n\r\n1234567890",
+        buffer);
 
     PASS();
 }

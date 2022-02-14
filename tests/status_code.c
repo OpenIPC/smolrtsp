@@ -44,7 +44,7 @@ TEST serialize_status_code(void) {
 
     SmolRTSP_StatusCode_serialize(SMOLRTSP_STATUS_CODE_NOT_FOUND, smolrtsp_string_writer(buffer));
 
-    ASSERT_EQ(strcmp(buffer, "404"), 0);
+    ASSERT_STR_EQ("404", buffer);
 
     PASS();
 }

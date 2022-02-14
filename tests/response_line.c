@@ -47,7 +47,7 @@ TEST serialize_response_line(void) {
 
     SmolRTSP_ResponseLine_serialize(line, smolrtsp_string_writer(buffer));
 
-    ASSERT_EQ(strcmp(buffer, "RTSP/1.0 200 OK\r\n"), 0);
+    ASSERT_STR_EQ("RTSP/1.0 200 OK\r\n", buffer);
 
     PASS();
 }

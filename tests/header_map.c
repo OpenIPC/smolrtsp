@@ -80,7 +80,7 @@ TEST serialize_header_map(void) {
     const SmolRTSP_HeaderMap map = HEADER_MAP;
 
     SmolRTSP_HeaderMap_serialize(map, smolrtsp_string_writer(buffer));
-    ASSERT_EQ(strcmp(buffer, HEADER_MAP_STR), 0);
+    ASSERT_STR_EQ(HEADER_MAP_STR, buffer);
 
     PASS();
 }

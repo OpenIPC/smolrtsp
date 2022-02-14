@@ -51,7 +51,7 @@ TEST serialize_request_line(void) {
 
     SmolRTSP_RequestLine_serialize(line, smolrtsp_string_writer(buffer));
 
-    ASSERT_EQ(strcmp(buffer, "DESCRIBE http://example.com RTSP/1.0\r\n"), 0);
+    ASSERT_STR_EQ("DESCRIBE http://example.com RTSP/1.0\r\n", buffer);
 
     PASS();
 }
