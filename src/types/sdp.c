@@ -19,15 +19,23 @@ ssize_t SmolRTSP_SdpLine_serialize(SmolRTSP_SdpLine self, SmolRTSP_Writer w) {
            });
 }
 
-void smolrtsp_sdp_printf(SmolRTSP_SdpType ty, SmolRTSP_Writer w, const char fmt[restrict], ...) {
+ssize_t smolrtsp_sdp_printf(SmolRTSP_SdpType ty, SmolRTSP_Writer w, const char fmt[restrict], ...) {
     assert(w.self && w.vptr);
+    assert(fmt);
+
+    ssize_t result = 0, ret = 0;
 
     va_list ap;
     va_start(ap, fmt);
 
-    VCALL(w, writef, "%c=", ty);
-    VCALL(w, vwritef, fmt, ap);
-    VCALL(w, write, SMOLRTSP_CRLF);
+    ret = VCALL(w, writef, "%c=", ty);
+    CHK_WRITE_ERR(result, ret);
+    ret = VCALL(w, vwritef, fmt, ap);
+    CHK_WRITE_ERR(result, ret);
+    ret = VCALL(w, write, SMOLRTSP_CRLF);
+    CHK_WRITE_ERR(result, ret);
 
     va_end(ap);
+
+    return result;
 }

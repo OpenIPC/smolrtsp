@@ -19,7 +19,9 @@ static ssize_t FileWriter_write(VSelf, CharSlice99 data) {
 
 static int FileWriter_writef(VSelf, const char fmt[restrict], ...) {
     VSELF(FileWriter);
+
     assert(self);
+    assert(fmt);
 
     va_list ap;
     va_start(ap, fmt);
@@ -31,7 +33,9 @@ static int FileWriter_writef(VSelf, const char fmt[restrict], ...) {
 
 static int FileWriter_vwritef(VSelf, const char fmt[restrict], va_list ap) {
     VSELF(FileWriter);
+
     assert(self);
+    assert(fmt);
 
     return vfprintf(self, fmt, ap);
 }

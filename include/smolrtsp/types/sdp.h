@@ -49,9 +49,12 @@ ssize_t SmolRTSP_SdpLine_serialize(SmolRTSP_SdpLine self, SmolRTSP_Writer w);
  * @param[out] w The writer to be provided with SDP data.
  * @param[in] fmt The `printf`-like format string.
  *
+ * @return The number of bytes written or a negative value on error.
+ *
  * @pre `w.self && w.vptr`
+ * @pre `fmt != NULL`
  */
-void smolrtsp_sdp_printf(SmolRTSP_SdpType ty, SmolRTSP_Writer w, const char fmt[restrict], ...);
+ssize_t smolrtsp_sdp_printf(SmolRTSP_SdpType ty, SmolRTSP_Writer w, const char fmt[restrict], ...);
 
 /**
  * Protocol Version (`v=`).
