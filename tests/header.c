@@ -51,7 +51,7 @@ TEST serialize_header(void) {
         CharSlice99_from_str("123"),
     };
 
-    SmolRTSP_Header_serialize(header, smolrtsp_strcat_writer(buffer));
+    SmolRTSP_Header_serialize(header, smolrtsp_string_writer(buffer));
 
     ASSERT_EQ(strcmp(buffer, "Content-Length: 123\r\n"), 0);
 

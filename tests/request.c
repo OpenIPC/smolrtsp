@@ -121,7 +121,7 @@ TEST serialize_request(void) {
         .body = CharSlice99_from_str("1234567890"),
     };
 
-    SmolRTSP_Request_serialize(request, smolrtsp_strcat_writer(buffer));
+    SmolRTSP_Request_serialize(request, smolrtsp_string_writer(buffer));
 
     ASSERT_EQ(
         strcmp(

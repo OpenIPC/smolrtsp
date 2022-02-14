@@ -66,12 +66,11 @@ void smolrtsp_write_slices(
     SmolRTSP_Writer w, size_t len, const CharSlice99 data[restrict static len]);
 
 /**
- * A writer that invokes `strncat` on a provided buffer.
+ * A writer that invokes `write` on a provided file descriptor.
  *
- * @pre @p buffer shall be capable of holding `CharSlice99_size(data)` more characters, as required
- * by `strncat`.
+ * @pre `fd != NULL`
  */
-SmolRTSP_Writer smolrtsp_strcat_writer(char *buffer);
+SmolRTSP_Writer smolrtsp_fd_writer(int *fd);
 
 /**
  * A writer that invokes `fwrite` on a provided file pointer.
@@ -81,8 +80,8 @@ SmolRTSP_Writer smolrtsp_strcat_writer(char *buffer);
 SmolRTSP_Writer smolrtsp_file_writer(FILE *stream);
 
 /**
- * A writer that invokes `write` on a provided file descriptor.
+ * A writer that invokes `strncat` on a provided buffer.
  *
- * @pre `fd != NULL`
+ * @pre @p buffer shall be capable of holding all characters that will be written into it.
  */
-SmolRTSP_Writer smolrtsp_fd_writer(int *fd);
+SmolRTSP_Writer smolrtsp_string_writer(char *buffer);

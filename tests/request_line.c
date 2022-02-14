@@ -49,7 +49,7 @@ TEST serialize_request_line(void) {
         .version = (SmolRTSP_RtspVersion){1, 0},
     };
 
-    SmolRTSP_RequestLine_serialize(line, smolrtsp_strcat_writer(buffer));
+    SmolRTSP_RequestLine_serialize(line, smolrtsp_string_writer(buffer));
 
     ASSERT_EQ(strcmp(buffer, "DESCRIBE http://example.com RTSP/1.0\r\n"), 0);
 

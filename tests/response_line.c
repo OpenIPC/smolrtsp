@@ -45,7 +45,7 @@ TEST serialize_response_line(void) {
         .reason = CharSlice99_from_str("OK"),
     };
 
-    SmolRTSP_ResponseLine_serialize(line, smolrtsp_strcat_writer(buffer));
+    SmolRTSP_ResponseLine_serialize(line, smolrtsp_string_writer(buffer));
 
     ASSERT_EQ(strcmp(buffer, "RTSP/1.0 200 OK\r\n"), 0);
 

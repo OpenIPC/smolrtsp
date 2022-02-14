@@ -92,7 +92,7 @@ TEST serialize_response(void) {
         .body = CharSlice99_from_str("1234567890"),
     };
 
-    SmolRTSP_Response_serialize(response, smolrtsp_strcat_writer(buffer));
+    SmolRTSP_Response_serialize(response, smolrtsp_string_writer(buffer));
 
     ASSERT_EQ(
         strcmp(

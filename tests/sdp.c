@@ -7,7 +7,7 @@ TEST serialize_sdp_line(void) {
 
     SmolRTSP_SdpLine_serialize(
         (SmolRTSP_SdpLine){.ty = SMOLRTSP_SDP_TYPE_ATTR, .value = CharSlice99_from_str("abc")},
-        smolrtsp_strcat_writer(buffer));
+        smolrtsp_string_writer(buffer));
     ASSERT_STR_EQ("a=abc\r\n", buffer);
 
     PASS();
@@ -17,7 +17,7 @@ TEST sdp_printf(void) {
     char buffer[20] = {0};
 
     smolrtsp_sdp_printf(
-        SMOLRTSP_SDP_TYPE_ATTR, smolrtsp_strcat_writer(buffer), "abc %d @ %s", 123, "def");
+        SMOLRTSP_SDP_TYPE_ATTR, smolrtsp_string_writer(buffer), "abc %d @ %s", 123, "def");
     ASSERT_STR_EQ("a=abc 123 @ def\r\n", buffer);
 
     PASS();
