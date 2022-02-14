@@ -11,15 +11,6 @@
 #include <smolrtsp/types/response_line.h>
 
 /**
- * The start state of #SmolRTSP_ResponseParseState.
- */
-#define SMOLRTSP_RESPONSE_PARSE_STATE_INIT                                                         \
-    (SmolRTSP_ResponseParseState) {                                                                \
-        .start_line = SMOLRTSP_RESPONSE_LINE_PARSE_STATE_INIT,                                     \
-        .tag = SmolRTSP_ResponseParseState_ResponseLine,                                           \
-    }
-
-/**
  * An RTSP response.
  */
 typedef struct {
@@ -54,21 +45,11 @@ ssize_t SmolRTSP_Response_serialize(SmolRTSP_Response self, SmolRTSP_Writer w);
 /**
  * A state of parsing of #SmolRTSP_Response.
  */
-typedef struct {
-    /**
-     * The state of a response line being parsed.
-     */
-    SmolRTSP_ResponseLineParseState start_line;
-
-    /**
-     * What part of a response is being parsed right now.
-     */
-    enum {
-        SmolRTSP_ResponseParseState_ResponseLine,
-        SmolRTSP_ResponseParseState_HeaderMap,
-        SmolRTSP_ResponseParseState_MessageBody,
-        SmolRTSP_ResponseParseState_Done,
-    } tag;
+typedef enum {
+    SmolRTSP_ResponseParseState_ResponseLine,
+    SmolRTSP_ResponseParseState_HeaderMap,
+    SmolRTSP_ResponseParseState_MessageBody,
+    SmolRTSP_ResponseParseState_Done,
 } SmolRTSP_ResponseParseState;
 
 /**

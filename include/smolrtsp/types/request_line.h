@@ -14,14 +14,6 @@
 #include <stdbool.h>
 
 /**
- * The start state of #SmolRTSP_RequestLineParseState.
- */
-#define SMOLRTSP_REQUEST_LINE_PARSE_STATE_INIT                                                     \
-    (SmolRTSP_RequestLineParseState) {                                                             \
-        .tag = SmolRTSP_RequestLineParseState_Method,                                              \
-    }
-
-/**
  * An RTSP request line.
  */
 typedef struct {
@@ -54,30 +46,12 @@ typedef struct {
 ssize_t SmolRTSP_RequestLine_serialize(SmolRTSP_RequestLine self, SmolRTSP_Writer w);
 
 /**
- * A state of parsing of #SmolRTSP_RequestLine.
- */
-typedef struct {
-    /**
-     * What part of a request line is being parsed right now.
-     */
-    enum {
-        SmolRTSP_RequestLineParseState_Method,
-        SmolRTSP_RequestLineParseState_RequestURI,
-        SmolRTSP_RequestLineParseState_RtspVersion,
-        SmolRTSP_RequestLineParseState_Crlf,
-        SmolRTSP_RequestLineParseState_Done,
-    } tag;
-} SmolRTSP_RequestLineParseState;
-
-/**
  * Parses @p data to @p self.
  *
  * @pre `self != NULL`
- * @pre `state != NULL`
  */
-SmolRTSP_ParseResult SmolRTSP_RequestLine_parse(
-    SmolRTSP_RequestLine *restrict self, CharSlice99 input,
-    SmolRTSP_RequestLineParseState *restrict state);
+SmolRTSP_ParseResult
+SmolRTSP_RequestLine_parse(SmolRTSP_RequestLine *restrict self, CharSlice99 input);
 
 /**
  * Tests @p lhs and @p rhs for equality.

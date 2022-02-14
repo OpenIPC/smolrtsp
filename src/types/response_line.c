@@ -26,24 +26,15 @@ ssize_t SmolRTSP_ResponseLine_serialize(SmolRTSP_ResponseLine self, SmolRTSP_Wri
     return result;
 }
 
-SmolRTSP_ParseResult SmolRTSP_ResponseLine_parse(
-    SmolRTSP_ResponseLine *restrict self, CharSlice99 input,
-    SmolRTSP_ResponseLineParseState *restrict state) {
+SmolRTSP_ParseResult
+SmolRTSP_ResponseLine_parse(SmolRTSP_ResponseLine *restrict self, CharSlice99 input) {
     assert(self);
-    assert(state);
 
     const CharSlice99 backup = input;
 
-    TRY_PARSE(
-        SmolRTSP_ResponseLineParseState_RtspVersion,
-        SmolRTSP_RtspVersion_parse(&self->version, input));
-
-    TRY_PARSE(
-        SmolRTSP_ResponseLineParseState_StatusCode, SmolRTSP_StatusCode_parse(&self->code, input));
-
-    TRY_PARSE(
-        SmolRTSP_ResponseLineParseState_ReasonPhrase,
-        SmolRTSP_ReasonPhrase_parse(&self->reason, input));
+    MATCH(SmolRTSP_RtspVersion_parse(&self->version, input));
+    MATCH(SmolRTSP_StatusCode_parse(&self->code, input));
+    MATCH(SmolRTSP_ReasonPhrase_parse(&self->reason, input));
 
     return SmolRTSP_ParseResult_complete(input.ptr - backup.ptr);
 }

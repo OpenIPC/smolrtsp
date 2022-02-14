@@ -27,7 +27,7 @@ TEST parse_request(void) {
         .body = CharSlice99_from_str("0123456789"),
     };
 
-    SmolRTSP_RequestParseState state = SMOLRTSP_REQUEST_PARSE_STATE_INIT;
+    SmolRTSP_RequestParseState state = 0;
 
     const size_t headers_len = 3;
     SmolRTSP_Header *headers = malloc(sizeof headers[0] * headers_len);
@@ -40,7 +40,7 @@ TEST parse_request(void) {
 #define CHECK(data, expected_state)                                                                \
     do {                                                                                           \
         res = SmolRTSP_Request_parse(&result, CharSlice99_from_str(data), &state);                 \
-        ASSERT_EQ(state.tag, SmolRTSP_RequestParseState_##expected_state);                         \
+        ASSERT_EQ(SmolRTSP_RequestParseState_##expected_state, state);                             \
     } while (0)
 
     CHECK("DESCRIBE http://example.com RTSP/1.1\r\n", HeaderMap);
@@ -67,7 +67,7 @@ TEST parse_request(void) {
 
     // Test whole request.
     {
-        SmolRTSP_RequestParseState state = SMOLRTSP_REQUEST_PARSE_STATE_INIT;
+        SmolRTSP_RequestParseState state = 0;
 
         const size_t headers_len = 3;
         SmolRTSP_Header *headers = malloc(sizeof headers[0] * headers_len);

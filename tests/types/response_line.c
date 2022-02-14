@@ -9,29 +9,19 @@ TEST parse_response_line(void) {
         .reason = CharSlice99_from_str("OK"),
     };
 
-    SmolRTSP_ResponseLineParseState state = SMOLRTSP_RESPONSE_LINE_PARSE_STATE_INIT;
     SmolRTSP_ResponseLine result;
     SmolRTSP_ParseResult res;
 
-#define CHECK(data, expected_state)                                                                \
-    do {                                                                                           \
-        res = SmolRTSP_ResponseLine_parse(&result, CharSlice99_from_str(data), &state);            \
-        ASSERT_EQ(state.tag, SmolRTSP_ResponseLineParseState_##expected_state);                    \
-    } while (0)
-
-    CHECK("RTSP/1.1 ", StatusCode);
+    res = SmolRTSP_ResponseLine_parse(&result, CharSlice99_from_str("RTSP/1.1 "));
     ASSERT(SmolRTSP_ParseResult_is_partial(res));
-    ASSERT(SmolRTSP_RtspVersion_eq(result.version, expected.version));
 
-    CHECK("200 ", ReasonPhrase);
+    res = SmolRTSP_ResponseLine_parse(&result, CharSlice99_from_str("RTSP/1.1 200 "));
     ASSERT(SmolRTSP_ParseResult_is_partial(res));
-    ASSERT(result.code == expected.code);
 
-    CHECK("OK\r\n", Done);
+    res = SmolRTSP_ResponseLine_parse(&result, CharSlice99_from_str("RTSP/1.1 200 OK\r\n"));
     ASSERT(SmolRTSP_ParseResult_is_complete(res));
-    ASSERT(SmolRTSP_ResponseLine_eq(result, expected));
 
-#undef CHECK
+    ASSERT(SmolRTSP_ResponseLine_eq(expected, result));
 
     PASS();
 }

@@ -11,15 +11,6 @@
 #include <stdbool.h>
 
 /**
- * The start state of #SmolRTSP_RequestParseState.
- */
-#define SMOLRTSP_REQUEST_PARSE_STATE_INIT                                                          \
-    (SmolRTSP_RequestParseState) {                                                                 \
-        .start_line = SMOLRTSP_REQUEST_LINE_PARSE_STATE_INIT,                                      \
-        .tag = SmolRTSP_RequestParseState_RequestLine,                                             \
-    }
-
-/**
  * An RTSP request.
  */
 typedef struct {
@@ -54,21 +45,11 @@ ssize_t SmolRTSP_Request_serialize(SmolRTSP_Request self, SmolRTSP_Writer w);
 /**
  * A state of parsing of #SmolRTSP_Request.
  */
-typedef struct {
-    /**
-     * The state of a request line being parsed.
-     */
-    SmolRTSP_RequestLineParseState start_line;
-
-    /**
-     * What part of a request is being parsed right now.
-     */
-    enum {
-        SmolRTSP_RequestParseState_RequestLine,
-        SmolRTSP_RequestParseState_HeaderMap,
-        SmolRTSP_RequestParseState_MessageBody,
-        SmolRTSP_RequestParseState_Done,
-    } tag;
+typedef enum {
+    SmolRTSP_RequestParseState_RequestLine,
+    SmolRTSP_RequestParseState_HeaderMap,
+    SmolRTSP_RequestParseState_MessageBody,
+    SmolRTSP_RequestParseState_Done,
 } SmolRTSP_RequestParseState;
 
 /**

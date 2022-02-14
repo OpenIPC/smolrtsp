@@ -9,33 +9,24 @@ TEST parse_request_line(void) {
         .version = {.major = 1, .minor = 1},
     };
 
-    SmolRTSP_RequestLineParseState state = SMOLRTSP_REQUEST_LINE_PARSE_STATE_INIT;
     SmolRTSP_RequestLine result;
     SmolRTSP_ParseResult res;
 
-#define CHECK(data, expected_state)                                                                \
-    do {                                                                                           \
-        res = SmolRTSP_RequestLine_parse(&result, CharSlice99_from_str(data), &state);             \
-        ASSERT_EQ(state.tag, SmolRTSP_RequestLineParseState_##expected_state);                     \
-    } while (0)
-
-    CHECK("DESCRIBE ", RequestURI);
+    res = SmolRTSP_RequestLine_parse(&result, CharSlice99_from_str("DESCRIBE "));
     ASSERT(SmolRTSP_ParseResult_is_partial(res));
-    ASSERT(CharSlice99_primitive_eq(result.method, expected.method));
 
-    CHECK("http://example.com ", RtspVersion);
+    res = SmolRTSP_RequestLine_parse(&result, CharSlice99_from_str("DESCRIBE http://example.com "));
     ASSERT(SmolRTSP_ParseResult_is_partial(res));
-    ASSERT(CharSlice99_primitive_eq(result.uri, expected.uri));
 
-    CHECK("RTSP/1.1\r", Crlf);
+    res = SmolRTSP_RequestLine_parse(
+        &result, CharSlice99_from_str("DESCRIBE http://example.com RTSP/1.1\r"));
     ASSERT(SmolRTSP_ParseResult_is_partial(res));
-    ASSERT(SmolRTSP_RequestLine_eq(result, expected));
 
-    CHECK("\r\n", Done);
+    res = SmolRTSP_RequestLine_parse(
+        &result, CharSlice99_from_str("DESCRIBE http://example.com RTSP/1.1\r\n"));
     ASSERT(SmolRTSP_ParseResult_is_complete(res));
-    ASSERT(SmolRTSP_RequestLine_eq(result, expected));
 
-#undef CHECK
+    ASSERT(SmolRTSP_RequestLine_eq(expected, result));
 
     PASS();
 }

@@ -31,7 +31,7 @@ SmolRTSP_ParseResult SmolRTSP_Response_parse(
 
     TRY_PARSE(
         SmolRTSP_ResponseParseState_ResponseLine,
-        SmolRTSP_ResponseLine_parse(&self->start_line, input, &state->start_line));
+        SmolRTSP_ResponseLine_parse(&self->start_line, input));
 
     TRY_PARSE(
         SmolRTSP_ResponseParseState_HeaderMap, SmolRTSP_HeaderMap_parse(&self->header_map, input));

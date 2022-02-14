@@ -11,14 +11,6 @@
 #include <smolrtsp/types/status_code.h>
 
 /**
- * The start state of #SmolRTSP_ResponseLineParseState.
- */
-#define SMOLRTSP_RESPONSE_LINE_PARSE_STATE_INIT                                                    \
-    (SmolRTSP_ResponseLineParseState) {                                                            \
-        .tag = SmolRTSP_ResponseLineParseState_RtspVersion,                                        \
-    }
-
-/**
  * An RTSP response line.
  */
 typedef struct {
@@ -51,29 +43,12 @@ typedef struct {
 ssize_t SmolRTSP_ResponseLine_serialize(SmolRTSP_ResponseLine self, SmolRTSP_Writer w);
 
 /**
- * A state of parsing of #SmolRTSP_ResponseLine.
- */
-typedef struct {
-    /**
-     * What part of a respnose line is being parsed right now.
-     */
-    enum {
-        SmolRTSP_ResponseLineParseState_RtspVersion,
-        SmolRTSP_ResponseLineParseState_StatusCode,
-        SmolRTSP_ResponseLineParseState_ReasonPhrase,
-        SmolRTSP_ResponseLineParseState_Done,
-    } tag;
-} SmolRTSP_ResponseLineParseState;
-
-/**
  * Parses @p data to @p self.
  *
  * @pre `self != NULL`
- * @pre `state != NULL`
  */
-SmolRTSP_ParseResult SmolRTSP_ResponseLine_parse(
-    SmolRTSP_ResponseLine *restrict self, CharSlice99 input,
-    SmolRTSP_ResponseLineParseState *restrict state);
+SmolRTSP_ParseResult
+SmolRTSP_ResponseLine_parse(SmolRTSP_ResponseLine *restrict self, CharSlice99 input);
 
 /**
  * Tests @p lhs and @p rhs for equality.
