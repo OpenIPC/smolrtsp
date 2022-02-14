@@ -4,7 +4,6 @@
 #include "parsing.h"
 
 #include <assert.h>
-#include <stdlib.h>
 
 ssize_t SmolRTSP_Request_serialize(SmolRTSP_Request self, SmolRTSP_Writer w) {
     assert(w.self && w.vptr);
@@ -46,8 +45,7 @@ SmolRTSP_ParseResult SmolRTSP_Request_parse(
         snprintf(fmt, sizeof(fmt), "%%%zdzd", content_length.len);
 
         if (sscanf(content_length.ptr, fmt, &content_length_int) != 1) {
-            // TODO: Handle this error in a proper way.
-            abort();
+            return SmolRTSP_ParseResult_Failure(SmolRTSP_ParseError_ContentLength(content_length));
         }
     }
 
