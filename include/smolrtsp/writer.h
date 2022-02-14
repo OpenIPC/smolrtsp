@@ -59,6 +59,8 @@ interface99(SmolRTSP_Writer);
  * @param[in] w The writer to be provided with data.
  * @param[in] len The number of items in @p data.
  * @param[in] data The data array which will be written to @p w, one-by-one.
+ *
+ * @pre `w.self && w.vptr`
  */
 void smolrtsp_write_slices(
     SmolRTSP_Writer w, size_t len, const CharSlice99 data[restrict static len]);

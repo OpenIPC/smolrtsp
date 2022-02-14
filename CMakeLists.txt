@@ -62,6 +62,9 @@ set(SMOLRTSP_SOURCES
     src/types/sdp.c
     src/types/rtp.c
     src/writer.c
+    src/writer/fd.c
+    src/writer/file.c
+    src/writer/strcat.c
     src/util.c
     src/transport/tcp.c
     src/transport/udp.c
