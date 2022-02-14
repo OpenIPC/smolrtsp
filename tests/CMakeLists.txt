@@ -29,6 +29,7 @@ add_executable(
   status_code.c
   sdp.c
   util.c
+  writer.c
   io_vec.c
   transport.c)
 

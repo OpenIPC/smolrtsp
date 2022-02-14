@@ -23,6 +23,7 @@ int main(int argc, char *argv[]) {
     SMOLRTSP_SUITE(sdp);
     SMOLRTSP_SUITE(status_code);
     SMOLRTSP_SUITE(util);
+    SMOLRTSP_SUITE(writer);
 
     SMOLRTSP_SUITE(transport);
 
