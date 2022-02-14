@@ -23,9 +23,11 @@ typedef uint16_t SmolRTSP_StatusCode;
  * @param[in] self The instance to be serialised.
  * @param[in] w The writer to be provided with serialised data.
  *
+ * @return The number of bytes written or a negative value on error.
+ *
  * @pre `w.self && w.vptr`
  */
-void SmolRTSP_StatusCode_serialize(SmolRTSP_StatusCode self, SmolRTSP_Writer w);
+ssize_t SmolRTSP_StatusCode_serialize(SmolRTSP_StatusCode self, SmolRTSP_Writer w);
 
 /**
  * Parses @p data to @p self.

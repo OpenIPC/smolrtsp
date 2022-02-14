@@ -47,9 +47,11 @@ typedef struct {
  * @param[in] self The instance to be serialised.
  * @param[in] w The writer to be provided with serialised data.
  *
+ * @return The number of bytes written or a negative value on error.
+ *
  * @pre `w.self && w.vptr`
  */
-void SmolRTSP_RequestLine_serialize(SmolRTSP_RequestLine self, SmolRTSP_Writer w);
+ssize_t SmolRTSP_RequestLine_serialize(SmolRTSP_RequestLine self, SmolRTSP_Writer w);
 
 /**
  * A state of parsing of #SmolRTSP_RequestLine.

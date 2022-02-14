@@ -36,9 +36,11 @@ typedef struct {
  * @param[in] self The instance to be serialised.
  * @param[in] w The writer to be provided with serialised data.
  *
+ * @return The number of bytes written or a negative value on error.
+ *
  * @pre `w.self && w.vptr`
  */
-void SmolRTSP_SdpLine_serialize(SmolRTSP_SdpLine self, SmolRTSP_Writer w);
+ssize_t SmolRTSP_SdpLine_serialize(SmolRTSP_SdpLine self, SmolRTSP_Writer w);
 
 /**
  * Printfs a single SDP line to @p w.

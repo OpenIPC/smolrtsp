@@ -9,6 +9,8 @@
 #include <stddef.h>
 #include <stdio.h>
 
+#include <unistd.h>
+
 #include <interface99.h>
 #include <slice99.h>
 
@@ -21,8 +23,10 @@
      * Writes @p data into itself.                                                                 \
      *                                                                                             \
      * @param[in] data The slice of character data to write.                                       \
+     *                                                                                             \
+     * @return The number of bytes written or a negative value on error.                           \
      */                                                                                            \
-    vfunc99(void, write, VSelf99, CharSlice99 data)                                                \
+    vfunc99(ssize_t, write, VSelf99, CharSlice99 data)                                             \
                                                                                                    \
     /*                                                                                             \
      * Writes a formatted string into itself.                                                      \
@@ -62,8 +66,8 @@ interface99(SmolRTSP_Writer);
  *
  * @pre `w.self && w.vptr`
  */
-void smolrtsp_write_slices(
-    SmolRTSP_Writer w, size_t len, const CharSlice99 data[restrict static len]);
+ssize_t
+smolrtsp_write_slices(SmolRTSP_Writer w, size_t len, const CharSlice99 data[restrict static len]);
 
 /**
  * A writer that invokes `write` on a provided file descriptor.

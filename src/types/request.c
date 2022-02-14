@@ -1,16 +1,24 @@
 #include <smolrtsp/types/request.h>
 
+#include "crlf.h"
 #include "parsing.h"
 
 #include <assert.h>
 #include <stdlib.h>
 
-void SmolRTSP_Request_serialize(SmolRTSP_Request self, SmolRTSP_Writer w) {
+ssize_t SmolRTSP_Request_serialize(SmolRTSP_Request self, SmolRTSP_Writer w) {
     assert(w.self && w.vptr);
 
-    SmolRTSP_RequestLine_serialize(self.start_line, w);
-    SmolRTSP_HeaderMap_serialize(self.header_map, w);
-    VCALL(w, write, self.body);
+    ssize_t result = 0, ret = 0;
+
+    ret = SmolRTSP_RequestLine_serialize(self.start_line, w);
+    CHK_WRITE_ERR(result, ret);
+    ret = SmolRTSP_HeaderMap_serialize(self.header_map, w);
+    CHK_WRITE_ERR(result, ret);
+    ret = VCALL(w, write, self.body);
+    CHK_WRITE_ERR(result, ret);
+
+    return result;
 }
 
 SmolRTSP_ParseResult SmolRTSP_Request_parse(

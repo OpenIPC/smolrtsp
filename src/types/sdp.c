@@ -7,10 +7,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void SmolRTSP_SdpLine_serialize(SmolRTSP_SdpLine self, SmolRTSP_Writer w) {
+ssize_t SmolRTSP_SdpLine_serialize(SmolRTSP_SdpLine self, SmolRTSP_Writer w) {
     assert(w.self && w.vptr);
 
-    SMOLRTSP_WRITE_SLICES(
+    return SMOLRTSP_WRITE_SLICES(
         w, {
                CharSlice99_new(&self.ty, 1),
                CharSlice99_from_str("="),

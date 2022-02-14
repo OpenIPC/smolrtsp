@@ -12,6 +12,8 @@
 #include <stddef.h>
 #include <stdio.h>
 
+#include <unistd.h>
+
 #include <slice99.h>
 
 /**
@@ -72,9 +74,11 @@ bool SmolRTSP_HeaderMap_key_is_present(SmolRTSP_HeaderMap self, CharSlice99 key)
  * @param[in] self The instance to be serialised.
  * @param[in] w The writer to be provided with serialised data.
  *
+ * @return The number of bytes written or a negative value on error.
+ *
  * @pre `w.self && w.vptr`
  */
-void SmolRTSP_HeaderMap_serialize(SmolRTSP_HeaderMap self, SmolRTSP_Writer w);
+ssize_t SmolRTSP_HeaderMap_serialize(SmolRTSP_HeaderMap self, SmolRTSP_Writer w);
 
 /**
  * Parses @p data to @p self.

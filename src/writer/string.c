@@ -5,11 +5,12 @@
 
 typedef char StringWriter;
 
-static void StringWriter_write(VSelf, CharSlice99 data) {
+static ssize_t StringWriter_write(VSelf, CharSlice99 data) {
     VSELF(StringWriter);
     assert(self);
 
     strncat(self, data.ptr, data.len);
+    return data.len;
 }
 
 static int StringWriter_writef(VSelf, const char fmt[restrict], ...) {

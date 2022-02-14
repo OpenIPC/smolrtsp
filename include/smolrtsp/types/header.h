@@ -11,6 +11,8 @@
 #include <stdbool.h>
 #include <stdio.h>
 
+#include <unistd.h>
+
 #include <slice99.h>
 
 /**
@@ -34,9 +36,11 @@ typedef struct {
  * @param[in] self The instance to be serialised.
  * @param[in] w The writer to be provided with serialised data.
  *
+ * @return The number of bytes written or a negative value on error.
+ *
  * @pre `w.self && w.vptr`
  */
-void SmolRTSP_Header_serialize(SmolRTSP_Header self, SmolRTSP_Writer w);
+ssize_t SmolRTSP_Header_serialize(SmolRTSP_Header self, SmolRTSP_Writer w);
 
 /**
  * Parses @p data to @p self.

@@ -7,12 +7,12 @@
 #include <stdio.h>
 #include <string.h>
 
-void SmolRTSP_StatusCode_serialize(SmolRTSP_StatusCode self, SmolRTSP_Writer w) {
+ssize_t SmolRTSP_StatusCode_serialize(SmolRTSP_StatusCode self, SmolRTSP_Writer w) {
     assert(w.self && w.vptr);
 
     char buffer[64];
     snprintf(buffer, sizeof(buffer), "%" PRIu16, self);
-    VCALL(w, write, CharSlice99_from_str(buffer));
+    return VCALL(w, write, CharSlice99_from_str(buffer));
 }
 
 SmolRTSP_ParseResult

@@ -2,15 +2,13 @@
 
 #include <assert.h>
 
-#include <unistd.h>
-
 typedef int FdWriter;
 
-static void FdWriter_write(VSelf, CharSlice99 data) {
+static ssize_t FdWriter_write(VSelf, CharSlice99 data) {
     VSELF(FdWriter);
     assert(self);
 
-    write(*self, data.ptr, data.len);
+    return write(*self, data.ptr, data.len);
 }
 
 static int FdWriter_writef(VSelf, const char fmt[restrict], ...) {

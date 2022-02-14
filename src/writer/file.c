@@ -5,11 +5,16 @@
 
 typedef FILE FileWriter;
 
-static void FileWriter_write(VSelf, CharSlice99 data) {
+static ssize_t FileWriter_write(VSelf, CharSlice99 data) {
     VSELF(FileWriter);
     assert(self);
 
-    fwrite(data.ptr, sizeof(char), data.len, self);
+    const size_t ret = fwrite(data.ptr, sizeof(char), data.len, self);
+    if (ferror(self)) {
+        return -1;
+    }
+
+    return ret;
 }
 
 static int FileWriter_writef(VSelf, const char fmt[restrict], ...) {
