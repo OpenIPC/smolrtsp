@@ -25,8 +25,8 @@ void smolrtsp_sdp_printf(SmolRTSP_SdpType ty, SmolRTSP_Writer w, const char fmt[
     va_list ap;
     va_start(ap, fmt);
 
-    VCALL(w, printf, "%c=", ty);
-    VCALL(w, vprintf, fmt, ap);
+    VCALL(w, writef, "%c=", ty);
+    VCALL(w, vwritef, fmt, ap);
     VCALL(w, write, SMOLRTSP_CRLF);
 
     va_end(ap);

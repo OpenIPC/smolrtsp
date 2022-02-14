@@ -21,7 +21,7 @@ static void StrcatWriter_write(VSelf, CharSlice99 data) {
     strncat(self, data.ptr, data.len);
 }
 
-static int StrcatWriter_printf(VSelf, const char fmt[restrict], ...) {
+static int StrcatWriter_writef(VSelf, const char fmt[restrict], ...) {
     VSELF(StrcatWriter);
     assert(self);
 
@@ -33,7 +33,7 @@ static int StrcatWriter_printf(VSelf, const char fmt[restrict], ...) {
     return ret;
 }
 
-static int StrcatWriter_vprintf(VSelf, const char fmt[restrict], va_list ap) {
+static int StrcatWriter_vwritef(VSelf, const char fmt[restrict], va_list ap) {
     VSELF(StrcatWriter);
     assert(self);
 
@@ -56,7 +56,7 @@ static void FileWriter_write(VSelf, CharSlice99 data) {
     fwrite(data.ptr, sizeof(char), data.len, self);
 }
 
-static int FileWriter_printf(VSelf, const char fmt[restrict], ...) {
+static int FileWriter_writef(VSelf, const char fmt[restrict], ...) {
     VSELF(FileWriter);
     assert(self);
 
@@ -68,7 +68,7 @@ static int FileWriter_printf(VSelf, const char fmt[restrict], ...) {
     return ret;
 }
 
-static int FileWriter_vprintf(VSelf, const char fmt[restrict], va_list ap) {
+static int FileWriter_vwritef(VSelf, const char fmt[restrict], va_list ap) {
     VSELF(FileWriter);
     assert(self);
 
@@ -91,7 +91,7 @@ static void FdWriter_write(VSelf, CharSlice99 data) {
     write(*self, data.ptr, data.len);
 }
 
-static int FdWriter_printf(VSelf, const char fmt[restrict], ...) {
+static int FdWriter_writef(VSelf, const char fmt[restrict], ...) {
     VSELF(FdWriter);
     assert(self);
 
@@ -103,7 +103,7 @@ static int FdWriter_printf(VSelf, const char fmt[restrict], ...) {
     return ret;
 }
 
-static int FdWriter_vprintf(VSelf, const char fmt[restrict], va_list ap) {
+static int FdWriter_vwritef(VSelf, const char fmt[restrict], va_list ap) {
     VSELF(FdWriter);
     assert(self);
 
