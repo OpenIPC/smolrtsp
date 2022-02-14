@@ -19,20 +19,16 @@ static struct iovec bufs[] = {
 };
 
 static enum greatest_test_res test_transport(
-    SmolRTSP_Transport t, int read_fd, size_t expected_len,
-    const char expected[restrict static expected_len]) {
+    SmolRTSP_Transport t, int read_fd, size_t len, const char expected[restrict static len]) {
     const bool transmit_ok =
         VCALL(t, transmit, (SmolRTSP_IoVecSlice)Slice99_typed_from_array(bufs)) == 0;
     ASSERT(transmit_ok);
 
-    char *buffer = malloc(expected_len);
-    ASSERT(buffer);
-    const bool read_ok = read(read_fd, buffer, expected_len) == (ssize_t)expected_len;
-    ASSERT(read_ok);
-
-    ASSERT_MEM_EQ(expected, buffer, expected_len);
-
+    char *buffer = malloc(len);
+    read(read_fd, buffer, len);
+    ASSERT_MEM_EQ(expected, buffer, len);
     free(buffer);
+
     VCALL_SUPER(t, SmolRTSP_Droppable, drop);
 
     PASS();
