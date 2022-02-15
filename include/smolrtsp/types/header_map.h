@@ -47,11 +47,6 @@ typedef struct {
 } SmolRTSP_HeaderMap;
 
 /**
- * Returns the empty header map.
- */
-SmolRTSP_HeaderMap SmolRTSP_HeaderMap_empty(void);
-
-/**
  * Finds a value associated with @p key within @p self.
  *
  * If @p key has been found within @p self, this function assigns @p value to this key (no copying

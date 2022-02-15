@@ -7,10 +7,6 @@
 #include <assert.h>
 #include <string.h>
 
-SmolRTSP_HeaderMap SmolRTSP_HeaderMap_empty(void) {
-    return (SmolRTSP_HeaderMap){.headers = NULL, .len = 0, .capacity = 0};
-}
-
 bool SmolRTSP_HeaderMap_find(
     SmolRTSP_HeaderMap self, CharSlice99 key, CharSlice99 *restrict value) {
     assert(value);
