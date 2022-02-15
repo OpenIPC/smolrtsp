@@ -86,7 +86,7 @@ SmolRTSP_StatusCode_parse(SmolRTSP_StatusCode *restrict self, CharSlice99 input)
 #define SMOLRTSP_STATUS_CODE_USE_PROXY 305
 
 /**
- * `Use Proxy`.
+ * `Bad Request`.
  */
 #define SMOLRTSP_STATUS_CODE_BAD_REQUEST 400
 
