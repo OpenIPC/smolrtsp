@@ -1,7 +1,8 @@
 #include <smolrtsp/types/response_line.h>
 
-#include "crlf.h"
+#include "../macros.h"
 #include "parsing.h"
+#include <smolrtsp/util.h>
 
 #include <assert.h>
 #include <string.h>

@@ -1,7 +1,7 @@
 #include <smolrtsp/types/header.h>
 
-#include "crlf.h"
 #include "parsing.h"
+#include <smolrtsp/util.h>
 
 #include <assert.h>
 #include <string.h>

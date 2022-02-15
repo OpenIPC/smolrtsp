@@ -1,6 +1,6 @@
 #include <smolrtsp/types/response.h>
 
-#include "crlf.h"
+#include "../macros.h"
 #include "parsing.h"
 
 #include <assert.h>

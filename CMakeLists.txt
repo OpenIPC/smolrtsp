@@ -70,6 +70,7 @@ set(SMOLRTSP_SOURCES
     src/transport/udp.c
     src/rtp_transport.c
     src/io_vec.c
+    src/macros.h
 )
 
 if(SMOLRTSP_SHARED)

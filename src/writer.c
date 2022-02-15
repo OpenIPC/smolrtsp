@@ -1,6 +1,6 @@
 #include <smolrtsp/writer.h>
 
-#include "types/crlf.h"
+#include "macros.h"
 
 #include <assert.h>
 
