@@ -34,7 +34,7 @@ TEST parse_header(void) {
 
     CHECK_CALL(assert_ok(
         input, (SmolRTSP_Header){
-                   SMOLRTSP_HEADER_NAME_USER_AGENT,
+                   SMOLRTSP_HEADER_USER_AGENT,
                    CharSlice99_from_str("LibVLC/3.0.8 (LIVE555 Streaming Media v2018.02.18)"),
                }));
 
@@ -47,7 +47,7 @@ TEST serialize_header(void) {
     char buffer[200] = {0};
 
     const SmolRTSP_Header header = {
-        SMOLRTSP_HEADER_NAME_CONTENT_LENGTH,
+        SMOLRTSP_HEADER_CONTENT_LENGTH,
         CharSlice99_from_str("123"),
     };
 

@@ -34,8 +34,8 @@ SmolRTSP_ParseResult SmolRTSP_Response_parse(
 
     CharSlice99 content_length;
     size_t content_length_int = 0;
-    const bool content_length_is_found = SmolRTSP_HeaderMap_find(
-        self->header_map, SMOLRTSP_HEADER_NAME_CONTENT_LENGTH, &content_length);
+    const bool content_length_is_found =
+        SmolRTSP_HeaderMap_find(self->header_map, SMOLRTSP_HEADER_CONTENT_LENGTH, &content_length);
 
     if (content_length_is_found) {
         char fmt[64];

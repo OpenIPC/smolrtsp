@@ -41,15 +41,15 @@ static enum greatest_test_res assert_err(CharSlice99 input) {
 #define HEADER_MAP                                                                                 \
     SmolRTSP_HeaderMap_from_array((SmolRTSP_Header[]){                                             \
         {                                                                                          \
-            SMOLRTSP_HEADER_NAME_CONTENT_LENGTH,                                                   \
+            SMOLRTSP_HEADER_CONTENT_LENGTH,                                                        \
             CharSlice99_from_str("10"),                                                            \
         },                                                                                         \
         {                                                                                          \
-            SMOLRTSP_HEADER_NAME_ACCEPT_LANGUAGE,                                                  \
+            SMOLRTSP_HEADER_ACCEPT_LANGUAGE,                                                       \
             CharSlice99_from_str("English"),                                                       \
         },                                                                                         \
         {                                                                                          \
-            SMOLRTSP_HEADER_NAME_CONTENT_TYPE,                                                     \
+            SMOLRTSP_HEADER_CONTENT_TYPE,                                                          \
             CharSlice99_from_str("application/octet-stream"),                                      \
         },                                                                                         \
     })
@@ -89,7 +89,7 @@ TEST serialize_header_map(void) {
 TEST find(void) {
     CharSlice99 content_length;
     const bool content_length_is_found =
-        SmolRTSP_HeaderMap_find(HEADER_MAP, SMOLRTSP_HEADER_NAME_CONTENT_LENGTH, &content_length);
+        SmolRTSP_HeaderMap_find(HEADER_MAP, SMOLRTSP_HEADER_CONTENT_LENGTH, &content_length);
 
     ASSERT(content_length_is_found);
     ASSERT(CharSlice99_primitive_eq(content_length, CharSlice99_from_str("10")));
@@ -98,8 +98,8 @@ TEST find(void) {
 }
 
 TEST key_is_present(void) {
-    ASSERT(SmolRTSP_HeaderMap_key_is_present(HEADER_MAP, SMOLRTSP_HEADER_NAME_CONTENT_LENGTH));
-    ASSERT(!SmolRTSP_HeaderMap_key_is_present(HEADER_MAP, SMOLRTSP_HEADER_NAME_ALLOW));
+    ASSERT(SmolRTSP_HeaderMap_key_is_present(HEADER_MAP, SMOLRTSP_HEADER_CONTENT_LENGTH));
+    ASSERT(!SmolRTSP_HeaderMap_key_is_present(HEADER_MAP, SMOLRTSP_HEADER_ALLOW));
 
     PASS();
 }

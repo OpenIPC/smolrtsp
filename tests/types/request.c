@@ -12,15 +12,15 @@ TEST parse_request(void) {
             },
         .header_map = SmolRTSP_HeaderMap_from_array((SmolRTSP_Header[]){
             {
-                SMOLRTSP_HEADER_NAME_CONTENT_LENGTH,
+                SMOLRTSP_HEADER_CONTENT_LENGTH,
                 CharSlice99_from_str("10"),
             },
             {
-                SMOLRTSP_HEADER_NAME_ACCEPT_LANGUAGE,
+                SMOLRTSP_HEADER_ACCEPT_LANGUAGE,
                 CharSlice99_from_str("English"),
             },
             {
-                SMOLRTSP_HEADER_NAME_CONTENT_TYPE,
+                SMOLRTSP_HEADER_CONTENT_TYPE,
                 CharSlice99_from_str("application/octet-stream"),
             },
         }),
@@ -110,11 +110,11 @@ TEST serialize_request(void) {
             },
         .header_map = SmolRTSP_HeaderMap_from_array((SmolRTSP_Header[]){
             {
-                SMOLRTSP_HEADER_NAME_CONTENT_LENGTH,
+                SMOLRTSP_HEADER_CONTENT_LENGTH,
                 CharSlice99_from_str("123"),
             },
             {
-                SMOLRTSP_HEADER_NAME_CONTENT_TYPE,
+                SMOLRTSP_HEADER_CONTENT_TYPE,
                 CharSlice99_from_str("application/octet-stream"),
             },
         }),
