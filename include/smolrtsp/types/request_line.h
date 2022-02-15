@@ -25,7 +25,7 @@ typedef struct {
     /**
      * The request URI.
      */
-    SmolRTSP_RequestURI uri;
+    SmolRTSP_RequestUri uri;
 
     /**
      * The RTSP version used.

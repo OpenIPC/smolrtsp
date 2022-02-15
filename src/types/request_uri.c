@@ -5,7 +5,7 @@
 #include <assert.h>
 
 SmolRTSP_ParseResult
-SmolRTSP_RequestURI_parse(SmolRTSP_RequestURI *restrict self, CharSlice99 input) {
+SmolRTSP_RequestUri_parse(SmolRTSP_RequestUri *restrict self, CharSlice99 input) {
     assert(self);
 
     const CharSlice99 backup = input;

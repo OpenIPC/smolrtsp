@@ -3,15 +3,15 @@
 #include <greatest.h>
 
 static enum greatest_test_res assert_pending(CharSlice99 input) {
-    SmolRTSP_RequestURI result;
-    SmolRTSP_ParseResult res = SmolRTSP_RequestURI_parse(&result, input);
+    SmolRTSP_RequestUri result;
+    SmolRTSP_ParseResult res = SmolRTSP_RequestUri_parse(&result, input);
     ASSERT(SmolRTSP_ParseResult_is_partial(res));
     PASS();
 }
 
-static enum greatest_test_res assert_ok(CharSlice99 input, SmolRTSP_RequestURI expected) {
-    SmolRTSP_RequestURI result;
-    SmolRTSP_ParseResult res = SmolRTSP_RequestURI_parse(&result, input);
+static enum greatest_test_res assert_ok(CharSlice99 input, SmolRTSP_RequestUri expected) {
+    SmolRTSP_RequestUri result;
+    SmolRTSP_ParseResult res = SmolRTSP_RequestUri_parse(&result, input);
     ASSERT(SmolRTSP_ParseResult_is_complete(res));
     ASSERT(CharSlice99_primitive_eq(result, expected));
     PASS();

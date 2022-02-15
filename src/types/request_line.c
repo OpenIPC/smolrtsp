@@ -29,7 +29,7 @@ SmolRTSP_RequestLine_parse(SmolRTSP_RequestLine *restrict self, CharSlice99 inpu
     const CharSlice99 backup = input;
 
     MATCH(SmolRTSP_Method_parse(&self->method, input));
-    MATCH(SmolRTSP_RequestURI_parse(&self->uri, input));
+    MATCH(SmolRTSP_RequestUri_parse(&self->uri, input));
     MATCH(SmolRTSP_RtspVersion_parse(&self->version, input));
     MATCH(smolrtsp_match_str(input, "\r\n"));
 

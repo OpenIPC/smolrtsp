@@ -12,7 +12,7 @@
 /**
  * An RTSP request URI.
  */
-typedef CharSlice99 SmolRTSP_RequestURI;
+typedef CharSlice99 SmolRTSP_RequestUri;
 
 /**
  * Parses @p data to @p self.
@@ -20,4 +20,4 @@ typedef CharSlice99 SmolRTSP_RequestURI;
  * @pre `self != NULL`
  */
 SmolRTSP_ParseResult
-SmolRTSP_RequestURI_parse(SmolRTSP_RequestURI *restrict self, CharSlice99 input);
+SmolRTSP_RequestUri_parse(SmolRTSP_RequestUri *restrict self, CharSlice99 input);
