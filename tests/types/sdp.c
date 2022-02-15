@@ -5,10 +5,14 @@
 TEST serialize_sdp_line(void) {
     char buffer[20] = {0};
 
-    SmolRTSP_SdpLine_serialize(
+    const ssize_t ret = SmolRTSP_SdpLine_serialize(
         (SmolRTSP_SdpLine){.ty = SMOLRTSP_SDP_ATTR, .value = CharSlice99_from_str("abc")},
         smolrtsp_string_writer(buffer));
-    ASSERT_STR_EQ("a=abc\r\n", buffer);
+
+    const char *expected = "a=abc\r\n";
+
+    ASSERT_EQ((ssize_t)strlen(expected), ret);
+    ASSERT_STR_EQ(expected, buffer);
 
     PASS();
 }

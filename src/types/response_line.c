@@ -22,6 +22,7 @@ ssize_t SmolRTSP_ResponseLine_serialize(SmolRTSP_ResponseLine self, SmolRTSP_Wri
     ret = VCALL(w, write, self.reason);
     CHK_WRITE_ERR(result, ret);
     ret = VCALL(w, write, SMOLRTSP_CRLF);
+    CHK_WRITE_ERR(result, ret);
 
     return result;
 }

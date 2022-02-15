@@ -35,9 +35,12 @@ TEST serialize_response_line(void) {
         .reason = CharSlice99_from_str("OK"),
     };
 
-    SmolRTSP_ResponseLine_serialize(line, smolrtsp_string_writer(buffer));
+    const ssize_t ret = SmolRTSP_ResponseLine_serialize(line, smolrtsp_string_writer(buffer));
 
-    ASSERT_STR_EQ("RTSP/1.0 200 OK\r\n", buffer);
+    const char *expected = "RTSP/1.0 200 OK\r\n";
+
+    ASSERT_EQ((ssize_t)strlen(expected), ret);
+    ASSERT_STR_EQ(expected, buffer);
 
     PASS();
 }

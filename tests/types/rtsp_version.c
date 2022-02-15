@@ -44,9 +44,13 @@ TEST parse_rtsp_version(void) {
 TEST serialize_rtsp_version(void) {
     char buffer[20] = {0};
 
-    SmolRTSP_RtspVersion_serialize((SmolRTSP_RtspVersion){1, 0}, smolrtsp_string_writer(buffer));
+    const ssize_t ret = SmolRTSP_RtspVersion_serialize(
+        (SmolRTSP_RtspVersion){1, 0}, smolrtsp_string_writer(buffer));
 
-    ASSERT_STR_EQ("RTSP/1.0", buffer);
+    const char *expected = "RTSP/1.0";
+
+    ASSERT_EQ((ssize_t)strlen(expected), ret);
+    ASSERT_STR_EQ(expected, buffer);
 
     PASS();
 }

@@ -40,9 +40,12 @@ TEST serialize_request_line(void) {
         .version = (SmolRTSP_RtspVersion){1, 0},
     };
 
-    SmolRTSP_RequestLine_serialize(line, smolrtsp_string_writer(buffer));
+    const ssize_t ret = SmolRTSP_RequestLine_serialize(line, smolrtsp_string_writer(buffer));
 
-    ASSERT_STR_EQ("DESCRIBE http://example.com RTSP/1.0\r\n", buffer);
+    const char *expected = "DESCRIBE http://example.com RTSP/1.0\r\n";
+
+    ASSERT_EQ((ssize_t)strlen(expected), ret);
+    ASSERT_STR_EQ(expected, buffer);
 
     PASS();
 }

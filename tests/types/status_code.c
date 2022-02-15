@@ -42,9 +42,13 @@ TEST parse_status_code(void) {
 TEST serialize_status_code(void) {
     char buffer[20] = {0};
 
-    SmolRTSP_StatusCode_serialize(SMOLRTSP_STATUS_CODE_NOT_FOUND, smolrtsp_string_writer(buffer));
+    const ssize_t ret = SmolRTSP_StatusCode_serialize(
+        SMOLRTSP_STATUS_CODE_NOT_FOUND, smolrtsp_string_writer(buffer));
 
-    ASSERT_STR_EQ("404", buffer);
+    const char *expected = "404";
+
+    ASSERT_EQ((ssize_t)strlen(expected), ret);
+    ASSERT_STR_EQ(expected, buffer);
 
     PASS();
 }

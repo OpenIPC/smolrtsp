@@ -51,9 +51,12 @@ TEST serialize_header(void) {
         CharSlice99_from_str("123"),
     };
 
-    SmolRTSP_Header_serialize(header, smolrtsp_string_writer(buffer));
+    const ssize_t ret = SmolRTSP_Header_serialize(header, smolrtsp_string_writer(buffer));
 
-    ASSERT_STR_EQ("Content-Length: 123\r\n", buffer);
+    const char *expected = "Content-Length: 123\r\n";
+
+    ASSERT_EQ((ssize_t)strlen(expected), ret);
+    ASSERT_STR_EQ(expected, buffer);
 
     PASS();
 }
