@@ -138,7 +138,7 @@ SmolRTSP_StatusCode_parse(SmolRTSP_StatusCode *restrict self, CharSlice99 input)
 /**
  * `Length Required`.
  */
-#define SMOLRTSP_STATUS_CODE_PRECONDITION_FAILED 412
+#define SMOLRTSP_STATUS_CODE_LENGTH_REQUIRED 411
 
 /**
  * `Precondition Failed`.
