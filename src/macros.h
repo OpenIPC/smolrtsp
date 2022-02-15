@@ -1,10 +1,13 @@
 #pragma once
 
-#define CHK_WRITE_ERR(result, ret)                                                                 \
+#include <stddef.h>
+
+#define CHK_WRITE_ERR(result, call)                                                                \
     do {                                                                                           \
-        if (ret < 0) {                                                                             \
+        ssize_t CHK_WRITE_ERR_ret = call;                                                          \
+        if (CHK_WRITE_ERR_ret < 0) {                                                               \
             return result;                                                                         \
         } else {                                                                                   \
-            result += ret;                                                                         \
+            result += CHK_WRITE_ERR_ret;                                                           \
         }                                                                                          \
     } while (0)

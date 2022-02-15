@@ -10,20 +10,14 @@
 ssize_t SmolRTSP_RequestLine_serialize(SmolRTSP_RequestLine self, SmolRTSP_Writer w) {
     assert(w.self && w.vptr);
 
-    ssize_t result = 0, ret = 0;
+    ssize_t result = 0;
 
-    ret = VCALL(w, write, self.method);
-    CHK_WRITE_ERR(result, ret);
-    ret = VCALL(w, write, CharSlice99_from_str(" "));
-    CHK_WRITE_ERR(result, ret);
-    ret = VCALL(w, write, self.uri);
-    CHK_WRITE_ERR(result, ret);
-    ret = VCALL(w, write, CharSlice99_from_str(" "));
-    CHK_WRITE_ERR(result, ret);
-    ret = SmolRTSP_RtspVersion_serialize(self.version, w);
-    CHK_WRITE_ERR(result, ret);
-    ret = VCALL(w, write, SMOLRTSP_CRLF);
-    CHK_WRITE_ERR(result, ret);
+    CHK_WRITE_ERR(result, VCALL(w, write, self.method));
+    CHK_WRITE_ERR(result, VCALL(w, write, CharSlice99_from_str(" ")));
+    CHK_WRITE_ERR(result, VCALL(w, write, self.uri));
+    CHK_WRITE_ERR(result, VCALL(w, write, CharSlice99_from_str(" ")));
+    CHK_WRITE_ERR(result, SmolRTSP_RtspVersion_serialize(self.version, w));
+    CHK_WRITE_ERR(result, VCALL(w, write, SMOLRTSP_CRLF));
 
     return result;
 }

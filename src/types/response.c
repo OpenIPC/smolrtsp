@@ -8,14 +8,11 @@
 ssize_t SmolRTSP_Response_serialize(SmolRTSP_Response self, SmolRTSP_Writer w) {
     assert(w.self && w.vptr);
 
-    ssize_t result = 0, ret = 0;
+    ssize_t result = 0;
 
-    ret = SmolRTSP_ResponseLine_serialize(self.start_line, w);
-    CHK_WRITE_ERR(result, ret);
-    ret = SmolRTSP_HeaderMap_serialize(self.header_map, w);
-    CHK_WRITE_ERR(result, ret);
-    ret = VCALL(w, write, self.body);
-    CHK_WRITE_ERR(result, ret);
+    CHK_WRITE_ERR(result, SmolRTSP_ResponseLine_serialize(self.start_line, w));
+    CHK_WRITE_ERR(result, SmolRTSP_HeaderMap_serialize(self.header_map, w));
+    CHK_WRITE_ERR(result, VCALL(w, write, self.body));
 
     return result;
 }

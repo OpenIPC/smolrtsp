@@ -29,15 +29,13 @@ bool SmolRTSP_HeaderMap_key_is_present(SmolRTSP_HeaderMap self, CharSlice99 key)
 ssize_t SmolRTSP_HeaderMap_serialize(SmolRTSP_HeaderMap self, SmolRTSP_Writer w) {
     assert(w.self && w.vptr);
 
-    ssize_t result = 0, ret = 0;
+    ssize_t result = 0;
 
     for (size_t i = 0; i < self.len; i++) {
-        ret = SmolRTSP_Header_serialize(self.headers[i], w);
-        CHK_WRITE_ERR(result, ret);
+        CHK_WRITE_ERR(result, SmolRTSP_Header_serialize(self.headers[i], w));
     }
 
-    ret = VCALL(w, write, SMOLRTSP_CRLF);
-    CHK_WRITE_ERR(result, ret);
+    CHK_WRITE_ERR(result, VCALL(w, write, SMOLRTSP_CRLF));
 
     return result;
 }
