@@ -13,6 +13,15 @@ static ssize_t StringWriter_write(VSelf, CharSlice99 data) {
     return data.len;
 }
 
+static int StringWriter_vwritef(VSelf, const char fmt[restrict], va_list ap) {
+    VSELF(StringWriter);
+
+    assert(self);
+    assert(fmt);
+
+    return vsprintf(self + strlen(self), fmt, ap);
+}
+
 static int StringWriter_writef(VSelf, const char fmt[restrict], ...) {
     VSELF(StringWriter);
 
@@ -22,18 +31,10 @@ static int StringWriter_writef(VSelf, const char fmt[restrict], ...) {
     va_list ap;
     va_start(ap, fmt);
 
-    const int ret = vsprintf(self + strlen(self), fmt, ap);
+    const int ret = StringWriter_vwritef(self, fmt, ap);
     va_end(ap);
+
     return ret;
-}
-
-static int StringWriter_vwritef(VSelf, const char fmt[restrict], va_list ap) {
-    VSELF(StringWriter);
-
-    assert(self);
-    assert(fmt);
-
-    return vsprintf(self + strlen(self), fmt, ap);
 }
 
 impl(SmolRTSP_Writer, StringWriter);

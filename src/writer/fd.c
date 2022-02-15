@@ -11,6 +11,15 @@ static ssize_t FdWriter_write(VSelf, CharSlice99 data) {
     return write(*self, data.ptr, data.len);
 }
 
+static int FdWriter_vwritef(VSelf, const char fmt[restrict], va_list ap) {
+    VSELF(FdWriter);
+
+    assert(self);
+    assert(fmt);
+
+    return vdprintf(*self, fmt, ap);
+}
+
 static int FdWriter_writef(VSelf, const char fmt[restrict], ...) {
     VSELF(FdWriter);
 
@@ -20,18 +29,10 @@ static int FdWriter_writef(VSelf, const char fmt[restrict], ...) {
     va_list ap;
     va_start(ap, fmt);
 
-    const int ret = vdprintf(*self, fmt, ap);
+    const int ret = FdWriter_vwritef(self, fmt, ap);
     va_end(ap);
+
     return ret;
-}
-
-static int FdWriter_vwritef(VSelf, const char fmt[restrict], va_list ap) {
-    VSELF(FdWriter);
-
-    assert(self);
-    assert(fmt);
-
-    return vdprintf(*self, fmt, ap);
 }
 
 impl(SmolRTSP_Writer, FdWriter);
