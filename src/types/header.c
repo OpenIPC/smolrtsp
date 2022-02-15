@@ -47,15 +47,3 @@ bool SmolRTSP_Header_eq(SmolRTSP_Header lhs, SmolRTSP_Header rhs) {
     return CharSlice99_primitive_eq(lhs.key, rhs.key) &&
            CharSlice99_primitive_eq(lhs.value, rhs.value);
 }
-
-void SmolRTSP_Header_dbg_to_file(SmolRTSP_Header self, FILE *stream) {
-    assert(stream);
-
-    fprintf(
-        stream, "'%.*s': '%.*s'\n", (int)CharSlice99_size(self.key), (const char *)self.key.ptr,
-        (int)CharSlice99_size(self.value), (const char *)self.value.ptr);
-}
-
-void SmolRTSP_Header_dbg(SmolRTSP_Header self) {
-    SmolRTSP_Header_dbg_to_file(self, stderr);
-}

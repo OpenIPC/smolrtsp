@@ -57,18 +57,6 @@ SmolRTSP_ParseResult SmolRTSP_Header_parse(SmolRTSP_Header *restrict self, CharS
 bool SmolRTSP_Header_eq(SmolRTSP_Header lhs, SmolRTSP_Header rhs);
 
 /**
- * Pretty-prints @p self to @p stream.
- *
- * @pre `stream != NULL`
- */
-void SmolRTSP_Header_dbg_to_file(SmolRTSP_Header self, FILE *stream);
-
-/**
- * Pretty-prints @p self to `stdout`.
- */
-void SmolRTSP_Header_dbg(SmolRTSP_Header self);
-
-/**
  * `Accept`.
  */
 #define SMOLRTSP_HEADER_NAME_ACCEPT (CharSlice99_from_str("Accept"))

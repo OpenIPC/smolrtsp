@@ -85,15 +85,3 @@ bool SmolRTSP_HeaderMap_eq(SmolRTSP_HeaderMap lhs, SmolRTSP_HeaderMap rhs) {
 bool SmolRTSP_HeaderMap_is_full(SmolRTSP_HeaderMap self) {
     return self.len == self.capacity;
 }
-
-void SmolRTSP_HeaderMap_dbg_to_file(SmolRTSP_HeaderMap self, FILE *stream) {
-    assert(stream);
-
-    for (size_t i = 0; i < self.len; i++) {
-        SmolRTSP_Header_dbg_to_file(self.headers[i], stream);
-    }
-}
-
-void SmolRTSP_HeaderMap_dbg(SmolRTSP_HeaderMap self) {
-    SmolRTSP_HeaderMap_dbg_to_file(self, stderr);
-}

@@ -95,15 +95,3 @@ bool SmolRTSP_HeaderMap_eq(SmolRTSP_HeaderMap lhs, SmolRTSP_HeaderMap rhs);
  * @return `true` if @p self is full, `false` otherwise
  */
 bool SmolRTSP_HeaderMap_is_full(SmolRTSP_HeaderMap self);
-
-/**
- * Pretty-prints @p self to @p stream.
- *
- * @pre `stream != NULL`
- */
-void SmolRTSP_HeaderMap_dbg_to_file(SmolRTSP_HeaderMap self, FILE *stream);
-
-/**
- * Pretty-prints @p self to `stdout`.
- */
-void SmolRTSP_HeaderMap_dbg(SmolRTSP_HeaderMap self);
