@@ -10,6 +10,8 @@
 #include <smolrtsp/types/message_body.h>
 #include <smolrtsp/types/response_line.h>
 
+#include <stdbool.h>
+
 /**
  * An RTSP response.
  */
@@ -64,7 +66,5 @@ SmolRTSP_ParseResult SmolRTSP_Response_parse(
 
 /**
  * Tests @p lhs and @p rhs for equality.
- *
- * @return `true` if @p lhs and @p rhs are equal, `false` otherwise.
  */
 bool SmolRTSP_Response_eq(SmolRTSP_Response lhs, SmolRTSP_Response rhs);

@@ -55,7 +55,5 @@ SmolRTSP_RequestLine_parse(SmolRTSP_RequestLine *restrict self, CharSlice99 inpu
 
 /**
  * Tests @p lhs and @p rhs for equality.
- *
- * @return `true` if @p lhs and @p rhs are equal, `false` otherwise.
  */
 bool SmolRTSP_RequestLine_eq(SmolRTSP_RequestLine lhs, SmolRTSP_RequestLine rhs);

@@ -51,8 +51,6 @@ SmolRTSP_ParseResult SmolRTSP_Header_parse(SmolRTSP_Header *restrict self, CharS
 
 /**
  * Tests @p lhs and @p rhs for equality.
- *
- * @return `true` if @p lhs and @p rhs are equal, `false` otherwise.
  */
 bool SmolRTSP_Header_eq(SmolRTSP_Header lhs, SmolRTSP_Header rhs);
 

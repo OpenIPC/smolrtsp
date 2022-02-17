@@ -10,6 +10,8 @@
 #include <smolrtsp/types/rtsp_version.h>
 #include <smolrtsp/types/status_code.h>
 
+#include <stdbool.h>
+
 /**
  * An RTSP response line.
  */
@@ -52,7 +54,5 @@ SmolRTSP_ResponseLine_parse(SmolRTSP_ResponseLine *restrict self, CharSlice99 in
 
 /**
  * Tests @p lhs and @p rhs for equality.
- *
- * @return `true` if @p lhs and @p rhs are equal, `false` otherwise.
  */
 bool SmolRTSP_ResponseLine_eq(SmolRTSP_ResponseLine lhs, SmolRTSP_ResponseLine rhs);

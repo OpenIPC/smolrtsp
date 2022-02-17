@@ -18,3 +18,7 @@ SmolRTSP_ParseResult SmolRTSP_Method_parse(SmolRTSP_Method *restrict self, CharS
 
     return SmolRTSP_ParseResult_complete(input.ptr - backup.ptr);
 }
+
+bool SmolRTSP_Method_eq(SmolRTSP_Method lhs, SmolRTSP_Method rhs) {
+    return CharSlice99_primitive_eq(lhs, rhs);
+}

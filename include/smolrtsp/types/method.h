@@ -7,6 +7,8 @@
 
 #include <smolrtsp/types/error.h>
 
+#include <stdbool.h>
+
 #include <slice99.h>
 
 /**
@@ -20,6 +22,11 @@ typedef CharSlice99 SmolRTSP_Method;
  * @pre `self != NULL`
  */
 SmolRTSP_ParseResult SmolRTSP_Method_parse(SmolRTSP_Method *restrict self, CharSlice99 input);
+
+/**
+ * Tests @p lhs and @p rhs for equality.
+ */
+bool SmolRTSP_Method_eq(SmolRTSP_Method lhs, SmolRTSP_Method rhs);
 
 /**
  * `OPTIONS`.

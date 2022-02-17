@@ -8,6 +8,7 @@
 #include <smolrtsp/types/error.h>
 #include <smolrtsp/writer.h>
 
+#include <stdbool.h>
 #include <stdint.h>
 
 #include <slice99.h>
@@ -34,6 +35,11 @@ ssize_t SmolRTSP_StatusCode_serialize(SmolRTSP_StatusCode self, SmolRTSP_Writer 
  */
 SmolRTSP_ParseResult
 SmolRTSP_StatusCode_parse(SmolRTSP_StatusCode *restrict self, CharSlice99 input);
+
+/**
+ * Tests @p lhs and @p rhs for equality.
+ */
+bool SmolRTSP_StatusCode_eq(SmolRTSP_StatusCode lhs, SmolRTSP_StatusCode rhs);
 
 /**
  * `Continue`.

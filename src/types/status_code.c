@@ -36,3 +36,7 @@ SmolRTSP_StatusCode_parse(SmolRTSP_StatusCode *restrict self, CharSlice99 input)
 
     return SmolRTSP_ParseResult_complete(input.ptr - backup.ptr);
 }
+
+bool SmolRTSP_StatusCode_eq(SmolRTSP_StatusCode lhs, SmolRTSP_StatusCode rhs) {
+    return lhs == rhs;
+}

@@ -19,3 +19,7 @@ SmolRTSP_RequestUri_parse(SmolRTSP_RequestUri *restrict self, CharSlice99 input)
 
     return SmolRTSP_ParseResult_complete(input.ptr - backup.ptr);
 }
+
+bool SmolRTSP_RequestUri_eq(SmolRTSP_RequestUri lhs, SmolRTSP_RequestUri rhs) {
+    return CharSlice99_primitive_eq(lhs, rhs);
+}

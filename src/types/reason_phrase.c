@@ -19,3 +19,7 @@ SmolRTSP_ReasonPhrase_parse(SmolRTSP_ReasonPhrase *restrict self, CharSlice99 in
 
     return SmolRTSP_ParseResult_complete(input.ptr - backup.ptr);
 }
+
+bool SmolRTSP_ReasonPhrase_eq(SmolRTSP_ReasonPhrase lhs, SmolRTSP_ReasonPhrase rhs) {
+    return CharSlice99_primitive_eq(lhs, rhs);
+}
