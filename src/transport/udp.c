@@ -14,7 +14,6 @@ typedef struct {
     int fd;
 } SmolRTSP_UdpTransport;
 
-declImpl(SmolRTSP_Droppable, SmolRTSP_UdpTransport);
 declImpl(SmolRTSP_Transport, SmolRTSP_UdpTransport);
 
 static int send_packet(SmolRTSP_UdpTransport *self, struct msghdr message);
