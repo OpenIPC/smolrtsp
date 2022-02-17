@@ -123,6 +123,16 @@ SmolRTSP_ParseResult SmolRTSP_ParseResult_partial(size_t offset);
 SmolRTSP_ParseResult SmolRTSP_ParseResult_complete(size_t offset);
 
 /**
+ * Returns whether @p self is successful.
+ */
+bool SmolRTSP_ParseResult_is_success(SmolRTSP_ParseResult self);
+
+/**
+ * Returns whether @p self is a failure.
+ */
+bool SmolRTSP_ParseResult_is_failure(SmolRTSP_ParseResult self);
+
+/**
  * Returns whether @p self is both **successful** and **partial**.
  */
 bool SmolRTSP_ParseResult_is_partial(SmolRTSP_ParseResult self);

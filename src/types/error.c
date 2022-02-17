@@ -71,6 +71,14 @@ SmolRTSP_ParseResult SmolRTSP_ParseResult_complete(size_t offset) {
     return SmolRTSP_ParseResult_Success(SmolRTSP_ParseStatus_complete(offset));
 }
 
+bool SmolRTSP_ParseResult_is_success(SmolRTSP_ParseResult self) {
+    return MATCHES(self, SmolRTSP_ParseResult_Success);
+}
+
+bool SmolRTSP_ParseResult_is_failure(SmolRTSP_ParseResult self) {
+    return !SmolRTSP_ParseResult_is_success(self);
+}
+
 bool SmolRTSP_ParseResult_is_partial(SmolRTSP_ParseResult self) {
     // Used to workaround `-Wreturn-type`.
     bool result = true;
