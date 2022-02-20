@@ -1,40 +1,23 @@
 #include <smolrtsp/types/status_code.h>
 
+#include "test_util.h"
 #include <greatest.h>
 
-static enum greatest_test_res assert_pending(CharSlice99 input) {
-    SmolRTSP_StatusCode result;
-    SmolRTSP_ParseResult res = SmolRTSP_StatusCode_parse(&result, input);
-    ASSERT(SmolRTSP_ParseResult_is_partial(res));
-    PASS();
-}
-
-static enum greatest_test_res assert_ok(CharSlice99 input, SmolRTSP_StatusCode expected) {
-    SmolRTSP_StatusCode result;
-    SmolRTSP_ParseResult res = SmolRTSP_StatusCode_parse(&result, input);
-    ASSERT(SmolRTSP_ParseResult_is_complete(res));
-    ASSERT(result == expected);
-    PASS();
-}
-
-static enum greatest_test_res assert_err(CharSlice99 input) {
-    SmolRTSP_StatusCode result;
-    SmolRTSP_ParseResult res = SmolRTSP_StatusCode_parse(&result, input);
-    ASSERT(MATCHES(res, SmolRTSP_ParseResult_Failure));
-    PASS();
-}
+DEF_TEST_PARSE(SmolRTSP_StatusCode)
 
 TEST parse_status_code(void) {
-    const CharSlice99 input = CharSlice99_from_str("404 ");
+    TEST_PARSE("100 ", SMOLRTSP_STATUS_CODE_CONTINUE);
+    TEST_PARSE("200 ", SMOLRTSP_STATUS_CODE_OK);
+    TEST_PARSE("303 ", SMOLRTSP_STATUS_CODE_SEE_OTHER);
+    TEST_PARSE("404 ", SMOLRTSP_STATUS_CODE_NOT_FOUND);
+    TEST_PARSE("551 ", SMOLRTSP_STATUS_CODE_OPTION_NOT_SUPPORTED);
 
-    for (size_t i = 0; i < input.len - 1; i++) {
-        CHECK_CALL(assert_pending(CharSlice99_update_len(input, i)));
-    }
+    SmolRTSP_StatusCode result;
 
-    CHECK_CALL(assert_ok(input, SMOLRTSP_STATUS_CODE_NOT_FOUND));
-
-    CHECK_CALL(assert_err(CharSlice99_from_str("blah")));
-    CHECK_CALL(assert_err(CharSlice99_from_str("~ 2424 blah")));
+    ASSERT(SmolRTSP_ParseResult_is_failure(
+        SmolRTSP_StatusCode_parse(&result, CharSlice99_from_str("blah"))));
+    ASSERT(SmolRTSP_ParseResult_is_failure(
+        SmolRTSP_StatusCode_parse(&result, CharSlice99_from_str("~ 2424 blah"))));
 
     PASS();
 }

@@ -10,4 +10,4 @@ AllowShortFunctionsOnASingleLine: Empty
 AlignConsecutiveMacros: true
 AlignAfterOpenBracket: AlwaysBreak
 
-StatementMacros: ["vfunc99", "vfuncDefault99"]
+StatementMacros: ["vfunc99", "vfuncDefault99", "DEF_TEST_SERIALIZE"]

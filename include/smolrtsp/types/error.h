@@ -77,7 +77,8 @@ void SmolRTSP_ParseError_print(SmolRTSP_ParseError self, SmolRTSP_Writer w);
 
 typedef struct {
     /**
-     * A byte offset from the beginning of input.
+     * A byte offset from the beginning of input. Only meaningful if
+     * #SmolRTSP_ParseStatus.is_complete is true, otherwise it is set to zero.
      */
     size_t offset;
 
@@ -88,12 +89,12 @@ typedef struct {
 } SmolRTSP_ParseStatus;
 
 /**
- * Creates a **partial** parse status with the byte offset @p offset (from the beginning of input).
+ * Creates a **partial** parse status.
  */
-SmolRTSP_ParseStatus SmolRTSP_ParseStatus_partial(size_t offset);
+SmolRTSP_ParseStatus SmolRTSP_ParseStatus_partial(void);
 
 /**
- * The same as #SmolRTSP_ParseStatus_partial but for a complete status.
+ * Creates a **complete** parse status with the byte offset @p offset (from the beginning of input).
  */
 SmolRTSP_ParseStatus SmolRTSP_ParseStatus_complete(size_t offset);
 
@@ -112,13 +113,13 @@ datatype99(
 // clang-format on
 
 /**
- * Creates a **successful** and **partial** parse result with the byte offset @p offset (from the
- * beginning of input).
+ * Creates a **successful** and **partial** parse result.
  */
-SmolRTSP_ParseResult SmolRTSP_ParseResult_partial(size_t offset);
+SmolRTSP_ParseResult SmolRTSP_ParseResult_partial(void);
 
 /**
- * The same as #SmolRTSP_ParseResult_partial but for a complete result.
+ * Creates a **successful** and **complete** parse result with the byte offset @p offset (from the
+ * beginning of input).
  */
 SmolRTSP_ParseResult SmolRTSP_ParseResult_complete(size_t offset);
 

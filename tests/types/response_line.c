@@ -1,6 +1,9 @@
 #include <smolrtsp/types/response_line.h>
 
+#include "test_util.h"
 #include <greatest.h>
+
+DEF_TEST_PARSE(SmolRTSP_ResponseLine)
 
 TEST parse_response_line(void) {
     const SmolRTSP_ResponseLine expected = {
@@ -9,19 +12,16 @@ TEST parse_response_line(void) {
         .reason = CharSlice99_from_str("OK"),
     };
 
+    TEST_PARSE("RTSP/1.1 200 OK\r\n", expected);
+
     SmolRTSP_ResponseLine result;
-    SmolRTSP_ParseResult res;
 
-    res = SmolRTSP_ResponseLine_parse(&result, CharSlice99_from_str("RTSP/1.1 "));
-    ASSERT(SmolRTSP_ParseResult_is_partial(res));
-
-    res = SmolRTSP_ResponseLine_parse(&result, CharSlice99_from_str("RTSP/1.1 200 "));
-    ASSERT(SmolRTSP_ParseResult_is_partial(res));
-
-    res = SmolRTSP_ResponseLine_parse(&result, CharSlice99_from_str("RTSP/1.1 200 OK\r\n"));
-    ASSERT(SmolRTSP_ParseResult_is_complete(res));
-
-    ASSERT(SmolRTSP_ResponseLine_eq(expected, result));
+    ASSERT(SmolRTSP_ParseResult_is_failure(
+        SmolRTSP_ResponseLine_parse(&result, CharSlice99_from_str("ABRACADABRA/1.1 200 OK\r\n"))));
+    ASSERT(SmolRTSP_ParseResult_is_failure(
+        SmolRTSP_ResponseLine_parse(&result, CharSlice99_from_str("RTSP/42 200 OK\r\n"))));
+    ASSERT(SmolRTSP_ParseResult_is_failure(
+        SmolRTSP_ResponseLine_parse(&result, CharSlice99_from_str("RTSP/1.1 ~~~ OK\r\n"))));
 
     PASS();
 }

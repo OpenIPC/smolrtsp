@@ -28,6 +28,7 @@ add_executable(
   types/rtsp_version.c
   types/status_code.c
   types/sdp.c
+  types/test_util.h
   util.c
   writer.c
   io_vec.c

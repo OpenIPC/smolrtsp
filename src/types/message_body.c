@@ -9,12 +9,13 @@ SmolRTSP_ParseResult SmolRTSP_MessageBody_parse(
     assert(self);
 
     if (input.len < content_length) {
-        return SmolRTSP_ParseResult_partial(0);
+        return SmolRTSP_ParseResult_partial();
     }
 
     if (0 == content_length) {
         *self = CharSlice99_empty();
-        return SmolRTSP_ParseResult_complete(0);
+        const size_t offset = 0;
+        return SmolRTSP_ParseResult_complete(offset);
     }
 
     *self = CharSlice99_new(input.ptr, content_length);

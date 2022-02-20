@@ -55,16 +55,16 @@ void SmolRTSP_ParseError_print(SmolRTSP_ParseError self, SmolRTSP_Writer w) {
 #undef MAX_STR
 #undef TRUNCATE_STR
 
-SmolRTSP_ParseStatus SmolRTSP_ParseStatus_partial(size_t offset) {
-    return (SmolRTSP_ParseStatus){.offset = offset, .is_complete = false};
+SmolRTSP_ParseStatus SmolRTSP_ParseStatus_partial(void) {
+    return (SmolRTSP_ParseStatus){.offset = 0, .is_complete = false};
 }
 
 SmolRTSP_ParseStatus SmolRTSP_ParseStatus_complete(size_t offset) {
     return (SmolRTSP_ParseStatus){.offset = offset, .is_complete = true};
 }
 
-SmolRTSP_ParseResult SmolRTSP_ParseResult_partial(size_t offset) {
-    return SmolRTSP_ParseResult_Success(SmolRTSP_ParseStatus_partial(offset));
+SmolRTSP_ParseResult SmolRTSP_ParseResult_partial(void) {
+    return SmolRTSP_ParseResult_Success(SmolRTSP_ParseStatus_partial());
 }
 
 SmolRTSP_ParseResult SmolRTSP_ParseResult_complete(size_t offset) {

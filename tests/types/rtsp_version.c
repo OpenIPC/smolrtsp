@@ -1,42 +1,22 @@
 #include <smolrtsp/types/rtsp_version.h>
 
+#include "test_util.h"
 #include <greatest.h>
 
-static enum greatest_test_res assert_pending(CharSlice99 input) {
-    SmolRTSP_RtspVersion result;
-    SmolRTSP_ParseResult res = SmolRTSP_RtspVersion_parse(&result, input);
-    ASSERT(SmolRTSP_ParseResult_is_partial(res));
-    PASS();
-}
-
-static enum greatest_test_res assert_ok(CharSlice99 input, SmolRTSP_RtspVersion expected) {
-    SmolRTSP_RtspVersion result;
-    SmolRTSP_ParseResult res = SmolRTSP_RtspVersion_parse(&result, input);
-    ASSERT(SmolRTSP_ParseResult_is_complete(res));
-    ASSERT(SmolRTSP_RtspVersion_eq(result, expected));
-    PASS();
-}
-
-static enum greatest_test_res assert_err(CharSlice99 input) {
-    SmolRTSP_RtspVersion result;
-    SmolRTSP_ParseResult res = SmolRTSP_RtspVersion_parse(&result, input);
-    ASSERT(MATCHES(res, SmolRTSP_ParseResult_Failure));
-    PASS();
-}
-
-SmolRTSP_ParseResult smolrtsp_match_numeric(CharSlice99 input);
+DEF_TEST_PARSE(SmolRTSP_RtspVersion)
 
 TEST parse_rtsp_version(void) {
-    const CharSlice99 input = CharSlice99_from_str("RTSP/1.1 ");
+    TEST_PARSE("RTSP/1.1 ", ((SmolRTSP_RtspVersion){1, 1}));
+    TEST_PARSE("RTSP/0.0 ", ((SmolRTSP_RtspVersion){0, 0}));
+    TEST_PARSE("RTSP/123.200 ", ((SmolRTSP_RtspVersion){123, 200}));
+    TEST_PARSE("RTSP/0.200 ", ((SmolRTSP_RtspVersion){0, 200}));
 
-    for (size_t i = 0; i < input.len - 1; i++) {
-        CHECK_CALL(assert_pending(CharSlice99_update_len(input, i)));
-    }
+    SmolRTSP_RtspVersion result;
 
-    CHECK_CALL(assert_ok(input, (SmolRTSP_RtspVersion){.major = 1, .minor = 1}));
-
-    CHECK_CALL(assert_err(CharSlice99_from_str("192")));
-    CHECK_CALL(assert_err(CharSlice99_from_str(" ~ RTSP/")));
+    ASSERT(SmolRTSP_ParseResult_is_failure(
+        SmolRTSP_RtspVersion_parse(&result, CharSlice99_from_str("192"))));
+    ASSERT(SmolRTSP_ParseResult_is_failure(
+        SmolRTSP_RtspVersion_parse(&result, CharSlice99_from_str(" ~ RTSP/"))));
 
     PASS();
 }

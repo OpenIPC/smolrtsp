@@ -1,45 +1,18 @@
 #include <smolrtsp/types/header_map.h>
 
+#include <stdlib.h>
+
+#define TEST_PARSE_INIT_TYPE(result) result = SmolRTSP_HeaderMap_empty()
+
+#include "test_util.h"
 #include <greatest.h>
 
-#include <assert.h>
+#include <slice99.h>
 
-static enum greatest_test_res assert_pending(CharSlice99 input) {
-    const size_t headers_len = 3;
-    SmolRTSP_Header *headers = malloc(sizeof headers[0] * headers_len);
-    assert(headers);
-    SmolRTSP_HeaderMap result = {.headers = headers, .len = 0, .capacity = headers_len};
-    SmolRTSP_ParseResult res = SmolRTSP_HeaderMap_parse(&result, input);
-    ASSERT(SmolRTSP_ParseResult_is_partial(res));
-    free(headers);
-    PASS();
-}
-
-static enum greatest_test_res assert_ok(CharSlice99 input, SmolRTSP_HeaderMap expected) {
-    const size_t headers_len = 3;
-    SmolRTSP_Header *headers = malloc(sizeof headers[0] * headers_len);
-    assert(headers);
-    SmolRTSP_HeaderMap result = {.headers = headers, .len = 0, .capacity = headers_len};
-    SmolRTSP_ParseResult res = SmolRTSP_HeaderMap_parse(&result, input);
-    ASSERT(SmolRTSP_ParseResult_is_complete(res));
-    ASSERT(SmolRTSP_HeaderMap_eq(result, expected));
-    free(headers);
-    PASS();
-}
-
-static enum greatest_test_res assert_err(CharSlice99 input) {
-    const size_t headers_len = 3;
-    SmolRTSP_Header *headers = malloc(sizeof headers[0] * headers_len);
-    assert(headers);
-    SmolRTSP_HeaderMap result = {.headers = headers, .len = 0, .capacity = headers_len};
-    SmolRTSP_ParseResult res = SmolRTSP_HeaderMap_parse(&result, input);
-    ASSERT(MATCHES(res, SmolRTSP_ParseResult_Failure));
-    free(headers);
-    PASS();
-}
+DEF_TEST_PARSE(SmolRTSP_HeaderMap)
 
 #define HEADER_MAP                                                                                 \
-    SmolRTSP_HeaderMap_from_array((SmolRTSP_Header[]){                                             \
+    SmolRTSP_HeaderMap_from_array({                                                                \
         {                                                                                          \
             SMOLRTSP_HEADER_CONTENT_LENGTH,                                                        \
             CharSlice99_from_str("10"),                                                            \
@@ -59,18 +32,14 @@ static enum greatest_test_res assert_err(CharSlice99 input) {
     "application/octet-stream\r\n\r\n"
 
 TEST parse_header_map(void) {
-    const SmolRTSP_HeaderMap expected = HEADER_MAP;
+    TEST_PARSE(HEADER_MAP_STR, HEADER_MAP);
 
-    const CharSlice99 input = CharSlice99_from_str(HEADER_MAP_STR);
+    SmolRTSP_HeaderMap result = SmolRTSP_HeaderMap_empty();
 
-    for (size_t i = 0; i < input.len - 1; i++) {
-        CHECK_CALL(assert_pending(CharSlice99_update_len(input, i)));
-    }
-
-    CHECK_CALL(assert_ok(input, expected));
-
-    CHECK_CALL(assert_err(CharSlice99_from_str("~29838")));
-    CHECK_CALL(assert_err(CharSlice99_from_str("Content-Length: 10\r\n38@@2: 10")));
+    ASSERT(SmolRTSP_ParseResult_is_failure(
+        SmolRTSP_HeaderMap_parse(&result, CharSlice99_from_str("~29838\r\n\r\n"))));
+    ASSERT(SmolRTSP_ParseResult_is_failure(SmolRTSP_HeaderMap_parse(
+        &result, CharSlice99_from_str("Content-Length: 10\r\n38@@2: 10\r\n\r\n"))));
 
     PASS();
 }

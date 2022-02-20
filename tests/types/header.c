@@ -1,44 +1,22 @@
 #include <smolrtsp/types/header.h>
 
+#include "test_util.h"
 #include <greatest.h>
 
-static enum greatest_test_res assert_pending(CharSlice99 input) {
-    SmolRTSP_Header result;
-    SmolRTSP_ParseResult res = SmolRTSP_Header_parse(&result, input);
-    ASSERT(SmolRTSP_ParseResult_is_partial(res));
-    PASS();
-}
-
-static enum greatest_test_res assert_ok(CharSlice99 input, SmolRTSP_Header expected) {
-    SmolRTSP_Header result;
-    SmolRTSP_ParseResult res = SmolRTSP_Header_parse(&result, input);
-    ASSERT(SmolRTSP_ParseResult_is_complete(res));
-    ASSERT(SmolRTSP_Header_eq(result, expected));
-    PASS();
-}
-
-static enum greatest_test_res assert_err(CharSlice99 input) {
-    SmolRTSP_Header result;
-    SmolRTSP_ParseResult res = SmolRTSP_Header_parse(&result, input);
-    ASSERT(MATCHES(res, SmolRTSP_ParseResult_Failure));
-    PASS();
-}
+DEF_TEST_PARSE(SmolRTSP_Header)
 
 TEST parse_header(void) {
-    const CharSlice99 input =
-        CharSlice99_from_str("User-Agent: LibVLC/3.0.8 (LIVE555 Streaming Media v2018.02.18)\r\n");
+    TEST_PARSE(
+        "User-Agent: LibVLC/3.0.8 (LIVE555 Streaming Media v2018.02.18)\r\n",
+        ((SmolRTSP_Header){
+            SMOLRTSP_HEADER_USER_AGENT,
+            CharSlice99_from_str("LibVLC/3.0.8 (LIVE555 Streaming Media v2018.02.18)"),
+        }));
 
-    for (size_t i = 0; i < input.len - 1; i++) {
-        CHECK_CALL(assert_pending(CharSlice99_update_len(input, i)));
-    }
+    SmolRTSP_Header result;
 
-    CHECK_CALL(assert_ok(
-        input, (SmolRTSP_Header){
-                   SMOLRTSP_HEADER_USER_AGENT,
-                   CharSlice99_from_str("LibVLC/3.0.8 (LIVE555 Streaming Media v2018.02.18)"),
-               }));
-
-    CHECK_CALL(assert_err(CharSlice99_from_str("~@~")));
+    ASSERT(SmolRTSP_ParseResult_is_failure(
+        SmolRTSP_Header_parse(&result, CharSlice99_from_str("~@~"))));
 
     PASS();
 }

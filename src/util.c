@@ -110,12 +110,11 @@ int SmolRTSP_parse_interleaved_chn_id(
 
     int rtp_port_temp;
     if (sscanf(CharSlice99_c_str(rtp_chn_id_start, (char[128]){0}), "%d", &rtp_port_temp) != 1) {
-        puts("fkf");
         return -1;
     }
 
     int rtcp_port_temp = -1;
-    res = smolrtsp_match_char(value, '-');
+    res = smolrtsp_match_until_str(value, "-");
 
     ifLet(res, SmolRTSP_ParseResult_Success, status) {
         if (status->is_complete) {
@@ -125,7 +124,6 @@ int SmolRTSP_parse_interleaved_chn_id(
             if (sscanf(
                     CharSlice99_c_str(rtcp_chn_id_start, (char[128]){0}), "%d", &rtcp_port_temp) !=
                 1) {
-                puts("f");
                 return -1;
             }
         }

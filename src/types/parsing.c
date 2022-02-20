@@ -19,36 +19,36 @@ smolrtsp_match_until(CharSlice99 input, bool (*matcher)(char c, void *ctx), void
         offset++;
     }
 
-    return SmolRTSP_ParseResult_partial(offset);
+    return SmolRTSP_ParseResult_partial();
 }
 
-static bool whitespace_matcher(char c, void *cx) {
-    (void)cx;
+static bool whitespace_matcher(char c, void *ctx) {
+    (void)ctx;
     return c == ' ';
 }
 
-static bool non_whitespace_matcher(char c, void *cx) {
-    (void)cx;
+static bool non_whitespace_matcher(char c, void *ctx) {
+    (void)ctx;
     return !whitespace_matcher(c, NULL);
 }
 
-static bool numeric_matcher(char c, void *cx) {
-    (void)cx;
+static bool numeric_matcher(char c, void *ctx) {
+    (void)ctx;
     return isdigit(c);
 }
 
-static bool ident_matcher(char c, void *cx) {
-    (void)cx;
+static bool ident_matcher(char c, void *ctx) {
+    (void)ctx;
     return isalnum(c) || c == '_';
 }
 
-static bool header_name_char_matcher(char c, void *cx) {
-    (void)cx;
+static bool header_name_char_matcher(char c, void *ctx) {
+    (void)ctx;
     return isalpha(c) || c == '-';
 }
 
-static bool char_matcher(char c, void *cx) {
-    const char expected = *(const char *)cx;
+static bool char_matcher(char c, void *ctx) {
+    const char expected = *(const char *)ctx;
     return c == expected;
 }
 
@@ -62,7 +62,7 @@ SmolRTSP_ParseResult smolrtsp_match_until_str(CharSlice99 input, const char *res
 
     for (size_t i = 0; i < input.len; i++) {
         if (input.len - i < str_len) {
-            return SmolRTSP_ParseResult_partial(offset);
+            return SmolRTSP_ParseResult_partial();
         }
 
         if (memcmp(input.ptr + i, str, str_len) == 0) {
@@ -72,11 +72,15 @@ SmolRTSP_ParseResult smolrtsp_match_until_str(CharSlice99 input, const char *res
         offset++;
     }
 
-    return SmolRTSP_ParseResult_partial(offset);
+    return SmolRTSP_ParseResult_partial();
 }
 
 SmolRTSP_ParseResult smolrtsp_match_until_crlf(CharSlice99 input) {
     return smolrtsp_match_until_str(input, "\r\n");
+}
+
+SmolRTSP_ParseResult smolrtsp_match_until_double_crlf(CharSlice99 input) {
+    return smolrtsp_match_until_str(input, "\r\n\r\n");
 }
 
 SmolRTSP_ParseResult smolrtsp_match_char(CharSlice99 input, char c) {
@@ -100,7 +104,7 @@ SmolRTSP_ParseResult smolrtsp_match_str(CharSlice99 input, const char *restrict 
     }
 
     if (input.len < str_len) {
-        return SmolRTSP_ParseResult_partial(offset);
+        return SmolRTSP_ParseResult_partial();
     }
 
     input = CharSlice99_advance(input, str_len);
@@ -119,43 +123,28 @@ SmolRTSP_ParseResult smolrtsp_match_non_whitespaces(CharSlice99 input) {
 // TODO: refactor the following functions.
 
 SmolRTSP_ParseResult smolrtsp_match_numeric(CharSlice99 input) {
-    const SmolRTSP_ParseResult res = smolrtsp_match_until(input, numeric_matcher, NULL);
-
-    ifLet(res, SmolRTSP_ParseResult_Success, status) {
-        const bool not_numeric = 0 == status->offset;
-        if (status->is_complete && not_numeric) {
-            return SmolRTSP_ParseResult_Failure(
-                SmolRTSP_ParseError_TypeMismatch(SmolRTSP_ParseType_Int, input));
-        }
+    if (!numeric_matcher(input.ptr[0], NULL)) {
+        return SmolRTSP_ParseResult_Failure(
+            SmolRTSP_ParseError_TypeMismatch(SmolRTSP_ParseType_Int, input));
     }
 
-    return res;
+    return smolrtsp_match_until(input, numeric_matcher, NULL);
 }
 
 SmolRTSP_ParseResult smolrtsp_match_ident(CharSlice99 input) {
-    const SmolRTSP_ParseResult res = smolrtsp_match_until(input, ident_matcher, NULL);
-
-    ifLet(res, SmolRTSP_ParseResult_Success, status) {
-        const bool not_ident = 0 == status->offset;
-        if (status->is_complete && not_ident) {
-            return SmolRTSP_ParseResult_Failure(
-                SmolRTSP_ParseError_TypeMismatch(SmolRTSP_ParseType_Ident, input));
-        }
+    if (!ident_matcher(input.ptr[0], NULL)) {
+        return SmolRTSP_ParseResult_Failure(
+            SmolRTSP_ParseError_TypeMismatch(SmolRTSP_ParseType_Ident, input));
     }
 
-    return res;
+    return smolrtsp_match_until(input, ident_matcher, NULL);
 }
 
 SmolRTSP_ParseResult smolrtsp_match_header_name(CharSlice99 input) {
-    const SmolRTSP_ParseResult res = smolrtsp_match_until(input, header_name_char_matcher, NULL);
-
-    ifLet(res, SmolRTSP_ParseResult_Success, status) {
-        const bool not_header_name = 0 == status->offset;
-        if (status->is_complete && not_header_name) {
-            return SmolRTSP_ParseResult_Failure(
-                SmolRTSP_ParseError_TypeMismatch(SmolRTSP_ParseType_HeaderName, input));
-        }
+    if (!header_name_char_matcher(input.ptr[0], NULL)) {
+        return SmolRTSP_ParseResult_Failure(
+            SmolRTSP_ParseError_TypeMismatch(SmolRTSP_ParseType_HeaderName, input));
     }
 
-    return res;
+    return smolrtsp_match_until(input, header_name_char_matcher, NULL);
 }

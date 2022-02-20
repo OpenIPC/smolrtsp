@@ -35,11 +35,16 @@
         }                                                                                          \
     } while (0)
 
+/**
+ * Consume @p input until @p matcher returns false.
+ */
 SmolRTSP_ParseResult
 smolrtsp_match_until(CharSlice99 input, bool (*matcher)(char c, void *ctx), void *ctx);
+
 SmolRTSP_ParseResult smolrtsp_match_until_str(CharSlice99 input, const char *restrict str);
 
 SmolRTSP_ParseResult smolrtsp_match_until_crlf(CharSlice99 input);
+SmolRTSP_ParseResult smolrtsp_match_until_double_crlf(CharSlice99 input);
 SmolRTSP_ParseResult smolrtsp_match_char(CharSlice99 input, char c);
 SmolRTSP_ParseResult smolrtsp_match_str(CharSlice99 input, const char *restrict str);
 SmolRTSP_ParseResult smolrtsp_match_whitespaces(CharSlice99 input);

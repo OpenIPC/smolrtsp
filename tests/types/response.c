@@ -10,7 +10,7 @@ TEST parse_response(void) {
                 .code = SMOLRTSP_STATUS_CODE_OK,
                 .reason = CharSlice99_from_str("OK"),
             },
-        .header_map = SmolRTSP_HeaderMap_from_array((SmolRTSP_Header[]){
+        .header_map = SmolRTSP_HeaderMap_from_array({
             {
                 SMOLRTSP_HEADER_CONTENT_LENGTH,
                 CharSlice99_from_str("10"),
@@ -29,43 +29,18 @@ TEST parse_response(void) {
 
     SmolRTSP_ResponseParseState state = 0;
 
-    const size_t headers_len = 3;
-    SmolRTSP_Header *headers = malloc(sizeof headers[0] * headers_len);
-    assert(headers);
-    SmolRTSP_HeaderMap header_map = {.headers = headers, .len = 0, .capacity = headers_len};
+    SmolRTSP_Response result = {.header_map = SmolRTSP_HeaderMap_empty()};
+    SmolRTSP_ParseResult ret;
 
-    SmolRTSP_Response result = {.header_map = header_map};
-    SmolRTSP_ParseResult res;
-
-#define CHECK(data, expected_state)                                                                \
-    do {                                                                                           \
-        res = SmolRTSP_Response_parse(&result, CharSlice99_from_str(data), &state);                \
-        ASSERT_EQ(SmolRTSP_ResponseParseState_##expected_state, state);                            \
-    } while (0)
-
-    CHECK("RTSP/1.1 200 OK\r\n", HeaderMap);
-    ASSERT(SmolRTSP_ParseResult_is_partial(res));
-    ASSERT(SmolRTSP_ResponseLine_eq(result.start_line, expected.start_line));
-
-    CHECK("Content-Length: 10\r\n", HeaderMap);
-    ASSERT(SmolRTSP_ParseResult_is_partial(res));
-    ASSERT(SmolRTSP_Header_eq(result.header_map.headers[0], expected.header_map.headers[0]));
-
-    CHECK("Accept-Language: English\r\n", HeaderMap);
-    ASSERT(SmolRTSP_ParseResult_is_partial(res));
-    ASSERT(SmolRTSP_Header_eq(result.header_map.headers[1], expected.header_map.headers[1]));
-
-    CHECK("Content-Type: application/octet-stream\r\n", HeaderMap);
-    ASSERT(SmolRTSP_ParseResult_is_partial(res));
-    ASSERT(SmolRTSP_Header_eq(result.header_map.headers[2], expected.header_map.headers[2]));
-
-    CHECK("\r\n0123456789", Done);
-    ASSERT(SmolRTSP_ParseResult_is_complete(res));
+    ret = SmolRTSP_Response_parse(
+        &result,
+        CharSlice99_from_str("RTSP/1.1 200 OK\r\nContent-Length: 10\r\nAccept-Language: "
+                             "English\r\nContent-Type: application/octet-stream\r\n\r\n0123456789"),
+        &state);
+    ASSERT(SmolRTSP_ParseResult_is_complete(ret));
+    ASSERT_EQ(SmolRTSP_ResponseParseState_Done, state);
     ASSERT(SmolRTSP_Response_eq(result, expected));
 
-#undef CHECK
-
-    free(headers);
     PASS();
 }
 
@@ -79,7 +54,7 @@ TEST serialize_response(void) {
                 .code = SMOLRTSP_STATUS_CODE_OK,
                 .reason = CharSlice99_from_str("OK"),
             },
-        .header_map = SmolRTSP_HeaderMap_from_array((SmolRTSP_Header[]){
+        .header_map = SmolRTSP_HeaderMap_from_array({
             {
                 SMOLRTSP_HEADER_CONTENT_LENGTH,
                 CharSlice99_from_str("123"),

@@ -1,6 +1,9 @@
 #include <smolrtsp/types/request_line.h>
 
+#include "test_util.h"
 #include <greatest.h>
+
+DEF_TEST_PARSE(SmolRTSP_RequestLine)
 
 TEST parse_request_line(void) {
     const SmolRTSP_RequestLine expected = {
@@ -9,24 +12,14 @@ TEST parse_request_line(void) {
         .version = {.major = 1, .minor = 1},
     };
 
+    TEST_PARSE("DESCRIBE http://example.com RTSP/1.1\r\n", expected);
+
     SmolRTSP_RequestLine result;
-    SmolRTSP_ParseResult res;
 
-    res = SmolRTSP_RequestLine_parse(&result, CharSlice99_from_str("DESCRIBE "));
-    ASSERT(SmolRTSP_ParseResult_is_partial(res));
-
-    res = SmolRTSP_RequestLine_parse(&result, CharSlice99_from_str("DESCRIBE http://example.com "));
-    ASSERT(SmolRTSP_ParseResult_is_partial(res));
-
-    res = SmolRTSP_RequestLine_parse(
-        &result, CharSlice99_from_str("DESCRIBE http://example.com RTSP/1.1\r"));
-    ASSERT(SmolRTSP_ParseResult_is_partial(res));
-
-    res = SmolRTSP_RequestLine_parse(
-        &result, CharSlice99_from_str("DESCRIBE http://example.com RTSP/1.1\r\n"));
-    ASSERT(SmolRTSP_ParseResult_is_complete(res));
-
-    ASSERT(SmolRTSP_RequestLine_eq(expected, result));
+    ASSERT(SmolRTSP_ParseResult_is_failure(SmolRTSP_RequestLine_parse(
+        &result, CharSlice99_from_str("!!! http://example.com RTSP/1.1\r\n"))));
+    ASSERT(SmolRTSP_ParseResult_is_failure(SmolRTSP_RequestLine_parse(
+        &result, CharSlice99_from_str("DESCRIBE http://example.com ABRACADABRA/1.1\r\n"))));
 
     PASS();
 }
