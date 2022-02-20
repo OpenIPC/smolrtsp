@@ -7,6 +7,10 @@
 #include <assert.h>
 #include <string.h>
 
+SmolRTSP_HeaderMap SmolRTSP_HeaderMap_empty(void) {
+    return (SmolRTSP_HeaderMap){.headers = {0}, .len = 0};
+}
+
 bool SmolRTSP_HeaderMap_find(
     SmolRTSP_HeaderMap self, CharSlice99 key, CharSlice99 *restrict value) {
     assert(value);
@@ -46,15 +50,13 @@ SmolRTSP_HeaderMap_parse(SmolRTSP_HeaderMap *restrict self, CharSlice99 input) {
 
     const CharSlice99 backup = input;
 
-    while (true) {
-        if (input.len < SMOLRTSP_CRLF.len) {
-            return SmolRTSP_ParseResult_partial(0);
-        }
+    MATCH(smolrtsp_match_until_double_crlf(input));
+    input = backup;
 
+    while (true) {
         if (CharSlice99_primitive_starts_with(input, SMOLRTSP_CRLF)) {
             return SmolRTSP_ParseResult_complete((input.ptr - backup.ptr) + SMOLRTSP_CRLF.len);
         }
-
         if (SmolRTSP_HeaderMap_is_full(*self)) {
             return SmolRTSP_ParseResult_Failure(SmolRTSP_ParseError_HeaderMapOverflow());
         }
@@ -83,5 +85,5 @@ bool SmolRTSP_HeaderMap_eq(SmolRTSP_HeaderMap lhs, SmolRTSP_HeaderMap rhs) {
 }
 
 bool SmolRTSP_HeaderMap_is_full(SmolRTSP_HeaderMap self) {
-    return self.len == self.capacity;
+    return SMOLRTSP_HEADER_MAP_CAPACITY == self.len;
 }

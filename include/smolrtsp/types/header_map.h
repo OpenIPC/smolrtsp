@@ -21,10 +21,11 @@
  */
 #define SmolRTSP_HeaderMap_from_array(...)                                                         \
     ((SmolRTSP_HeaderMap){                                                                         \
-        .headers = (__VA_ARGS__),                                                                  \
-        .len = SLICE99_ARRAY_LEN(__VA_ARGS__),                                                     \
-        .capacity = SLICE99_ARRAY_LEN(__VA_ARGS__),                                                \
+        .headers = __VA_ARGS__,                                                                    \
+        .len = SLICE99_ARRAY_LEN((SmolRTSP_Header[])__VA_ARGS__),                                  \
     })
+
+#define SMOLRTSP_HEADER_MAP_CAPACITY 32
 
 /**
  * An RTSP header map.
@@ -33,18 +34,15 @@ typedef struct {
     /**
      * The pointer to an array of headers;
      */
-    SmolRTSP_Header *headers;
+    SmolRTSP_Header headers[SMOLRTSP_HEADER_MAP_CAPACITY];
 
     /**
      * The count of elements currently in #headers.
      */
     size_t len;
-
-    /**
-     * The count of elements #headers is able to contain.
-     */
-    size_t capacity;
 } SmolRTSP_HeaderMap;
+
+SmolRTSP_HeaderMap SmolRTSP_HeaderMap_empty(void);
 
 /**
  * Finds a value associated with @p key within @p self.
