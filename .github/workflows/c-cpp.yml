@@ -39,7 +39,7 @@ jobs:
 
     steps:
       - name: Build the docs
-        uses: bash scripts/docs.sh
+        run: bash scripts/docs.sh
 
       - name: Deploy the docs
         uses: peaceiris/actions-gh-pages@v3
