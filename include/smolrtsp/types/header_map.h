@@ -52,7 +52,8 @@ SmolRTSP_HeaderMap SmolRTSP_HeaderMap_empty(void);
  *
  * @param[in] self The header map to be searched for @p key.
  * @param[in] key The key to be searched in @p self.
- * @param[out] value The header value to be assigned, if found.
+ * @param[out] value The header value to be assigned, if found. If `NULL`, no assignment is
+ * performed.
  */
 bool SmolRTSP_HeaderMap_find(SmolRTSP_HeaderMap self, CharSlice99 key, CharSlice99 *restrict value);
 

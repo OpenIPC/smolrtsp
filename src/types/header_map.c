@@ -13,11 +13,11 @@ SmolRTSP_HeaderMap SmolRTSP_HeaderMap_empty(void) {
 
 bool SmolRTSP_HeaderMap_find(
     SmolRTSP_HeaderMap self, CharSlice99 key, CharSlice99 *restrict value) {
-    assert(value);
-
     for (size_t i = 0; i < self.len; i++) {
         if (CharSlice99_primitive_eq(self.headers[i].key, key)) {
-            *value = self.headers[i].value;
+            if (value != NULL) {
+                *value = self.headers[i].value;
+            }
             return true;
         }
     }
@@ -26,8 +26,7 @@ bool SmolRTSP_HeaderMap_find(
 }
 
 bool SmolRTSP_HeaderMap_key_is_present(SmolRTSP_HeaderMap self, CharSlice99 key) {
-    CharSlice99 value;
-    return SmolRTSP_HeaderMap_find(self, key, &value);
+    return SmolRTSP_HeaderMap_find(self, key, NULL);
 }
 
 ssize_t SmolRTSP_HeaderMap_serialize(SmolRTSP_HeaderMap self, SmolRTSP_Writer w) {
