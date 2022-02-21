@@ -15,11 +15,11 @@
                                                                                                    \
         match(parse_res_var) {                                                                     \
             of(SmolRTSP_ParseResult_Success, status) {                                             \
-                if (!status->is_complete) {                                                        \
-                    return parse_res_var;                                                          \
+                match(*status) {                                                                   \
+                    of(SmolRTSP_ParseStatus_Complete, offset) input =                              \
+                        CharSlice99_advance(input, *offset);                                       \
+                    otherwise return parse_res_var;                                                \
                 }                                                                                  \
-                                                                                                   \
-                input = CharSlice99_advance(input, status->offset);                                \
             }                                                                                      \
             of(SmolRTSP_ParseResult_Failure, err) {                                                \
                 return SmolRTSP_ParseResult_Failure(*err);                                         \

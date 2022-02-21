@@ -32,7 +32,7 @@
         ret = T##_parse(&result, input);                                                           \
         match(ret) {                                                                               \
             of(SmolRTSP_ParseResult_Success, status) {                                             \
-                ASSERT(status->is_complete);                                                       \
+                ASSERT(SmolRTSP_ParseStatus_is_complete(*status));                                 \
                 /* ASSERT_EQ(input.len, status->offset); */                                        \
                 ASSERT(T##_eq(result, expected));                                                  \
             }                                                                                      \

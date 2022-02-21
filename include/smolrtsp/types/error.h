@@ -75,28 +75,35 @@ datatype99(
  */
 void SmolRTSP_ParseError_print(SmolRTSP_ParseError self, SmolRTSP_Writer w);
 
-typedef struct {
-    /**
-     * A byte offset from the beginning of input. Only meaningful if
-     * #SmolRTSP_ParseStatus.is_complete is true, otherwise it is set to zero.
-     */
-    size_t offset;
+/**
+ * A status of successful parsing.
+ *
+ * ## Variants
+ *
+ *  - `Complete` -- The parsing has completed. Arguments:
+ *    1. A number of consumed bytes from the beginning of input.
+ *  - `Partial` -- Need more data to continue parsing.
+ *
+ * See [Datatype99](https://github.com/Hirrolot/datatype99) for the macro usage.
+ */
 
-    /**
-     * Whether parsing has completed or needs more data (partial).
-     */
-    bool is_complete;
-} SmolRTSP_ParseStatus;
+// clang-format off
+datatype99(
+    SmolRTSP_ParseStatus,
+    (SmolRTSP_ParseStatus_Complete, size_t),
+    (SmolRTSP_ParseStatus_Partial)
+);
+// clang-format on
 
 /**
- * Creates a **partial** parse status.
+ * Returns whether @p self is complete.
  */
-SmolRTSP_ParseStatus SmolRTSP_ParseStatus_partial(void);
+bool SmolRTSP_ParseStatus_is_complete(SmolRTSP_ParseStatus self);
 
 /**
- * Creates a **complete** parse status with the byte offset @p offset (from the beginning of input).
+ * Returns whether @p self is partial.
  */
-SmolRTSP_ParseStatus SmolRTSP_ParseStatus_complete(size_t offset);
+bool SmolRTSP_ParseStatus_is_partial(SmolRTSP_ParseStatus self);
 
 /**
  * A result of parsing (either success or failure).

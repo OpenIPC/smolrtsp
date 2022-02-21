@@ -55,20 +55,20 @@ void SmolRTSP_ParseError_print(SmolRTSP_ParseError self, SmolRTSP_Writer w) {
 #undef MAX_STR
 #undef TRUNCATE_STR
 
-SmolRTSP_ParseStatus SmolRTSP_ParseStatus_partial(void) {
-    return (SmolRTSP_ParseStatus){.offset = 0, .is_complete = false};
+bool SmolRTSP_ParseStatus_is_complete(SmolRTSP_ParseStatus self) {
+    return MATCHES(self, SmolRTSP_ParseStatus_Complete);
 }
 
-SmolRTSP_ParseStatus SmolRTSP_ParseStatus_complete(size_t offset) {
-    return (SmolRTSP_ParseStatus){.offset = offset, .is_complete = true};
+bool SmolRTSP_ParseStatus_is_partial(SmolRTSP_ParseStatus self) {
+    return MATCHES(self, SmolRTSP_ParseStatus_Partial);
 }
 
 SmolRTSP_ParseResult SmolRTSP_ParseResult_partial(void) {
-    return SmolRTSP_ParseResult_Success(SmolRTSP_ParseStatus_partial());
+    return SmolRTSP_ParseResult_Success(SmolRTSP_ParseStatus_Partial());
 }
 
 SmolRTSP_ParseResult SmolRTSP_ParseResult_complete(size_t offset) {
-    return SmolRTSP_ParseResult_Success(SmolRTSP_ParseStatus_complete(offset));
+    return SmolRTSP_ParseResult_Success(SmolRTSP_ParseStatus_Complete(offset));
 }
 
 bool SmolRTSP_ParseResult_is_success(SmolRTSP_ParseResult self) {
@@ -84,7 +84,7 @@ bool SmolRTSP_ParseResult_is_partial(SmolRTSP_ParseResult self) {
     bool result = true;
 
     match(self) {
-        of(SmolRTSP_ParseResult_Success, status) result = !status->is_complete;
+        of(SmolRTSP_ParseResult_Success, status) result = SmolRTSP_ParseStatus_is_partial(*status);
         otherwise result = false;
     }
 
@@ -96,7 +96,7 @@ bool SmolRTSP_ParseResult_is_complete(SmolRTSP_ParseResult self) {
     bool result = true;
 
     match(self) {
-        of(SmolRTSP_ParseResult_Success, status) result = status->is_complete;
+        of(SmolRTSP_ParseResult_Success, status) result = SmolRTSP_ParseStatus_is_complete(*status);
         otherwise result = false;
     }
 

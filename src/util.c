@@ -18,16 +18,11 @@ const char *SmolRTSP_LowerTransport_str(SmolRTSP_LowerTransport self) {
 
 #define ENSURE_SUCCESS(res)                                                                        \
     match(res) {                                                                                   \
-        of(SmolRTSP_ParseResult_Success, status) {                                                 \
-            if (!status->is_complete) {                                                            \
-                return -1;                                                                         \
-            }                                                                                      \
-                                                                                                   \
-            value = CharSlice99_advance(value, status->offset);                                    \
+        of(SmolRTSP_ParseResult_Success, status) match(*status) {                                  \
+            of(SmolRTSP_ParseStatus_Complete, offset) value = CharSlice99_advance(value, *offset); \
+            otherwise return -1;                                                                   \
         }                                                                                          \
-        otherwise {                                                                                \
-            return -1;                                                                             \
-        }                                                                                          \
+        otherwise return -1;                                                                       \
     }
 
 int SmolRTSP_parse_lower_transport(SmolRTSP_LowerTransport *restrict result, CharSlice99 value) {
@@ -101,9 +96,7 @@ int SmolRTSP_parse_interleaved_chn_id(
     // If the result is partial, it means we have reached the end of the string. It is okay since
     // the value can be something like `RTP/AVP/UDP;unicast;interleaved=204`.
     ifLet(res, SmolRTSP_ParseResult_Success, status) {
-        if (!status->is_complete) {
-            status->is_complete = true;
-        }
+        *status = SmolRTSP_ParseStatus_Complete(0);
     }
 
     ENSURE_SUCCESS(res);
@@ -116,9 +109,10 @@ int SmolRTSP_parse_interleaved_chn_id(
     int rtcp_port_temp = -1;
     res = smolrtsp_match_until_str(value, "-");
 
+    // clang-format off
     ifLet(res, SmolRTSP_ParseResult_Success, status) {
-        if (status->is_complete) {
-            value = CharSlice99_advance(value, status->offset);
+        ifLet (*status, SmolRTSP_ParseStatus_Complete, offset) {
+            value = CharSlice99_advance(value, *offset);
             const CharSlice99 rtcp_chn_id_start = value;
 
             if (sscanf(
@@ -128,11 +122,12 @@ int SmolRTSP_parse_interleaved_chn_id(
             }
         }
     }
+// clang-format on
 
-    *rtp_chn_id = rtp_port_temp;
-    *rtcp_chn_id = rtcp_port_temp;
+*rtp_chn_id = rtp_port_temp;
+*rtcp_chn_id = rtcp_port_temp;
 
-    return 0;
+return 0;
 }
 
 #define DOLLAR 0x24
