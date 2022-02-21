@@ -52,10 +52,10 @@ SmolRTSP_HeaderMap_parse(SmolRTSP_HeaderMap *restrict self, CharSlice99 input) {
 
     self->len = 0;
 
-    MATCH(smolrtsp_match_until_double_crlf(input));
-    input = backup;
-
     while (true) {
+        if (CharSlice99_primitive_ends_with(input, CharSlice99_from_str("\r"))) {
+            return SmolRTSP_ParseResult_partial();
+        }
         if (CharSlice99_primitive_starts_with(input, SMOLRTSP_CRLF)) {
             return SmolRTSP_ParseResult_complete((input.ptr - backup.ptr) + SMOLRTSP_CRLF.len);
         }
