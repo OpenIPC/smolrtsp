@@ -54,3 +54,6 @@ dkms.conf
 # CMake build files
 build/
 tests/build/
+
+# Doxygen
+docs/
