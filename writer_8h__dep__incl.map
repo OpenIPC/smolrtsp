@@ -1,6 +1,6 @@
 <map id="include/smolrtsp/writer.h" name="include/smolrtsp/writer.h">
 <area shape="rect" id="node1" title="The writer interface." alt="" coords="1269,5,1451,32"/>
-<area shape="rect" id="node2" href="$smolrtsp_8h.html" title=" " alt="" coords="722,437,865,464"/>
+<area shape="rect" id="node2" href="$smolrtsp_8h.html" title="Re&#45;exports all the functionality." alt="" coords="722,437,865,464"/>
 <area shape="rect" id="node4" href="$transport_8h.html" title="RTSP data transport (level 4) implementations." alt="" coords="5,355,211,382"/>
 <area shape="rect" id="node5" href="$error_8h.html" title="Possible parsing errors." alt="" coords="805,80,976,121"/>
 <area shape="rect" id="node7" href="$header_8h.html" title="An RTSP header." alt="" coords="91,169,261,211"/>

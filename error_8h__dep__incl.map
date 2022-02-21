@@ -1,6 +1,6 @@
 <map id="include/smolrtsp/types/error.h" name="include/smolrtsp/types/error.h">
 <area shape="rect" id="node1" title="Possible parsing errors." alt="" coords="503,5,674,47"/>
-<area shape="rect" id="node2" href="$smolrtsp_8h.html" title=" " alt="" coords="661,363,804,389"/>
+<area shape="rect" id="node2" href="$smolrtsp_8h.html" title="Re&#45;exports all the functionality." alt="" coords="661,363,804,389"/>
 <area shape="rect" id="node4" href="$util_8h.html" title="Utilitary stuff." alt="" coords="47,281,213,307"/>
 <area shape="rect" id="node5" href="$header_8h.html" title="An RTSP header." alt="" coords="167,95,338,136"/>
 <area shape="rect" id="node6" href="$header__map_8h.html" title="An RTSP header map." alt="" coords="218,184,389,225"/>
