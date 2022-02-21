@@ -27,14 +27,6 @@
         }                                                                                          \
     } while (0)
 
-#define TRY_PARSE(if_state, expr)                                                                  \
-    do {                                                                                           \
-        if (if_state == *state) {                                                                  \
-            MATCH(expr);                                                                           \
-            (*state)++;                                                                            \
-        }                                                                                          \
-    } while (0)
-
 /**
  * Consume @p input until @p matcher returns false.
  */

@@ -45,24 +45,11 @@ typedef struct {
 ssize_t SmolRTSP_Response_serialize(SmolRTSP_Response self, SmolRTSP_Writer w);
 
 /**
- * A state of parsing of #SmolRTSP_Response.
- */
-typedef enum {
-    SmolRTSP_ResponseParseState_ResponseLine,
-    SmolRTSP_ResponseParseState_HeaderMap,
-    SmolRTSP_ResponseParseState_MessageBody,
-    SmolRTSP_ResponseParseState_Done,
-} SmolRTSP_ResponseParseState;
-
-/**
  * Parses @p data to @p self.
  *
  * @pre `self != NULL`
- * @pre `state != NULL`
  */
-SmolRTSP_ParseResult SmolRTSP_Response_parse(
-    SmolRTSP_Response *restrict self, CharSlice99 input,
-    SmolRTSP_ResponseParseState *restrict state);
+SmolRTSP_ParseResult SmolRTSP_Response_parse(SmolRTSP_Response *restrict self, CharSlice99 input);
 
 /**
  * Tests @p lhs and @p rhs for equality.

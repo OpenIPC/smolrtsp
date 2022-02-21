@@ -1,6 +1,11 @@
 #include <smolrtsp/types/response.h>
 
+#define TEST_PARSE_INIT_TYPE(result) result.header_map = SmolRTSP_HeaderMap_empty()
+
+#include "test_util.h"
 #include <greatest.h>
+
+DEF_TEST_PARSE(SmolRTSP_Response)
 
 TEST parse_response(void) {
     const SmolRTSP_Response expected = {
@@ -27,19 +32,10 @@ TEST parse_response(void) {
         .body = CharSlice99_from_str("0123456789"),
     };
 
-    SmolRTSP_ResponseParseState state = 0;
-
-    SmolRTSP_Response result = {.header_map = SmolRTSP_HeaderMap_empty()};
-    SmolRTSP_ParseResult ret;
-
-    ret = SmolRTSP_Response_parse(
-        &result,
-        CharSlice99_from_str("RTSP/1.1 200 OK\r\nContent-Length: 10\r\nAccept-Language: "
-                             "English\r\nContent-Type: application/octet-stream\r\n\r\n0123456789"),
-        &state);
-    ASSERT(SmolRTSP_ParseResult_is_complete(ret));
-    ASSERT_EQ(SmolRTSP_ResponseParseState_Done, state);
-    ASSERT(SmolRTSP_Response_eq(result, expected));
+    TEST_PARSE(
+        "RTSP/1.1 200 OK\r\nContent-Length: 10\r\nAccept-Language: "
+        "English\r\nContent-Type: application/octet-stream\r\n\r\n0123456789",
+        expected);
 
     PASS();
 }

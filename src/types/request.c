@@ -17,20 +17,13 @@ ssize_t SmolRTSP_Request_serialize(SmolRTSP_Request self, SmolRTSP_Writer w) {
     return result;
 }
 
-SmolRTSP_ParseResult SmolRTSP_Request_parse(
-    SmolRTSP_Request *restrict self, CharSlice99 input,
-    SmolRTSP_RequestParseState *restrict state) {
+SmolRTSP_ParseResult SmolRTSP_Request_parse(SmolRTSP_Request *restrict self, CharSlice99 input) {
     assert(self);
-    assert(state);
 
     const CharSlice99 backup = input;
 
-    TRY_PARSE(
-        SmolRTSP_RequestParseState_RequestLine,
-        SmolRTSP_RequestLine_parse(&self->start_line, input));
-
-    TRY_PARSE(
-        SmolRTSP_RequestParseState_HeaderMap, SmolRTSP_HeaderMap_parse(&self->header_map, input));
+    MATCH(SmolRTSP_RequestLine_parse(&self->start_line, input));
+    MATCH(SmolRTSP_HeaderMap_parse(&self->header_map, input));
 
     CharSlice99 content_length;
     size_t content_length_int = 0;
@@ -46,9 +39,7 @@ SmolRTSP_ParseResult SmolRTSP_Request_parse(
         }
     }
 
-    TRY_PARSE(
-        SmolRTSP_RequestParseState_MessageBody,
-        SmolRTSP_MessageBody_parse(&self->body, input, content_length_int));
+    MATCH(SmolRTSP_MessageBody_parse(&self->body, input, content_length_int));
 
     return SmolRTSP_ParseResult_complete(input.ptr - backup.ptr);
 }

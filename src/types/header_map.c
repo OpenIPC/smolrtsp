@@ -50,6 +50,8 @@ SmolRTSP_HeaderMap_parse(SmolRTSP_HeaderMap *restrict self, CharSlice99 input) {
 
     const CharSlice99 backup = input;
 
+    self->len = 0;
+
     MATCH(smolrtsp_match_until_double_crlf(input));
     input = backup;
 
