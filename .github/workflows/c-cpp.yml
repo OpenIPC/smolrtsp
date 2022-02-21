@@ -41,7 +41,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Install Doxygen
-        run: sudo apt install doxygen
+        run: sudo apt install doxygen dot
 
       - name: Build the docs
         run: bash scripts/docs.sh
