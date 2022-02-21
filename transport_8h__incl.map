@@ -1,9 +1,9 @@
 <map id="include/smolrtsp/transport.h" name="include/smolrtsp/transport.h">
-<area shape="rect" id="node1" title=" " alt="" coords="161,5,366,32"/>
-<area shape="rect" id="node2" href="$droppable_8h.html" title=" " alt="" coords="97,80,257,107"/>
+<area shape="rect" id="node1" title="RTSP data transport (level 4) implementations." alt="" coords="161,5,366,32"/>
+<area shape="rect" id="node2" href="$droppable_8h.html" title="Droppable types support." alt="" coords="97,80,257,107"/>
 <area shape="rect" id="node3" title=" " alt="" coords="5,155,113,181"/>
-<area shape="rect" id="node4" href="$io__vec_8h.html" title=" " alt="" coords="281,80,419,107"/>
-<area shape="rect" id="node9" href="$writer_8h.html" title=" " alt="" coords="457,80,589,107"/>
+<area shape="rect" id="node4" href="$io__vec_8h.html" title="Vectored I/O support." alt="" coords="281,80,419,107"/>
+<area shape="rect" id="node9" href="$writer_8h.html" title="The writer interface." alt="" coords="457,80,589,107"/>
 <area shape="rect" id="node5" title=" " alt="" coords="385,155,459,181"/>
 <area shape="rect" id="node6" title=" " alt="" coords="137,155,240,181"/>
 <area shape="rect" id="node7" title=" " alt="" coords="265,155,361,181"/>

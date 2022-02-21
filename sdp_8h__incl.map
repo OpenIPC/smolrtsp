@@ -1,6 +1,6 @@
 <map id="include/smolrtsp/types/sdp.h" name="include/smolrtsp/types/sdp.h">
-<area shape="rect" id="node1" title=" " alt="" coords="297,5,468,47"/>
-<area shape="rect" id="node2" href="$writer_8h.html" title=" " alt="" coords="265,95,397,121"/>
+<area shape="rect" id="node1" title="RFC 4566&#45;compliant SDP implementation." alt="" coords="297,5,468,47"/>
+<area shape="rect" id="node2" href="$writer_8h.html" title="The writer interface." alt="" coords="265,95,397,121"/>
 <area shape="rect" id="node8" title=" " alt="" coords="525,169,605,196"/>
 <area shape="rect" id="node3" title=" " alt="" coords="5,169,80,196"/>
 <area shape="rect" id="node4" title=" " alt="" coords="104,169,179,196"/>

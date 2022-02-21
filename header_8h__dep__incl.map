@@ -1,8 +1,8 @@
 <map id="include/smolrtsp/types/header.h" name="include/smolrtsp/types/header.h">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,176,47"/>
+<area shape="rect" id="node1" title="An RTSP header." alt="" coords="5,5,176,47"/>
 <area shape="rect" id="node2" href="$smolrtsp_8h.html" title=" " alt="" coords="70,273,213,300"/>
-<area shape="rect" id="node4" href="$header__map_8h.html" title=" " alt="" coords="92,95,263,136"/>
-<area shape="rect" id="node3" href="$rtp__transport_8h.html" title=" " alt="" coords="65,348,217,389"/>
-<area shape="rect" id="node5" href="$request_8h.html" title=" " alt="" coords="117,184,288,225"/>
-<area shape="rect" id="node6" href="$response_8h.html" title=" " alt="" coords="312,184,483,225"/>
+<area shape="rect" id="node4" href="$header__map_8h.html" title="An RTSP header map." alt="" coords="92,95,263,136"/>
+<area shape="rect" id="node3" href="$rtp__transport_8h.html" title="An RTP data transport." alt="" coords="65,348,217,389"/>
+<area shape="rect" id="node5" href="$request_8h.html" title="An RTSP request." alt="" coords="117,184,288,225"/>
+<area shape="rect" id="node6" href="$response_8h.html" title="An RTSP response." alt="" coords="312,184,483,225"/>
 </map>

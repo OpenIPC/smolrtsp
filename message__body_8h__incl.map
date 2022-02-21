@@ -1,10 +1,10 @@
 <map id="include/smolrtsp/types/message_body.h" name="include/smolrtsp/types/message_body.h">
-<area shape="rect" id="node1" title=" " alt="" coords="339,5,509,47"/>
-<area shape="rect" id="node2" href="$error_8h.html" title=" " alt="" coords="251,95,416,121"/>
+<area shape="rect" id="node1" title="An RTSP message body." alt="" coords="339,5,509,47"/>
+<area shape="rect" id="node2" href="$error_8h.html" title="Possible parsing errors." alt="" coords="251,95,416,121"/>
 <area shape="rect" id="node5" title=" " alt="" coords="5,244,80,271"/>
 <area shape="rect" id="node9" title=" " alt="" coords="525,244,605,271"/>
 <area shape="rect" id="node10" title=" " alt="" coords="459,169,541,196"/>
-<area shape="rect" id="node3" href="$writer_8h.html" title=" " alt="" coords="251,169,383,196"/>
+<area shape="rect" id="node3" href="$writer_8h.html" title="The writer interface." alt="" coords="251,169,383,196"/>
 <area shape="rect" id="node11" title=" " alt="" coords="67,169,175,196"/>
 <area shape="rect" id="node4" title=" " alt="" coords="427,244,501,271"/>
 <area shape="rect" id="node6" title=" " alt="" coords="104,244,171,271"/>
