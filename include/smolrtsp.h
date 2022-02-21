@@ -1,6 +1,6 @@
 /**
  * @file
- * Re-exports all the functionality.
+ * @brief Re-exports all the functionality.
  */
 
 /**
