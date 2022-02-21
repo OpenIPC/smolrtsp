@@ -1,6 +1,6 @@
 /**
  * @file
- * An RTSP method.
+ * @brief An RTSP method.
  */
 
 #pragma once
