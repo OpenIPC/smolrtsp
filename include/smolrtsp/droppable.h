@@ -1,6 +1,6 @@
 /**
  * @file
- * Droppable types support.
+ * @brief Droppable types support.
  */
 
 #pragma once

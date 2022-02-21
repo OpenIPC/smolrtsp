@@ -1,6 +1,6 @@
 /**
  * @file
- * An RTP data transport.
+ * @brief An RTP data transport.
  *
  * TODO: more docs.
  */

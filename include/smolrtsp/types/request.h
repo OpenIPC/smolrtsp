@@ -1,6 +1,6 @@
 /**
  * @file
- * An RTSP request.
+ * @brief An RTSP request.
  */
 
 #include <smolrtsp/types/error.h>

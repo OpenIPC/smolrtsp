@@ -1,6 +1,6 @@
 /**
  * @file
- * Utilitary stuff.
+ * @brief Utilitary stuff.
  */
 
 #pragma once

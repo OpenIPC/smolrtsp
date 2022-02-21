@@ -1,6 +1,6 @@
 /**
  * @file
- * An RTSP request URI.
+ * @brief An RTSP request URI.
  */
 
 #pragma once

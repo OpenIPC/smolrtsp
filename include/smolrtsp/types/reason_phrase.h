@@ -1,6 +1,6 @@
 /**
  * @file
- * An RTSP reason phrase.
+ * @brief An RTSP reason phrase.
  */
 
 #pragma once

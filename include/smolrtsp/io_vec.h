@@ -1,6 +1,6 @@
 /**
  * @file
- * Vectored I/O support.
+ * @brief Vectored I/O support.
  */
 
 #pragma once

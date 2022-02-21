@@ -1,6 +1,6 @@
 /**
  * @file
- * RTSP data transport (level 4) implementations.
+ * @brief RTSP data transport (level 4) implementations.
  */
 
 #pragma once

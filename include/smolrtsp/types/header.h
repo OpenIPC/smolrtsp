@@ -1,6 +1,6 @@
 /**
  * @file
- * An RTSP header.
+ * @brief An RTSP header.
  */
 
 #pragma once

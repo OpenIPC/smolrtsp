@@ -1,6 +1,6 @@
 /**
  * @file
- * The writer interface.
+ * @brief The writer interface.
  */
 
 #pragma once

@@ -1,6 +1,6 @@
 /**
  * @file
- * <a href="https://datatracker.ietf.org/doc/html/rfc3550">RFC 3550</a>-compliant RTP
+ * @brief <a href="https://datatracker.ietf.org/doc/html/rfc3550">RFC 3550</a>-compliant RTP
  * implementation.
  */
 

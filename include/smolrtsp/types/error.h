@@ -1,6 +1,6 @@
 /**
  * @file
- * Possible parsing errors.
+ * @brief Possible parsing errors.
  */
 
 #pragma once

@@ -1,6 +1,6 @@
 /**
  * @file
- *  An RTSP status code.
+ * @brief An RTSP status code.
  */
 
 #pragma once
