@@ -1,0 +1,7 @@
+<map id="SmolRTSP_Request" name="SmolRTSP_Request">
+<area shape="rect" id="node1" title="An RTSP request." alt="" coords="117,184,263,211"/>
+<area shape="rect" id="node2" href="$structSmolRTSP__RequestLine.html" title="An RTSP request line." alt="" coords="5,95,180,121"/>
+<area shape="rect" id="node3" href="$structSmolRTSP__RtspVersion.html" title="An RTSP version." alt="" coords="7,5,178,32"/>
+<area shape="rect" id="node4" href="$structSmolRTSP__HeaderMap.html" title="An RTSP header map." alt="" coords="204,95,373,121"/>
+<area shape="rect" id="node5" href="$structSmolRTSP__Header.html" title="An RTSP header." alt="" coords="218,5,359,32"/>
+</map>

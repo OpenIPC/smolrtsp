@@ -1,0 +1,4 @@
+<map id="SmolRTSP_ResponseLine" name="SmolRTSP_ResponseLine">
+<area shape="rect" id="node1" title="An RTSP response line." alt="" coords="5,95,189,121"/>
+<area shape="rect" id="node2" href="$structSmolRTSP__RtspVersion.html" title="An RTSP version." alt="" coords="12,5,183,32"/>
+</map>
