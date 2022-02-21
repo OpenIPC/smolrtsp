@@ -38,6 +38,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Install Doxygen
+        run: sudo apt install doxygen
+
       - name: Build the docs
         run: bash scripts/docs.sh
 
