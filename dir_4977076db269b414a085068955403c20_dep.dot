@@ -1,0 +1,9 @@
+digraph "include/smolrtsp/types" {
+  compound=true
+  node [ fontsize="10", fontname="Helvetica"];
+  edge [ labelfontsize="10", labelfontname="Helvetica"];
+  subgraph clusterdir_d9df11550791e941c069ba1bdc5c3ae8 {
+    graph [ bgcolor="#ddddee", pencolor="black", label="smolrtsp" fontname="Helvetica", fontsize="10", URL="dir_d9df11550791e941c069ba1bdc5c3ae8.html"]
+  dir_4977076db269b414a085068955403c20 [shape=box, label="types", style="filled", fillcolor="#eeeeff", pencolor="black", URL="dir_4977076db269b414a085068955403c20.html"];
+  }
+}

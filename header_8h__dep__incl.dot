@@ -1,0 +1,21 @@
+digraph "include/smolrtsp/types/header.h"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="include/smolrtsp/types\l/header.h",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="include/smolrtsp.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$smolrtsp_8h.html",tooltip=" "];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="include/smolrtsp/rtp\l_transport.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$rtp__transport_8h.html",tooltip=" "];
+  Node3 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="include/smolrtsp/types\l/header_map.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$header__map_8h.html",tooltip=" "];
+  Node4 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="include/smolrtsp/types\l/request.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$request_8h.html",tooltip=" "];
+  Node5 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="include/smolrtsp/types\l/response.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$response_8h.html",tooltip=" "];
+  Node6 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}
