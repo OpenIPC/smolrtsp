@@ -1,5 +1,5 @@
 <map id="include/smolrtsp.h" name="include/smolrtsp.h">
-<area shape="rect" id="node1" title="Re&#45;exports all the functionality." alt="" coords="1449,5,1591,32"/>
+<area shape="rect" id="node1" title="Re&#45;exports all the functionality." alt="" coords="1547,5,1690,32"/>
 <area shape="rect" id="node2" href="$error_8h.html" title="Possible parsing errors." alt="" coords="891,333,1056,360"/>
 <area shape="rect" id="node3" href="$writer_8h.html" title="The writer interface." alt="" coords="570,408,702,435"/>
 <area shape="rect" id="node13" href="$header_8h.html" title="An RTSP header." alt="" coords="171,251,349,278"/>
@@ -7,20 +7,21 @@
 <area shape="rect" id="node15" href="$message__body_8h.html" title="An RTSP message body." alt="" coords="2185,244,2367,285"/>
 <area shape="rect" id="node16" href="$method_8h.html" title="An RTSP method." alt="" coords="915,251,1101,278"/>
 <area shape="rect" id="node17" href="$reason__phrase_8h.html" title="An RTSP reason phrase." alt="" coords="1891,244,2058,285"/>
-<area shape="rect" id="node18" href="$request_8h.html" title="An RTSP request." alt="" coords="1428,80,1612,107"/>
-<area shape="rect" id="node19" href="$request__line_8h.html" title="An RTSP request line." alt="" coords="1142,155,1314,196"/>
+<area shape="rect" id="node18" href="$request_8h.html" title="An RTSP request." alt="" coords="1463,80,1647,107"/>
+<area shape="rect" id="node19" href="$request__line_8h.html" title="An RTSP request line." alt="" coords="1159,155,1331,196"/>
 <area shape="rect" id="node20" href="$request__uri_8h.html" title="An RTSP request URI." alt="" coords="374,244,546,285"/>
 <area shape="rect" id="node21" href="$rtsp__version_8h.html" title="An RTSP version." alt="" coords="1379,244,1527,285"/>
 <area shape="rect" id="node23" href="$response_8h.html" title="An RTSP response." alt="" coords="2009,80,2204,107"/>
-<area shape="rect" id="node24" href="$response__line_8h.html" title="An RTSP response line." alt="" coords="1687,155,1870,196"/>
+<area shape="rect" id="node24" href="$response__line_8h.html" title="An RTSP response line." alt="" coords="1722,155,1905,196"/>
 <area shape="rect" id="node25" href="$status__code_8h.html" title="An RTSP status code." alt="" coords="1603,244,1765,285"/>
 <area shape="rect" id="node26" href="$rtp_8h.html" title="RFC 3550&#45;compliant RTP implementation." alt="" coords="2494,251,2647,278"/>
 <area shape="rect" id="node27" href="$sdp_8h.html" title="RFC 4566&#45;compliant SDP implementation." alt="" coords="403,333,562,360"/>
-<area shape="rect" id="node28" href="$droppable_8h.html" title="Droppable types support." alt="" coords="3061,408,3221,435"/>
-<area shape="rect" id="node29" href="$io__vec_8h.html" title="Vectored I/O support." alt="" coords="2849,408,2986,435"/>
-<area shape="rect" id="node32" href="$rtp__transport_8h.html" title="An RTP data transport." alt="" coords="2672,251,2851,278"/>
-<area shape="rect" id="node33" href="$transport_8h.html" title="RTSP data transport (level 4) implementations." alt="" coords="2848,333,3003,360"/>
-<area shape="rect" id="node34" href="$util_8h.html" title="Utilitary stuff." alt="" coords="622,251,738,278"/>
+<area shape="rect" id="node28" title=" " alt="" coords="3179,80,3317,107"/>
+<area shape="rect" id="node29" href="$droppable_8h.html" title="Droppable types support." alt="" coords="3061,408,3221,435"/>
+<area shape="rect" id="node30" href="$io__vec_8h.html" title="Vectored I/O support." alt="" coords="2849,408,2986,435"/>
+<area shape="rect" id="node33" href="$rtp__transport_8h.html" title="An RTP data transport." alt="" coords="2672,251,2851,278"/>
+<area shape="rect" id="node34" href="$transport_8h.html" title="RTSP data transport (level 4) implementations." alt="" coords="2848,333,3003,360"/>
+<area shape="rect" id="node35" href="$util_8h.html" title="Utilitary stuff." alt="" coords="622,251,738,278"/>
 <area shape="rect" id="node5" title=" " alt="" coords="2633,490,2708,517"/>
 <area shape="rect" id="node9" title=" " alt="" coords="441,490,521,517"/>
 <area shape="rect" id="node10" title=" " alt="" coords="1865,483,2034,524"/>
@@ -31,6 +32,6 @@
 <area shape="rect" id="node7" title=" " alt="" coords="96,490,171,517"/>
 <area shape="rect" id="node8" title=" " alt="" coords="2993,490,3101,517"/>
 <area shape="rect" id="node22" title=" " alt="" coords="1587,333,1658,360"/>
-<area shape="rect" id="node30" title=" " alt="" coords="2866,490,2969,517"/>
-<area shape="rect" id="node31" title=" " alt="" coords="2745,490,2841,517"/>
+<area shape="rect" id="node31" title=" " alt="" coords="2866,490,2969,517"/>
+<area shape="rect" id="node32" title=" " alt="" coords="2745,490,2841,517"/>
 </map>
