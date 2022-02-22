@@ -38,6 +38,9 @@ set(SMOLRTSP_SOURCES
     include/smolrtsp/types/status_code.h
     include/smolrtsp/types/sdp.h
     include/smolrtsp/types/rtp.h
+    include/smolrtsp/nal/h264.h
+    include/smolrtsp/nal/h265.h
+    include/smolrtsp/nal/nal.h
     include/smolrtsp/writer.h
     include/smolrtsp/util.h
     include/smolrtsp/transport.h
@@ -61,6 +64,9 @@ set(SMOLRTSP_SOURCES
     src/types/status_code.c
     src/types/sdp.c
     src/types/rtp.c
+    src/nal/h264.c
+    src/nal/h265.c
+    src/nal/nal.c
     src/writer.c
     src/writer/fd.c
     src/writer/file.c
@@ -89,6 +95,9 @@ endif()
 target_precompile_headers(
   ${PROJECT_NAME} PUBLIC
   include/smolrtsp/types/error.h
+  include/smolrtsp/nal/h264.h
+  include/smolrtsp/nal/h265.h
+  include/smolrtsp/nal/nal.h
   include/smolrtsp/writer.h
   include/smolrtsp/transport.h
   include/smolrtsp/droppable.h)
