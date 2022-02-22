@@ -51,10 +51,18 @@ static int SmolRTSP_TcpTransport_transmit(VSelf, SmolRTSP_IoVecSlice bufs) {
             .payload_len = htons(total_bytes),
         });
 
-    VCALL(self->w, write, CharSlice99_new((char *)&interleaved_data, sizeof interleaved_data));
+    ssize_t ret =
+        VCALL(self->w, write, CharSlice99_new((char *)&interleaved_data, sizeof interleaved_data));
+    if (ret != sizeof interleaved_data) {
+        return -1;
+    }
 
     for (size_t i = 0; i < bufs.len; i++) {
-        VCALL(self->w, write, CharSlice99_new(bufs.ptr[i].iov_base, bufs.ptr[i].iov_len));
+        const CharSlice99 vec = CharSlice99_new(bufs.ptr[i].iov_base, bufs.ptr[i].iov_len);
+        ret = VCALL(self->w, write, vec);
+        if (ret != vec.len) {
+            return -1;
+        }
     }
 
     return 0;

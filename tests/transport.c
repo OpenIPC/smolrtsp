@@ -13,16 +13,17 @@
 #define DATA_0 "abc"
 #define DATA_1 "defghi"
 
-static struct iovec bufs[] = {
-    {.iov_base = DATA_0, .iov_len = sizeof((char[]){DATA_0}) - 1},
-    {.iov_base = DATA_1, .iov_len = sizeof((char[]){DATA_1}) - 1},
-};
-
 static enum greatest_test_res test_transport(
     SmolRTSP_Transport t, int read_fd, size_t len, const char expected[restrict static len]) {
-    const bool transmit_ok =
-        VCALL(t, transmit, (SmolRTSP_IoVecSlice)Slice99_typed_from_array(bufs)) == 0;
-    ASSERT(transmit_ok);
+    struct iovec bufs[] = {
+        {.iov_base = DATA_0, .iov_len = sizeof((char[]){DATA_0}) - 1},
+        {.iov_base = DATA_1, .iov_len = sizeof((char[]){DATA_1}) - 1},
+    };
+
+    const SmolRTSP_IoVecSlice slices = Slice99_typed_from_array(bufs);
+
+    const ssize_t ret = VCALL(t, transmit, slices);
+    ASSERT_EQ(0, ret);
 
     char *buffer = malloc(len);
     read(read_fd, buffer, len);
