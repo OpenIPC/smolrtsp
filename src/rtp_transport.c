@@ -38,7 +38,7 @@ void SmolRTSP_RtpTransport_drop(VSelf) {
 
 implExtern(SmolRTSP_Droppable, SmolRTSP_RtpTransport);
 
-void SmolRTSP_RtpTransport_send_packet(
+int SmolRTSP_RtpTransport_send_packet(
     SmolRTSP_RtpTransport *self, uint64_t timestamp_us, bool marker, uint8_t payload_ty,
     uint32_t clock_rate, U8Slice99 data_header, U8Slice99 data) {
     assert(self);
@@ -69,8 +69,12 @@ void SmolRTSP_RtpTransport_send_packet(
         smolrtsp_slice_to_iovec(data),
     });
 
-    VCALL(self->transmitter, transmit, bufs);
-    self->seq_num++;
+    const int ret = VCALL(self->transmitter, transmit, bufs);
+    if (ret != -1) {
+        self->seq_num++;
+    }
+
+    return ret;
 }
 
 static uint32_t compute_timestamp(uint64_t timestamp_us, uint64_t clock_rate_kHz) {

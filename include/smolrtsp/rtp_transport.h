@@ -28,8 +28,10 @@ SmolRTSP_RtpTransport *SmolRTSP_RtpTransport_new(SmolRTSP_Transport t, uint8_t r
 
 /**
  * Sends an RTP packet.
+ *
+ * @return -1 if an I/O error occurred and sets `errno` appropriately, 0 on success.
  */
-void SmolRTSP_RtpTransport_send_packet(
+int SmolRTSP_RtpTransport_send_packet(
     SmolRTSP_RtpTransport *self, uint64_t timestamp_us, bool marker, uint8_t payload_ty,
     uint32_t clock_rate, U8Slice99 data_header, U8Slice99 data);
 
