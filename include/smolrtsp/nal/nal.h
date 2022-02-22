@@ -9,8 +9,8 @@
 #include <datatype99.h>
 #include <slice99.h>
 
-#define SMOLRTSP_NAL_UNIT_DESTRUCT(nal_unit, header, payload)                                      \
-    NalHeader h = SmolRTSP_NalUnit_header(nal_unit);                                               \
+#define SMOLRTSP_NAL_UNIT_DESTRUCT(nal_unit, h, payload)                                           \
+    SmolRTSP_NalHeader h = SmolRTSP_NalUnit_header(nal_unit);                                      \
     U8Slice99 payload = SmolRTSP_NalUnit_payload(nal_unit)
 
 #define SMOLRTSP_NAL_HEADER_FU_HEADER_SIZE(h)                                                      \
