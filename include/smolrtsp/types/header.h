@@ -15,6 +15,8 @@
 
 #include <slice99.h>
 
+#include <smolrtsp/priv/compiler_attrs.h>
+
 /**
  * An RTSP header.
  */
@@ -40,19 +42,20 @@ typedef struct {
  *
  * @pre `w.self && w.vptr`
  */
-ssize_t SmolRTSP_Header_serialize(SmolRTSP_Header self, SmolRTSP_Writer w);
+ssize_t SmolRTSP_Header_serialize(SmolRTSP_Header self, SmolRTSP_Writer w) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Parses @p data to @p self.
  *
  * @pre `self != NULL`
  */
-SmolRTSP_ParseResult SmolRTSP_Header_parse(SmolRTSP_Header *restrict self, CharSlice99 input);
+SmolRTSP_ParseResult
+SmolRTSP_Header_parse(SmolRTSP_Header *restrict self, CharSlice99 input) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Tests @p lhs and @p rhs for equality.
  */
-bool SmolRTSP_Header_eq(SmolRTSP_Header lhs, SmolRTSP_Header rhs);
+bool SmolRTSP_Header_eq(SmolRTSP_Header lhs, SmolRTSP_Header rhs) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * `Accept`.

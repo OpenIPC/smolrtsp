@@ -12,6 +12,8 @@
 
 #include <stdbool.h>
 
+#include <smolrtsp/priv/compiler_attrs.h>
+
 /**
  * An RTSP request line.
  */
@@ -42,17 +44,19 @@ typedef struct {
  *
  * @pre `w.self && w.vptr`
  */
-ssize_t SmolRTSP_RequestLine_serialize(SmolRTSP_RequestLine self, SmolRTSP_Writer w);
+ssize_t
+SmolRTSP_RequestLine_serialize(SmolRTSP_RequestLine self, SmolRTSP_Writer w) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Parses @p data to @p self.
  *
  * @pre `self != NULL`
  */
-SmolRTSP_ParseResult
-SmolRTSP_RequestLine_parse(SmolRTSP_RequestLine *restrict self, CharSlice99 input);
+SmolRTSP_ParseResult SmolRTSP_RequestLine_parse(
+    SmolRTSP_RequestLine *restrict self, CharSlice99 input) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Tests @p lhs and @p rhs for equality.
  */
-bool SmolRTSP_RequestLine_eq(SmolRTSP_RequestLine lhs, SmolRTSP_RequestLine rhs);
+bool SmolRTSP_RequestLine_eq(SmolRTSP_RequestLine lhs, SmolRTSP_RequestLine rhs)
+    SMOLRTSP_PRIV_MUST_USE;

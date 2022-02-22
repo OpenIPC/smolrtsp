@@ -10,6 +10,8 @@
 #include <stddef.h>
 #include <stdint.h>
 
+#include <smolrtsp/priv/compiler_attrs.h>
+
 /**
  * An RTP header.
  *
@@ -106,7 +108,7 @@ typedef struct {
 /**
  * Computes the size of the binary @p self.
  */
-size_t SmolRTSP_RtpHeader_size(SmolRTSP_RtpHeader self);
+size_t SmolRTSP_RtpHeader_size(SmolRTSP_RtpHeader self) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Writes @p self to @p buffer.
@@ -117,4 +119,5 @@ size_t SmolRTSP_RtpHeader_size(SmolRTSP_RtpHeader self);
  *
  * @return The pointer to a passed buffer.
  */
-uint8_t *SmolRTSP_RtpHeader_serialize(SmolRTSP_RtpHeader self, uint8_t buffer[restrict]);
+uint8_t *SmolRTSP_RtpHeader_serialize(SmolRTSP_RtpHeader self, uint8_t buffer[restrict])
+    SMOLRTSP_PRIV_MUST_USE;

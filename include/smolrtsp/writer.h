@@ -14,6 +14,8 @@
 #include <interface99.h>
 #include <slice99.h>
 
+#include <smolrtsp/priv/compiler_attrs.h>
+
 /**
  * The user-supplied data writer interface.
  */
@@ -68,26 +70,27 @@ interface99(SmolRTSP_Writer);
  *
  * @pre `w.self && w.vptr`
  */
-ssize_t
-smolrtsp_write_slices(SmolRTSP_Writer w, size_t len, const CharSlice99 data[restrict static len]);
+ssize_t smolrtsp_write_slices(
+    SmolRTSP_Writer w, size_t len,
+    const CharSlice99 data[restrict static len]) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * A writer that invokes `write` on a provided file descriptor.
  *
  * @pre `fd != NULL`
  */
-SmolRTSP_Writer smolrtsp_fd_writer(int *fd);
+SmolRTSP_Writer smolrtsp_fd_writer(int *fd) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * A writer that invokes `fwrite` on a provided file pointer.
  *
  * @pre `stream != NULL`
  */
-SmolRTSP_Writer smolrtsp_file_writer(FILE *stream);
+SmolRTSP_Writer smolrtsp_file_writer(FILE *stream) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * A writer that invokes `strncat` on a provided buffer.
  *
  * @pre @p buffer shall be capable of holding all characters that will be written into it.
  */
-SmolRTSP_Writer smolrtsp_string_writer(char *buffer);
+SmolRTSP_Writer smolrtsp_string_writer(char *buffer) SMOLRTSP_PRIV_MUST_USE;

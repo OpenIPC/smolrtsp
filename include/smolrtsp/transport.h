@@ -11,6 +11,8 @@
 
 #include <interface99.h>
 
+#include <smolrtsp/priv/compiler_attrs.h>
+
 /**
  * A transport-level RTSP data transmitter.
  *
@@ -44,7 +46,8 @@ interface99(SmolRTSP_Transport);
  *
  * @pre `w.self && w.vptr`
  */
-SmolRTSP_Transport smolrtsp_transport_tcp(SmolRTSP_Writer w, uint8_t channel_id);
+SmolRTSP_Transport
+smolrtsp_transport_tcp(SmolRTSP_Writer w, uint8_t channel_id) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Creates a new UDP transport.
@@ -56,4 +59,4 @@ SmolRTSP_Transport smolrtsp_transport_tcp(SmolRTSP_Writer w, uint8_t channel_id)
  *
  * @pre `fd >= 0`
  */
-SmolRTSP_Transport smolrtsp_transport_udp(int fd);
+SmolRTSP_Transport smolrtsp_transport_udp(int fd) SMOLRTSP_PRIV_MUST_USE;

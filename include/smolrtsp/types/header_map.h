@@ -16,6 +16,8 @@
 
 #include <slice99.h>
 
+#include <smolrtsp/priv/compiler_attrs.h>
+
 /**
  * Creates new #SmolRTSP_HeaderMap from an array expression of #SmolRTSP_Header.
  */
@@ -48,7 +50,7 @@ typedef struct {
 /**
  * Returns an empty header map suitable for further parsing.
  */
-SmolRTSP_HeaderMap SmolRTSP_HeaderMap_empty(void);
+SmolRTSP_HeaderMap SmolRTSP_HeaderMap_empty(void) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Finds a value associated with @p key within @p self.
@@ -61,12 +63,14 @@ SmolRTSP_HeaderMap SmolRTSP_HeaderMap_empty(void);
  * @param[out] value The header value to be assigned, if found. If `NULL`, no assignment is
  * performed.
  */
-bool SmolRTSP_HeaderMap_find(SmolRTSP_HeaderMap self, CharSlice99 key, CharSlice99 *restrict value);
+bool SmolRTSP_HeaderMap_find(SmolRTSP_HeaderMap self, CharSlice99 key, CharSlice99 *restrict value)
+    SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Returns whether @p key is present in @p self.
  */
-bool SmolRTSP_HeaderMap_key_is_present(SmolRTSP_HeaderMap self, CharSlice99 key);
+bool SmolRTSP_HeaderMap_key_is_present(SmolRTSP_HeaderMap self, CharSlice99 key)
+    SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Serialises @p self into @p w.
@@ -78,23 +82,25 @@ bool SmolRTSP_HeaderMap_key_is_present(SmolRTSP_HeaderMap self, CharSlice99 key)
  *
  * @pre `w.self && w.vptr`
  */
-ssize_t SmolRTSP_HeaderMap_serialize(SmolRTSP_HeaderMap self, SmolRTSP_Writer w);
+ssize_t
+SmolRTSP_HeaderMap_serialize(SmolRTSP_HeaderMap self, SmolRTSP_Writer w) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Parses @p data to @p self.
  *
  * @pre `self != NULL`
  */
-SmolRTSP_ParseResult SmolRTSP_HeaderMap_parse(SmolRTSP_HeaderMap *restrict self, CharSlice99 input);
+SmolRTSP_ParseResult SmolRTSP_HeaderMap_parse(SmolRTSP_HeaderMap *restrict self, CharSlice99 input)
+    SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Tests @p lhs and @p rhs for equality.
  */
-bool SmolRTSP_HeaderMap_eq(SmolRTSP_HeaderMap lhs, SmolRTSP_HeaderMap rhs);
+bool SmolRTSP_HeaderMap_eq(SmolRTSP_HeaderMap lhs, SmolRTSP_HeaderMap rhs) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Tests whether @p self is full (no more space left for an additional header) or not.
  *
  * @return `true` if @p self is full, `false` otherwise
  */
-bool SmolRTSP_HeaderMap_is_full(SmolRTSP_HeaderMap self);
+bool SmolRTSP_HeaderMap_is_full(SmolRTSP_HeaderMap self) SMOLRTSP_PRIV_MUST_USE;

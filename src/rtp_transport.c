@@ -1,5 +1,7 @@
 #include <smolrtsp/rtp_transport.h>
 
+#include <smolrtsp/types/rtp.h>
+
 #include <assert.h>
 #include <stdlib.h>
 

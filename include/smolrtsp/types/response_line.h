@@ -12,6 +12,8 @@
 
 #include <stdbool.h>
 
+#include <smolrtsp/priv/compiler_attrs.h>
+
 /**
  * An RTSP response line.
  */
@@ -42,17 +44,19 @@ typedef struct {
  *
  * @pre `w.self && w.vptr`
  */
-ssize_t SmolRTSP_ResponseLine_serialize(SmolRTSP_ResponseLine self, SmolRTSP_Writer w);
+ssize_t SmolRTSP_ResponseLine_serialize(SmolRTSP_ResponseLine self, SmolRTSP_Writer w)
+    SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Parses @p data to @p self.
  *
  * @pre `self != NULL`
  */
-SmolRTSP_ParseResult
-SmolRTSP_ResponseLine_parse(SmolRTSP_ResponseLine *restrict self, CharSlice99 input);
+SmolRTSP_ParseResult SmolRTSP_ResponseLine_parse(
+    SmolRTSP_ResponseLine *restrict self, CharSlice99 input) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Tests @p lhs and @p rhs for equality.
  */
-bool SmolRTSP_ResponseLine_eq(SmolRTSP_ResponseLine lhs, SmolRTSP_ResponseLine rhs);
+bool SmolRTSP_ResponseLine_eq(SmolRTSP_ResponseLine lhs, SmolRTSP_ResponseLine rhs)
+    SMOLRTSP_PRIV_MUST_USE;

@@ -11,6 +11,8 @@
 
 #include <slice99.h>
 
+#include <smolrtsp/priv/compiler_attrs.h>
+
 /**
  * An RTSP method.
  */
@@ -21,12 +23,13 @@ typedef CharSlice99 SmolRTSP_Method;
  *
  * @pre `self != NULL`
  */
-SmolRTSP_ParseResult SmolRTSP_Method_parse(SmolRTSP_Method *restrict self, CharSlice99 input);
+SmolRTSP_ParseResult
+SmolRTSP_Method_parse(SmolRTSP_Method *restrict self, CharSlice99 input) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Tests @p lhs and @p rhs for equality.
  */
-bool SmolRTSP_Method_eq(SmolRTSP_Method lhs, SmolRTSP_Method rhs);
+bool SmolRTSP_Method_eq(SmolRTSP_Method lhs, SmolRTSP_Method rhs) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * `OPTIONS`.

@@ -20,9 +20,12 @@ TEST serialize_sdp_line(void) {
 TEST sdp_printf(void) {
     char buffer[20] = {0};
 
-    smolrtsp_sdp_printf(
+    const char *expected = "a=abc 123 @ def\r\n";
+
+    const ssize_t ret = smolrtsp_sdp_printf(
         SMOLRTSP_SDP_ATTR, smolrtsp_string_writer(buffer), "abc %d @ %s", 123, "def");
-    ASSERT_STR_EQ("a=abc 123 @ def\r\n", buffer);
+    ASSERT_EQ((ssize_t)strlen(expected), ret);
+    ASSERT_STR_EQ(expected, buffer);
 
     PASS();
 }

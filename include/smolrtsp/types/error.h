@@ -13,6 +13,8 @@
 #include <datatype99.h>
 #include <slice99.h>
 
+#include <smolrtsp/priv/compiler_attrs.h>
+
 /**
  * Types of data that can be failed to parse.
  */
@@ -36,7 +38,7 @@ typedef enum {
 /**
  * Returns a string representation of @p self.
  */
-const char *SmolRTSP_ParseType_str(SmolRTSP_ParseType self);
+const char *SmolRTSP_ParseType_str(SmolRTSP_ParseType self) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * An error that might occur during parsing.
@@ -72,8 +74,12 @@ datatype99(
  *
  * @param[in] self The error to print.
  * @param[in] w The writer to be provided with data.
+ *
+ * @return The number of bytes written or a negative value on error.
+ *
+ * @pre `w.self && w.vptr`
  */
-void SmolRTSP_ParseError_print(SmolRTSP_ParseError self, SmolRTSP_Writer w);
+int SmolRTSP_ParseError_print(SmolRTSP_ParseError self, SmolRTSP_Writer w);
 
 /**
  * A status of successful parsing.
@@ -98,12 +104,12 @@ datatype99(
 /**
  * Returns whether @p self is complete.
  */
-bool SmolRTSP_ParseStatus_is_complete(SmolRTSP_ParseStatus self);
+bool SmolRTSP_ParseStatus_is_complete(SmolRTSP_ParseStatus self) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Returns whether @p self is partial.
  */
-bool SmolRTSP_ParseStatus_is_partial(SmolRTSP_ParseStatus self);
+bool SmolRTSP_ParseStatus_is_partial(SmolRTSP_ParseStatus self) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * A result of parsing (either success or failure).
@@ -122,30 +128,30 @@ datatype99(
 /**
  * Creates a **successful** and **partial** parse result.
  */
-SmolRTSP_ParseResult SmolRTSP_ParseResult_partial(void);
+SmolRTSP_ParseResult SmolRTSP_ParseResult_partial(void) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Creates a **successful** and **complete** parse result with the byte offset @p offset (from the
  * beginning of input).
  */
-SmolRTSP_ParseResult SmolRTSP_ParseResult_complete(size_t offset);
+SmolRTSP_ParseResult SmolRTSP_ParseResult_complete(size_t offset) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Returns whether @p self is successful.
  */
-bool SmolRTSP_ParseResult_is_success(SmolRTSP_ParseResult self);
+bool SmolRTSP_ParseResult_is_success(SmolRTSP_ParseResult self) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Returns whether @p self is a failure.
  */
-bool SmolRTSP_ParseResult_is_failure(SmolRTSP_ParseResult self);
+bool SmolRTSP_ParseResult_is_failure(SmolRTSP_ParseResult self) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Returns whether @p self is both **successful** and **partial**.
  */
-bool SmolRTSP_ParseResult_is_partial(SmolRTSP_ParseResult self);
+bool SmolRTSP_ParseResult_is_partial(SmolRTSP_ParseResult self) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * The same as #SmolRTSP_ParseResult_is_partial but for a complete result.
  */
-bool SmolRTSP_ParseResult_is_complete(SmolRTSP_ParseResult self);
+bool SmolRTSP_ParseResult_is_complete(SmolRTSP_ParseResult self) SMOLRTSP_PRIV_MUST_USE;
