@@ -85,6 +85,14 @@ elseif(CMAKE_C_COMPILER_ID STREQUAL "GNU")
   target_compile_options(${PROJECT_NAME} PRIVATE -ftrack-macro-expansion=0)
 endif()
 
+# Precompile headers using Datatype99/Interface99.
+target_precompile_headers(
+  ${PROJECT_NAME} PUBLIC
+  include/smolrtsp/types/error.h
+  include/smolrtsp/writer.h
+  include/smolrtsp/transport.h
+  include/smolrtsp/droppable.h)
+
 target_include_directories(${PROJECT_NAME} PUBLIC include)
 target_link_libraries(${PROJECT_NAME} PUBLIC slice99 datatype99 interface99)
 
