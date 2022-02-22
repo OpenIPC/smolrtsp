@@ -25,6 +25,9 @@
         .len = SLICE99_ARRAY_LEN((SmolRTSP_Header[])__VA_ARGS__),                                  \
     })
 
+/**
+ * The maximum number of headers in #SmolRTSP_HeaderMap.headers.
+ */
 #define SMOLRTSP_HEADER_MAP_CAPACITY 32
 
 /**
@@ -42,6 +45,9 @@ typedef struct {
     size_t len;
 } SmolRTSP_HeaderMap;
 
+/**
+ * Returns an empty header map suitable for further parsing.
+ */
 SmolRTSP_HeaderMap SmolRTSP_HeaderMap_empty(void);
 
 /**

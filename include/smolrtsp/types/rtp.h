@@ -111,6 +111,7 @@ size_t SmolRTSP_RtpHeader_size(SmolRTSP_RtpHeader self);
 /**
  * Writes @p self to @p buffer.
  *
+ * @param[in] self The RTP header to write.
  * @param[out] buffer The pointer to write to. Must be at least of size
  * `SmolRTSP_RtpHeader_size(self)`.
  *
