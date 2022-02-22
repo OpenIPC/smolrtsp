@@ -98,21 +98,23 @@ $(document).ready(function(){initNavTree('error_8h.html',''); initResizable(); }
 <code>#include &lt;stddef.h&gt;</code><br />
 <code>#include &lt;datatype99.h&gt;</code><br />
 <code>#include &lt;slice99.h&gt;</code><br />
+<code>#include &lt;smolrtsp/priv/compiler_attrs.h&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for error.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="error_8h__incl.png" border="0" usemap="#include_2smolrtsp_2types_2error_8h" alt=""/></div>
 <map name="include_2smolrtsp_2types_2error_8h" id="include_2smolrtsp_2types_2error_8h">
-<area shape="rect" title="Possible parsing errors." alt="" coords="301,5,472,47"/>
-<area shape="rect" href="writer_8h.html" title="The writer interface." alt="" coords="217,95,349,121"/>
-<area shape="rect" title=" " alt="" coords="5,169,80,196"/>
-<area shape="rect" title=" " alt="" coords="525,169,605,196"/>
-<area shape="rect" title=" " alt="" coords="424,95,507,121"/>
-<area shape="rect" title=" " alt="" coords="531,95,639,121"/>
-<area shape="rect" title=" " alt="" coords="104,169,179,196"/>
-<area shape="rect" title=" " alt="" coords="203,169,269,196"/>
-<area shape="rect" title=" " alt="" coords="293,169,368,196"/>
-<area shape="rect" title=" " alt="" coords="393,169,501,196"/>
+<area shape="rect" title="Possible parsing errors." alt="" coords="476,5,647,47"/>
+<area shape="rect" href="writer_8h.html" title="The writer interface." alt="" coords="310,95,442,121"/>
+<area shape="rect" title=" " alt="" coords="5,177,80,203"/>
+<area shape="rect" title=" " alt="" coords="525,177,605,203"/>
+<area shape="rect" title=" " alt="" coords="630,169,799,211"/>
+<area shape="rect" title=" " alt="" coords="624,95,707,121"/>
+<area shape="rect" title=" " alt="" coords="731,95,839,121"/>
+<area shape="rect" title=" " alt="" coords="427,177,501,203"/>
+<area shape="rect" title=" " alt="" coords="104,177,171,203"/>
+<area shape="rect" title=" " alt="" coords="195,177,269,203"/>
+<area shape="rect" title=" " alt="" coords="294,177,402,203"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -135,7 +137,6 @@ This graph shows which files directly or indirectly include this file:</div>
 <area shape="rect" href="request__uri_8h.html" title="An RTSP request URI." alt="" coords="810,95,981,136"/>
 <area shape="rect" href="rtsp__version_8h.html" title="An RTSP version." alt="" coords="1005,95,1175,136"/>
 <area shape="rect" href="status__code_8h.html" title="An RTSP status code." alt="" coords="1445,95,1615,136"/>
-<area shape="rect" href="rtp__transport_8h.html" title="An RTP data transport." alt="" coords="657,437,809,479"/>
 </map>
 </div>
 </div>
@@ -152,54 +153,54 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a0542227eaa1e25c03353421f876801b0"><td class="memItemLeft" align="right" valign="top"><a id="a0542227eaa1e25c03353421f876801b0"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="error_8h.html#a0542227eaa1e25c03353421f876801b0">SmolRTSP_ParseType_str</a> (<a class="el" href="error_8h.html#ac95dd4e524f39bd1d021e19ba9312644">SmolRTSP_ParseType</a> self)</td></tr>
-<tr class="memdesc:a0542227eaa1e25c03353421f876801b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a string representation of <code>self</code>. <br /></td></tr>
-<tr class="separator:a0542227eaa1e25c03353421f876801b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51ce1aa9a992814a0de92455aa72de65"><td class="memItemLeft" align="right" valign="top"><a id="a51ce1aa9a992814a0de92455aa72de65"></a>
+const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="error_8h.html#a51ce1aa9a992814a0de92455aa72de65">SmolRTSP_ParseType_str</a> (<a class="el" href="error_8h.html#ac95dd4e524f39bd1d021e19ba9312644">SmolRTSP_ParseType</a> self) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:a51ce1aa9a992814a0de92455aa72de65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a string representation of <code>self</code>. <br /></td></tr>
+<tr class="separator:a51ce1aa9a992814a0de92455aa72de65"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab41ae4ba72c9ecf524438fca650c66f8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="error_8h.html#ab41ae4ba72c9ecf524438fca650c66f8">datatype99</a> (SmolRTSP_ParseError,(SmolRTSP_ParseError_ContentLength, CharSlice99),(SmolRTSP_ParseError_StrMismatch, CharSlice99, CharSlice99),(SmolRTSP_ParseError_TypeMismatch, <a class="el" href="error_8h.html#ac95dd4e524f39bd1d021e19ba9312644">SmolRTSP_ParseType</a>, CharSlice99),(SmolRTSP_ParseError_HeaderMapOverflow))</td></tr>
 <tr class="memdesc:ab41ae4ba72c9ecf524438fca650c66f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">An error that might occur during parsing.  <a href="error_8h.html#ab41ae4ba72c9ecf524438fca650c66f8">More...</a><br /></td></tr>
 <tr class="separator:ab41ae4ba72c9ecf524438fca650c66f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af08a288102c90c8186d49d604f27d2d8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="error_8h.html#af08a288102c90c8186d49d604f27d2d8">SmolRTSP_ParseError_print</a> (SmolRTSP_ParseError self, SmolRTSP_Writer w)</td></tr>
-<tr class="memdesc:af08a288102c90c8186d49d604f27d2d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints <code>self</code> into <code>w</code>.  <a href="error_8h.html#af08a288102c90c8186d49d604f27d2d8">More...</a><br /></td></tr>
-<tr class="separator:af08a288102c90c8186d49d604f27d2d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70438a5db93aebfb3a6e929045885f4e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="error_8h.html#a70438a5db93aebfb3a6e929045885f4e">SmolRTSP_ParseError_print</a> (SmolRTSP_ParseError self, SmolRTSP_Writer w)</td></tr>
+<tr class="memdesc:a70438a5db93aebfb3a6e929045885f4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints <code>self</code> into <code>w</code>.  <a href="error_8h.html#a70438a5db93aebfb3a6e929045885f4e">More...</a><br /></td></tr>
+<tr class="separator:a70438a5db93aebfb3a6e929045885f4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3a58c20109e7aa15ed7b8b4136a7781c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="error_8h.html#a3a58c20109e7aa15ed7b8b4136a7781c">datatype99</a> (SmolRTSP_ParseStatus,(SmolRTSP_ParseStatus_Complete, size_t),(SmolRTSP_ParseStatus_Partial))</td></tr>
 <tr class="memdesc:a3a58c20109e7aa15ed7b8b4136a7781c"><td class="mdescLeft">&#160;</td><td class="mdescRight">A status of successful parsing.  <a href="error_8h.html#a3a58c20109e7aa15ed7b8b4136a7781c">More...</a><br /></td></tr>
 <tr class="separator:a3a58c20109e7aa15ed7b8b4136a7781c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7d35c87dc5fdb4471aaa4bfdcf1de0e2"><td class="memItemLeft" align="right" valign="top"><a id="a7d35c87dc5fdb4471aaa4bfdcf1de0e2"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="error_8h.html#a7d35c87dc5fdb4471aaa4bfdcf1de0e2">SmolRTSP_ParseStatus_is_complete</a> (SmolRTSP_ParseStatus self)</td></tr>
-<tr class="memdesc:a7d35c87dc5fdb4471aaa4bfdcf1de0e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether <code>self</code> is complete. <br /></td></tr>
-<tr class="separator:a7d35c87dc5fdb4471aaa4bfdcf1de0e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adcf1624c10ead133b6d459722ce63188"><td class="memItemLeft" align="right" valign="top"><a id="adcf1624c10ead133b6d459722ce63188"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="error_8h.html#adcf1624c10ead133b6d459722ce63188">SmolRTSP_ParseStatus_is_partial</a> (SmolRTSP_ParseStatus self)</td></tr>
-<tr class="memdesc:adcf1624c10ead133b6d459722ce63188"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether <code>self</code> is partial. <br /></td></tr>
-<tr class="separator:adcf1624c10ead133b6d459722ce63188"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a282840de30eb688ab7a6355d32b91983"><td class="memItemLeft" align="right" valign="top"><a id="a282840de30eb688ab7a6355d32b91983"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="error_8h.html#a282840de30eb688ab7a6355d32b91983">SmolRTSP_ParseStatus_is_complete</a> (SmolRTSP_ParseStatus self) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:a282840de30eb688ab7a6355d32b91983"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether <code>self</code> is complete. <br /></td></tr>
+<tr class="separator:a282840de30eb688ab7a6355d32b91983"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9998be2568fcbd11063a7281a7241c48"><td class="memItemLeft" align="right" valign="top"><a id="a9998be2568fcbd11063a7281a7241c48"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="error_8h.html#a9998be2568fcbd11063a7281a7241c48">SmolRTSP_ParseStatus_is_partial</a> (SmolRTSP_ParseStatus self) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:a9998be2568fcbd11063a7281a7241c48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether <code>self</code> is partial. <br /></td></tr>
+<tr class="separator:a9998be2568fcbd11063a7281a7241c48"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2fb12375da217b97eb1751058324f3e6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="error_8h.html#a2fb12375da217b97eb1751058324f3e6">datatype99</a> (SmolRTSP_ParseResult,(SmolRTSP_ParseResult_Success, SmolRTSP_ParseStatus),(SmolRTSP_ParseResult_Failure, SmolRTSP_ParseError))</td></tr>
 <tr class="memdesc:a2fb12375da217b97eb1751058324f3e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">A result of parsing (either success or failure).  <a href="error_8h.html#a2fb12375da217b97eb1751058324f3e6">More...</a><br /></td></tr>
 <tr class="separator:a2fb12375da217b97eb1751058324f3e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7714c7b3433b8babd0bb4a5de798d4a3"><td class="memItemLeft" align="right" valign="top"><a id="a7714c7b3433b8babd0bb4a5de798d4a3"></a>
-SmolRTSP_ParseResult&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="error_8h.html#a7714c7b3433b8babd0bb4a5de798d4a3">SmolRTSP_ParseResult_partial</a> (void)</td></tr>
-<tr class="memdesc:a7714c7b3433b8babd0bb4a5de798d4a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a <b>successful</b> and <b>partial</b> parse result. <br /></td></tr>
-<tr class="separator:a7714c7b3433b8babd0bb4a5de798d4a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5d344797b184406b858d6ceb33f720ca"><td class="memItemLeft" align="right" valign="top"><a id="a5d344797b184406b858d6ceb33f720ca"></a>
-SmolRTSP_ParseResult&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="error_8h.html#a5d344797b184406b858d6ceb33f720ca">SmolRTSP_ParseResult_complete</a> (size_t offset)</td></tr>
-<tr class="memdesc:a5d344797b184406b858d6ceb33f720ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a <b>successful</b> and <b>complete</b> parse result with the byte offset <code>offset</code> (from the beginning of input). <br /></td></tr>
-<tr class="separator:a5d344797b184406b858d6ceb33f720ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afcedc30fe03bc6a48e2b0d0bc176ca08"><td class="memItemLeft" align="right" valign="top"><a id="afcedc30fe03bc6a48e2b0d0bc176ca08"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="error_8h.html#afcedc30fe03bc6a48e2b0d0bc176ca08">SmolRTSP_ParseResult_is_success</a> (SmolRTSP_ParseResult self)</td></tr>
-<tr class="memdesc:afcedc30fe03bc6a48e2b0d0bc176ca08"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether <code>self</code> is successful. <br /></td></tr>
-<tr class="separator:afcedc30fe03bc6a48e2b0d0bc176ca08"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af3c5a2d413ad255609ac9305d4dd39ec"><td class="memItemLeft" align="right" valign="top"><a id="af3c5a2d413ad255609ac9305d4dd39ec"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="error_8h.html#af3c5a2d413ad255609ac9305d4dd39ec">SmolRTSP_ParseResult_is_failure</a> (SmolRTSP_ParseResult self)</td></tr>
-<tr class="memdesc:af3c5a2d413ad255609ac9305d4dd39ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether <code>self</code> is a failure. <br /></td></tr>
-<tr class="separator:af3c5a2d413ad255609ac9305d4dd39ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0c9573a4f0d7ea4bd1d58b65b9cf66cd"><td class="memItemLeft" align="right" valign="top"><a id="a0c9573a4f0d7ea4bd1d58b65b9cf66cd"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="error_8h.html#a0c9573a4f0d7ea4bd1d58b65b9cf66cd">SmolRTSP_ParseResult_is_partial</a> (SmolRTSP_ParseResult self)</td></tr>
-<tr class="memdesc:a0c9573a4f0d7ea4bd1d58b65b9cf66cd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether <code>self</code> is both <b>successful</b> and <b>partial</b>. <br /></td></tr>
-<tr class="separator:a0c9573a4f0d7ea4bd1d58b65b9cf66cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adaf76a43ce018ee6be0cba71deaa931e"><td class="memItemLeft" align="right" valign="top"><a id="adaf76a43ce018ee6be0cba71deaa931e"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="error_8h.html#adaf76a43ce018ee6be0cba71deaa931e">SmolRTSP_ParseResult_is_complete</a> (SmolRTSP_ParseResult self)</td></tr>
-<tr class="memdesc:adaf76a43ce018ee6be0cba71deaa931e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The same as <a class="el" href="error_8h.html#a0c9573a4f0d7ea4bd1d58b65b9cf66cd" title="Returns whether self is both successful and partial.">SmolRTSP_ParseResult_is_partial</a> but for a complete result. <br /></td></tr>
-<tr class="separator:adaf76a43ce018ee6be0cba71deaa931e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3edf0a328c91b652bf0506e621c85408"><td class="memItemLeft" align="right" valign="top"><a id="a3edf0a328c91b652bf0506e621c85408"></a>
+SmolRTSP_ParseResult&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="error_8h.html#a3edf0a328c91b652bf0506e621c85408">SmolRTSP_ParseResult_partial</a> (void) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:a3edf0a328c91b652bf0506e621c85408"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a <b>successful</b> and <b>partial</b> parse result. <br /></td></tr>
+<tr class="separator:a3edf0a328c91b652bf0506e621c85408"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ec7c890f2387cf3044ff1ea2fa89bd6"><td class="memItemLeft" align="right" valign="top"><a id="a5ec7c890f2387cf3044ff1ea2fa89bd6"></a>
+SmolRTSP_ParseResult&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="error_8h.html#a5ec7c890f2387cf3044ff1ea2fa89bd6">SmolRTSP_ParseResult_complete</a> (size_t offset) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:a5ec7c890f2387cf3044ff1ea2fa89bd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a <b>successful</b> and <b>complete</b> parse result with the byte offset <code>offset</code> (from the beginning of input). <br /></td></tr>
+<tr class="separator:a5ec7c890f2387cf3044ff1ea2fa89bd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28e62d191cff5eafa13b1b9f636fc645"><td class="memItemLeft" align="right" valign="top"><a id="a28e62d191cff5eafa13b1b9f636fc645"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="error_8h.html#a28e62d191cff5eafa13b1b9f636fc645">SmolRTSP_ParseResult_is_success</a> (SmolRTSP_ParseResult self) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:a28e62d191cff5eafa13b1b9f636fc645"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether <code>self</code> is successful. <br /></td></tr>
+<tr class="separator:a28e62d191cff5eafa13b1b9f636fc645"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0a114d646119c3feca2cf580411bdc6"><td class="memItemLeft" align="right" valign="top"><a id="ae0a114d646119c3feca2cf580411bdc6"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="error_8h.html#ae0a114d646119c3feca2cf580411bdc6">SmolRTSP_ParseResult_is_failure</a> (SmolRTSP_ParseResult self) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:ae0a114d646119c3feca2cf580411bdc6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether <code>self</code> is a failure. <br /></td></tr>
+<tr class="separator:ae0a114d646119c3feca2cf580411bdc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7663a6e6fb7716688d0e287d25ffd8d1"><td class="memItemLeft" align="right" valign="top"><a id="a7663a6e6fb7716688d0e287d25ffd8d1"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="error_8h.html#a7663a6e6fb7716688d0e287d25ffd8d1">SmolRTSP_ParseResult_is_partial</a> (SmolRTSP_ParseResult self) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:a7663a6e6fb7716688d0e287d25ffd8d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether <code>self</code> is both <b>successful</b> and <b>partial</b>. <br /></td></tr>
+<tr class="separator:a7663a6e6fb7716688d0e287d25ffd8d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7e25c8570f7c5a790acaf9baee0d0a2"><td class="memItemLeft" align="right" valign="top"><a id="aa7e25c8570f7c5a790acaf9baee0d0a2"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="error_8h.html#aa7e25c8570f7c5a790acaf9baee0d0a2">SmolRTSP_ParseResult_is_complete</a> (SmolRTSP_ParseResult self) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:aa7e25c8570f7c5a790acaf9baee0d0a2"><td class="mdescLeft">&#160;</td><td class="mdescRight">The same as <a class="el" href="error_8h.html#a7663a6e6fb7716688d0e287d25ffd8d1" title="Returns whether self is both successful and partial.">SmolRTSP_ParseResult_is_partial</a> but for a complete result. <br /></td></tr>
+<tr class="separator:aa7e25c8570f7c5a790acaf9baee0d0a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Possible parsing errors. </p>
@@ -378,14 +379,14 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="erro
 
 </div>
 </div>
-<a id="af08a288102c90c8186d49d604f27d2d8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af08a288102c90c8186d49d604f27d2d8">&#9670;&nbsp;</a></span>SmolRTSP_ParseError_print()</h2>
+<a id="a70438a5db93aebfb3a6e929045885f4e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a70438a5db93aebfb3a6e929045885f4e">&#9670;&nbsp;</a></span>SmolRTSP_ParseError_print()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void SmolRTSP_ParseError_print </td>
+          <td class="memname">int SmolRTSP_ParseError_print </td>
           <td>(</td>
           <td class="paramtype">SmolRTSP_ParseError&#160;</td>
           <td class="paramname"><em>self</em>, </td>
@@ -408,10 +409,12 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="erro
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">self</td><td>The error to print. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">w</td><td>The writer to be provided with data. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">w</td><td>The writer to be provided with data.</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>The number of bytes written or a negative value on error.</dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd><code>w.self &amp;&amp; w.vptr</code> </dd></dl>
 
 </div>
 </div>

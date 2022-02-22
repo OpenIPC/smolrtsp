@@ -1,14 +1,15 @@
 <map id="include/smolrtsp/transport.h" name="include/smolrtsp/transport.h">
-<area shape="rect" id="node1" title="RTSP data transport (level 4) implementations." alt="" coords="161,5,366,32"/>
-<area shape="rect" id="node2" href="$droppable_8h.html" title="Droppable types support." alt="" coords="97,80,257,107"/>
-<area shape="rect" id="node3" title=" " alt="" coords="5,155,113,181"/>
-<area shape="rect" id="node4" href="$io__vec_8h.html" title="Vectored I/O support." alt="" coords="281,80,419,107"/>
-<area shape="rect" id="node9" href="$writer_8h.html" title="The writer interface." alt="" coords="457,80,589,107"/>
-<area shape="rect" id="node5" title=" " alt="" coords="385,155,459,181"/>
-<area shape="rect" id="node6" title=" " alt="" coords="137,155,240,181"/>
-<area shape="rect" id="node7" title=" " alt="" coords="265,155,361,181"/>
-<area shape="rect" id="node8" title=" " alt="" coords="483,155,563,181"/>
-<area shape="rect" id="node10" title=" " alt="" coords="587,155,662,181"/>
-<area shape="rect" id="node11" title=" " alt="" coords="686,155,753,181"/>
-<area shape="rect" id="node12" title=" " alt="" coords="777,155,851,181"/>
+<area shape="rect" id="node1" title="RTSP data transport (level 4) implementations." alt="" coords="323,5,529,32"/>
+<area shape="rect" id="node2" href="$droppable_8h.html" title="Droppable types support." alt="" coords="15,80,175,107"/>
+<area shape="rect" id="node3" title=" " alt="" coords="5,162,113,189"/>
+<area shape="rect" id="node4" href="$io__vec_8h.html" title="Vectored I/O support." alt="" coords="357,80,495,107"/>
+<area shape="rect" id="node9" title=" " alt="" coords="491,155,660,196"/>
+<area shape="rect" id="node10" href="$writer_8h.html" title="The writer interface." alt="" coords="624,80,756,107"/>
+<area shape="rect" id="node5" title=" " alt="" coords="685,162,759,189"/>
+<area shape="rect" id="node6" title=" " alt="" coords="259,162,361,189"/>
+<area shape="rect" id="node7" title=" " alt="" coords="138,162,234,189"/>
+<area shape="rect" id="node8" title=" " alt="" coords="386,162,466,189"/>
+<area shape="rect" id="node11" title=" " alt="" coords="882,162,957,189"/>
+<area shape="rect" id="node12" title=" " alt="" coords="981,162,1047,189"/>
+<area shape="rect" id="node13" title=" " alt="" coords="783,162,858,189"/>
 </map>

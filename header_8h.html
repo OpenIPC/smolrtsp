@@ -100,22 +100,24 @@ $(document).ready(function(){initNavTree('header_8h.html',''); initResizable(); 
 <code>#include &lt;stdio.h&gt;</code><br />
 <code>#include &lt;unistd.h&gt;</code><br />
 <code>#include &lt;slice99.h&gt;</code><br />
+<code>#include &lt;smolrtsp/priv/compiler_attrs.h&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for header.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="header_8h__incl.png" border="0" usemap="#include_2smolrtsp_2types_2header_8h" alt=""/></div>
 <map name="include_2smolrtsp_2types_2header_8h" id="include_2smolrtsp_2types_2header_8h">
-<area shape="rect" title="An RTSP header." alt="" coords="295,5,465,47"/>
-<area shape="rect" href="error_8h.html" title="Possible parsing errors." alt="" coords="444,95,609,121"/>
-<area shape="rect" href="writer_8h.html" title="The writer interface." alt="" coords="237,169,369,196"/>
-<area shape="rect" title=" " alt="" coords="5,244,72,271"/>
-<area shape="rect" title=" " alt="" coords="96,244,171,271"/>
-<area shape="rect" title=" " alt="" coords="427,244,507,271"/>
-<area shape="rect" title=" " alt="" coords="688,169,771,196"/>
-<area shape="rect" title=" " alt="" coords="531,244,605,271"/>
-<area shape="rect" title=" " alt="" coords="555,169,663,196"/>
-<area shape="rect" title=" " alt="" coords="328,244,403,271"/>
-<area shape="rect" title=" " alt="" coords="195,244,303,271"/>
+<area shape="rect" title="An RTSP header." alt="" coords="312,5,483,47"/>
+<area shape="rect" href="error_8h.html" title="Possible parsing errors." alt="" coords="457,95,623,121"/>
+<area shape="rect" href="writer_8h.html" title="The writer interface." alt="" coords="227,169,359,196"/>
+<area shape="rect" title=" " alt="" coords="5,251,72,278"/>
+<area shape="rect" title=" " alt="" coords="96,251,171,278"/>
+<area shape="rect" title=" " alt="" coords="427,251,507,278"/>
+<area shape="rect" title=" " alt="" coords="630,244,799,285"/>
+<area shape="rect" title=" " alt="" coords="720,169,803,196"/>
+<area shape="rect" title=" " alt="" coords="531,251,605,278"/>
+<area shape="rect" title=" " alt="" coords="486,169,594,196"/>
+<area shape="rect" title=" " alt="" coords="195,251,269,278"/>
+<area shape="rect" title=" " alt="" coords="294,251,402,278"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -126,7 +128,6 @@ This graph shows which files directly or indirectly include this file:</div>
 <area shape="rect" title="An RTSP header." alt="" coords="5,5,176,47"/>
 <area shape="rect" href="smolrtsp_8h.html" title="Re&#45;exports all the functionality." alt="" coords="70,273,213,300"/>
 <area shape="rect" href="header__map_8h.html" title="An RTSP header map." alt="" coords="92,95,263,136"/>
-<area shape="rect" href="rtp__transport_8h.html" title="An RTP data transport." alt="" coords="65,348,217,389"/>
 <area shape="rect" href="request_8h.html" title="An RTSP request." alt="" coords="117,184,288,225"/>
 <area shape="rect" href="response_8h.html" title="An RTSP response." alt="" coords="312,184,483,225"/>
 </map>
@@ -301,22 +302,22 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:af4d4002b48bfcfa1e46837052738a43d"><td class="memItemLeft" align="right" valign="top">ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="header_8h.html#af4d4002b48bfcfa1e46837052738a43d">SmolRTSP_Header_serialize</a> (<a class="el" href="structSmolRTSP__Header.html">SmolRTSP_Header</a> self, SmolRTSP_Writer w)</td></tr>
-<tr class="memdesc:af4d4002b48bfcfa1e46837052738a43d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serialises <code>self</code> into <code>w</code>.  <a href="header_8h.html#af4d4002b48bfcfa1e46837052738a43d">More...</a><br /></td></tr>
-<tr class="separator:af4d4002b48bfcfa1e46837052738a43d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a49657e8bd1e5f938c7db75f5c7750a06"><td class="memItemLeft" align="right" valign="top">SmolRTSP_ParseResult&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="header_8h.html#a49657e8bd1e5f938c7db75f5c7750a06">SmolRTSP_Header_parse</a> (<a class="el" href="structSmolRTSP__Header.html">SmolRTSP_Header</a> *restrict self, CharSlice99 input)</td></tr>
-<tr class="memdesc:a49657e8bd1e5f938c7db75f5c7750a06"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses <code>data</code> to <code>self</code>.  <a href="header_8h.html#a49657e8bd1e5f938c7db75f5c7750a06">More...</a><br /></td></tr>
-<tr class="separator:a49657e8bd1e5f938c7db75f5c7750a06"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac7a8b389d793ae1845fb43b8e1023902"><td class="memItemLeft" align="right" valign="top"><a id="ac7a8b389d793ae1845fb43b8e1023902"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="header_8h.html#ac7a8b389d793ae1845fb43b8e1023902">SmolRTSP_Header_eq</a> (<a class="el" href="structSmolRTSP__Header.html">SmolRTSP_Header</a> lhs, <a class="el" href="structSmolRTSP__Header.html">SmolRTSP_Header</a> rhs)</td></tr>
-<tr class="memdesc:ac7a8b389d793ae1845fb43b8e1023902"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests <code>lhs</code> and <code>rhs</code> for equality. <br /></td></tr>
-<tr class="separator:ac7a8b389d793ae1845fb43b8e1023902"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a454eb1e9ee93aea9e1bf3cad5a5e9e40"><td class="memItemLeft" align="right" valign="top">ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="header_8h.html#a454eb1e9ee93aea9e1bf3cad5a5e9e40">SmolRTSP_Header_serialize</a> (<a class="el" href="structSmolRTSP__Header.html">SmolRTSP_Header</a> self, SmolRTSP_Writer w) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:a454eb1e9ee93aea9e1bf3cad5a5e9e40"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serialises <code>self</code> into <code>w</code>.  <a href="header_8h.html#a454eb1e9ee93aea9e1bf3cad5a5e9e40">More...</a><br /></td></tr>
+<tr class="separator:a454eb1e9ee93aea9e1bf3cad5a5e9e40"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35f400689278b63b62a5a5cd3710c5fb"><td class="memItemLeft" align="right" valign="top">SmolRTSP_ParseResult&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="header_8h.html#a35f400689278b63b62a5a5cd3710c5fb">SmolRTSP_Header_parse</a> (<a class="el" href="structSmolRTSP__Header.html">SmolRTSP_Header</a> *restrict self, CharSlice99 input) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:a35f400689278b63b62a5a5cd3710c5fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses <code>data</code> to <code>self</code>.  <a href="header_8h.html#a35f400689278b63b62a5a5cd3710c5fb">More...</a><br /></td></tr>
+<tr class="separator:a35f400689278b63b62a5a5cd3710c5fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76e2fa0d8ac8c8ce1e6ad7d38d5fadee"><td class="memItemLeft" align="right" valign="top"><a id="a76e2fa0d8ac8c8ce1e6ad7d38d5fadee"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="header_8h.html#a76e2fa0d8ac8c8ce1e6ad7d38d5fadee">SmolRTSP_Header_eq</a> (<a class="el" href="structSmolRTSP__Header.html">SmolRTSP_Header</a> lhs, <a class="el" href="structSmolRTSP__Header.html">SmolRTSP_Header</a> rhs) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:a76e2fa0d8ac8c8ce1e6ad7d38d5fadee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests <code>lhs</code> and <code>rhs</code> for equality. <br /></td></tr>
+<tr class="separator:a76e2fa0d8ac8c8ce1e6ad7d38d5fadee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>An RTSP header. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="a49657e8bd1e5f938c7db75f5c7750a06"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a49657e8bd1e5f938c7db75f5c7750a06">&#9670;&nbsp;</a></span>SmolRTSP_Header_parse()</h2>
+<a id="a35f400689278b63b62a5a5cd3710c5fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35f400689278b63b62a5a5cd3710c5fb">&#9670;&nbsp;</a></span>SmolRTSP_Header_parse()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -346,8 +347,8 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="head
 
 </div>
 </div>
-<a id="af4d4002b48bfcfa1e46837052738a43d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af4d4002b48bfcfa1e46837052738a43d">&#9670;&nbsp;</a></span>SmolRTSP_Header_serialize()</h2>
+<a id="a454eb1e9ee93aea9e1bf3cad5a5e9e40"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a454eb1e9ee93aea9e1bf3cad5a5e9e40">&#9670;&nbsp;</a></span>SmolRTSP_Header_serialize()</h2>
 
 <div class="memitem">
 <div class="memproto">

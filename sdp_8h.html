@@ -97,19 +97,21 @@ $(document).ready(function(){initNavTree('sdp_8h.html',''); initResizable(); });
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;<a class="el" href="writer_8h_source.html">smolrtsp/writer.h</a>&gt;</code><br />
 <code>#include &lt;slice99.h&gt;</code><br />
+<code>#include &lt;smolrtsp/priv/compiler_attrs.h&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for sdp.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="sdp_8h__incl.png" border="0" usemap="#include_2smolrtsp_2types_2sdp_8h" alt=""/></div>
 <map name="include_2smolrtsp_2types_2sdp_8h" id="include_2smolrtsp_2types_2sdp_8h">
-<area shape="rect" title="RFC 4566&#45;compliant SDP implementation." alt="" coords="297,5,468,47"/>
-<area shape="rect" href="writer_8h.html" title="The writer interface." alt="" coords="265,95,397,121"/>
-<area shape="rect" title=" " alt="" coords="525,169,605,196"/>
-<area shape="rect" title=" " alt="" coords="5,169,80,196"/>
-<area shape="rect" title=" " alt="" coords="104,169,179,196"/>
-<area shape="rect" title=" " alt="" coords="203,169,269,196"/>
-<area shape="rect" title=" " alt="" coords="293,169,368,196"/>
-<area shape="rect" title=" " alt="" coords="393,169,501,196"/>
+<area shape="rect" title="RFC 4566&#45;compliant SDP implementation." alt="" coords="480,5,651,47"/>
+<area shape="rect" href="writer_8h.html" title="The writer interface." alt="" coords="339,95,471,121"/>
+<area shape="rect" title=" " alt="" coords="525,177,605,203"/>
+<area shape="rect" title=" " alt="" coords="630,169,799,211"/>
+<area shape="rect" title=" " alt="" coords="427,177,501,203"/>
+<area shape="rect" title=" " alt="" coords="5,177,80,203"/>
+<area shape="rect" title=" " alt="" coords="104,177,171,203"/>
+<area shape="rect" title=" " alt="" coords="195,177,269,203"/>
+<area shape="rect" title=" " alt="" coords="294,177,402,203"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -119,7 +121,6 @@ This graph shows which files directly or indirectly include this file:</div>
 <map name="include_2smolrtsp_2types_2sdp_8hdep" id="include_2smolrtsp_2types_2sdp_8hdep">
 <area shape="rect" title="RFC 4566&#45;compliant SDP implementation." alt="" coords="5,5,176,47"/>
 <area shape="rect" href="smolrtsp_8h.html" title="Re&#45;exports all the functionality." alt="" coords="19,95,162,121"/>
-<area shape="rect" href="rtp__transport_8h.html" title="An RTP data transport." alt="" coords="15,169,167,211"/>
 </map>
 </div>
 </div>
@@ -203,18 +204,18 @@ typedef char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ae71e22d7e5ad7e2d0f66b455e3ac18f6"><td class="memItemLeft" align="right" valign="top">ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sdp_8h.html#ae71e22d7e5ad7e2d0f66b455e3ac18f6">SmolRTSP_SdpLine_serialize</a> (<a class="el" href="structSmolRTSP__SdpLine.html">SmolRTSP_SdpLine</a> self, SmolRTSP_Writer w)</td></tr>
-<tr class="memdesc:ae71e22d7e5ad7e2d0f66b455e3ac18f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serialises <code>self</code> into <code>w</code>.  <a href="sdp_8h.html#ae71e22d7e5ad7e2d0f66b455e3ac18f6">More...</a><br /></td></tr>
-<tr class="separator:ae71e22d7e5ad7e2d0f66b455e3ac18f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aceae645558b23a316b16804d90f0722a"><td class="memItemLeft" align="right" valign="top">ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sdp_8h.html#aceae645558b23a316b16804d90f0722a">smolrtsp_sdp_printf</a> (<a class="el" href="sdp_8h.html#a92db3e326a98a58d3544003bad698950">SmolRTSP_SdpType</a> ty, SmolRTSP_Writer w, const char fmt[restrict],...)</td></tr>
-<tr class="memdesc:aceae645558b23a316b16804d90f0722a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Printfs a single SDP line to <code>w</code>.  <a href="sdp_8h.html#aceae645558b23a316b16804d90f0722a">More...</a><br /></td></tr>
-<tr class="separator:aceae645558b23a316b16804d90f0722a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4da3ebe4fb577869fcd0fbb7d0ad98e3"><td class="memItemLeft" align="right" valign="top">ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sdp_8h.html#a4da3ebe4fb577869fcd0fbb7d0ad98e3">SmolRTSP_SdpLine_serialize</a> (<a class="el" href="structSmolRTSP__SdpLine.html">SmolRTSP_SdpLine</a> self, SmolRTSP_Writer w) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:a4da3ebe4fb577869fcd0fbb7d0ad98e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serialises <code>self</code> into <code>w</code>.  <a href="sdp_8h.html#a4da3ebe4fb577869fcd0fbb7d0ad98e3">More...</a><br /></td></tr>
+<tr class="separator:a4da3ebe4fb577869fcd0fbb7d0ad98e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8245721950c303185e55510735a4308"><td class="memItemLeft" align="right" valign="top">ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sdp_8h.html#ab8245721950c303185e55510735a4308">smolrtsp_sdp_printf</a> (<a class="el" href="sdp_8h.html#a92db3e326a98a58d3544003bad698950">SmolRTSP_SdpType</a> ty, SmolRTSP_Writer w, const char fmt[restrict],...) SMOLRTSP_PRIV_MUST_USE SMOLRTSP_PRIV_GCC_ATTR(format(printf</td></tr>
+<tr class="memdesc:ab8245721950c303185e55510735a4308"><td class="mdescLeft">&#160;</td><td class="mdescRight">Printfs a single SDP line to <code>w</code>.  <a href="sdp_8h.html#ab8245721950c303185e55510735a4308">More...</a><br /></td></tr>
+<tr class="separator:ab8245721950c303185e55510735a4308"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a href="https://datatracker.ietf.org/doc/html/rfc4566">RFC 4566</a>-compliant SDP implementation. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="aceae645558b23a316b16804d90f0722a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aceae645558b23a316b16804d90f0722a">&#9670;&nbsp;</a></span>smolrtsp_sdp_printf()</h2>
+<a id="ab8245721950c303185e55510735a4308"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8245721950c303185e55510735a4308">&#9670;&nbsp;</a></span>smolrtsp_sdp_printf()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -267,8 +268,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ae71e22d7e5ad7e2d0f66b455e3ac18f6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae71e22d7e5ad7e2d0f66b455e3ac18f6">&#9670;&nbsp;</a></span>SmolRTSP_SdpLine_serialize()</h2>
+<a id="a4da3ebe4fb577869fcd0fbb7d0ad98e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4da3ebe4fb577869fcd0fbb7d0ad98e3">&#9670;&nbsp;</a></span>SmolRTSP_SdpLine_serialize()</h2>
 
 <div class="memitem">
 <div class="memproto">

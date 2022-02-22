@@ -97,16 +97,18 @@ $(document).ready(function(){initNavTree('io__vec_8h_source.html',''); initResiz
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;slice99.h&gt;</span></div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<a class="code" href="io__vec_8h.html#a5c06e3214b353829efa5167493dc9e5b">SLICE99_DEF_TYPED</a>(SmolRTSP_IoVecSlice, <span class="keyword">struct</span> iovec);</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keywordtype">size_t</span> <a class="code" href="io__vec_8h.html#a1731ec26a968d2a57646b95ed6b98853">SmolRTSP_IoVecSlice_len</a>(SmolRTSP_IoVecSlice <span class="keyword">self</span>);</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keyword">struct </span>iovec <a class="code" href="io__vec_8h.html#a3daba8106c9f1235f0331bda43ae0fed">smolrtsp_slice_to_iovec</a>(U8Slice99 slice);</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;smolrtsp/priv/compiler_attrs.h&gt;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<a class="code" href="io__vec_8h.html#a5c06e3214b353829efa5167493dc9e5b">SLICE99_DEF_TYPED</a>(SmolRTSP_IoVecSlice, <span class="keyword">struct</span> iovec);</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keywordtype">size_t</span> <a class="code" href="io__vec_8h.html#a30a363a99d566952eadaac8fff43ad75">SmolRTSP_IoVecSlice_len</a>(SmolRTSP_IoVecSlice <span class="keyword">self</span>) SMOLRTSP_PRIV_MUST_USE;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keyword">struct </span>iovec <a class="code" href="io__vec_8h.html#a73fb0c8243a4da29c96e982a24082784">smolrtsp_slice_to_iovec</a>(U8Slice99 slice) SMOLRTSP_PRIV_MUST_USE;</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="aio__vec_8h_html_a5c06e3214b353829efa5167493dc9e5b"><div class="ttname"><a href="io__vec_8h.html#a5c06e3214b353829efa5167493dc9e5b">SLICE99_DEF_TYPED</a></div><div class="ttdeci">SLICE99_DEF_TYPED(SmolRTSP_IoVecSlice, struct iovec)</div><div class="ttdoc">A slice of elements of type struct iovec.</div></div>
-<div class="ttc" id="aio__vec_8h_html_a3daba8106c9f1235f0331bda43ae0fed"><div class="ttname"><a href="io__vec_8h.html#a3daba8106c9f1235f0331bda43ae0fed">smolrtsp_slice_to_iovec</a></div><div class="ttdeci">struct iovec smolrtsp_slice_to_iovec(U8Slice99 slice)</div><div class="ttdoc">Converts an octet slice slice to struct iovec.</div></div>
-<div class="ttc" id="aio__vec_8h_html_a1731ec26a968d2a57646b95ed6b98853"><div class="ttname"><a href="io__vec_8h.html#a1731ec26a968d2a57646b95ed6b98853">SmolRTSP_IoVecSlice_len</a></div><div class="ttdeci">size_t SmolRTSP_IoVecSlice_len(SmolRTSP_IoVecSlice self)</div><div class="ttdoc">Computes the total length of self.</div></div>
+<div class="ttc" id="aio__vec_8h_html_a73fb0c8243a4da29c96e982a24082784"><div class="ttname"><a href="io__vec_8h.html#a73fb0c8243a4da29c96e982a24082784">smolrtsp_slice_to_iovec</a></div><div class="ttdeci">struct iovec smolrtsp_slice_to_iovec(U8Slice99 slice) SMOLRTSP_PRIV_MUST_USE</div><div class="ttdoc">Converts an octet slice slice to struct iovec.</div></div>
+<div class="ttc" id="aio__vec_8h_html_a30a363a99d566952eadaac8fff43ad75"><div class="ttname"><a href="io__vec_8h.html#a30a363a99d566952eadaac8fff43ad75">SmolRTSP_IoVecSlice_len</a></div><div class="ttdeci">size_t SmolRTSP_IoVecSlice_len(SmolRTSP_IoVecSlice self) SMOLRTSP_PRIV_MUST_USE</div><div class="ttdoc">Computes the total length of self.</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

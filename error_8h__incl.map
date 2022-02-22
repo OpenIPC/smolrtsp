@@ -1,12 +1,13 @@
 <map id="include/smolrtsp/types/error.h" name="include/smolrtsp/types/error.h">
-<area shape="rect" id="node1" title="Possible parsing errors." alt="" coords="301,5,472,47"/>
-<area shape="rect" id="node2" href="$writer_8h.html" title="The writer interface." alt="" coords="217,95,349,121"/>
-<area shape="rect" id="node4" title=" " alt="" coords="5,169,80,196"/>
-<area shape="rect" id="node8" title=" " alt="" coords="525,169,605,196"/>
-<area shape="rect" id="node9" title=" " alt="" coords="424,95,507,121"/>
-<area shape="rect" id="node10" title=" " alt="" coords="531,95,639,121"/>
-<area shape="rect" id="node3" title=" " alt="" coords="104,169,179,196"/>
-<area shape="rect" id="node5" title=" " alt="" coords="203,169,269,196"/>
-<area shape="rect" id="node6" title=" " alt="" coords="293,169,368,196"/>
-<area shape="rect" id="node7" title=" " alt="" coords="393,169,501,196"/>
+<area shape="rect" id="node1" title="Possible parsing errors." alt="" coords="476,5,647,47"/>
+<area shape="rect" id="node2" href="$writer_8h.html" title="The writer interface." alt="" coords="310,95,442,121"/>
+<area shape="rect" id="node4" title=" " alt="" coords="5,177,80,203"/>
+<area shape="rect" id="node8" title=" " alt="" coords="525,177,605,203"/>
+<area shape="rect" id="node9" title=" " alt="" coords="630,169,799,211"/>
+<area shape="rect" id="node10" title=" " alt="" coords="624,95,707,121"/>
+<area shape="rect" id="node11" title=" " alt="" coords="731,95,839,121"/>
+<area shape="rect" id="node3" title=" " alt="" coords="427,177,501,203"/>
+<area shape="rect" id="node5" title=" " alt="" coords="104,177,171,203"/>
+<area shape="rect" id="node6" title=" " alt="" coords="195,177,269,203"/>
+<area shape="rect" id="node7" title=" " alt="" coords="294,177,402,203"/>
 </map>

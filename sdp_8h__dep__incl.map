@@ -1,5 +1,4 @@
 <map id="include/smolrtsp/types/sdp.h" name="include/smolrtsp/types/sdp.h">
 <area shape="rect" id="node1" title="RFC 4566&#45;compliant SDP implementation." alt="" coords="5,5,176,47"/>
 <area shape="rect" id="node2" href="$smolrtsp_8h.html" title="Re&#45;exports all the functionality." alt="" coords="19,95,162,121"/>
-<area shape="rect" id="node3" href="$rtp__transport_8h.html" title="An RTP data transport." alt="" coords="15,169,167,211"/>
 </map>

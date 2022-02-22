@@ -45,7 +45,7 @@ var status__code_8h =
     [ "SMOLRTSP_STATUS_CODE_UNSUPPORTED_TRANSPORT", "status__code_8h.html#a383aa7ba75345fcc2dedde3d69bd0287", null ],
     [ "SMOLRTSP_STATUS_CODE_USE_PROXY", "status__code_8h.html#a4cbdbb738175ce67720033537aba50fe", null ],
     [ "SmolRTSP_StatusCode", "status__code_8h.html#ac339032e6c3031ccc07cdd573bd8352a", null ],
-    [ "SmolRTSP_StatusCode_eq", "status__code_8h.html#a2e98b612cfe3b506032b065b1b22c665", null ],
-    [ "SmolRTSP_StatusCode_parse", "status__code_8h.html#a1119f2de90c85bc0ebfdf3f770587cf5", null ],
-    [ "SmolRTSP_StatusCode_serialize", "status__code_8h.html#ab4080989c0aec75d3d76e2ec49df02e8", null ]
+    [ "SmolRTSP_StatusCode_eq", "status__code_8h.html#a30c40703d337fe30b2b17c64213221f7", null ],
+    [ "SmolRTSP_StatusCode_parse", "status__code_8h.html#aa999834862fa6b879bd416af24a5dc69", null ],
+    [ "SmolRTSP_StatusCode_serialize", "status__code_8h.html#aaa2427a89df58604bf35ea04556ebda1", null ]
 ];

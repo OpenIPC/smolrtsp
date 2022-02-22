@@ -17,6 +17,6 @@ var sdp_8h =
     [ "SMOLRTSP_SDP_URI", "sdp_8h.html#a0eb4d714f8df73fb0b18222659e11095", null ],
     [ "SMOLRTSP_SDP_VERSION", "sdp_8h.html#ae8dc190ef3a542feff7515dd7aba3b1b", null ],
     [ "SmolRTSP_SdpType", "sdp_8h.html#a92db3e326a98a58d3544003bad698950", null ],
-    [ "smolrtsp_sdp_printf", "sdp_8h.html#aceae645558b23a316b16804d90f0722a", null ],
-    [ "SmolRTSP_SdpLine_serialize", "sdp_8h.html#ae71e22d7e5ad7e2d0f66b455e3ac18f6", null ]
+    [ "smolrtsp_sdp_printf", "sdp_8h.html#ab8245721950c303185e55510735a4308", null ],
+    [ "SmolRTSP_SdpLine_serialize", "sdp_8h.html#a4da3ebe4fb577869fcd0fbb7d0ad98e3", null ]
 ];

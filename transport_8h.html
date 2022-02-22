@@ -97,23 +97,25 @@ $(document).ready(function(){initNavTree('transport_8h.html',''); initResizable(
 <code>#include &lt;<a class="el" href="io__vec_8h_source.html">smolrtsp/io_vec.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="writer_8h_source.html">smolrtsp/writer.h</a>&gt;</code><br />
 <code>#include &lt;interface99.h&gt;</code><br />
+<code>#include &lt;smolrtsp/priv/compiler_attrs.h&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for transport.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="transport_8h__incl.png" border="0" usemap="#include_2smolrtsp_2transport_8h" alt=""/></div>
 <map name="include_2smolrtsp_2transport_8h" id="include_2smolrtsp_2transport_8h">
-<area shape="rect" title="RTSP data transport (level 4) implementations." alt="" coords="161,5,366,32"/>
-<area shape="rect" href="droppable_8h.html" title="Droppable types support." alt="" coords="97,80,257,107"/>
-<area shape="rect" title=" " alt="" coords="5,155,113,181"/>
-<area shape="rect" href="io__vec_8h.html" title="Vectored I/O support." alt="" coords="281,80,419,107"/>
-<area shape="rect" href="writer_8h.html" title="The writer interface." alt="" coords="457,80,589,107"/>
-<area shape="rect" title=" " alt="" coords="385,155,459,181"/>
-<area shape="rect" title=" " alt="" coords="137,155,240,181"/>
-<area shape="rect" title=" " alt="" coords="265,155,361,181"/>
-<area shape="rect" title=" " alt="" coords="483,155,563,181"/>
-<area shape="rect" title=" " alt="" coords="587,155,662,181"/>
-<area shape="rect" title=" " alt="" coords="686,155,753,181"/>
-<area shape="rect" title=" " alt="" coords="777,155,851,181"/>
+<area shape="rect" title="RTSP data transport (level 4) implementations." alt="" coords="323,5,529,32"/>
+<area shape="rect" href="droppable_8h.html" title="Droppable types support." alt="" coords="15,80,175,107"/>
+<area shape="rect" title=" " alt="" coords="5,162,113,189"/>
+<area shape="rect" href="io__vec_8h.html" title="Vectored I/O support." alt="" coords="357,80,495,107"/>
+<area shape="rect" title=" " alt="" coords="491,155,660,196"/>
+<area shape="rect" href="writer_8h.html" title="The writer interface." alt="" coords="624,80,756,107"/>
+<area shape="rect" title=" " alt="" coords="685,162,759,189"/>
+<area shape="rect" title=" " alt="" coords="259,162,361,189"/>
+<area shape="rect" title=" " alt="" coords="138,162,234,189"/>
+<area shape="rect" title=" " alt="" coords="386,162,466,189"/>
+<area shape="rect" title=" " alt="" coords="882,162,957,189"/>
+<area shape="rect" title=" " alt="" coords="981,162,1047,189"/>
+<area shape="rect" title=" " alt="" coords="783,162,858,189"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -121,9 +123,9 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="transport_8h__dep__incl.png" border="0" usemap="#include_2smolrtsp_2transport_8hdep" alt=""/></div>
 <map name="include_2smolrtsp_2transport_8hdep" id="include_2smolrtsp_2transport_8hdep">
-<area shape="rect" title="RTSP data transport (level 4) implementations." alt="" coords="33,5,239,32"/>
-<area shape="rect" href="smolrtsp_8h.html" title="Re&#45;exports all the functionality." alt="" coords="10,80,153,107"/>
-<area shape="rect" href="rtp__transport_8h.html" title="An RTP data transport." alt="" coords="5,155,157,196"/>
+<area shape="rect" title="RTSP data transport (level 4) implementations." alt="" coords="5,5,211,32"/>
+<area shape="rect" href="smolrtsp_8h.html" title="Re&#45;exports all the functionality." alt="" coords="37,169,179,196"/>
+<area shape="rect" href="rtp__transport_8h.html" title="An RTP data transport." alt="" coords="89,80,241,121"/>
 </map>
 </div>
 </div>
@@ -143,12 +145,12 @@ Functions</h2></td></tr>
 <tr class="memitem:a1ed54d2a026274f143e7a77d9f39f9c0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="transport_8h.html#a1ed54d2a026274f143e7a77d9f39f9c0">interface99</a> (SmolRTSP_Transport)</td></tr>
 <tr class="memdesc:a1ed54d2a026274f143e7a77d9f39f9c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines the <code>SmolRTSP_Transport</code> interface.  <a href="transport_8h.html#a1ed54d2a026274f143e7a77d9f39f9c0">More...</a><br /></td></tr>
 <tr class="separator:a1ed54d2a026274f143e7a77d9f39f9c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a92bc07b989456c0d7ed11af11d67bbcb"><td class="memItemLeft" align="right" valign="top">SmolRTSP_Transport&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="transport_8h.html#a92bc07b989456c0d7ed11af11d67bbcb">smolrtsp_transport_tcp</a> (SmolRTSP_Writer w, uint8_t channel_id)</td></tr>
-<tr class="memdesc:a92bc07b989456c0d7ed11af11d67bbcb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new TCP transport.  <a href="transport_8h.html#a92bc07b989456c0d7ed11af11d67bbcb">More...</a><br /></td></tr>
-<tr class="separator:a92bc07b989456c0d7ed11af11d67bbcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af4a17c0700f21be7b91d35e347e879f7"><td class="memItemLeft" align="right" valign="top">SmolRTSP_Transport&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="transport_8h.html#af4a17c0700f21be7b91d35e347e879f7">smolrtsp_transport_udp</a> (int fd)</td></tr>
-<tr class="memdesc:af4a17c0700f21be7b91d35e347e879f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new UDP transport.  <a href="transport_8h.html#af4a17c0700f21be7b91d35e347e879f7">More...</a><br /></td></tr>
-<tr class="separator:af4a17c0700f21be7b91d35e347e879f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a374a129bdceb61d8629c5d5eb7779ad3"><td class="memItemLeft" align="right" valign="top">SmolRTSP_Transport&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="transport_8h.html#a374a129bdceb61d8629c5d5eb7779ad3">smolrtsp_transport_tcp</a> (SmolRTSP_Writer w, uint8_t channel_id) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:a374a129bdceb61d8629c5d5eb7779ad3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new TCP transport.  <a href="transport_8h.html#a374a129bdceb61d8629c5d5eb7779ad3">More...</a><br /></td></tr>
+<tr class="separator:a374a129bdceb61d8629c5d5eb7779ad3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3875a72cf6f4cd52bad76d6692979c61"><td class="memItemLeft" align="right" valign="top">SmolRTSP_Transport&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="transport_8h.html#a3875a72cf6f4cd52bad76d6692979c61">smolrtsp_transport_udp</a> (int fd) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:a3875a72cf6f4cd52bad76d6692979c61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new UDP transport.  <a href="transport_8h.html#a3875a72cf6f4cd52bad76d6692979c61">More...</a><br /></td></tr>
+<tr class="separator:a3875a72cf6f4cd52bad76d6692979c61"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>RTSP data transport (level 4) implementations. </p>
@@ -200,8 +202,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a92bc07b989456c0d7ed11af11d67bbcb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a92bc07b989456c0d7ed11af11d67bbcb">&#9670;&nbsp;</a></span>smolrtsp_transport_tcp()</h2>
+<a id="a374a129bdceb61d8629c5d5eb7779ad3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a374a129bdceb61d8629c5d5eb7779ad3">&#9670;&nbsp;</a></span>smolrtsp_transport_tcp()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -238,8 +240,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="af4a17c0700f21be7b91d35e347e879f7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af4a17c0700f21be7b91d35e347e879f7">&#9670;&nbsp;</a></span>smolrtsp_transport_udp()</h2>
+<a id="a3875a72cf6f4cd52bad76d6692979c61"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3875a72cf6f4cd52bad76d6692979c61">&#9670;&nbsp;</a></span>smolrtsp_transport_udp()</h2>
 
 <div class="memitem">
 <div class="memproto">

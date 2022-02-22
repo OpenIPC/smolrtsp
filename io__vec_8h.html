@@ -96,16 +96,18 @@ $(document).ready(function(){initNavTree('io__vec_8h.html',''); initResizable();
 <code>#include &lt;sys/socket.h&gt;</code><br />
 <code>#include &lt;sys/types.h&gt;</code><br />
 <code>#include &lt;slice99.h&gt;</code><br />
+<code>#include &lt;smolrtsp/priv/compiler_attrs.h&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for io_vec.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="io__vec_8h__incl.png" border="0" usemap="#include_2smolrtsp_2io__vec_8h" alt=""/></div>
 <map name="include_2smolrtsp_2io__vec_8h" id="include_2smolrtsp_2io__vec_8h">
-<area shape="rect" title="Vectored I/O support." alt="" coords="144,5,291,47"/>
-<area shape="rect" title=" " alt="" coords="5,95,80,121"/>
-<area shape="rect" title=" " alt="" coords="105,95,207,121"/>
-<area shape="rect" title=" " alt="" coords="232,95,328,121"/>
-<area shape="rect" title=" " alt="" coords="352,95,432,121"/>
+<area shape="rect" title="Vectored I/O support." alt="" coords="207,5,353,47"/>
+<area shape="rect" title=" " alt="" coords="5,102,80,129"/>
+<area shape="rect" title=" " alt="" coords="105,102,207,129"/>
+<area shape="rect" title=" " alt="" coords="232,102,328,129"/>
+<area shape="rect" title=" " alt="" coords="352,102,432,129"/>
+<area shape="rect" title=" " alt="" coords="457,95,626,136"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -113,10 +115,10 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
 <div class="center"><img src="io__vec_8h__dep__incl.png" border="0" usemap="#include_2smolrtsp_2io__vec_8hdep" alt=""/></div>
 <map name="include_2smolrtsp_2io__vec_8hdep" id="include_2smolrtsp_2io__vec_8hdep">
-<area shape="rect" title="Vectored I/O support." alt="" coords="47,5,193,47"/>
-<area shape="rect" href="smolrtsp_8h.html" title="Re&#45;exports all the functionality." alt="" coords="10,169,153,196"/>
-<area shape="rect" href="transport_8h.html" title="RTSP data transport (level 4) implementations." alt="" coords="88,95,293,121"/>
-<area shape="rect" href="rtp__transport_8h.html" title="An RTP data transport." alt="" coords="5,244,157,285"/>
+<area shape="rect" title="Vectored I/O support." alt="" coords="22,5,169,47"/>
+<area shape="rect" href="smolrtsp_8h.html" title="Re&#45;exports all the functionality." alt="" coords="5,259,148,285"/>
+<area shape="rect" href="transport_8h.html" title="RTSP data transport (level 4) implementations." alt="" coords="63,95,269,121"/>
+<area shape="rect" href="rtp__transport_8h.html" title="An RTP data transport." alt="" coords="114,169,266,211"/>
 </map>
 </div>
 </div>
@@ -128,14 +130,14 @@ Functions</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__vec_8h.html#a5c06e3214b353829efa5167493dc9e5b">SLICE99_DEF_TYPED</a> (SmolRTSP_IoVecSlice, struct iovec)</td></tr>
 <tr class="memdesc:a5c06e3214b353829efa5167493dc9e5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">A slice of elements of type <code>struct iovec</code>. <br /></td></tr>
 <tr class="separator:a5c06e3214b353829efa5167493dc9e5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1731ec26a968d2a57646b95ed6b98853"><td class="memItemLeft" align="right" valign="top"><a id="a1731ec26a968d2a57646b95ed6b98853"></a>
-size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__vec_8h.html#a1731ec26a968d2a57646b95ed6b98853">SmolRTSP_IoVecSlice_len</a> (SmolRTSP_IoVecSlice self)</td></tr>
-<tr class="memdesc:a1731ec26a968d2a57646b95ed6b98853"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the total length of <code>self</code>. <br /></td></tr>
-<tr class="separator:a1731ec26a968d2a57646b95ed6b98853"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3daba8106c9f1235f0331bda43ae0fed"><td class="memItemLeft" align="right" valign="top"><a id="a3daba8106c9f1235f0331bda43ae0fed"></a>
-struct iovec&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__vec_8h.html#a3daba8106c9f1235f0331bda43ae0fed">smolrtsp_slice_to_iovec</a> (U8Slice99 slice)</td></tr>
-<tr class="memdesc:a3daba8106c9f1235f0331bda43ae0fed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts an octet slice <code>slice</code> to <code>struct iovec</code>. <br /></td></tr>
-<tr class="separator:a3daba8106c9f1235f0331bda43ae0fed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30a363a99d566952eadaac8fff43ad75"><td class="memItemLeft" align="right" valign="top"><a id="a30a363a99d566952eadaac8fff43ad75"></a>
+size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__vec_8h.html#a30a363a99d566952eadaac8fff43ad75">SmolRTSP_IoVecSlice_len</a> (SmolRTSP_IoVecSlice self) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:a30a363a99d566952eadaac8fff43ad75"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the total length of <code>self</code>. <br /></td></tr>
+<tr class="separator:a30a363a99d566952eadaac8fff43ad75"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73fb0c8243a4da29c96e982a24082784"><td class="memItemLeft" align="right" valign="top"><a id="a73fb0c8243a4da29c96e982a24082784"></a>
+struct iovec&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io__vec_8h.html#a73fb0c8243a4da29c96e982a24082784">smolrtsp_slice_to_iovec</a> (U8Slice99 slice) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:a73fb0c8243a4da29c96e982a24082784"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts an octet slice <code>slice</code> to <code>struct iovec</code>. <br /></td></tr>
+<tr class="separator:a73fb0c8243a4da29c96e982a24082784"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Vectored I/O support. </p>

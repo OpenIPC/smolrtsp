@@ -94,55 +94,58 @@ $(document).ready(function(){initNavTree('sdp_8h_source.html',''); initResizable
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;slice99.h&gt;</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
-<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="sdp_8h.html#a92db3e326a98a58d3544003bad698950">   16</a></span>&#160;<span class="keyword">typedef</span> <span class="keywordtype">char</span> <a class="code" href="sdp_8h.html#a92db3e326a98a58d3544003bad698950">SmolRTSP_SdpType</a>;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="structSmolRTSP__SdpLine.html">   21</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
-<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="structSmolRTSP__SdpLine.html#ad10b30137c01a096abb7643e76f3d8b1">   25</a></span>&#160;    <a class="code" href="sdp_8h.html#a92db3e326a98a58d3544003bad698950">SmolRTSP_SdpType</a> <a class="code" href="structSmolRTSP__SdpLine.html#ad10b30137c01a096abb7643e76f3d8b1">ty</a>;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
-<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="structSmolRTSP__SdpLine.html#af0a42b832ee6ca2f3a794916abab70fc">   30</a></span>&#160;    CharSlice99 <a class="code" href="structSmolRTSP__SdpLine.html#af0a42b832ee6ca2f3a794916abab70fc">value</a>;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;} <a class="code" href="structSmolRTSP__SdpLine.html">SmolRTSP_SdpLine</a>;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;ssize_t <a class="code" href="sdp_8h.html#ae71e22d7e5ad7e2d0f66b455e3ac18f6">SmolRTSP_SdpLine_serialize</a>(<a class="code" href="structSmolRTSP__SdpLine.html">SmolRTSP_SdpLine</a> <span class="keyword">self</span>, SmolRTSP_Writer w);</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;ssize_t <a class="code" href="sdp_8h.html#aceae645558b23a316b16804d90f0722a">smolrtsp_sdp_printf</a>(<a class="code" href="sdp_8h.html#a92db3e326a98a58d3544003bad698950">SmolRTSP_SdpType</a> ty, SmolRTSP_Writer w, <span class="keyword">const</span> <span class="keywordtype">char</span> fmt[restrict], ...);</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
-<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="sdp_8h.html#ae8dc190ef3a542feff7515dd7aba3b1b">   62</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_SDP_VERSION &#39;v&#39;</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
-<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="sdp_8h.html#ae20cb0ee1483cc70919c873ad9ec5642">   67</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_SDP_ORIGIN &#39;o&#39;</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
-<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="sdp_8h.html#abe1efd96a1a926f087fb5ca02d21e585">   72</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_SDP_SESSION_NAME &#39;s&#39;</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
-<div class="line"><a name="l00077"></a><span class="lineno"><a class="line" href="sdp_8h.html#abf729255bb4c6f25e9b6f0b0208b75c1">   77</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_SDP_INFO &#39;i&#39;</span></div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
-<div class="line"><a name="l00082"></a><span class="lineno"><a class="line" href="sdp_8h.html#a0eb4d714f8df73fb0b18222659e11095">   82</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_SDP_URI &#39;u&#39;</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
-<div class="line"><a name="l00087"></a><span class="lineno"><a class="line" href="sdp_8h.html#ae95e488412b7f095784f4b5cc5049025">   87</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_SDP_EMAIL &#39;e&#39;</span></div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
-<div class="line"><a name="l00092"></a><span class="lineno"><a class="line" href="sdp_8h.html#ab694dd556c280fc9792f986e80777fc6">   92</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_SDP_PHONE &#39;p&#39;</span></div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
-<div class="line"><a name="l00097"></a><span class="lineno"><a class="line" href="sdp_8h.html#ad08cb46932ed9d4a4408a76505cd7ae5">   97</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_SDP_CONNECTION &#39;c&#39;</span></div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
-<div class="line"><a name="l00102"></a><span class="lineno"><a class="line" href="sdp_8h.html#ab9046d231ae8856f8e160e01e3a7b188">  102</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_SDP_BANDWIDTH &#39;b&#39;</span></div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
-<div class="line"><a name="l00107"></a><span class="lineno"><a class="line" href="sdp_8h.html#ab1472124e06932377c4455a38c14a597">  107</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_SDP_TIME &#39;t&#39;</span></div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160; </div>
-<div class="line"><a name="l00112"></a><span class="lineno"><a class="line" href="sdp_8h.html#aeddf007c93f9ff4f1663f6c5a20de540">  112</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_SDP_REPEAT &#39;r&#39;</span></div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160; </div>
-<div class="line"><a name="l00117"></a><span class="lineno"><a class="line" href="sdp_8h.html#ab63bdaf033d13927cd8b614c78426ab6">  117</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_SDP_TIME_ZONES &#39;z&#39;</span></div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160; </div>
-<div class="line"><a name="l00122"></a><span class="lineno"><a class="line" href="sdp_8h.html#af2a50667154154bd405db8dfe829fd86">  122</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_SDP_ENCRYPTION_KEYS &#39;k&#39;</span></div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160; </div>
-<div class="line"><a name="l00127"></a><span class="lineno"><a class="line" href="sdp_8h.html#aca2eae019df4b4de2205e6a21224bc7c">  127</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_SDP_ATTR &#39;a&#39;</span></div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160; </div>
-<div class="line"><a name="l00132"></a><span class="lineno"><a class="line" href="sdp_8h.html#ade1195d46cff9ee80e65c2cad921e77e">  132</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_SDP_MEDIA &#39;m&#39;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;smolrtsp/priv/compiler_attrs.h&gt;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="sdp_8h.html#a92db3e326a98a58d3544003bad698950">   18</a></span>&#160;<span class="keyword">typedef</span> <span class="keywordtype">char</span> <a class="code" href="sdp_8h.html#a92db3e326a98a58d3544003bad698950">SmolRTSP_SdpType</a>;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="structSmolRTSP__SdpLine.html">   23</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="structSmolRTSP__SdpLine.html#ad10b30137c01a096abb7643e76f3d8b1">   27</a></span>&#160;    <a class="code" href="sdp_8h.html#a92db3e326a98a58d3544003bad698950">SmolRTSP_SdpType</a> <a class="code" href="structSmolRTSP__SdpLine.html#ad10b30137c01a096abb7643e76f3d8b1">ty</a>;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="structSmolRTSP__SdpLine.html#af0a42b832ee6ca2f3a794916abab70fc">   32</a></span>&#160;    CharSlice99 <a class="code" href="structSmolRTSP__SdpLine.html#af0a42b832ee6ca2f3a794916abab70fc">value</a>;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;} <a class="code" href="structSmolRTSP__SdpLine.html">SmolRTSP_SdpLine</a>;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;ssize_t <a class="code" href="sdp_8h.html#a4da3ebe4fb577869fcd0fbb7d0ad98e3">SmolRTSP_SdpLine_serialize</a>(<a class="code" href="structSmolRTSP__SdpLine.html">SmolRTSP_SdpLine</a> <span class="keyword">self</span>, SmolRTSP_Writer w) SMOLRTSP_PRIV_MUST_USE;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;ssize_t <a class="code" href="sdp_8h.html#ab8245721950c303185e55510735a4308">smolrtsp_sdp_printf</a>(<a class="code" href="sdp_8h.html#a92db3e326a98a58d3544003bad698950">SmolRTSP_SdpType</a> ty, SmolRTSP_Writer w, <span class="keyword">const</span> <span class="keywordtype">char</span> fmt[restrict], ...)</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    SMOLRTSP_PRIV_MUST_USE SMOLRTSP_PRIV_GCC_ATTR(format(printf, 3, 4));</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="sdp_8h.html#ae8dc190ef3a542feff7515dd7aba3b1b">   65</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_SDP_VERSION &#39;v&#39;</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00070"></a><span class="lineno"><a class="line" href="sdp_8h.html#ae20cb0ee1483cc70919c873ad9ec5642">   70</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_SDP_ORIGIN &#39;o&#39;</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="sdp_8h.html#abe1efd96a1a926f087fb5ca02d21e585">   75</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_SDP_SESSION_NAME &#39;s&#39;</span></div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
+<div class="line"><a name="l00080"></a><span class="lineno"><a class="line" href="sdp_8h.html#abf729255bb4c6f25e9b6f0b0208b75c1">   80</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_SDP_INFO &#39;i&#39;</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
+<div class="line"><a name="l00085"></a><span class="lineno"><a class="line" href="sdp_8h.html#a0eb4d714f8df73fb0b18222659e11095">   85</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_SDP_URI &#39;u&#39;</span></div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
+<div class="line"><a name="l00090"></a><span class="lineno"><a class="line" href="sdp_8h.html#ae95e488412b7f095784f4b5cc5049025">   90</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_SDP_EMAIL &#39;e&#39;</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160; </div>
+<div class="line"><a name="l00095"></a><span class="lineno"><a class="line" href="sdp_8h.html#ab694dd556c280fc9792f986e80777fc6">   95</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_SDP_PHONE &#39;p&#39;</span></div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
+<div class="line"><a name="l00100"></a><span class="lineno"><a class="line" href="sdp_8h.html#ad08cb46932ed9d4a4408a76505cd7ae5">  100</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_SDP_CONNECTION &#39;c&#39;</span></div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160; </div>
+<div class="line"><a name="l00105"></a><span class="lineno"><a class="line" href="sdp_8h.html#ab9046d231ae8856f8e160e01e3a7b188">  105</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_SDP_BANDWIDTH &#39;b&#39;</span></div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
+<div class="line"><a name="l00110"></a><span class="lineno"><a class="line" href="sdp_8h.html#ab1472124e06932377c4455a38c14a597">  110</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_SDP_TIME &#39;t&#39;</span></div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160; </div>
+<div class="line"><a name="l00115"></a><span class="lineno"><a class="line" href="sdp_8h.html#aeddf007c93f9ff4f1663f6c5a20de540">  115</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_SDP_REPEAT &#39;r&#39;</span></div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160; </div>
+<div class="line"><a name="l00120"></a><span class="lineno"><a class="line" href="sdp_8h.html#ab63bdaf033d13927cd8b614c78426ab6">  120</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_SDP_TIME_ZONES &#39;z&#39;</span></div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160; </div>
+<div class="line"><a name="l00125"></a><span class="lineno"><a class="line" href="sdp_8h.html#af2a50667154154bd405db8dfe829fd86">  125</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_SDP_ENCRYPTION_KEYS &#39;k&#39;</span></div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160; </div>
+<div class="line"><a name="l00130"></a><span class="lineno"><a class="line" href="sdp_8h.html#aca2eae019df4b4de2205e6a21224bc7c">  130</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_SDP_ATTR &#39;a&#39;</span></div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160; </div>
+<div class="line"><a name="l00135"></a><span class="lineno"><a class="line" href="sdp_8h.html#ade1195d46cff9ee80e65c2cad921e77e">  135</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_SDP_MEDIA &#39;m&#39;</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="asdp_8h_html_ae71e22d7e5ad7e2d0f66b455e3ac18f6"><div class="ttname"><a href="sdp_8h.html#ae71e22d7e5ad7e2d0f66b455e3ac18f6">SmolRTSP_SdpLine_serialize</a></div><div class="ttdeci">ssize_t SmolRTSP_SdpLine_serialize(SmolRTSP_SdpLine self, SmolRTSP_Writer w)</div><div class="ttdoc">Serialises self into w.</div></div>
-<div class="ttc" id="astructSmolRTSP__SdpLine_html"><div class="ttname"><a href="structSmolRTSP__SdpLine.html">SmolRTSP_SdpLine</a></div><div class="ttdoc">An SDP line.</div><div class="ttdef"><b>Definition:</b> sdp.h:21</div></div>
-<div class="ttc" id="astructSmolRTSP__SdpLine_html_af0a42b832ee6ca2f3a794916abab70fc"><div class="ttname"><a href="structSmolRTSP__SdpLine.html#af0a42b832ee6ca2f3a794916abab70fc">SmolRTSP_SdpLine::value</a></div><div class="ttdeci">CharSlice99 value</div><div class="ttdoc">The value of this line.</div><div class="ttdef"><b>Definition:</b> sdp.h:30</div></div>
-<div class="ttc" id="astructSmolRTSP__SdpLine_html_ad10b30137c01a096abb7643e76f3d8b1"><div class="ttname"><a href="structSmolRTSP__SdpLine.html#ad10b30137c01a096abb7643e76f3d8b1">SmolRTSP_SdpLine::ty</a></div><div class="ttdeci">SmolRTSP_SdpType ty</div><div class="ttdoc">The type of this line.</div><div class="ttdef"><b>Definition:</b> sdp.h:25</div></div>
-<div class="ttc" id="asdp_8h_html_aceae645558b23a316b16804d90f0722a"><div class="ttname"><a href="sdp_8h.html#aceae645558b23a316b16804d90f0722a">smolrtsp_sdp_printf</a></div><div class="ttdeci">ssize_t smolrtsp_sdp_printf(SmolRTSP_SdpType ty, SmolRTSP_Writer w, const char fmt[restrict],...)</div><div class="ttdoc">Printfs a single SDP line to w.</div></div>
-<div class="ttc" id="asdp_8h_html_a92db3e326a98a58d3544003bad698950"><div class="ttname"><a href="sdp_8h.html#a92db3e326a98a58d3544003bad698950">SmolRTSP_SdpType</a></div><div class="ttdeci">char SmolRTSP_SdpType</div><div class="ttdoc">An SDP type (one character).</div><div class="ttdef"><b>Definition:</b> sdp.h:16</div></div>
+<div class="ttc" id="astructSmolRTSP__SdpLine_html"><div class="ttname"><a href="structSmolRTSP__SdpLine.html">SmolRTSP_SdpLine</a></div><div class="ttdoc">An SDP line.</div><div class="ttdef"><b>Definition:</b> sdp.h:23</div></div>
+<div class="ttc" id="astructSmolRTSP__SdpLine_html_af0a42b832ee6ca2f3a794916abab70fc"><div class="ttname"><a href="structSmolRTSP__SdpLine.html#af0a42b832ee6ca2f3a794916abab70fc">SmolRTSP_SdpLine::value</a></div><div class="ttdeci">CharSlice99 value</div><div class="ttdoc">The value of this line.</div><div class="ttdef"><b>Definition:</b> sdp.h:32</div></div>
+<div class="ttc" id="asdp_8h_html_ab8245721950c303185e55510735a4308"><div class="ttname"><a href="sdp_8h.html#ab8245721950c303185e55510735a4308">smolrtsp_sdp_printf</a></div><div class="ttdeci">ssize_t smolrtsp_sdp_printf(SmolRTSP_SdpType ty, SmolRTSP_Writer w, const char fmt[restrict],...) SMOLRTSP_PRIV_MUST_USE SMOLRTSP_PRIV_GCC_ATTR(format(printf</div><div class="ttdoc">Printfs a single SDP line to w.</div></div>
+<div class="ttc" id="astructSmolRTSP__SdpLine_html_ad10b30137c01a096abb7643e76f3d8b1"><div class="ttname"><a href="structSmolRTSP__SdpLine.html#ad10b30137c01a096abb7643e76f3d8b1">SmolRTSP_SdpLine::ty</a></div><div class="ttdeci">SmolRTSP_SdpType ty</div><div class="ttdoc">The type of this line.</div><div class="ttdef"><b>Definition:</b> sdp.h:27</div></div>
+<div class="ttc" id="asdp_8h_html_a92db3e326a98a58d3544003bad698950"><div class="ttname"><a href="sdp_8h.html#a92db3e326a98a58d3544003bad698950">SmolRTSP_SdpType</a></div><div class="ttdeci">char SmolRTSP_SdpType</div><div class="ttdoc">An SDP type (one character).</div><div class="ttdef"><b>Definition:</b> sdp.h:18</div></div>
+<div class="ttc" id="asdp_8h_html_a4da3ebe4fb577869fcd0fbb7d0ad98e3"><div class="ttname"><a href="sdp_8h.html#a4da3ebe4fb577869fcd0fbb7d0ad98e3">SmolRTSP_SdpLine_serialize</a></div><div class="ttdeci">ssize_t SmolRTSP_SdpLine_serialize(SmolRTSP_SdpLine self, SmolRTSP_Writer w) SMOLRTSP_PRIV_MUST_USE</div><div class="ttdoc">Serialises self into w.</div></div>
 <div class="ttc" id="awriter_8h_html"><div class="ttname"><a href="writer_8h.html">writer.h</a></div><div class="ttdoc">The writer interface.</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
