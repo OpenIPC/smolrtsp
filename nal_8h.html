@@ -127,8 +127,9 @@ This graph shows which files directly or indirectly include this file:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:ac18ad3367cf61e16c72058d927828d8b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><b>SMOLRTSP_NAL_UNIT_DESTRUCT</b>(nal_unit,  h,  payload)</td></tr>
-<tr class="separator:ac18ad3367cf61e16c72058d927828d8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95b2f9c004672c44c5a96a97ab245aa2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_8h.html#a95b2f9c004672c44c5a96a97ab245aa2">SMOLRTSP_NAL_UNIT_DESTRUCT</a>(self,  h,  payload)</td></tr>
+<tr class="memdesc:a95b2f9c004672c44c5a96a97ab245aa2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructs <code>self</code> into its header and its payload data.  <a href="nal_8h.html#a95b2f9c004672c44c5a96a97ab245aa2">More...</a><br /></td></tr>
+<tr class="separator:a95b2f9c004672c44c5a96a97ab245aa2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a185b09799d8161a3aa574cf20cd595fa"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_8h.html#a185b09799d8161a3aa574cf20cd595fa">SMOLRTSP_NAL_HEADER_FU_HEADER_SIZE</a>(h)</td></tr>
 <tr class="memdesc:a185b09799d8161a3aa574cf20cd595fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">The size of a fragmentation unit (FU) header <code>h</code>.  <a href="nal_8h.html#a185b09799d8161a3aa574cf20cd595fa">More...</a><br /></td></tr>
 <tr class="separator:a185b09799d8161a3aa574cf20cd595fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -221,8 +222,8 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_
 
 </div>
 </div>
-<a id="ac18ad3367cf61e16c72058d927828d8b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac18ad3367cf61e16c72058d927828d8b">&#9670;&nbsp;</a></span>SMOLRTSP_NAL_UNIT_DESTRUCT</h2>
+<a id="a95b2f9c004672c44c5a96a97ab245aa2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a95b2f9c004672c44c5a96a97ab245aa2">&#9670;&nbsp;</a></span>SMOLRTSP_NAL_UNIT_DESTRUCT</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -231,7 +232,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_
           <td class="memname">#define SMOLRTSP_NAL_UNIT_DESTRUCT</td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname">nal_unit, </td>
+          <td class="paramname">self, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -252,9 +253,12 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">    SmolRTSP_NalHeader h = <a class="code" href="nal_8h.html#a0698c4a9167bff091cf62193e953417a">SmolRTSP_NalUnit_header</a>(nal_unit);                                      \</div>
-<div class="line">    U8Slice99 payload = <a class="code" href="nal_8h.html#a9b790557d09ba3a4e67b636d7d7e65e2">SmolRTSP_NalUnit_payload</a>(nal_unit)</div>
+<b>Value:</b><div class="fragment"><div class="line">    SmolRTSP_NalHeader h = <a class="code" href="nal_8h.html#a0698c4a9167bff091cf62193e953417a">SmolRTSP_NalUnit_header</a>(<span class="keyword">self</span>);                                          \</div>
+<div class="line">    U8Slice99 payload = <a class="code" href="nal_8h.html#a9b790557d09ba3a4e67b636d7d7e65e2">SmolRTSP_NalUnit_payload</a>(<span class="keyword">self</span>)</div>
 </div><!-- fragment -->
+<p>Destructs <code>self</code> into its header and its payload data. </p>
+<p>This macro expands to two variables named <code>h</code> and <code>payload</code> and initialises them to <code>SmolRTSP_NalUnit_header(self)</code> and <code>SmolRTSP_NalUnit_payload(self)</code>, respectively. </p>
+
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
