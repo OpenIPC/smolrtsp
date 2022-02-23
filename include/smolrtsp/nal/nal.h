@@ -123,6 +123,9 @@ SmolRTSP_NalHeader SmolRTSP_NalUnit_header(SmolRTSP_NalUnit self);
  */
 U8Slice99 SmolRTSP_NalUnit_payload(SmolRTSP_NalUnit self);
 
+/**
+ * Creates a generic NAL FU header.
+ */
 uint8_t smolrtsp_nal_fu_header(bool is_first_fragment, bool is_last_fragment, uint8_t unit_type);
 
 /**
