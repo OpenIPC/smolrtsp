@@ -22,7 +22,7 @@
  * @see <https://datatracker.ietf.org/doc/html/rfc7798#section-4.4.3>
  */
 #define SMOLRTSP_H265_FU_HEADER_SIZE                                                               \
-    (/* payload-hdr */ sizeof(uint16_t) + /* fu-header */ +sizeof(uint8_t))
+    (/* payload-hdr */ sizeof(uint16_t) + /* fu-header */ sizeof(uint8_t))
 
 /**
  * An H.265 NAL header.
