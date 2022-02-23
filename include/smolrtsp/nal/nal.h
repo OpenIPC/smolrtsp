@@ -15,9 +15,15 @@
 #include <datatype99.h>
 #include <slice99.h>
 
-#define SMOLRTSP_NAL_UNIT_DESTRUCT(nal_unit, h, payload)                                           \
-    SmolRTSP_NalHeader h = SmolRTSP_NalUnit_header(nal_unit);                                      \
-    U8Slice99 payload = SmolRTSP_NalUnit_payload(nal_unit)
+/**
+ * Destructs @p self into its header and its payload data.
+ *
+ * This macro expands to two variables named @p h and @p payload and initialises them to
+ * `SmolRTSP_NalUnit_header(self)` and `SmolRTSP_NalUnit_payload(self)`, respectively.
+ */
+#define SMOLRTSP_NAL_UNIT_DESTRUCT(self, h, payload)                                               \
+    SmolRTSP_NalHeader h = SmolRTSP_NalUnit_header(self);                                          \
+    U8Slice99 payload = SmolRTSP_NalUnit_payload(self)
 
 /**
  * The size of a fragmentation unit (FU) header @p h.
