@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['timestamp_386',['timestamp',['../structSmolRTSP__RtpHeader.html#a0c6b848aef312423bc57af078c57b496',1,'SmolRTSP_RtpHeader']]],
-  ['ty_387',['ty',['../structSmolRTSP__SdpLine.html#ad10b30137c01a096abb7643e76f3d8b1',1,'SmolRTSP_SdpLine']]]
+  ['reason_512',['reason',['../structSmolRTSP__ResponseLine.html#a8c9b163a1c6e57e795ef6bf559e5af15',1,'SmolRTSP_ResponseLine']]],
+  ['ref_5fidc_513',['ref_idc',['../structSmolRTSP__H264NalHeader.html#ae41578742d05c569244745a33d949677',1,'SmolRTSP_H264NalHeader']]]
 ];

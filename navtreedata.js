@@ -48,7 +48,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "annotated.html",
-"structSmolRTSP__Request.html#a64c4a2150e6ab000d6e5eafc190113f5"
+"rtp__transport_8h_source.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

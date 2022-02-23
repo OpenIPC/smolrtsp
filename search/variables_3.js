@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['header_5fmap_371',['header_map',['../structSmolRTSP__Request.html#a64c4a2150e6ab000d6e5eafc190113f5',1,'SmolRTSP_Request::header_map()'],['../structSmolRTSP__Response.html#abb3baccb3cd9c2ed1575aa3ef2adf5bd',1,'SmolRTSP_Response::header_map()']]],
-  ['headers_372',['headers',['../structSmolRTSP__HeaderMap.html#ad5118cb4e185eef65b812796243508da',1,'SmolRTSP_HeaderMap']]]
+  ['forbidden_5fzero_5fbit_496',['forbidden_zero_bit',['../structSmolRTSP__H264NalHeader.html#a4365efcbb2bb8fce15eb14446b1061d4',1,'SmolRTSP_H264NalHeader::forbidden_zero_bit()'],['../structSmolRTSP__H265NalHeader.html#aa6016936c0d719f35a1735b184d54575',1,'SmolRTSP_H265NalHeader::forbidden_zero_bit()']]]
 ];
