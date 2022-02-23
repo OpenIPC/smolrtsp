@@ -57,10 +57,10 @@ size_t SmolRTSP_NalHeader_size(SmolRTSP_NalHeader self);
  * Checks whether @p self is VPS.
  */
 bool SmolRTSP_NalHeader_is_vps(SmolRTSP_NalHeader self);
+
 /**
  * Checks whether @p self is SPS.
  */
-
 bool SmolRTSP_NalHeader_is_sps(SmolRTSP_NalHeader self);
 
 /**
