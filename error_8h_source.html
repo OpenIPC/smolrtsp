@@ -108,51 +108,59 @@ $(document).ready(function(){initNavTree('error_8h_source.html',''); initResizab
 <div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="error_8h.html#ac95dd4e524f39bd1d021e19ba9312644a7abc5c467e9dd825dbc2ad69dc8c7afe">   35</a></span>&#160;    <a class="code" href="error_8h.html#ac95dd4e524f39bd1d021e19ba9312644a7abc5c467e9dd825dbc2ad69dc8c7afe">SmolRTSP_ParseType_HeaderName</a>,</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;} <a class="code" href="error_8h.html#ac95dd4e524f39bd1d021e19ba9312644">SmolRTSP_ParseType</a>;</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code" href="error_8h.html#a51ce1aa9a992814a0de92455aa72de65">SmolRTSP_ParseType_str</a>(<a class="code" href="error_8h.html#ac95dd4e524f39bd1d021e19ba9312644">SmolRTSP_ParseType</a> <span class="keyword">self</span>) SMOLRTSP_PRIV_MUST_USE;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment">// clang-format off</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<a class="code" href="error_8h.html#ab41ae4ba72c9ecf524438fca650c66f8">datatype99</a>(</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    SmolRTSP_ParseError,</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    (SmolRTSP_ParseError_ContentLength, CharSlice99),</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    (SmolRTSP_ParseError_StrMismatch, CharSlice99, CharSlice99),</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    (SmolRTSP_ParseError_TypeMismatch, <a class="code" href="error_8h.html#ac95dd4e524f39bd1d021e19ba9312644">SmolRTSP_ParseType</a>, CharSlice99),</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    (SmolRTSP_ParseError_HeaderMapOverflow)</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;);</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment">// clang-format on</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="keywordtype">int</span> <a class="code" href="error_8h.html#a70438a5db93aebfb3a6e929045885f4e">SmolRTSP_ParseError_print</a>(SmolRTSP_ParseError <span class="keyword">self</span>, SmolRTSP_Writer w);</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="comment">// clang-format off</span></div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<a class="code" href="error_8h.html#ab41ae4ba72c9ecf524438fca650c66f8">datatype99</a>(</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    SmolRTSP_ParseStatus,</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    (SmolRTSP_ParseStatus_Complete, <span class="keywordtype">size_t</span>),</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    (SmolRTSP_ParseStatus_Partial)</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;);</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="comment">// clang-format on</span></div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="error_8h.html#a282840de30eb688ab7a6355d32b91983">SmolRTSP_ParseStatus_is_complete</a>(SmolRTSP_ParseStatus <span class="keyword">self</span>) SMOLRTSP_PRIV_MUST_USE;</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160; </div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="error_8h.html#a9998be2568fcbd11063a7281a7241c48">SmolRTSP_ParseStatus_is_partial</a>(SmolRTSP_ParseStatus <span class="keyword">self</span>) SMOLRTSP_PRIV_MUST_USE;</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160; </div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="comment">// clang-format off</span></div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<a class="code" href="error_8h.html#ab41ae4ba72c9ecf524438fca650c66f8">datatype99</a>(</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    SmolRTSP_ParseResult,</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;    (SmolRTSP_ParseResult_Success, SmolRTSP_ParseStatus),</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    (SmolRTSP_ParseResult_Failure, SmolRTSP_ParseError)</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;);</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;<span class="comment">// clang-format on</span></div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160; </div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;SmolRTSP_ParseResult <a class="code" href="error_8h.html#a3edf0a328c91b652bf0506e621c85408">SmolRTSP_ParseResult_partial</a>(<span class="keywordtype">void</span>) SMOLRTSP_PRIV_MUST_USE;</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160; </div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;SmolRTSP_ParseResult <a class="code" href="error_8h.html#a5ec7c890f2387cf3044ff1ea2fa89bd6">SmolRTSP_ParseResult_complete</a>(<span class="keywordtype">size_t</span> offset) SMOLRTSP_PRIV_MUST_USE;</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160; </div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="error_8h.html#a28e62d191cff5eafa13b1b9f636fc645">SmolRTSP_ParseResult_is_success</a>(SmolRTSP_ParseResult <span class="keyword">self</span>) SMOLRTSP_PRIV_MUST_USE;</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160; </div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="error_8h.html#ae0a114d646119c3feca2cf580411bdc6">SmolRTSP_ParseResult_is_failure</a>(SmolRTSP_ParseResult <span class="keyword">self</span>) SMOLRTSP_PRIV_MUST_USE;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keyword">const</span> <span class="keywordtype">char</span> *</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<a class="code" href="error_8h.html#a51ce1aa9a992814a0de92455aa72de65">SmolRTSP_ParseType_str</a>(<a class="code" href="error_8h.html#ac95dd4e524f39bd1d021e19ba9312644">SmolRTSP_ParseType</a> <span class="keyword">self</span>) SMOLRTSP_PRIV_MUST_USE;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment">// clang-format off</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<a class="code" href="error_8h.html#ab41ae4ba72c9ecf524438fca650c66f8">datatype99</a>(</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    SmolRTSP_ParseError,</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    (SmolRTSP_ParseError_ContentLength, CharSlice99),</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    (SmolRTSP_ParseError_StrMismatch, CharSlice99, CharSlice99),</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    (SmolRTSP_ParseError_TypeMismatch, <a class="code" href="error_8h.html#ac95dd4e524f39bd1d021e19ba9312644">SmolRTSP_ParseType</a>, CharSlice99),</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    (SmolRTSP_ParseError_HeaderMapOverflow)</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;);</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment">// clang-format on</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="keywordtype">int</span> <a class="code" href="error_8h.html#a70438a5db93aebfb3a6e929045885f4e">SmolRTSP_ParseError_print</a>(SmolRTSP_ParseError <span class="keyword">self</span>, SmolRTSP_Writer w);</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="comment">// clang-format off</span></div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<a class="code" href="error_8h.html#ab41ae4ba72c9ecf524438fca650c66f8">datatype99</a>(</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    SmolRTSP_ParseStatus,</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    (SmolRTSP_ParseStatus_Complete, <span class="keywordtype">size_t</span>),</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    (SmolRTSP_ParseStatus_Partial)</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;);</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="comment">// clang-format on</span></div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160; </div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="error_8h.html#a282840de30eb688ab7a6355d32b91983">SmolRTSP_ParseStatus_is_complete</a>(SmolRTSP_ParseStatus <span class="keyword">self</span>)</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    SMOLRTSP_PRIV_MUST_USE;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160; </div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="error_8h.html#a9998be2568fcbd11063a7281a7241c48">SmolRTSP_ParseStatus_is_partial</a>(SmolRTSP_ParseStatus <span class="keyword">self</span>)</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    SMOLRTSP_PRIV_MUST_USE;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160; </div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="comment">// clang-format off</span></div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<a class="code" href="error_8h.html#ab41ae4ba72c9ecf524438fca650c66f8">datatype99</a>(</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    SmolRTSP_ParseResult,</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    (SmolRTSP_ParseResult_Success, SmolRTSP_ParseStatus),</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    (SmolRTSP_ParseResult_Failure, SmolRTSP_ParseError)</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;);</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;<span class="comment">// clang-format on</span></div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160; </div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;SmolRTSP_ParseResult <a class="code" href="error_8h.html#a3edf0a328c91b652bf0506e621c85408">SmolRTSP_ParseResult_partial</a>(<span class="keywordtype">void</span>) SMOLRTSP_PRIV_MUST_USE;</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160; </div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;SmolRTSP_ParseResult</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;<a class="code" href="error_8h.html#a5ec7c890f2387cf3044ff1ea2fa89bd6">SmolRTSP_ParseResult_complete</a>(<span class="keywordtype">size_t</span> offset) SMOLRTSP_PRIV_MUST_USE;</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160; </div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="error_8h.html#a28e62d191cff5eafa13b1b9f636fc645">SmolRTSP_ParseResult_is_success</a>(SmolRTSP_ParseResult <span class="keyword">self</span>)</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;    SMOLRTSP_PRIV_MUST_USE;</div>
 <div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160; </div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="error_8h.html#a7663a6e6fb7716688d0e287d25ffd8d1">SmolRTSP_ParseResult_is_partial</a>(SmolRTSP_ParseResult <span class="keyword">self</span>) SMOLRTSP_PRIV_MUST_USE;</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160; </div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="error_8h.html#aa7e25c8570f7c5a790acaf9baee0d0a2">SmolRTSP_ParseResult_is_complete</a>(SmolRTSP_ParseResult <span class="keyword">self</span>) SMOLRTSP_PRIV_MUST_USE;</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="error_8h.html#ae0a114d646119c3feca2cf580411bdc6">SmolRTSP_ParseResult_is_failure</a>(SmolRTSP_ParseResult <span class="keyword">self</span>)</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;    SMOLRTSP_PRIV_MUST_USE;</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160; </div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="error_8h.html#a7663a6e6fb7716688d0e287d25ffd8d1">SmolRTSP_ParseResult_is_partial</a>(SmolRTSP_ParseResult <span class="keyword">self</span>)</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;    SMOLRTSP_PRIV_MUST_USE;</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160; </div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="error_8h.html#aa7e25c8570f7c5a790acaf9baee0d0a2">SmolRTSP_ParseResult_is_complete</a>(SmolRTSP_ParseResult <span class="keyword">self</span>)</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    SMOLRTSP_PRIV_MUST_USE;</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="aerror_8h_html_a28e62d191cff5eafa13b1b9f636fc645"><div class="ttname"><a href="error_8h.html#a28e62d191cff5eafa13b1b9f636fc645">SmolRTSP_ParseResult_is_success</a></div><div class="ttdeci">bool SmolRTSP_ParseResult_is_success(SmolRTSP_ParseResult self) SMOLRTSP_PRIV_MUST_USE</div><div class="ttdoc">Returns whether self is successful.</div></div>

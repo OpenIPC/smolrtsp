@@ -107,14 +107,15 @@ $(document).ready(function(){initNavTree('request__line_8h_source.html',''); ini
 <div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="structSmolRTSP__RequestLine.html#a3309d32d05bec43c37ec2a887d3b2d46">   34</a></span>&#160;    <a class="code" href="structSmolRTSP__RtspVersion.html">SmolRTSP_RtspVersion</a> <a class="code" href="structSmolRTSP__RequestLine.html#a3309d32d05bec43c37ec2a887d3b2d46">version</a>;</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;} <a class="code" href="structSmolRTSP__RequestLine.html">SmolRTSP_RequestLine</a>;</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;ssize_t <a class="code" href="request__line_8h.html#ac9136698bd19c7294039ba0dd13a282f">SmolRTSP_RequestLine_serialize</a>(<a class="code" href="structSmolRTSP__RequestLine.html">SmolRTSP_RequestLine</a> <span class="keyword">self</span>, SmolRTSP_Writer w)</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    SMOLRTSP_PRIV_MUST_USE;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;ssize_t <a class="code" href="request__line_8h.html#ac9136698bd19c7294039ba0dd13a282f">SmolRTSP_RequestLine_serialize</a>(</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <a class="code" href="structSmolRTSP__RequestLine.html">SmolRTSP_RequestLine</a> <span class="keyword">self</span>, SmolRTSP_Writer w) SMOLRTSP_PRIV_MUST_USE;</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;SmolRTSP_ParseResult <a class="code" href="request__line_8h.html#a491ca5ee063d3970b070472ca05a1575">SmolRTSP_RequestLine_parse</a>(</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <a class="code" href="structSmolRTSP__RequestLine.html">SmolRTSP_RequestLine</a> *restrict <span class="keyword">self</span>, CharSlice99 input) SMOLRTSP_PRIV_MUST_USE;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="request__line_8h.html#a1b253587aed8b3361d3cdc57bd13ee61">SmolRTSP_RequestLine_eq</a>(<a class="code" href="structSmolRTSP__RequestLine.html">SmolRTSP_RequestLine</a> lhs, <a class="code" href="structSmolRTSP__RequestLine.html">SmolRTSP_RequestLine</a> rhs)</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    SMOLRTSP_PRIV_MUST_USE;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <a class="code" href="structSmolRTSP__RequestLine.html">SmolRTSP_RequestLine</a> *restrict <span class="keyword">self</span>,</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    CharSlice99 input) SMOLRTSP_PRIV_MUST_USE;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="request__line_8h.html#a1b253587aed8b3361d3cdc57bd13ee61">SmolRTSP_RequestLine_eq</a>(<a class="code" href="structSmolRTSP__RequestLine.html">SmolRTSP_RequestLine</a> lhs, <a class="code" href="structSmolRTSP__RequestLine.html">SmolRTSP_RequestLine</a> rhs)</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    SMOLRTSP_PRIV_MUST_USE;</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="amethod_8h_html"><div class="ttname"><a href="method_8h.html">method.h</a></div><div class="ttdoc">An RTSP method.</div></div>

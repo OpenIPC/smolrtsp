@@ -200,8 +200,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">    <a class="code" href="writer_8h.html#ae1ec627d3c1175f3a7300d03281367aa">smolrtsp_write_slices</a>(                                                               \</div>
-<div class="line">        w, SLICE99_ARRAY_LEN((<span class="keyword">const</span> CharSlice99[])__VA_ARGS__),                          \</div>
+<b>Value:</b><div class="fragment"><div class="line">    <a class="code" href="writer_8h.html#ae1ec627d3c1175f3a7300d03281367aa">smolrtsp_write_slices</a>(                                                     \</div>
+<div class="line">        w, SLICE99_ARRAY_LEN((<span class="keyword">const</span> CharSlice99[])__VA_ARGS__),                \</div>
 <div class="line">        (<span class="keyword">const</span> CharSlice99[])__VA_ARGS__)</div>
 </div><!-- fragment -->
 <p>The same as <a class="el" href="writer_8h.html#ae1ec627d3c1175f3a7300d03281367aa" title="Sequentially writes all items in data to w.">smolrtsp_write_slices</a> but calculates an array length from variadic arguments (the syntactically separated items of the array). </p>
@@ -219,28 +219,28 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">                                                                                         \</div>
-<div class="line">    <span class="comment">/*                                                                                   \</span></div>
-<div class="line"><span class="comment">     * Writes @p data into itself.                                                       \</span></div>
-<div class="line"><span class="comment">     *                                                                                   \</span></div>
-<div class="line"><span class="comment">     * @param[in] data The slice of character data to write.                             \</span></div>
-<div class="line"><span class="comment">     *                                                                                   \</span></div>
-<div class="line"><span class="comment">     * @return The number of bytes written or a negative value on error.                 \</span></div>
-<div class="line"><span class="comment">     */</span>                                                                                  \</div>
-<div class="line">    vfunc99(ssize_t, write, VSelf99, CharSlice99 data)                                   \</div>
-<div class="line">                                                                                         \</div>
-<div class="line">    <span class="comment">/*                                                                                   \</span></div>
-<div class="line"><span class="comment">     * Writes a formatted string into itself.                                            \</span></div>
-<div class="line"><span class="comment">     *                                                                                   \</span></div>
-<div class="line"><span class="comment">     * @param[in] fmt The `printf`-like format string.                                   \</span></div>
-<div class="line"><span class="comment">     *                                                                                   \</span></div>
-<div class="line"><span class="comment">     * @return The number of bytes written or a negative value on error.                 \</span></div>
-<div class="line"><span class="comment">     */</span>                                                                                  \</div>
-<div class="line">    vfunc99(<span class="keywordtype">int</span>, writef, VSelf99, <span class="keyword">const</span> <span class="keywordtype">char</span> fmt[restrict], ...)                         \</div>
-<div class="line">                                                                                         \</div>
-<div class="line">    <span class="comment">/*                                                                                   \</span></div>
-<div class="line"><span class="comment">     * The same as `printf` but accepts `va_list`.                                       \</span></div>
-<div class="line"><span class="comment">     */</span>                                                                                  \</div>
+<b>Value:</b><div class="fragment"><div class="line">                                                                               \</div>
+<div class="line">    <span class="comment">/*                                                                         \</span></div>
+<div class="line"><span class="comment">     * Writes @p data into itself.                                             \</span></div>
+<div class="line"><span class="comment">     *                                                                         \</span></div>
+<div class="line"><span class="comment">     * @param[in] data The slice of character data to write.                   \</span></div>
+<div class="line"><span class="comment">     *                                                                         \</span></div>
+<div class="line"><span class="comment">     * @return The number of bytes written or a negative value on error.       \</span></div>
+<div class="line"><span class="comment">     */</span>                                                                        \</div>
+<div class="line">    vfunc99(ssize_t, write, VSelf99, CharSlice99 data)                         \</div>
+<div class="line">                                                                               \</div>
+<div class="line">    <span class="comment">/*                                                                         \</span></div>
+<div class="line"><span class="comment">     * Writes a formatted string into itself.                                  \</span></div>
+<div class="line"><span class="comment">     *                                                                         \</span></div>
+<div class="line"><span class="comment">     * @param[in] fmt The `printf`-like format string.                         \</span></div>
+<div class="line"><span class="comment">     *                                                                         \</span></div>
+<div class="line"><span class="comment">     * @return The number of bytes written or a negative value on error.       \</span></div>
+<div class="line"><span class="comment">     */</span>                                                                        \</div>
+<div class="line">    vfunc99(<span class="keywordtype">int</span>, writef, VSelf99, <span class="keyword">const</span> <span class="keywordtype">char</span> fmt[restrict], ...)               \</div>
+<div class="line">                                                                               \</div>
+<div class="line">    <span class="comment">/*                                                                         \</span></div>
+<div class="line"><span class="comment">     * The same as `printf` but accepts `va_list`.                             \</span></div>
+<div class="line"><span class="comment">     */</span>                                                                        \</div>
 <div class="line">    vfunc99(<span class="keywordtype">int</span>, vwritef, VSelf99, <span class="keyword">const</span> <span class="keywordtype">char</span> fmt[restrict], va_list ap)</div>
 </div><!-- fragment -->
 <p>The user-supplied data writer interface. </p>

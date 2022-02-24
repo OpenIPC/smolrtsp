@@ -103,29 +103,30 @@ $(document).ready(function(){initNavTree('method_8h_source.html',''); initResiza
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;SmolRTSP_ParseResult <a class="code" href="method_8h.html#afc107439eb2f60a73e2fd5948e7dd76c">SmolRTSP_Method_parse</a>(</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="method_8h.html#af4433ba33577ce1e651139c24ce6cd03">SmolRTSP_Method</a> *restrict <span class="keyword">self</span>, CharSlice99 input) SMOLRTSP_PRIV_MUST_USE;</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="method_8h.html#adaaeff66054fc283ed88f3048dd86f90">SmolRTSP_Method_eq</a>(<a class="code" href="method_8h.html#af4433ba33577ce1e651139c24ce6cd03">SmolRTSP_Method</a> lhs, <a class="code" href="method_8h.html#af4433ba33577ce1e651139c24ce6cd03">SmolRTSP_Method</a> rhs) SMOLRTSP_PRIV_MUST_USE;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
-<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="method_8h.html#a46e50082f98baaeeaf31e40a2fb7bf77">   37</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_METHOD_OPTIONS (CharSlice99_from_str(&quot;OPTIONS&quot;))</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
-<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="method_8h.html#a9fbe515726b17e8bb6d8d6f91ede8fd2">   42</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_METHOD_DESCRIBE (CharSlice99_from_str(&quot;DESCRIBE&quot;))</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
-<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="method_8h.html#aa37e67ee947aeb1de57b81e92825ae36">   47</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_METHOD_ANNOUNCE (CharSlice99_from_str(&quot;ANNOUNCE&quot;))</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
-<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="method_8h.html#a5ac555e4374760a969723d0faa28cff8">   52</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_METHOD_SETUP (CharSlice99_from_str(&quot;SETUP&quot;))</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
-<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="method_8h.html#a19b3e5e82b5e6017739ba7d68edffc8f">   57</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_METHOD_PLAY (CharSlice99_from_str(&quot;PLAY&quot;))</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
-<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="method_8h.html#a172adb93d5ffb9d8c5b59cd1ed1a2415">   62</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_METHOD_PAUSE (CharSlice99_from_str(&quot;PAUSE&quot;))</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
-<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="method_8h.html#ad68afefe3b624f7988f86729de6d7119">   67</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_METHOD_TEARDOWN (CharSlice99_from_str(&quot;TEARDOWN&quot;))</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
-<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="method_8h.html#a511a893c10e00e27844420e553d4cfee">   72</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_METHOD_GET_PARAMETER (CharSlice99_from_str(&quot;GET_PARAMETER&quot;))</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
-<div class="line"><a name="l00077"></a><span class="lineno"><a class="line" href="method_8h.html#a77e17a1fbf33c6ca1fca531fc5f70c5b">   77</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_METHOD_SET_PARAMETER (CharSlice99_from_str(&quot;SET_PARAMETER&quot;))</span></div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
-<div class="line"><a name="l00082"></a><span class="lineno"><a class="line" href="method_8h.html#a8eb675339427385f6a72b81b33466dbc">   82</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_METHOD_REDIRECT (CharSlice99_from_str(&quot;REDIRECT&quot;))</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
-<div class="line"><a name="l00087"></a><span class="lineno"><a class="line" href="method_8h.html#aad0449953234a79f36e6446a884922a2">   87</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_METHOD_RECORD (CharSlice99_from_str(&quot;RECORD&quot;))</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="method_8h.html#adaaeff66054fc283ed88f3048dd86f90">SmolRTSP_Method_eq</a>(<a class="code" href="method_8h.html#af4433ba33577ce1e651139c24ce6cd03">SmolRTSP_Method</a> lhs, <a class="code" href="method_8h.html#af4433ba33577ce1e651139c24ce6cd03">SmolRTSP_Method</a> rhs)</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    SMOLRTSP_PRIV_MUST_USE;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="method_8h.html#a46e50082f98baaeeaf31e40a2fb7bf77">   38</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_METHOD_OPTIONS (CharSlice99_from_str(&quot;OPTIONS&quot;))</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="method_8h.html#a9fbe515726b17e8bb6d8d6f91ede8fd2">   43</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_METHOD_DESCRIBE (CharSlice99_from_str(&quot;DESCRIBE&quot;))</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="method_8h.html#aa37e67ee947aeb1de57b81e92825ae36">   48</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_METHOD_ANNOUNCE (CharSlice99_from_str(&quot;ANNOUNCE&quot;))</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="method_8h.html#a5ac555e4374760a969723d0faa28cff8">   53</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_METHOD_SETUP (CharSlice99_from_str(&quot;SETUP&quot;))</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="method_8h.html#a19b3e5e82b5e6017739ba7d68edffc8f">   58</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_METHOD_PLAY (CharSlice99_from_str(&quot;PLAY&quot;))</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="method_8h.html#a172adb93d5ffb9d8c5b59cd1ed1a2415">   63</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_METHOD_PAUSE (CharSlice99_from_str(&quot;PAUSE&quot;))</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="method_8h.html#ad68afefe3b624f7988f86729de6d7119">   68</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_METHOD_TEARDOWN (CharSlice99_from_str(&quot;TEARDOWN&quot;))</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
+<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="method_8h.html#a511a893c10e00e27844420e553d4cfee">   73</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_METHOD_GET_PARAMETER (CharSlice99_from_str(&quot;GET_PARAMETER&quot;))</span></div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
+<div class="line"><a name="l00078"></a><span class="lineno"><a class="line" href="method_8h.html#a77e17a1fbf33c6ca1fca531fc5f70c5b">   78</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_METHOD_SET_PARAMETER (CharSlice99_from_str(&quot;SET_PARAMETER&quot;))</span></div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
+<div class="line"><a name="l00083"></a><span class="lineno"><a class="line" href="method_8h.html#a8eb675339427385f6a72b81b33466dbc">   83</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_METHOD_REDIRECT (CharSlice99_from_str(&quot;REDIRECT&quot;))</span></div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
+<div class="line"><a name="l00088"></a><span class="lineno"><a class="line" href="method_8h.html#aad0449953234a79f36e6446a884922a2">   88</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_METHOD_RECORD (CharSlice99_from_str(&quot;RECORD&quot;))</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="aerror_8h_html"><div class="ttname"><a href="error_8h.html">error.h</a></div><div class="ttdoc">Possible parsing errors.</div></div>

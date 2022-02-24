@@ -104,14 +104,15 @@ $(document).ready(function(){initNavTree('rtsp__version_8h_source.html',''); ini
 <div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="structSmolRTSP__RtspVersion.html#acf216a5856597c53bc709d5477989327">   28</a></span>&#160;    uint8_t <a class="code" href="structSmolRTSP__RtspVersion.html#acf216a5856597c53bc709d5477989327">minor</a>;</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;} <a class="code" href="structSmolRTSP__RtspVersion.html">SmolRTSP_RtspVersion</a>;</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;ssize_t <a class="code" href="rtsp__version_8h.html#aef83cb4e210bb5c179c1c57af7a75543">SmolRTSP_RtspVersion_serialize</a>(<a class="code" href="structSmolRTSP__RtspVersion.html">SmolRTSP_RtspVersion</a> <span class="keyword">self</span>, SmolRTSP_Writer w)</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    SMOLRTSP_PRIV_MUST_USE;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;ssize_t <a class="code" href="rtsp__version_8h.html#aef83cb4e210bb5c179c1c57af7a75543">SmolRTSP_RtspVersion_serialize</a>(</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <a class="code" href="structSmolRTSP__RtspVersion.html">SmolRTSP_RtspVersion</a> <span class="keyword">self</span>, SmolRTSP_Writer w) SMOLRTSP_PRIV_MUST_USE;</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;SmolRTSP_ParseResult <a class="code" href="rtsp__version_8h.html#a177adb15c0af5de406cab05f4966d74e">SmolRTSP_RtspVersion_parse</a>(</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <a class="code" href="structSmolRTSP__RtspVersion.html">SmolRTSP_RtspVersion</a> *restrict <span class="keyword">self</span>, CharSlice99 input) SMOLRTSP_PRIV_MUST_USE;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="rtsp__version_8h.html#aaace7565ef4da3be7268560c9b3d7cf3">SmolRTSP_RtspVersion_eq</a>(<a class="code" href="structSmolRTSP__RtspVersion.html">SmolRTSP_RtspVersion</a> lhs, <a class="code" href="structSmolRTSP__RtspVersion.html">SmolRTSP_RtspVersion</a> rhs)</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    SMOLRTSP_PRIV_MUST_USE;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <a class="code" href="structSmolRTSP__RtspVersion.html">SmolRTSP_RtspVersion</a> *restrict <span class="keyword">self</span>,</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    CharSlice99 input) SMOLRTSP_PRIV_MUST_USE;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="rtsp__version_8h.html#aaace7565ef4da3be7268560c9b3d7cf3">SmolRTSP_RtspVersion_eq</a>(<a class="code" href="structSmolRTSP__RtspVersion.html">SmolRTSP_RtspVersion</a> lhs, <a class="code" href="structSmolRTSP__RtspVersion.html">SmolRTSP_RtspVersion</a> rhs)</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    SMOLRTSP_PRIV_MUST_USE;</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="astructSmolRTSP__RtspVersion_html_acf216a5856597c53bc709d5477989327"><div class="ttname"><a href="structSmolRTSP__RtspVersion.html#acf216a5856597c53bc709d5477989327">SmolRTSP_RtspVersion::minor</a></div><div class="ttdeci">uint8_t minor</div><div class="ttdoc">The minor number.</div><div class="ttdef"><b>Definition:</b> rtsp_version.h:28</div></div>

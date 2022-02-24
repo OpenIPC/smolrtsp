@@ -98,24 +98,24 @@ $(document).ready(function(){initNavTree('transport_8h_source.html',''); initRes
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;smolrtsp/priv/compiler_attrs.h&gt;</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="transport_8h.html#a18d1efd9aed7d795cf4d03b5f17f1dbf">   21</a></span>&#160;<span class="preprocessor">#define SmolRTSP_Transport_IFACE                                                         \</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">                                                                                         \</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">    </span><span class="comment">/*                                                                                   \</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment">     * Transmits a slice of I/O vectors @p bufs.                                         \</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="comment">     *                                                                                   \</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="comment">     * @return -1 if an I/O error occurred and sets `errno` appropriately, 0             \</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment">     * on success.                                                                       \</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment">     */</span><span class="preprocessor">                                                                                  \</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">    vfunc99(int, transmit, VSelf99, SmolRTSP_IoVecSlice bufs)</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#define SmolRTSP_Transport_EXTENDS (SmolRTSP_Droppable)</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<a class="code" href="transport_8h.html#a1ed54d2a026274f143e7a77d9f39f9c0">interface99</a>(SmolRTSP_Transport);</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;SmolRTSP_Transport</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<a class="code" href="transport_8h.html#a374a129bdceb61d8629c5d5eb7779ad3">smolrtsp_transport_tcp</a>(SmolRTSP_Writer w, uint8_t channel_id) SMOLRTSP_PRIV_MUST_USE;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;SmolRTSP_Transport <a class="code" href="transport_8h.html#a3875a72cf6f4cd52bad76d6692979c61">smolrtsp_transport_udp</a>(<span class="keywordtype">int</span> fd) SMOLRTSP_PRIV_MUST_USE;</div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="transport_8h.html#a18d1efd9aed7d795cf4d03b5f17f1dbf">   22</a></span>&#160;<span class="preprocessor">#define SmolRTSP_Transport_IFACE                                               \</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">                                                                               \</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">    </span><span class="comment">/*                                                                         \</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="comment">     * Transmits a slice of I/O vectors @p bufs.                               \</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="comment">     *                                                                         \</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment">     * @return -1 if an I/O error occurred and sets `errno` appropriately, 0   \</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment">     * on success.                                                             \</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment">     */</span><span class="preprocessor">                                                                        \</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">    vfunc99(int, transmit, VSelf99, SmolRTSP_IoVecSlice bufs)</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#define SmolRTSP_Transport_EXTENDS (SmolRTSP_Droppable)</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<a class="code" href="transport_8h.html#a1ed54d2a026274f143e7a77d9f39f9c0">interface99</a>(SmolRTSP_Transport);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;SmolRTSP_Transport <a class="code" href="transport_8h.html#a374a129bdceb61d8629c5d5eb7779ad3">smolrtsp_transport_tcp</a>(SmolRTSP_Writer w, uint8_t channel_id)</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    SMOLRTSP_PRIV_MUST_USE;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;SmolRTSP_Transport <a class="code" href="transport_8h.html#a3875a72cf6f4cd52bad76d6692979c61">smolrtsp_transport_udp</a>(<span class="keywordtype">int</span> fd) SMOLRTSP_PRIV_MUST_USE;</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="adroppable_8h_html"><div class="ttname"><a href="droppable_8h.html">droppable.h</a></div><div class="ttdoc">Droppable types support.</div></div>
