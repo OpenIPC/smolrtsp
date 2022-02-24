@@ -11,7 +11,7 @@
 struct SmolRTSP_RtpTransport {
     uint16_t seq_num;
     uint8_t rtsp_stream_id;
-    SmolRTSP_Transport transmitter;
+    SmolRTSP_Transport transport;
 };
 
 static uint32_t compute_timestamp(uint64_t timestamp_us, uint64_t clock_rate_kHz);
@@ -25,7 +25,7 @@ SmolRTSP_RtpTransport_new(SmolRTSP_Transport t, uint8_t rtsp_stream_id) {
 
     self->seq_num = 0;
     self->rtsp_stream_id = rtsp_stream_id;
-    self->transmitter = t;
+    self->transport = t;
 
     return self;
 }
@@ -34,7 +34,7 @@ static void SmolRTSP_RtpTransport_drop(VSelf) {
     VSELF(SmolRTSP_RtpTransport);
     assert(self);
 
-    VCALL_SUPER(self->transmitter, SmolRTSP_Droppable, drop);
+    VCALL_SUPER(self->transport, SmolRTSP_Droppable, drop);
 
     free(self);
 }
@@ -73,7 +73,7 @@ int SmolRTSP_RtpTransport_send_packet(
             smolrtsp_slice_to_iovec(data),
         });
 
-    const int ret = VCALL(self->transmitter, transmit, bufs);
+    const int ret = VCALL(self->transport, transmit, bufs);
     if (ret != -1) {
         self->seq_num++;
     }

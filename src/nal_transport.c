@@ -16,7 +16,7 @@ static int send_fu(
     SmolRTSP_NalUnit fu, bool is_first_fragment, bool is_last_fragment);
 
 struct SmolRTSP_NalTransport {
-    SmolRTSP_RtpTransport *transmitter;
+    SmolRTSP_RtpTransport *transport;
 };
 
 SmolRTSP_NalTransport *SmolRTSP_NalTransport_new(SmolRTSP_RtpTransport *t) {
@@ -25,7 +25,7 @@ SmolRTSP_NalTransport *SmolRTSP_NalTransport_new(SmolRTSP_RtpTransport *t) {
     SmolRTSP_NalTransport *self = malloc(sizeof *self);
     assert(self);
 
-    self->transmitter = t;
+    self->transport = t;
 
     return self;
 }
@@ -34,7 +34,7 @@ static void SmolRTSP_NalTransport_drop(VSelf) {
     VSELF(SmolRTSP_NalTransport);
     assert(self);
 
-    VTABLE(SmolRTSP_NalTransport, SmolRTSP_Droppable).drop(self->transmitter);
+    VTABLE(SmolRTSP_NalTransport, SmolRTSP_Droppable).drop(self->transport);
 
     free(self);
 }
@@ -65,13 +65,13 @@ int SmolRTSP_NalTransport_send_packet(
         SmolRTSP_NalHeader_serialize(h, header_buf);
 
         return SmolRTSP_RtpTransport_send_packet(
-            self->transmitter, timestamp_us, marker, payload_type,
+            self->transport, timestamp_us, marker, payload_type,
             SmolRTSP_NalHeader_clock_rate_kHz(h),
             U8Slice99_new(header_buf, header_buf_size), payload);
     }
 
     return send_fragmentized_nal_data(
-        self->transmitter, timestamp_us, payload_type, max_packet_size, nal_unit);
+        self->transport, timestamp_us, payload_type, max_packet_size, nal_unit);
 }
 
 // See <https://tools.ietf.org/html/rfc6184#section-5.8> (H.264),
