@@ -52,8 +52,9 @@ size_t SmolRTSP_NalHeader_size(SmolRTSP_NalHeader self);
 /**
  * Computes the size of a fragmentation unit (FU) header @p self.
  *
- * @see <https://datatracker.ietf.org/doc/html/rfc6184#section-5.8> (H.264)
- * @see <https://datatracker.ietf.org/doc/html/rfc7798#section-4.4.3> (H.265)
+ * @see H.264 Fragmentation Units (FUs): <https://datatracker.ietf.org/doc/html/rfc6184#section-5.8>
+ * @see H.265 Fragmentation Units (FUs):
+ * <https://datatracker.ietf.org/doc/html/rfc7798#section-4.4.3>
  */
 size_t SmolRTSP_NalHeader_fu_size(SmolRTSP_NalHeader self);
 
@@ -103,8 +104,9 @@ void SmolRTSP_NalHeader_serialize(SmolRTSP_NalHeader self, uint8_t buffer[restri
  * @param[in] is_first_fragment The indication of a start of the FU.
  * @param[in] is_last_fragment The indication of an end of the FU.
  *
- * @see <https://datatracker.ietf.org/doc/html/rfc6184#section-5.8> (H.264)
- * @see <https://datatracker.ietf.org/doc/html/rfc7798#section-4.4.3> (H.265)
+ * @see H.264 Fragmentation Units (FUs): <https://datatracker.ietf.org/doc/html/rfc6184#section-5.8>
+ * @see H.265 Fragmentation Units (FUs):
+ * <https://datatracker.ietf.org/doc/html/rfc7798#section-4.4.3>
  */
 void SmolRTSP_NalHeader_write_fu_header(
     SmolRTSP_NalHeader self, uint8_t buffer[restrict], bool is_first_fragment,
