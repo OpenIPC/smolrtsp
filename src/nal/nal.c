@@ -35,6 +35,17 @@ size_t SmolRTSP_NalHeader_fu_size(SmolRTSP_NalHeader self) {
     return result;
 }
 
+uint32_t SmolRTSP_NalHeader_clock_rate_kHz(SmolRTSP_NalHeader self) {
+    uint32_t result = 0;
+
+    match(self) {
+        of(SmolRTSP_NalHeader_H264, _) result = SMOLRTSP_H264_CLOCK_RATE_KHZ;
+        of(SmolRTSP_NalHeader_H265, _) result = SMOLRTSP_H265_CLOCK_RATE_KHZ;
+    }
+
+    return result;
+}
+
 #define NAL_HEADER_DERIVE_METHOD(fn)                                                               \
     bool SmolRTSP_NalHeader_##fn(SmolRTSP_NalHeader self) {                                        \
         bool result = 0;                                                                           \

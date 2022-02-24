@@ -58,6 +58,11 @@ size_t SmolRTSP_NalHeader_size(SmolRTSP_NalHeader self);
 size_t SmolRTSP_NalHeader_fu_size(SmolRTSP_NalHeader self);
 
 /**
+ * Returns the RTP clock rate in kHz of @p self.
+ */
+uint32_t SmolRTSP_NalHeader_clock_rate_kHz(SmolRTSP_NalHeader self);
+
+/**
  * Checks whether @p self is VPS.
  */
 bool SmolRTSP_NalHeader_is_vps(SmolRTSP_NalHeader self);

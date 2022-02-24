@@ -26,6 +26,11 @@
     (/* fu-identifier */ sizeof(uint8_t) + /* fu-header */ sizeof(uint8_t))
 
 /**
+ * The H.264 RTP clock rate in kHz.
+ */
+#define SMOLRTSP_H264_CLOCK_RATE_KHZ 90
+
+/**
  * An H.264 NAL header.
  */
 typedef struct {
