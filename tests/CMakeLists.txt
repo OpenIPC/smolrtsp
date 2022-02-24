@@ -41,8 +41,8 @@ if(CMAKE_C_COMPILER_ID STREQUAL "Clang")
   target_compile_options(tests PRIVATE -Wall -Wextra -fsanitize=address -fmacro-backtrace-limit=1)
   target_link_options(tests PRIVATE -fsanitize=address)
 elseif(CMAKE_C_COMPILER_ID STREQUAL "GNU")
-  target_compile_options(tests PRIVATE -Wall -Wextra -pedantic -fsanitize=address
-    -ftrack-macro-expansion=0 -Wno-misleading-indentation)
+  target_compile_options(tests PRIVATE -Wall -Wextra -fsanitize=address -ftrack-macro-expansion=0
+    -Wno-misleading-indentation)
   target_link_options(tests PRIVATE -fsanitize=address)
 endif()
 
