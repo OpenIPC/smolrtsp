@@ -26,16 +26,6 @@
     U8Slice99 payload = SmolRTSP_NalUnit_payload(self)
 
 /**
- * The size of a fragmentation unit (FU) header @p h.
- *
- * @see <https://datatracker.ietf.org/doc/html/rfc6184#section-5.8> (H.264)
- * @see <https://datatracker.ietf.org/doc/html/rfc7798#section-4.4.3> (H.265)
- */
-#define SMOLRTSP_NAL_HEADER_FU_HEADER_SIZE(h)                                                      \
-    (MATCHES99((h), SmolRTSP_NalHeader_H264) ? SMOLRTSP_H264_FU_HEADER_SIZE                        \
-                                             : SMOLRTSP_H265_FU_HEADER_SIZE)
-
-/**
  * A generic NAL header (either H.264 or H.265).
  *
  * See [Datatype99](https://github.com/Hirrolot/datatype99) for the macro usage.
@@ -58,6 +48,14 @@ uint8_t SmolRTSP_NalHeader_unit_type(SmolRTSP_NalHeader self);
  * Computes the size of @p self in bytes.
  */
 size_t SmolRTSP_NalHeader_size(SmolRTSP_NalHeader self);
+
+/**
+ * Computes the size of a fragmentation unit (FU) header @p self.
+ *
+ * @see <https://datatracker.ietf.org/doc/html/rfc6184#section-5.8> (H.264)
+ * @see <https://datatracker.ietf.org/doc/html/rfc7798#section-4.4.3> (H.265)
+ */
+size_t SmolRTSP_NalHeader_fu_size(SmolRTSP_NalHeader self);
 
 /**
  * Checks whether @p self is VPS.
@@ -96,8 +94,7 @@ void SmolRTSP_NalHeader_serialize(SmolRTSP_NalHeader self, uint8_t buffer[restri
  * Writes a FU header of @p self to @p buffer.
  *
  * @param[in] self The header to write.
- * @param[out] buffer The memory area capable of storing `SMOLRTSP_NAL_HEADER_FU_HEADER_SIZE(self)`
- * bytes.
+ * @param[out] buffer The memory area capable of storing `SmolRTSP_NalHeader_fu_size(self)` bytes.
  * @param[in] is_first_fragment The indication of a start of the FU.
  * @param[in] is_last_fragment The indication of an end of the FU.
  *

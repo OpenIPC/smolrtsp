@@ -24,6 +24,17 @@ size_t SmolRTSP_NalHeader_size(SmolRTSP_NalHeader self) {
     return result;
 }
 
+size_t SmolRTSP_NalHeader_fu_size(SmolRTSP_NalHeader self) {
+    size_t result = 0;
+
+    match(self) {
+        of(SmolRTSP_NalHeader_H264, _) result = SMOLRTSP_H264_FU_HEADER_SIZE;
+        of(SmolRTSP_NalHeader_H265, _) result = SMOLRTSP_H265_FU_HEADER_SIZE;
+    }
+
+    return result;
+}
+
 #define NAL_HEADER_DERIVE_METHOD(fn)                                                               \
     bool SmolRTSP_NalHeader_##fn(SmolRTSP_NalHeader self) {                                        \
         bool result = 0;                                                                           \
