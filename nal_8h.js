@@ -11,6 +11,7 @@ var nal_8h =
     [ "SmolRTSP_NalHeader_is_pps", "nal_8h.html#a5c5aaeb6aa51844b8db15829b44fd8ca", null ],
     [ "SmolRTSP_NalHeader_is_sps", "nal_8h.html#a14a443dfb591b2c5765e7ef5ce6075bd", null ],
     [ "SmolRTSP_NalHeader_is_vps", "nal_8h.html#abb6d890689c5096499b75fb659652280", null ],
+    [ "SmolRTSP_NalHeader_serialize", "nal_8h.html#aa1f6332cde359958cdf82c011e8d8468", null ],
     [ "SmolRTSP_NalHeader_size", "nal_8h.html#a71c0df95b0b8b85a397e13f7dce1f2ce", null ],
     [ "SmolRTSP_NalHeader_unit_type", "nal_8h.html#aa4019bdd25b9ceadd06ceec4f9e7f4fe", null ],
     [ "SmolRTSP_NalHeader_write_fu_header", "nal_8h.html#a8b33bf4305ee0b6bd1d408173f11bd4c", null ],

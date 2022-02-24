@@ -167,6 +167,9 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_
 bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_8h.html#a65671af38eda29efb32d1c8f39760c02">SmolRTSP_NalHeader_is_coded_slice_non_idr</a> (SmolRTSP_NalHeader self)</td></tr>
 <tr class="memdesc:a65671af38eda29efb32d1c8f39760c02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether <code>self</code> is a coded slice non-IDR. <br /></td></tr>
 <tr class="separator:a65671af38eda29efb32d1c8f39760c02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1f6332cde359958cdf82c011e8d8468"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_8h.html#aa1f6332cde359958cdf82c011e8d8468">SmolRTSP_NalHeader_serialize</a> (SmolRTSP_NalHeader self, uint8_t buffer[restrict])</td></tr>
+<tr class="memdesc:aa1f6332cde359958cdf82c011e8d8468"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes the binary representation of <code>self</code> into <code>buffer</code>.  <a href="nal_8h.html#aa1f6332cde359958cdf82c011e8d8468">More...</a><br /></td></tr>
+<tr class="separator:aa1f6332cde359958cdf82c011e8d8468"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8b33bf4305ee0b6bd1d408173f11bd4c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_8h.html#a8b33bf4305ee0b6bd1d408173f11bd4c">SmolRTSP_NalHeader_write_fu_header</a> (SmolRTSP_NalHeader self, uint8_t buffer[restrict], bool is_first_fragment, bool is_last_fragment)</td></tr>
 <tr class="memdesc:a8b33bf4305ee0b6bd1d408173f11bd4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes a FU header of <code>self</code> to <code>buffer</code>.  <a href="nal_8h.html#a8b33bf4305ee0b6bd1d408173f11bd4c">More...</a><br /></td></tr>
 <tr class="separator:a8b33bf4305ee0b6bd1d408173f11bd4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -333,6 +336,43 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_
 
 <p>A generic NAL unit (either H.264 or H.265). </p>
 <p>See <a href="https://github.com/Hirrolot/datatype99">Datatype99</a> for the macro usage. </p>
+
+</div>
+</div>
+<a id="aa1f6332cde359958cdf82c011e8d8468"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1f6332cde359958cdf82c011e8d8468">&#9670;&nbsp;</a></span>SmolRTSP_NalHeader_serialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SmolRTSP_NalHeader_serialize </td>
+          <td>(</td>
+          <td class="paramtype">SmolRTSP_NalHeader&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>buffer</em>[restrict]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Writes the binary representation of <code>self</code> into <code>buffer</code>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">self</td><td>The header to write. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">buffer</td><td>The memory area capable of storing <code>SmolRTSP_NalHeader_size(self)</code> bytes. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

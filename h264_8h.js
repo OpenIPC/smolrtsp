@@ -30,5 +30,6 @@ var h264_8h =
     [ "SmolRTSP_H264NalHeader_is_sps", "h264_8h.html#a0ea33504e9455da0fdb7cdd8aa827622", null ],
     [ "SmolRTSP_H264NalHeader_is_vps", "h264_8h.html#a9e77045935e13b8718d52370d758cb4c", null ],
     [ "SmolRTSP_H264NalHeader_parse", "h264_8h.html#a7ca72b42927243727be2c12ff50e5f2b", null ],
+    [ "SmolRTSP_H264NalHeader_serialize", "h264_8h.html#a5d5f61c4216735aca2f30a584d3b326b", null ],
     [ "SmolRTSP_H264NalHeader_write_fu_header", "h264_8h.html#a409d99dd79ea86829bf137601cf52bf8", null ]
 ];
