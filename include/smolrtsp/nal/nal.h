@@ -171,4 +171,4 @@ uint8_t smolrtsp_nal_fu_header(
  *
  * If there is no start code in @p data, the result is 0.
  */
-ssize_t smolrtsp_nal_test_start_code(U8Slice99 data) SMOLRTSP_PRIV_MUST_USE;
+size_t smolrtsp_nal_test_start_code(U8Slice99 data) SMOLRTSP_PRIV_MUST_USE;
