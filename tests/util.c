@@ -84,8 +84,11 @@ TEST parse_interleaved_chn_id(void) {
 }
 
 TEST interleaved_data_as_u32(void) {
-    const SmolRTSP_InterleavedDataHeader h = {.channel_id = 123,
-                                              .payload_len = 54321};
+    const SmolRTSP_InterleavedDataHeader h = {
+        .channel_id = 123,
+        .payload_len = 54321,
+    };
+
     const uint32_t binary = SmolRTSP_InterleavedDataHeader_as_u32(h);
 
     ASSERT_EQ(binary, 0xd4317b24);
