@@ -2,6 +2,11 @@
  * @file
  * @brief An RTP/NAL data transport.
  *
+ * @see RTP Payload Format for H.264 Video:
+ * <https://datatracker.ietf.org/doc/html/rfc6184>
+ * @see RTP Payload Format for High Efficiency Video Coding (HEVC):
+ * <https://datatracker.ietf.org/doc/html/rfc7798>
+ *
  * TODO: more docs.
  */
 
