@@ -44,7 +44,7 @@ typedef struct {
     /**
      * `unit_type` u(6).
      */
-    uint8_t unit_type; // u(6)
+    uint8_t unit_type;
 
     /**
      * `nuh_layer_id` u(6).

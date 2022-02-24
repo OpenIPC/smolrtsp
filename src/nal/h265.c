@@ -3,6 +3,7 @@
 #include <smolrtsp/nal/nal.h>
 
 #include <arpa/inet.h>
+#include <string.h>
 
 SmolRTSP_H265NalHeader
 SmolRTSP_H265NalHeader_parse(uint8_t bytes[restrict static 2]) {
@@ -15,24 +16,19 @@ SmolRTSP_H265NalHeader_parse(uint8_t bytes[restrict static 2]) {
     };
 }
 
-uint16_t SmolRTSP_H265NalHeader_serialize(SmolRTSP_H265NalHeader h) {
-    union {
-        uint16_t n;
-        uint8_t bytes[2];
-    } data = {.bytes = {0b11100010, 0b00000000}};
+uint16_t SmolRTSP_H265NalHeader_serialize(SmolRTSP_H265NalHeader self) {
+    const uint8_t bytes[2] = {
+        [0] = (((uint8_t)self.forbidden_zero_bit & 0b00000001) << 7) |
+              ((self.unit_type & 0b00111111) << 1) |
+              ((self.nuh_layer_id & 0b00100000) >> 5),
 
-    if (!h.forbidden_zero_bit) {
-        data.bytes[0] &= 0b01111111;
-    }
+        [1] = ((self.nuh_layer_id & 0b00011111) << 3) |
+              (self.nuh_temporal_id_plus1 & 0b00000111),
+    };
 
-    if ((h.nuh_layer_id & 0b00100000) >> 5 != 0) {
-        data.bytes[0] |= 0b00000001;
-    }
-
-    data.bytes[1] |= (h.nuh_layer_id & 0b00011111) << 2;
-    data.bytes[1] |= (h.nuh_temporal_id_plus1 & 0b00000111);
-
-    return data.n;
+    uint16_t n;
+    memcpy(&n, bytes, sizeof bytes);
+    return n;
 }
 
 bool SmolRTSP_H265NalHeader_is_vps(SmolRTSP_H265NalHeader self) {
