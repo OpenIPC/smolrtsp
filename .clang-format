@@ -10,4 +10,11 @@ AllowShortFunctionsOnASingleLine: Empty
 AlignConsecutiveMacros: true
 AlignAfterOpenBracket: AlwaysBreak
 
-StatementMacros: ["vfunc99", "vfuncDefault99", "DEF_TEST_SERIALIZE"]
+StatementMacros:
+  [
+    "vfunc99",
+    "vfuncDefault99",
+    "DEF_TEST_PARSE",
+    "NAL_HEADER_DERIVE_GETTER",
+    "NAL_HEADER_DERIVE_PREDICATE",
+  ]

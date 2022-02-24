@@ -19,17 +19,6 @@
 #include <smolrtsp/priv/compiler_attrs.h>
 
 /**
- * Destructs @p self into its header and its payload data.
- *
- * This macro expands to two variables named @p h and @p payload and initialises
- * them to `SmolRTSP_NalUnit_header(self)` and `SmolRTSP_NalUnit_payload(self)`,
- * respectively.
- */
-#define SMOLRTSP_NAL_UNIT_DESTRUCT(self, h, payload)                           \
-    SmolRTSP_NalHeader h = SmolRTSP_NalUnit_header(self);                      \
-    U8Slice99 payload = SmolRTSP_NalUnit_payload(self)
-
-/**
  * A generic NAL header (either H.264 or H.265).
  *
  * See [Datatype99](https://github.com/Hirrolot/datatype99) for the macro usage.
@@ -128,35 +117,18 @@ void SmolRTSP_NalHeader_write_fu_header(
 
 /**
  * A generic NAL unit (either H.264 or H.265).
- *
- * See [Datatype99](https://github.com/Hirrolot/datatype99) for the macro usage.
  */
+typedef struct {
+    /**
+     * The header of this NAL unit.
+     */
+    SmolRTSP_NalHeader header;
 
-// clang-format off
-datatype99(
-    SmolRTSP_NalUnit,
-    (SmolRTSP_NalUnit_H264, SmolRTSP_H264NalUnit),
-    (SmolRTSP_NalUnit_H265, SmolRTSP_H265NalUnit)
-);
-// clang-format on
-
-/**
- * Constructs a NAL unit from a header and payload data.
- */
-SmolRTSP_NalUnit SmolRTSP_NalUnit_new(SmolRTSP_NalHeader h, U8Slice99 payload)
-    SMOLRTSP_PRIV_MUST_USE;
-
-/**
- * Returns the header of @p self.
- */
-SmolRTSP_NalHeader
-SmolRTSP_NalUnit_header(SmolRTSP_NalUnit self) SMOLRTSP_PRIV_MUST_USE;
-
-/**
- * Returns the payload data of @p self.
- */
-U8Slice99
-SmolRTSP_NalUnit_payload(SmolRTSP_NalUnit self) SMOLRTSP_PRIV_MUST_USE;
+    /**
+     * The payload data of this NAL unit (not including the header).
+     */
+    U8Slice99 payload;
+} SmolRTSP_NalUnit;
 
 /**
  * Creates a generic NAL FU header.

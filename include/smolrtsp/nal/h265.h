@@ -67,7 +67,7 @@ typedef struct {
     SmolRTSP_H265NalHeader header;
 
     /**
-     * The payload data of this NAL unit.
+     * The payload data of this NAL unit (not including the header).
      */
     U8Slice99 payload;
 } SmolRTSP_H265NalUnit;

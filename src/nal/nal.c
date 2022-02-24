@@ -2,51 +2,30 @@
 
 #include <assert.h>
 
-uint8_t SmolRTSP_NalHeader_unit_type(SmolRTSP_NalHeader self) {
-    uint8_t result = 0;
-
-    match(self) {
-        of(SmolRTSP_NalHeader_H264, h) result = h->unit_type;
-        of(SmolRTSP_NalHeader_H265, h) result = h->unit_type;
+#define NAL_HEADER_DERIVE_GETTER(T, name, h264_value, h265_value)              \
+    T SmolRTSP_NalHeader_##name(SmolRTSP_NalHeader self) {                     \
+        T result = 0;                                                          \
+                                                                               \
+        match(self) {                                                          \
+            of(SmolRTSP_NalHeader_H264, h) result = h264_value;                \
+            of(SmolRTSP_NalHeader_H265, h) result = h265_value;                \
+        }                                                                      \
+                                                                               \
+        return result;                                                         \
     }
 
-    return result;
-}
+NAL_HEADER_DERIVE_GETTER(uint8_t, unit_type, h->unit_type, h->unit_type)
+NAL_HEADER_DERIVE_GETTER(
+    size_t, size, SMOLRTSP_H264_NAL_HEADER_SIZE, SMOLRTSP_H265_NAL_HEADER_SIZE)
+NAL_HEADER_DERIVE_GETTER(
+    size_t, fu_size, SMOLRTSP_H264_FU_HEADER_SIZE, SMOLRTSP_H265_FU_HEADER_SIZE)
+NAL_HEADER_DERIVE_GETTER(
+    uint32_t, clock_rate_kHz, SMOLRTSP_H264_CLOCK_RATE_KHZ,
+    SMOLRTSP_H265_CLOCK_RATE_KHZ)
 
-size_t SmolRTSP_NalHeader_size(SmolRTSP_NalHeader self) {
-    size_t result = 0;
+#undef NAL_HEADER_DERIVE_GETTER
 
-    match(self) {
-        of(SmolRTSP_NalHeader_H264, _) result = SMOLRTSP_H264_NAL_HEADER_SIZE;
-        of(SmolRTSP_NalHeader_H265, _) result = SMOLRTSP_H265_NAL_HEADER_SIZE;
-    }
-
-    return result;
-}
-
-size_t SmolRTSP_NalHeader_fu_size(SmolRTSP_NalHeader self) {
-    size_t result = 0;
-
-    match(self) {
-        of(SmolRTSP_NalHeader_H264, _) result = SMOLRTSP_H264_FU_HEADER_SIZE;
-        of(SmolRTSP_NalHeader_H265, _) result = SMOLRTSP_H265_FU_HEADER_SIZE;
-    }
-
-    return result;
-}
-
-uint32_t SmolRTSP_NalHeader_clock_rate_kHz(SmolRTSP_NalHeader self) {
-    uint32_t result = 0;
-
-    match(self) {
-        of(SmolRTSP_NalHeader_H264, _) result = SMOLRTSP_H264_CLOCK_RATE_KHZ;
-        of(SmolRTSP_NalHeader_H265, _) result = SMOLRTSP_H265_CLOCK_RATE_KHZ;
-    }
-
-    return result;
-}
-
-#define NAL_HEADER_DERIVE_METHOD(fn)                                           \
+#define NAL_HEADER_DERIVE_PREDICATE(fn)                                        \
     bool SmolRTSP_NalHeader_##fn(SmolRTSP_NalHeader self) {                    \
         bool result = 0;                                                       \
                                                                                \
@@ -60,13 +39,13 @@ uint32_t SmolRTSP_NalHeader_clock_rate_kHz(SmolRTSP_NalHeader self) {
         return result;                                                         \
     }
 
-NAL_HEADER_DERIVE_METHOD(is_vps)
-NAL_HEADER_DERIVE_METHOD(is_sps)
-NAL_HEADER_DERIVE_METHOD(is_pps)
-NAL_HEADER_DERIVE_METHOD(is_coded_slice_idr)
-NAL_HEADER_DERIVE_METHOD(is_coded_slice_non_idr)
+NAL_HEADER_DERIVE_PREDICATE(is_vps)
+NAL_HEADER_DERIVE_PREDICATE(is_sps)
+NAL_HEADER_DERIVE_PREDICATE(is_pps)
+NAL_HEADER_DERIVE_PREDICATE(is_coded_slice_idr)
+NAL_HEADER_DERIVE_PREDICATE(is_coded_slice_non_idr)
 
-#undef NAL_HEADER_DERIVE_METHOD
+#undef NAL_HEADER_DERIVE_PREDICATE
 
 void SmolRTSP_NalHeader_serialize(
     SmolRTSP_NalHeader self, uint8_t buffer[restrict]) {
@@ -91,43 +70,6 @@ void SmolRTSP_NalHeader_write_fu_header(
         of(SmolRTSP_NalHeader_H265, h) SmolRTSP_H265NalHeader_write_fu_header(
             *h, buffer, is_first_fragment, is_last_fragment);
     }
-}
-
-SmolRTSP_NalUnit SmolRTSP_NalUnit_new(SmolRTSP_NalHeader h, U8Slice99 payload) {
-    SmolRTSP_NalUnit result = {0};
-
-    match(h) {
-        of(SmolRTSP_NalHeader_H264, h) result = SmolRTSP_NalUnit_H264(
-            (SmolRTSP_H264NalUnit){.header = *h, .payload = payload});
-        of(SmolRTSP_NalHeader_H265, h) result = SmolRTSP_NalUnit_H265(
-            (SmolRTSP_H265NalUnit){.header = *h, .payload = payload});
-    }
-
-    return result;
-}
-
-SmolRTSP_NalHeader SmolRTSP_NalUnit_header(SmolRTSP_NalUnit self) {
-    SmolRTSP_NalHeader result = {0};
-
-    match(self) {
-        of(SmolRTSP_NalUnit_H264, u) result =
-            SmolRTSP_NalHeader_H264(u->header);
-        of(SmolRTSP_NalUnit_H265, u) result =
-            SmolRTSP_NalHeader_H265(u->header);
-    }
-
-    return result;
-}
-
-U8Slice99 SmolRTSP_NalUnit_payload(SmolRTSP_NalUnit self) {
-    U8Slice99 result = {0};
-
-    match(self) {
-        of(SmolRTSP_NalUnit_H264, u) result = u->payload;
-        of(SmolRTSP_NalUnit_H265, u) result = u->payload;
-    }
-
-    return result;
 }
 
 // See <https://tools.ietf.org/html/rfc7798#section-4.4.3> (H.265),
