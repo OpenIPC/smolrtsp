@@ -78,7 +78,7 @@ TEST key_is_present(void) {
     PASS();
 }
 
-SUITE(header_map) {
+SUITE(types_header_map) {
     RUN_TEST(parse_header_map);
     RUN_TEST(serialize_header_map);
     RUN_TEST(find);

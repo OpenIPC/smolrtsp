@@ -12,6 +12,6 @@ TEST parse_reason_phrase(void) {
     PASS();
 }
 
-SUITE(reason_phrase) {
+SUITE(types_reason_phrase) {
     RUN_TEST(parse_reason_phrase);
 }

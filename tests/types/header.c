@@ -41,7 +41,7 @@ TEST serialize_header(void) {
     PASS();
 }
 
-SUITE(header) {
+SUITE(types_header) {
     RUN_TEST(parse_header);
     RUN_TEST(serialize_header);
 }

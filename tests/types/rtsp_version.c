@@ -35,7 +35,7 @@ TEST serialize_rtsp_version(void) {
     PASS();
 }
 
-SUITE(rtsp_version) {
+SUITE(types_rtsp_version) {
     RUN_TEST(parse_rtsp_version);
     RUN_TEST(serialize_rtsp_version);
 }

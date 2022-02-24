@@ -21,6 +21,6 @@ TEST parse_message_body(void) {
     PASS();
 }
 
-SUITE(message_body) {
+SUITE(types_message_body) {
     RUN_TEST(parse_message_body);
 }

@@ -35,7 +35,7 @@ TEST sdp_printf(void) {
     PASS();
 }
 
-SUITE(sdp) {
+SUITE(types_sdp) {
     RUN_TEST(serialize_sdp_line);
     RUN_TEST(sdp_printf);
 }

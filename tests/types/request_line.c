@@ -45,7 +45,7 @@ TEST serialize_request_line(void) {
     PASS();
 }
 
-SUITE(request_line) {
+SUITE(types_request_line) {
     RUN_TEST(parse_request_line);
     RUN_TEST(serialize_request_line);
 }

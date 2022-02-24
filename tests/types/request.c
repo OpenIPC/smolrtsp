@@ -79,7 +79,7 @@ TEST serialize_request(void) {
     PASS();
 }
 
-SUITE(request) {
+SUITE(types_request) {
     RUN_TEST(parse_request);
     RUN_TEST(serialize_request);
 }

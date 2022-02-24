@@ -77,7 +77,7 @@ TEST serialize_response(void) {
     PASS();
 }
 
-SUITE(response) {
+SUITE(types_response) {
     RUN_TEST(parse_response);
     RUN_TEST(serialize_response);
 }

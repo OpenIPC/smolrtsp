@@ -12,6 +12,6 @@ TEST parse_request_uri(void) {
     PASS();
 }
 
-SUITE(request_uri) {
+SUITE(types_request_uri) {
     RUN_TEST(parse_request_uri);
 }

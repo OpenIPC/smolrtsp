@@ -36,7 +36,7 @@ TEST serialize_status_code(void) {
     PASS();
 }
 
-SUITE(status_code) {
+SUITE(types_status_code) {
     RUN_TEST(parse_status_code);
     RUN_TEST(serialize_status_code);
 }

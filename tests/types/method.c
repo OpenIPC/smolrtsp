@@ -28,6 +28,6 @@ TEST parse_method(void) {
     PASS();
 }
 
-SUITE(method) {
+SUITE(types_method) {
     RUN_TEST(parse_method);
 }
