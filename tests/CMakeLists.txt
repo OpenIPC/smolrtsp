@@ -29,6 +29,9 @@ add_executable(
   types/status_code.c
   types/sdp.c
   types/test_util.h
+  nal/h264.c
+  nal/h265.c
+  nal/nal.c
   util.c
   writer.c
   io_vec.c
@@ -46,4 +49,4 @@ endif()
 target_link_libraries(tests smolrtsp)
 target_include_directories(tests PRIVATE ${greatest_SOURCE_DIR})
 
-set_target_properties(tests PROPERTIES C_STANDARD 11 C_STANDARD_REQUIRED ON)
+set_target_properties(tests PROPERTIES C_STANDARD 99 C_STANDARD_REQUIRED ON)

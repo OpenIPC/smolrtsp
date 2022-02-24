@@ -22,11 +22,14 @@ int main(int argc, char *argv[]) {
     SMOLRTSP_SUITE(rtsp_version);
     SMOLRTSP_SUITE(sdp);
     SMOLRTSP_SUITE(status_code);
+
+    SMOLRTSP_SUITE(nal_h264);
+    SMOLRTSP_SUITE(nal_h265);
+    SMOLRTSP_SUITE(nal);
+
     SMOLRTSP_SUITE(util);
     SMOLRTSP_SUITE(writer);
-
     SMOLRTSP_SUITE(transport);
-
     SMOLRTSP_SUITE(io_vec);
 
     GREATEST_MAIN_END();
