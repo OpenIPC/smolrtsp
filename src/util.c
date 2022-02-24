@@ -16,16 +16,18 @@ const char *SmolRTSP_LowerTransport_str(SmolRTSP_LowerTransport self) {
     }
 }
 
-#define ENSURE_SUCCESS(res)                                                                        \
-    match(res) {                                                                                   \
-        of(SmolRTSP_ParseResult_Success, status) match(*status) {                                  \
-            of(SmolRTSP_ParseStatus_Complete, offset) value = CharSlice99_advance(value, *offset); \
-            otherwise return -1;                                                                   \
-        }                                                                                          \
-        otherwise return -1;                                                                       \
+#define ENSURE_SUCCESS(res)                                                              \
+    match(res) {                                                                         \
+        of(SmolRTSP_ParseResult_Success, status) match(*status) {                        \
+            of(SmolRTSP_ParseStatus_Complete, offset) value =                            \
+                CharSlice99_advance(value, *offset);                                     \
+            otherwise return -1;                                                         \
+        }                                                                                \
+        otherwise return -1;                                                             \
     }
 
-int SmolRTSP_parse_lower_transport(SmolRTSP_LowerTransport *restrict result, CharSlice99 value) {
+int SmolRTSP_parse_lower_transport(
+    SmolRTSP_LowerTransport *restrict result, CharSlice99 value) {
     assert(result);
 
     const CharSlice99 backup = value;
@@ -36,9 +38,11 @@ int SmolRTSP_parse_lower_transport(SmolRTSP_LowerTransport *restrict result, Cha
     const CharSlice99 transport_specifier =
         CharSlice99_from_ptrdiff(backup.ptr, (char *)value.ptr - 1);
 
-    if (CharSlice99_primitive_ends_with(transport_specifier, CharSlice99_from_str("UDP"))) {
+    if (CharSlice99_primitive_ends_with(
+            transport_specifier, CharSlice99_from_str("UDP"))) {
         *result = SmolRTSP_LowerTransport_UDP;
-    } else if (CharSlice99_primitive_ends_with(transport_specifier, CharSlice99_from_str("TCP"))) {
+    } else if (CharSlice99_primitive_ends_with(
+                   transport_specifier, CharSlice99_from_str("TCP"))) {
         *result = SmolRTSP_LowerTransport_TCP;
     } else if (CharSlice99_primitive_starts_with(
                    transport_specifier, CharSlice99_from_str("RTP/AVP"))) {
@@ -50,7 +54,8 @@ int SmolRTSP_parse_lower_transport(SmolRTSP_LowerTransport *restrict result, Cha
     return 0;
 }
 
-int SmolRTSP_parse_client_port(int *restrict rtp_port, int *restrict rtcp_port, CharSlice99 value) {
+int SmolRTSP_parse_client_port(
+    int *restrict rtp_port, int *restrict rtcp_port, CharSlice99 value) {
     assert(rtp_port);
     assert(rtcp_port);
 
@@ -68,10 +73,13 @@ int SmolRTSP_parse_client_port(int *restrict rtp_port, int *restrict rtcp_port, 
     const CharSlice99 rtcp_port_start = value;
 
     int rtp_port_temp, rtcp_port_temp;
-    if (sscanf(CharSlice99_c_str(rtp_port_start, (char[128]){0}), "%d", &rtp_port_temp) != 1) {
+    if (sscanf(CharSlice99_c_str(rtp_port_start, (char[128]){0}), "%d", &rtp_port_temp) !=
+        1) {
         return -1;
     }
-    if (sscanf(CharSlice99_c_str(rtcp_port_start, (char[128]){0}), "%d", &rtcp_port_temp) != 1) {
+    if (sscanf(
+            CharSlice99_c_str(rtcp_port_start, (char[128]){0}), "%d", &rtcp_port_temp) !=
+        1) {
         return -1;
     }
 
@@ -93,8 +101,8 @@ int SmolRTSP_parse_interleaved_chn_id(
 
     res = smolrtsp_match_numeric(value);
 
-    // If the result is partial, it means we have reached the end of the string. It is okay since
-    // the value can be something like `RTP/AVP/UDP;unicast;interleaved=204`.
+    // If the result is partial, it means we have reached the end of the string. It is
+    // okay since the value can be something like `RTP/AVP/UDP;unicast;interleaved=204`.
     ifLet(res, SmolRTSP_ParseResult_Success, status) {
         *status = SmolRTSP_ParseStatus_Complete(0);
     }
@@ -102,7 +110,9 @@ int SmolRTSP_parse_interleaved_chn_id(
     ENSURE_SUCCESS(res);
 
     int rtp_port_temp;
-    if (sscanf(CharSlice99_c_str(rtp_chn_id_start, (char[128]){0}), "%d", &rtp_port_temp) != 1) {
+    if (sscanf(
+            CharSlice99_c_str(rtp_chn_id_start, (char[128]){0}), "%d", &rtp_port_temp) !=
+        1) {
         return -1;
     }
 

@@ -52,7 +52,8 @@ static bool char_matcher(char c, void *ctx) {
     return c == expected;
 }
 
-SmolRTSP_ParseResult smolrtsp_match_until_str(CharSlice99 input, const char *restrict str) {
+SmolRTSP_ParseResult
+smolrtsp_match_until_str(CharSlice99 input, const char *restrict str) {
     assert(str);
 
     const size_t str_len = strlen(str);
@@ -100,7 +101,8 @@ SmolRTSP_ParseResult smolrtsp_match_str(CharSlice99 input, const char *restrict 
     if (!are_coinciding) {
         CharSlice99 expected = CharSlice99_from_str((char *)str),
                     actual = CharSlice99_sub(input, 0, min_len);
-        return SmolRTSP_ParseResult_Failure(SmolRTSP_ParseError_StrMismatch(expected, actual));
+        return SmolRTSP_ParseResult_Failure(
+            SmolRTSP_ParseError_StrMismatch(expected, actual));
     }
 
     if (input.len < str_len) {

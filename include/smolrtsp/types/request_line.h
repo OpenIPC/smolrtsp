@@ -44,8 +44,8 @@ typedef struct {
  *
  * @pre `w.self && w.vptr`
  */
-ssize_t
-SmolRTSP_RequestLine_serialize(SmolRTSP_RequestLine self, SmolRTSP_Writer w) SMOLRTSP_PRIV_MUST_USE;
+ssize_t SmolRTSP_RequestLine_serialize(SmolRTSP_RequestLine self, SmolRTSP_Writer w)
+    SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Parses @p data to @p self.

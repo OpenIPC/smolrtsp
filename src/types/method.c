@@ -4,7 +4,8 @@
 
 #include <assert.h>
 
-SmolRTSP_ParseResult SmolRTSP_Method_parse(SmolRTSP_Method *restrict self, CharSlice99 input) {
+SmolRTSP_ParseResult
+SmolRTSP_Method_parse(SmolRTSP_Method *restrict self, CharSlice99 input) {
     assert(self);
 
     const CharSlice99 backup = input;

@@ -10,14 +10,16 @@ TEST io_vec_len(void) {
     };
 
     ASSERT_EQ(
-        SmolRTSP_IoVecSlice_len((SmolRTSP_IoVecSlice)Slice99_typed_from_array(bufs)), 5 + 1 + 0);
+        SmolRTSP_IoVecSlice_len((SmolRTSP_IoVecSlice)Slice99_typed_from_array(bufs)),
+        5 + 1 + 0);
 
     PASS();
 }
 
 TEST slice_to_iovec(void) {
     uint8_t data[] = {1, 2, 3};
-    const struct iovec bufs = smolrtsp_slice_to_iovec((U8Slice99)Slice99_typed_from_array(data));
+    const struct iovec bufs =
+        smolrtsp_slice_to_iovec((U8Slice99)Slice99_typed_from_array(data));
 
     ASSERT_EQ(bufs.iov_base, data);
     ASSERT_EQ(bufs.iov_len, sizeof data);

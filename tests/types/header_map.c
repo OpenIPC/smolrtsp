@@ -11,24 +11,24 @@
 
 DEF_TEST_PARSE(SmolRTSP_HeaderMap)
 
-#define HEADER_MAP                                                                                 \
-    SmolRTSP_HeaderMap_from_array({                                                                \
-        {                                                                                          \
-            SMOLRTSP_HEADER_CONTENT_LENGTH,                                                        \
-            CharSlice99_from_str("10"),                                                            \
-        },                                                                                         \
-        {                                                                                          \
-            SMOLRTSP_HEADER_ACCEPT_LANGUAGE,                                                       \
-            CharSlice99_from_str("English"),                                                       \
-        },                                                                                         \
-        {                                                                                          \
-            SMOLRTSP_HEADER_CONTENT_TYPE,                                                          \
-            CharSlice99_from_str("application/octet-stream"),                                      \
-        },                                                                                         \
+#define HEADER_MAP                                                                       \
+    SmolRTSP_HeaderMap_from_array({                                                      \
+        {                                                                                \
+            SMOLRTSP_HEADER_CONTENT_LENGTH,                                              \
+            CharSlice99_from_str("10"),                                                  \
+        },                                                                               \
+        {                                                                                \
+            SMOLRTSP_HEADER_ACCEPT_LANGUAGE,                                             \
+            CharSlice99_from_str("English"),                                             \
+        },                                                                               \
+        {                                                                                \
+            SMOLRTSP_HEADER_CONTENT_TYPE,                                                \
+            CharSlice99_from_str("application/octet-stream"),                            \
+        },                                                                               \
     })
 
-#define HEADER_MAP_STR                                                                             \
-    "Content-Length: 10\r\nAccept-Language: English\r\nContent-Type: "                             \
+#define HEADER_MAP_STR                                                                   \
+    "Content-Length: 10\r\nAccept-Language: English\r\nContent-Type: "                   \
     "application/octet-stream\r\n\r\n"
 
 TEST parse_header_map(void) {
@@ -57,8 +57,8 @@ TEST serialize_header_map(void) {
 
 TEST find(void) {
     CharSlice99 content_length;
-    const bool content_length_is_found =
-        SmolRTSP_HeaderMap_find(HEADER_MAP, SMOLRTSP_HEADER_CONTENT_LENGTH, &content_length);
+    const bool content_length_is_found = SmolRTSP_HeaderMap_find(
+        HEADER_MAP, SMOLRTSP_HEADER_CONTENT_LENGTH, &content_length);
 
     ASSERT(content_length_is_found);
     ASSERT(CharSlice99_primitive_eq(content_length, CharSlice99_from_str("10")));

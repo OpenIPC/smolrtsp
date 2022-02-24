@@ -7,25 +7,29 @@ TEST parse_lower_transport(void) {
 
     ASSERT_EQ(
         SmolRTSP_parse_lower_transport(
-            &lower_transport, CharSlice99_from_str("RTP/AVP/UDP;unicast;client_port=3056-3057")),
+            &lower_transport,
+            CharSlice99_from_str("RTP/AVP/UDP;unicast;client_port=3056-3057")),
         0);
     ASSERT_EQ(lower_transport, SmolRTSP_LowerTransport_UDP);
 
     ASSERT_EQ(
         SmolRTSP_parse_lower_transport(
-            &lower_transport, CharSlice99_from_str("RTP/AVP/TCP;unicast;client_port=3056-3057")),
+            &lower_transport,
+            CharSlice99_from_str("RTP/AVP/TCP;unicast;client_port=3056-3057")),
         0);
     ASSERT_EQ(lower_transport, SmolRTSP_LowerTransport_TCP);
 
     ASSERT_EQ(
         SmolRTSP_parse_lower_transport(
-            &lower_transport, CharSlice99_from_str("RTP/AVP;unicast;client_port=3056-3057")),
+            &lower_transport,
+            CharSlice99_from_str("RTP/AVP;unicast;client_port=3056-3057")),
         0);
     ASSERT_EQ(lower_transport, SmolRTSP_LowerTransport_UDP);
 
     ASSERT_EQ(
         SmolRTSP_parse_lower_transport(
-            &lower_transport, CharSlice99_from_str("RTP/blah;unicast;client_port=3056-3057")),
+            &lower_transport,
+            CharSlice99_from_str("RTP/blah;unicast;client_port=3056-3057")),
         -1);
 
     PASS();
@@ -59,7 +63,8 @@ TEST parse_interleaved_chn_id(void) {
 
     ASSERT_EQ(
         SmolRTSP_parse_interleaved_chn_id(
-            &rtp_chn_id, &rtcp_chn_id, CharSlice99_from_str("RTP/AVP/UDP;unicast;interleaved=204")),
+            &rtp_chn_id, &rtcp_chn_id,
+            CharSlice99_from_str("RTP/AVP/UDP;unicast;interleaved=204")),
         0);
     ASSERT_EQ(rtp_chn_id, 204);
     ASSERT_EQ(rtcp_chn_id, -1);
@@ -86,7 +91,8 @@ TEST interleaved_data_as_u32(void) {
 }
 
 TEST interleaved_data_from_u32(void) {
-    const SmolRTSP_InterleavedDataHeader h = SmolRTSP_InterleavedDataHeader_from_u32(0xd4317b24);
+    const SmolRTSP_InterleavedDataHeader h =
+        SmolRTSP_InterleavedDataHeader_from_u32(0xd4317b24);
 
     ASSERT_EQ(h.channel_id, 123);
     ASSERT_EQ(h.payload_len, 54321);

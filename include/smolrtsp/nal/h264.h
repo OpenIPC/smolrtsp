@@ -24,7 +24,7 @@
  *
  * @see <https://datatracker.ietf.org/doc/html/rfc6184#section-5.8>
  */
-#define SMOLRTSP_H264_FU_HEADER_SIZE                                                               \
+#define SMOLRTSP_H264_FU_HEADER_SIZE                                                     \
     (/* fu-identifier */ sizeof(uint8_t) + /* fu-header */ sizeof(uint8_t))
 
 /**
@@ -70,12 +70,14 @@ typedef struct {
 /**
  * Parses an H.264 NAL header from @p byte_header.
  */
-SmolRTSP_H264NalHeader SmolRTSP_H264NalHeader_parse(uint8_t byte_header) SMOLRTSP_PRIV_MUST_USE;
+SmolRTSP_H264NalHeader
+SmolRTSP_H264NalHeader_parse(uint8_t byte_header) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Converts @p self to a single octet representation.
  */
-uint8_t SmolRTSP_H264NalHeader_serialize(SmolRTSP_H264NalHeader self) SMOLRTSP_PRIV_MUST_USE;
+uint8_t
+SmolRTSP_H264NalHeader_serialize(SmolRTSP_H264NalHeader self) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Checks whether @p self is VPS.
@@ -95,7 +97,8 @@ bool SmolRTSP_H264NalHeader_is_pps(SmolRTSP_H264NalHeader self) SMOLRTSP_PRIV_MU
 /**
  * Checks whether @p self is a coded slice IDR.
  */
-bool SmolRTSP_H264NalHeader_is_coded_slice_idr(SmolRTSP_H264NalHeader self) SMOLRTSP_PRIV_MUST_USE;
+bool SmolRTSP_H264NalHeader_is_coded_slice_idr(SmolRTSP_H264NalHeader self)
+    SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Checks whether @p self is a coded slice non-IDR.
@@ -107,7 +110,8 @@ bool SmolRTSP_H264NalHeader_is_coded_slice_non_idr(SmolRTSP_H264NalHeader self)
  * Writes a FU header of @p self to @p buffer.
  *
  * @param[in] self The header to write.
- * @param[out] buffer The memory area capable of storing #SMOLRTSP_H264_FU_HEADER_SIZE bytes.
+ * @param[out] buffer The memory area capable of storing #SMOLRTSP_H264_FU_HEADER_SIZE
+ * bytes.
  * @param[in] is_first_fragment The indication of a start of the FU.
  * @param[in] is_last_fragment The indication of an end of the FU.
  *

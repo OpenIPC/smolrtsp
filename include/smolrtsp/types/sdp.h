@@ -1,7 +1,7 @@
 /**
  * @file
- * @brief <a href="https://datatracker.ietf.org/doc/html/rfc4566">RFC 4566</a>-compliant SDP
- * implementation.
+ * @brief <a href="https://datatracker.ietf.org/doc/html/rfc4566">RFC 4566</a>-compliant
+ * SDP implementation.
  */
 
 #pragma once
@@ -42,7 +42,8 @@ typedef struct {
  *
  * @pre `w.self && w.vptr`
  */
-ssize_t SmolRTSP_SdpLine_serialize(SmolRTSP_SdpLine self, SmolRTSP_Writer w) SMOLRTSP_PRIV_MUST_USE;
+ssize_t SmolRTSP_SdpLine_serialize(SmolRTSP_SdpLine self, SmolRTSP_Writer w)
+    SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Printfs a single SDP line to @p w.
@@ -56,8 +57,9 @@ ssize_t SmolRTSP_SdpLine_serialize(SmolRTSP_SdpLine self, SmolRTSP_Writer w) SMO
  * @pre `w.self && w.vptr`
  * @pre `fmt != NULL`
  */
-ssize_t smolrtsp_sdp_printf(SmolRTSP_SdpType ty, SmolRTSP_Writer w, const char fmt[restrict], ...)
-    SMOLRTSP_PRIV_MUST_USE SMOLRTSP_PRIV_GCC_ATTR(format(printf, 3, 4));
+ssize_t smolrtsp_sdp_printf(
+    SmolRTSP_SdpType ty, SmolRTSP_Writer w, const char fmt[restrict],
+    ...) SMOLRTSP_PRIV_MUST_USE SMOLRTSP_PRIV_GCC_ATTR(format(printf, 3, 4));
 
 /**
  * Protocol Version (`v=`).

@@ -56,7 +56,8 @@ SmolRTSP_HeaderMap_parse(SmolRTSP_HeaderMap *restrict self, CharSlice99 input) {
             return SmolRTSP_ParseResult_partial();
         }
         if (CharSlice99_primitive_starts_with(input, SMOLRTSP_CRLF)) {
-            return SmolRTSP_ParseResult_complete((input.ptr - backup.ptr) + SMOLRTSP_CRLF.len);
+            return SmolRTSP_ParseResult_complete(
+                (input.ptr - backup.ptr) + SMOLRTSP_CRLF.len);
         }
         if (SmolRTSP_HeaderMap_is_full(*self)) {
             return SmolRTSP_ParseResult_Failure(SmolRTSP_ParseError_HeaderMapOverflow());

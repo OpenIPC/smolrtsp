@@ -32,8 +32,8 @@ typedef enum {
 } SmolRTSP_LowerTransport;
 
 /**
- * Converts @p self to a string representation (`"TCP"` for #SmolRTSP_LowerTransport_TCP and `"UDP"`
- * for #SmolRTSP_LowerTransport_UDP).
+ * Converts @p self to a string representation (`"TCP"` for #SmolRTSP_LowerTransport_TCP
+ * and `"UDP"` for #SmolRTSP_LowerTransport_UDP).
  */
 const char *SmolRTSP_LowerTransport_str(SmolRTSP_LowerTransport self);
 
@@ -46,7 +46,8 @@ const char *SmolRTSP_LowerTransport_str(SmolRTSP_LowerTransport self);
  *
  * @pre `result != NULL`
  */
-int SmolRTSP_parse_lower_transport(SmolRTSP_LowerTransport *restrict result, CharSlice99 value);
+int SmolRTSP_parse_lower_transport(
+    SmolRTSP_LowerTransport *restrict result, CharSlice99 value);
 
 /**
  * Extracts the `client_port` parameter from the header value @p value.
@@ -58,7 +59,8 @@ int SmolRTSP_parse_lower_transport(SmolRTSP_LowerTransport *restrict result, Cha
  * @pre `rtp_port != NULL`
  * @pre `rtcp_port != NULL`
  */
-int SmolRTSP_parse_client_port(int *restrict rtp_port, int *restrict rtcp_port, CharSlice99 value);
+int SmolRTSP_parse_client_port(
+    int *restrict rtp_port, int *restrict rtcp_port, CharSlice99 value);
 
 /**
  * Extracts the `interleaved` parameter from the header value @p value.
@@ -76,8 +78,8 @@ int SmolRTSP_parse_interleaved_chn_id(
     int *restrict rtp_chn_id, int *restrict rtcp_chn_id, CharSlice99 value);
 
 /**
- * An interleaved binary data header used to mix RTSP requests/responses with streaming data in a
- * single TCP connection.
+ * An interleaved binary data header used to mix RTSP requests/responses with streaming
+ * data in a single TCP connection.
  */
 typedef struct {
     /**

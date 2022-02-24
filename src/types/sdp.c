@@ -20,7 +20,8 @@ ssize_t SmolRTSP_SdpLine_serialize(SmolRTSP_SdpLine self, SmolRTSP_Writer w) {
            });
 }
 
-ssize_t smolrtsp_sdp_printf(SmolRTSP_SdpType ty, SmolRTSP_Writer w, const char fmt[restrict], ...) {
+ssize_t smolrtsp_sdp_printf(
+    SmolRTSP_SdpType ty, SmolRTSP_Writer w, const char fmt[restrict], ...) {
     assert(w.self && w.vptr);
     assert(fmt);
 

@@ -13,8 +13,9 @@ const char *SmolRTSP_ParseType_str(SmolRTSP_ParseType self) {
     }
 }
 
-#define MAX_STR           10
-#define TRUNCATE_STR(str) ((str).len <= MAX_STR ? (str) : CharSlice99_sub((str), 0, MAX_STR))
+#define MAX_STR 10
+#define TRUNCATE_STR(str)                                                                \
+    ((str).len <= MAX_STR ? (str) : CharSlice99_sub((str), 0, MAX_STR))
 
 int SmolRTSP_ParseError_print(SmolRTSP_ParseError self, SmolRTSP_Writer w) {
     assert(w.self && w.vptr);
@@ -50,7 +51,8 @@ int SmolRTSP_ParseError_print(SmolRTSP_ParseError self, SmolRTSP_Writer w) {
         }
         of(SmolRTSP_ParseError_HeaderMapOverflow) {
             return VCALL(
-                w, write, CharSlice99_from_str("Not enough space left in the header map."));
+                w, write,
+                CharSlice99_from_str("Not enough space left in the header map."));
         }
     }
 
@@ -89,7 +91,8 @@ bool SmolRTSP_ParseResult_is_partial(SmolRTSP_ParseResult self) {
     bool result = true;
 
     match(self) {
-        of(SmolRTSP_ParseResult_Success, status) result = SmolRTSP_ParseStatus_is_partial(*status);
+        of(SmolRTSP_ParseResult_Success, status) result =
+            SmolRTSP_ParseStatus_is_partial(*status);
         otherwise result = false;
     }
 
@@ -101,7 +104,8 @@ bool SmolRTSP_ParseResult_is_complete(SmolRTSP_ParseResult self) {
     bool result = true;
 
     match(self) {
-        of(SmolRTSP_ParseResult_Success, status) result = SmolRTSP_ParseStatus_is_complete(*status);
+        of(SmolRTSP_ParseResult_Success, status) result =
+            SmolRTSP_ParseStatus_is_complete(*status);
         otherwise result = false;
     }
 

@@ -42,17 +42,19 @@ typedef struct {
  *
  * @pre `w.self && w.vptr`
  */
-ssize_t SmolRTSP_Request_serialize(SmolRTSP_Request self, SmolRTSP_Writer w) SMOLRTSP_PRIV_MUST_USE;
+ssize_t SmolRTSP_Request_serialize(SmolRTSP_Request self, SmolRTSP_Writer w)
+    SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Parses @p data to @p self.
  *
  * @pre `self != NULL`
  */
-SmolRTSP_ParseResult
-SmolRTSP_Request_parse(SmolRTSP_Request *restrict self, CharSlice99 input) SMOLRTSP_PRIV_MUST_USE;
+SmolRTSP_ParseResult SmolRTSP_Request_parse(
+    SmolRTSP_Request *restrict self, CharSlice99 input) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Tests @p lhs and @p rhs for equality.
  */
-bool SmolRTSP_Request_eq(SmolRTSP_Request lhs, SmolRTSP_Request rhs) SMOLRTSP_PRIV_MUST_USE;
+bool SmolRTSP_Request_eq(SmolRTSP_Request lhs, SmolRTSP_Request rhs)
+    SMOLRTSP_PRIV_MUST_USE;

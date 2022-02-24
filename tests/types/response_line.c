@@ -16,12 +16,12 @@ TEST parse_response_line(void) {
 
     SmolRTSP_ResponseLine result;
 
-    ASSERT(SmolRTSP_ParseResult_is_failure(
-        SmolRTSP_ResponseLine_parse(&result, CharSlice99_from_str("ABRACADABRA/1.1 200 OK\r\n"))));
-    ASSERT(SmolRTSP_ParseResult_is_failure(
-        SmolRTSP_ResponseLine_parse(&result, CharSlice99_from_str("RTSP/42 200 OK\r\n"))));
-    ASSERT(SmolRTSP_ParseResult_is_failure(
-        SmolRTSP_ResponseLine_parse(&result, CharSlice99_from_str("RTSP/1.1 ~~~ OK\r\n"))));
+    ASSERT(SmolRTSP_ParseResult_is_failure(SmolRTSP_ResponseLine_parse(
+        &result, CharSlice99_from_str("ABRACADABRA/1.1 200 OK\r\n"))));
+    ASSERT(SmolRTSP_ParseResult_is_failure(SmolRTSP_ResponseLine_parse(
+        &result, CharSlice99_from_str("RTSP/42 200 OK\r\n"))));
+    ASSERT(SmolRTSP_ParseResult_is_failure(SmolRTSP_ResponseLine_parse(
+        &result, CharSlice99_from_str("RTSP/1.1 ~~~ OK\r\n"))));
 
     PASS();
 }
@@ -35,7 +35,8 @@ TEST serialize_response_line(void) {
         .reason = CharSlice99_from_str("OK"),
     };
 
-    const ssize_t ret = SmolRTSP_ResponseLine_serialize(line, smolrtsp_string_writer(buffer));
+    const ssize_t ret =
+        SmolRTSP_ResponseLine_serialize(line, smolrtsp_string_writer(buffer));
 
     const char *expected = "RTSP/1.0 200 OK\r\n";
 

@@ -14,7 +14,8 @@
 #define DATA_1 "defghi"
 
 static enum greatest_test_res test_transport(
-    SmolRTSP_Transport t, int read_fd, size_t len, const char expected[restrict static len]) {
+    SmolRTSP_Transport t, int read_fd, size_t len,
+    const char expected[restrict static len]) {
     struct iovec bufs[] = {
         {.iov_base = DATA_0, .iov_len = sizeof((char[]){DATA_0}) - 1},
         {.iov_base = DATA_1, .iov_len = sizeof((char[]){DATA_1}) - 1},

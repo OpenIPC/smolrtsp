@@ -12,11 +12,11 @@
  *
  * See [Interface99](https://github.com/Hirrolot/interface99) for the macro usage.
  */
-#define SmolRTSP_Droppable_IFACE                                                                   \
-                                                                                                   \
-    /*                                                                                             \
-     * Deallocates itself so that it can no longer be used.                                        \
-     */                                                                                            \
+#define SmolRTSP_Droppable_IFACE                                                         \
+                                                                                         \
+    /*                                                                                   \
+     * Deallocates itself so that it can no longer be used.                              \
+     */                                                                                  \
     vfunc99(void, drop, VSelf99)
 
 /**

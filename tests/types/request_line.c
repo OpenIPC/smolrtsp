@@ -19,7 +19,8 @@ TEST parse_request_line(void) {
     ASSERT(SmolRTSP_ParseResult_is_failure(SmolRTSP_RequestLine_parse(
         &result, CharSlice99_from_str("!!! http://example.com RTSP/1.1\r\n"))));
     ASSERT(SmolRTSP_ParseResult_is_failure(SmolRTSP_RequestLine_parse(
-        &result, CharSlice99_from_str("DESCRIBE http://example.com ABRACADABRA/1.1\r\n"))));
+        &result,
+        CharSlice99_from_str("DESCRIBE http://example.com ABRACADABRA/1.1\r\n"))));
 
     PASS();
 }
@@ -33,7 +34,8 @@ TEST serialize_request_line(void) {
         .version = (SmolRTSP_RtspVersion){1, 0},
     };
 
-    const ssize_t ret = SmolRTSP_RequestLine_serialize(line, smolrtsp_string_writer(buffer));
+    const ssize_t ret =
+        SmolRTSP_RequestLine_serialize(line, smolrtsp_string_writer(buffer));
 
     const char *expected = "DESCRIBE http://example.com RTSP/1.0\r\n";
 

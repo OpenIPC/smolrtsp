@@ -27,8 +27,8 @@ typedef struct SmolRTSP_RtpTransport SmolRTSP_RtpTransport;
  *
  * @pre `t.self && t.vptr`
  */
-SmolRTSP_RtpTransport *
-SmolRTSP_RtpTransport_new(SmolRTSP_Transport t, uint8_t rtsp_stream_id) SMOLRTSP_PRIV_MUST_USE;
+SmolRTSP_RtpTransport *SmolRTSP_RtpTransport_new(
+    SmolRTSP_Transport t, uint8_t rtsp_stream_id) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Sends an RTP packet.

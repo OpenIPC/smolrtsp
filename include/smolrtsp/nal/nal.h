@@ -23,8 +23,8 @@
  * This macro expands to two variables named @p h and @p payload and initialises them to
  * `SmolRTSP_NalUnit_header(self)` and `SmolRTSP_NalUnit_payload(self)`, respectively.
  */
-#define SMOLRTSP_NAL_UNIT_DESTRUCT(self, h, payload)                                               \
-    SmolRTSP_NalHeader h = SmolRTSP_NalUnit_header(self);                                          \
+#define SMOLRTSP_NAL_UNIT_DESTRUCT(self, h, payload)                                     \
+    SmolRTSP_NalHeader h = SmolRTSP_NalUnit_header(self);                                \
     U8Slice99 payload = SmolRTSP_NalUnit_payload(self)
 
 /**
@@ -54,7 +54,8 @@ size_t SmolRTSP_NalHeader_size(SmolRTSP_NalHeader self) SMOLRTSP_PRIV_MUST_USE;
 /**
  * Computes the size of a fragmentation unit (FU) header @p self.
  *
- * @see H.264 Fragmentation Units (FUs): <https://datatracker.ietf.org/doc/html/rfc6184#section-5.8>
+ * @see H.264 Fragmentation Units (FUs):
+ * <https://datatracker.ietf.org/doc/html/rfc6184#section-5.8>
  * @see H.265 Fragmentation Units (FUs):
  * <https://datatracker.ietf.org/doc/html/rfc7798#section-4.4.3>
  */
@@ -63,7 +64,8 @@ size_t SmolRTSP_NalHeader_fu_size(SmolRTSP_NalHeader self) SMOLRTSP_PRIV_MUST_US
 /**
  * Returns the RTP clock rate in kHz of @p self.
  */
-uint32_t SmolRTSP_NalHeader_clock_rate_kHz(SmolRTSP_NalHeader self) SMOLRTSP_PRIV_MUST_USE;
+uint32_t
+SmolRTSP_NalHeader_clock_rate_kHz(SmolRTSP_NalHeader self) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Checks whether @p self is VPS.
@@ -83,18 +85,21 @@ bool SmolRTSP_NalHeader_is_pps(SmolRTSP_NalHeader self) SMOLRTSP_PRIV_MUST_USE;
 /**
  * Checks whether @p self is a coded slice IDR.
  */
-bool SmolRTSP_NalHeader_is_coded_slice_idr(SmolRTSP_NalHeader self) SMOLRTSP_PRIV_MUST_USE;
+bool SmolRTSP_NalHeader_is_coded_slice_idr(SmolRTSP_NalHeader self)
+    SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Checks whether @p self is a coded slice non-IDR.
  */
-bool SmolRTSP_NalHeader_is_coded_slice_non_idr(SmolRTSP_NalHeader self) SMOLRTSP_PRIV_MUST_USE;
+bool SmolRTSP_NalHeader_is_coded_slice_non_idr(SmolRTSP_NalHeader self)
+    SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Writes the binary representation of @p self into @p buffer.
  *
  * @param[in] self The header to write.
- * @param[out] buffer The memory area capable of storing `SmolRTSP_NalHeader_size(self)` bytes.
+ * @param[out] buffer The memory area capable of storing `SmolRTSP_NalHeader_size(self)`
+ * bytes.
  */
 void SmolRTSP_NalHeader_serialize(SmolRTSP_NalHeader self, uint8_t buffer[restrict]);
 
@@ -102,11 +107,13 @@ void SmolRTSP_NalHeader_serialize(SmolRTSP_NalHeader self, uint8_t buffer[restri
  * Writes a FU header of @p self to @p buffer.
  *
  * @param[in] self The header to write.
- * @param[out] buffer The memory area capable of storing `SmolRTSP_NalHeader_fu_size(self)` bytes.
+ * @param[out] buffer The memory area capable of storing
+ * `SmolRTSP_NalHeader_fu_size(self)` bytes.
  * @param[in] is_first_fragment The indication of a start of the FU.
  * @param[in] is_last_fragment The indication of an end of the FU.
  *
- * @see H.264 Fragmentation Units (FUs): <https://datatracker.ietf.org/doc/html/rfc6184#section-5.8>
+ * @see H.264 Fragmentation Units (FUs):
+ * <https://datatracker.ietf.org/doc/html/rfc6184#section-5.8>
  * @see H.265 Fragmentation Units (FUs):
  * <https://datatracker.ietf.org/doc/html/rfc7798#section-4.4.3>
  */
@@ -147,12 +154,13 @@ U8Slice99 SmolRTSP_NalUnit_payload(SmolRTSP_NalUnit self) SMOLRTSP_PRIV_MUST_USE
 /**
  * Creates a generic NAL FU header.
  */
-uint8_t smolrtsp_nal_fu_header(bool is_first_fragment, bool is_last_fragment, uint8_t unit_type)
-    SMOLRTSP_PRIV_MUST_USE;
+uint8_t smolrtsp_nal_fu_header(
+    bool is_first_fragment, bool is_last_fragment,
+    uint8_t unit_type) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * If @p data contains a start code sequence, returns `true` and assigns @p
  * data_without_start_code, `false` otherwise.
  */
-bool smolrtsp_nal_test_start_code(U8Slice99 data, U8Slice99 *restrict data_without_start_code)
-    SMOLRTSP_PRIV_MUST_USE;
+bool smolrtsp_nal_test_start_code(
+    U8Slice99 data, U8Slice99 *restrict data_without_start_code) SMOLRTSP_PRIV_MUST_USE;

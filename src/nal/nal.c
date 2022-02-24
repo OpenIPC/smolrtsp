@@ -46,16 +46,16 @@ uint32_t SmolRTSP_NalHeader_clock_rate_kHz(SmolRTSP_NalHeader self) {
     return result;
 }
 
-#define NAL_HEADER_DERIVE_METHOD(fn)                                                               \
-    bool SmolRTSP_NalHeader_##fn(SmolRTSP_NalHeader self) {                                        \
-        bool result = 0;                                                                           \
-                                                                                                   \
-        match(self) {                                                                              \
-            of(SmolRTSP_NalHeader_H264, h) result = SmolRTSP_H264NalHeader_##fn(*h);               \
-            of(SmolRTSP_NalHeader_H265, h) result = SmolRTSP_H265NalHeader_##fn(*h);               \
-        }                                                                                          \
-                                                                                                   \
-        return result;                                                                             \
+#define NAL_HEADER_DERIVE_METHOD(fn)                                                     \
+    bool SmolRTSP_NalHeader_##fn(SmolRTSP_NalHeader self) {                              \
+        bool result = 0;                                                                 \
+                                                                                         \
+        match(self) {                                                                    \
+            of(SmolRTSP_NalHeader_H264, h) result = SmolRTSP_H264NalHeader_##fn(*h);     \
+            of(SmolRTSP_NalHeader_H265, h) result = SmolRTSP_H265NalHeader_##fn(*h);     \
+        }                                                                                \
+                                                                                         \
+        return result;                                                                   \
     }
 
 NAL_HEADER_DERIVE_METHOD(is_vps)
@@ -83,10 +83,10 @@ void SmolRTSP_NalHeader_write_fu_header(
     SmolRTSP_NalHeader self, uint8_t buffer[restrict], bool is_first_fragment,
     bool is_last_fragment) {
     match(self) {
-        of(SmolRTSP_NalHeader_H264, h)
-            SmolRTSP_H264NalHeader_write_fu_header(*h, buffer, is_first_fragment, is_last_fragment);
-        of(SmolRTSP_NalHeader_H265, h)
-            SmolRTSP_H265NalHeader_write_fu_header(*h, buffer, is_first_fragment, is_last_fragment);
+        of(SmolRTSP_NalHeader_H264, h) SmolRTSP_H264NalHeader_write_fu_header(
+            *h, buffer, is_first_fragment, is_last_fragment);
+        of(SmolRTSP_NalHeader_H265, h) SmolRTSP_H265NalHeader_write_fu_header(
+            *h, buffer, is_first_fragment, is_last_fragment);
     }
 }
 
@@ -94,10 +94,10 @@ SmolRTSP_NalUnit SmolRTSP_NalUnit_new(SmolRTSP_NalHeader h, U8Slice99 payload) {
     SmolRTSP_NalUnit result = {0};
 
     match(h) {
-        of(SmolRTSP_NalHeader_H264, h) result =
-            SmolRTSP_NalUnit_H264((SmolRTSP_H264NalUnit){.header = *h, .payload = payload});
-        of(SmolRTSP_NalHeader_H265, h) result =
-            SmolRTSP_NalUnit_H265((SmolRTSP_H265NalUnit){.header = *h, .payload = payload});
+        of(SmolRTSP_NalHeader_H264, h) result = SmolRTSP_NalUnit_H264(
+            (SmolRTSP_H264NalUnit){.header = *h, .payload = payload});
+        of(SmolRTSP_NalHeader_H265, h) result = SmolRTSP_NalUnit_H265(
+            (SmolRTSP_H265NalUnit){.header = *h, .payload = payload});
     }
 
     return result;
@@ -127,7 +127,8 @@ U8Slice99 SmolRTSP_NalUnit_payload(SmolRTSP_NalUnit self) {
 
 // See <https://tools.ietf.org/html/rfc7798#section-4.4.3> (H.265),
 // <https://tools.ietf.org/html/rfc6184#section-5.8> (H.264).
-uint8_t smolrtsp_nal_fu_header(bool is_first_fragment, bool is_last_fragment, uint8_t unit_type) {
+uint8_t
+smolrtsp_nal_fu_header(bool is_first_fragment, bool is_last_fragment, uint8_t unit_type) {
     /*
      * H.264:
      * +---------------+
@@ -158,7 +159,8 @@ uint8_t smolrtsp_nal_fu_header(bool is_first_fragment, bool is_last_fragment, ui
     return fu_header;
 }
 
-bool smolrtsp_nal_test_start_code(U8Slice99 data, U8Slice99 *restrict data_without_start_code) {
+bool smolrtsp_nal_test_start_code(
+    U8Slice99 data, U8Slice99 *restrict data_without_start_code) {
     static const uint8_t start_code_3b[] = {0x00, 0x00, 0x01},
                          start_code_4b[] = {0x00, 0x00, 0x00, 0x01};
 

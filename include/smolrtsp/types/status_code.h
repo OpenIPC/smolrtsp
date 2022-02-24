@@ -30,8 +30,8 @@ typedef uint16_t SmolRTSP_StatusCode;
  *
  * @pre `w.self && w.vptr`
  */
-ssize_t
-SmolRTSP_StatusCode_serialize(SmolRTSP_StatusCode self, SmolRTSP_Writer w) SMOLRTSP_PRIV_MUST_USE;
+ssize_t SmolRTSP_StatusCode_serialize(SmolRTSP_StatusCode self, SmolRTSP_Writer w)
+    SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Parses @p data to @p self.

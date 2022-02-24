@@ -42,15 +42,16 @@ typedef struct {
  *
  * @pre `w.self && w.vptr`
  */
-ssize_t SmolRTSP_Header_serialize(SmolRTSP_Header self, SmolRTSP_Writer w) SMOLRTSP_PRIV_MUST_USE;
+ssize_t
+SmolRTSP_Header_serialize(SmolRTSP_Header self, SmolRTSP_Writer w) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Parses @p data to @p self.
  *
  * @pre `self != NULL`
  */
-SmolRTSP_ParseResult
-SmolRTSP_Header_parse(SmolRTSP_Header *restrict self, CharSlice99 input) SMOLRTSP_PRIV_MUST_USE;
+SmolRTSP_ParseResult SmolRTSP_Header_parse(
+    SmolRTSP_Header *restrict self, CharSlice99 input) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Tests @p lhs and @p rhs for equality.

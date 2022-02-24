@@ -28,7 +28,8 @@ typedef struct SmolRTSP_NalTransport SmolRTSP_NalTransport;
  *
  * @pre `t != NULL`
  */
-SmolRTSP_NalTransport *SmolRTSP_NalTransport_new(SmolRTSP_RtpTransport *t) SMOLRTSP_PRIV_MUST_USE;
+SmolRTSP_NalTransport *
+SmolRTSP_NalTransport_new(SmolRTSP_RtpTransport *t) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Sends an RTP/NAL packet.

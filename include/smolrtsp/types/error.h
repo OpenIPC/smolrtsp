@@ -131,8 +131,8 @@ datatype99(
 SmolRTSP_ParseResult SmolRTSP_ParseResult_partial(void) SMOLRTSP_PRIV_MUST_USE;
 
 /**
- * Creates a **successful** and **complete** parse result with the byte offset @p offset (from the
- * beginning of input).
+ * Creates a **successful** and **complete** parse result with the byte offset @p offset
+ * (from the beginning of input).
  */
 SmolRTSP_ParseResult SmolRTSP_ParseResult_complete(size_t offset) SMOLRTSP_PRIV_MUST_USE;
 

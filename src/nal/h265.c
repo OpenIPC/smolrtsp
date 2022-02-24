@@ -60,12 +60,13 @@ bool SmolRTSP_H265NalHeader_is_coded_slice_non_idr(SmolRTSP_H265NalHeader self) 
 void SmolRTSP_H265NalHeader_write_fu_header(
     SmolRTSP_H265NalHeader self, uint8_t buffer[restrict], bool is_first_fragment,
     bool is_last_fragment) {
-    const uint16_t payload_hdr = SmolRTSP_H265NalHeader_serialize((SmolRTSP_H265NalHeader){
-        .forbidden_zero_bit = self.forbidden_zero_bit,
-        .unit_type = 49,
-        .nuh_layer_id = self.nuh_layer_id,
-        .nuh_temporal_id_plus1 = self.nuh_temporal_id_plus1,
-    });
+    const uint16_t payload_hdr =
+        SmolRTSP_H265NalHeader_serialize((SmolRTSP_H265NalHeader){
+            .forbidden_zero_bit = self.forbidden_zero_bit,
+            .unit_type = 49,
+            .nuh_layer_id = self.nuh_layer_id,
+            .nuh_temporal_id_plus1 = self.nuh_temporal_id_plus1,
+        });
 
     const uint8_t fu_header =
         smolrtsp_nal_fu_header(is_first_fragment, is_last_fragment, self.unit_type);

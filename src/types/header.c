@@ -18,7 +18,8 @@ ssize_t SmolRTSP_Header_serialize(SmolRTSP_Header self, SmolRTSP_Writer w) {
            });
 }
 
-SmolRTSP_ParseResult SmolRTSP_Header_parse(SmolRTSP_Header *restrict self, CharSlice99 input) {
+SmolRTSP_ParseResult
+SmolRTSP_Header_parse(SmolRTSP_Header *restrict self, CharSlice99 input) {
     assert(self);
 
     const CharSlice99 backup = input;

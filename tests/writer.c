@@ -95,7 +95,8 @@ TEST write_slices(void) {
         CharSlice99_from_str("&* 123"),
     };
 
-    const ssize_t bytes_written = smolrtsp_write_slices(w, SLICE99_ARRAY_LEN(slices), slices);
+    const ssize_t bytes_written =
+        smolrtsp_write_slices(w, SLICE99_ARRAY_LEN(slices), slices);
     ASSERT_EQ(10, bytes_written);
     ASSERT_STR_EQ("abc~&* 123", buffer);
 

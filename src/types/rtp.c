@@ -11,16 +11,17 @@
 #define RTP_HEADER_MARKER_SHIFT    7
 
 size_t SmolRTSP_RtpHeader_size(SmolRTSP_RtpHeader self) {
-    static const size_t version_bits = 2, padding_bits = 1, extension_bits = 1, csrc_count_bits = 4,
-                        marker_bits = 1, payload_ty_bits = 7, sequence_number_bits = 16,
-                        timestamp_bits = 32, ssrc_bits = 32;
+    static const size_t version_bits = 2, padding_bits = 1, extension_bits = 1,
+                        csrc_count_bits = 4, marker_bits = 1, payload_ty_bits = 7,
+                        sequence_number_bits = 16, timestamp_bits = 32, ssrc_bits = 32;
 
     static const size_t csrc_size = 4;
 
-    size_t size = (version_bits + padding_bits + extension_bits + csrc_count_bits + marker_bits +
-                   payload_ty_bits + sequence_number_bits + timestamp_bits + ssrc_bits) /
-                      8 +
-                  (self.csrc_count * csrc_size);
+    size_t size =
+        (version_bits + padding_bits + extension_bits + csrc_count_bits + marker_bits +
+         payload_ty_bits + sequence_number_bits + timestamp_bits + ssrc_bits) /
+            8 +
+        (self.csrc_count * csrc_size);
 
     if (self.extension) {
         size += sizeof(self.extension_profile) + sizeof(self.extension_payload_len) +

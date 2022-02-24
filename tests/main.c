@@ -1,7 +1,7 @@
 #include <greatest.h>
 
-#define SMOLRTSP_SUITE(name)                                                                       \
-    extern void name(void);                                                                        \
+#define SMOLRTSP_SUITE(name)                                                             \
+    extern void name(void);                                                              \
     RUN_SUITE(name)
 
 GREATEST_MAIN_DEFS();

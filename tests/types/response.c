@@ -63,7 +63,8 @@ TEST serialize_response(void) {
         .body = CharSlice99_from_str("1234567890"),
     };
 
-    const ssize_t ret = SmolRTSP_Response_serialize(response, smolrtsp_string_writer(buffer));
+    const ssize_t ret =
+        SmolRTSP_Response_serialize(response, smolrtsp_string_writer(buffer));
 
     const char *expected =
         "RTSP/1.0 200 OK\r\nContent-Length: 123\r\nContent-Type: "
