@@ -11,10 +11,7 @@
 #include <smolrtsp/nal/nal.h>
 #include <smolrtsp/rtp_transport.h>
 
-#include <stdbool.h>
 #include <stdint.h>
-
-#include <slice99.h>
 
 #include <smolrtsp/priv/compiler_attrs.h>
 

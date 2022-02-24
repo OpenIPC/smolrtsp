@@ -1,7 +1,12 @@
 #include <smolrtsp/nal_transport.h>
 
 #include <assert.h>
+#include <stdbool.h>
 #include <stdlib.h>
+
+#include <alloca.h>
+
+#include <slice99.h>
 
 static int send_fragmentized_nal_data(
     SmolRTSP_RtpTransport *t, uint64_t timestamp_us, uint8_t payload_type,
