@@ -199,10 +199,9 @@ U8Slice99&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href=
 uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_8h.html#ab41e0f64ca1e97dba2f5b45eb5377807">smolrtsp_nal_fu_header</a> (bool is_first_fragment, bool is_last_fragment, uint8_t unit_type) SMOLRTSP_PRIV_MUST_USE</td></tr>
 <tr class="memdesc:ab41e0f64ca1e97dba2f5b45eb5377807"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a generic NAL FU header. <br /></td></tr>
 <tr class="separator:ab41e0f64ca1e97dba2f5b45eb5377807"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab753825d4d0c813c801ba462fafc4938"><td class="memItemLeft" align="right" valign="top"><a id="ab753825d4d0c813c801ba462fafc4938"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_8h.html#ab753825d4d0c813c801ba462fafc4938">smolrtsp_nal_test_start_code</a> (U8Slice99 data, U8Slice99 *restrict data_without_start_code) SMOLRTSP_PRIV_MUST_USE</td></tr>
-<tr class="memdesc:ab753825d4d0c813c801ba462fafc4938"><td class="mdescLeft">&#160;</td><td class="mdescRight">If <code>data</code> contains a start code sequence, returns <code>true</code> and assigns <code>data_without_start_code</code>, <code>false</code> otherwise. <br /></td></tr>
-<tr class="separator:ab753825d4d0c813c801ba462fafc4938"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a379e48b43f49cb28f468e5b1e5c2bb87"><td class="memItemLeft" align="right" valign="top">ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_8h.html#a379e48b43f49cb28f468e5b1e5c2bb87">smolrtsp_nal_test_start_code</a> (U8Slice99 data) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:a379e48b43f49cb28f468e5b1e5c2bb87"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the length of a start code sequence in <code>data</code>, which is either <code>0x000001</code> or <code>0x00000001</code>.  <a href="nal_8h.html#a379e48b43f49cb28f468e5b1e5c2bb87">More...</a><br /></td></tr>
+<tr class="separator:a379e48b43f49cb28f468e5b1e5c2bb87"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A generic <a href="https://en.wikipedia.org/wiki/Network_Abstraction_Layer">NAL (Network Abstraction Layer)</a> representation. </p>
@@ -318,6 +317,27 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_
 
 <p>A generic NAL unit (either H.264 or H.265). </p>
 <p>See <a href="https://github.com/Hirrolot/datatype99">Datatype99</a> for the macro usage. </p>
+
+</div>
+</div>
+<a id="a379e48b43f49cb28f468e5b1e5c2bb87"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a379e48b43f49cb28f468e5b1e5c2bb87">&#9670;&nbsp;</a></span>smolrtsp_nal_test_start_code()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ssize_t smolrtsp_nal_test_start_code </td>
+          <td>(</td>
+          <td class="paramtype">U8Slice99&#160;</td>
+          <td class="paramname"><em>data</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Computes the length of a start code sequence in <code>data</code>, which is either <code>0x000001</code> or <code>0x00000001</code>. </p>
+<p>If there is no start code in <code>data</code>, the result is 0. </p>
 
 </div>
 </div>
