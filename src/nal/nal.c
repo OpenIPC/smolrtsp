@@ -164,26 +164,23 @@ uint8_t smolrtsp_nal_fu_header(
     return fu_header;
 }
 
-bool smolrtsp_nal_test_start_code(
-    U8Slice99 data, U8Slice99 *restrict data_without_start_code) {
+size_t smolrtsp_nal_test_start_code(U8Slice99 data) {
     static const uint8_t start_code_3b[] = {0x00, 0x00, 0x01},
                          start_code_4b[] = {0x00, 0x00, 0x00, 0x01};
 
     if (data.len < 3) {
-        return false;
+        return 0;
     }
     if (memcmp(data.ptr, start_code_3b, 3) == 0) {
-        *data_without_start_code = U8Slice99_advance(data, 3);
-        return true;
+        return 3;
     }
 
     if (data.len < 4) {
-        return false;
+        return 0;
     }
     if (memcmp(data.ptr, start_code_4b, 4) == 0) {
-        *data_without_start_code = U8Slice99_advance(data, 4);
-        return true;
+        return 4;
     }
 
-    return false;
+    return 0;
 }

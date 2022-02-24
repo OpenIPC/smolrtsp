@@ -166,9 +166,9 @@ uint8_t smolrtsp_nal_fu_header(
     uint8_t unit_type) SMOLRTSP_PRIV_MUST_USE;
 
 /**
- * If @p data contains a start code sequence, returns `true` and assigns @p
- * data_without_start_code, `false` otherwise.
+ * Computes the length of a start code sequence in @p data, which is either
+ * `0x000001` or `0x00000001`.
+ *
+ * If there is no start code in @p data, the result is 0.
  */
-bool smolrtsp_nal_test_start_code(
-    U8Slice99 data,
-    U8Slice99 *restrict data_without_start_code) SMOLRTSP_PRIV_MUST_USE;
+ssize_t smolrtsp_nal_test_start_code(U8Slice99 data) SMOLRTSP_PRIV_MUST_USE;
