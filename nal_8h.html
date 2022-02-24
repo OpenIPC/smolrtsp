@@ -84,7 +84,7 @@ $(document).ready(function(){initNavTree('nal_8h.html',''); initResizable(); });
 
 <div class="header">
   <div class="summary">
-<a href="#define-members">Macros</a> &#124;
+<a href="#nested-classes">Data Structures</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">nal.h File Reference</div>  </div>
@@ -128,11 +128,11 @@ This graph shows which files directly or indirectly include this file:</div>
 </div>
 <p><a href="nal_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
-Macros</h2></td></tr>
-<tr class="memitem:a95b2f9c004672c44c5a96a97ab245aa2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_8h.html#a95b2f9c004672c44c5a96a97ab245aa2">SMOLRTSP_NAL_UNIT_DESTRUCT</a>(self,  h,  payload)</td></tr>
-<tr class="memdesc:a95b2f9c004672c44c5a96a97ab245aa2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructs <code>self</code> into its header and its payload data.  <a href="nal_8h.html#a95b2f9c004672c44c5a96a97ab245aa2">More...</a><br /></td></tr>
-<tr class="separator:a95b2f9c004672c44c5a96a97ab245aa2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structSmolRTSP__NalUnit.html">SmolRTSP_NalUnit</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A generic NAL unit (either H.264 or H.265).  <a href="structSmolRTSP__NalUnit.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
@@ -180,21 +180,6 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_
 <tr class="memitem:a8b33bf4305ee0b6bd1d408173f11bd4c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_8h.html#a8b33bf4305ee0b6bd1d408173f11bd4c">SmolRTSP_NalHeader_write_fu_header</a> (SmolRTSP_NalHeader self, uint8_t buffer[restrict], bool is_first_fragment, bool is_last_fragment)</td></tr>
 <tr class="memdesc:a8b33bf4305ee0b6bd1d408173f11bd4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes a FU header of <code>self</code> to <code>buffer</code>.  <a href="nal_8h.html#a8b33bf4305ee0b6bd1d408173f11bd4c">More...</a><br /></td></tr>
 <tr class="separator:a8b33bf4305ee0b6bd1d408173f11bd4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3d39ea1fd021a9751b0cc943f6bf2c08"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_8h.html#a3d39ea1fd021a9751b0cc943f6bf2c08">datatype99</a> (SmolRTSP_NalUnit,(SmolRTSP_NalUnit_H264, <a class="el" href="structSmolRTSP__H264NalUnit.html">SmolRTSP_H264NalUnit</a>),(SmolRTSP_NalUnit_H265, <a class="el" href="structSmolRTSP__H265NalUnit.html">SmolRTSP_H265NalUnit</a>))</td></tr>
-<tr class="memdesc:a3d39ea1fd021a9751b0cc943f6bf2c08"><td class="mdescLeft">&#160;</td><td class="mdescRight">A generic NAL unit (either H.264 or H.265).  <a href="nal_8h.html#a3d39ea1fd021a9751b0cc943f6bf2c08">More...</a><br /></td></tr>
-<tr class="separator:a3d39ea1fd021a9751b0cc943f6bf2c08"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a861ebf0648c19e26b72f1a50e28821aa"><td class="memItemLeft" align="right" valign="top"><a id="a861ebf0648c19e26b72f1a50e28821aa"></a>
-SmolRTSP_NalUnit&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_8h.html#a861ebf0648c19e26b72f1a50e28821aa">SmolRTSP_NalUnit_new</a> (SmolRTSP_NalHeader h, U8Slice99 payload) SMOLRTSP_PRIV_MUST_USE</td></tr>
-<tr class="memdesc:a861ebf0648c19e26b72f1a50e28821aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a NAL unit from a header and payload data. <br /></td></tr>
-<tr class="separator:a861ebf0648c19e26b72f1a50e28821aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a71d98d36ad5c71ed226cdbf47a31aa74"><td class="memItemLeft" align="right" valign="top"><a id="a71d98d36ad5c71ed226cdbf47a31aa74"></a>
-SmolRTSP_NalHeader&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_8h.html#a71d98d36ad5c71ed226cdbf47a31aa74">SmolRTSP_NalUnit_header</a> (SmolRTSP_NalUnit self) SMOLRTSP_PRIV_MUST_USE</td></tr>
-<tr class="memdesc:a71d98d36ad5c71ed226cdbf47a31aa74"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the header of <code>self</code>. <br /></td></tr>
-<tr class="separator:a71d98d36ad5c71ed226cdbf47a31aa74"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a12f30ab39fe3fb5eb44146ac8088c35e"><td class="memItemLeft" align="right" valign="top"><a id="a12f30ab39fe3fb5eb44146ac8088c35e"></a>
-U8Slice99&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_8h.html#a12f30ab39fe3fb5eb44146ac8088c35e">SmolRTSP_NalUnit_payload</a> (SmolRTSP_NalUnit self) SMOLRTSP_PRIV_MUST_USE</td></tr>
-<tr class="memdesc:a12f30ab39fe3fb5eb44146ac8088c35e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the payload data of <code>self</code>. <br /></td></tr>
-<tr class="separator:a12f30ab39fe3fb5eb44146ac8088c35e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab41e0f64ca1e97dba2f5b45eb5377807"><td class="memItemLeft" align="right" valign="top"><a id="ab41e0f64ca1e97dba2f5b45eb5377807"></a>
 uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_8h.html#ab41e0f64ca1e97dba2f5b45eb5377807">smolrtsp_nal_fu_header</a> (bool is_first_fragment, bool is_last_fragment, uint8_t unit_type) SMOLRTSP_PRIV_MUST_USE</td></tr>
 <tr class="memdesc:ab41e0f64ca1e97dba2f5b45eb5377807"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a generic NAL FU header. <br /></td></tr>
@@ -205,49 +190,9 @@ uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="n
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A generic <a href="https://en.wikipedia.org/wiki/Network_Abstraction_Layer">NAL (Network Abstraction Layer)</a> representation. </p>
-</div><h2 class="groupheader">Macro Definition Documentation</h2>
-<a id="a95b2f9c004672c44c5a96a97ab245aa2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a95b2f9c004672c44c5a96a97ab245aa2">&#9670;&nbsp;</a></span>SMOLRTSP_NAL_UNIT_DESTRUCT</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define SMOLRTSP_NAL_UNIT_DESTRUCT</td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">self, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">h, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">payload&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">    SmolRTSP_NalHeader h = <a class="code" href="nal_8h.html#a71d98d36ad5c71ed226cdbf47a31aa74">SmolRTSP_NalUnit_header</a>(<span class="keyword">self</span>);                      \</div>
-<div class="line">    U8Slice99 payload = <a class="code" href="nal_8h.html#a12f30ab39fe3fb5eb44146ac8088c35e">SmolRTSP_NalUnit_payload</a>(<span class="keyword">self</span>)</div>
-</div><!-- fragment -->
-<p>Destructs <code>self</code> into its header and its payload data. </p>
-<p>This macro expands to two variables named <code>h</code> and <code>payload</code> and initialises them to <code>SmolRTSP_NalUnit_header(self)</code> and <code>SmolRTSP_NalUnit_payload(self)</code>, respectively. </p>
-
-</div>
-</div>
-<h2 class="groupheader">Function Documentation</h2>
+</div><h2 class="groupheader">Function Documentation</h2>
 <a id="af7758ff65ddd510dc4dc87339ad171a5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af7758ff65ddd510dc4dc87339ad171a5">&#9670;&nbsp;</a></span>datatype99() <span class="overload">[1/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#af7758ff65ddd510dc4dc87339ad171a5">&#9670;&nbsp;</a></span>datatype99()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -279,43 +224,6 @@ uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="n
 </div><div class="memdoc">
 
 <p>A generic NAL header (either H.264 or H.265). </p>
-<p>See <a href="https://github.com/Hirrolot/datatype99">Datatype99</a> for the macro usage. </p>
-
-</div>
-</div>
-<a id="a3d39ea1fd021a9751b0cc943f6bf2c08"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3d39ea1fd021a9751b0cc943f6bf2c08">&#9670;&nbsp;</a></span>datatype99() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">datatype99 </td>
-          <td>(</td>
-          <td class="paramtype">SmolRTSP_NalUnit&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">(SmolRTSP_NalUnit_H264, <a class="el" href="structSmolRTSP__H264NalUnit.html">SmolRTSP_H264NalUnit</a>)&#160;</td>
-          <td class="paramname">, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">(SmolRTSP_NalUnit_H265, <a class="el" href="structSmolRTSP__H265NalUnit.html">SmolRTSP_H265NalUnit</a>)&#160;</td>
-          <td class="paramname">&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>A generic NAL unit (either H.264 or H.265). </p>
 <p>See <a href="https://github.com/Hirrolot/datatype99">Datatype99</a> for the macro usage. </p>
 
 </div>
@@ -457,8 +365,6 @@ H.265 Fragmentation Units (FUs): <a href="https://datatracker.ietf.org/doc/html/
 </div>
 </div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="anal_8h_html_a12f30ab39fe3fb5eb44146ac8088c35e"><div class="ttname"><a href="nal_8h.html#a12f30ab39fe3fb5eb44146ac8088c35e">SmolRTSP_NalUnit_payload</a></div><div class="ttdeci">U8Slice99 SmolRTSP_NalUnit_payload(SmolRTSP_NalUnit self) SMOLRTSP_PRIV_MUST_USE</div><div class="ttdoc">Returns the payload data of self.</div></div>
-<div class="ttc" id="anal_8h_html_a71d98d36ad5c71ed226cdbf47a31aa74"><div class="ttname"><a href="nal_8h.html#a71d98d36ad5c71ed226cdbf47a31aa74">SmolRTSP_NalUnit_header</a></div><div class="ttdeci">SmolRTSP_NalHeader SmolRTSP_NalUnit_header(SmolRTSP_NalUnit self) SMOLRTSP_PRIV_MUST_USE</div><div class="ttdoc">Returns the header of self.</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

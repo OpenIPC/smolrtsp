@@ -1,8 +1,7 @@
 var nal_8h =
 [
-    [ "SMOLRTSP_NAL_UNIT_DESTRUCT", "nal_8h.html#a95b2f9c004672c44c5a96a97ab245aa2", null ],
+    [ "SmolRTSP_NalUnit", "structSmolRTSP__NalUnit.html", "structSmolRTSP__NalUnit" ],
     [ "datatype99", "nal_8h.html#af7758ff65ddd510dc4dc87339ad171a5", null ],
-    [ "datatype99", "nal_8h.html#a3d39ea1fd021a9751b0cc943f6bf2c08", null ],
     [ "smolrtsp_nal_fu_header", "nal_8h.html#ab41e0f64ca1e97dba2f5b45eb5377807", null ],
     [ "smolrtsp_nal_test_start_code", "nal_8h.html#a39ec553582653a83291df3395e1f21cb", null ],
     [ "SmolRTSP_NalHeader_clock_rate_kHz", "nal_8h.html#a3436245761d724e67e34c34dabeed1f3", null ],
@@ -15,8 +14,5 @@ var nal_8h =
     [ "SmolRTSP_NalHeader_serialize", "nal_8h.html#aa1f6332cde359958cdf82c011e8d8468", null ],
     [ "SmolRTSP_NalHeader_size", "nal_8h.html#a6c50f64ab7a98b9a5bd9d4a84ffa769c", null ],
     [ "SmolRTSP_NalHeader_unit_type", "nal_8h.html#a075b5b1ff934b906c70980a8375309ca", null ],
-    [ "SmolRTSP_NalHeader_write_fu_header", "nal_8h.html#a8b33bf4305ee0b6bd1d408173f11bd4c", null ],
-    [ "SmolRTSP_NalUnit_header", "nal_8h.html#a71d98d36ad5c71ed226cdbf47a31aa74", null ],
-    [ "SmolRTSP_NalUnit_new", "nal_8h.html#a861ebf0648c19e26b72f1a50e28821aa", null ],
-    [ "SmolRTSP_NalUnit_payload", "nal_8h.html#a12f30ab39fe3fb5eb44146ac8088c35e", null ]
+    [ "SmolRTSP_NalHeader_write_fu_header", "nal_8h.html#a8b33bf4305ee0b6bd1d408173f11bd4c", null ]
 ];

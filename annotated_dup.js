@@ -7,6 +7,7 @@ var annotated_dup =
     [ "SmolRTSP_Header", "structSmolRTSP__Header.html", "structSmolRTSP__Header" ],
     [ "SmolRTSP_HeaderMap", "structSmolRTSP__HeaderMap.html", "structSmolRTSP__HeaderMap" ],
     [ "SmolRTSP_InterleavedDataHeader", "structSmolRTSP__InterleavedDataHeader.html", "structSmolRTSP__InterleavedDataHeader" ],
+    [ "SmolRTSP_NalUnit", "structSmolRTSP__NalUnit.html", "structSmolRTSP__NalUnit" ],
     [ "SmolRTSP_Request", "structSmolRTSP__Request.html", "structSmolRTSP__Request" ],
     [ "SmolRTSP_RequestLine", "structSmolRTSP__RequestLine.html", "structSmolRTSP__RequestLine" ],
     [ "SmolRTSP_Response", "structSmolRTSP__Response.html", "structSmolRTSP__Response" ],
