@@ -24,12 +24,16 @@ typedef struct SmolRTSP_RtpTransport SmolRTSP_RtpTransport;
 
 /**
  * Creates a new RTP transport from the underlying level-4 protocol @p t.
+ *
+ * @pre `t.self && t.vptr`
  */
 SmolRTSP_RtpTransport *
 SmolRTSP_RtpTransport_new(SmolRTSP_Transport t, uint8_t rtsp_stream_id) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Sends an RTP packet.
+ *
+ * @pre `self != NULL`
  *
  * @return -1 if an I/O error occurred and sets `errno` appropriately, 0 on success.
  */

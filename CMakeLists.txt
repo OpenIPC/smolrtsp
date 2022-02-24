@@ -45,6 +45,7 @@ set(SMOLRTSP_SOURCES
     include/smolrtsp/util.h
     include/smolrtsp/transport.h
     include/smolrtsp/rtp_transport.h
+    include/smolrtsp/nal_transport.h
     include/smolrtsp/droppable.h
     include/smolrtsp/io_vec.h
     src/types/error.c
@@ -75,6 +76,7 @@ set(SMOLRTSP_SOURCES
     src/transport/tcp.c
     src/transport/udp.c
     src/rtp_transport.c
+    src/nal_transport.c
     src/io_vec.c
     src/macros.h
 )

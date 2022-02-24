@@ -29,7 +29,7 @@ SmolRTSP_RtpTransport *SmolRTSP_RtpTransport_new(SmolRTSP_Transport t, uint8_t r
     return self;
 }
 
-void SmolRTSP_RtpTransport_drop(VSelf) {
+static void SmolRTSP_RtpTransport_drop(VSelf) {
     VSELF(SmolRTSP_RtpTransport);
     assert(self);
 

@@ -9,8 +9,8 @@
  * A small, portable, extensible RTSP 1.0 implementation in C99.<br>
  *
  * See the <a href="files.html">file list</a> for the available abstractions. See <a
- * href="https://github.com/Hirrolot/smolrtsp">our official GitHub repository</a> for a high-level
- * overview.
+ * href="https://github.com/Hirrolot/smolrtsp">our official GitHub repository</a> for a
+ * high-level overview.
  */
 
 #pragma once
@@ -35,6 +35,7 @@
 
 #include <smolrtsp/droppable.h>
 #include <smolrtsp/io_vec.h>
+#include <smolrtsp/nal_transport.h>
 #include <smolrtsp/rtp_transport.h>
 #include <smolrtsp/transport.h>
 #include <smolrtsp/util.h>
