@@ -5,7 +5,8 @@
 #include <assert.h>
 
 SmolRTSP_ParseResult SmolRTSP_MessageBody_parse(
-    SmolRTSP_MessageBody *restrict self, CharSlice99 input, size_t content_length) {
+    SmolRTSP_MessageBody *restrict self, CharSlice99 input,
+    size_t content_length) {
     assert(self);
 
     if (input.len < content_length) {
@@ -23,6 +24,7 @@ SmolRTSP_ParseResult SmolRTSP_MessageBody_parse(
     return SmolRTSP_ParseResult_complete(content_length);
 }
 
-bool SmolRTSP_MessageBody_eq(SmolRTSP_MessageBody lhs, SmolRTSP_MessageBody rhs) {
+bool SmolRTSP_MessageBody_eq(
+    SmolRTSP_MessageBody lhs, SmolRTSP_MessageBody rhs) {
     return CharSlice99_primitive_eq(lhs, rhs);
 }

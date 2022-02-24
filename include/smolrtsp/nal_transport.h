@@ -38,7 +38,8 @@ SmolRTSP_NalTransport_new(SmolRTSP_RtpTransport *t) SMOLRTSP_PRIV_MUST_USE;
  *
  * @pre `self != NULL`
  *
- * @return -1 if an I/O error occurred and sets `errno` appropriately, 0 on success.
+ * @return -1 if an I/O error occurred and sets `errno` appropriately, 0 on
+ * success.
  */
 int SmolRTSP_NalTransport_send_packet(
     SmolRTSP_NalTransport *self, uint64_t timestamp_us, uint8_t payload_type,
@@ -47,6 +48,7 @@ int SmolRTSP_NalTransport_send_packet(
 /**
  * Implements #SmolRTSP_Droppable_IFACE for #SmolRTSP_NalTransport.
  *
- * See [Interface99](https://github.com/Hirrolot/interface99) for the macro usage.
+ * See [Interface99](https://github.com/Hirrolot/interface99) for the macro
+ * usage.
  */
 declImplExtern99(SmolRTSP_Droppable, SmolRTSP_NalTransport);

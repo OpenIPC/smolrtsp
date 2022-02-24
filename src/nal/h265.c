@@ -4,7 +4,8 @@
 
 #include <arpa/inet.h>
 
-SmolRTSP_H265NalHeader SmolRTSP_H265NalHeader_parse(uint8_t bytes[restrict static 2]) {
+SmolRTSP_H265NalHeader
+SmolRTSP_H265NalHeader_parse(uint8_t bytes[restrict static 2]) {
     SmolRTSP_H265NalHeader header;
 
     header.forbidden_zero_bit = (bytes[0] & 0b10000000) >> 7;
@@ -52,14 +53,15 @@ bool SmolRTSP_H265NalHeader_is_coded_slice_idr(SmolRTSP_H265NalHeader self) {
     return SMOLRTSP_H265_NAL_UNIT_IDR_W_RADL == self.unit_type;
 }
 
-bool SmolRTSP_H265NalHeader_is_coded_slice_non_idr(SmolRTSP_H265NalHeader self) {
+bool SmolRTSP_H265NalHeader_is_coded_slice_non_idr(
+    SmolRTSP_H265NalHeader self) {
     return SMOLRTSP_H265_NAL_UNIT_IDR_N_LP == self.unit_type ||
            SMOLRTSP_H265_NAL_UNIT_TRAIL_R == self.unit_type;
 }
 
 void SmolRTSP_H265NalHeader_write_fu_header(
-    SmolRTSP_H265NalHeader self, uint8_t buffer[restrict], bool is_first_fragment,
-    bool is_last_fragment) {
+    SmolRTSP_H265NalHeader self, uint8_t buffer[restrict],
+    bool is_first_fragment, bool is_last_fragment) {
     const uint16_t payload_hdr =
         SmolRTSP_H265NalHeader_serialize((SmolRTSP_H265NalHeader){
             .forbidden_zero_bit = self.forbidden_zero_bit,
@@ -68,8 +70,8 @@ void SmolRTSP_H265NalHeader_write_fu_header(
             .nuh_temporal_id_plus1 = self.nuh_temporal_id_plus1,
         });
 
-    const uint8_t fu_header =
-        smolrtsp_nal_fu_header(is_first_fragment, is_last_fragment, self.unit_type);
+    const uint8_t fu_header = smolrtsp_nal_fu_header(
+        is_first_fragment, is_last_fragment, self.unit_type);
 
     buffer = SLICE99_APPEND(buffer, payload_hdr);
     buffer = SLICE99_APPEND(buffer, fu_header);

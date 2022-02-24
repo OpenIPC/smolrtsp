@@ -7,7 +7,8 @@
 #include <assert.h>
 #include <string.h>
 
-ssize_t SmolRTSP_RequestLine_serialize(SmolRTSP_RequestLine self, SmolRTSP_Writer w) {
+ssize_t
+SmolRTSP_RequestLine_serialize(SmolRTSP_RequestLine self, SmolRTSP_Writer w) {
     assert(w.self && w.vptr);
 
     ssize_t result = 0;
@@ -22,8 +23,8 @@ ssize_t SmolRTSP_RequestLine_serialize(SmolRTSP_RequestLine self, SmolRTSP_Write
     return result;
 }
 
-SmolRTSP_ParseResult
-SmolRTSP_RequestLine_parse(SmolRTSP_RequestLine *restrict self, CharSlice99 input) {
+SmolRTSP_ParseResult SmolRTSP_RequestLine_parse(
+    SmolRTSP_RequestLine *restrict self, CharSlice99 input) {
     assert(self);
 
     const CharSlice99 backup = input;
@@ -36,7 +37,8 @@ SmolRTSP_RequestLine_parse(SmolRTSP_RequestLine *restrict self, CharSlice99 inpu
     return SmolRTSP_ParseResult_complete(input.ptr - backup.ptr);
 }
 
-bool SmolRTSP_RequestLine_eq(SmolRTSP_RequestLine lhs, SmolRTSP_RequestLine rhs) {
+bool SmolRTSP_RequestLine_eq(
+    SmolRTSP_RequestLine lhs, SmolRTSP_RequestLine rhs) {
     return CharSlice99_primitive_eq(lhs.method, rhs.method) &&
            CharSlice99_primitive_eq(lhs.uri, rhs.uri) &&
            SmolRTSP_RtspVersion_eq(lhs.version, rhs.version);

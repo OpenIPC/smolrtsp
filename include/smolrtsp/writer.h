@@ -19,45 +19,46 @@
 /**
  * The user-supplied data writer interface.
  */
-#define SmolRTSP_Writer_IFACE                                                            \
-                                                                                         \
-    /*                                                                                   \
-     * Writes @p data into itself.                                                       \
-     *                                                                                   \
-     * @param[in] data The slice of character data to write.                             \
-     *                                                                                   \
-     * @return The number of bytes written or a negative value on error.                 \
-     */                                                                                  \
-    vfunc99(ssize_t, write, VSelf99, CharSlice99 data)                                   \
-                                                                                         \
-    /*                                                                                   \
-     * Writes a formatted string into itself.                                            \
-     *                                                                                   \
-     * @param[in] fmt The `printf`-like format string.                                   \
-     *                                                                                   \
-     * @return The number of bytes written or a negative value on error.                 \
-     */                                                                                  \
-    vfunc99(int, writef, VSelf99, const char fmt[restrict], ...)                         \
-                                                                                         \
-    /*                                                                                   \
-     * The same as `printf` but accepts `va_list`.                                       \
-     */                                                                                  \
+#define SmolRTSP_Writer_IFACE                                                  \
+                                                                               \
+    /*                                                                         \
+     * Writes @p data into itself.                                             \
+     *                                                                         \
+     * @param[in] data The slice of character data to write.                   \
+     *                                                                         \
+     * @return The number of bytes written or a negative value on error.       \
+     */                                                                        \
+    vfunc99(ssize_t, write, VSelf99, CharSlice99 data)                         \
+                                                                               \
+    /*                                                                         \
+     * Writes a formatted string into itself.                                  \
+     *                                                                         \
+     * @param[in] fmt The `printf`-like format string.                         \
+     *                                                                         \
+     * @return The number of bytes written or a negative value on error.       \
+     */                                                                        \
+    vfunc99(int, writef, VSelf99, const char fmt[restrict], ...)               \
+                                                                               \
+    /*                                                                         \
+     * The same as `printf` but accepts `va_list`.                             \
+     */                                                                        \
     vfunc99(int, vwritef, VSelf99, const char fmt[restrict], va_list ap)
 
 /**
  * Defines the `SmolRTSP_Writer` interface.
  *
- * See [Interface99](https://github.com/Hirrolot/interface99) for the macro usage.
+ * See [Interface99](https://github.com/Hirrolot/interface99) for the macro
+ * usage.
  */
 interface99(SmolRTSP_Writer);
 
 /**
- * The same as #smolrtsp_write_slices but calculates an array length from variadic
- * arguments (the syntactically separated items of the array).
+ * The same as #smolrtsp_write_slices but calculates an array length from
+ * variadic arguments (the syntactically separated items of the array).
  */
-#define SMOLRTSP_WRITE_SLICES(w, ...)                                                    \
-    smolrtsp_write_slices(                                                               \
-        w, SLICE99_ARRAY_LEN((const CharSlice99[])__VA_ARGS__),                          \
+#define SMOLRTSP_WRITE_SLICES(w, ...)                                          \
+    smolrtsp_write_slices(                                                     \
+        w, SLICE99_ARRAY_LEN((const CharSlice99[])__VA_ARGS__),                \
         (const CharSlice99[])__VA_ARGS__)
 
 /**
@@ -92,6 +93,7 @@ SmolRTSP_Writer smolrtsp_file_writer(FILE *stream) SMOLRTSP_PRIV_MUST_USE;
 /**
  * A writer that invokes `strncat` on a provided buffer.
  *
- * @pre @p buffer shall be capable of holding all characters that will be written into it.
+ * @pre @p buffer shall be capable of holding all characters that will be
+ * written into it.
  */
 SmolRTSP_Writer smolrtsp_string_writer(char *buffer) SMOLRTSP_PRIV_MUST_USE;

@@ -7,14 +7,15 @@
 #include <stdio.h>
 #include <string.h>
 
-ssize_t SmolRTSP_RtspVersion_serialize(SmolRTSP_RtspVersion self, SmolRTSP_Writer w) {
+ssize_t
+SmolRTSP_RtspVersion_serialize(SmolRTSP_RtspVersion self, SmolRTSP_Writer w) {
     assert(w.self && w.vptr);
 
     return VCALL(w, writef, "RTSP/%" PRIu8 ".%" PRIu8, self.major, self.minor);
 }
 
-SmolRTSP_ParseResult
-SmolRTSP_RtspVersion_parse(SmolRTSP_RtspVersion *restrict self, CharSlice99 input) {
+SmolRTSP_ParseResult SmolRTSP_RtspVersion_parse(
+    SmolRTSP_RtspVersion *restrict self, CharSlice99 input) {
     assert(self);
 
     const CharSlice99 backup = input;
@@ -52,6 +53,7 @@ SmolRTSP_RtspVersion_parse(SmolRTSP_RtspVersion *restrict self, CharSlice99 inpu
     return SmolRTSP_ParseResult_complete(input.ptr - backup.ptr);
 }
 
-bool SmolRTSP_RtspVersion_eq(SmolRTSP_RtspVersion lhs, SmolRTSP_RtspVersion rhs) {
+bool SmolRTSP_RtspVersion_eq(
+    SmolRTSP_RtspVersion lhs, SmolRTSP_RtspVersion rhs) {
     return lhs.major == rhs.major && lhs.minor == rhs.minor;
 }

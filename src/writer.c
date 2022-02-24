@@ -5,7 +5,8 @@
 #include <assert.h>
 
 ssize_t smolrtsp_write_slices(
-    SmolRTSP_Writer w, size_t len, const CharSlice99 data[restrict static len]) {
+    SmolRTSP_Writer w, size_t len,
+    const CharSlice99 data[restrict static len]) {
     assert(w.self && w.vptr);
 
     ssize_t result = 0, ret = 0;

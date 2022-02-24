@@ -3,7 +3,8 @@
 #include <greatest.h>
 
 TEST parse_message_body(void) {
-    const CharSlice99 input = CharSlice99_from_str(" 012345 ~ abc(^*%  D#NIN#3   ");
+    const CharSlice99 input =
+        CharSlice99_from_str(" 012345 ~ abc(^*%  D#NIN#3   ");
     const size_t content_length = input.len;
 
     SmolRTSP_MessageBody result;

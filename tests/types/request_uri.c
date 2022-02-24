@@ -6,7 +6,8 @@
 DEF_TEST_PARSE(SmolRTSP_RequestUri)
 
 TEST parse_request_uri(void) {
-    TEST_PARSE("http://example.com ", CharSlice99_from_str("http://example.com"));
+    TEST_PARSE(
+        "http://example.com ", CharSlice99_from_str("http://example.com"));
 
     PASS();
 }

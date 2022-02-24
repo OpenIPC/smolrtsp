@@ -32,8 +32,8 @@ typedef enum {
 } SmolRTSP_LowerTransport;
 
 /**
- * Converts @p self to a string representation (`"TCP"` for #SmolRTSP_LowerTransport_TCP
- * and `"UDP"` for #SmolRTSP_LowerTransport_UDP).
+ * Converts @p self to a string representation (`"TCP"` for
+ * #SmolRTSP_LowerTransport_TCP and `"UDP"` for #SmolRTSP_LowerTransport_UDP).
  */
 const char *SmolRTSP_LowerTransport_str(SmolRTSP_LowerTransport self);
 
@@ -72,14 +72,15 @@ int SmolRTSP_parse_client_port(
  * @pre `rtp_chn_id != NULL`
  * @pre `rtcp_chn_id != NULL`
  *
- * @note If an RTCP channel ID is not specified, @p rtcp_chn_id will be set to -1.
+ * @note If an RTCP channel ID is not specified, @p rtcp_chn_id will be set to
+ * -1.
  */
 int SmolRTSP_parse_interleaved_chn_id(
     int *restrict rtp_chn_id, int *restrict rtcp_chn_id, CharSlice99 value);
 
 /**
- * An interleaved binary data header used to mix RTSP requests/responses with streaming
- * data in a single TCP connection.
+ * An interleaved binary data header used to mix RTSP requests/responses with
+ * streaming data in a single TCP connection.
  */
 typedef struct {
     /**
@@ -96,9 +97,11 @@ typedef struct {
 /**
  * Returns #SmolRTSP_InterleavedDataHeader represented as `uint32_t`.
  */
-uint32_t SmolRTSP_InterleavedDataHeader_as_u32(SmolRTSP_InterleavedDataHeader self);
+uint32_t
+SmolRTSP_InterleavedDataHeader_as_u32(SmolRTSP_InterleavedDataHeader self);
 
 /**
  * Returns #SmolRTSP_InterleavedDataHeader from `uint32_t`.
  */
-SmolRTSP_InterleavedDataHeader SmolRTSP_InterleavedDataHeader_from_u32(uint32_t data);
+SmolRTSP_InterleavedDataHeader
+SmolRTSP_InterleavedDataHeader_from_u32(uint32_t data);

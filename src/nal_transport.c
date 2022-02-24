@@ -53,8 +53,9 @@ int SmolRTSP_NalTransport_send_packet(
 
     SMOLRTSP_NAL_UNIT_DESTRUCT(nal_unit, h, payload);
 
-    const size_t max_packet_size =
-        MATCHES(h, SmolRTSP_NalHeader_H264) ? MAX_H264_PACKET_SIZE : MAX_H265_PACKET_SIZE;
+    const size_t max_packet_size = MATCHES(h, SmolRTSP_NalHeader_H264)
+                                       ? MAX_H264_PACKET_SIZE
+                                       : MAX_H265_PACKET_SIZE;
 
     if (payload.len < max_packet_size) {
         const bool marker = SmolRTSP_NalHeader_is_coded_slice_idr(h) ||
@@ -86,16 +87,18 @@ static int send_fragmentized_nal_data(
 
     for (size_t packet_idx = 0; packet_idx < packets_count; packet_idx++) {
         const bool is_first_fragment = 0 == packet_idx,
-                   is_last_fragment = 0 == rem && (packets_count - 1 == packet_idx);
+                   is_last_fragment =
+                       0 == rem && (packets_count - 1 == packet_idx);
 
         const U8Slice99 fu_data = U8Slice99_sub(
             payload, packet_idx * max_packet_size,
-            is_last_fragment ? payload.len : (packet_idx + 1) * max_packet_size);
+            is_last_fragment ? payload.len
+                             : (packet_idx + 1) * max_packet_size);
         const SmolRTSP_NalUnit fu = SmolRTSP_NalUnit_new(h, fu_data);
 
         if (send_fu(
-                t, timestamp_us, payload_type, fu, is_first_fragment, is_last_fragment) ==
-            -1) {
+                t, timestamp_us, payload_type, fu, is_first_fragment,
+                is_last_fragment) == -1) {
             return -1;
         }
     }
@@ -104,11 +107,12 @@ static int send_fragmentized_nal_data(
         const U8Slice99 fu_data =
             U8Slice99_advance(payload, packets_count * max_packet_size);
         const SmolRTSP_NalUnit fu = SmolRTSP_NalUnit_new(h, fu_data);
-        const bool is_first_fragment = 0 == packets_count, is_last_fragment = true;
+        const bool is_first_fragment = 0 == packets_count,
+                   is_last_fragment = true;
 
         if (send_fu(
-                t, timestamp_us, payload_type, fu, is_first_fragment, is_last_fragment) ==
-            -1) {
+                t, timestamp_us, payload_type, fu, is_first_fragment,
+                is_last_fragment) == -1) {
             return -1;
         }
     }
@@ -130,6 +134,7 @@ static int send_fu(
     const bool marker = is_last_fragment;
 
     return SmolRTSP_RtpTransport_send_packet(
-        t, timestamp_us, marker, payload_type, SmolRTSP_NalHeader_clock_rate_kHz(h),
-        fu_header, SmolRTSP_NalUnit_payload(fu));
+        t, timestamp_us, marker, payload_type,
+        SmolRTSP_NalHeader_clock_rate_kHz(h), fu_header,
+        SmolRTSP_NalUnit_payload(fu));
 }

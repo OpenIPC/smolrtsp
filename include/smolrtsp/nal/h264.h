@@ -1,6 +1,7 @@
 /**
  * @file
- * @brief [H.264](https://en.wikipedia.org/wiki/Advanced_Video_Coding) NAL representation.
+ * @brief [H.264](https://en.wikipedia.org/wiki/Advanced_Video_Coding) NAL
+ * representation.
  *
  * @see H.264 spec: <https://www.itu.int/rec/T-REC-H.264>.
  */
@@ -24,7 +25,7 @@
  *
  * @see <https://datatracker.ietf.org/doc/html/rfc6184#section-5.8>
  */
-#define SMOLRTSP_H264_FU_HEADER_SIZE                                                     \
+#define SMOLRTSP_H264_FU_HEADER_SIZE                                           \
     (/* fu-identifier */ sizeof(uint8_t) + /* fu-header */ sizeof(uint8_t))
 
 /**
@@ -76,23 +77,26 @@ SmolRTSP_H264NalHeader_parse(uint8_t byte_header) SMOLRTSP_PRIV_MUST_USE;
 /**
  * Converts @p self to a single octet representation.
  */
-uint8_t
-SmolRTSP_H264NalHeader_serialize(SmolRTSP_H264NalHeader self) SMOLRTSP_PRIV_MUST_USE;
+uint8_t SmolRTSP_H264NalHeader_serialize(SmolRTSP_H264NalHeader self)
+    SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Checks whether @p self is VPS.
  */
-bool SmolRTSP_H264NalHeader_is_vps(SmolRTSP_H264NalHeader self) SMOLRTSP_PRIV_MUST_USE;
+bool SmolRTSP_H264NalHeader_is_vps(SmolRTSP_H264NalHeader self)
+    SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Checks whether @p self is SPS.
  */
-bool SmolRTSP_H264NalHeader_is_sps(SmolRTSP_H264NalHeader self) SMOLRTSP_PRIV_MUST_USE;
+bool SmolRTSP_H264NalHeader_is_sps(SmolRTSP_H264NalHeader self)
+    SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Checks whether @p self is PPS.
  */
-bool SmolRTSP_H264NalHeader_is_pps(SmolRTSP_H264NalHeader self) SMOLRTSP_PRIV_MUST_USE;
+bool SmolRTSP_H264NalHeader_is_pps(SmolRTSP_H264NalHeader self)
+    SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Checks whether @p self is a coded slice IDR.
@@ -110,16 +114,16 @@ bool SmolRTSP_H264NalHeader_is_coded_slice_non_idr(SmolRTSP_H264NalHeader self)
  * Writes a FU header of @p self to @p buffer.
  *
  * @param[in] self The header to write.
- * @param[out] buffer The memory area capable of storing #SMOLRTSP_H264_FU_HEADER_SIZE
- * bytes.
+ * @param[out] buffer The memory area capable of storing
+ * #SMOLRTSP_H264_FU_HEADER_SIZE bytes.
  * @param[in] is_first_fragment The indication of a start of the FU.
  * @param[in] is_last_fragment The indication of an end of the FU.
  *
  * @see <https://datatracker.ietf.org/doc/html/rfc6184#section-5.8>
  */
 void SmolRTSP_H264NalHeader_write_fu_header(
-    SmolRTSP_H264NalHeader self, uint8_t buffer[restrict], bool is_first_fragment,
-    bool is_last_fragment);
+    SmolRTSP_H264NalHeader self, uint8_t buffer[restrict],
+    bool is_first_fragment, bool is_last_fragment);
 
 /**
  * Unspecified.
@@ -217,6 +221,7 @@ void SmolRTSP_H264NalHeader_write_fu_header(
 #define SMOLRTSP_H264_NAL_UNIT_CODED_SLICE_EXT 20
 
 /**
- * Coded slice extension for a depth view component or a 3D-AVC texture view component.
+ * Coded slice extension for a depth view component or a 3D-AVC texture view
+ * component.
  */
 #define SMOLRTSP_H264_NAL_UNIT_CODED_SLICE_EXT_DEPTH_VIEW 21

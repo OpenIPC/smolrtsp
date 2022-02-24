@@ -10,7 +10,8 @@ TEST io_vec_len(void) {
     };
 
     ASSERT_EQ(
-        SmolRTSP_IoVecSlice_len((SmolRTSP_IoVecSlice)Slice99_typed_from_array(bufs)),
+        SmolRTSP_IoVecSlice_len(
+            (SmolRTSP_IoVecSlice)Slice99_typed_from_array(bufs)),
         5 + 1 + 0);
 
     PASS();

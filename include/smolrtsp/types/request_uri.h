@@ -24,7 +24,8 @@ typedef CharSlice99 SmolRTSP_RequestUri;
  * @pre `self != NULL`
  */
 SmolRTSP_ParseResult SmolRTSP_RequestUri_parse(
-    SmolRTSP_RequestUri *restrict self, CharSlice99 input) SMOLRTSP_PRIV_MUST_USE;
+    SmolRTSP_RequestUri *restrict self,
+    CharSlice99 input) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Tests @p lhs and @p rhs for equality.

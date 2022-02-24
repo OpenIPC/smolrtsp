@@ -21,10 +21,10 @@
 /**
  * Creates new #SmolRTSP_HeaderMap from an array expression of #SmolRTSP_Header.
  */
-#define SmolRTSP_HeaderMap_from_array(...)                                               \
-    ((SmolRTSP_HeaderMap){                                                               \
-        .headers = __VA_ARGS__,                                                          \
-        .len = SLICE99_ARRAY_LEN((SmolRTSP_Header[])__VA_ARGS__),                        \
+#define SmolRTSP_HeaderMap_from_array(...)                                     \
+    ((SmolRTSP_HeaderMap){                                                     \
+        .headers = __VA_ARGS__,                                                \
+        .len = SLICE99_ARRAY_LEN((SmolRTSP_Header[])__VA_ARGS__),              \
     })
 
 /**
@@ -55,14 +55,14 @@ SmolRTSP_HeaderMap SmolRTSP_HeaderMap_empty(void) SMOLRTSP_PRIV_MUST_USE;
 /**
  * Finds a value associated with @p key within @p self.
  *
- * If @p key has been found within @p self, this function assigns @p value to this key (no
- * copying occurs) and returns `true`. Otherwise, returns `false` and @p value remains
- * unchanged.
+ * If @p key has been found within @p self, this function assigns @p value to
+ * this key (no copying occurs) and returns `true`. Otherwise, returns `false`
+ * and @p value remains unchanged.
  *
  * @param[in] self The header map to be searched for @p key.
  * @param[in] key The key to be searched in @p self.
- * @param[out] value The header value to be assigned, if found. If `NULL`, no assignment
- * is performed.
+ * @param[out] value The header value to be assigned, if found. If `NULL`, no
+ * assignment is performed.
  */
 bool SmolRTSP_HeaderMap_find(
     SmolRTSP_HeaderMap self, CharSlice99 key,
@@ -93,7 +93,8 @@ ssize_t SmolRTSP_HeaderMap_serialize(SmolRTSP_HeaderMap self, SmolRTSP_Writer w)
  * @pre `self != NULL`
  */
 SmolRTSP_ParseResult SmolRTSP_HeaderMap_parse(
-    SmolRTSP_HeaderMap *restrict self, CharSlice99 input) SMOLRTSP_PRIV_MUST_USE;
+    SmolRTSP_HeaderMap *restrict self,
+    CharSlice99 input) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Tests @p lhs and @p rhs for equality.
@@ -102,7 +103,8 @@ bool SmolRTSP_HeaderMap_eq(SmolRTSP_HeaderMap lhs, SmolRTSP_HeaderMap rhs)
     SMOLRTSP_PRIV_MUST_USE;
 
 /**
- * Tests whether @p self is full (no more space left for an additional header) or not.
+ * Tests whether @p self is full (no more space left for an additional header)
+ * or not.
  *
  * @return `true` if @p self is full, `false` otherwise
  */

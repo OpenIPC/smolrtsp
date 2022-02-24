@@ -16,16 +16,17 @@
 /**
  * A transport-level RTSP data transmitter.
  *
- * See [Interface99](https://github.com/Hirrolot/interface99) for the macro usage.
+ * See [Interface99](https://github.com/Hirrolot/interface99) for the macro
+ * usage.
  */
-#define SmolRTSP_Transport_IFACE                                                         \
-                                                                                         \
-    /*                                                                                   \
-     * Transmits a slice of I/O vectors @p bufs.                                         \
-     *                                                                                   \
-     * @return -1 if an I/O error occurred and sets `errno` appropriately, 0             \
-     * on success.                                                                       \
-     */                                                                                  \
+#define SmolRTSP_Transport_IFACE                                               \
+                                                                               \
+    /*                                                                         \
+     * Transmits a slice of I/O vectors @p bufs.                               \
+     *                                                                         \
+     * @return -1 if an I/O error occurred and sets `errno` appropriately, 0   \
+     * on success.                                                             \
+     */                                                                        \
     vfunc99(int, transmit, VSelf99, SmolRTSP_IoVecSlice bufs)
 
 #define SmolRTSP_Transport_EXTENDS (SmolRTSP_Droppable)
@@ -33,7 +34,8 @@
 /**
  * Defines the `SmolRTSP_Transport` interface.
  *
- * See [Interface99](https://github.com/Hirrolot/interface99) for the macro usage.
+ * See [Interface99](https://github.com/Hirrolot/interface99) for the macro
+ * usage.
  */
 interface99(SmolRTSP_Transport);
 
@@ -46,14 +48,15 @@ interface99(SmolRTSP_Transport);
  *
  * @pre `w.self && w.vptr`
  */
-SmolRTSP_Transport
-smolrtsp_transport_tcp(SmolRTSP_Writer w, uint8_t channel_id) SMOLRTSP_PRIV_MUST_USE;
+SmolRTSP_Transport smolrtsp_transport_tcp(SmolRTSP_Writer w, uint8_t channel_id)
+    SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Creates a new UDP transport.
  *
- * Strictly speaking, it can handle any datagram-oriented protocol, not necessarily UDP.
- * E.g., you may use a `SOCK_SEQPACKET` socket for local communication.
+ * Strictly speaking, it can handle any datagram-oriented protocol, not
+ * necessarily UDP. E.g., you may use a `SOCK_SEQPACKET` socket for local
+ * communication.
  *
  * @param[in] fd The socket file descriptor to be provided with data.
  *

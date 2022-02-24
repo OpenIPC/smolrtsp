@@ -1,7 +1,7 @@
 /**
  * @file
- * @brief <a href="https://datatracker.ietf.org/doc/html/rfc4566">RFC 4566</a>-compliant
- * SDP implementation.
+ * @brief <a href="https://datatracker.ietf.org/doc/html/rfc4566">RFC
+ * 4566</a>-compliant SDP implementation.
  */
 
 #pragma once

@@ -50,7 +50,8 @@ TEST parse_client_port(void) {
         SmolRTSP_parse_client_port(
             &rtp_port, &rtcp_port,
             CharSlice99_from_str(
-                "RTP/AVP/UDP;unicast;client_port=3058-3059;server_port=5002-5003")),
+                "RTP/AVP/"
+                "UDP;unicast;client_port=3058-3059;server_port=5002-5003")),
         0);
     ASSERT_EQ(rtp_port, 3058);
     ASSERT_EQ(rtcp_port, 3059);
@@ -73,7 +74,8 @@ TEST parse_interleaved_chn_id(void) {
         SmolRTSP_parse_interleaved_chn_id(
             &rtp_chn_id, &rtcp_chn_id,
             CharSlice99_from_str(
-                "RTP/AVP/UDP;unicast;interleaved=3058-3059;server_port=5002-5003")),
+                "RTP/AVP/"
+                "UDP;unicast;interleaved=3058-3059;server_port=5002-5003")),
         0);
     ASSERT_EQ(rtp_chn_id, 3058);
     ASSERT_EQ(rtcp_chn_id, 3059);
@@ -82,7 +84,8 @@ TEST parse_interleaved_chn_id(void) {
 }
 
 TEST interleaved_data_as_u32(void) {
-    const SmolRTSP_InterleavedDataHeader h = {.channel_id = 123, .payload_len = 54321};
+    const SmolRTSP_InterleavedDataHeader h = {.channel_id = 123,
+                                              .payload_len = 54321};
     const uint32_t binary = SmolRTSP_InterleavedDataHeader_as_u32(h);
 
     ASSERT_EQ(binary, 0xd4317b24);

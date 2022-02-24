@@ -44,8 +44,8 @@ typedef struct {
  *
  * @pre `w.self && w.vptr`
  */
-ssize_t SmolRTSP_ResponseLine_serialize(SmolRTSP_ResponseLine self, SmolRTSP_Writer w)
-    SMOLRTSP_PRIV_MUST_USE;
+ssize_t SmolRTSP_ResponseLine_serialize(
+    SmolRTSP_ResponseLine self, SmolRTSP_Writer w) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Parses @p data to @p self.
@@ -53,10 +53,12 @@ ssize_t SmolRTSP_ResponseLine_serialize(SmolRTSP_ResponseLine self, SmolRTSP_Wri
  * @pre `self != NULL`
  */
 SmolRTSP_ParseResult SmolRTSP_ResponseLine_parse(
-    SmolRTSP_ResponseLine *restrict self, CharSlice99 input) SMOLRTSP_PRIV_MUST_USE;
+    SmolRTSP_ResponseLine *restrict self,
+    CharSlice99 input) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Tests @p lhs and @p rhs for equality.
  */
-bool SmolRTSP_ResponseLine_eq(SmolRTSP_ResponseLine lhs, SmolRTSP_ResponseLine rhs)
-    SMOLRTSP_PRIV_MUST_USE;
+bool SmolRTSP_ResponseLine_eq(
+    SmolRTSP_ResponseLine lhs,
+    SmolRTSP_ResponseLine rhs) SMOLRTSP_PRIV_MUST_USE;

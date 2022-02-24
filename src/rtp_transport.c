@@ -14,7 +14,8 @@ struct SmolRTSP_RtpTransport {
     SmolRTSP_Transport transport;
 };
 
-static uint32_t compute_timestamp(uint64_t timestamp_us, uint64_t clock_rate_kHz);
+static uint32_t
+compute_timestamp(uint64_t timestamp_us, uint64_t clock_rate_kHz);
 
 SmolRTSP_RtpTransport *
 SmolRTSP_RtpTransport_new(SmolRTSP_Transport t, uint8_t rtsp_stream_id) {
@@ -42,8 +43,9 @@ static void SmolRTSP_RtpTransport_drop(VSelf) {
 implExtern(SmolRTSP_Droppable, SmolRTSP_RtpTransport);
 
 int SmolRTSP_RtpTransport_send_packet(
-    SmolRTSP_RtpTransport *self, uint64_t timestamp_us, bool marker, uint8_t payload_ty,
-    uint32_t clock_rate, U8Slice99 data_header, U8Slice99 data) {
+    SmolRTSP_RtpTransport *self, uint64_t timestamp_us, bool marker,
+    uint8_t payload_ty, uint32_t clock_rate, U8Slice99 data_header,
+    U8Slice99 data) {
     assert(self);
 
     const SmolRTSP_RtpHeader header = {
@@ -64,7 +66,8 @@ int SmolRTSP_RtpTransport_send_packet(
 
     const size_t rtp_header_size = SmolRTSP_RtpHeader_size(header);
     const U8Slice99 rtp_header = U8Slice99_new(
-        SmolRTSP_RtpHeader_serialize(header, alloca(rtp_header_size)), rtp_header_size);
+        SmolRTSP_RtpHeader_serialize(header, alloca(rtp_header_size)),
+        rtp_header_size);
 
     const SmolRTSP_IoVecSlice bufs =
         (SmolRTSP_IoVecSlice)Slice99_typed_from_array((struct iovec[]){
@@ -81,9 +84,11 @@ int SmolRTSP_RtpTransport_send_packet(
     return ret;
 }
 
-static uint32_t compute_timestamp(uint64_t timestamp_us, uint64_t clock_rate_kHz) {
+static uint32_t
+compute_timestamp(uint64_t timestamp_us, uint64_t clock_rate_kHz) {
     const uint64_t timestamp_rem_us = (timestamp_us % 1000),
-                   timestamp_millisecs = (timestamp_us - timestamp_rem_us) / 1000;
+                   timestamp_millisecs =
+                       (timestamp_us - timestamp_rem_us) / 1000;
 
     const uint32_t timestamp =
         timestamp_millisecs * clock_rate_kHz +

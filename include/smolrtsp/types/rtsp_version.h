@@ -38,8 +38,8 @@ typedef struct {
  *
  * @pre `w.self && w.vptr`
  */
-ssize_t SmolRTSP_RtspVersion_serialize(SmolRTSP_RtspVersion self, SmolRTSP_Writer w)
-    SMOLRTSP_PRIV_MUST_USE;
+ssize_t SmolRTSP_RtspVersion_serialize(
+    SmolRTSP_RtspVersion self, SmolRTSP_Writer w) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Parses @p data to @p self.
@@ -47,7 +47,8 @@ ssize_t SmolRTSP_RtspVersion_serialize(SmolRTSP_RtspVersion self, SmolRTSP_Write
  * @pre `self != NULL`
  */
 SmolRTSP_ParseResult SmolRTSP_RtspVersion_parse(
-    SmolRTSP_RtspVersion *restrict self, CharSlice99 input) SMOLRTSP_PRIV_MUST_USE;
+    SmolRTSP_RtspVersion *restrict self,
+    CharSlice99 input) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Tests @p lhs and @p rhs for equality.

@@ -4,8 +4,8 @@
 #include <ctype.h>
 #include <string.h>
 
-SmolRTSP_ParseResult
-smolrtsp_match_until(CharSlice99 input, bool (*matcher)(char c, void *ctx), void *ctx) {
+SmolRTSP_ParseResult smolrtsp_match_until(
+    CharSlice99 input, bool (*matcher)(char c, void *ctx), void *ctx) {
     assert(matcher);
 
     size_t offset = 0;
@@ -88,7 +88,8 @@ SmolRTSP_ParseResult smolrtsp_match_char(CharSlice99 input, char c) {
     return smolrtsp_match_until(input, char_matcher, &c);
 }
 
-SmolRTSP_ParseResult smolrtsp_match_str(CharSlice99 input, const char *restrict str) {
+SmolRTSP_ParseResult
+smolrtsp_match_str(CharSlice99 input, const char *restrict str) {
     assert(str);
 
     const size_t str_len = strlen(str);
@@ -144,8 +145,8 @@ SmolRTSP_ParseResult smolrtsp_match_ident(CharSlice99 input) {
 
 SmolRTSP_ParseResult smolrtsp_match_header_name(CharSlice99 input) {
     if (!header_name_char_matcher(input.ptr[0], NULL)) {
-        return SmolRTSP_ParseResult_Failure(
-            SmolRTSP_ParseError_TypeMismatch(SmolRTSP_ParseType_HeaderName, input));
+        return SmolRTSP_ParseResult_Failure(SmolRTSP_ParseError_TypeMismatch(
+            SmolRTSP_ParseType_HeaderName, input));
     }
 
     return smolrtsp_match_until(input, header_name_char_matcher, NULL);

@@ -22,8 +22,8 @@ TEST parse_method(void) {
 
     ASSERT(SmolRTSP_ParseResult_is_failure(
         SmolRTSP_Method_parse(&result, CharSlice99_from_str("~123"))));
-    ASSERT(SmolRTSP_ParseResult_is_failure(
-        SmolRTSP_Method_parse(&result, CharSlice99_from_str("/ hello ~19r world"))));
+    ASSERT(SmolRTSP_ParseResult_is_failure(SmolRTSP_Method_parse(
+        &result, CharSlice99_from_str("/ hello ~19r world"))));
 
     PASS();
 }

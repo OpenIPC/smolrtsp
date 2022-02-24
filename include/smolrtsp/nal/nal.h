@@ -1,7 +1,8 @@
 /**
  * @file
  * @brief A generic [NAL (Network Abstraction
- * Layer)](https://en.wikipedia.org/wiki/Network_Abstraction_Layer) representation.
+ * Layer)](https://en.wikipedia.org/wiki/Network_Abstraction_Layer)
+ * representation.
  */
 
 #pragma once
@@ -20,11 +21,12 @@
 /**
  * Destructs @p self into its header and its payload data.
  *
- * This macro expands to two variables named @p h and @p payload and initialises them to
- * `SmolRTSP_NalUnit_header(self)` and `SmolRTSP_NalUnit_payload(self)`, respectively.
+ * This macro expands to two variables named @p h and @p payload and initialises
+ * them to `SmolRTSP_NalUnit_header(self)` and `SmolRTSP_NalUnit_payload(self)`,
+ * respectively.
  */
-#define SMOLRTSP_NAL_UNIT_DESTRUCT(self, h, payload)                                     \
-    SmolRTSP_NalHeader h = SmolRTSP_NalUnit_header(self);                                \
+#define SMOLRTSP_NAL_UNIT_DESTRUCT(self, h, payload)                           \
+    SmolRTSP_NalHeader h = SmolRTSP_NalUnit_header(self);                      \
     U8Slice99 payload = SmolRTSP_NalUnit_payload(self)
 
 /**
@@ -44,7 +46,8 @@ datatype99(
 /**
  * Returns the NAL unit type of @p self.
  */
-uint8_t SmolRTSP_NalHeader_unit_type(SmolRTSP_NalHeader self) SMOLRTSP_PRIV_MUST_USE;
+uint8_t
+SmolRTSP_NalHeader_unit_type(SmolRTSP_NalHeader self) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Computes the size of @p self in bytes.
@@ -59,13 +62,14 @@ size_t SmolRTSP_NalHeader_size(SmolRTSP_NalHeader self) SMOLRTSP_PRIV_MUST_USE;
  * @see H.265 Fragmentation Units (FUs):
  * <https://datatracker.ietf.org/doc/html/rfc7798#section-4.4.3>
  */
-size_t SmolRTSP_NalHeader_fu_size(SmolRTSP_NalHeader self) SMOLRTSP_PRIV_MUST_USE;
+size_t
+SmolRTSP_NalHeader_fu_size(SmolRTSP_NalHeader self) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Returns the RTP clock rate in kHz of @p self.
  */
-uint32_t
-SmolRTSP_NalHeader_clock_rate_kHz(SmolRTSP_NalHeader self) SMOLRTSP_PRIV_MUST_USE;
+uint32_t SmolRTSP_NalHeader_clock_rate_kHz(SmolRTSP_NalHeader self)
+    SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Checks whether @p self is VPS.
@@ -98,10 +102,11 @@ bool SmolRTSP_NalHeader_is_coded_slice_non_idr(SmolRTSP_NalHeader self)
  * Writes the binary representation of @p self into @p buffer.
  *
  * @param[in] self The header to write.
- * @param[out] buffer The memory area capable of storing `SmolRTSP_NalHeader_size(self)`
- * bytes.
+ * @param[out] buffer The memory area capable of storing
+ * `SmolRTSP_NalHeader_size(self)` bytes.
  */
-void SmolRTSP_NalHeader_serialize(SmolRTSP_NalHeader self, uint8_t buffer[restrict]);
+void SmolRTSP_NalHeader_serialize(
+    SmolRTSP_NalHeader self, uint8_t buffer[restrict]);
 
 /**
  * Writes a FU header of @p self to @p buffer.
@@ -138,18 +143,20 @@ datatype99(
 /**
  * Constructs a NAL unit from a header and payload data.
  */
-SmolRTSP_NalUnit
-SmolRTSP_NalUnit_new(SmolRTSP_NalHeader h, U8Slice99 payload) SMOLRTSP_PRIV_MUST_USE;
+SmolRTSP_NalUnit SmolRTSP_NalUnit_new(SmolRTSP_NalHeader h, U8Slice99 payload)
+    SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Returns the header of @p self.
  */
-SmolRTSP_NalHeader SmolRTSP_NalUnit_header(SmolRTSP_NalUnit self) SMOLRTSP_PRIV_MUST_USE;
+SmolRTSP_NalHeader
+SmolRTSP_NalUnit_header(SmolRTSP_NalUnit self) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Returns the payload data of @p self.
  */
-U8Slice99 SmolRTSP_NalUnit_payload(SmolRTSP_NalUnit self) SMOLRTSP_PRIV_MUST_USE;
+U8Slice99
+SmolRTSP_NalUnit_payload(SmolRTSP_NalUnit self) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Creates a generic NAL FU header.
@@ -163,4 +170,5 @@ uint8_t smolrtsp_nal_fu_header(
  * data_without_start_code, `false` otherwise.
  */
 bool smolrtsp_nal_test_start_code(
-    U8Slice99 data, U8Slice99 *restrict data_without_start_code) SMOLRTSP_PRIV_MUST_USE;
+    U8Slice99 data,
+    U8Slice99 *restrict data_without_start_code) SMOLRTSP_PRIV_MUST_USE;

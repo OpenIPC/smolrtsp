@@ -1,6 +1,7 @@
 #include <smolrtsp/types/request.h>
 
-#define TEST_PARSE_INIT_TYPE(result) result.header_map = SmolRTSP_HeaderMap_empty()
+#define TEST_PARSE_INIT_TYPE(result)                                           \
+    result.header_map = SmolRTSP_HeaderMap_empty()
 
 #include "test_util.h"
 #include <greatest.h>
@@ -33,7 +34,8 @@ TEST parse_request(void) {
     };
 
     TEST_PARSE(
-        "DESCRIBE http://example.com RTSP/1.1\r\nContent-Length: 10\r\nAccept-Language: "
+        "DESCRIBE http://example.com RTSP/1.1\r\nContent-Length: "
+        "10\r\nAccept-Language: "
         "English\r\nContent-Type: application/octet-stream\r\n\r\n0123456789",
         expected);
 
@@ -67,7 +69,8 @@ TEST serialize_request(void) {
         SmolRTSP_Request_serialize(request, smolrtsp_string_writer(buffer));
 
     const char *expected =
-        "DESCRIBE http://example.com RTSP/1.0\r\nContent-Length: 123\r\nContent-Type: "
+        "DESCRIBE http://example.com RTSP/1.0\r\nContent-Length: "
+        "123\r\nContent-Type: "
         "application/octet-stream\r\n\r\n1234567890";
 
     ASSERT_EQ((ssize_t)strlen(expected), ret);

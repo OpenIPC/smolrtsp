@@ -6,7 +6,8 @@
 DEF_TEST_PARSE(SmolRTSP_ReasonPhrase)
 
 TEST parse_reason_phrase(void) {
-    TEST_PARSE("Moved Temporarily\r\n", CharSlice99_from_str("Moved Temporarily"));
+    TEST_PARSE(
+        "Moved Temporarily\r\n", CharSlice99_from_str("Moved Temporarily"));
 
     PASS();
 }

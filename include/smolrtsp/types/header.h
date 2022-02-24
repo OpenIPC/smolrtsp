@@ -42,8 +42,8 @@ typedef struct {
  *
  * @pre `w.self && w.vptr`
  */
-ssize_t
-SmolRTSP_Header_serialize(SmolRTSP_Header self, SmolRTSP_Writer w) SMOLRTSP_PRIV_MUST_USE;
+ssize_t SmolRTSP_Header_serialize(SmolRTSP_Header self, SmolRTSP_Writer w)
+    SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Parses @p data to @p self.
@@ -56,7 +56,8 @@ SmolRTSP_ParseResult SmolRTSP_Header_parse(
 /**
  * Tests @p lhs and @p rhs for equality.
  */
-bool SmolRTSP_Header_eq(SmolRTSP_Header lhs, SmolRTSP_Header rhs) SMOLRTSP_PRIV_MUST_USE;
+bool SmolRTSP_Header_eq(SmolRTSP_Header lhs, SmolRTSP_Header rhs)
+    SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * `Accept`.
@@ -66,12 +67,14 @@ bool SmolRTSP_Header_eq(SmolRTSP_Header lhs, SmolRTSP_Header rhs) SMOLRTSP_PRIV_
 /**
  * `Accept-Encoding`.
  */
-#define SMOLRTSP_HEADER_ACCEPT_ENCODING (CharSlice99_from_str("Accept-Encoding"))
+#define SMOLRTSP_HEADER_ACCEPT_ENCODING                                        \
+    (CharSlice99_from_str("Accept-Encoding"))
 
 /**
  * `Accept-Language`.
  */
-#define SMOLRTSP_HEADER_ACCEPT_LANGUAGE (CharSlice99_from_str("Accept-Language"))
+#define SMOLRTSP_HEADER_ACCEPT_LANGUAGE                                        \
+    (CharSlice99_from_str("Accept-Language"))
 
 /**
  * `Allow`.
@@ -116,12 +119,14 @@ bool SmolRTSP_Header_eq(SmolRTSP_Header lhs, SmolRTSP_Header rhs) SMOLRTSP_PRIV_
 /**
  * `Content-Encoding`.
  */
-#define SMOLRTSP_HEADER_CONTENT_ENCODING (CharSlice99_from_str("Content-Encoding"))
+#define SMOLRTSP_HEADER_CONTENT_ENCODING                                       \
+    (CharSlice99_from_str("Content-Encoding"))
 
 /**
  * `Content-Language`.
  */
-#define SMOLRTSP_HEADER_CONTENT_LANGUAGE (CharSlice99_from_str("Content-Language"))
+#define SMOLRTSP_HEADER_CONTENT_LANGUAGE                                       \
+    (CharSlice99_from_str("Content-Language"))
 
 /**
  * `Content-Length`.
@@ -131,7 +136,8 @@ bool SmolRTSP_Header_eq(SmolRTSP_Header lhs, SmolRTSP_Header rhs) SMOLRTSP_PRIV_
 /**
  * `Content-Location"`.
  */
-#define SMOLRTSP_HEADER_CONTENT_LOCATION (CharSlice99_from_str("Content-Location"))
+#define SMOLRTSP_HEADER_CONTENT_LOCATION                                       \
+    (CharSlice99_from_str("Content-Location"))
 
 /**
  * `Content-Type`.
@@ -161,7 +167,8 @@ bool SmolRTSP_Header_eq(SmolRTSP_Header lhs, SmolRTSP_Header rhs) SMOLRTSP_PRIV_
 /**
  * `If-Modified-Since`.
  */
-#define SMOLRTSP_HEADER_IF_MODIFIED_SINCE (CharSlice99_from_str("If-Modified-Since"))
+#define SMOLRTSP_HEADER_IF_MODIFIED_SINCE                                      \
+    (CharSlice99_from_str("If-Modified-Since"))
 
 /**
  * `"Last-Modified`.
@@ -171,7 +178,8 @@ bool SmolRTSP_Header_eq(SmolRTSP_Header lhs, SmolRTSP_Header rhs) SMOLRTSP_PRIV_
 /**
  * `Proxy-Authenticate`.
  */
-#define SMOLRTSP_HEADER_PROXY_AUTHENTICATE (CharSlice99_from_str("Proxy-Authenticate"))
+#define SMOLRTSP_HEADER_PROXY_AUTHENTICATE                                     \
+    (CharSlice99_from_str("Proxy-Authenticate"))
 
 /**
  * `Proxy-Require`.
@@ -251,4 +259,5 @@ bool SmolRTSP_Header_eq(SmolRTSP_Header lhs, SmolRTSP_Header rhs) SMOLRTSP_PRIV_
 /**
  * `WWW-Authenticate`.
  */
-#define SMOLRTSP_HEADER_WWW_AUTHENTICATE (CharSlice99_from_str("WWW-Authenticate"))
+#define SMOLRTSP_HEADER_WWW_AUTHENTICATE                                       \
+    (CharSlice99_from_str("WWW-Authenticate"))

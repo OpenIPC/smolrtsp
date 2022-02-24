@@ -10,7 +10,8 @@ TEST parse_header(void) {
         "User-Agent: LibVLC/3.0.8 (LIVE555 Streaming Media v2018.02.18)\r\n",
         ((SmolRTSP_Header){
             SMOLRTSP_HEADER_USER_AGENT,
-            CharSlice99_from_str("LibVLC/3.0.8 (LIVE555 Streaming Media v2018.02.18)"),
+            CharSlice99_from_str(
+                "LibVLC/3.0.8 (LIVE555 Streaming Media v2018.02.18)"),
         }));
 
     SmolRTSP_Header result;
@@ -29,7 +30,8 @@ TEST serialize_header(void) {
         CharSlice99_from_str("123"),
     };
 
-    const ssize_t ret = SmolRTSP_Header_serialize(header, smolrtsp_string_writer(buffer));
+    const ssize_t ret =
+        SmolRTSP_Header_serialize(header, smolrtsp_string_writer(buffer));
 
     const char *expected = "Content-Length: 123\r\n";
 

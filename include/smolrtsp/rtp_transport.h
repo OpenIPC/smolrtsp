@@ -35,15 +35,18 @@ SmolRTSP_RtpTransport *SmolRTSP_RtpTransport_new(
  *
  * @pre `self != NULL`
  *
- * @return -1 if an I/O error occurred and sets `errno` appropriately, 0 on success.
+ * @return -1 if an I/O error occurred and sets `errno` appropriately, 0 on
+ * success.
  */
 int SmolRTSP_RtpTransport_send_packet(
-    SmolRTSP_RtpTransport *self, uint64_t timestamp_us, bool marker, uint8_t payload_ty,
-    uint32_t clock_rate, U8Slice99 data_header, U8Slice99 data) SMOLRTSP_PRIV_MUST_USE;
+    SmolRTSP_RtpTransport *self, uint64_t timestamp_us, bool marker,
+    uint8_t payload_ty, uint32_t clock_rate, U8Slice99 data_header,
+    U8Slice99 data) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Implements #SmolRTSP_Droppable_IFACE for #SmolRTSP_RtpTransport.
  *
- * See [Interface99](https://github.com/Hirrolot/interface99) for the macro usage.
+ * See [Interface99](https://github.com/Hirrolot/interface99) for the macro
+ * usage.
  */
 declImplExtern99(SmolRTSP_Droppable, SmolRTSP_RtpTransport);

@@ -37,7 +37,8 @@ SmolRTSP_Header_parse(SmolRTSP_Header *restrict self, CharSlice99 input) {
 
     header.value = input;
     MATCH(smolrtsp_match_until_crlf(input));
-    header.value = CharSlice99_from_ptrdiff(header.value.ptr, input.ptr - strlen("\r\n"));
+    header.value =
+        CharSlice99_from_ptrdiff(header.value.ptr, input.ptr - strlen("\r\n"));
 
     *self = header;
 

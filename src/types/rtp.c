@@ -12,26 +12,29 @@
 
 size_t SmolRTSP_RtpHeader_size(SmolRTSP_RtpHeader self) {
     static const size_t version_bits = 2, padding_bits = 1, extension_bits = 1,
-                        csrc_count_bits = 4, marker_bits = 1, payload_ty_bits = 7,
-                        sequence_number_bits = 16, timestamp_bits = 32, ssrc_bits = 32;
+                        csrc_count_bits = 4, marker_bits = 1,
+                        payload_ty_bits = 7, sequence_number_bits = 16,
+                        timestamp_bits = 32, ssrc_bits = 32;
 
     static const size_t csrc_size = 4;
 
-    size_t size =
-        (version_bits + padding_bits + extension_bits + csrc_count_bits + marker_bits +
-         payload_ty_bits + sequence_number_bits + timestamp_bits + ssrc_bits) /
-            8 +
-        (self.csrc_count * csrc_size);
+    size_t size = (version_bits + padding_bits + extension_bits +
+                   csrc_count_bits + marker_bits + payload_ty_bits +
+                   sequence_number_bits + timestamp_bits + ssrc_bits) /
+                      8 +
+                  (self.csrc_count * csrc_size);
 
     if (self.extension) {
-        size += sizeof(self.extension_profile) + sizeof(self.extension_payload_len) +
+        size += sizeof(self.extension_profile) +
+                sizeof(self.extension_payload_len) +
                 self.extension_payload_len * sizeof(uint32_t);
     }
 
     return size;
 }
 
-uint8_t *SmolRTSP_RtpHeader_serialize(SmolRTSP_RtpHeader self, uint8_t buffer[restrict]) {
+uint8_t *SmolRTSP_RtpHeader_serialize(
+    SmolRTSP_RtpHeader self, uint8_t buffer[restrict]) {
     assert(buffer);
 
     uint8_t *buffer_backup = buffer;
@@ -84,8 +87,10 @@ uint8_t *SmolRTSP_RtpHeader_serialize(SmolRTSP_RtpHeader self, uint8_t buffer[re
         buffer = (uint8_t *)SLICE99_APPEND(buffer, self.extension_profile);
         buffer = (uint8_t *)SLICE99_APPEND(buffer, self.extension_payload_len);
 
-        for (uint16_t i = 0; i < self.extension_payload_len * sizeof(uint32_t); i++) {
-            buffer = (uint8_t *)SLICE99_APPEND(buffer, self.extension_payload[i]);
+        for (uint16_t i = 0; i < self.extension_payload_len * sizeof(uint32_t);
+             i++) {
+            buffer =
+                (uint8_t *)SLICE99_APPEND(buffer, self.extension_payload[i]);
         }
     }
 

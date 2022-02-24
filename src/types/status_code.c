@@ -7,14 +7,15 @@
 #include <stdio.h>
 #include <string.h>
 
-ssize_t SmolRTSP_StatusCode_serialize(SmolRTSP_StatusCode self, SmolRTSP_Writer w) {
+ssize_t
+SmolRTSP_StatusCode_serialize(SmolRTSP_StatusCode self, SmolRTSP_Writer w) {
     assert(w.self && w.vptr);
 
     return VCALL(w, writef, "%" PRIu16, self);
 }
 
-SmolRTSP_ParseResult
-SmolRTSP_StatusCode_parse(SmolRTSP_StatusCode *restrict self, CharSlice99 input) {
+SmolRTSP_ParseResult SmolRTSP_StatusCode_parse(
+    SmolRTSP_StatusCode *restrict self, CharSlice99 input) {
     assert(self);
 
     const CharSlice99 backup = input;

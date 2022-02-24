@@ -16,8 +16,8 @@ TEST parse_status_code(void) {
 
     ASSERT(SmolRTSP_ParseResult_is_failure(
         SmolRTSP_StatusCode_parse(&result, CharSlice99_from_str("blah"))));
-    ASSERT(SmolRTSP_ParseResult_is_failure(
-        SmolRTSP_StatusCode_parse(&result, CharSlice99_from_str("~ 2424 blah"))));
+    ASSERT(SmolRTSP_ParseResult_is_failure(SmolRTSP_StatusCode_parse(
+        &result, CharSlice99_from_str("~ 2424 blah"))));
 
     PASS();
 }

@@ -25,11 +25,13 @@ bool SmolRTSP_HeaderMap_find(
     return false;
 }
 
-bool SmolRTSP_HeaderMap_key_is_present(SmolRTSP_HeaderMap self, CharSlice99 key) {
+bool SmolRTSP_HeaderMap_key_is_present(
+    SmolRTSP_HeaderMap self, CharSlice99 key) {
     return SmolRTSP_HeaderMap_find(self, key, NULL);
 }
 
-ssize_t SmolRTSP_HeaderMap_serialize(SmolRTSP_HeaderMap self, SmolRTSP_Writer w) {
+ssize_t
+SmolRTSP_HeaderMap_serialize(SmolRTSP_HeaderMap self, SmolRTSP_Writer w) {
     assert(w.self && w.vptr);
 
     ssize_t result = 0;
@@ -52,7 +54,8 @@ SmolRTSP_HeaderMap_parse(SmolRTSP_HeaderMap *restrict self, CharSlice99 input) {
     self->len = 0;
 
     while (true) {
-        if (CharSlice99_primitive_ends_with(input, CharSlice99_from_str("\r"))) {
+        if (CharSlice99_primitive_ends_with(
+                input, CharSlice99_from_str("\r"))) {
             return SmolRTSP_ParseResult_partial();
         }
         if (CharSlice99_primitive_starts_with(input, SMOLRTSP_CRLF)) {
@@ -60,7 +63,8 @@ SmolRTSP_HeaderMap_parse(SmolRTSP_HeaderMap *restrict self, CharSlice99 input) {
                 (input.ptr - backup.ptr) + SMOLRTSP_CRLF.len);
         }
         if (SmolRTSP_HeaderMap_is_full(*self)) {
-            return SmolRTSP_ParseResult_Failure(SmolRTSP_ParseError_HeaderMapOverflow());
+            return SmolRTSP_ParseResult_Failure(
+                SmolRTSP_ParseError_HeaderMapOverflow());
         }
 
         SmolRTSP_Header header;
