@@ -1,11 +1,12 @@
 var nal_8h =
 [
-    [ "SMOLRTSP_NAL_HEADER_FU_HEADER_SIZE", "nal_8h.html#a185b09799d8161a3aa574cf20cd595fa", null ],
     [ "SMOLRTSP_NAL_UNIT_DESTRUCT", "nal_8h.html#a95b2f9c004672c44c5a96a97ab245aa2", null ],
     [ "datatype99", "nal_8h.html#af7758ff65ddd510dc4dc87339ad171a5", null ],
     [ "datatype99", "nal_8h.html#a3d39ea1fd021a9751b0cc943f6bf2c08", null ],
     [ "smolrtsp_nal_fu_header", "nal_8h.html#ad6d9a19bb0a24c84eeb4435698f82807", null ],
     [ "smolrtsp_nal_test_start_code", "nal_8h.html#ad25b48b6a7155cc56e8a4775181cb430", null ],
+    [ "SmolRTSP_NalHeader_clock_rate_kHz", "nal_8h.html#a1326b005c266ccb249fab6644bab903e", null ],
+    [ "SmolRTSP_NalHeader_fu_size", "nal_8h.html#a1c2a0d632f770ac634605c02362cd4e3", null ],
     [ "SmolRTSP_NalHeader_is_coded_slice_idr", "nal_8h.html#acb2d105753ca914182bc6e55a8893afb", null ],
     [ "SmolRTSP_NalHeader_is_coded_slice_non_idr", "nal_8h.html#a65671af38eda29efb32d1c8f39760c02", null ],
     [ "SmolRTSP_NalHeader_is_pps", "nal_8h.html#a5c5aaeb6aa51844b8db15829b44fd8ca", null ],

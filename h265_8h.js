@@ -2,6 +2,7 @@ var h265_8h =
 [
     [ "SmolRTSP_H265NalHeader", "structSmolRTSP__H265NalHeader.html", "structSmolRTSP__H265NalHeader" ],
     [ "SmolRTSP_H265NalUnit", "structSmolRTSP__H265NalUnit.html", "structSmolRTSP__H265NalUnit" ],
+    [ "SMOLRTSP_H265_CLOCK_RATE_KHZ", "h265_8h.html#a7ec35cd9be2dc8211c46f006a1995529", null ],
     [ "SMOLRTSP_H265_FU_HEADER_SIZE", "h265_8h.html#a276bb7103832cc33b0d1777210b81ec7", null ],
     [ "SMOLRTSP_H265_NAL_HEADER_SIZE", "h265_8h.html#a04f24796ec572009ecf65e20b5e06e70", null ],
     [ "SMOLRTSP_H265_NAL_UNIT_AUD_NUT", "h265_8h.html#af92c62d2bdbc548c02f79a672ed8be96", null ],

@@ -130,9 +130,6 @@ Macros</h2></td></tr>
 <tr class="memitem:a95b2f9c004672c44c5a96a97ab245aa2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_8h.html#a95b2f9c004672c44c5a96a97ab245aa2">SMOLRTSP_NAL_UNIT_DESTRUCT</a>(self,  h,  payload)</td></tr>
 <tr class="memdesc:a95b2f9c004672c44c5a96a97ab245aa2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructs <code>self</code> into its header and its payload data.  <a href="nal_8h.html#a95b2f9c004672c44c5a96a97ab245aa2">More...</a><br /></td></tr>
 <tr class="separator:a95b2f9c004672c44c5a96a97ab245aa2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a185b09799d8161a3aa574cf20cd595fa"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_8h.html#a185b09799d8161a3aa574cf20cd595fa">SMOLRTSP_NAL_HEADER_FU_HEADER_SIZE</a>(h)</td></tr>
-<tr class="memdesc:a185b09799d8161a3aa574cf20cd595fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">The size of a fragmentation unit (FU) header <code>h</code>.  <a href="nal_8h.html#a185b09799d8161a3aa574cf20cd595fa">More...</a><br /></td></tr>
-<tr class="separator:a185b09799d8161a3aa574cf20cd595fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
@@ -147,6 +144,13 @@ uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="n
 size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_8h.html#a71c0df95b0b8b85a397e13f7dce1f2ce">SmolRTSP_NalHeader_size</a> (SmolRTSP_NalHeader self)</td></tr>
 <tr class="memdesc:a71c0df95b0b8b85a397e13f7dce1f2ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the size of <code>self</code> in bytes. <br /></td></tr>
 <tr class="separator:a71c0df95b0b8b85a397e13f7dce1f2ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c2a0d632f770ac634605c02362cd4e3"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_8h.html#a1c2a0d632f770ac634605c02362cd4e3">SmolRTSP_NalHeader_fu_size</a> (SmolRTSP_NalHeader self)</td></tr>
+<tr class="memdesc:a1c2a0d632f770ac634605c02362cd4e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the size of a fragmentation unit (FU) header <code>self</code>.  <a href="nal_8h.html#a1c2a0d632f770ac634605c02362cd4e3">More...</a><br /></td></tr>
+<tr class="separator:a1c2a0d632f770ac634605c02362cd4e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1326b005c266ccb249fab6644bab903e"><td class="memItemLeft" align="right" valign="top"><a id="a1326b005c266ccb249fab6644bab903e"></a>
+uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_8h.html#a1326b005c266ccb249fab6644bab903e">SmolRTSP_NalHeader_clock_rate_kHz</a> (SmolRTSP_NalHeader self)</td></tr>
+<tr class="memdesc:a1326b005c266ccb249fab6644bab903e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the RTP clock rate in kHz of <code>self</code>. <br /></td></tr>
+<tr class="separator:a1326b005c266ccb249fab6644bab903e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abb6d890689c5096499b75fb659652280"><td class="memItemLeft" align="right" valign="top"><a id="abb6d890689c5096499b75fb659652280"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_8h.html#abb6d890689c5096499b75fb659652280">SmolRTSP_NalHeader_is_vps</a> (SmolRTSP_NalHeader self)</td></tr>
 <tr class="memdesc:abb6d890689c5096499b75fb659652280"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether <code>self</code> is VPS. <br /></td></tr>
@@ -200,31 +204,6 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A generic <a href="https://en.wikipedia.org/wiki/Network_Abstraction_Layer">NAL (Network Abstraction Layer)</a> representation. </p>
 </div><h2 class="groupheader">Macro Definition Documentation</h2>
-<a id="a185b09799d8161a3aa574cf20cd595fa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a185b09799d8161a3aa574cf20cd595fa">&#9670;&nbsp;</a></span>SMOLRTSP_NAL_HEADER_FU_HEADER_SIZE</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define SMOLRTSP_NAL_HEADER_FU_HEADER_SIZE</td>
-          <td>(</td>
-          <td class="paramtype">&#160;</td>
-          <td class="paramname">h</td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">    (MATCHES99((h), SmolRTSP_NalHeader_H264) ? <a class="code" href="h264_8h.html#ab1e1de52bb5ca7b15442d6665bc8e2b6">SMOLRTSP_H264_FU_HEADER_SIZE</a>                        \</div>
-<div class="line">                                             : <a class="code" href="h265_8h.html#a276bb7103832cc33b0d1777210b81ec7">SMOLRTSP_H265_FU_HEADER_SIZE</a>)</div>
-</div><!-- fragment -->
-<p>The size of a fragmentation unit (FU) header <code>h</code>. </p>
-<dl class="section see"><dt>See also</dt><dd><a href="https://datatracker.ietf.org/doc/html/rfc6184#section-5.8">https://datatracker.ietf.org/doc/html/rfc6184#section-5.8</a> (H.264) </dd>
-<dd>
-<a href="https://datatracker.ietf.org/doc/html/rfc7798#section-4.4.3">https://datatracker.ietf.org/doc/html/rfc7798#section-4.4.3</a> (H.265) </dd></dl>
-
-</div>
-</div>
 <a id="a95b2f9c004672c44c5a96a97ab245aa2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a95b2f9c004672c44c5a96a97ab245aa2">&#9670;&nbsp;</a></span>SMOLRTSP_NAL_UNIT_DESTRUCT</h2>
 
@@ -339,6 +318,29 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_
 
 </div>
 </div>
+<a id="a1c2a0d632f770ac634605c02362cd4e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c2a0d632f770ac634605c02362cd4e3">&#9670;&nbsp;</a></span>SmolRTSP_NalHeader_fu_size()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t SmolRTSP_NalHeader_fu_size </td>
+          <td>(</td>
+          <td class="paramtype">SmolRTSP_NalHeader&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Computes the size of a fragmentation unit (FU) header <code>self</code>. </p>
+<dl class="section see"><dt>See also</dt><dd><a href="https://datatracker.ietf.org/doc/html/rfc6184#section-5.8">https://datatracker.ietf.org/doc/html/rfc6184#section-5.8</a> (H.264) </dd>
+<dd>
+<a href="https://datatracker.ietf.org/doc/html/rfc7798#section-4.4.3">https://datatracker.ietf.org/doc/html/rfc7798#section-4.4.3</a> (H.265) </dd></dl>
+
+</div>
+</div>
 <a id="aa1f6332cde359958cdf82c011e8d8468"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa1f6332cde359958cdf82c011e8d8468">&#9670;&nbsp;</a></span>SmolRTSP_NalHeader_serialize()</h2>
 
@@ -418,7 +420,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">self</td><td>The header to write. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">buffer</td><td>The memory area capable of storing <code><a class="el" href="nal_8h.html#a185b09799d8161a3aa574cf20cd595fa" title="The size of a fragmentation unit (FU) header h.">SMOLRTSP_NAL_HEADER_FU_HEADER_SIZE(self)</a></code> bytes. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">buffer</td><td>The memory area capable of storing <code>SmolRTSP_NalHeader_fu_size(self)</code> bytes. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">is_first_fragment</td><td>The indication of a start of the FU. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">is_last_fragment</td><td>The indication of an end of the FU.</td></tr>
   </table>
@@ -432,9 +434,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_
 </div>
 </div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="ah265_8h_html_a276bb7103832cc33b0d1777210b81ec7"><div class="ttname"><a href="h265_8h.html#a276bb7103832cc33b0d1777210b81ec7">SMOLRTSP_H265_FU_HEADER_SIZE</a></div><div class="ttdeci">#define SMOLRTSP_H265_FU_HEADER_SIZE</div><div class="ttdoc">The size of an H.265 fragmentation unit (FU) header.</div><div class="ttdef"><b>Definition:</b> h265.h:24</div></div>
 <div class="ttc" id="anal_8h_html_a0698c4a9167bff091cf62193e953417a"><div class="ttname"><a href="nal_8h.html#a0698c4a9167bff091cf62193e953417a">SmolRTSP_NalUnit_header</a></div><div class="ttdeci">SmolRTSP_NalHeader SmolRTSP_NalUnit_header(SmolRTSP_NalUnit self)</div><div class="ttdoc">Returns the header of self.</div></div>
-<div class="ttc" id="ah264_8h_html_ab1e1de52bb5ca7b15442d6665bc8e2b6"><div class="ttname"><a href="h264_8h.html#ab1e1de52bb5ca7b15442d6665bc8e2b6">SMOLRTSP_H264_FU_HEADER_SIZE</a></div><div class="ttdeci">#define SMOLRTSP_H264_FU_HEADER_SIZE</div><div class="ttdoc">The size of an H.264 fragmentation unit (FU) header.</div><div class="ttdef"><b>Definition:</b> h264.h:25</div></div>
 <div class="ttc" id="anal_8h_html_a9b790557d09ba3a4e67b636d7d7e65e2"><div class="ttname"><a href="nal_8h.html#a9b790557d09ba3a4e67b636d7d7e65e2">SmolRTSP_NalUnit_payload</a></div><div class="ttdeci">U8Slice99 SmolRTSP_NalUnit_payload(SmolRTSP_NalUnit self)</div><div class="ttdoc">Returns the payload data of self.</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
