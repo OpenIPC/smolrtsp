@@ -85,6 +85,14 @@ bool SmolRTSP_NalHeader_is_coded_slice_idr(SmolRTSP_NalHeader self);
 bool SmolRTSP_NalHeader_is_coded_slice_non_idr(SmolRTSP_NalHeader self);
 
 /**
+ * Writes the binary representation of @p self into @p buffer.
+ *
+ * @param[in] self The header to write.
+ * @param[out] buffer The memory area capable of storing `SmolRTSP_NalHeader_size(self)` bytes.
+ */
+void SmolRTSP_NalHeader_serialize(SmolRTSP_NalHeader self, uint8_t buffer[restrict]);
+
+/**
  * Writes a FU header of @p self to @p buffer.
  *
  * @param[in] self The header to write.

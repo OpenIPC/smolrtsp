@@ -44,6 +44,19 @@ NAL_HEADER_DERIVE_METHOD(is_coded_slice_non_idr)
 
 #undef NAL_HEADER_DERIVE_METHOD
 
+void SmolRTSP_NalHeader_serialize(SmolRTSP_NalHeader self, uint8_t buffer[restrict]) {
+    match(self) {
+        of(SmolRTSP_NalHeader_H264, h) {
+            const uint8_t repr = SmolRTSP_H264NalHeader_serialize(*h);
+            buffer[0] = repr;
+        }
+        of(SmolRTSP_NalHeader_H265, h) {
+            const uint16_t repr = SmolRTSP_H265NalHeader_serialize(*h);
+            memcpy(buffer, &repr, sizeof repr);
+        }
+    }
+}
+
 void SmolRTSP_NalHeader_write_fu_header(
     SmolRTSP_NalHeader self, uint8_t buffer[restrict], bool is_first_fragment,
     bool is_last_fragment) {

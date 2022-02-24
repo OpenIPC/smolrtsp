@@ -10,6 +10,11 @@ SmolRTSP_H264NalHeader SmolRTSP_H264NalHeader_parse(uint8_t byte_header) {
     };
 }
 
+uint8_t SmolRTSP_H264NalHeader_serialize(SmolRTSP_H264NalHeader self) {
+    return (self.forbidden_zero_bit ? 0b10000000 : 0b00000000) | (self.ref_idc << 5) |
+           (self.unit_type);
+}
+
 bool SmolRTSP_H264NalHeader_is_vps(SmolRTSP_H264NalHeader self) {
     (void)self;
     return false;

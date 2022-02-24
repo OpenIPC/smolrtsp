@@ -66,6 +66,11 @@ typedef struct {
 SmolRTSP_H264NalHeader SmolRTSP_H264NalHeader_parse(uint8_t byte_header);
 
 /**
+ * Converts @p self to a single octet representation.
+ */
+uint8_t SmolRTSP_H264NalHeader_serialize(SmolRTSP_H264NalHeader self);
+
+/**
  * Checks whether @p self is VPS.
  */
 bool SmolRTSP_H264NalHeader_is_vps(SmolRTSP_H264NalHeader self);
