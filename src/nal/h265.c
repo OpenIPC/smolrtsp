@@ -6,15 +6,13 @@
 
 SmolRTSP_H265NalHeader
 SmolRTSP_H265NalHeader_parse(uint8_t bytes[restrict static 2]) {
-    SmolRTSP_H265NalHeader header;
-
-    header.forbidden_zero_bit = (bytes[0] & 0b10000000) >> 7;
-    header.unit_type = (bytes[0] & 0b01111110) >> 1;
-    header.nuh_layer_id = (bytes[0] & 0b00000001) << 7;
-    header.nuh_layer_id |= (bytes[1] & 0b11111000) >> 3;
-    header.nuh_temporal_id_plus1 = (bytes[1] & 0b00000111);
-
-    return header;
+    return (SmolRTSP_H265NalHeader){
+        .forbidden_zero_bit = (bytes[0] & 0b10000000) >> 7,
+        .unit_type = (bytes[0] & 0b01111110) >> 1,
+        .nuh_layer_id =
+            ((bytes[0] & 0b00000001) << 5) | ((bytes[1] & 0b11111000) >> 3),
+        .nuh_temporal_id_plus1 = (bytes[1] & 0b00000111),
+    };
 }
 
 uint16_t SmolRTSP_H265NalHeader_serialize(SmolRTSP_H265NalHeader h) {
