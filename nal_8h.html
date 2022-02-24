@@ -99,18 +99,20 @@ $(document).ready(function(){initNavTree('nal_8h.html',''); initResizable(); });
 <code>#include &lt;stdint.h&gt;</code><br />
 <code>#include &lt;datatype99.h&gt;</code><br />
 <code>#include &lt;slice99.h&gt;</code><br />
+<code>#include &lt;smolrtsp/priv/compiler_attrs.h&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for nal.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="nal_8h__incl.png" border="0" usemap="#include_2smolrtsp_2nal_2nal_8h" alt=""/></div>
 <map name="include_2smolrtsp_2nal_2nal_8h" id="include_2smolrtsp_2nal_2nal_8h">
-<area shape="rect" title="A generic NAL (Network Abstraction Layer) representation." alt="" coords="253,5,408,47"/>
-<area shape="rect" href="h264_8h.html" title="H.264 NAL representation." alt="" coords="199,95,350,121"/>
-<area shape="rect" title=" " alt="" coords="58,169,141,196"/>
-<area shape="rect" title=" " alt="" coords="371,169,442,196"/>
-<area shape="rect" title=" " alt="" coords="234,169,314,196"/>
-<area shape="rect" href="h265_8h.html" title="H.265 NAL representation." alt="" coords="24,95,175,121"/>
-<area shape="rect" title=" " alt="" coords="476,95,584,121"/>
+<area shape="rect" title="A generic NAL (Network Abstraction Layer) representation." alt="" coords="237,5,392,47"/>
+<area shape="rect" href="h264_8h.html" title="H.264 NAL representation." alt="" coords="239,95,390,121"/>
+<area shape="rect" title=" " alt="" coords="5,177,88,203"/>
+<area shape="rect" title=" " alt="" coords="433,177,503,203"/>
+<area shape="rect" title=" " alt="" coords="112,177,192,203"/>
+<area shape="rect" title=" " alt="" coords="230,169,399,211"/>
+<area shape="rect" href="h265_8h.html" title="H.265 NAL representation." alt="" coords="65,95,215,121"/>
+<area shape="rect" title=" " alt="" coords="517,95,625,121"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -119,7 +121,8 @@ This graph shows which files directly or indirectly include this file:</div>
 <div class="center"><img src="nal_8h__dep__incl.png" border="0" usemap="#include_2smolrtsp_2nal_2nal_8hdep" alt=""/></div>
 <map name="include_2smolrtsp_2nal_2nal_8hdep" id="include_2smolrtsp_2nal_2nal_8hdep">
 <area shape="rect" title="A generic NAL (Network Abstraction Layer) representation." alt="" coords="5,5,160,47"/>
-<area shape="rect" href="smolrtsp_8h.html" title="Re&#45;exports all the functionality." alt="" coords="11,95,154,121"/>
+<area shape="rect" href="smolrtsp_8h.html" title="Re&#45;exports all the functionality." alt="" coords="11,184,154,211"/>
+<area shape="rect" href="nal__transport_8h.html" title="An RTP/NAL data transport." alt="" coords="63,95,217,136"/>
 </map>
 </div>
 </div>
@@ -136,41 +139,41 @@ Functions</h2></td></tr>
 <tr class="memitem:af7758ff65ddd510dc4dc87339ad171a5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_8h.html#af7758ff65ddd510dc4dc87339ad171a5">datatype99</a> (SmolRTSP_NalHeader,(SmolRTSP_NalHeader_H264, <a class="el" href="structSmolRTSP__H264NalHeader.html">SmolRTSP_H264NalHeader</a>),(SmolRTSP_NalHeader_H265, <a class="el" href="structSmolRTSP__H265NalHeader.html">SmolRTSP_H265NalHeader</a>))</td></tr>
 <tr class="memdesc:af7758ff65ddd510dc4dc87339ad171a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">A generic NAL header (either H.264 or H.265).  <a href="nal_8h.html#af7758ff65ddd510dc4dc87339ad171a5">More...</a><br /></td></tr>
 <tr class="separator:af7758ff65ddd510dc4dc87339ad171a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa4019bdd25b9ceadd06ceec4f9e7f4fe"><td class="memItemLeft" align="right" valign="top"><a id="aa4019bdd25b9ceadd06ceec4f9e7f4fe"></a>
-uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_8h.html#aa4019bdd25b9ceadd06ceec4f9e7f4fe">SmolRTSP_NalHeader_unit_type</a> (SmolRTSP_NalHeader self)</td></tr>
-<tr class="memdesc:aa4019bdd25b9ceadd06ceec4f9e7f4fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the NAL unit type of <code>self</code>. <br /></td></tr>
-<tr class="separator:aa4019bdd25b9ceadd06ceec4f9e7f4fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a71c0df95b0b8b85a397e13f7dce1f2ce"><td class="memItemLeft" align="right" valign="top"><a id="a71c0df95b0b8b85a397e13f7dce1f2ce"></a>
-size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_8h.html#a71c0df95b0b8b85a397e13f7dce1f2ce">SmolRTSP_NalHeader_size</a> (SmolRTSP_NalHeader self)</td></tr>
-<tr class="memdesc:a71c0df95b0b8b85a397e13f7dce1f2ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the size of <code>self</code> in bytes. <br /></td></tr>
-<tr class="separator:a71c0df95b0b8b85a397e13f7dce1f2ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1c2a0d632f770ac634605c02362cd4e3"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_8h.html#a1c2a0d632f770ac634605c02362cd4e3">SmolRTSP_NalHeader_fu_size</a> (SmolRTSP_NalHeader self)</td></tr>
-<tr class="memdesc:a1c2a0d632f770ac634605c02362cd4e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the size of a fragmentation unit (FU) header <code>self</code>.  <a href="nal_8h.html#a1c2a0d632f770ac634605c02362cd4e3">More...</a><br /></td></tr>
-<tr class="separator:a1c2a0d632f770ac634605c02362cd4e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1326b005c266ccb249fab6644bab903e"><td class="memItemLeft" align="right" valign="top"><a id="a1326b005c266ccb249fab6644bab903e"></a>
-uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_8h.html#a1326b005c266ccb249fab6644bab903e">SmolRTSP_NalHeader_clock_rate_kHz</a> (SmolRTSP_NalHeader self)</td></tr>
-<tr class="memdesc:a1326b005c266ccb249fab6644bab903e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the RTP clock rate in kHz of <code>self</code>. <br /></td></tr>
-<tr class="separator:a1326b005c266ccb249fab6644bab903e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abb6d890689c5096499b75fb659652280"><td class="memItemLeft" align="right" valign="top"><a id="abb6d890689c5096499b75fb659652280"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_8h.html#abb6d890689c5096499b75fb659652280">SmolRTSP_NalHeader_is_vps</a> (SmolRTSP_NalHeader self)</td></tr>
-<tr class="memdesc:abb6d890689c5096499b75fb659652280"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether <code>self</code> is VPS. <br /></td></tr>
-<tr class="separator:abb6d890689c5096499b75fb659652280"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a14a443dfb591b2c5765e7ef5ce6075bd"><td class="memItemLeft" align="right" valign="top"><a id="a14a443dfb591b2c5765e7ef5ce6075bd"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_8h.html#a14a443dfb591b2c5765e7ef5ce6075bd">SmolRTSP_NalHeader_is_sps</a> (SmolRTSP_NalHeader self)</td></tr>
-<tr class="memdesc:a14a443dfb591b2c5765e7ef5ce6075bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether <code>self</code> is SPS. <br /></td></tr>
-<tr class="separator:a14a443dfb591b2c5765e7ef5ce6075bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5c5aaeb6aa51844b8db15829b44fd8ca"><td class="memItemLeft" align="right" valign="top"><a id="a5c5aaeb6aa51844b8db15829b44fd8ca"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_8h.html#a5c5aaeb6aa51844b8db15829b44fd8ca">SmolRTSP_NalHeader_is_pps</a> (SmolRTSP_NalHeader self)</td></tr>
-<tr class="memdesc:a5c5aaeb6aa51844b8db15829b44fd8ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether <code>self</code> is PPS. <br /></td></tr>
-<tr class="separator:a5c5aaeb6aa51844b8db15829b44fd8ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acb2d105753ca914182bc6e55a8893afb"><td class="memItemLeft" align="right" valign="top"><a id="acb2d105753ca914182bc6e55a8893afb"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_8h.html#acb2d105753ca914182bc6e55a8893afb">SmolRTSP_NalHeader_is_coded_slice_idr</a> (SmolRTSP_NalHeader self)</td></tr>
-<tr class="memdesc:acb2d105753ca914182bc6e55a8893afb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether <code>self</code> is a coded slice IDR. <br /></td></tr>
-<tr class="separator:acb2d105753ca914182bc6e55a8893afb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a65671af38eda29efb32d1c8f39760c02"><td class="memItemLeft" align="right" valign="top"><a id="a65671af38eda29efb32d1c8f39760c02"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_8h.html#a65671af38eda29efb32d1c8f39760c02">SmolRTSP_NalHeader_is_coded_slice_non_idr</a> (SmolRTSP_NalHeader self)</td></tr>
-<tr class="memdesc:a65671af38eda29efb32d1c8f39760c02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether <code>self</code> is a coded slice non-IDR. <br /></td></tr>
-<tr class="separator:a65671af38eda29efb32d1c8f39760c02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a075b5b1ff934b906c70980a8375309ca"><td class="memItemLeft" align="right" valign="top"><a id="a075b5b1ff934b906c70980a8375309ca"></a>
+uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_8h.html#a075b5b1ff934b906c70980a8375309ca">SmolRTSP_NalHeader_unit_type</a> (SmolRTSP_NalHeader self) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:a075b5b1ff934b906c70980a8375309ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the NAL unit type of <code>self</code>. <br /></td></tr>
+<tr class="separator:a075b5b1ff934b906c70980a8375309ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c50f64ab7a98b9a5bd9d4a84ffa769c"><td class="memItemLeft" align="right" valign="top"><a id="a6c50f64ab7a98b9a5bd9d4a84ffa769c"></a>
+size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_8h.html#a6c50f64ab7a98b9a5bd9d4a84ffa769c">SmolRTSP_NalHeader_size</a> (SmolRTSP_NalHeader self) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:a6c50f64ab7a98b9a5bd9d4a84ffa769c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the size of <code>self</code> in bytes. <br /></td></tr>
+<tr class="separator:a6c50f64ab7a98b9a5bd9d4a84ffa769c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a455e664660b9eb7715953ddb1ff4841e"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_8h.html#a455e664660b9eb7715953ddb1ff4841e">SmolRTSP_NalHeader_fu_size</a> (SmolRTSP_NalHeader self) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:a455e664660b9eb7715953ddb1ff4841e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the size of a fragmentation unit (FU) header <code>self</code>.  <a href="nal_8h.html#a455e664660b9eb7715953ddb1ff4841e">More...</a><br /></td></tr>
+<tr class="separator:a455e664660b9eb7715953ddb1ff4841e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3436245761d724e67e34c34dabeed1f3"><td class="memItemLeft" align="right" valign="top"><a id="a3436245761d724e67e34c34dabeed1f3"></a>
+uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_8h.html#a3436245761d724e67e34c34dabeed1f3">SmolRTSP_NalHeader_clock_rate_kHz</a> (SmolRTSP_NalHeader self) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:a3436245761d724e67e34c34dabeed1f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the RTP clock rate in kHz of <code>self</code>. <br /></td></tr>
+<tr class="separator:a3436245761d724e67e34c34dabeed1f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac32cfc495a5f5c38553cc152c16eb6fa"><td class="memItemLeft" align="right" valign="top"><a id="ac32cfc495a5f5c38553cc152c16eb6fa"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_8h.html#ac32cfc495a5f5c38553cc152c16eb6fa">SmolRTSP_NalHeader_is_vps</a> (SmolRTSP_NalHeader self) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:ac32cfc495a5f5c38553cc152c16eb6fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether <code>self</code> is VPS. <br /></td></tr>
+<tr class="separator:ac32cfc495a5f5c38553cc152c16eb6fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a999d891141ae68a9fc0af319995d559d"><td class="memItemLeft" align="right" valign="top"><a id="a999d891141ae68a9fc0af319995d559d"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_8h.html#a999d891141ae68a9fc0af319995d559d">SmolRTSP_NalHeader_is_sps</a> (SmolRTSP_NalHeader self) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:a999d891141ae68a9fc0af319995d559d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether <code>self</code> is SPS. <br /></td></tr>
+<tr class="separator:a999d891141ae68a9fc0af319995d559d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5048b8f98fa325193185e413481b475"><td class="memItemLeft" align="right" valign="top"><a id="ac5048b8f98fa325193185e413481b475"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_8h.html#ac5048b8f98fa325193185e413481b475">SmolRTSP_NalHeader_is_pps</a> (SmolRTSP_NalHeader self) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:ac5048b8f98fa325193185e413481b475"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether <code>self</code> is PPS. <br /></td></tr>
+<tr class="separator:ac5048b8f98fa325193185e413481b475"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a053e8def47d6df3a220a771c3e643578"><td class="memItemLeft" align="right" valign="top"><a id="a053e8def47d6df3a220a771c3e643578"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_8h.html#a053e8def47d6df3a220a771c3e643578">SmolRTSP_NalHeader_is_coded_slice_idr</a> (SmolRTSP_NalHeader self) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:a053e8def47d6df3a220a771c3e643578"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether <code>self</code> is a coded slice IDR. <br /></td></tr>
+<tr class="separator:a053e8def47d6df3a220a771c3e643578"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd11c850c5ca27a78db9df7705605403"><td class="memItemLeft" align="right" valign="top"><a id="afd11c850c5ca27a78db9df7705605403"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_8h.html#afd11c850c5ca27a78db9df7705605403">SmolRTSP_NalHeader_is_coded_slice_non_idr</a> (SmolRTSP_NalHeader self) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:afd11c850c5ca27a78db9df7705605403"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether <code>self</code> is a coded slice non-IDR. <br /></td></tr>
+<tr class="separator:afd11c850c5ca27a78db9df7705605403"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa1f6332cde359958cdf82c011e8d8468"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_8h.html#aa1f6332cde359958cdf82c011e8d8468">SmolRTSP_NalHeader_serialize</a> (SmolRTSP_NalHeader self, uint8_t buffer[restrict])</td></tr>
 <tr class="memdesc:aa1f6332cde359958cdf82c011e8d8468"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes the binary representation of <code>self</code> into <code>buffer</code>.  <a href="nal_8h.html#aa1f6332cde359958cdf82c011e8d8468">More...</a><br /></td></tr>
 <tr class="separator:aa1f6332cde359958cdf82c011e8d8468"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -180,26 +183,26 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_
 <tr class="memitem:a3d39ea1fd021a9751b0cc943f6bf2c08"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_8h.html#a3d39ea1fd021a9751b0cc943f6bf2c08">datatype99</a> (SmolRTSP_NalUnit,(SmolRTSP_NalUnit_H264, <a class="el" href="structSmolRTSP__H264NalUnit.html">SmolRTSP_H264NalUnit</a>),(SmolRTSP_NalUnit_H265, <a class="el" href="structSmolRTSP__H265NalUnit.html">SmolRTSP_H265NalUnit</a>))</td></tr>
 <tr class="memdesc:a3d39ea1fd021a9751b0cc943f6bf2c08"><td class="mdescLeft">&#160;</td><td class="mdescRight">A generic NAL unit (either H.264 or H.265).  <a href="nal_8h.html#a3d39ea1fd021a9751b0cc943f6bf2c08">More...</a><br /></td></tr>
 <tr class="separator:a3d39ea1fd021a9751b0cc943f6bf2c08"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad6a5255a5b8c85d6dc735e99fb678f73"><td class="memItemLeft" align="right" valign="top"><a id="ad6a5255a5b8c85d6dc735e99fb678f73"></a>
-SmolRTSP_NalUnit&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_8h.html#ad6a5255a5b8c85d6dc735e99fb678f73">SmolRTSP_NalUnit_new</a> (SmolRTSP_NalHeader h, U8Slice99 payload)</td></tr>
-<tr class="memdesc:ad6a5255a5b8c85d6dc735e99fb678f73"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a NAL unit from a header and payload data. <br /></td></tr>
-<tr class="separator:ad6a5255a5b8c85d6dc735e99fb678f73"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0698c4a9167bff091cf62193e953417a"><td class="memItemLeft" align="right" valign="top"><a id="a0698c4a9167bff091cf62193e953417a"></a>
-SmolRTSP_NalHeader&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_8h.html#a0698c4a9167bff091cf62193e953417a">SmolRTSP_NalUnit_header</a> (SmolRTSP_NalUnit self)</td></tr>
-<tr class="memdesc:a0698c4a9167bff091cf62193e953417a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the header of <code>self</code>. <br /></td></tr>
-<tr class="separator:a0698c4a9167bff091cf62193e953417a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9b790557d09ba3a4e67b636d7d7e65e2"><td class="memItemLeft" align="right" valign="top"><a id="a9b790557d09ba3a4e67b636d7d7e65e2"></a>
-U8Slice99&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_8h.html#a9b790557d09ba3a4e67b636d7d7e65e2">SmolRTSP_NalUnit_payload</a> (SmolRTSP_NalUnit self)</td></tr>
-<tr class="memdesc:a9b790557d09ba3a4e67b636d7d7e65e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the payload data of <code>self</code>. <br /></td></tr>
-<tr class="separator:a9b790557d09ba3a4e67b636d7d7e65e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad6d9a19bb0a24c84eeb4435698f82807"><td class="memItemLeft" align="right" valign="top"><a id="ad6d9a19bb0a24c84eeb4435698f82807"></a>
-uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_8h.html#ad6d9a19bb0a24c84eeb4435698f82807">smolrtsp_nal_fu_header</a> (bool is_first_fragment, bool is_last_fragment, uint8_t unit_type)</td></tr>
-<tr class="memdesc:ad6d9a19bb0a24c84eeb4435698f82807"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a generic NAL FU header. <br /></td></tr>
-<tr class="separator:ad6d9a19bb0a24c84eeb4435698f82807"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad25b48b6a7155cc56e8a4775181cb430"><td class="memItemLeft" align="right" valign="top"><a id="ad25b48b6a7155cc56e8a4775181cb430"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_8h.html#ad25b48b6a7155cc56e8a4775181cb430">smolrtsp_nal_test_start_code</a> (U8Slice99 data, U8Slice99 *restrict data_without_start_code)</td></tr>
-<tr class="memdesc:ad25b48b6a7155cc56e8a4775181cb430"><td class="mdescLeft">&#160;</td><td class="mdescRight">If <code>data</code> contains a start code sequence, returns <code>true</code> and assigns <code>data_without_start_code</code>, <code>false</code> otherwise. <br /></td></tr>
-<tr class="separator:ad25b48b6a7155cc56e8a4775181cb430"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a861ebf0648c19e26b72f1a50e28821aa"><td class="memItemLeft" align="right" valign="top"><a id="a861ebf0648c19e26b72f1a50e28821aa"></a>
+SmolRTSP_NalUnit&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_8h.html#a861ebf0648c19e26b72f1a50e28821aa">SmolRTSP_NalUnit_new</a> (SmolRTSP_NalHeader h, U8Slice99 payload) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:a861ebf0648c19e26b72f1a50e28821aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a NAL unit from a header and payload data. <br /></td></tr>
+<tr class="separator:a861ebf0648c19e26b72f1a50e28821aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71d98d36ad5c71ed226cdbf47a31aa74"><td class="memItemLeft" align="right" valign="top"><a id="a71d98d36ad5c71ed226cdbf47a31aa74"></a>
+SmolRTSP_NalHeader&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_8h.html#a71d98d36ad5c71ed226cdbf47a31aa74">SmolRTSP_NalUnit_header</a> (SmolRTSP_NalUnit self) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:a71d98d36ad5c71ed226cdbf47a31aa74"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the header of <code>self</code>. <br /></td></tr>
+<tr class="separator:a71d98d36ad5c71ed226cdbf47a31aa74"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a12f30ab39fe3fb5eb44146ac8088c35e"><td class="memItemLeft" align="right" valign="top"><a id="a12f30ab39fe3fb5eb44146ac8088c35e"></a>
+U8Slice99&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_8h.html#a12f30ab39fe3fb5eb44146ac8088c35e">SmolRTSP_NalUnit_payload</a> (SmolRTSP_NalUnit self) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:a12f30ab39fe3fb5eb44146ac8088c35e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the payload data of <code>self</code>. <br /></td></tr>
+<tr class="separator:a12f30ab39fe3fb5eb44146ac8088c35e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab41e0f64ca1e97dba2f5b45eb5377807"><td class="memItemLeft" align="right" valign="top"><a id="ab41e0f64ca1e97dba2f5b45eb5377807"></a>
+uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_8h.html#ab41e0f64ca1e97dba2f5b45eb5377807">smolrtsp_nal_fu_header</a> (bool is_first_fragment, bool is_last_fragment, uint8_t unit_type) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:ab41e0f64ca1e97dba2f5b45eb5377807"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a generic NAL FU header. <br /></td></tr>
+<tr class="separator:ab41e0f64ca1e97dba2f5b45eb5377807"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab753825d4d0c813c801ba462fafc4938"><td class="memItemLeft" align="right" valign="top"><a id="ab753825d4d0c813c801ba462fafc4938"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_8h.html#ab753825d4d0c813c801ba462fafc4938">smolrtsp_nal_test_start_code</a> (U8Slice99 data, U8Slice99 *restrict data_without_start_code) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:ab753825d4d0c813c801ba462fafc4938"><td class="mdescLeft">&#160;</td><td class="mdescRight">If <code>data</code> contains a start code sequence, returns <code>true</code> and assigns <code>data_without_start_code</code>, <code>false</code> otherwise. <br /></td></tr>
+<tr class="separator:ab753825d4d0c813c801ba462fafc4938"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A generic <a href="https://en.wikipedia.org/wiki/Network_Abstraction_Layer">NAL (Network Abstraction Layer)</a> representation. </p>
@@ -235,8 +238,8 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">    SmolRTSP_NalHeader h = <a class="code" href="nal_8h.html#a0698c4a9167bff091cf62193e953417a">SmolRTSP_NalUnit_header</a>(<span class="keyword">self</span>);                                          \</div>
-<div class="line">    U8Slice99 payload = <a class="code" href="nal_8h.html#a9b790557d09ba3a4e67b636d7d7e65e2">SmolRTSP_NalUnit_payload</a>(<span class="keyword">self</span>)</div>
+<b>Value:</b><div class="fragment"><div class="line">    SmolRTSP_NalHeader h = <a class="code" href="nal_8h.html#a71d98d36ad5c71ed226cdbf47a31aa74">SmolRTSP_NalUnit_header</a>(<span class="keyword">self</span>);                                \</div>
+<div class="line">    U8Slice99 payload = <a class="code" href="nal_8h.html#a12f30ab39fe3fb5eb44146ac8088c35e">SmolRTSP_NalUnit_payload</a>(<span class="keyword">self</span>)</div>
 </div><!-- fragment -->
 <p>Destructs <code>self</code> into its header and its payload data. </p>
 <p>This macro expands to two variables named <code>h</code> and <code>payload</code> and initialises them to <code>SmolRTSP_NalUnit_header(self)</code> and <code>SmolRTSP_NalUnit_payload(self)</code>, respectively. </p>
@@ -318,8 +321,8 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_
 
 </div>
 </div>
-<a id="a1c2a0d632f770ac634605c02362cd4e3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1c2a0d632f770ac634605c02362cd4e3">&#9670;&nbsp;</a></span>SmolRTSP_NalHeader_fu_size()</h2>
+<a id="a455e664660b9eb7715953ddb1ff4841e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a455e664660b9eb7715953ddb1ff4841e">&#9670;&nbsp;</a></span>SmolRTSP_NalHeader_fu_size()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -434,8 +437,8 @@ H.265 Fragmentation Units (FUs): <a href="https://datatracker.ietf.org/doc/html/
 </div>
 </div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="anal_8h_html_a0698c4a9167bff091cf62193e953417a"><div class="ttname"><a href="nal_8h.html#a0698c4a9167bff091cf62193e953417a">SmolRTSP_NalUnit_header</a></div><div class="ttdeci">SmolRTSP_NalHeader SmolRTSP_NalUnit_header(SmolRTSP_NalUnit self)</div><div class="ttdoc">Returns the header of self.</div></div>
-<div class="ttc" id="anal_8h_html_a9b790557d09ba3a4e67b636d7d7e65e2"><div class="ttname"><a href="nal_8h.html#a9b790557d09ba3a4e67b636d7d7e65e2">SmolRTSP_NalUnit_payload</a></div><div class="ttdeci">U8Slice99 SmolRTSP_NalUnit_payload(SmolRTSP_NalUnit self)</div><div class="ttdoc">Returns the payload data of self.</div></div>
+<div class="ttc" id="anal_8h_html_a12f30ab39fe3fb5eb44146ac8088c35e"><div class="ttname"><a href="nal_8h.html#a12f30ab39fe3fb5eb44146ac8088c35e">SmolRTSP_NalUnit_payload</a></div><div class="ttdeci">U8Slice99 SmolRTSP_NalUnit_payload(SmolRTSP_NalUnit self) SMOLRTSP_PRIV_MUST_USE</div><div class="ttdoc">Returns the payload data of self.</div></div>
+<div class="ttc" id="anal_8h_html_a71d98d36ad5c71ed226cdbf47a31aa74"><div class="ttname"><a href="nal_8h.html#a71d98d36ad5c71ed226cdbf47a31aa74">SmolRTSP_NalUnit_header</a></div><div class="ttdeci">SmolRTSP_NalHeader SmolRTSP_NalUnit_header(SmolRTSP_NalUnit self) SMOLRTSP_PRIV_MUST_USE</div><div class="ttdoc">Returns the header of self.</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

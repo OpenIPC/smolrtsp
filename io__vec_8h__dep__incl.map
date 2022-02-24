@@ -1,6 +1,7 @@
 <map id="include/smolrtsp/io_vec.h" name="include/smolrtsp/io_vec.h">
-<area shape="rect" id="node1" title="Vectored I/O support." alt="" coords="22,5,169,47"/>
-<area shape="rect" id="node2" href="$smolrtsp_8h.html" title="Re&#45;exports all the functionality." alt="" coords="5,259,148,285"/>
-<area shape="rect" id="node3" href="$transport_8h.html" title="RTSP data transport (level 4) implementations." alt="" coords="63,95,269,121"/>
-<area shape="rect" id="node4" href="$rtp__transport_8h.html" title="An RTP data transport." alt="" coords="114,169,266,211"/>
+<area shape="rect" id="node1" title="Vectored I/O support." alt="" coords="5,5,152,47"/>
+<area shape="rect" id="node2" href="$smolrtsp_8h.html" title="Re&#45;exports all the functionality." alt="" coords="14,348,157,375"/>
+<area shape="rect" id="node3" href="$transport_8h.html" title="RTSP data transport (level 4) implementations." alt="" coords="47,95,252,121"/>
+<area shape="rect" id="node4" href="$rtp__transport_8h.html" title="An RTP data transport." alt="" coords="97,169,249,211"/>
+<area shape="rect" id="node5" href="$nal__transport_8h.html" title="An RTP/NAL data transport." alt="" coords="148,259,303,300"/>
 </map>

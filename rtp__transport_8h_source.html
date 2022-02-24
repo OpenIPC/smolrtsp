@@ -102,14 +102,14 @@ $(document).ready(function(){initNavTree('rtp__transport_8h_source.html',''); in
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
 <div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="rtp__transport_8h.html#a8c72a0e77af47185c469b8ddeec20f3d">   23</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="rtp__transport_8h.html#a8c72a0e77af47185c469b8ddeec20f3d">SmolRTSP_RtpTransport</a> <a class="code" href="rtp__transport_8h.html#a8c72a0e77af47185c469b8ddeec20f3d">SmolRTSP_RtpTransport</a>;</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<a class="code" href="rtp__transport_8h.html#a8c72a0e77af47185c469b8ddeec20f3d">SmolRTSP_RtpTransport</a> *</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<a class="code" href="rtp__transport_8h.html#ae1fca8a424ac7c32e92eda57e2fbaa34">SmolRTSP_RtpTransport_new</a>(SmolRTSP_Transport t, uint8_t rtsp_stream_id) SMOLRTSP_PRIV_MUST_USE;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keywordtype">int</span> <a class="code" href="rtp__transport_8h.html#a66e4657887d114014a5810745d510859">SmolRTSP_RtpTransport_send_packet</a>(</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <a class="code" href="rtp__transport_8h.html#a8c72a0e77af47185c469b8ddeec20f3d">SmolRTSP_RtpTransport</a> *<span class="keyword">self</span>, uint64_t timestamp_us, <span class="keywordtype">bool</span> marker, uint8_t payload_ty,</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    uint32_t clock_rate, U8Slice99 data_header, U8Slice99 data) SMOLRTSP_PRIV_MUST_USE;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<a class="code" href="rtp__transport_8h.html#adb171408327c92d02faaf24d50193f86">declImplExtern99</a>(SmolRTSP_Droppable, <a class="code" href="rtp__transport_8h.html#a8c72a0e77af47185c469b8ddeec20f3d">SmolRTSP_RtpTransport</a>);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<a class="code" href="rtp__transport_8h.html#a8c72a0e77af47185c469b8ddeec20f3d">SmolRTSP_RtpTransport</a> *<a class="code" href="rtp__transport_8h.html#ae1fca8a424ac7c32e92eda57e2fbaa34">SmolRTSP_RtpTransport_new</a>(</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    SmolRTSP_Transport t, uint8_t rtsp_stream_id) SMOLRTSP_PRIV_MUST_USE;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keywordtype">int</span> <a class="code" href="rtp__transport_8h.html#a66e4657887d114014a5810745d510859">SmolRTSP_RtpTransport_send_packet</a>(</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <a class="code" href="rtp__transport_8h.html#a8c72a0e77af47185c469b8ddeec20f3d">SmolRTSP_RtpTransport</a> *<span class="keyword">self</span>, uint64_t timestamp_us, <span class="keywordtype">bool</span> marker, uint8_t payload_ty,</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    uint32_t clock_rate, U8Slice99 data_header, U8Slice99 data) SMOLRTSP_PRIV_MUST_USE;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<a class="code" href="rtp__transport_8h.html#adb171408327c92d02faaf24d50193f86">declImplExtern99</a>(SmolRTSP_Droppable, <a class="code" href="rtp__transport_8h.html#a8c72a0e77af47185c469b8ddeec20f3d">SmolRTSP_RtpTransport</a>);</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="adroppable_8h_html"><div class="ttname"><a href="droppable_8h.html">droppable.h</a></div><div class="ttdoc">Droppable types support.</div></div>

@@ -1,5 +1,6 @@
 <map id="include/smolrtsp/transport.h" name="include/smolrtsp/transport.h">
 <area shape="rect" id="node1" title="RTSP data transport (level 4) implementations." alt="" coords="5,5,211,32"/>
-<area shape="rect" id="node2" href="$smolrtsp_8h.html" title="Re&#45;exports all the functionality." alt="" coords="37,169,179,196"/>
+<area shape="rect" id="node2" href="$smolrtsp_8h.html" title="Re&#45;exports all the functionality." alt="" coords="31,259,174,285"/>
 <area shape="rect" id="node3" href="$rtp__transport_8h.html" title="An RTP data transport." alt="" coords="89,80,241,121"/>
+<area shape="rect" id="node4" href="$nal__transport_8h.html" title="An RTP/NAL data transport." alt="" coords="140,169,295,211"/>
 </map>

@@ -97,15 +97,17 @@ $(document).ready(function(){initNavTree('h264_8h.html',''); initResizable(); })
 <div class="textblock"><code>#include &lt;stdbool.h&gt;</code><br />
 <code>#include &lt;stdint.h&gt;</code><br />
 <code>#include &lt;slice99.h&gt;</code><br />
+<code>#include &lt;smolrtsp/priv/compiler_attrs.h&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for h264.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="h264_8h__incl.png" border="0" usemap="#include_2smolrtsp_2nal_2h264_8h" alt=""/></div>
 <map name="include_2smolrtsp_2nal_2h264_8h" id="include_2smolrtsp_2nal_2h264_8h">
-<area shape="rect" title="H.264 NAL representation." alt="" coords="71,5,225,47"/>
-<area shape="rect" title=" " alt="" coords="5,95,88,121"/>
-<area shape="rect" title=" " alt="" coords="113,95,183,121"/>
-<area shape="rect" title=" " alt="" coords="208,95,288,121"/>
+<area shape="rect" title="H.264 NAL representation." alt="" coords="120,5,275,47"/>
+<area shape="rect" title=" " alt="" coords="5,102,88,129"/>
+<area shape="rect" title=" " alt="" coords="113,102,183,129"/>
+<area shape="rect" title=" " alt="" coords="208,102,288,129"/>
+<area shape="rect" title=" " alt="" coords="313,95,482,136"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -115,7 +117,8 @@ This graph shows which files directly or indirectly include this file:</div>
 <map name="include_2smolrtsp_2nal_2h264_8hdep" id="include_2smolrtsp_2nal_2h264_8hdep">
 <area shape="rect" title="H.264 NAL representation." alt="" coords="5,5,160,47"/>
 <area shape="rect" href="nal_8h.html" title="A generic NAL (Network Abstraction Layer) representation." alt="" coords="5,95,160,136"/>
-<area shape="rect" href="smolrtsp_8h.html" title="Re&#45;exports all the functionality." alt="" coords="11,184,154,211"/>
+<area shape="rect" href="smolrtsp_8h.html" title="Re&#45;exports all the functionality." alt="" coords="11,273,154,300"/>
+<area shape="rect" href="nal__transport_8h.html" title="An RTP/NAL data transport." alt="" coords="63,184,217,225"/>
 </map>
 </div>
 </div>
@@ -226,34 +229,34 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a7ca72b42927243727be2c12ff50e5f2b"><td class="memItemLeft" align="right" valign="top"><a id="a7ca72b42927243727be2c12ff50e5f2b"></a>
-<a class="el" href="structSmolRTSP__H264NalHeader.html">SmolRTSP_H264NalHeader</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h264_8h.html#a7ca72b42927243727be2c12ff50e5f2b">SmolRTSP_H264NalHeader_parse</a> (uint8_t byte_header)</td></tr>
-<tr class="memdesc:a7ca72b42927243727be2c12ff50e5f2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses an H.264 NAL header from <code>byte_header</code>. <br /></td></tr>
-<tr class="separator:a7ca72b42927243727be2c12ff50e5f2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5d5f61c4216735aca2f30a584d3b326b"><td class="memItemLeft" align="right" valign="top"><a id="a5d5f61c4216735aca2f30a584d3b326b"></a>
-uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h264_8h.html#a5d5f61c4216735aca2f30a584d3b326b">SmolRTSP_H264NalHeader_serialize</a> (<a class="el" href="structSmolRTSP__H264NalHeader.html">SmolRTSP_H264NalHeader</a> self)</td></tr>
-<tr class="memdesc:a5d5f61c4216735aca2f30a584d3b326b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts <code>self</code> to a single octet representation. <br /></td></tr>
-<tr class="separator:a5d5f61c4216735aca2f30a584d3b326b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9e77045935e13b8718d52370d758cb4c"><td class="memItemLeft" align="right" valign="top"><a id="a9e77045935e13b8718d52370d758cb4c"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h264_8h.html#a9e77045935e13b8718d52370d758cb4c">SmolRTSP_H264NalHeader_is_vps</a> (<a class="el" href="structSmolRTSP__H264NalHeader.html">SmolRTSP_H264NalHeader</a> self)</td></tr>
-<tr class="memdesc:a9e77045935e13b8718d52370d758cb4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether <code>self</code> is VPS. <br /></td></tr>
-<tr class="separator:a9e77045935e13b8718d52370d758cb4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0ea33504e9455da0fdb7cdd8aa827622"><td class="memItemLeft" align="right" valign="top"><a id="a0ea33504e9455da0fdb7cdd8aa827622"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h264_8h.html#a0ea33504e9455da0fdb7cdd8aa827622">SmolRTSP_H264NalHeader_is_sps</a> (<a class="el" href="structSmolRTSP__H264NalHeader.html">SmolRTSP_H264NalHeader</a> self)</td></tr>
-<tr class="memdesc:a0ea33504e9455da0fdb7cdd8aa827622"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether <code>self</code> is SPS. <br /></td></tr>
-<tr class="separator:a0ea33504e9455da0fdb7cdd8aa827622"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a29fe962ab000002c7586d500cd1ac51a"><td class="memItemLeft" align="right" valign="top"><a id="a29fe962ab000002c7586d500cd1ac51a"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h264_8h.html#a29fe962ab000002c7586d500cd1ac51a">SmolRTSP_H264NalHeader_is_pps</a> (<a class="el" href="structSmolRTSP__H264NalHeader.html">SmolRTSP_H264NalHeader</a> self)</td></tr>
-<tr class="memdesc:a29fe962ab000002c7586d500cd1ac51a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether <code>self</code> is PPS. <br /></td></tr>
-<tr class="separator:a29fe962ab000002c7586d500cd1ac51a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aabda02cc137d98d6c31c827da8ea1a24"><td class="memItemLeft" align="right" valign="top"><a id="aabda02cc137d98d6c31c827da8ea1a24"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h264_8h.html#aabda02cc137d98d6c31c827da8ea1a24">SmolRTSP_H264NalHeader_is_coded_slice_idr</a> (<a class="el" href="structSmolRTSP__H264NalHeader.html">SmolRTSP_H264NalHeader</a> self)</td></tr>
-<tr class="memdesc:aabda02cc137d98d6c31c827da8ea1a24"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether <code>self</code> is a coded slice IDR. <br /></td></tr>
-<tr class="separator:aabda02cc137d98d6c31c827da8ea1a24"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9c187dae87b3a93889a4689011f0cca2"><td class="memItemLeft" align="right" valign="top"><a id="a9c187dae87b3a93889a4689011f0cca2"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h264_8h.html#a9c187dae87b3a93889a4689011f0cca2">SmolRTSP_H264NalHeader_is_coded_slice_non_idr</a> (<a class="el" href="structSmolRTSP__H264NalHeader.html">SmolRTSP_H264NalHeader</a> self)</td></tr>
-<tr class="memdesc:a9c187dae87b3a93889a4689011f0cca2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether <code>self</code> is a coded slice non-IDR. <br /></td></tr>
-<tr class="separator:a9c187dae87b3a93889a4689011f0cca2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b7235eec0fb5d253542da645ff210ef"><td class="memItemLeft" align="right" valign="top"><a id="a5b7235eec0fb5d253542da645ff210ef"></a>
+<a class="el" href="structSmolRTSP__H264NalHeader.html">SmolRTSP_H264NalHeader</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h264_8h.html#a5b7235eec0fb5d253542da645ff210ef">SmolRTSP_H264NalHeader_parse</a> (uint8_t byte_header) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:a5b7235eec0fb5d253542da645ff210ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses an H.264 NAL header from <code>byte_header</code>. <br /></td></tr>
+<tr class="separator:a5b7235eec0fb5d253542da645ff210ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85c4469a79e1bed17179440415b4a5b2"><td class="memItemLeft" align="right" valign="top"><a id="a85c4469a79e1bed17179440415b4a5b2"></a>
+uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h264_8h.html#a85c4469a79e1bed17179440415b4a5b2">SmolRTSP_H264NalHeader_serialize</a> (<a class="el" href="structSmolRTSP__H264NalHeader.html">SmolRTSP_H264NalHeader</a> self) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:a85c4469a79e1bed17179440415b4a5b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts <code>self</code> to a single octet representation. <br /></td></tr>
+<tr class="separator:a85c4469a79e1bed17179440415b4a5b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abdfab43536f7dc7e8256f921942e9cdf"><td class="memItemLeft" align="right" valign="top"><a id="abdfab43536f7dc7e8256f921942e9cdf"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h264_8h.html#abdfab43536f7dc7e8256f921942e9cdf">SmolRTSP_H264NalHeader_is_vps</a> (<a class="el" href="structSmolRTSP__H264NalHeader.html">SmolRTSP_H264NalHeader</a> self) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:abdfab43536f7dc7e8256f921942e9cdf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether <code>self</code> is VPS. <br /></td></tr>
+<tr class="separator:abdfab43536f7dc7e8256f921942e9cdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af3901ff266aa0bca543d377a7f78948a"><td class="memItemLeft" align="right" valign="top"><a id="af3901ff266aa0bca543d377a7f78948a"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h264_8h.html#af3901ff266aa0bca543d377a7f78948a">SmolRTSP_H264NalHeader_is_sps</a> (<a class="el" href="structSmolRTSP__H264NalHeader.html">SmolRTSP_H264NalHeader</a> self) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:af3901ff266aa0bca543d377a7f78948a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether <code>self</code> is SPS. <br /></td></tr>
+<tr class="separator:af3901ff266aa0bca543d377a7f78948a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7479b33bdcb78da4f2bc8e2443bd6e41"><td class="memItemLeft" align="right" valign="top"><a id="a7479b33bdcb78da4f2bc8e2443bd6e41"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h264_8h.html#a7479b33bdcb78da4f2bc8e2443bd6e41">SmolRTSP_H264NalHeader_is_pps</a> (<a class="el" href="structSmolRTSP__H264NalHeader.html">SmolRTSP_H264NalHeader</a> self) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:a7479b33bdcb78da4f2bc8e2443bd6e41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether <code>self</code> is PPS. <br /></td></tr>
+<tr class="separator:a7479b33bdcb78da4f2bc8e2443bd6e41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f04927de33b45621a1a3124d6b3b907"><td class="memItemLeft" align="right" valign="top"><a id="a7f04927de33b45621a1a3124d6b3b907"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h264_8h.html#a7f04927de33b45621a1a3124d6b3b907">SmolRTSP_H264NalHeader_is_coded_slice_idr</a> (<a class="el" href="structSmolRTSP__H264NalHeader.html">SmolRTSP_H264NalHeader</a> self) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:a7f04927de33b45621a1a3124d6b3b907"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether <code>self</code> is a coded slice IDR. <br /></td></tr>
+<tr class="separator:a7f04927de33b45621a1a3124d6b3b907"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4017616c409c6d3efb32749ec61a4854"><td class="memItemLeft" align="right" valign="top"><a id="a4017616c409c6d3efb32749ec61a4854"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h264_8h.html#a4017616c409c6d3efb32749ec61a4854">SmolRTSP_H264NalHeader_is_coded_slice_non_idr</a> (<a class="el" href="structSmolRTSP__H264NalHeader.html">SmolRTSP_H264NalHeader</a> self) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:a4017616c409c6d3efb32749ec61a4854"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks whether <code>self</code> is a coded slice non-IDR. <br /></td></tr>
+<tr class="separator:a4017616c409c6d3efb32749ec61a4854"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a409d99dd79ea86829bf137601cf52bf8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="h264_8h.html#a409d99dd79ea86829bf137601cf52bf8">SmolRTSP_H264NalHeader_write_fu_header</a> (<a class="el" href="structSmolRTSP__H264NalHeader.html">SmolRTSP_H264NalHeader</a> self, uint8_t buffer[restrict], bool is_first_fragment, bool is_last_fragment)</td></tr>
 <tr class="memdesc:a409d99dd79ea86829bf137601cf52bf8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes a FU header of <code>self</code> to <code>buffer</code>.  <a href="h264_8h.html#a409d99dd79ea86829bf137601cf52bf8">More...</a><br /></td></tr>
 <tr class="separator:a409d99dd79ea86829bf137601cf52bf8"><td class="memSeparator" colspan="2">&#160;</td></tr>
