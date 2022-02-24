@@ -11,6 +11,8 @@
 
 #include <slice99.h>
 
+#include <smolrtsp/priv/compiler_attrs.h>
+
 /**
  * The size of an H.265 NAL header.
  */
@@ -72,37 +74,39 @@ typedef struct {
 /**
  * Parses an H.265 NAL header from @p byte_header.
  */
-SmolRTSP_H265NalHeader SmolRTSP_H265NalHeader_parse(uint8_t bytes[restrict static 2]);
+SmolRTSP_H265NalHeader
+SmolRTSP_H265NalHeader_parse(uint8_t bytes[restrict static 2]) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Converts @p self to a two-octet representation.
  */
-uint16_t SmolRTSP_H265NalHeader_serialize(SmolRTSP_H265NalHeader self);
+uint16_t SmolRTSP_H265NalHeader_serialize(SmolRTSP_H265NalHeader self) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Checks whether @p self is VPS.
  */
-bool SmolRTSP_H265NalHeader_is_vps(SmolRTSP_H265NalHeader self);
+bool SmolRTSP_H265NalHeader_is_vps(SmolRTSP_H265NalHeader self) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Checks whether @p self is SPS.
  */
-bool SmolRTSP_H265NalHeader_is_sps(SmolRTSP_H265NalHeader self);
+bool SmolRTSP_H265NalHeader_is_sps(SmolRTSP_H265NalHeader self) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Checks whether @p self is PPS.
  */
-bool SmolRTSP_H265NalHeader_is_pps(SmolRTSP_H265NalHeader self);
+bool SmolRTSP_H265NalHeader_is_pps(SmolRTSP_H265NalHeader self) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Checks whether @p self is a coded slice IDR.
  */
-bool SmolRTSP_H265NalHeader_is_coded_slice_idr(SmolRTSP_H265NalHeader self);
+bool SmolRTSP_H265NalHeader_is_coded_slice_idr(SmolRTSP_H265NalHeader self) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Checks whether @p self is a coded slice non-IDR.
  */
-bool SmolRTSP_H265NalHeader_is_coded_slice_non_idr(SmolRTSP_H265NalHeader self);
+bool SmolRTSP_H265NalHeader_is_coded_slice_non_idr(SmolRTSP_H265NalHeader self)
+    SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Writes a FU header of @p self to @p buffer.
