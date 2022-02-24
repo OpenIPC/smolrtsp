@@ -34,7 +34,7 @@ static void SmolRTSP_NalTransport_drop(VSelf) {
     VSELF(SmolRTSP_NalTransport);
     assert(self);
 
-    VTABLE(SmolRTSP_NalTransport, SmolRTSP_Droppable).drop(self->transport);
+    VTABLE(SmolRTSP_RtpTransport, SmolRTSP_Droppable).drop(self->transport);
 
     free(self);
 }
