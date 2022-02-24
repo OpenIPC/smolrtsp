@@ -110,6 +110,8 @@ TEST start_code(void) {
     CHECK(4, 0x00, 0x00, 0x00, 0x01, 0xAB, 0x8C);
 
 #undef CHECK
+
+    TEST();
 }
 
 SUITE(nal) {
