@@ -75,22 +75,21 @@ uint8_t *SmolRTSP_RtpHeader_serialize(
 
     buffer++;
 
-    buffer = (uint8_t *)SLICE99_APPEND(buffer, self.sequence_number);
-    buffer = (uint8_t *)SLICE99_APPEND(buffer, self.timestamp);
-    buffer = (uint8_t *)SLICE99_APPEND(buffer, self.ssrc);
+    buffer = SLICE99_APPEND(buffer, self.sequence_number);
+    buffer = SLICE99_APPEND(buffer, self.timestamp);
+    buffer = SLICE99_APPEND(buffer, self.ssrc);
 
     for (uint8_t i = 0; i < self.csrc_count; i++) {
-        buffer = (uint8_t *)SLICE99_APPEND(buffer, self.csrc[i]);
+        buffer = SLICE99_APPEND(buffer, self.csrc[i]);
     }
 
     if (self.extension) {
-        buffer = (uint8_t *)SLICE99_APPEND(buffer, self.extension_profile);
-        buffer = (uint8_t *)SLICE99_APPEND(buffer, self.extension_payload_len);
+        buffer = SLICE99_APPEND(buffer, self.extension_profile);
+        buffer = SLICE99_APPEND(buffer, self.extension_payload_len);
 
         for (uint16_t i = 0; i < self.extension_payload_len * sizeof(uint32_t);
              i++) {
-            buffer =
-                (uint8_t *)SLICE99_APPEND(buffer, self.extension_payload[i]);
+            buffer = SLICE99_APPEND(buffer, self.extension_payload[i]);
         }
     }
 

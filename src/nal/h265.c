@@ -67,6 +67,6 @@ void SmolRTSP_H265NalHeader_write_fu_header(
     const uint8_t fu_header = smolrtsp_nal_fu_header(
         is_first_fragment, is_last_fragment, self.unit_type);
 
-    buffer = (uint8_t *)SLICE99_APPEND(buffer, payload_hdr);
-    buffer = (uint8_t *)SLICE99_APPEND(buffer, fu_header);
+    buffer = SLICE99_APPEND(buffer, payload_hdr);
+    buffer = SLICE99_APPEND(buffer, fu_header);
 }
