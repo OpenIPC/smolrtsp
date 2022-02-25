@@ -11,8 +11,10 @@ const char *SmolRTSP_LowerTransport_str(SmolRTSP_LowerTransport self) {
     switch (self) {
     case SmolRTSP_LowerTransport_TCP:
         return "TCP";
-    default:
+    case SmolRTSP_LowerTransport_UDP:
         return "UDP";
+    default:
+        return "Unknown";
     }
 }
 
