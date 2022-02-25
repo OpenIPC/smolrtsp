@@ -147,9 +147,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ae1fca8a424ac7c32e92eda57e2fbaa34"><td class="memItemLeft" align="right" valign="top"><a class="el" href="rtp__transport_8h.html#a8c72a0e77af47185c469b8ddeec20f3d">SmolRTSP_RtpTransport</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rtp__transport_8h.html#ae1fca8a424ac7c32e92eda57e2fbaa34">SmolRTSP_RtpTransport_new</a> (SmolRTSP_Transport t, uint8_t rtsp_stream_id) SMOLRTSP_PRIV_MUST_USE</td></tr>
 <tr class="memdesc:ae1fca8a424ac7c32e92eda57e2fbaa34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new RTP transport from the underlying level-4 protocol <code>t</code>.  <a href="rtp__transport_8h.html#ae1fca8a424ac7c32e92eda57e2fbaa34">More...</a><br /></td></tr>
 <tr class="separator:ae1fca8a424ac7c32e92eda57e2fbaa34"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a66e4657887d114014a5810745d510859"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rtp__transport_8h.html#a66e4657887d114014a5810745d510859">SmolRTSP_RtpTransport_send_packet</a> (<a class="el" href="rtp__transport_8h.html#a8c72a0e77af47185c469b8ddeec20f3d">SmolRTSP_RtpTransport</a> *self, uint64_t timestamp_us, bool marker, uint8_t payload_ty, uint32_t clock_rate, U8Slice99 data_header, U8Slice99 data) SMOLRTSP_PRIV_MUST_USE</td></tr>
-<tr class="memdesc:a66e4657887d114014a5810745d510859"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends an RTP packet.  <a href="rtp__transport_8h.html#a66e4657887d114014a5810745d510859">More...</a><br /></td></tr>
-<tr class="separator:a66e4657887d114014a5810745d510859"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7133c4910810fe85fcd010c0ee861699"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rtp__transport_8h.html#a7133c4910810fe85fcd010c0ee861699">SmolRTSP_RtpTransport_send_packet</a> (<a class="el" href="rtp__transport_8h.html#a8c72a0e77af47185c469b8ddeec20f3d">SmolRTSP_RtpTransport</a> *self, uint64_t timestamp_us, bool marker, uint8_t payload_ty, uint32_t clock_rate, U8Slice99 payload_header, U8Slice99 payload) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:a7133c4910810fe85fcd010c0ee861699"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends an RTP packet.  <a href="rtp__transport_8h.html#a7133c4910810fe85fcd010c0ee861699">More...</a><br /></td></tr>
+<tr class="separator:a7133c4910810fe85fcd010c0ee861699"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adb171408327c92d02faaf24d50193f86"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rtp__transport_8h.html#adb171408327c92d02faaf24d50193f86">declImplExtern99</a> (SmolRTSP_Droppable, <a class="el" href="rtp__transport_8h.html#a8c72a0e77af47185c469b8ddeec20f3d">SmolRTSP_RtpTransport</a>)</td></tr>
 <tr class="memdesc:adb171408327c92d02faaf24d50193f86"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implements <a class="el" href="droppable_8h.html#a63327e52bfcd2c77b4fb293a45590312" title="Types that can be dropped (deallocated).">SmolRTSP_Droppable_IFACE</a> for <a class="el" href="rtp__transport_8h.html#a8c72a0e77af47185c469b8ddeec20f3d" title="An RTP data transport.">SmolRTSP_RtpTransport</a>.  <a href="rtp__transport_8h.html#adb171408327c92d02faaf24d50193f86">More...</a><br /></td></tr>
 <tr class="separator:adb171408327c92d02faaf24d50193f86"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -220,8 +220,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a66e4657887d114014a5810745d510859"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a66e4657887d114014a5810745d510859">&#9670;&nbsp;</a></span>SmolRTSP_RtpTransport_send_packet()</h2>
+<a id="a7133c4910810fe85fcd010c0ee861699"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7133c4910810fe85fcd010c0ee861699">&#9670;&nbsp;</a></span>SmolRTSP_RtpTransport_send_packet()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -260,13 +260,13 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">U8Slice99&#160;</td>
-          <td class="paramname"><em>data_header</em>, </td>
+          <td class="paramname"><em>payload_header</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">U8Slice99&#160;</td>
-          <td class="paramname"><em>data</em>&#160;</td>
+          <td class="paramname"><em>payload</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
