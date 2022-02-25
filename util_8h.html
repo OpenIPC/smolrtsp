@@ -84,7 +84,6 @@ $(document).ready(function(){initNavTree('util_8h.html',''); initResizable(); })
 
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Data Structures</a> &#124;
 <a href="#define-members">Macros</a> &#124;
 <a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a>  </div>
@@ -130,12 +129,6 @@ This graph shows which files directly or indirectly include this file:</div>
 </div>
 <p><a href="util_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
-Data Structures</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structSmolRTSP__InterleavedDataHeader.html">SmolRTSP_InterleavedDataHeader</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An interleaved binary data header used to mix RTSP requests/responses with streaming data in a single TCP connection.  <a href="structSmolRTSP__InterleavedDataHeader.html#details">More...</a><br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
 <tr class="memitem:ac04f5517058459181f72077af54c38cd"><td class="memItemLeft" align="right" valign="top"><a id="ac04f5517058459181f72077af54c38cd"></a>
@@ -166,14 +159,12 @@ const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr class="memitem:a0a0a5ff30d713d3500e3ffe2f1d51f2d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#a0a0a5ff30d713d3500e3ffe2f1d51f2d">SmolRTSP_parse_interleaved_chn_id</a> (int *restrict rtp_chn_id, int *restrict rtcp_chn_id, CharSlice99 value)</td></tr>
 <tr class="memdesc:a0a0a5ff30d713d3500e3ffe2f1d51f2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extracts the <code>interleaved</code> parameter from the header value <code>value</code>.  <a href="util_8h.html#a0a0a5ff30d713d3500e3ffe2f1d51f2d">More...</a><br /></td></tr>
 <tr class="separator:a0a0a5ff30d713d3500e3ffe2f1d51f2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1c5b9a8d61bcd69435ffe02ce58f2547"><td class="memItemLeft" align="right" valign="top"><a id="a1c5b9a8d61bcd69435ffe02ce58f2547"></a>
-uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#a1c5b9a8d61bcd69435ffe02ce58f2547">SmolRTSP_InterleavedDataHeader_as_u32</a> (<a class="el" href="structSmolRTSP__InterleavedDataHeader.html">SmolRTSP_InterleavedDataHeader</a> self)</td></tr>
-<tr class="memdesc:a1c5b9a8d61bcd69435ffe02ce58f2547"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <a class="el" href="structSmolRTSP__InterleavedDataHeader.html" title="An interleaved binary data header used to mix RTSP requests/responses with streaming data in a single...">SmolRTSP_InterleavedDataHeader</a> represented as <code>uint32_t</code>. <br /></td></tr>
-<tr class="separator:a1c5b9a8d61bcd69435ffe02ce58f2547"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acad09a79a213da4f22223fb703e1e826"><td class="memItemLeft" align="right" valign="top"><a id="acad09a79a213da4f22223fb703e1e826"></a>
-<a class="el" href="structSmolRTSP__InterleavedDataHeader.html">SmolRTSP_InterleavedDataHeader</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#acad09a79a213da4f22223fb703e1e826">SmolRTSP_InterleavedDataHeader_from_u32</a> (uint32_t data)</td></tr>
-<tr class="memdesc:acad09a79a213da4f22223fb703e1e826"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <a class="el" href="structSmolRTSP__InterleavedDataHeader.html" title="An interleaved binary data header used to mix RTSP requests/responses with streaming data in a single...">SmolRTSP_InterleavedDataHeader</a> from <code>uint32_t</code>. <br /></td></tr>
-<tr class="separator:acad09a79a213da4f22223fb703e1e826"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a9dca14691e6f4c1fdda7b12216270f"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#a3a9dca14691e6f4c1fdda7b12216270f">smolrtsp_interleaved_header</a> (uint8_t channel_id, uint16_t payload_len)</td></tr>
+<tr class="memdesc:a3a9dca14691e6f4c1fdda7b12216270f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a four-octet interleaved binary data header.  <a href="util_8h.html#a3a9dca14691e6f4c1fdda7b12216270f">More...</a><br /></td></tr>
+<tr class="separator:a3a9dca14691e6f4c1fdda7b12216270f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60e13d33f4e9c621cc93079b08339090"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#a60e13d33f4e9c621cc93079b08339090">smolrtsp_parse_interleaved_header</a> (uint32_t data, uint8_t *restrict channel_id, uint16_t *restrict payload_len)</td></tr>
+<tr class="memdesc:a60e13d33f4e9c621cc93079b08339090"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses an four-octet interleaved binary data header <code>data</code>.  <a href="util_8h.html#a60e13d33f4e9c621cc93079b08339090">More...</a><br /></td></tr>
+<tr class="separator:a60e13d33f4e9c621cc93079b08339090"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Utilitary stuff. </p>
@@ -201,6 +192,44 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="a3a9dca14691e6f4c1fdda7b12216270f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a9dca14691e6f4c1fdda7b12216270f">&#9670;&nbsp;</a></span>smolrtsp_interleaved_header()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t smolrtsp_interleaved_header </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>channel_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>payload_len</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns a four-octet interleaved binary data header. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">channel_id</td><td>The one-byte channel identifier. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">payload_len</td><td>The length of the encapsulated binary data (network byte order).</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd><a href="https://datatracker.ietf.org/doc/html/rfc2326#section-10.12">https://datatracker.ietf.org/doc/html/rfc2326#section-10.12</a> </dd></dl>
+
+</div>
+</div>
 <a id="a44f31cc507068554d473923d3f67b575"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a44f31cc507068554d473923d3f67b575">&#9670;&nbsp;</a></span>SmolRTSP_parse_client_port()</h2>
 
@@ -291,6 +320,53 @@ uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="
 <dd>
 <code>rtcp_chn_id != NULL</code></dd></dl>
 <dl class="section note"><dt>Note</dt><dd>If an RTCP channel ID is not specified, <code>rtcp_chn_id</code> will be set to -1. </dd></dl>
+
+</div>
+</div>
+<a id="a60e13d33f4e9c621cc93079b08339090"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60e13d33f4e9c621cc93079b08339090">&#9670;&nbsp;</a></span>smolrtsp_parse_interleaved_header()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void smolrtsp_parse_interleaved_header </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>data</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *restrict&#160;</td>
+          <td class="paramname"><em>channel_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t *restrict&#160;</td>
+          <td class="paramname"><em>payload_len</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Parses an four-octet interleaved binary data header <code>data</code>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">channel_id</td><td>The one-byte channel identifier. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">payload_len</td><td>The length of the encapsulated binary data (network byte order).</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section pre"><dt>Precondition</dt><dd><code>channel_id != NULL</code> </dd>
+<dd>
+<code>payload_len != NULL</code></dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a href="https://datatracker.ietf.org/doc/html/rfc2326#section-10.12">https://datatracker.ietf.org/doc/html/rfc2326#section-10.12</a> </dd></dl>
 
 </div>
 </div>
