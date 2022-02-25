@@ -83,25 +83,26 @@ TEST parse_interleaved_chn_id(void) {
     PASS();
 }
 
-TEST interleaved_data_as_u32(void) {
-    const SmolRTSP_InterleavedDataHeader h = {
-        .channel_id = 123,
-        .payload_len = 54321,
-    };
+TEST interleaved_header(void) {
+    uint8_t channel_id = 123;
+    uint16_t payload_len = 54321;
 
-    const uint32_t binary = SmolRTSP_InterleavedDataHeader_as_u32(h);
+    const uint32_t binary =
+        smolrtsp_interleaved_header(channel_id, payload_len);
 
-    ASSERT_EQ(binary, 0xd4317b24);
+    ASSERT_EQ(0xd4317b24, binary);
 
     PASS();
 }
 
-TEST interleaved_data_from_u32(void) {
-    const SmolRTSP_InterleavedDataHeader h =
-        SmolRTSP_InterleavedDataHeader_from_u32(0xd4317b24);
+TEST parse_interleaved_header(void) {
+    uint8_t channel_id = 0;
+    uint16_t payload_len = 0;
 
-    ASSERT_EQ(h.channel_id, 123);
-    ASSERT_EQ(h.payload_len, 54321);
+    smolrtsp_parse_interleaved_header(0xd4317b24, &channel_id, &payload_len);
+
+    ASSERT_EQ(123, channel_id);
+    ASSERT_EQ(54321, payload_len);
 
     PASS();
 }
@@ -110,6 +111,6 @@ SUITE(util) {
     RUN_TEST(parse_lower_transport);
     RUN_TEST(parse_client_port);
     RUN_TEST(parse_interleaved_chn_id);
-    RUN_TEST(interleaved_data_as_u32);
-    RUN_TEST(interleaved_data_from_u32);
+    RUN_TEST(interleaved_header);
+    RUN_TEST(parse_interleaved_header);
 }

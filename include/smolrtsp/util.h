@@ -79,29 +79,28 @@ int SmolRTSP_parse_interleaved_chn_id(
     int *restrict rtp_chn_id, int *restrict rtcp_chn_id, CharSlice99 value);
 
 /**
- * An interleaved binary data header used to mix RTSP requests/responses with
- * streaming data in a single TCP connection.
+ * Returns a four-octet interleaved binary data header.
+ *
+ * @param[in] channel_id The one-byte channel identifier.
+ * @param[in] payload_len The length of the encapsulated binary data (network
+ * byte order).
+ *
+ * @see <https://datatracker.ietf.org/doc/html/rfc2326#section-10.12>
  */
-typedef struct {
-    /**
-     * The one-byte channel identifier.
-     */
-    uint8_t channel_id;
-
-    /**
-     * The length of the encapsulated binary data (network byte order).
-     */
-    uint16_t payload_len;
-} SmolRTSP_InterleavedDataHeader;
+uint32_t smolrtsp_interleaved_header(uint8_t channel_id, uint16_t payload_len);
 
 /**
- * Returns #SmolRTSP_InterleavedDataHeader represented as `uint32_t`.
+ * Parses an four-octet interleaved binary data header @p data.
+ *
+ * @param[out] channel_id The one-byte channel identifier.
+ * @param[out] payload_len The length of the encapsulated binary data (network
+ * byte order).
+ *
+ * @pre `channel_id != NULL`
+ * @pre `payload_len != NULL`
+ *
+ * @see <https://datatracker.ietf.org/doc/html/rfc2326#section-10.12>
  */
-uint32_t
-SmolRTSP_InterleavedDataHeader_as_u32(SmolRTSP_InterleavedDataHeader self);
-
-/**
- * Returns #SmolRTSP_InterleavedDataHeader from `uint32_t`.
- */
-SmolRTSP_InterleavedDataHeader
-SmolRTSP_InterleavedDataHeader_from_u32(uint32_t data);
+void smolrtsp_parse_interleaved_header(
+    uint32_t data, uint8_t *restrict channel_id,
+    uint16_t *restrict payload_len);

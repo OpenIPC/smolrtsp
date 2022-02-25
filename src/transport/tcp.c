@@ -46,16 +46,12 @@ static int SmolRTSP_TcpTransport_transmit(VSelf, SmolRTSP_IoVecSlice bufs) {
 
     const size_t total_bytes = SmolRTSP_IoVecSlice_len(bufs);
 
-    const uint32_t interleaved_data =
-        SmolRTSP_InterleavedDataHeader_as_u32((SmolRTSP_InterleavedDataHeader){
-            .channel_id = self->channel_id,
-            .payload_len = htons(total_bytes),
-        });
+    const uint32_t header =
+        smolrtsp_interleaved_header(self->channel_id, htons(total_bytes));
 
-    ssize_t ret = VCALL(
-        self->w, write,
-        CharSlice99_new((char *)&interleaved_data, sizeof interleaved_data));
-    if (ret != sizeof interleaved_data) {
+    ssize_t ret =
+        VCALL(self->w, write, CharSlice99_new((char *)&header, sizeof header));
+    if (ret != sizeof header) {
         return -1;
     }
 

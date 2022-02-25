@@ -142,38 +142,29 @@ int SmolRTSP_parse_interleaved_chn_id(
 return 0;
 }
 
-#define DOLLAR 0x24
+uint32_t smolrtsp_interleaved_header(uint8_t channel_id, uint16_t payload_len) {
+    uint8_t bytes[sizeof(uint32_t)] = {0};
 
-uint32_t
-SmolRTSP_InterleavedDataHeader_as_u32(SmolRTSP_InterleavedDataHeader self) {
-    union {
-        uint32_t n;
-        uint8_t bytes[sizeof(uint32_t)];
-    } repr;
+    bytes[0] = '$';
+    bytes[1] = channel_id;
+    memcpy(bytes + 2, &payload_len, sizeof payload_len);
 
-    repr.bytes[0] = DOLLAR;
-    repr.bytes[1] = self.channel_id;
-    memcpy(repr.bytes + 2, &self.payload_len, sizeof self.payload_len);
-
-    return repr.n;
+    uint32_t n;
+    memcpy(&n, bytes, sizeof bytes);
+    return n;
 }
 
-SmolRTSP_InterleavedDataHeader
-SmolRTSP_InterleavedDataHeader_from_u32(uint32_t data) {
-    union {
-        uint32_t n;
-        uint8_t bytes[sizeof(uint32_t)];
-    } repr = {.n = data};
+void smolrtsp_parse_interleaved_header(
+    uint32_t data, uint8_t *restrict channel_id,
+    uint16_t *restrict payload_len) {
+    assert(channel_id);
+    assert(data);
 
-    assert(DOLLAR == repr.bytes[0]);
+    uint8_t bytes[sizeof(uint32_t)] = {0};
+    memcpy(bytes, &data, sizeof data);
 
-    SmolRTSP_InterleavedDataHeader self;
+    assert('$' == bytes[0]);
 
-    self.channel_id = repr.bytes[1];
-
-    memcpy(&self.payload_len, &repr.bytes[2], sizeof(self.payload_len));
-
-    return self;
+    *channel_id = bytes[1];
+    memcpy(payload_len, &bytes[2], sizeof *payload_len);
 }
-
-#undef DOLLAR
