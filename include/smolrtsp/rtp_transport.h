@@ -40,8 +40,8 @@ SmolRTSP_RtpTransport *SmolRTSP_RtpTransport_new(
  */
 int SmolRTSP_RtpTransport_send_packet(
     SmolRTSP_RtpTransport *self, uint64_t timestamp_us, bool marker,
-    uint8_t payload_ty, uint32_t clock_rate, U8Slice99 data_header,
-    U8Slice99 data) SMOLRTSP_PRIV_MUST_USE;
+    uint8_t payload_ty, uint32_t clock_rate, U8Slice99 payload_header,
+    U8Slice99 payload) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Implements #SmolRTSP_Droppable_IFACE for #SmolRTSP_RtpTransport.

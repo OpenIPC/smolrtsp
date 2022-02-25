@@ -44,8 +44,8 @@ implExtern(SmolRTSP_Droppable, SmolRTSP_RtpTransport);
 
 int SmolRTSP_RtpTransport_send_packet(
     SmolRTSP_RtpTransport *self, uint64_t timestamp_us, bool marker,
-    uint8_t payload_ty, uint32_t clock_rate, U8Slice99 data_header,
-    U8Slice99 data) {
+    uint8_t payload_ty, uint32_t clock_rate, U8Slice99 payload_header,
+    U8Slice99 payload) {
     assert(self);
 
     const SmolRTSP_RtpHeader header = {
@@ -72,8 +72,8 @@ int SmolRTSP_RtpTransport_send_packet(
     const SmolRTSP_IoVecSlice bufs =
         (SmolRTSP_IoVecSlice)Slice99_typed_from_array((struct iovec[]){
             smolrtsp_slice_to_iovec(rtp_header),
-            smolrtsp_slice_to_iovec(data_header),
-            smolrtsp_slice_to_iovec(data),
+            smolrtsp_slice_to_iovec(payload_header),
+            smolrtsp_slice_to_iovec(payload),
         });
 
     const int ret = VCALL(self->transport, transmit, bufs);
