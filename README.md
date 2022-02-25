@@ -6,17 +6,17 @@
 
 ## Highlights
 
- - **Small.** SmolRTSP is merely a set of [data transfer objects (DTO)] accompanied with (de)serializers and some auxiliary routines.
+ - **Small.** SmolRTSP is a relatively small library designed to be used in resource-constrained systems (e.g., IP cameras).
 
- - **Portable.** SmolRTSP does not prescribe contexts in which your code must be executed.
+ - **Unopinionated.** SmolRTSP does not prescribe contexts in which your code must be executed.
 
- - **Extensible.** Although SmolRTSP exposes common RTSP methods, headers, and so on, it also allows custom values to be specified in the same way.
+ - **Zero-copy.** SmolRTSP does not allocate dynamic memory or copy data while parsing; instead, it returns [array slices] to the user-supplied data.
 
- - **Zero-copy.** SmolRTSP does not copy user-supplied data -- instead it uses [array slicing] via [Slice99].
+ - **Battle-tested.** SmolRTSP is used extensively by [Majestic], an IP camera streamer developed by [OpenIPC].
 
-[data transfer objects (DTO)]: https://en.wikipedia.org/wiki/Data_transfer_object
-[array slicing]: https://en.wikipedia.org/wiki/Array_slicing
-[Slice99]: https://github.com/Hirrolot/slice99
+[array slices]: https://github.com/Hirrolot/slice99
+[Majestic]: https://openipc.github.io/wiki/en/majestic-streamer.html
+[OpenIPC]: https://openipc.org/
 
 ## Installation
 
