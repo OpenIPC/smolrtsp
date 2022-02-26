@@ -40,7 +40,7 @@ set(SMOLRTSP_SOURCES
     include/smolrtsp/types/rtp.h
     include/smolrtsp/nal/h264.h
     include/smolrtsp/nal/h265.h
-    include/smolrtsp/nal/nal.h
+    include/smolrtsp/nal.h
     include/smolrtsp/writer.h
     include/smolrtsp/util.h
     include/smolrtsp/transport.h
@@ -67,7 +67,7 @@ set(SMOLRTSP_SOURCES
     src/types/rtp.c
     src/nal/h264.c
     src/nal/h265.c
-    src/nal/nal.c
+    src/nal.c
     src/writer.c
     src/writer/fd.c
     src/writer/file.c
@@ -99,7 +99,7 @@ target_precompile_headers(
   include/smolrtsp/types/error.h
   include/smolrtsp/nal/h264.h
   include/smolrtsp/nal/h265.h
-  include/smolrtsp/nal/nal.h
+  include/smolrtsp/nal.h
   include/smolrtsp/writer.h
   include/smolrtsp/transport.h
   include/smolrtsp/droppable.h)

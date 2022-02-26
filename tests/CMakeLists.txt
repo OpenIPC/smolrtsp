@@ -31,7 +31,7 @@ add_executable(
   types/test_util.h
   nal/h264.c
   nal/h265.c
-  nal/nal.c
+  nal.c
   util.c
   writer.c
   io_vec.c

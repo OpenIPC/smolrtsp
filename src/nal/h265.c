@@ -1,6 +1,6 @@
 #include <smolrtsp/nal/h265.h>
 
-#include <smolrtsp/nal/nal.h>
+#include <smolrtsp/nal.h>
 
 #include <arpa/inet.h>
 #include <string.h>

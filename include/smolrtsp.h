@@ -31,7 +31,7 @@
 #include <smolrtsp/types/sdp.h>
 #include <smolrtsp/types/status_code.h>
 
-#include <smolrtsp/nal/nal.h>
+#include <smolrtsp/nal.h>
 
 #include <smolrtsp/droppable.h>
 #include <smolrtsp/io_vec.h>

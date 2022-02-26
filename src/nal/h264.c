@@ -1,6 +1,6 @@
 #include <smolrtsp/nal/h264.h>
 
-#include <smolrtsp/nal/nal.h>
+#include <smolrtsp/nal.h>
 
 SmolRTSP_H264NalHeader SmolRTSP_H264NalHeader_parse(uint8_t byte_header) {
     return (SmolRTSP_H264NalHeader){

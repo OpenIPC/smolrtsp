@@ -13,7 +13,7 @@
 #pragma once
 
 #include <smolrtsp/droppable.h>
-#include <smolrtsp/nal/nal.h>
+#include <smolrtsp/nal.h>
 #include <smolrtsp/rtp_transport.h>
 
 #include <stdint.h>

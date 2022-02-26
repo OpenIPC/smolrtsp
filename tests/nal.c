@@ -1,4 +1,4 @@
-#include <smolrtsp/nal/nal.h>
+#include <smolrtsp/nal.h>
 
 #include <greatest.h>
 
