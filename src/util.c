@@ -1,5 +1,3 @@
-// TODO: do something with this bullshit.
-
 #include <smolrtsp/util.h>
 
 #include "types/parsing.h"
