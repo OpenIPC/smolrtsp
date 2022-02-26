@@ -150,15 +150,12 @@ Functions</h2></td></tr>
 const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#a671bc6adbfb22b949bbb21980de85442">SmolRTSP_LowerTransport_str</a> (<a class="el" href="util_8h.html#a1913c4e09e6a1c4acc7a875ec14a59ec">SmolRTSP_LowerTransport</a> self)</td></tr>
 <tr class="memdesc:a671bc6adbfb22b949bbb21980de85442"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts <code>self</code> to a string representation (<code>"TCP"</code> for <a class="el" href="util_8h.html#a1913c4e09e6a1c4acc7a875ec14a59eca3d5e8e0c4a3e76d7388a5932e3d54fa6" title="TCP.">SmolRTSP_LowerTransport_TCP</a> and <code>"UDP"</code> for <a class="el" href="util_8h.html#a1913c4e09e6a1c4acc7a875ec14a59eca4133e9bc8c588469f99b8ed758982e44" title="UDP.">SmolRTSP_LowerTransport_UDP</a>). <br /></td></tr>
 <tr class="separator:a671bc6adbfb22b949bbb21980de85442"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac00f5667e98999caae4e3a57686c3f90"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#ac00f5667e98999caae4e3a57686c3f90">SmolRTSP_parse_lower_transport</a> (<a class="el" href="util_8h.html#a1913c4e09e6a1c4acc7a875ec14a59ec">SmolRTSP_LowerTransport</a> *restrict result, CharSlice99 value)</td></tr>
-<tr class="memdesc:ac00f5667e98999caae4e3a57686c3f90"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extracts the lower transport from the header value <code>value</code>.  <a href="util_8h.html#ac00f5667e98999caae4e3a57686c3f90">More...</a><br /></td></tr>
-<tr class="separator:ac00f5667e98999caae4e3a57686c3f90"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a44f31cc507068554d473923d3f67b575"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#a44f31cc507068554d473923d3f67b575">SmolRTSP_parse_client_port</a> (int *restrict rtp_port, int *restrict rtcp_port, CharSlice99 value)</td></tr>
-<tr class="memdesc:a44f31cc507068554d473923d3f67b575"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extracts the <code>client_port</code> parameter from the header value <code>value</code>.  <a href="util_8h.html#a44f31cc507068554d473923d3f67b575">More...</a><br /></td></tr>
-<tr class="separator:a44f31cc507068554d473923d3f67b575"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0a0a5ff30d713d3500e3ffe2f1d51f2d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#a0a0a5ff30d713d3500e3ffe2f1d51f2d">SmolRTSP_parse_interleaved_chn_id</a> (int *restrict rtp_chn_id, int *restrict rtcp_chn_id, CharSlice99 value)</td></tr>
-<tr class="memdesc:a0a0a5ff30d713d3500e3ffe2f1d51f2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extracts the <code>interleaved</code> parameter from the header value <code>value</code>.  <a href="util_8h.html#a0a0a5ff30d713d3500e3ffe2f1d51f2d">More...</a><br /></td></tr>
-<tr class="separator:a0a0a5ff30d713d3500e3ffe2f1d51f2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61b939ba5975e994bd4ee5a05933e997"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#a61b939ba5975e994bd4ee5a05933e997">smolrtsp_parse_lower_transport</a> (CharSlice99 value)</td></tr>
+<tr class="memdesc:a61b939ba5975e994bd4ee5a05933e997"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses a lower transport from <code>value</code> (either TCP or UDP).  <a href="util_8h.html#a61b939ba5975e994bd4ee5a05933e997">More...</a><br /></td></tr>
+<tr class="separator:a61b939ba5975e994bd4ee5a05933e997"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aabc3e8fa6389f7ae90ad01c9f1d3959a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#aabc3e8fa6389f7ae90ad01c9f1d3959a">smolrtsp_parse_header_param</a> (const char *restrict param_name, CharSlice99 value, CharSlice99 *restrict param_value)</td></tr>
+<tr class="memdesc:aabc3e8fa6389f7ae90ad01c9f1d3959a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses a header value parameter in the form <code>&lt;param-name&gt;=&lt;param-value&gt;</code>.  <a href="util_8h.html#aabc3e8fa6389f7ae90ad01c9f1d3959a">More...</a><br /></td></tr>
+<tr class="separator:aabc3e8fa6389f7ae90ad01c9f1d3959a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3a9dca14691e6f4c1fdda7b12216270f"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#a3a9dca14691e6f4c1fdda7b12216270f">smolrtsp_interleaved_header</a> (uint8_t channel_id, uint16_t payload_len)</td></tr>
 <tr class="memdesc:a3a9dca14691e6f4c1fdda7b12216270f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a four-octet interleaved binary data header.  <a href="util_8h.html#a3a9dca14691e6f4c1fdda7b12216270f">More...</a><br /></td></tr>
 <tr class="separator:a3a9dca14691e6f4c1fdda7b12216270f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -230,29 +227,29 @@ const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 
 </div>
 </div>
-<a id="a44f31cc507068554d473923d3f67b575"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a44f31cc507068554d473923d3f67b575">&#9670;&nbsp;</a></span>SmolRTSP_parse_client_port()</h2>
+<a id="aabc3e8fa6389f7ae90ad01c9f1d3959a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aabc3e8fa6389f7ae90ad01c9f1d3959a">&#9670;&nbsp;</a></span>smolrtsp_parse_header_param()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int SmolRTSP_parse_client_port </td>
+          <td class="memname">bool smolrtsp_parse_header_param </td>
           <td>(</td>
-          <td class="paramtype">int *restrict&#160;</td>
-          <td class="paramname"><em>rtp_port</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int *restrict&#160;</td>
-          <td class="paramname"><em>rtcp_port</em>, </td>
+          <td class="paramtype">const char *restrict&#160;</td>
+          <td class="paramname"><em>param_name</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">CharSlice99&#160;</td>
-          <td class="paramname"><em>value</em>&#160;</td>
+          <td class="paramname"><em>value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">CharSlice99 *restrict&#160;</td>
+          <td class="paramname"><em>param_value</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -262,64 +259,17 @@ const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
       </table>
 </div><div class="memdoc">
 
-<p>Extracts the <code>client_port</code> parameter from the header value <code>value</code>. </p>
+<p>Parses a header value parameter in the form <code>&lt;param-name&gt;=&lt;param-value&gt;</code>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">value</td><td>The value of the <code>Transport</code> header.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">param_name</td><td>The name of a parameter to parse plus the <code>=</code> sign. For example, <code>"mode="</code> or <code>"client_port="</code>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">value</td><td>The header value. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">param_value</td><td>The pointer to a parameter value, if found.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>-1 on error, 0 on success.</dd></dl>
-<dl class="section pre"><dt>Precondition</dt><dd><code>rtp_port != NULL</code> </dd>
-<dd>
-<code>rtcp_port != NULL</code> </dd></dl>
-
-</div>
-</div>
-<a id="a0a0a5ff30d713d3500e3ffe2f1d51f2d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0a0a5ff30d713d3500e3ffe2f1d51f2d">&#9670;&nbsp;</a></span>SmolRTSP_parse_interleaved_chn_id()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int SmolRTSP_parse_interleaved_chn_id </td>
-          <td>(</td>
-          <td class="paramtype">int *restrict&#160;</td>
-          <td class="paramname"><em>rtp_chn_id</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int *restrict&#160;</td>
-          <td class="paramname"><em>rtcp_chn_id</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">CharSlice99&#160;</td>
-          <td class="paramname"><em>value</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Extracts the <code>interleaved</code> parameter from the header value <code>value</code>. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">value</td><td>The value of the <code>Transport</code> header.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>-1 on error, 0 on success.</dd></dl>
-<dl class="section pre"><dt>Precondition</dt><dd><code>rtp_chn_id != NULL</code> </dd>
-<dd>
-<code>rtcp_chn_id != NULL</code></dd></dl>
-<dl class="section note"><dt>Note</dt><dd>If an RTCP channel ID is not specified, <code>rtcp_chn_id</code> will be set to -1. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Whether <code>param_name</code> has been found or not.</dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd><code>param_name</code> is a null-terminated string. </dd></dl>
 
 </div>
 </div>
@@ -370,41 +320,30 @@ const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 
 </div>
 </div>
-<a id="ac00f5667e98999caae4e3a57686c3f90"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac00f5667e98999caae4e3a57686c3f90">&#9670;&nbsp;</a></span>SmolRTSP_parse_lower_transport()</h2>
+<a id="a61b939ba5975e994bd4ee5a05933e997"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a61b939ba5975e994bd4ee5a05933e997">&#9670;&nbsp;</a></span>smolrtsp_parse_lower_transport()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int SmolRTSP_parse_lower_transport </td>
+          <td class="memname">int smolrtsp_parse_lower_transport </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="util_8h.html#a1913c4e09e6a1c4acc7a875ec14a59ec">SmolRTSP_LowerTransport</a> *restrict&#160;</td>
-          <td class="paramname"><em>result</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype">CharSlice99&#160;</td>
-          <td class="paramname"><em>value</em>&#160;</td>
-        </tr>
-        <tr>
+          <td class="paramname"><em>value</em></td><td>)</td>
           <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Extracts the lower transport from the header value <code>value</code>. </p>
+<p>Parses a lower transport from <code>value</code> (either TCP or UDP). </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">value</td><td>The value of the <code>Transport</code> header.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">value</td><td>The <a href="https://datatracker.ietf.org/doc/html/rfc2326#section-12.39"><code>Transport</code></a> header value.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>-1 on error, 0 on success.</dd></dl>
-<dl class="section pre"><dt>Precondition</dt><dd><code>result != NULL</code> </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="util_8h.html#a1913c4e09e6a1c4acc7a875ec14a59ec" title="An RTSP lower transport.">SmolRTSP_LowerTransport</a> or -1 on parsing error. </dd></dl>
 
 </div>
 </div>
