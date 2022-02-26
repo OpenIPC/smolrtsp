@@ -38,45 +38,31 @@ typedef enum {
 const char *SmolRTSP_LowerTransport_str(SmolRTSP_LowerTransport self);
 
 /**
- * Extracts the lower transport from the header value @p value.
+ * Parses a lower transport from @p value (either TCP or UDP).
  *
- * @param[in] value The value of the `Transport` header.
+ * @param[in] value The
+ * [`Transport`](https://datatracker.ietf.org/doc/html/rfc2326#section-12.39)
+ * header value.
  *
- * @return -1 on error, 0 on success.
- *
- * @pre `result != NULL`
+ * @return #SmolRTSP_LowerTransport or -1 on parsing error.
  */
-int SmolRTSP_parse_lower_transport(
-    SmolRTSP_LowerTransport *restrict result, CharSlice99 value);
+int smolrtsp_parse_lower_transport(CharSlice99 value);
 
 /**
- * Extracts the `client_port` parameter from the header value @p value.
+ * Parses a header value parameter in the form `<param-name>=<param-value>`.
  *
- * @param[in] value The value of the `Transport` header.
+ * @param[in] param_name The name of a parameter to parse plus the `=` sign. For
+ * example, `"mode="` or `"client_port="`.
+ * @param[in] value The header value.
+ * @param[out] param_value The pointer to a parameter value, if found.
  *
- * @return -1 on error, 0 on success.
+ * @return Whether @p param_name has been found or not.
  *
- * @pre `rtp_port != NULL`
- * @pre `rtcp_port != NULL`
+ * @pre `param_name` is a null-terminated string.
  */
-int SmolRTSP_parse_client_port(
-    int *restrict rtp_port, int *restrict rtcp_port, CharSlice99 value);
-
-/**
- * Extracts the `interleaved` parameter from the header value @p value.
- *
- * @param[in] value The value of the `Transport` header.
- *
- * @return -1 on error, 0 on success.
- *
- * @pre `rtp_chn_id != NULL`
- * @pre `rtcp_chn_id != NULL`
- *
- * @note If an RTCP channel ID is not specified, @p rtcp_chn_id will be set to
- * -1.
- */
-int SmolRTSP_parse_interleaved_chn_id(
-    int *restrict rtp_chn_id, int *restrict rtcp_chn_id, CharSlice99 value);
+bool smolrtsp_parse_header_param(
+    const char *restrict param_name, CharSlice99 value,
+    CharSlice99 *restrict param_value);
 
 /**
  * Returns a four-octet interleaved binary data header.

@@ -6,6 +6,9 @@
 
 #include <assert.h>
 #include <stdio.h>
+#include <string.h>
+
+#include <alloca.h>
 
 const char *SmolRTSP_LowerTransport_str(SmolRTSP_LowerTransport self) {
     switch (self) {
@@ -18,130 +21,48 @@ const char *SmolRTSP_LowerTransport_str(SmolRTSP_LowerTransport self) {
     }
 }
 
-#define ENSURE_SUCCESS(res)                                                    \
-    match(res) {                                                               \
-        of(SmolRTSP_ParseResult_Success, status) match(*status) {              \
-            of(SmolRTSP_ParseStatus_Complete, offset) value =                  \
-                CharSlice99_advance(value, *offset);                           \
-            otherwise return -1;                                               \
-        }                                                                      \
-        otherwise return -1;                                                   \
-    }
-
-int SmolRTSP_parse_lower_transport(
-    SmolRTSP_LowerTransport *restrict result, CharSlice99 value) {
-    assert(result);
-
-    const CharSlice99 backup = value;
-
-    const SmolRTSP_ParseResult res = smolrtsp_match_until_str(value, ";");
-    ENSURE_SUCCESS(res);
-
-    const CharSlice99 transport_specifier =
-        CharSlice99_from_ptrdiff(backup.ptr, (char *)value.ptr - 1);
-
-    if (CharSlice99_primitive_ends_with(
-            transport_specifier, CharSlice99_from_str("UDP"))) {
-        *result = SmolRTSP_LowerTransport_UDP;
-    } else if (CharSlice99_primitive_ends_with(
-                   transport_specifier, CharSlice99_from_str("TCP"))) {
-        *result = SmolRTSP_LowerTransport_TCP;
+int smolrtsp_parse_lower_transport(CharSlice99 value) {
+    if (CharSlice99_primitive_starts_with(
+            value, CharSlice99_from_str("RTP/AVP/UDP"))) {
+        return SmolRTSP_LowerTransport_UDP;
     } else if (CharSlice99_primitive_starts_with(
-                   transport_specifier, CharSlice99_from_str("RTP/AVP"))) {
-        *result = SmolRTSP_LowerTransport_UDP;
+                   value, CharSlice99_from_str("RTP/AVP/TCP"))) {
+        return SmolRTSP_LowerTransport_TCP;
+    } else if (CharSlice99_primitive_starts_with(
+                   value, CharSlice99_from_str("RTP/AVP"))) {
+        return SmolRTSP_LowerTransport_UDP;
     } else {
         return -1;
     }
-
-    return 0;
 }
 
-int SmolRTSP_parse_client_port(
-    int *restrict rtp_port, int *restrict rtcp_port, CharSlice99 value) {
-    assert(rtp_port);
-    assert(rtcp_port);
+bool smolrtsp_parse_header_param(
+    const char *restrict param_name, CharSlice99 value,
+    CharSlice99 *restrict param_value) {
+    assert(param_name);
+    assert(param_value);
 
-    SmolRTSP_ParseResult res = smolrtsp_match_until_str(value, "client_port=");
-    ENSURE_SUCCESS(res);
+    // Make a null-terminated string to use `strstr`.
+    char *value_str = alloca(value.len + 1);
+    memcpy(value_str, value.ptr, value.len);
+    value_str[value.len] = '\0';
 
-    const CharSlice99 rtp_port_start = value;
-
-    res = smolrtsp_match_numeric(value);
-    ENSURE_SUCCESS(res);
-
-    res = smolrtsp_match_char(value, '-');
-    ENSURE_SUCCESS(res);
-
-    const CharSlice99 rtcp_port_start = value;
-
-    int rtp_port_temp, rtcp_port_temp;
-    if (sscanf(
-            CharSlice99_c_str(rtp_port_start, (char[128]){0}), "%d",
-            &rtp_port_temp) != 1) {
-        return -1;
-    }
-    if (sscanf(
-            CharSlice99_c_str(rtcp_port_start, (char[128]){0}), "%d",
-            &rtcp_port_temp) != 1) {
-        return -1;
+    char *param_name_ptr = strstr(value_str, param_name);
+    if (NULL == param_name_ptr) {
+        return false;
     }
 
-    *rtp_port = rtp_port_temp;
-    *rtcp_port = rtcp_port_temp;
+    char *semicolon_ptr = strchr(param_name_ptr, ';');
+    const ptrdiff_t start_idx =
+        (param_name_ptr - value_str) + strlen(param_name);
+    ptrdiff_t end_idx = value.len;
 
-    return 0;
-}
-
-int SmolRTSP_parse_interleaved_chn_id(
-    int *restrict rtp_chn_id, int *restrict rtcp_chn_id, CharSlice99 value) {
-    assert(rtp_chn_id);
-    assert(rtcp_chn_id);
-
-    SmolRTSP_ParseResult res = smolrtsp_match_until_str(value, "interleaved=");
-    ENSURE_SUCCESS(res);
-
-    const CharSlice99 rtp_chn_id_start = value;
-
-    res = smolrtsp_match_numeric(value);
-
-    // If the result is partial, it means we have reached the end of the string.
-    // It is okay since the value can be something like
-    // `RTP/AVP/UDP;unicast;interleaved=204`.
-    ifLet(res, SmolRTSP_ParseResult_Success, status) {
-        *status = SmolRTSP_ParseStatus_Complete(0);
+    if (NULL != semicolon_ptr) {
+        end_idx = semicolon_ptr - value_str;
     }
 
-    ENSURE_SUCCESS(res);
-
-    int rtp_port_temp;
-    if (sscanf(
-            CharSlice99_c_str(rtp_chn_id_start, (char[128]){0}), "%d",
-            &rtp_port_temp) != 1) {
-        return -1;
-    }
-
-    int rtcp_port_temp = -1;
-    res = smolrtsp_match_until_str(value, "-");
-
-    // clang-format off
-    ifLet(res, SmolRTSP_ParseResult_Success, status) {
-        ifLet (*status, SmolRTSP_ParseStatus_Complete, offset) {
-            value = CharSlice99_advance(value, *offset);
-            const CharSlice99 rtcp_chn_id_start = value;
-
-            if (sscanf(
-                    CharSlice99_c_str(rtcp_chn_id_start, (char[128]){0}), "%d", &rtcp_port_temp) !=
-                1) {
-                return -1;
-            }
-        }
-    }
-// clang-format on
-
-*rtp_chn_id = rtp_port_temp;
-*rtcp_chn_id = rtcp_port_temp;
-
-return 0;
+    *param_value = CharSlice99_sub(value, start_idx, end_idx);
+    return true;
 }
 
 uint32_t smolrtsp_interleaved_header(uint8_t channel_id, uint16_t payload_len) {
