@@ -1,7 +1,5 @@
 #include <smolrtsp/util.h>
 
-#include "types/parsing.h"
-
 #include <assert.h>
 #include <stdio.h>
 #include <string.h>
