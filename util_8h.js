@@ -7,7 +7,7 @@ var util_8h =
     ] ],
     [ "smolrtsp_interleaved_header", "util_8h.html#a3a9dca14691e6f4c1fdda7b12216270f", null ],
     [ "SmolRTSP_LowerTransport_str", "util_8h.html#a671bc6adbfb22b949bbb21980de85442", null ],
-    [ "smolrtsp_parse_header_param", "util_8h.html#aabc3e8fa6389f7ae90ad01c9f1d3959a", null ],
+    [ "smolrtsp_parse_header_param", "util_8h.html#aed832dabda9c26c109e46e7c499f8d91", null ],
     [ "smolrtsp_parse_interleaved_header", "util_8h.html#a60e13d33f4e9c621cc93079b08339090", null ],
     [ "smolrtsp_parse_lower_transport", "util_8h.html#a61b939ba5975e994bd4ee5a05933e997", null ]
 ];
