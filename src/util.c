@@ -36,7 +36,7 @@ int smolrtsp_parse_lower_transport(CharSlice99 value) {
     }
 }
 
-bool smolrtsp_parse_header_param(
+int smolrtsp_parse_header_param(
     const char *restrict param_name, CharSlice99 value,
     CharSlice99 *restrict param_value) {
     assert(param_name);
@@ -49,7 +49,7 @@ bool smolrtsp_parse_header_param(
 
     char *param_name_ptr = strstr(value_str, param_name);
     if (NULL == param_name_ptr) {
-        return false;
+        return -1;
     }
 
     char *semicolon_ptr = strchr(param_name_ptr, ';');
@@ -62,7 +62,7 @@ bool smolrtsp_parse_header_param(
     }
 
     *param_value = CharSlice99_sub(value, start_idx, end_idx);
-    return true;
+    return 0;
 }
 
 uint32_t smolrtsp_interleaved_header(uint8_t channel_id, uint16_t payload_len) {

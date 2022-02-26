@@ -56,11 +56,11 @@ int smolrtsp_parse_lower_transport(CharSlice99 value);
  * @param[in] value The header value.
  * @param[out] param_value The pointer to a parameter value, if found.
  *
- * @return Whether @p param_name has been found or not.
+ * @return 0 if @p param_name has been found, -1 otherwise.
  *
  * @pre `param_name` is a null-terminated string.
  */
-bool smolrtsp_parse_header_param(
+int smolrtsp_parse_header_param(
     const char *restrict param_name, CharSlice99 value,
     CharSlice99 *restrict param_value);
 

@@ -32,8 +32,9 @@ TEST parse_header_param(void) {
 
 #define CHECK(param_name, value, expected)                                     \
     do {                                                                       \
-        ASSERT(smolrtsp_parse_header_param(                                    \
-            param_name, CharSlice99_from_str(value), &ret));                   \
+        ASSERT_EQ(                                                             \
+            0, smolrtsp_parse_header_param(                                    \
+                   param_name, CharSlice99_from_str(value), &ret));            \
         ASSERT(CharSlice99_primitive_eq(ret, CharSlice99_from_str(expected))); \
     } while (0)
 
@@ -50,6 +51,13 @@ TEST parse_header_param(void) {
         "5002-5003");
 
 #undef CHECK
+
+    ASSERT_EQ(
+        -1,
+        smolrtsp_parse_header_param(
+            "abracadabra",
+            CharSlice99_from_str("RTP/AVP/UDP;unicast;client_port=3056-3057"),
+            &ret));
 
     PASS();
 }
