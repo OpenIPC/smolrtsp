@@ -1,10 +1,10 @@
-<map id="include/smolrtsp/nal/nal.h" name="include/smolrtsp/nal/nal.h">
-<area shape="rect" id="node1" title="A generic NAL (Network Abstraction Layer) representation." alt="" coords="237,5,392,47"/>
-<area shape="rect" id="node2" href="$h264_8h.html" title="H.264 NAL representation." alt="" coords="239,95,390,121"/>
-<area shape="rect" id="node3" title=" " alt="" coords="5,177,88,203"/>
-<area shape="rect" id="node4" title=" " alt="" coords="433,177,503,203"/>
-<area shape="rect" id="node5" title=" " alt="" coords="112,177,192,203"/>
-<area shape="rect" id="node6" title=" " alt="" coords="230,169,399,211"/>
-<area shape="rect" id="node7" href="$h265_8h.html" title="H.265 NAL representation." alt="" coords="65,95,215,121"/>
-<area shape="rect" id="node8" title=" " alt="" coords="517,95,625,121"/>
+<map id="include/smolrtsp/nal.h" name="include/smolrtsp/nal.h">
+<area shape="rect" id="node1" title="A generic NAL (Network Abstraction Layer) representation." alt="" coords="231,5,398,32"/>
+<area shape="rect" id="node2" href="$h264_8h.html" title="H.264 NAL representation." alt="" coords="239,80,390,107"/>
+<area shape="rect" id="node3" title=" " alt="" coords="5,162,88,189"/>
+<area shape="rect" id="node4" title=" " alt="" coords="433,162,503,189"/>
+<area shape="rect" id="node5" title=" " alt="" coords="112,162,192,189"/>
+<area shape="rect" id="node6" title=" " alt="" coords="230,155,399,196"/>
+<area shape="rect" id="node7" href="$h265_8h.html" title="H.265 NAL representation." alt="" coords="65,80,215,107"/>
+<area shape="rect" id="node8" title=" " alt="" coords="517,80,625,107"/>
 </map>

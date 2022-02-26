@@ -1,6 +1,6 @@
 <map id="include/smolrtsp/nal/h265.h" name="include/smolrtsp/nal/h265.h">
-<area shape="rect" id="node1" title="H.265 NAL representation." alt="" coords="5,5,160,47"/>
-<area shape="rect" id="node2" href="$nal_8h.html" title="A generic NAL (Network Abstraction Layer) representation." alt="" coords="5,95,160,136"/>
-<area shape="rect" id="node3" href="$smolrtsp_8h.html" title="Re&#45;exports all the functionality." alt="" coords="11,273,154,300"/>
-<area shape="rect" id="node4" href="$nal__transport_8h.html" title="An RTP/NAL data transport." alt="" coords="63,184,217,225"/>
+<area shape="rect" id="node1" title="H.265 NAL representation." alt="" coords="11,5,166,47"/>
+<area shape="rect" id="node2" href="$nal_8h.html" title="A generic NAL (Network Abstraction Layer) representation." alt="" coords="5,95,172,121"/>
+<area shape="rect" id="node3" href="$smolrtsp_8h.html" title="Re&#45;exports all the functionality." alt="" coords="17,259,160,285"/>
+<area shape="rect" id="node4" href="$nal__transport_8h.html" title="An RTP/NAL data transport." alt="" coords="69,169,223,211"/>
 </map>
