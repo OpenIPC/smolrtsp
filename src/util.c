@@ -42,8 +42,7 @@ int smolrtsp_parse_header_param(
     assert(param_name);
     assert(param_value);
 
-    // Make a null-terminated string to use `strstr`.
-    char *value_str = CharSlice99_c_str(value, alloca(value.len));
+    char *value_str = CharSlice99_alloca_c_str(value); // for strstr/strchr
 
     char *param_name_ptr = strstr(value_str, param_name);
     if (NULL == param_name_ptr) {
