@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>SmolRTSP: Data Structure Index</title>
+<title>SmolRTSP: SmolRTSP_PortPair Struct Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -64,7 +64,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('classes.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('structSmolRTSP__PortPair.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -83,41 +83,40 @@ $(document).ready(function(){initNavTree('classes.html',''); initResizable(); })
 </div>
 
 <div class="header">
+  <div class="summary">
+<a href="#pub-attribs">Data Fields</a>  </div>
   <div class="headertitle">
-<div class="title">Data Structure Index</div>  </div>
+<div class="title">SmolRTSP_PortPair Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="qindex"><a class="qindex" href="#letter_s">s</a></div>
-<table class="classindex">
-<tr><td rowspan="2" valign="bottom"><a name="letter_s"></a><table border="0" cellspacing="0" cellpadding="0"><tr><td><div class="ah">&#160;&#160;s&#160;&#160;</div></td></tr></table>
-</td>
-<td valign="top"><a class="el" href="structSmolRTSP__H265NalHeader.html">SmolRTSP_H265NalHeader</a>&#160;&#160;&#160;</td>
-<td valign="top"><a class="el" href="structSmolRTSP__NalUnit.html">SmolRTSP_NalUnit</a>&#160;&#160;&#160;</td>
-<td valign="top"><a class="el" href="structSmolRTSP__Response.html">SmolRTSP_Response</a>&#160;&#160;&#160;</td>
-<td valign="top"><a class="el" href="structSmolRTSP__SdpLine.html">SmolRTSP_SdpLine</a>&#160;&#160;&#160;</td>
-</tr>
-<tr><td valign="top"><a class="el" href="structSmolRTSP__H265NalUnit.html">SmolRTSP_H265NalUnit</a>&#160;&#160;&#160;</td>
-<td valign="top"><a class="el" href="structSmolRTSP__PortPair.html">SmolRTSP_PortPair</a>&#160;&#160;&#160;</td>
-<td valign="top"><a class="el" href="structSmolRTSP__ResponseLine.html">SmolRTSP_ResponseLine</a>&#160;&#160;&#160;</td>
-<td></td></tr>
-<tr><td valign="top"><a class="el" href="structSmolRTSP__H264NalHeader.html">SmolRTSP_H264NalHeader</a>&#160;&#160;&#160;</td>
-<td valign="top"><a class="el" href="structSmolRTSP__Header.html">SmolRTSP_Header</a>&#160;&#160;&#160;</td>
-<td valign="top"><a class="el" href="structSmolRTSP__Request.html">SmolRTSP_Request</a>&#160;&#160;&#160;</td>
-<td valign="top"><a class="el" href="structSmolRTSP__RtpHeader.html">SmolRTSP_RtpHeader</a>&#160;&#160;&#160;</td>
-<td></td></tr>
-<tr><td valign="top"><a class="el" href="structSmolRTSP__H264NalUnit.html">SmolRTSP_H264NalUnit</a>&#160;&#160;&#160;</td>
-<td valign="top"><a class="el" href="structSmolRTSP__HeaderMap.html">SmolRTSP_HeaderMap</a>&#160;&#160;&#160;</td>
-<td valign="top"><a class="el" href="structSmolRTSP__RequestLine.html">SmolRTSP_RequestLine</a>&#160;&#160;&#160;</td>
-<td valign="top"><a class="el" href="structSmolRTSP__RtspVersion.html">SmolRTSP_RtspVersion</a>&#160;&#160;&#160;</td>
-<td></td></tr>
-<tr><td></td><td></td><td></td><td></td><td></td></tr>
+
+<p>An RTP/RTCP port pair specified as a range, e.g., <code>client_port=3456-3457</code>.  
+ <a href="structSmolRTSP__PortPair.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="util_8h_source.html">util.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Data Fields</h2></td></tr>
+<tr class="memitem:ac932ef69e005261ff14eea4f11322ae3"><td class="memItemLeft" align="right" valign="top"><a id="ac932ef69e005261ff14eea4f11322ae3"></a>
+uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structSmolRTSP__PortPair.html#ac932ef69e005261ff14eea4f11322ae3">rtp_port</a></td></tr>
+<tr class="memdesc:ac932ef69e005261ff14eea4f11322ae3"><td class="mdescLeft">&#160;</td><td class="mdescRight">The RTP port part. <br /></td></tr>
+<tr class="separator:ac932ef69e005261ff14eea4f11322ae3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a83df95bfdd0674434f0ec23b17a46b16"><td class="memItemLeft" align="right" valign="top"><a id="a83df95bfdd0674434f0ec23b17a46b16"></a>
+uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structSmolRTSP__PortPair.html#a83df95bfdd0674434f0ec23b17a46b16">rtcp_port</a></td></tr>
+<tr class="memdesc:a83df95bfdd0674434f0ec23b17a46b16"><td class="mdescLeft">&#160;</td><td class="mdescRight">The RTCP port part. <br /></td></tr>
+<tr class="separator:a83df95bfdd0674434f0ec23b17a46b16"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<div class="qindex"><a class="qindex" href="#letter_s">s</a></div>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>An RTP/RTCP port pair specified as a range, e.g., <code>client_port=3456-3457</code>. </p>
+</div><hr/>The documentation for this struct was generated from the following file:<ul>
+<li>include/smolrtsp/<a class="el" href="util_8h_source.html">util.h</a></li>
+</ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
+    <li class="navelem"><a class="el" href="structSmolRTSP__PortPair.html">SmolRTSP_PortPair</a></li>
     <li class="footer">Generated by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>

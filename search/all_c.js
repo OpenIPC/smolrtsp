@@ -8,7 +8,9 @@ var searchData=
   ['request_5furi_2eh_42',['request_uri.h',['../request__uri_8h.html',1,'']]],
   ['response_2eh_43',['response.h',['../response_8h.html',1,'']]],
   ['response_5fline_2eh_44',['response_line.h',['../response__line_8h.html',1,'']]],
-  ['rtp_2eh_45',['rtp.h',['../rtp_8h.html',1,'']]],
-  ['rtp_5ftransport_2eh_46',['rtp_transport.h',['../rtp__transport_8h.html',1,'']]],
-  ['rtsp_5fversion_2eh_47',['rtsp_version.h',['../rtsp__version_8h.html',1,'']]]
+  ['rtcp_5fport_45',['rtcp_port',['../structSmolRTSP__PortPair.html#a83df95bfdd0674434f0ec23b17a46b16',1,'SmolRTSP_PortPair']]],
+  ['rtp_2eh_46',['rtp.h',['../rtp_8h.html',1,'']]],
+  ['rtp_5fport_47',['rtp_port',['../structSmolRTSP__PortPair.html#ac932ef69e005261ff14eea4f11322ae3',1,'SmolRTSP_PortPair']]],
+  ['rtp_5ftransport_2eh_48',['rtp_transport.h',['../rtp__transport_8h.html',1,'']]],
+  ['rtsp_5fversion_2eh_49',['rtsp_version.h',['../rtsp__version_8h.html',1,'']]]
 ];
