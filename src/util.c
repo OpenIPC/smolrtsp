@@ -1,6 +1,7 @@
 #include <smolrtsp/util.h>
 
 #include <assert.h>
+#include <inttypes.h>
 #include <stdio.h>
 #include <string.h>
 
@@ -32,29 +33,69 @@ int smolrtsp_parse_lower_transport(CharSlice99 value) {
     }
 }
 
+int smolrtsp_parse_range(
+    void *restrict num_0, void *restrict num_1,
+    const char *restrict num_specifier, const char *restrict param_name,
+    const char *restrict header_value) {
+    assert(num_0);
+    assert(num_1);
+    assert(num_specifier);
+    assert(param_name);
+    assert(header_value);
+
+    CharSlice99 range;
+    if (smolrtsp_parse_header_param(param_name, header_value, &range) == -1) {
+        return -1;
+    }
+
+    char fmt[16] = {0};
+    snprintf(fmt, sizeof fmt, "%%%s-%%%s", num_specifier, num_specifier);
+
+    char *port_pair_str = CharSlice99_alloca_c_str(range);
+    if (sscanf(port_pair_str, fmt, num_0, num_1) != 2) {
+        return -1;
+    }
+
+    return 0;
+}
+
+int smolrtsp_parse_port_pair(
+    SmolRTSP_PortPair *restrict pair, const char *restrict param_name,
+    const char *restrict header_value) {
+    assert(pair);
+    assert(param_name);
+    assert(header_value);
+
+    if (smolrtsp_parse_range(
+            &pair->rtp_port, &pair->rtcp_port, SCNu16, param_name,
+            header_value) == -1) {
+        return -1;
+    }
+
+    return 0;
+}
+
 int smolrtsp_parse_header_param(
-    const char *restrict param_name, CharSlice99 value,
+    const char *restrict param_name, const char *restrict header_value,
     CharSlice99 *restrict param_value) {
     assert(param_name);
+    assert(header_value);
     assert(param_value);
 
-    char *value_str = CharSlice99_alloca_c_str(value); // for strstr/strchr
-
-    char *param_name_ptr = strstr(value_str, param_name);
+    char *param_name_ptr = strstr(header_value, param_name);
     if (NULL == param_name_ptr) {
         return -1;
     }
 
     char *semicolon_ptr = strchr(param_name_ptr, ';');
-    const ptrdiff_t start_idx =
-        (param_name_ptr - value_str) + strlen(param_name);
-    ptrdiff_t end_idx = value.len;
+    char *start = param_name_ptr + strlen(param_name);
 
-    if (NULL != semicolon_ptr) {
-        end_idx = semicolon_ptr - value_str;
+    if (NULL == semicolon_ptr) {
+        *param_value = CharSlice99_from_str(start);
+    } else {
+        *param_value = CharSlice99_from_ptrdiff(start, semicolon_ptr);
     }
 
-    *param_value = CharSlice99_sub(value, start_idx, end_idx);
     return 0;
 }
 
