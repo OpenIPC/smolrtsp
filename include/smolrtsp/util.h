@@ -77,13 +77,12 @@ int smolrtsp_parse_lower_transport(CharSlice99 value);
  *
  * @pre `num_0 != NULL`
  * @pre `num_1 != NULL`
- * @pre @p num_specifier, @p param_name, and @p header_value are null-terminated
- * strings.
+ * @pre @p num_specifier and @p param_name are null-terminated strings.
  */
 int smolrtsp_parse_range(
     void *restrict num_0, void *restrict num_1,
     const char *restrict num_specifier, const char *restrict param_name,
-    const char *restrict header_value);
+    CharSlice99 header_value);
 
 /**
  * Like #smolrtsp_parse_range but parses a port pair.
@@ -94,28 +93,28 @@ int smolrtsp_parse_range(
  * @param[in] header_value The header value to search for the string.
  *
  * @pre `pair != NULL`
- * @pre @p param_name and @p header_value are null-terminated strings.
+ * @pre @p param_name is a null-terminated string.
  */
 int smolrtsp_parse_port_pair(
     SmolRTSP_PortPair *restrict pair, const char *restrict param_name,
-    const char *restrict header_value);
+    CharSlice99 header_value);
 
 /**
  * Parses a header value parameter in the form `<param-name>=<param-value>`.
  *
+ * @param[out] param_value The pointer to a parameter value, if found.
  * @param[in] param_name The name of a parameter to parse plus the `=` sign. For
  * example, `"mode="` or `"client_port="`.
  * @param[in] header_value The header value.
- * @param[out] param_value The pointer to a parameter value, if found.
  *
  * @return 0 if @p param_name has been found, -1 otherwise.
  *
- * @pre @p param_name and @p value are null-terminated string.
+ * @pre @p param_name is a null-terminated string.
  * @pre `param_value != NULL`
  */
 int smolrtsp_parse_header_param(
-    const char *restrict param_name, const char *restrict header_value,
-    CharSlice99 *restrict param_value);
+    CharSlice99 *restrict param_value, const char *restrict param_name,
+    CharSlice99 header_value);
 
 /**
  * Returns a four-octet interleaved binary data header.

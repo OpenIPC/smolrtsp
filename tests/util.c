@@ -35,7 +35,9 @@ TEST parse_header_param(void) {
 
 #define CHECK(param_name, value, expected)                                     \
     do {                                                                       \
-        ASSERT_EQ(0, smolrtsp_parse_header_param(param_name, value, &ret));    \
+        ASSERT_EQ(                                                             \
+            0, smolrtsp_parse_header_param(                                    \
+                   &ret, param_name, CharSlice99_from_str(value)));            \
         ASSERT(CharSlice99_primitive_eq(ret, CharSlice99_from_str(expected))); \
     } while (0)
 
@@ -56,7 +58,8 @@ TEST parse_header_param(void) {
     ASSERT_EQ(
         -1,
         smolrtsp_parse_header_param(
-            "abracadabra", "RTP/AVP/UDP;unicast;client_port=3056-3057", &ret));
+            &ret, "abracadabra",
+            CharSlice99_from_str("RTP/AVP/UDP;unicast;client_port=3056-3057")));
 
     PASS();
 }
@@ -65,10 +68,12 @@ TEST parse_range(void) {
     uint8_t interleaved_rtp_port = 0, interleaved_rtcp_port = 0;
 
     ASSERT_EQ(
-        0, smolrtsp_parse_range(
-               &interleaved_rtp_port, &interleaved_rtcp_port, SCNu8,
-               "interleaved=",
-               "RTP/AVP/UDP;unicast;client_port=3056-3057;interleaved=4-5"));
+        0,
+        smolrtsp_parse_range(
+            &interleaved_rtp_port, &interleaved_rtcp_port, SCNu8,
+            "interleaved=",
+            CharSlice99_from_str(
+                "RTP/AVP/UDP;unicast;client_port=3056-3057;interleaved=4-5")));
     ASSERT_EQ(4, interleaved_rtp_port);
     ASSERT_EQ(5, interleaved_rtcp_port);
 
@@ -79,9 +84,11 @@ TEST parse_port_pair(void) {
     SmolRTSP_PortPair client_port = {0};
 
     ASSERT_EQ(
-        0, smolrtsp_parse_port_pair(
-               &client_port, "client_port=",
-               "RTP/AVP/UDP;unicast;interleaved=4-5;client_port=3056-3057"));
+        0,
+        smolrtsp_parse_port_pair(
+            &client_port, "client_port=",
+            CharSlice99_from_str(
+                "RTP/AVP/UDP;unicast;interleaved=4-5;client_port=3056-3057")));
     ASSERT_EQ(3056, client_port.rtp_port);
     ASSERT_EQ(3057, client_port.rtcp_port);
 

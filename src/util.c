@@ -36,15 +36,14 @@ int smolrtsp_parse_lower_transport(CharSlice99 value) {
 int smolrtsp_parse_range(
     void *restrict num_0, void *restrict num_1,
     const char *restrict num_specifier, const char *restrict param_name,
-    const char *restrict header_value) {
+    CharSlice99 header_value) {
     assert(num_0);
     assert(num_1);
     assert(num_specifier);
     assert(param_name);
-    assert(header_value);
 
     CharSlice99 range;
-    if (smolrtsp_parse_header_param(param_name, header_value, &range) == -1) {
+    if (smolrtsp_parse_header_param(&range, param_name, header_value) == -1) {
         return -1;
     }
 
@@ -61,10 +60,9 @@ int smolrtsp_parse_range(
 
 int smolrtsp_parse_port_pair(
     SmolRTSP_PortPair *restrict pair, const char *restrict param_name,
-    const char *restrict header_value) {
+    CharSlice99 header_value) {
     assert(pair);
     assert(param_name);
-    assert(header_value);
 
     if (smolrtsp_parse_range(
             &pair->rtp_port, &pair->rtcp_port, SCNu16, param_name,
@@ -76,26 +74,29 @@ int smolrtsp_parse_port_pair(
 }
 
 int smolrtsp_parse_header_param(
-    const char *restrict param_name, const char *restrict header_value,
-    CharSlice99 *restrict param_value) {
+    CharSlice99 *restrict param_value, const char *restrict param_name,
+    CharSlice99 header_value) {
     assert(param_name);
-    assert(header_value);
     assert(param_value);
 
-    char *param_name_ptr = strstr(header_value, param_name);
+    char *header_value_str =
+        CharSlice99_alloca_c_str(header_value); // for strstr/strchr
+
+    char *param_name_ptr = strstr(header_value_str, param_name);
     if (NULL == param_name_ptr) {
         return -1;
     }
 
     char *semicolon_ptr = strchr(param_name_ptr, ';');
-    char *start = param_name_ptr + strlen(param_name);
+    const ptrdiff_t start_idx =
+        (param_name_ptr - header_value_str) + strlen(param_name);
+    ptrdiff_t end_idx = header_value.len;
 
-    if (NULL == semicolon_ptr) {
-        *param_value = CharSlice99_from_str(start);
-    } else {
-        *param_value = CharSlice99_from_ptrdiff(start, semicolon_ptr);
+    if (NULL != semicolon_ptr) {
+        end_idx = semicolon_ptr - header_value_str;
     }
 
+    *param_value = CharSlice99_sub(header_value, start_idx, end_idx);
     return 0;
 }
 
