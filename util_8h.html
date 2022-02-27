@@ -160,15 +160,15 @@ const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr class="memitem:a61b939ba5975e994bd4ee5a05933e997"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#a61b939ba5975e994bd4ee5a05933e997">smolrtsp_parse_lower_transport</a> (CharSlice99 value)</td></tr>
 <tr class="memdesc:a61b939ba5975e994bd4ee5a05933e997"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses a lower transport from <code>value</code> (either TCP or UDP).  <a href="util_8h.html#a61b939ba5975e994bd4ee5a05933e997">More...</a><br /></td></tr>
 <tr class="separator:a61b939ba5975e994bd4ee5a05933e997"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abf1c11267221fadc349707a9543962c4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#abf1c11267221fadc349707a9543962c4">smolrtsp_parse_range</a> (void *restrict num_0, void *restrict num_1, const char *restrict num_specifier, const char *restrict param_name, const char *restrict header_value)</td></tr>
-<tr class="memdesc:abf1c11267221fadc349707a9543962c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses a header value parameter in the form <code>&lt;param-name&gt;=%&lt;num-specifier&gt;-%&lt;num-specifier&gt;</code>.  <a href="util_8h.html#abf1c11267221fadc349707a9543962c4">More...</a><br /></td></tr>
-<tr class="separator:abf1c11267221fadc349707a9543962c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a086969343c0718721811a60c4321f9b9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#a086969343c0718721811a60c4321f9b9">smolrtsp_parse_port_pair</a> (<a class="el" href="structSmolRTSP__PortPair.html">SmolRTSP_PortPair</a> *restrict pair, const char *restrict param_name, const char *restrict header_value)</td></tr>
-<tr class="memdesc:a086969343c0718721811a60c4321f9b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Like <a class="el" href="util_8h.html#abf1c11267221fadc349707a9543962c4" title="Parses a header value parameter in the form &lt;param-name&gt;=%&lt;num-specifier&gt;-%&lt;num-specifier&gt;.">smolrtsp_parse_range</a> but parses a port pair.  <a href="util_8h.html#a086969343c0718721811a60c4321f9b9">More...</a><br /></td></tr>
-<tr class="separator:a086969343c0718721811a60c4321f9b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a479bcd39129311a5fc9bddec2eedd99b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#a479bcd39129311a5fc9bddec2eedd99b">smolrtsp_parse_header_param</a> (const char *restrict param_name, const char *restrict header_value, CharSlice99 *restrict param_value)</td></tr>
-<tr class="memdesc:a479bcd39129311a5fc9bddec2eedd99b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses a header value parameter in the form <code>&lt;param-name&gt;=&lt;param-value&gt;</code>.  <a href="util_8h.html#a479bcd39129311a5fc9bddec2eedd99b">More...</a><br /></td></tr>
-<tr class="separator:a479bcd39129311a5fc9bddec2eedd99b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a50c1dae69f89ed02efa454b5de85a1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#a0a50c1dae69f89ed02efa454b5de85a1">smolrtsp_parse_range</a> (void *restrict num_0, void *restrict num_1, const char *restrict num_specifier, const char *restrict param_name, CharSlice99 header_value)</td></tr>
+<tr class="memdesc:a0a50c1dae69f89ed02efa454b5de85a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses a header value parameter in the form <code>&lt;param-name&gt;=%&lt;num-specifier&gt;-%&lt;num-specifier&gt;</code>.  <a href="util_8h.html#a0a50c1dae69f89ed02efa454b5de85a1">More...</a><br /></td></tr>
+<tr class="separator:a0a50c1dae69f89ed02efa454b5de85a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1e28d1ea9efc4d815768aa7ac706ffa"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#af1e28d1ea9efc4d815768aa7ac706ffa">smolrtsp_parse_port_pair</a> (<a class="el" href="structSmolRTSP__PortPair.html">SmolRTSP_PortPair</a> *restrict pair, const char *restrict param_name, CharSlice99 header_value)</td></tr>
+<tr class="memdesc:af1e28d1ea9efc4d815768aa7ac706ffa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Like <a class="el" href="util_8h.html#a0a50c1dae69f89ed02efa454b5de85a1" title="Parses a header value parameter in the form &lt;param-name&gt;=%&lt;num-specifier&gt;-%&lt;num-specifier&gt;.">smolrtsp_parse_range</a> but parses a port pair.  <a href="util_8h.html#af1e28d1ea9efc4d815768aa7ac706ffa">More...</a><br /></td></tr>
+<tr class="separator:af1e28d1ea9efc4d815768aa7ac706ffa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf5709caa14073bb9e48fa2c6e51ae76"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#abf5709caa14073bb9e48fa2c6e51ae76">smolrtsp_parse_header_param</a> (CharSlice99 *restrict param_value, const char *restrict param_name, CharSlice99 header_value)</td></tr>
+<tr class="memdesc:abf5709caa14073bb9e48fa2c6e51ae76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses a header value parameter in the form <code>&lt;param-name&gt;=&lt;param-value&gt;</code>.  <a href="util_8h.html#abf5709caa14073bb9e48fa2c6e51ae76">More...</a><br /></td></tr>
+<tr class="separator:abf5709caa14073bb9e48fa2c6e51ae76"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3a9dca14691e6f4c1fdda7b12216270f"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#a3a9dca14691e6f4c1fdda7b12216270f">smolrtsp_interleaved_header</a> (uint8_t channel_id, uint16_t payload_len)</td></tr>
 <tr class="memdesc:a3a9dca14691e6f4c1fdda7b12216270f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a four-octet interleaved binary data header.  <a href="util_8h.html#a3a9dca14691e6f4c1fdda7b12216270f">More...</a><br /></td></tr>
 <tr class="separator:a3a9dca14691e6f4c1fdda7b12216270f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -240,8 +240,8 @@ const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 
 </div>
 </div>
-<a id="a479bcd39129311a5fc9bddec2eedd99b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a479bcd39129311a5fc9bddec2eedd99b">&#9670;&nbsp;</a></span>smolrtsp_parse_header_param()</h2>
+<a id="abf5709caa14073bb9e48fa2c6e51ae76"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf5709caa14073bb9e48fa2c6e51ae76">&#9670;&nbsp;</a></span>smolrtsp_parse_header_param()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -249,20 +249,20 @@ const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
         <tr>
           <td class="memname">int smolrtsp_parse_header_param </td>
           <td>(</td>
+          <td class="paramtype">CharSlice99 *restrict&#160;</td>
+          <td class="paramname"><em>param_value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
           <td class="paramtype">const char *restrict&#160;</td>
           <td class="paramname"><em>param_name</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const char *restrict&#160;</td>
-          <td class="paramname"><em>header_value</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">CharSlice99 *restrict&#160;</td>
-          <td class="paramname"><em>param_value</em>&#160;</td>
+          <td class="paramtype">CharSlice99&#160;</td>
+          <td class="paramname"><em>header_value</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -275,14 +275,14 @@ const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <p>Parses a header value parameter in the form <code>&lt;param-name&gt;=&lt;param-value&gt;</code>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">param_value</td><td>The pointer to a parameter value, if found. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">param_name</td><td>The name of a parameter to parse plus the <code>=</code> sign. For example, <code>"mode="</code> or <code>"client_port="</code>. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">header_value</td><td>The header value. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">param_value</td><td>The pointer to a parameter value, if found.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">header_value</td><td>The header value.</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 if <code>param_name</code> has been found, -1 otherwise.</dd></dl>
-<dl class="section pre"><dt>Precondition</dt><dd><code>param_name</code> and <code>value</code> are null-terminated string. </dd>
+<dl class="section pre"><dt>Precondition</dt><dd><code>param_name</code> is a null-terminated string. </dd>
 <dd>
 <code>param_value != NULL</code> </dd></dl>
 
@@ -363,8 +363,8 @@ const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 
 </div>
 </div>
-<a id="a086969343c0718721811a60c4321f9b9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a086969343c0718721811a60c4321f9b9">&#9670;&nbsp;</a></span>smolrtsp_parse_port_pair()</h2>
+<a id="af1e28d1ea9efc4d815768aa7ac706ffa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1e28d1ea9efc4d815768aa7ac706ffa">&#9670;&nbsp;</a></span>smolrtsp_parse_port_pair()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -384,7 +384,7 @@ const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const char *restrict&#160;</td>
+          <td class="paramtype">CharSlice99&#160;</td>
           <td class="paramname"><em>header_value</em>&#160;</td>
         </tr>
         <tr>
@@ -395,23 +395,23 @@ const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
       </table>
 </div><div class="memdoc">
 
-<p>Like <a class="el" href="util_8h.html#abf1c11267221fadc349707a9543962c4" title="Parses a header value parameter in the form &lt;param-name&gt;=%&lt;num-specifier&gt;-%&lt;num-specifier&gt;.">smolrtsp_parse_range</a> but parses a port pair. </p>
+<p>Like <a class="el" href="util_8h.html#a0a50c1dae69f89ed02efa454b5de85a1" title="Parses a header value parameter in the form &lt;param-name&gt;=%&lt;num-specifier&gt;-%&lt;num-specifier&gt;.">smolrtsp_parse_range</a> but parses a port pair. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[out]</td><td class="paramname">pair</td><td>The destination address of the port pair. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">param_name</td><td>The name of the parameter as in <a class="el" href="util_8h.html#a479bcd39129311a5fc9bddec2eedd99b" title="Parses a header value parameter in the form &lt;param-name&gt;=&lt;param-value&gt;.">smolrtsp_parse_header_param</a>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">param_name</td><td>The name of the parameter as in <a class="el" href="util_8h.html#abf5709caa14073bb9e48fa2c6e51ae76" title="Parses a header value parameter in the form &lt;param-name&gt;=&lt;param-value&gt;.">smolrtsp_parse_header_param</a>. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">header_value</td><td>The header value to search for the string.</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section pre"><dt>Precondition</dt><dd><code>pair != NULL</code> </dd>
 <dd>
-<code>param_name</code> and <code>header_value</code> are null-terminated strings. </dd></dl>
+<code>param_name</code> is a null-terminated string. </dd></dl>
 
 </div>
 </div>
-<a id="abf1c11267221fadc349707a9543962c4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abf1c11267221fadc349707a9543962c4">&#9670;&nbsp;</a></span>smolrtsp_parse_range()</h2>
+<a id="a0a50c1dae69f89ed02efa454b5de85a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a50c1dae69f89ed02efa454b5de85a1">&#9670;&nbsp;</a></span>smolrtsp_parse_range()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -443,7 +443,7 @@ const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const char *restrict&#160;</td>
+          <td class="paramtype">CharSlice99&#160;</td>
           <td class="paramname"><em>header_value</em>&#160;</td>
         </tr>
         <tr>
@@ -460,7 +460,7 @@ const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
     <tr><td class="paramdir">[out]</td><td class="paramname">num_0</td><td>The address of the first number. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">num_1</td><td>The address of the second number. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">num_specifier</td><td>The <code>scanf</code>-like specifier for the aforementioned numbers. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">param_name</td><td>The name of the parameter as in <a class="el" href="util_8h.html#a479bcd39129311a5fc9bddec2eedd99b" title="Parses a header value parameter in the form &lt;param-name&gt;=&lt;param-value&gt;.">smolrtsp_parse_header_param</a>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">param_name</td><td>The name of the parameter as in <a class="el" href="util_8h.html#abf5709caa14073bb9e48fa2c6e51ae76" title="Parses a header value parameter in the form &lt;param-name&gt;=&lt;param-value&gt;.">smolrtsp_parse_header_param</a>. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">header_value</td><td>The header value to search for the string.</td></tr>
   </table>
   </dd>
@@ -469,7 +469,7 @@ const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <dd>
 <code>num_1 != NULL</code> </dd>
 <dd>
-<code>num_specifier</code>, <code>param_name</code>, and <code>header_value</code> are null-terminated strings. </dd></dl>
+<code>num_specifier</code> and <code>param_name</code> are null-terminated strings. </dd></dl>
 
 </div>
 </div>
