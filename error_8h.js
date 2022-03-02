@@ -5,7 +5,7 @@ var error_8h =
       [ "SmolRTSP_ParseType_Ident", "error_8h.html#ac95dd4e524f39bd1d021e19ba9312644a826dca3c6f041be749b35802af8ef3b5", null ],
       [ "SmolRTSP_ParseType_HeaderName", "error_8h.html#ac95dd4e524f39bd1d021e19ba9312644a7abc5c467e9dd825dbc2ad69dc8c7afe", null ]
     ] ],
-    [ "datatype99", "error_8h.html#ab41ae4ba72c9ecf524438fca650c66f8", null ],
+    [ "datatype99", "error_8h.html#ab1fa34d8a01d312d1953679bf01f34b2", null ],
     [ "datatype99", "error_8h.html#a2fb12375da217b97eb1751058324f3e6", null ],
     [ "datatype99", "error_8h.html#a3a58c20109e7aa15ed7b8b4136a7781c", null ],
     [ "SmolRTSP_ParseError_print", "error_8h.html#a70438a5db93aebfb3a6e929045885f4e", null ],

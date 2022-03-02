@@ -157,9 +157,9 @@ Functions</h2></td></tr>
 const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="error_8h.html#a51ce1aa9a992814a0de92455aa72de65">SmolRTSP_ParseType_str</a> (<a class="el" href="error_8h.html#ac95dd4e524f39bd1d021e19ba9312644">SmolRTSP_ParseType</a> self) SMOLRTSP_PRIV_MUST_USE</td></tr>
 <tr class="memdesc:a51ce1aa9a992814a0de92455aa72de65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a string representation of <code>self</code>. <br /></td></tr>
 <tr class="separator:a51ce1aa9a992814a0de92455aa72de65"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab41ae4ba72c9ecf524438fca650c66f8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="error_8h.html#ab41ae4ba72c9ecf524438fca650c66f8">datatype99</a> (SmolRTSP_ParseError,(SmolRTSP_ParseError_ContentLength, CharSlice99),(SmolRTSP_ParseError_StrMismatch, CharSlice99, CharSlice99),(SmolRTSP_ParseError_TypeMismatch, <a class="el" href="error_8h.html#ac95dd4e524f39bd1d021e19ba9312644">SmolRTSP_ParseType</a>, CharSlice99),(SmolRTSP_ParseError_HeaderMapOverflow))</td></tr>
-<tr class="memdesc:ab41ae4ba72c9ecf524438fca650c66f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">An error that might occur during parsing.  <a href="error_8h.html#ab41ae4ba72c9ecf524438fca650c66f8">More...</a><br /></td></tr>
-<tr class="separator:ab41ae4ba72c9ecf524438fca650c66f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1fa34d8a01d312d1953679bf01f34b2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="error_8h.html#ab1fa34d8a01d312d1953679bf01f34b2">datatype99</a> (SmolRTSP_ParseError,(SmolRTSP_ParseError_ContentLength, CharSlice99),(SmolRTSP_ParseError_StrMismatch, CharSlice99, CharSlice99),(SmolRTSP_ParseError_TypeMismatch, <a class="el" href="error_8h.html#ac95dd4e524f39bd1d021e19ba9312644">SmolRTSP_ParseType</a>, CharSlice99),(SmolRTSP_ParseError_HeaderMapOverflow),(SmolRTSP_ParseError_MissingCSeq),(SmolRTSP_ParseError_InvalidCSeq, CharSlice99))</td></tr>
+<tr class="memdesc:ab1fa34d8a01d312d1953679bf01f34b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">An error that might occur during parsing.  <a href="error_8h.html#ab1fa34d8a01d312d1953679bf01f34b2">More...</a><br /></td></tr>
+<tr class="separator:ab1fa34d8a01d312d1953679bf01f34b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a70438a5db93aebfb3a6e929045885f4e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="error_8h.html#a70438a5db93aebfb3a6e929045885f4e">SmolRTSP_ParseError_print</a> (SmolRTSP_ParseError self, SmolRTSP_Writer w)</td></tr>
 <tr class="memdesc:a70438a5db93aebfb3a6e929045885f4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints <code>self</code> into <code>w</code>.  <a href="error_8h.html#a70438a5db93aebfb3a6e929045885f4e">More...</a><br /></td></tr>
 <tr class="separator:a70438a5db93aebfb3a6e929045885f4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -230,8 +230,8 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="erro
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="ab41ae4ba72c9ecf524438fca650c66f8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab41ae4ba72c9ecf524438fca650c66f8">&#9670;&nbsp;</a></span>datatype99() <span class="overload">[1/3]</span></h2>
+<a id="ab1fa34d8a01d312d1953679bf01f34b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1fa34d8a01d312d1953679bf01f34b2">&#9670;&nbsp;</a></span>datatype99() <span class="overload">[1/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -264,6 +264,18 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="erro
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">(SmolRTSP_ParseError_HeaderMapOverflow)&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">(SmolRTSP_ParseError_MissingCSeq)&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">(SmolRTSP_ParseError_InvalidCSeq, CharSlice99)&#160;</td>
           <td class="paramname">&#160;</td>
         </tr>
         <tr>
@@ -292,6 +304,8 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="erro
 </ol>
 </li>
 <li><code>HeaderMapOverflow</code> &ndash; An attempt to add a header to a full header map.</li>
+<li><code>MissingCSeq</code> &ndash; Missing the <code>CSeq</code> header.</li>
+<li><code>InvalidCSeq</code> &ndash; Failed to parse the <code>CSeq</code> header.</li>
 </ul>
 <p>See <a href="https://github.com/Hirrolot/datatype99">Datatype99</a> for the macro usage. </p>
 
