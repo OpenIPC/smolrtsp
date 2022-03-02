@@ -50,7 +50,6 @@ TEST serialize_request(void) {
                 .version = {1, 0},
             },
         .header_map = SmolRTSP_HeaderMap_from_array({
-            {SMOLRTSP_HEADER_CONTENT_LENGTH, CharSlice99_from_str("123")},
             {SMOLRTSP_HEADER_CONTENT_TYPE,
              CharSlice99_from_str("application/octet-stream")},
         }),
@@ -64,7 +63,7 @@ TEST serialize_request(void) {
     const char *expected =
         "DESCRIBE http://example.com RTSP/1.0\r\n"
         "CSeq: 456\r\n"
-        "Content-Length: 123\r\n"
+        "Content-Length: 10\r\n"
         "Content-Type: application/octet-stream\r\n"
         "\r\n1234567890";
 

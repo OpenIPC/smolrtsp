@@ -42,8 +42,8 @@ typedef struct {
 /**
  * Serialises @p self into @p w.
  *
- * #SmolRTSP_Response.cseq is serialised automatically as a first header -- you
- * need not to present it in #SmolRTSP_Response.header_map.
+ * Do not include `CSeq` and `Content-Length` into #SmolRTSP_Response.header_map
+ * -- they will be serialised automatically as first headers.
  *
  * @param[in] self The instance to be serialised.
  * @param[in] w The writer to be provided with serialised data.
@@ -83,8 +83,8 @@ ssize_t smolrtsp_respond(
  * @param[in] cseq The sequence number for an RTSP request/response pair.
  * @param[in] code The RTSP status code.
  * @param[in] reason The RTSP reason phrase.
- * @param[in] headers The response headers. Do not include `CSeq` in it; `CSeq`
- * will be serialised automatically as a first header.
+ * @param[in] headers The response headers. Do not include `CSeq` and
+ * `Content-Length` -- they will be serialised automatically as first headers.
  * @param[in] body The RTSP message body.
  *
  * @return The number of bytes written or a negative value on error.

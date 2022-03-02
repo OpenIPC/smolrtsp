@@ -40,8 +40,8 @@ typedef struct {
 /**
  * Serialises @p self into @p w.
  *
- * #SmolRTSP_Request.cseq is serialised automatically as a first header -- you
- * need not to present it in #SmolRTSP_Request.header_map.
+ * Do not include `CSeq` and `Content-Length` into #SmolRTSP_Request.header_map
+ * -- they will be serialised automatically as first headers.
  *
  * @param[in] self The instance to be serialised.
  * @param[in] w The writer to be provided with serialised data.

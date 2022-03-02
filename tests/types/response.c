@@ -50,7 +50,6 @@ TEST serialize_response(void) {
                 .reason = CharSlice99_from_str("OK"),
             },
         .header_map = SmolRTSP_HeaderMap_from_array({
-            {SMOLRTSP_HEADER_CONTENT_LENGTH, CharSlice99_from_str("10")},
             {SMOLRTSP_HEADER_DATE,
              CharSlice99_from_str("Thu, 05 Jun 1997 18:57:19 GMT")},
             {SMOLRTSP_HEADER_CONTENT_TYPE,
@@ -110,7 +109,6 @@ TEST respond_with_body(void) {
 
     const uint32_t cseq = 456;
     const SmolRTSP_HeaderMap headers = SmolRTSP_HeaderMap_from_array({
-        {SMOLRTSP_HEADER_CONTENT_LENGTH, CharSlice99_from_str("10")},
         {SMOLRTSP_HEADER_DATE,
          CharSlice99_from_str("Thu, 05 Jun 1997 18:57:19 GMT")},
         {SMOLRTSP_HEADER_CONTENT_TYPE,
