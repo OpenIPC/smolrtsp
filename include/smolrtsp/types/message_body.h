@@ -29,6 +29,11 @@ SmolRTSP_ParseResult SmolRTSP_MessageBody_parse(
     size_t content_length) SMOLRTSP_PRIV_MUST_USE;
 
 /**
+ * Returns an empty message body.
+ */
+SmolRTSP_MessageBody SmolRTSP_MessageBody_empty(void);
+
+/**
  * Tests @p lhs and @p rhs for equality.
  */
 bool SmolRTSP_MessageBody_eq(SmolRTSP_MessageBody lhs, SmolRTSP_MessageBody rhs)

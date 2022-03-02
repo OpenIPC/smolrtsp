@@ -24,6 +24,10 @@ SmolRTSP_ParseResult SmolRTSP_MessageBody_parse(
     return SmolRTSP_ParseResult_complete(content_length);
 }
 
+SmolRTSP_MessageBody SmolRTSP_MessageBody_empty(void) {
+    return CharSlice99_empty();
+}
+
 bool SmolRTSP_MessageBody_eq(
     SmolRTSP_MessageBody lhs, SmolRTSP_MessageBody rhs) {
     return CharSlice99_primitive_eq(lhs, rhs);

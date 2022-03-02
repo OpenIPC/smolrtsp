@@ -21,6 +21,13 @@ TEST parse_message_body(void) {
     PASS();
 }
 
+TEST empty(void) {
+    ASSERT(CharSlice99_primitive_eq(
+        SmolRTSP_MessageBody_empty(), CharSlice99_empty()));
+    PASS();
+}
+
 SUITE(types_message_body) {
     RUN_TEST(parse_message_body);
+    RUN_TEST(empty);
 }
