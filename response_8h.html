@@ -156,10 +156,83 @@ Functions</h2></td></tr>
 bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="response_8h.html#aad6024d9ea4fd41f84dd2b6ecc3ccfed">SmolRTSP_Response_eq</a> (<a class="el" href="structSmolRTSP__Response.html">SmolRTSP_Response</a> lhs, <a class="el" href="structSmolRTSP__Response.html">SmolRTSP_Response</a> rhs) SMOLRTSP_PRIV_MUST_USE</td></tr>
 <tr class="memdesc:aad6024d9ea4fd41f84dd2b6ecc3ccfed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests <code>lhs</code> and <code>rhs</code> for equality. <br /></td></tr>
 <tr class="separator:aad6024d9ea4fd41f84dd2b6ecc3ccfed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60717ca46b3a2be8ea63306ef331dc3f"><td class="memItemLeft" align="right" valign="top"><a id="a60717ca46b3a2be8ea63306ef331dc3f"></a>
+ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="response_8h.html#a60717ca46b3a2be8ea63306ef331dc3f">smolrtsp_respond</a> (SmolRTSP_Writer w, uint32_t cseq, <a class="el" href="status__code_8h.html#ac339032e6c3031ccc07cdd573bd8352a">SmolRTSP_StatusCode</a> code, const char *reason, <a class="el" href="structSmolRTSP__HeaderMap.html">SmolRTSP_HeaderMap</a> headers)</td></tr>
+<tr class="memdesc:a60717ca46b3a2be8ea63306ef331dc3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">The same as <a class="el" href="response_8h.html#adcabc1ddde588b2e15f3b4a7991a1112" title="Writes an RTSP response to w.">smolrtsp_respond_with_body</a> but with an empty message body. <br /></td></tr>
+<tr class="separator:a60717ca46b3a2be8ea63306ef331dc3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adcabc1ddde588b2e15f3b4a7991a1112"><td class="memItemLeft" align="right" valign="top">ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="response_8h.html#adcabc1ddde588b2e15f3b4a7991a1112">smolrtsp_respond_with_body</a> (SmolRTSP_Writer w, uint32_t cseq, <a class="el" href="status__code_8h.html#ac339032e6c3031ccc07cdd573bd8352a">SmolRTSP_StatusCode</a> code, const char *reason, <a class="el" href="structSmolRTSP__HeaderMap.html">SmolRTSP_HeaderMap</a> headers, <a class="el" href="message__body_8h.html#a7cf19e53447cd824890913d713bd5122">SmolRTSP_MessageBody</a> body)</td></tr>
+<tr class="memdesc:adcabc1ddde588b2e15f3b4a7991a1112"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes an RTSP response to <code>w</code>.  <a href="response_8h.html#adcabc1ddde588b2e15f3b4a7991a1112">More...</a><br /></td></tr>
+<tr class="separator:adcabc1ddde588b2e15f3b4a7991a1112"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>An RTSP response. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
+<a id="adcabc1ddde588b2e15f3b4a7991a1112"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adcabc1ddde588b2e15f3b4a7991a1112">&#9670;&nbsp;</a></span>smolrtsp_respond_with_body()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ssize_t smolrtsp_respond_with_body </td>
+          <td>(</td>
+          <td class="paramtype">SmolRTSP_Writer&#160;</td>
+          <td class="paramname"><em>w</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>cseq</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="status__code_8h.html#ac339032e6c3031ccc07cdd573bd8352a">SmolRTSP_StatusCode</a>&#160;</td>
+          <td class="paramname"><em>code</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>reason</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structSmolRTSP__HeaderMap.html">SmolRTSP_HeaderMap</a>&#160;</td>
+          <td class="paramname"><em>headers</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="message__body_8h.html#a7cf19e53447cd824890913d713bd5122">SmolRTSP_MessageBody</a>&#160;</td>
+          <td class="paramname"><em>body</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Writes an RTSP response to <code>w</code>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">w</td><td>The writer to be provided with the response. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">cseq</td><td>The sequence number for an RTSP request/response pair. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">code</td><td>The RTSP status code. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">reason</td><td>The RTSP reason phrase. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">headers</td><td>The response headers. Do not include <code>CSeq</code> in it; <code>CSeq</code> will be serialised automatically as a first header. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">body</td><td>The RTSP message body.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The number of bytes written or a negative value on error. </dd></dl>
+
+</div>
+</div>
 <a id="a38d925052be039df403a7959a751ac08"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a38d925052be039df403a7959a751ac08">&#9670;&nbsp;</a></span>SmolRTSP_Response_parse()</h2>
 
@@ -218,7 +291,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="resp
 </div><div class="memdoc">
 
 <p>Serialises <code>self</code> into <code>w</code>. </p>
-<p><a class="el" href="structSmolRTSP__Response.html#a6c6f3328bc50a2e4b046ca8946184c02" title="The sequence number (integer) for an RTSP request/response pair.">SmolRTSP_Response.cseq</a> is serialised automatically as a first header &ndash; you need not to present it in <a class="el" href="structSmolRTSP__Response.html#abb3baccb3cd9c2ed1575aa3ef2adf5bd" title="The header map.">SmolRTSP_Response.header_map</a>.</p>
+<p><a class="el" href="structSmolRTSP__Response.html#a6c6f3328bc50a2e4b046ca8946184c02" title="The sequence number for an RTSP request/response pair.">SmolRTSP_Response.cseq</a> is serialised automatically as a first header &ndash; you need not to present it in <a class="el" href="structSmolRTSP__Response.html#abb3baccb3cd9c2ed1575aa3ef2adf5bd" title="The header map.">SmolRTSP_Response.header_map</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">self</td><td>The instance to be serialised. </td></tr>
