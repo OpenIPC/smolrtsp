@@ -13,7 +13,7 @@ TEST parse_response(void) {
         .start_line =
             {
                 .version = {.major = 1, .minor = 1},
-                .code = SMOLRTSP_STATUS_CODE_OK,
+                .code = SMOLRTSP_STATUS_OK,
                 .reason = CharSlice99_from_str("OK"),
             },
         .header_map = SmolRTSP_HeaderMap_from_array({
@@ -48,7 +48,7 @@ TEST serialize_response(void) {
         .start_line =
             {
                 .version = (SmolRTSP_RtspVersion){1, 0},
-                .code = SMOLRTSP_STATUS_CODE_OK,
+                .code = SMOLRTSP_STATUS_OK,
                 .reason = CharSlice99_from_str("OK"),
             },
         .header_map = SmolRTSP_HeaderMap_from_array({

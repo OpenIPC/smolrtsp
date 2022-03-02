@@ -6,11 +6,11 @@
 DEF_TEST_PARSE(SmolRTSP_StatusCode)
 
 TEST parse_status_code(void) {
-    TEST_PARSE("100 ", SMOLRTSP_STATUS_CODE_CONTINUE);
-    TEST_PARSE("200 ", SMOLRTSP_STATUS_CODE_OK);
-    TEST_PARSE("303 ", SMOLRTSP_STATUS_CODE_SEE_OTHER);
-    TEST_PARSE("404 ", SMOLRTSP_STATUS_CODE_NOT_FOUND);
-    TEST_PARSE("551 ", SMOLRTSP_STATUS_CODE_OPTION_NOT_SUPPORTED);
+    TEST_PARSE("100 ", SMOLRTSP_STATUS_CONTINUE);
+    TEST_PARSE("200 ", SMOLRTSP_STATUS_OK);
+    TEST_PARSE("303 ", SMOLRTSP_STATUS_SEE_OTHER);
+    TEST_PARSE("404 ", SMOLRTSP_STATUS_NOT_FOUND);
+    TEST_PARSE("551 ", SMOLRTSP_STATUS_OPTION_NOT_SUPPORTED);
 
     SmolRTSP_StatusCode result;
 
@@ -26,7 +26,7 @@ TEST serialize_status_code(void) {
     char buffer[20] = {0};
 
     const ssize_t ret = SmolRTSP_StatusCode_serialize(
-        SMOLRTSP_STATUS_CODE_NOT_FOUND, smolrtsp_string_writer(buffer));
+        SMOLRTSP_STATUS_NOT_FOUND, smolrtsp_string_writer(buffer));
 
     const char *expected = "404";
 

@@ -8,7 +8,7 @@ DEF_TEST_PARSE(SmolRTSP_ResponseLine)
 TEST parse_response_line(void) {
     const SmolRTSP_ResponseLine expected = {
         .version = {.major = 1, .minor = 1},
-        .code = SMOLRTSP_STATUS_CODE_OK,
+        .code = SMOLRTSP_STATUS_OK,
         .reason = CharSlice99_from_str("OK"),
     };
 
@@ -31,7 +31,7 @@ TEST serialize_response_line(void) {
 
     const SmolRTSP_ResponseLine line = {
         .version = (SmolRTSP_RtspVersion){1, 0},
-        .code = SMOLRTSP_STATUS_CODE_OK,
+        .code = SMOLRTSP_STATUS_OK,
         .reason = CharSlice99_from_str("OK"),
     };
 
