@@ -26,7 +26,7 @@ int SmolRTSP_ParseError_print(SmolRTSP_ParseError self, SmolRTSP_Writer w) {
                 w, {
                        CharSlice99_from_str("Invalid Content-Length `"),
                        TRUNCATE_STR(*value),
-                       CharSlice99_from_str("`."),
+                       CharSlice99_from_str("`"),
                    });
         }
         of(SmolRTSP_ParseError_StrMismatch, expected, actual) {
@@ -36,7 +36,7 @@ int SmolRTSP_ParseError_print(SmolRTSP_ParseError self, SmolRTSP_Writer w) {
                        TRUNCATE_STR(*expected),
                        CharSlice99_from_str("`, found `"),
                        TRUNCATE_STR(*actual),
-                       CharSlice99_from_str("`."),
+                       CharSlice99_from_str("`"),
                    });
         }
         of(SmolRTSP_ParseError_TypeMismatch, kind, str) {
@@ -47,24 +47,24 @@ int SmolRTSP_ParseError_print(SmolRTSP_ParseError self, SmolRTSP_Writer w) {
                     CharSlice99_from_str((char *)SmolRTSP_ParseType_str(*kind)),
                     CharSlice99_from_str(", found `"),
                     TRUNCATE_STR(*str),
-                    CharSlice99_from_str("`."),
+                    CharSlice99_from_str("`"),
                 });
         }
         of(SmolRTSP_ParseError_HeaderMapOverflow) {
             return VCALL(
                 w, write,
                 CharSlice99_from_str(
-                    "Not enough space left in the header map."));
+                    "Not enough space left in the header map"));
         }
         of(SmolRTSP_ParseError_MissingCSeq) {
-            return VCALL(w, write, CharSlice99_from_str("Missing CSeq."));
+            return VCALL(w, write, CharSlice99_from_str("Missing CSeq"));
         }
         of(SmolRTSP_ParseError_InvalidCSeq, value) {
             return SMOLRTSP_WRITE_SLICES(
                 w, {
                        CharSlice99_from_str("Invalid CSeq `"),
                        TRUNCATE_STR(*value),
-                       CharSlice99_from_str("`."),
+                       CharSlice99_from_str("`"),
                    });
         }
     }
