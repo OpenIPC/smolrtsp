@@ -10,6 +10,13 @@
 
 #include <slice99.h>
 
+SmolRTSP_Response SmolRTSP_Response_uninit(void) {
+    SmolRTSP_Response self;
+    memset(&self, '\0', sizeof self);
+    self.header_map = SmolRTSP_HeaderMap_empty();
+    return self;
+}
+
 ssize_t SmolRTSP_Response_serialize(SmolRTSP_Response self, SmolRTSP_Writer w) {
     assert(w.self && w.vptr);
 

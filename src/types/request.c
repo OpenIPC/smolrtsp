@@ -10,6 +10,13 @@
 
 #include <slice99.h>
 
+SmolRTSP_Request SmolRTSP_Request_uninit(void) {
+    SmolRTSP_Request self;
+    memset(&self, '\0', sizeof self);
+    self.header_map = SmolRTSP_HeaderMap_empty();
+    return self;
+}
+
 ssize_t SmolRTSP_Request_serialize(SmolRTSP_Request self, SmolRTSP_Writer w) {
     assert(w.self && w.vptr);
 

@@ -40,6 +40,11 @@ typedef struct {
 } SmolRTSP_Response;
 
 /**
+ * Returns an RTSP response suitable for being parsed.
+ */
+SmolRTSP_Response SmolRTSP_Response_uninit(void);
+
+/**
  * Serialises @p self into @p w.
  *
  * Do not include `CSeq` and `Content-Length` into #SmolRTSP_Response.header_map

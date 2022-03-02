@@ -1,7 +1,6 @@
 #include <smolrtsp/types/request.h>
 
-#define TEST_PARSE_INIT_TYPE(result)                                           \
-    result.header_map = SmolRTSP_HeaderMap_empty()
+#define TEST_PARSE_INIT_TYPE(result) result = SmolRTSP_Request_uninit()
 
 #include "test_util.h"
 #include <greatest.h>
