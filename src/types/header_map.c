@@ -8,7 +8,10 @@
 #include <string.h>
 
 SmolRTSP_HeaderMap SmolRTSP_HeaderMap_empty(void) {
-    return (SmolRTSP_HeaderMap){.headers = {0}, .len = 0};
+    SmolRTSP_HeaderMap self;
+    memset(self.headers, '\0', sizeof self.headers);
+    self.len = 0;
+    return self;
 }
 
 bool SmolRTSP_HeaderMap_find(
