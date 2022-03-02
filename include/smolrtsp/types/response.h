@@ -87,6 +87,9 @@ ssize_t smolrtsp_respond(
  * `Content-Length` -- they will be serialised automatically as first headers.
  * @param[in] body The RTSP message body.
  *
+ * @pre `w.self && w.vptr`
+ * @pre @p reason is a null-terminated string.
+ *
  * @return The number of bytes written or a negative value on error.
  */
 ssize_t smolrtsp_respond_with_body(
