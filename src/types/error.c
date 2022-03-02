@@ -56,6 +56,17 @@ int SmolRTSP_ParseError_print(SmolRTSP_ParseError self, SmolRTSP_Writer w) {
                 CharSlice99_from_str(
                     "Not enough space left in the header map."));
         }
+        of(SmolRTSP_ParseError_MissingCSeq) {
+            return VCALL(w, write, CharSlice99_from_str("Missing CSeq."));
+        }
+        of(SmolRTSP_ParseError_InvalidCSeq, value) {
+            return SMOLRTSP_WRITE_SLICES(
+                w, {
+                       CharSlice99_from_str("Invalid CSeq `"),
+                       TRUNCATE_STR(*value),
+                       CharSlice99_from_str("`."),
+                   });
+        }
     }
 
     return -1;
