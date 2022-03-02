@@ -8,12 +8,20 @@
 
 #include <alloca.h>
 
+#include <slice99.h>
+
 ssize_t SmolRTSP_Request_serialize(SmolRTSP_Request self, SmolRTSP_Writer w) {
     assert(w.self && w.vptr);
 
     ssize_t result = 0;
 
+    const SmolRTSP_Header cseq_header = {
+        SMOLRTSP_HEADER_C_SEQ,
+        CharSlice99_alloca_fmt("%" PRIu32, self.cseq),
+    };
+
     CHK_WRITE_ERR(result, SmolRTSP_RequestLine_serialize(self.start_line, w));
+    CHK_WRITE_ERR(result, SmolRTSP_Header_serialize(cseq_header, w));
     CHK_WRITE_ERR(result, SmolRTSP_HeaderMap_serialize(self.header_map, w));
     CHK_WRITE_ERR(result, VCALL(w, write, self.body));
 

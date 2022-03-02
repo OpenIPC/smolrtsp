@@ -45,29 +45,28 @@ TEST serialize_response(void) {
     const SmolRTSP_Response response = {
         .start_line =
             {
-                .version = (SmolRTSP_RtspVersion){1, 0},
+                .version = {1, 0},
                 .code = SMOLRTSP_STATUS_OK,
                 .reason = CharSlice99_from_str("OK"),
             },
         .header_map = SmolRTSP_HeaderMap_from_array({
-            {
-                SMOLRTSP_HEADER_CONTENT_LENGTH,
-                CharSlice99_from_str("123"),
-            },
-            {
-                SMOLRTSP_HEADER_CONTENT_TYPE,
-                CharSlice99_from_str("application/octet-stream"),
-            },
+            {SMOLRTSP_HEADER_CONTENT_LENGTH, CharSlice99_from_str("123")},
+            {SMOLRTSP_HEADER_CONTENT_TYPE,
+             CharSlice99_from_str("application/octet-stream")},
         }),
         .body = CharSlice99_from_str("1234567890"),
+        .cseq = 456,
     };
 
     const ssize_t ret =
         SmolRTSP_Response_serialize(response, smolrtsp_string_writer(buffer));
 
     const char *expected =
-        "RTSP/1.0 200 OK\r\nContent-Length: 123\r\nContent-Type: "
-        "application/octet-stream\r\n\r\n1234567890";
+        "RTSP/1.0 200 OK\r\n"
+        "CSeq: 456\r\n"
+        "Content-Length: 123\r\n"
+        "Content-Type: application/octet-stream\r\n"
+        "\r\n1234567890";
 
     ASSERT_EQ((ssize_t)strlen(expected), ret);
     ASSERT_STR_EQ(expected, buffer);

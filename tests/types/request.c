@@ -47,28 +47,26 @@ TEST serialize_request(void) {
             {
                 .method = SMOLRTSP_METHOD_DESCRIBE,
                 .uri = CharSlice99_from_str("http://example.com"),
-                .version = (SmolRTSP_RtspVersion){1, 0},
+                .version = {1, 0},
             },
         .header_map = SmolRTSP_HeaderMap_from_array({
-            {
-                SMOLRTSP_HEADER_CONTENT_LENGTH,
-                CharSlice99_from_str("123"),
-            },
-            {
-                SMOLRTSP_HEADER_CONTENT_TYPE,
-                CharSlice99_from_str("application/octet-stream"),
-            },
+            {SMOLRTSP_HEADER_CONTENT_LENGTH, CharSlice99_from_str("123")},
+            {SMOLRTSP_HEADER_CONTENT_TYPE,
+             CharSlice99_from_str("application/octet-stream")},
         }),
         .body = CharSlice99_from_str("1234567890"),
+        .cseq = 456,
     };
 
     const ssize_t ret =
         SmolRTSP_Request_serialize(request, smolrtsp_string_writer(buffer));
 
     const char *expected =
-        "DESCRIBE http://example.com RTSP/1.0\r\nContent-Length: "
-        "123\r\nContent-Type: "
-        "application/octet-stream\r\n\r\n1234567890";
+        "DESCRIBE http://example.com RTSP/1.0\r\n"
+        "CSeq: 456\r\n"
+        "Content-Length: 123\r\n"
+        "Content-Type: application/octet-stream\r\n"
+        "\r\n1234567890";
 
     ASSERT_EQ((ssize_t)strlen(expected), ret);
     ASSERT_STR_EQ(expected, buffer);
