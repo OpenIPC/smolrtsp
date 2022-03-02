@@ -56,6 +56,8 @@ SmolRTSP_ParseType_str(SmolRTSP_ParseType self) SMOLRTSP_PRIV_MUST_USE;
  *    1. A type of item failed to parse.
  *    2. The erroneous string.
  *  - `HeaderMapOverflow` -- An attempt to add a header to a full header map.
+ *  - `MissingCSeq` -- Missing the `CSeq` header.
+ *  - `InvalidCSeq` -- Failed to parse the `CSeq` header.
  *
  * See [Datatype99](https://github.com/Hirrolot/datatype99) for the macro usage.
  */
@@ -66,7 +68,9 @@ datatype99(
     (SmolRTSP_ParseError_ContentLength, CharSlice99),
     (SmolRTSP_ParseError_StrMismatch, CharSlice99, CharSlice99),
     (SmolRTSP_ParseError_TypeMismatch, SmolRTSP_ParseType, CharSlice99),
-    (SmolRTSP_ParseError_HeaderMapOverflow)
+    (SmolRTSP_ParseError_HeaderMapOverflow),
+    (SmolRTSP_ParseError_MissingCSeq),
+    (SmolRTSP_ParseError_InvalidCSeq, CharSlice99)
 );
 // clang-format on
 

@@ -17,25 +17,23 @@ TEST parse_response(void) {
                 .reason = CharSlice99_from_str("OK"),
             },
         .header_map = SmolRTSP_HeaderMap_from_array({
-            {
-                SMOLRTSP_HEADER_CONTENT_LENGTH,
-                CharSlice99_from_str("10"),
-            },
-            {
-                SMOLRTSP_HEADER_ACCEPT_LANGUAGE,
-                CharSlice99_from_str("English"),
-            },
-            {
-                SMOLRTSP_HEADER_CONTENT_TYPE,
-                CharSlice99_from_str("application/octet-stream"),
-            },
+            {SMOLRTSP_HEADER_C_SEQ, CharSlice99_from_str("123")},
+            {SMOLRTSP_HEADER_CONTENT_LENGTH, CharSlice99_from_str("10")},
+            {SMOLRTSP_HEADER_ACCEPT_LANGUAGE, CharSlice99_from_str("English")},
+            {SMOLRTSP_HEADER_CONTENT_TYPE,
+             CharSlice99_from_str("application/octet-stream")},
         }),
         .body = CharSlice99_from_str("0123456789"),
+        .cseq = 123,
     };
 
     TEST_PARSE(
-        "RTSP/1.1 200 OK\r\nContent-Length: 10\r\nAccept-Language: "
-        "English\r\nContent-Type: application/octet-stream\r\n\r\n0123456789",
+        "RTSP/1.1 200 OK\r\n"
+        "CSeq: 123\r\n"
+        "Content-Length: 10\r\n"
+        "Accept-Language: English\r\n"
+        "Content-Type: application/octet-stream\r\n"
+        "\r\n0123456789",
         expected);
 
     PASS();
