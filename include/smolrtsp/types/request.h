@@ -32,7 +32,7 @@ typedef struct {
     SmolRTSP_MessageBody body;
 
     /**
-     * The sequence number (integer) for an RTSP request/response pair.
+     * The sequence number for an RTSP request/response pair.
      */
     uint32_t cseq;
 } SmolRTSP_Request;

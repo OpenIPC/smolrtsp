@@ -77,3 +77,31 @@ bool SmolRTSP_Response_eq(SmolRTSP_Response lhs, SmolRTSP_Response rhs) {
            SmolRTSP_HeaderMap_eq(lhs.header_map, rhs.header_map) &&
            CharSlice99_primitive_eq(lhs.body, rhs.body) && lhs.cseq == rhs.cseq;
 }
+
+ssize_t smolrtsp_respond(
+    SmolRTSP_Writer w, uint32_t cseq, SmolRTSP_StatusCode code,
+    const char *reason, SmolRTSP_HeaderMap headers) {
+    return smolrtsp_respond_with_body(
+        w, cseq, code, reason, headers, SmolRTSP_MessageBody_empty());
+}
+
+ssize_t smolrtsp_respond_with_body(
+    SmolRTSP_Writer w, uint32_t cseq, SmolRTSP_StatusCode code,
+    const char *reason, SmolRTSP_HeaderMap headers, SmolRTSP_MessageBody body) {
+    assert(w.self && w.vptr);
+    assert(reason);
+
+    const SmolRTSP_Response response = {
+        .start_line =
+            {
+                .version = {.major = 1, .minor = 0},
+                .code = code,
+                .reason = CharSlice99_from_str((char *)reason),
+            },
+        .header_map = headers,
+        .body = body,
+        .cseq = cseq,
+    };
+
+    return SmolRTSP_Response_serialize(response, w);
+}

@@ -50,7 +50,9 @@ TEST serialize_response(void) {
                 .reason = CharSlice99_from_str("OK"),
             },
         .header_map = SmolRTSP_HeaderMap_from_array({
-            {SMOLRTSP_HEADER_CONTENT_LENGTH, CharSlice99_from_str("123")},
+            {SMOLRTSP_HEADER_CONTENT_LENGTH, CharSlice99_from_str("10")},
+            {SMOLRTSP_HEADER_DATE,
+             CharSlice99_from_str("Thu, 05 Jun 1997 18:57:19 GMT")},
             {SMOLRTSP_HEADER_CONTENT_TYPE,
              CharSlice99_from_str("application/octet-stream")},
         }),
@@ -64,7 +66,8 @@ TEST serialize_response(void) {
     const char *expected =
         "RTSP/1.0 200 OK\r\n"
         "CSeq: 456\r\n"
-        "Content-Length: 123\r\n"
+        "Content-Length: 10\r\n"
+        "Date: Thu, 05 Jun 1997 18:57:19 GMT\r\n"
         "Content-Type: application/octet-stream\r\n"
         "\r\n1234567890";
 
@@ -74,7 +77,66 @@ TEST serialize_response(void) {
     PASS();
 }
 
+TEST respond(void) {
+    char buffer[500] = {0};
+
+    SmolRTSP_Writer w = smolrtsp_string_writer(buffer);
+
+    const uint32_t cseq = 456;
+    const SmolRTSP_HeaderMap headers = SmolRTSP_HeaderMap_from_array({
+        {SMOLRTSP_HEADER_DATE,
+         CharSlice99_from_str("Thu, 05 Jun 1997 18:57:19 GMT")},
+        {SMOLRTSP_HEADER_CONTENT_TYPE,
+         CharSlice99_from_str("application/octet-stream")},
+    });
+
+    const char *expected =
+        "RTSP/1.0 200 OK\r\n"
+        "CSeq: 456\r\n"
+        "Date: Thu, 05 Jun 1997 18:57:19 GMT\r\n"
+        "Content-Type: application/octet-stream\r\n\r\n";
+
+    ssize_t ret = smolrtsp_respond(w, cseq, SMOLRTSP_STATUS_OK, "OK", headers);
+    ASSERT_EQ((ssize_t)strlen(expected), ret);
+    ASSERT_STR_EQ(expected, buffer);
+
+    PASS();
+}
+
+TEST respond_with_body(void) {
+    char buffer[500] = {0};
+
+    SmolRTSP_Writer w = smolrtsp_string_writer(buffer);
+
+    const uint32_t cseq = 456;
+    const SmolRTSP_HeaderMap headers = SmolRTSP_HeaderMap_from_array({
+        {SMOLRTSP_HEADER_CONTENT_LENGTH, CharSlice99_from_str("10")},
+        {SMOLRTSP_HEADER_DATE,
+         CharSlice99_from_str("Thu, 05 Jun 1997 18:57:19 GMT")},
+        {SMOLRTSP_HEADER_CONTENT_TYPE,
+         CharSlice99_from_str("application/octet-stream")},
+    });
+    const SmolRTSP_MessageBody body = CharSlice99_from_str("1234567890");
+
+    const char *expected =
+        "RTSP/1.0 200 OK\r\n"
+        "CSeq: 456\r\n"
+        "Content-Length: 10\r\n"
+        "Date: Thu, 05 Jun 1997 18:57:19 GMT\r\n"
+        "Content-Type: application/octet-stream\r\n"
+        "\r\n1234567890";
+
+    ssize_t ret = smolrtsp_respond_with_body(
+        w, cseq, SMOLRTSP_STATUS_OK, "OK", headers, body);
+    ASSERT_EQ((ssize_t)strlen(expected), ret);
+    ASSERT_STR_EQ(expected, buffer);
+
+    PASS();
+}
+
 SUITE(types_response) {
     RUN_TEST(parse_response);
     RUN_TEST(serialize_response);
+    RUN_TEST(respond);
+    RUN_TEST(respond_with_body);
 }

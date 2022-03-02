@@ -34,7 +34,7 @@ typedef struct {
     SmolRTSP_MessageBody body;
 
     /**
-     * The sequence number (integer) for an RTSP request/response pair.
+     * The sequence number for an RTSP request/response pair.
      */
     uint32_t cseq;
 } SmolRTSP_Response;
@@ -68,3 +68,27 @@ SmolRTSP_ParseResult SmolRTSP_Response_parse(
  */
 bool SmolRTSP_Response_eq(SmolRTSP_Response lhs, SmolRTSP_Response rhs)
     SMOLRTSP_PRIV_MUST_USE;
+
+/**
+ * The same as #smolrtsp_respond_with_body but with an empty message body.
+ */
+ssize_t smolrtsp_respond(
+    SmolRTSP_Writer w, uint32_t cseq, SmolRTSP_StatusCode code,
+    const char *reason, SmolRTSP_HeaderMap headers);
+
+/**
+ * Writes an RTSP response to @p w.
+ *
+ * @param[out] w The writer to be provided with the response.
+ * @param[in] cseq The sequence number for an RTSP request/response pair.
+ * @param[in] code The RTSP status code.
+ * @param[in] reason The RTSP reason phrase.
+ * @param[in] headers The response headers. Do not include `CSeq` in it; `CSeq`
+ * will be serialised automatically as a first header.
+ * @param[in] body The RTSP message body.
+ *
+ * @return The number of bytes written or a negative value on error.
+ */
+ssize_t smolrtsp_respond_with_body(
+    SmolRTSP_Writer w, uint32_t cseq, SmolRTSP_StatusCode code,
+    const char *reason, SmolRTSP_HeaderMap headers, SmolRTSP_MessageBody body);
