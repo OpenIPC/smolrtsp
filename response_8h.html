@@ -224,7 +224,7 @@ ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="r
     <tr><td class="paramdir">[in]</td><td class="paramname">cseq</td><td>The sequence number for an RTSP request/response pair. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">code</td><td>The RTSP status code. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">reason</td><td>The RTSP reason phrase. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">headers</td><td>The response headers. Do not include <code>CSeq</code> in it; <code>CSeq</code> will be serialised automatically as a first header. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">headers</td><td>The response headers. Do not include <code>CSeq</code> and <code>Content-Length</code> &ndash; they will be serialised automatically as first headers. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">body</td><td>The RTSP message body.</td></tr>
   </table>
   </dd>
@@ -291,7 +291,7 @@ ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="r
 </div><div class="memdoc">
 
 <p>Serialises <code>self</code> into <code>w</code>. </p>
-<p><a class="el" href="structSmolRTSP__Response.html#a6c6f3328bc50a2e4b046ca8946184c02" title="The sequence number for an RTSP request/response pair.">SmolRTSP_Response.cseq</a> is serialised automatically as a first header &ndash; you need not to present it in <a class="el" href="structSmolRTSP__Response.html#abb3baccb3cd9c2ed1575aa3ef2adf5bd" title="The header map.">SmolRTSP_Response.header_map</a>.</p>
+<p>Do not include <code>CSeq</code> and <code>Content-Length</code> into <a class="el" href="structSmolRTSP__Response.html#abb3baccb3cd9c2ed1575aa3ef2adf5bd" title="The header map.">SmolRTSP_Response.header_map</a> &ndash; they will be serialised automatically as first headers.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">self</td><td>The instance to be serialised. </td></tr>
