@@ -4,6 +4,7 @@ var sdp_8h =
     [ "SMOLRTSP_SDP_ATTR", "sdp_8h.html#aca2eae019df4b4de2205e6a21224bc7c", null ],
     [ "SMOLRTSP_SDP_BANDWIDTH", "sdp_8h.html#ab9046d231ae8856f8e160e01e3a7b188", null ],
     [ "SMOLRTSP_SDP_CONNECTION", "sdp_8h.html#ad08cb46932ed9d4a4408a76505cd7ae5", null ],
+    [ "SMOLRTSP_SDP_DESCRIBE", "sdp_8h.html#afa8982407a7c9932d950e54f90b1726e", null ],
     [ "SMOLRTSP_SDP_EMAIL", "sdp_8h.html#ae95e488412b7f095784f4b5cc5049025", null ],
     [ "SMOLRTSP_SDP_ENCRYPTION_KEYS", "sdp_8h.html#af2a50667154154bd405db8dfe829fd86", null ],
     [ "SMOLRTSP_SDP_INFO", "sdp_8h.html#abf729255bb4c6f25e9b6f0b0208b75c1", null ],
