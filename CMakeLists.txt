@@ -11,6 +11,11 @@ FetchContent_Declare(
 )
 
 FetchContent_Declare(
+    metalang99
+    URL https://github.com/Hirrolot/metalang99/archive/refs/tags/v1.13.1.tar.gz
+)
+
+FetchContent_Declare(
     datatype99
     URL https://github.com/Hirrolot/datatype99/archive/refs/tags/v1.6.2.tar.gz
 )
@@ -106,6 +111,6 @@ target_precompile_headers(
   include/smolrtsp/droppable.h)
 
 target_include_directories(${PROJECT_NAME} PUBLIC include)
-target_link_libraries(${PROJECT_NAME} PUBLIC slice99 datatype99 interface99)
+target_link_libraries(${PROJECT_NAME} PUBLIC slice99 metalang99 datatype99 interface99)
 
 set_target_properties(${PROJECT_NAME} PROPERTIES C_STANDARD 99 C_STANDARD_REQUIRED ON)
