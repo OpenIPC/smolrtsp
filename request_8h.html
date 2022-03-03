@@ -222,7 +222,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="requ
 </div><div class="memdoc">
 
 <p>Serialises <code>self</code> into <code>w</code>. </p>
-<p>Do not include <code>CSeq</code> and <code>Content-Length</code> into <a class="el" href="structSmolRTSP__Request.html#a64c4a2150e6ab000d6e5eafc190113f5" title="The header map.">SmolRTSP_Request.header_map</a> &ndash; they will be serialised automatically as first headers.</p>
+<p>If <code>CSeq</code> and <code>Content-Length</code> are not present in <a class="el" href="structSmolRTSP__Request.html#a64c4a2150e6ab000d6e5eafc190113f5" title="The header map.">SmolRTSP_Request.header_map</a>, they will be taken from <a class="el" href="structSmolRTSP__Request.html#a220863ce0208d4e778f0adacb493c823" title="The sequence number for an RTSP request/response pair.">SmolRTSP_Request.cseq</a> and <a class="el" href="structSmolRTSP__Request.html#a9b9b55bc2e472e6114492db6c7259e0e" title="The message body.">SmolRTSP_Request.body</a>, respectively, and serialised as first headers automatically.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">self</td><td>The instance to be serialised. </td></tr>
