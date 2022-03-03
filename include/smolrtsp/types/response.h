@@ -47,8 +47,10 @@ SmolRTSP_Response SmolRTSP_Response_uninit(void);
 /**
  * Serialises @p self into @p w.
  *
- * Do not include `CSeq` and `Content-Length` into #SmolRTSP_Response.header_map
- * -- they will be serialised automatically as first headers.
+ * If `CSeq` and `Content-Length` are not present in
+ * #SmolRTSP_Response.header_map, they will be taken from
+ * #SmolRTSP_Response.cseq and #SmolRTSP_Response.body, respectively, and
+ * serialised as first headers automatically.
  *
  * @param[in] self The instance to be serialised.
  * @param[in] w The writer to be provided with serialised data.

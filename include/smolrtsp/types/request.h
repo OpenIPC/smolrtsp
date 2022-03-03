@@ -45,8 +45,10 @@ SmolRTSP_Request SmolRTSP_Request_uninit(void);
 /**
  * Serialises @p self into @p w.
  *
- * Do not include `CSeq` and `Content-Length` into #SmolRTSP_Request.header_map
- * -- they will be serialised automatically as first headers.
+ * If `CSeq` and `Content-Length` are not present in
+ * #SmolRTSP_Request.header_map, they will be taken from #SmolRTSP_Request.cseq
+ * and #SmolRTSP_Request.body, respectively, and serialised as first headers
+ * automatically.
  *
  * @param[in] self The instance to be serialised.
  * @param[in] w The writer to be provided with serialised data.

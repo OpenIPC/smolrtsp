@@ -24,19 +24,23 @@ ssize_t SmolRTSP_Request_serialize(SmolRTSP_Request self, SmolRTSP_Writer w) {
 
     CHK_WRITE_ERR(result, SmolRTSP_RequestLine_serialize(self.start_line, w));
 
-    const SmolRTSP_Header cseq_header = {
-        SMOLRTSP_HEADER_C_SEQ,
-        CharSlice99_alloca_fmt("%" PRIu32, self.cseq),
-    };
-    CHK_WRITE_ERR(result, SmolRTSP_Header_serialize(cseq_header, w));
+    if (!SmolRTSP_HeaderMap_key_is_present(
+            self.header_map, SMOLRTSP_HEADER_C_SEQ)) {
+        const SmolRTSP_Header cseq = {
+            SMOLRTSP_HEADER_C_SEQ,
+            CharSlice99_alloca_fmt("%" PRIu32, self.cseq),
+        };
+        CHK_WRITE_ERR(result, SmolRTSP_Header_serialize(cseq, w));
+    }
 
-    if (!CharSlice99_is_empty(self.body)) {
-        const SmolRTSP_Header content_length_header = {
+    if (!SmolRTSP_HeaderMap_key_is_present(
+            self.header_map, SMOLRTSP_HEADER_CONTENT_LENGTH) &&
+        !CharSlice99_is_empty(self.body)) {
+        const SmolRTSP_Header content_length = {
             SMOLRTSP_HEADER_CONTENT_LENGTH,
             CharSlice99_alloca_fmt("%zd", self.body.len),
         };
-        CHK_WRITE_ERR(
-            result, SmolRTSP_Header_serialize(content_length_header, w));
+        CHK_WRITE_ERR(result, SmolRTSP_Header_serialize(content_length, w));
     }
 
     CHK_WRITE_ERR(result, SmolRTSP_HeaderMap_serialize(self.header_map, w));
