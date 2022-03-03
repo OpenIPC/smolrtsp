@@ -11,7 +11,7 @@ static ssize_t FdWriter_write(VSelf, CharSlice99 data) {
     return write(*self, data.ptr, data.len);
 }
 
-static int FdWriter_vwritef(VSelf, const char fmt[restrict], va_list ap) {
+static int FdWriter_vwritef(VSelf, const char *restrict fmt, va_list ap) {
     VSELF(FdWriter);
 
     assert(self);
@@ -20,7 +20,7 @@ static int FdWriter_vwritef(VSelf, const char fmt[restrict], va_list ap) {
     return vdprintf(*self, fmt, ap);
 }
 
-static int FdWriter_writef(VSelf, const char fmt[restrict], ...) {
+static int FdWriter_writef(VSelf, const char *restrict fmt, ...) {
     VSELF(FdWriter);
 
     assert(self);

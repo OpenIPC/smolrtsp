@@ -37,12 +37,12 @@
      *                                                                         \
      * @return The number of bytes written or a negative value on error.       \
      */                                                                        \
-    vfunc99(int, writef, VSelf99, const char fmt[restrict], ...)               \
+    vfunc99(int, writef, VSelf99, const char *restrict fmt, ...)               \
                                                                                \
     /*                                                                         \
      * The same as `printf` but accepts `va_list`.                             \
      */                                                                        \
-    vfunc99(int, vwritef, VSelf99, const char fmt[restrict], va_list ap)
+    vfunc99(int, vwritef, VSelf99, const char *restrict fmt, va_list ap)
 
 /**
  * Defines the `SmolRTSP_Writer` interface.

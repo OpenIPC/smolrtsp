@@ -58,7 +58,7 @@ ssize_t SmolRTSP_SdpLine_serialize(SmolRTSP_SdpLine self, SmolRTSP_Writer w)
  * @pre `fmt != NULL`
  */
 ssize_t smolrtsp_sdp_printf(
-    SmolRTSP_SdpType ty, SmolRTSP_Writer w, const char fmt[restrict],
+    SmolRTSP_SdpType ty, SmolRTSP_Writer w, const char *restrict fmt,
     ...) SMOLRTSP_PRIV_MUST_USE SMOLRTSP_PRIV_GCC_ATTR(format(printf, 3, 4));
 
 /**

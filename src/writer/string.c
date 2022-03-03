@@ -13,7 +13,7 @@ static ssize_t StringWriter_write(VSelf, CharSlice99 data) {
     return data.len;
 }
 
-static int StringWriter_vwritef(VSelf, const char fmt[restrict], va_list ap) {
+static int StringWriter_vwritef(VSelf, const char *restrict fmt, va_list ap) {
     VSELF(StringWriter);
 
     assert(self);
@@ -22,7 +22,7 @@ static int StringWriter_vwritef(VSelf, const char fmt[restrict], va_list ap) {
     return vsprintf(self + strlen(self), fmt, ap);
 }
 
-static int StringWriter_writef(VSelf, const char fmt[restrict], ...) {
+static int StringWriter_writef(VSelf, const char *restrict fmt, ...) {
     VSELF(StringWriter);
 
     assert(self);
