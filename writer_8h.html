@@ -236,12 +236,12 @@ Functions</h2></td></tr>
 <div class="line"><span class="comment">     *                                                                         \</span></div>
 <div class="line"><span class="comment">     * @return The number of bytes written or a negative value on error.       \</span></div>
 <div class="line"><span class="comment">     */</span>                                                                        \</div>
-<div class="line">    vfunc99(<span class="keywordtype">int</span>, writef, VSelf99, <span class="keyword">const</span> <span class="keywordtype">char</span> fmt[restrict], ...)               \</div>
+<div class="line">    vfunc99(<span class="keywordtype">int</span>, writef, VSelf99, <span class="keyword">const</span> <span class="keywordtype">char</span> *restrict fmt, ...)               \</div>
 <div class="line">                                                                               \</div>
 <div class="line">    <span class="comment">/*                                                                         \</span></div>
 <div class="line"><span class="comment">     * The same as `printf` but accepts `va_list`.                             \</span></div>
 <div class="line"><span class="comment">     */</span>                                                                        \</div>
-<div class="line">    vfunc99(<span class="keywordtype">int</span>, vwritef, VSelf99, <span class="keyword">const</span> <span class="keywordtype">char</span> fmt[restrict], va_list ap)</div>
+<div class="line">    vfunc99(<span class="keywordtype">int</span>, vwritef, VSelf99, <span class="keyword">const</span> <span class="keywordtype">char</span> *restrict fmt, va_list ap)</div>
 </div><!-- fragment -->
 <p>The user-supplied data writer interface. </p>
 
