@@ -117,7 +117,7 @@ ssize_t smolrtsp_sdp_printf(
 
 #define SMOLRTSP_PRIV_SDP_DESCRIBE(ret, w, ...)                                \
     do {                                                                       \
-        ssize_t smolrtsp_priv_sdp_ret = 0;                                     \
+        ssize_t smolrtsp_priv_sdp_ret = ret = 0;                               \
         ML99_EVAL(ML99_variadicsForEach(                                       \
             ML99_compose(                                                      \
                 ML99_appl(v(SMOLRTSP_PRIV_genSdpPrintf), v(ret, w)),           \
