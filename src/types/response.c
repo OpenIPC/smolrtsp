@@ -66,10 +66,9 @@ SmolRTSP_Response_parse(SmolRTSP_Response *restrict self, CharSlice99 input) {
         self->header_map, SMOLRTSP_HEADER_CONTENT_LENGTH, &content_length);
 
     if (content_length_is_found) {
-        char fmt[64];
-        snprintf(fmt, sizeof(fmt), "%%%zdzd", content_length.len);
-
-        if (sscanf(content_length.ptr, fmt, &content_length_int) != 1) {
+        if (sscanf(
+                CharSlice99_alloca_c_str(content_length), "%zd",
+                &content_length_int) != 1) {
             return SmolRTSP_ParseResult_Failure(
                 SmolRTSP_ParseError_ContentLength(content_length));
         }
