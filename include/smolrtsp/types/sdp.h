@@ -48,8 +48,8 @@ ssize_t SmolRTSP_SdpLine_serialize(SmolRTSP_SdpLine self, SmolRTSP_Writer w)
 /**
  * Printfs a single SDP line to @p w.
  *
- * @param[in] ty The type of the SDP line.
  * @param[out] w The writer to be provided with SDP data.
+ * @param[in] ty The type of the SDP line.
  * @param[in] fmt The `printf`-like format string.
  *
  * @return The number of bytes written or a negative value on error.
@@ -58,7 +58,7 @@ ssize_t SmolRTSP_SdpLine_serialize(SmolRTSP_SdpLine self, SmolRTSP_Writer w)
  * @pre `fmt != NULL`
  */
 ssize_t smolrtsp_sdp_printf(
-    SmolRTSP_SdpType ty, SmolRTSP_Writer w, const char *restrict fmt,
+    SmolRTSP_Writer w, SmolRTSP_SdpType ty, const char *restrict fmt,
     ...) SMOLRTSP_PRIV_MUST_USE SMOLRTSP_PRIV_GCC_ATTR(format(printf, 3, 4));
 
 /**
