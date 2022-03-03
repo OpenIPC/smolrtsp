@@ -207,15 +207,15 @@ Functions</h2></td></tr>
 <tr class="memitem:a4da3ebe4fb577869fcd0fbb7d0ad98e3"><td class="memItemLeft" align="right" valign="top">ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sdp_8h.html#a4da3ebe4fb577869fcd0fbb7d0ad98e3">SmolRTSP_SdpLine_serialize</a> (<a class="el" href="structSmolRTSP__SdpLine.html">SmolRTSP_SdpLine</a> self, SmolRTSP_Writer w) SMOLRTSP_PRIV_MUST_USE</td></tr>
 <tr class="memdesc:a4da3ebe4fb577869fcd0fbb7d0ad98e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serialises <code>self</code> into <code>w</code>.  <a href="sdp_8h.html#a4da3ebe4fb577869fcd0fbb7d0ad98e3">More...</a><br /></td></tr>
 <tr class="separator:a4da3ebe4fb577869fcd0fbb7d0ad98e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5a48fff5e26a17ca7d3ad53f83c45319"><td class="memItemLeft" align="right" valign="top">ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sdp_8h.html#a5a48fff5e26a17ca7d3ad53f83c45319">smolrtsp_sdp_printf</a> (<a class="el" href="sdp_8h.html#a92db3e326a98a58d3544003bad698950">SmolRTSP_SdpType</a> ty, SmolRTSP_Writer w, const char *restrict fmt,...) SMOLRTSP_PRIV_MUST_USE SMOLRTSP_PRIV_GCC_ATTR(format(printf</td></tr>
-<tr class="memdesc:a5a48fff5e26a17ca7d3ad53f83c45319"><td class="mdescLeft">&#160;</td><td class="mdescRight">Printfs a single SDP line to <code>w</code>.  <a href="sdp_8h.html#a5a48fff5e26a17ca7d3ad53f83c45319">More...</a><br /></td></tr>
-<tr class="separator:a5a48fff5e26a17ca7d3ad53f83c45319"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab121c7cdb1fddf93640a09060b7db033"><td class="memItemLeft" align="right" valign="top">ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sdp_8h.html#ab121c7cdb1fddf93640a09060b7db033">smolrtsp_sdp_printf</a> (SmolRTSP_Writer w, <a class="el" href="sdp_8h.html#a92db3e326a98a58d3544003bad698950">SmolRTSP_SdpType</a> ty, const char *restrict fmt,...) SMOLRTSP_PRIV_MUST_USE SMOLRTSP_PRIV_GCC_ATTR(format(printf</td></tr>
+<tr class="memdesc:ab121c7cdb1fddf93640a09060b7db033"><td class="mdescLeft">&#160;</td><td class="mdescRight">Printfs a single SDP line to <code>w</code>.  <a href="sdp_8h.html#ab121c7cdb1fddf93640a09060b7db033">More...</a><br /></td></tr>
+<tr class="separator:ab121c7cdb1fddf93640a09060b7db033"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a href="https://datatracker.ietf.org/doc/html/rfc4566">RFC 4566</a>-compliant SDP implementation. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="a5a48fff5e26a17ca7d3ad53f83c45319"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5a48fff5e26a17ca7d3ad53f83c45319">&#9670;&nbsp;</a></span>smolrtsp_sdp_printf()</h2>
+<a id="ab121c7cdb1fddf93640a09060b7db033"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab121c7cdb1fddf93640a09060b7db033">&#9670;&nbsp;</a></span>smolrtsp_sdp_printf()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -223,14 +223,14 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">ssize_t smolrtsp_sdp_printf </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="sdp_8h.html#a92db3e326a98a58d3544003bad698950">SmolRTSP_SdpType</a>&#160;</td>
-          <td class="paramname"><em>ty</em>, </td>
+          <td class="paramtype">SmolRTSP_Writer&#160;</td>
+          <td class="paramname"><em>w</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">SmolRTSP_Writer&#160;</td>
-          <td class="paramname"><em>w</em>, </td>
+          <td class="paramtype"><a class="el" href="sdp_8h.html#a92db3e326a98a58d3544003bad698950">SmolRTSP_SdpType</a>&#160;</td>
+          <td class="paramname"><em>ty</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -255,8 +255,8 @@ Functions</h2></td></tr>
 <p>Printfs a single SDP line to <code>w</code>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">ty</td><td>The type of the SDP line. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">w</td><td>The writer to be provided with SDP data. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ty</td><td>The type of the SDP line. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">fmt</td><td>The <code>printf</code>-like format string.</td></tr>
   </table>
   </dd>
