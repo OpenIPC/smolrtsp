@@ -24,7 +24,7 @@ ssize_t SmolRTSP_Response_serialize(SmolRTSP_Response self, SmolRTSP_Writer w) {
 
     CHK_WRITE_ERR(result, SmolRTSP_ResponseLine_serialize(self.start_line, w));
 
-    if (!SmolRTSP_HeaderMap_key_is_present(
+    if (!SmolRTSP_HeaderMap_contains_key(
             self.header_map, SMOLRTSP_HEADER_C_SEQ)) {
         const SmolRTSP_Header cseq = {
             SMOLRTSP_HEADER_C_SEQ,
@@ -33,7 +33,7 @@ ssize_t SmolRTSP_Response_serialize(SmolRTSP_Response self, SmolRTSP_Writer w) {
         CHK_WRITE_ERR(result, SmolRTSP_Header_serialize(cseq, w));
     }
 
-    if (!SmolRTSP_HeaderMap_key_is_present(
+    if (!SmolRTSP_HeaderMap_contains_key(
             self.header_map, SMOLRTSP_HEADER_CONTENT_LENGTH) &&
         !CharSlice99_is_empty(self.body)) {
         const SmolRTSP_Header content_length = {
@@ -98,32 +98,4 @@ bool SmolRTSP_Response_eq(SmolRTSP_Response lhs, SmolRTSP_Response rhs) {
     return SmolRTSP_ResponseLine_eq(lhs.start_line, rhs.start_line) &&
            SmolRTSP_HeaderMap_eq(lhs.header_map, rhs.header_map) &&
            CharSlice99_primitive_eq(lhs.body, rhs.body) && lhs.cseq == rhs.cseq;
-}
-
-ssize_t smolrtsp_respond(
-    SmolRTSP_Writer w, uint32_t cseq, SmolRTSP_StatusCode code,
-    const char *reason, SmolRTSP_HeaderMap headers) {
-    return smolrtsp_respond_with_body(
-        w, cseq, code, reason, headers, SmolRTSP_MessageBody_empty());
-}
-
-ssize_t smolrtsp_respond_with_body(
-    SmolRTSP_Writer w, uint32_t cseq, SmolRTSP_StatusCode code,
-    const char *reason, SmolRTSP_HeaderMap headers, SmolRTSP_MessageBody body) {
-    assert(w.self && w.vptr);
-    assert(reason);
-
-    const SmolRTSP_Response response = {
-        .start_line =
-            {
-                .version = {.major = 1, .minor = 0},
-                .code = code,
-                .reason = CharSlice99_from_str((char *)reason),
-            },
-        .header_map = headers,
-        .body = body,
-        .cseq = cseq,
-    };
-
-    return SmolRTSP_Response_serialize(response, w);
 }

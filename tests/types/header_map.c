@@ -69,11 +69,10 @@ TEST find(void) {
     PASS();
 }
 
-TEST key_is_present(void) {
-    ASSERT(SmolRTSP_HeaderMap_key_is_present(
+TEST contains_key(void) {
+    ASSERT(SmolRTSP_HeaderMap_contains_key(
         HEADER_MAP, SMOLRTSP_HEADER_CONTENT_LENGTH));
-    ASSERT(
-        !SmolRTSP_HeaderMap_key_is_present(HEADER_MAP, SMOLRTSP_HEADER_ALLOW));
+    ASSERT(!SmolRTSP_HeaderMap_contains_key(HEADER_MAP, SMOLRTSP_HEADER_ALLOW));
 
     PASS();
 }
@@ -82,5 +81,5 @@ SUITE(types_header_map) {
     RUN_TEST(parse_header_map);
     RUN_TEST(serialize_header_map);
     RUN_TEST(find);
-    RUN_TEST(key_is_present);
+    RUN_TEST(contains_key);
 }

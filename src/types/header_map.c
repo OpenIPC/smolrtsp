@@ -28,8 +28,7 @@ bool SmolRTSP_HeaderMap_find(
     return false;
 }
 
-bool SmolRTSP_HeaderMap_key_is_present(
-    SmolRTSP_HeaderMap self, CharSlice99 key) {
+bool SmolRTSP_HeaderMap_contains_key(SmolRTSP_HeaderMap self, CharSlice99 key) {
     return SmolRTSP_HeaderMap_find(self, key, NULL);
 }
 

@@ -70,7 +70,7 @@ bool SmolRTSP_HeaderMap_find(
 /**
  * Returns whether @p key is present in @p self.
  */
-bool SmolRTSP_HeaderMap_key_is_present(SmolRTSP_HeaderMap self, CharSlice99 key)
+bool SmolRTSP_HeaderMap_contains_key(SmolRTSP_HeaderMap self, CharSlice99 key)
     SMOLRTSP_PRIV_MUST_USE;
 
 /**

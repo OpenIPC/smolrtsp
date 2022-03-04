@@ -24,7 +24,7 @@ ssize_t SmolRTSP_Request_serialize(SmolRTSP_Request self, SmolRTSP_Writer w) {
 
     CHK_WRITE_ERR(result, SmolRTSP_RequestLine_serialize(self.start_line, w));
 
-    if (!SmolRTSP_HeaderMap_key_is_present(
+    if (!SmolRTSP_HeaderMap_contains_key(
             self.header_map, SMOLRTSP_HEADER_C_SEQ)) {
         const SmolRTSP_Header cseq = {
             SMOLRTSP_HEADER_C_SEQ,
@@ -33,7 +33,7 @@ ssize_t SmolRTSP_Request_serialize(SmolRTSP_Request self, SmolRTSP_Writer w) {
         CHK_WRITE_ERR(result, SmolRTSP_Header_serialize(cseq, w));
     }
 
-    if (!SmolRTSP_HeaderMap_key_is_present(
+    if (!SmolRTSP_HeaderMap_contains_key(
             self.header_map, SMOLRTSP_HEADER_CONTENT_LENGTH) &&
         !CharSlice99_is_empty(self.body)) {
         const SmolRTSP_Header content_length = {
