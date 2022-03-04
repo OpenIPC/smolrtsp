@@ -54,6 +54,7 @@ set(SMOLRTSP_SOURCES
     include/smolrtsp/droppable.h
     include/smolrtsp/controller.h
     include/smolrtsp/io_vec.h
+    include/smolrtsp/context.h
     src/types/error.c
     src/types/header_map.c
     src/types/header.c
@@ -84,6 +85,7 @@ set(SMOLRTSP_SOURCES
     src/rtp_transport.c
     src/nal_transport.c
     src/io_vec.c
+    src/context.c
     src/macros.h
 )
 

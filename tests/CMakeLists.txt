@@ -35,6 +35,7 @@ add_executable(
   util.c
   writer.c
   io_vec.c
+  context.c
   transport.c)
 
 if(CMAKE_C_COMPILER_ID STREQUAL "Clang")

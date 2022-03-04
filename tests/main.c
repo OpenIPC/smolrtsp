@@ -34,6 +34,7 @@ int main(int argc, char *argv[]) {
     SMOLRTSP_SUITE(writer);
     SMOLRTSP_SUITE(transport);
     SMOLRTSP_SUITE(io_vec);
+    SMOLRTSP_SUITE(context);
 
     GREATEST_MAIN_END();
 }
