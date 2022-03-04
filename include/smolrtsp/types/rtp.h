@@ -6,11 +6,11 @@
 
 #pragma once
 
+#include <smolrtsp/priv/compiler_attrs.h>
+
 #include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
-
-#include <smolrtsp/priv/compiler_attrs.h>
 
 /**
  * An RTP header.

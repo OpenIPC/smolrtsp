@@ -5,6 +5,7 @@
 
 #pragma once
 
+#include <smolrtsp/priv/compiler_attrs.h>
 #include <smolrtsp/types/error.h>
 #include <smolrtsp/types/header.h>
 
@@ -15,8 +16,6 @@
 #include <unistd.h>
 
 #include <slice99.h>
-
-#include <smolrtsp/priv/compiler_attrs.h>
 
 /**
  * Creates new #SmolRTSP_HeaderMap from an array expression of #SmolRTSP_Header.

@@ -5,6 +5,7 @@
 
 #pragma once
 
+#include <smolrtsp/priv/compiler_attrs.h>
 #include <smolrtsp/types/error.h>
 #include <smolrtsp/types/header_map.h>
 #include <smolrtsp/types/message_body.h>
@@ -12,7 +13,7 @@
 
 #include <stdbool.h>
 
-#include <smolrtsp/priv/compiler_attrs.h>
+#include <slice99.h>
 
 /**
  * An RTSP request.

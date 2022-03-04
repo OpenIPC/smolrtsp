@@ -5,6 +5,7 @@
 
 #pragma once
 
+#include <smolrtsp/priv/compiler_attrs.h>
 #include <smolrtsp/types/error.h>
 #include <smolrtsp/types/method.h>
 #include <smolrtsp/types/request_uri.h>
@@ -12,7 +13,7 @@
 
 #include <stdbool.h>
 
-#include <smolrtsp/priv/compiler_attrs.h>
+#include <slice99.h>
 
 /**
  * An RTSP request line.

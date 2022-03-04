@@ -5,13 +5,14 @@
 
 #pragma once
 
+#include <smolrtsp/priv/compiler_attrs.h>
 #include <smolrtsp/types/error.h>
 #include <smolrtsp/writer.h>
 
 #include <stdbool.h>
 #include <stdint.h>
 
-#include <smolrtsp/priv/compiler_attrs.h>
+#include <slice99.h>
 
 /**
  * An RTSP version.

@@ -5,13 +5,12 @@
 
 #pragma once
 
+#include <smolrtsp/priv/compiler_attrs.h>
 #include <smolrtsp/types/error.h>
 
 #include <stdbool.h>
 
 #include <slice99.h>
-
-#include <smolrtsp/priv/compiler_attrs.h>
 
 /**
  * An RTSP request URI.

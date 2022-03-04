@@ -6,12 +6,10 @@
 
 #pragma once
 
+#include <smolrtsp/priv/compiler_attrs.h>
 #include <smolrtsp/writer.h>
 
-#include <metalang99.h>
 #include <slice99.h>
-
-#include <smolrtsp/priv/compiler_attrs.h>
 
 /**
  * An SDP type (one character).
@@ -114,6 +112,8 @@ ssize_t smolrtsp_sdp_printf(
     SMOLRTSP_PRIV_SDP_DESCRIBE(ret, w, __VA_ARGS__)
 
 #ifndef DOXYGEN_IGNORE
+
+#include <metalang99.h>
 
 #define SMOLRTSP_PRIV_SDP_DESCRIBE(ret, w, ...)                                \
     do {                                                                       \

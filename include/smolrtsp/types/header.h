@@ -5,6 +5,7 @@
 
 #pragma once
 
+#include <smolrtsp/priv/compiler_attrs.h>
 #include <smolrtsp/types/error.h>
 #include <smolrtsp/writer.h>
 
@@ -14,8 +15,6 @@
 #include <unistd.h>
 
 #include <slice99.h>
-
-#include <smolrtsp/priv/compiler_attrs.h>
 
 /**
  * An RTSP header.
