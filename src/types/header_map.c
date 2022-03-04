@@ -32,6 +32,15 @@ bool SmolRTSP_HeaderMap_contains_key(SmolRTSP_HeaderMap self, CharSlice99 key) {
     return SmolRTSP_HeaderMap_find(self, key, NULL);
 }
 
+void SmolRTSP_HeaderMap_append(
+    SmolRTSP_HeaderMap *restrict self, SmolRTSP_Header h) {
+    assert(self);
+    assert(!SmolRTSP_HeaderMap_is_full(self));
+
+    self->headers[self->len] = h;
+    self->len++;
+}
+
 ssize_t
 SmolRTSP_HeaderMap_serialize(SmolRTSP_HeaderMap self, SmolRTSP_Writer w) {
     assert(w.self && w.vptr);
@@ -64,15 +73,14 @@ SmolRTSP_HeaderMap_parse(SmolRTSP_HeaderMap *restrict self, CharSlice99 input) {
             return SmolRTSP_ParseResult_complete(
                 (input.ptr - backup.ptr) + SMOLRTSP_CRLF.len);
         }
-        if (SmolRTSP_HeaderMap_is_full(*self)) {
+        if (SmolRTSP_HeaderMap_is_full(self)) {
             return SmolRTSP_ParseResult_Failure(
                 SmolRTSP_ParseError_HeaderMapOverflow());
         }
 
         SmolRTSP_Header header;
         MATCH(SmolRTSP_Header_parse(&header, input));
-        self->headers[self->len] = header;
-        self->len++;
+        SmolRTSP_HeaderMap_append(self, header);
     }
 }
 
@@ -92,6 +100,7 @@ bool SmolRTSP_HeaderMap_eq(SmolRTSP_HeaderMap lhs, SmolRTSP_HeaderMap rhs) {
     return true;
 }
 
-bool SmolRTSP_HeaderMap_is_full(SmolRTSP_HeaderMap self) {
-    return SMOLRTSP_HEADER_MAP_CAPACITY == self.len;
+bool SmolRTSP_HeaderMap_is_full(const SmolRTSP_HeaderMap *restrict self) {
+    assert(self);
+    return SMOLRTSP_HEADER_MAP_CAPACITY == self->len;
 }

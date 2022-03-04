@@ -13,18 +13,10 @@ DEF_TEST_PARSE(SmolRTSP_HeaderMap)
 
 #define HEADER_MAP                                                             \
     SmolRTSP_HeaderMap_from_array({                                            \
-        {                                                                      \
-            SMOLRTSP_HEADER_CONTENT_LENGTH,                                    \
-            CharSlice99_from_str("10"),                                        \
-        },                                                                     \
-        {                                                                      \
-            SMOLRTSP_HEADER_ACCEPT_LANGUAGE,                                   \
-            CharSlice99_from_str("English"),                                   \
-        },                                                                     \
-        {                                                                      \
-            SMOLRTSP_HEADER_CONTENT_TYPE,                                      \
-            CharSlice99_from_str("application/octet-stream"),                  \
-        },                                                                     \
+        {SMOLRTSP_HEADER_CONTENT_LENGTH, CharSlice99_from_str("10")},          \
+        {SMOLRTSP_HEADER_ACCEPT_LANGUAGE, CharSlice99_from_str("English")},    \
+        {SMOLRTSP_HEADER_CONTENT_TYPE,                                         \
+         CharSlice99_from_str("application/octet-stream")},                    \
     })
 
 #define HEADER_MAP_STR                                                         \
@@ -77,9 +69,33 @@ TEST contains_key(void) {
     PASS();
 }
 
+TEST append(void) {
+    SmolRTSP_HeaderMap map = SmolRTSP_HeaderMap_empty();
+
+    for (size_t i = 0; i < HEADER_MAP.len; i++) {
+        SmolRTSP_HeaderMap_append(&map, HEADER_MAP.headers[i]);
+    }
+
+    ASSERT(SmolRTSP_HeaderMap_eq(map, HEADER_MAP));
+    PASS();
+}
+
+TEST is_full(void) {
+    SmolRTSP_HeaderMap map = SmolRTSP_HeaderMap_empty();
+
+    ASSERT(!SmolRTSP_HeaderMap_is_full(&map));
+
+    map.len = SMOLRTSP_HEADER_MAP_CAPACITY;
+    ASSERT(SmolRTSP_HeaderMap_is_full(&map));
+
+    PASS();
+}
+
 SUITE(types_header_map) {
     RUN_TEST(parse_header_map);
     RUN_TEST(serialize_header_map);
     RUN_TEST(find);
     RUN_TEST(contains_key);
+    RUN_TEST(append);
+    RUN_TEST(is_full);
 }

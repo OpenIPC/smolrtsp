@@ -74,6 +74,18 @@ bool SmolRTSP_HeaderMap_contains_key(SmolRTSP_HeaderMap self, CharSlice99 key)
     SMOLRTSP_PRIV_MUST_USE;
 
 /**
+ * Appends a new header to a header map.
+ *
+ * @param[out] self The header map to modify.
+ * @param[in] h The new header to be appended.
+ *
+ * @pre `self != NULL`
+ * @pre `!SmolRTSP_HeaderMap_is_full(self)`
+ */
+void SmolRTSP_HeaderMap_append(
+    SmolRTSP_HeaderMap *restrict self, SmolRTSP_Header h);
+
+/**
  * Serialises @p self into @p w.
  *
  * @param[in] self The instance to be serialised.
@@ -105,6 +117,9 @@ bool SmolRTSP_HeaderMap_eq(SmolRTSP_HeaderMap lhs, SmolRTSP_HeaderMap rhs)
  * Tests whether @p self is full (no more space left for an additional header)
  * or not.
  *
+ * @pre `self != NULL`
+ *
  * @return `true` if @p self is full, `false` otherwise
  */
-bool SmolRTSP_HeaderMap_is_full(SmolRTSP_HeaderMap self) SMOLRTSP_PRIV_MUST_USE;
+bool SmolRTSP_HeaderMap_is_full(const SmolRTSP_HeaderMap *restrict self)
+    SMOLRTSP_PRIV_MUST_USE;
