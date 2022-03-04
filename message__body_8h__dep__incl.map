@@ -1,7 +1,8 @@
 <map id="include/smolrtsp/types/message_body.h" name="include/smolrtsp/types/message_body.h">
-<area shape="rect" id="node1" title="An RTSP message body." alt="" coords="27,5,198,47"/>
-<area shape="rect" id="node2" href="$smolrtsp_8h.html" title="Re&#45;exports all the functionality." alt="" coords="5,273,148,300"/>
-<area shape="rect" id="node3" href="$request_8h.html" title="An RTSP request." alt="" coords="27,95,198,136"/>
-<area shape="rect" id="node5" href="$response_8h.html" title="An RTSP response." alt="" coords="275,184,446,225"/>
-<area shape="rect" id="node4" href="$controller_8h.html" title="An RTSP requests controller." alt="" coords="44,191,251,218"/>
+<area shape="rect" id="node1" title="An RTSP message body." alt="" coords="140,5,311,47"/>
+<area shape="rect" id="node2" href="$smolrtsp_8h.html" title="Re&#45;exports all the functionality." alt="" coords="117,273,260,300"/>
+<area shape="rect" id="node3" href="$context_8h.html" title="A request context." alt="" coords="26,102,220,129"/>
+<area shape="rect" id="node5" href="$request_8h.html" title="An RTSP request." alt="" coords="244,95,415,136"/>
+<area shape="rect" id="node6" href="$response_8h.html" title="An RTSP response." alt="" coords="367,184,538,225"/>
+<area shape="rect" id="node4" href="$controller_8h.html" title="An RTSP requests controller." alt="" coords="85,191,292,218"/>
 </map>

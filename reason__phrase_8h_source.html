@@ -90,27 +90,26 @@ $(document).ready(function(){initNavTree('reason__phrase_8h_source.html',''); in
 <a href="reason__phrase_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#pragma once</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="error_8h.html">smolrtsp/types/error.h</a>&gt;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;slice99.h&gt;</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;smolrtsp/priv/compiler_attrs.h&gt;</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="reason__phrase_8h.html#ab1f37f7d86845a6832c4b77fea0b2794">   19</a></span>&#160;<span class="keyword">typedef</span> CharSlice99 <a class="code" href="reason__phrase_8h.html#ab1f37f7d86845a6832c4b77fea0b2794">SmolRTSP_ReasonPhrase</a>;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;SmolRTSP_ParseResult <a class="code" href="reason__phrase_8h.html#afe603077387a0e80f8fd8bf2ed1f20ec">SmolRTSP_ReasonPhrase_parse</a>(</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="reason__phrase_8h.html#ab1f37f7d86845a6832c4b77fea0b2794">SmolRTSP_ReasonPhrase</a> *restrict <span class="keyword">self</span>,</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    CharSlice99 data) SMOLRTSP_PRIV_MUST_USE;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="reason__phrase_8h.html#ac94e0d325c735a545c891d66d708e4f2">SmolRTSP_ReasonPhrase_eq</a>(</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <a class="code" href="reason__phrase_8h.html#ab1f37f7d86845a6832c4b77fea0b2794">SmolRTSP_ReasonPhrase</a> lhs,</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <a class="code" href="reason__phrase_8h.html#ab1f37f7d86845a6832c4b77fea0b2794">SmolRTSP_ReasonPhrase</a> rhs) SMOLRTSP_PRIV_MUST_USE;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;smolrtsp/priv/compiler_attrs.h&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="error_8h.html">smolrtsp/types/error.h</a>&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;slice99.h&gt;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="reason__phrase_8h.html#ab1f37f7d86845a6832c4b77fea0b2794">   18</a></span>&#160;<span class="keyword">typedef</span> CharSlice99 <a class="code" href="reason__phrase_8h.html#ab1f37f7d86845a6832c4b77fea0b2794">SmolRTSP_ReasonPhrase</a>;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;SmolRTSP_ParseResult <a class="code" href="reason__phrase_8h.html#afe603077387a0e80f8fd8bf2ed1f20ec">SmolRTSP_ReasonPhrase_parse</a>(</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <a class="code" href="reason__phrase_8h.html#ab1f37f7d86845a6832c4b77fea0b2794">SmolRTSP_ReasonPhrase</a> *restrict <span class="keyword">self</span>,</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    CharSlice99 data) SMOLRTSP_PRIV_MUST_USE;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="reason__phrase_8h.html#ac94e0d325c735a545c891d66d708e4f2">SmolRTSP_ReasonPhrase_eq</a>(</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <a class="code" href="reason__phrase_8h.html#ab1f37f7d86845a6832c4b77fea0b2794">SmolRTSP_ReasonPhrase</a> lhs,</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <a class="code" href="reason__phrase_8h.html#ab1f37f7d86845a6832c4b77fea0b2794">SmolRTSP_ReasonPhrase</a> rhs) SMOLRTSP_PRIV_MUST_USE;</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="areason__phrase_8h_html_ac94e0d325c735a545c891d66d708e4f2"><div class="ttname"><a href="reason__phrase_8h.html#ac94e0d325c735a545c891d66d708e4f2">SmolRTSP_ReasonPhrase_eq</a></div><div class="ttdeci">bool SmolRTSP_ReasonPhrase_eq(SmolRTSP_ReasonPhrase lhs, SmolRTSP_ReasonPhrase rhs) SMOLRTSP_PRIV_MUST_USE</div><div class="ttdoc">Tests lhs and rhs for equality.</div></div>
-<div class="ttc" id="areason__phrase_8h_html_ab1f37f7d86845a6832c4b77fea0b2794"><div class="ttname"><a href="reason__phrase_8h.html#ab1f37f7d86845a6832c4b77fea0b2794">SmolRTSP_ReasonPhrase</a></div><div class="ttdeci">CharSlice99 SmolRTSP_ReasonPhrase</div><div class="ttdoc">An RTSP reason phrase.</div><div class="ttdef"><b>Definition:</b> reason_phrase.h:19</div></div>
+<div class="ttc" id="areason__phrase_8h_html_ab1f37f7d86845a6832c4b77fea0b2794"><div class="ttname"><a href="reason__phrase_8h.html#ab1f37f7d86845a6832c4b77fea0b2794">SmolRTSP_ReasonPhrase</a></div><div class="ttdeci">CharSlice99 SmolRTSP_ReasonPhrase</div><div class="ttdoc">An RTSP reason phrase.</div><div class="ttdef"><b>Definition:</b> reason_phrase.h:18</div></div>
 <div class="ttc" id="aerror_8h_html"><div class="ttname"><a href="error_8h.html">error.h</a></div><div class="ttdoc">Possible parsing errors.</div></div>
 <div class="ttc" id="areason__phrase_8h_html_afe603077387a0e80f8fd8bf2ed1f20ec"><div class="ttname"><a href="reason__phrase_8h.html#afe603077387a0e80f8fd8bf2ed1f20ec">SmolRTSP_ReasonPhrase_parse</a></div><div class="ttdeci">SmolRTSP_ParseResult SmolRTSP_ReasonPhrase_parse(SmolRTSP_ReasonPhrase *restrict self, CharSlice99 data) SMOLRTSP_PRIV_MUST_USE</div><div class="ttdoc">Parses data to self.</div></div>
 <!-- start footer part -->

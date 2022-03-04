@@ -90,120 +90,119 @@ $(document).ready(function(){initNavTree('status__code_8h_source.html',''); init
 <a href="status__code_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#pragma once</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="error_8h.html">smolrtsp/types/error.h</a>&gt;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="writer_8h.html">smolrtsp/writer.h</a>&gt;</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;slice99.h&gt;</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;smolrtsp/priv/compiler_attrs.h&gt;</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="status__code_8h.html#ac339032e6c3031ccc07cdd573bd8352a">   21</a></span>&#160;<span class="keyword">typedef</span> uint16_t <a class="code" href="status__code_8h.html#ac339032e6c3031ccc07cdd573bd8352a">SmolRTSP_StatusCode</a>;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;ssize_t <a class="code" href="status__code_8h.html#aaa2427a89df58604bf35ea04556ebda1">SmolRTSP_StatusCode_serialize</a>(</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <a class="code" href="status__code_8h.html#ac339032e6c3031ccc07cdd573bd8352a">SmolRTSP_StatusCode</a> <span class="keyword">self</span>, SmolRTSP_Writer w) SMOLRTSP_PRIV_MUST_USE;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;SmolRTSP_ParseResult <a class="code" href="status__code_8h.html#aa999834862fa6b879bd416af24a5dc69">SmolRTSP_StatusCode_parse</a>(</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <a class="code" href="status__code_8h.html#ac339032e6c3031ccc07cdd573bd8352a">SmolRTSP_StatusCode</a> *restrict <span class="keyword">self</span>,</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    CharSlice99 input) SMOLRTSP_PRIV_MUST_USE;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="status__code_8h.html#a30c40703d337fe30b2b17c64213221f7">SmolRTSP_StatusCode_eq</a>(<a class="code" href="status__code_8h.html#ac339032e6c3031ccc07cdd573bd8352a">SmolRTSP_StatusCode</a> lhs, <a class="code" href="status__code_8h.html#ac339032e6c3031ccc07cdd573bd8352a">SmolRTSP_StatusCode</a> rhs)</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    SMOLRTSP_PRIV_MUST_USE;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
-<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="status__code_8h.html#a6eeb62e10c95559225c9b41295714cc6">   52</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_CONTINUE 100</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
-<div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="status__code_8h.html#a9560e0c1f497b0ce5aab2b4fa60e5149">   57</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_OK 200</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
-<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="status__code_8h.html#a9c111854ac794a3e65f3239c244b1a6b">   62</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_CREATED 201</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
-<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="status__code_8h.html#a704559ad007f9cee413633a33015ed09">   67</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_LOW_ON_STORAGE_SPACE 250</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
-<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="status__code_8h.html#aa700ca53b441c42a69add99d1a9aaf3b">   72</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_MULTIPLE_CHOICES 300</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
-<div class="line"><a name="l00077"></a><span class="lineno"><a class="line" href="status__code_8h.html#a1fee378d2af8a03753aa3de85f991d6a">   77</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_MOVED_PERMANENTLY 301</span></div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
-<div class="line"><a name="l00082"></a><span class="lineno"><a class="line" href="status__code_8h.html#ad826695c081ab0654d6e3c29d508bca8">   82</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_MOVED_TEMPORARILY 302</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
-<div class="line"><a name="l00087"></a><span class="lineno"><a class="line" href="status__code_8h.html#a809eaba3b094418db1bd3ef23cb272cf">   87</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_SEE_OTHER 303</span></div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
-<div class="line"><a name="l00092"></a><span class="lineno"><a class="line" href="status__code_8h.html#a35694d702c78790c5546e43f0ba50cd1">   92</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_NOT_MODIFIED 304</span></div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
-<div class="line"><a name="l00097"></a><span class="lineno"><a class="line" href="status__code_8h.html#a23f747001aad2722348254081c2b43f7">   97</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_USE_PROXY 305</span></div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
-<div class="line"><a name="l00102"></a><span class="lineno"><a class="line" href="status__code_8h.html#a10a57780aab73d6068bfe6263cb92901">  102</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_BAD_REQUEST 400</span></div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
-<div class="line"><a name="l00107"></a><span class="lineno"><a class="line" href="status__code_8h.html#a9db2d2e7c93076f3b951038454acfe94">  107</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_UNAUTHORIZED 401</span></div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160; </div>
-<div class="line"><a name="l00112"></a><span class="lineno"><a class="line" href="status__code_8h.html#a3ecfa75ee53b94dde91fa77501fbf20b">  112</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_PAYMENT_REQUIRED 402</span></div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160; </div>
-<div class="line"><a name="l00117"></a><span class="lineno"><a class="line" href="status__code_8h.html#a32d0d228389fc7875df766a228269807">  117</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_FORBIDDEN 403</span></div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160; </div>
-<div class="line"><a name="l00122"></a><span class="lineno"><a class="line" href="status__code_8h.html#a7b78e86ec52cd824dae5b8c42e6207fd">  122</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_NOT_FOUND 404</span></div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160; </div>
-<div class="line"><a name="l00127"></a><span class="lineno"><a class="line" href="status__code_8h.html#a0f9acdcd676d989c863b784fdbb5a5a4">  127</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_METHOD_NOT_ALLOWED 405</span></div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160; </div>
-<div class="line"><a name="l00132"></a><span class="lineno"><a class="line" href="status__code_8h.html#a565186ac68df24f036bd95d5bb6d237f">  132</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_NOT_ACCEPTABLE 406</span></div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160; </div>
-<div class="line"><a name="l00137"></a><span class="lineno"><a class="line" href="status__code_8h.html#a7cb53b88cadf2e8bd3824da2ce35902d">  137</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_PROXY_AUTHENTICATION_REQUIRED 407</span></div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160; </div>
-<div class="line"><a name="l00142"></a><span class="lineno"><a class="line" href="status__code_8h.html#ad436437a84ee0a090f7eb4b07f8e353f">  142</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_REQUEST_TIMEOUT 408</span></div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160; </div>
-<div class="line"><a name="l00147"></a><span class="lineno"><a class="line" href="status__code_8h.html#a015f12a64bf4e50d0ffbbfb335c4fe0d">  147</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_GONE 410</span></div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160; </div>
-<div class="line"><a name="l00152"></a><span class="lineno"><a class="line" href="status__code_8h.html#a4cc8d5523af9e3c7153de095b40e55c3">  152</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_LENGTH_REQUIRED 411</span></div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160; </div>
-<div class="line"><a name="l00157"></a><span class="lineno"><a class="line" href="status__code_8h.html#ad667c98e5ea68332bfcef0ead11b56a0">  157</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_PRECONDITION_FAILED 412</span></div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160; </div>
-<div class="line"><a name="l00162"></a><span class="lineno"><a class="line" href="status__code_8h.html#a643265ab709225d965dc4123c0c45a99">  162</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_REQUEST_ENTITY_TOO_LARGE 413</span></div>
-<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160; </div>
-<div class="line"><a name="l00167"></a><span class="lineno"><a class="line" href="status__code_8h.html#a3daf37e4071e9ad0c240a77d1ebf2fc8">  167</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_REQUEST_URI_TOO_LARGE 414</span></div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160; </div>
-<div class="line"><a name="l00172"></a><span class="lineno"><a class="line" href="status__code_8h.html#a76aa0e75cdb96636f850114375a28437">  172</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_UNSUPPORTED_MEDIA_TYPE 415</span></div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160; </div>
-<div class="line"><a name="l00177"></a><span class="lineno"><a class="line" href="status__code_8h.html#aa551d7a4b783a1b14380d532723d123c">  177</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_PARAMETER_NOT_UNDERSTOOD 451</span></div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160; </div>
-<div class="line"><a name="l00182"></a><span class="lineno"><a class="line" href="status__code_8h.html#aff1b8f7956199190471ed94e0111bcc8">  182</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_CONFERENCE_NOT_FOUND 452</span></div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160; </div>
-<div class="line"><a name="l00187"></a><span class="lineno"><a class="line" href="status__code_8h.html#af34dcecb3bde151acedba600f009ea2d">  187</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_NOT_ENOUGH_BANDWIDTH 453</span></div>
-<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160; </div>
-<div class="line"><a name="l00192"></a><span class="lineno"><a class="line" href="status__code_8h.html#a288e1d85f114b0266a6c472ee277d068">  192</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_SESSION_NOT_FOUND 454</span></div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160; </div>
-<div class="line"><a name="l00197"></a><span class="lineno"><a class="line" href="status__code_8h.html#abdb44acc0bcb1c926dc4055292132fde">  197</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_METHOD_NOT_VALID_IN_THIS_STATE 455</span></div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160; </div>
-<div class="line"><a name="l00202"></a><span class="lineno"><a class="line" href="status__code_8h.html#ac35c72b5f1739da566a84cdcae6acf67">  202</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_HEADER_FIELD_NOT_VALID_FOR_RESOURCE 456</span></div>
-<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160; </div>
-<div class="line"><a name="l00207"></a><span class="lineno"><a class="line" href="status__code_8h.html#a9fdf530152f4df6f79f738dde89c1fc8">  207</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_INVALID_RANGE 457</span></div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160; </div>
-<div class="line"><a name="l00212"></a><span class="lineno"><a class="line" href="status__code_8h.html#a570a3a2c72ac3bea087b39afbb881d0b">  212</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_PARAMETER_IS_READ_ONLY 458</span></div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160; </div>
-<div class="line"><a name="l00217"></a><span class="lineno"><a class="line" href="status__code_8h.html#aa2dc8ce76d8bc9bdd9feab50a25bbc42">  217</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_AGGREGATE_OPERATION_NOT_ALLOWED 459</span></div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160; </div>
-<div class="line"><a name="l00222"></a><span class="lineno"><a class="line" href="status__code_8h.html#a3cbe4851b469f7cf2180f01ee6fafb3a">  222</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_ONLY_AGGREGATE_OPERATION_ALLOWED 460</span></div>
-<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160; </div>
-<div class="line"><a name="l00227"></a><span class="lineno"><a class="line" href="status__code_8h.html#a5f17edc17b7db863dc7a7a6845e8f511">  227</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_UNSUPPORTED_TRANSPORT 461</span></div>
-<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160; </div>
-<div class="line"><a name="l00232"></a><span class="lineno"><a class="line" href="status__code_8h.html#a3fab7483f1e9f85643cb00a4893569c7">  232</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_DESTINATION_UNREACHABLE 462</span></div>
-<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160; </div>
-<div class="line"><a name="l00237"></a><span class="lineno"><a class="line" href="status__code_8h.html#a8b114b549012e877b252e496040b173a">  237</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_INTERNAL_SERVER_ERROR 500</span></div>
-<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160; </div>
-<div class="line"><a name="l00242"></a><span class="lineno"><a class="line" href="status__code_8h.html#aa6961ed0eb2cb980d4a7c4bf9bc8ec30">  242</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_NOT_IMPLEMENTED 501</span></div>
-<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160; </div>
-<div class="line"><a name="l00247"></a><span class="lineno"><a class="line" href="status__code_8h.html#a30ac712a99b36ea53aed598cf2786c11">  247</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_BAD_GATEWAY 502</span></div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160; </div>
-<div class="line"><a name="l00252"></a><span class="lineno"><a class="line" href="status__code_8h.html#a59a40fc085a83c3ca4ac06499af68261">  252</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_SERVICE_UNAVAILABLE 503</span></div>
-<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160; </div>
-<div class="line"><a name="l00257"></a><span class="lineno"><a class="line" href="status__code_8h.html#a8c1f1ead3daf00787580b9d230414c3b">  257</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_GATEWAY_TIMEOUT 504</span></div>
-<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160; </div>
-<div class="line"><a name="l00262"></a><span class="lineno"><a class="line" href="status__code_8h.html#a268f88c82e0b7373bec59056a01a38d1">  262</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_RTSP_VERSION_NOT_SUPPORTED 505</span></div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160; </div>
-<div class="line"><a name="l00267"></a><span class="lineno"><a class="line" href="status__code_8h.html#aa8319620878f88f43683598e32b2f6d7">  267</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_OPTION_NOT_SUPPORTED 551</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;smolrtsp/priv/compiler_attrs.h&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="error_8h.html">smolrtsp/types/error.h</a>&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="writer_8h.html">smolrtsp/writer.h</a>&gt;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;stdint.h&gt;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;slice99.h&gt;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="status__code_8h.html#ac339032e6c3031ccc07cdd573bd8352a">   20</a></span>&#160;<span class="keyword">typedef</span> uint16_t <a class="code" href="status__code_8h.html#ac339032e6c3031ccc07cdd573bd8352a">SmolRTSP_StatusCode</a>;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;ssize_t <a class="code" href="status__code_8h.html#aaa2427a89df58604bf35ea04556ebda1">SmolRTSP_StatusCode_serialize</a>(</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <a class="code" href="status__code_8h.html#ac339032e6c3031ccc07cdd573bd8352a">SmolRTSP_StatusCode</a> <span class="keyword">self</span>, SmolRTSP_Writer w) SMOLRTSP_PRIV_MUST_USE;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;SmolRTSP_ParseResult <a class="code" href="status__code_8h.html#aa999834862fa6b879bd416af24a5dc69">SmolRTSP_StatusCode_parse</a>(</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <a class="code" href="status__code_8h.html#ac339032e6c3031ccc07cdd573bd8352a">SmolRTSP_StatusCode</a> *restrict <span class="keyword">self</span>,</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    CharSlice99 input) SMOLRTSP_PRIV_MUST_USE;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="status__code_8h.html#a30c40703d337fe30b2b17c64213221f7">SmolRTSP_StatusCode_eq</a>(<a class="code" href="status__code_8h.html#ac339032e6c3031ccc07cdd573bd8352a">SmolRTSP_StatusCode</a> lhs, <a class="code" href="status__code_8h.html#ac339032e6c3031ccc07cdd573bd8352a">SmolRTSP_StatusCode</a> rhs)</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    SMOLRTSP_PRIV_MUST_USE;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="status__code_8h.html#a6eeb62e10c95559225c9b41295714cc6">   51</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_CONTINUE 100</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="status__code_8h.html#a9560e0c1f497b0ce5aab2b4fa60e5149">   56</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_OK 200</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
+<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="status__code_8h.html#a9c111854ac794a3e65f3239c244b1a6b">   61</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_CREATED 201</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="status__code_8h.html#a704559ad007f9cee413633a33015ed09">   66</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_LOW_ON_STORAGE_SPACE 250</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
+<div class="line"><a name="l00071"></a><span class="lineno"><a class="line" href="status__code_8h.html#aa700ca53b441c42a69add99d1a9aaf3b">   71</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_MULTIPLE_CHOICES 300</span></div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
+<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="status__code_8h.html#a1fee378d2af8a03753aa3de85f991d6a">   76</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_MOVED_PERMANENTLY 301</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
+<div class="line"><a name="l00081"></a><span class="lineno"><a class="line" href="status__code_8h.html#ad826695c081ab0654d6e3c29d508bca8">   81</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_MOVED_TEMPORARILY 302</span></div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
+<div class="line"><a name="l00086"></a><span class="lineno"><a class="line" href="status__code_8h.html#a809eaba3b094418db1bd3ef23cb272cf">   86</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_SEE_OTHER 303</span></div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
+<div class="line"><a name="l00091"></a><span class="lineno"><a class="line" href="status__code_8h.html#a35694d702c78790c5546e43f0ba50cd1">   91</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_NOT_MODIFIED 304</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
+<div class="line"><a name="l00096"></a><span class="lineno"><a class="line" href="status__code_8h.html#a23f747001aad2722348254081c2b43f7">   96</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_USE_PROXY 305</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160; </div>
+<div class="line"><a name="l00101"></a><span class="lineno"><a class="line" href="status__code_8h.html#a10a57780aab73d6068bfe6263cb92901">  101</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_BAD_REQUEST 400</span></div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160; </div>
+<div class="line"><a name="l00106"></a><span class="lineno"><a class="line" href="status__code_8h.html#a9db2d2e7c93076f3b951038454acfe94">  106</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_UNAUTHORIZED 401</span></div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160; </div>
+<div class="line"><a name="l00111"></a><span class="lineno"><a class="line" href="status__code_8h.html#a3ecfa75ee53b94dde91fa77501fbf20b">  111</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_PAYMENT_REQUIRED 402</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160; </div>
+<div class="line"><a name="l00116"></a><span class="lineno"><a class="line" href="status__code_8h.html#a32d0d228389fc7875df766a228269807">  116</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_FORBIDDEN 403</span></div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160; </div>
+<div class="line"><a name="l00121"></a><span class="lineno"><a class="line" href="status__code_8h.html#a7b78e86ec52cd824dae5b8c42e6207fd">  121</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_NOT_FOUND 404</span></div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160; </div>
+<div class="line"><a name="l00126"></a><span class="lineno"><a class="line" href="status__code_8h.html#a0f9acdcd676d989c863b784fdbb5a5a4">  126</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_METHOD_NOT_ALLOWED 405</span></div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160; </div>
+<div class="line"><a name="l00131"></a><span class="lineno"><a class="line" href="status__code_8h.html#a565186ac68df24f036bd95d5bb6d237f">  131</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_NOT_ACCEPTABLE 406</span></div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160; </div>
+<div class="line"><a name="l00136"></a><span class="lineno"><a class="line" href="status__code_8h.html#a7cb53b88cadf2e8bd3824da2ce35902d">  136</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_PROXY_AUTHENTICATION_REQUIRED 407</span></div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160; </div>
+<div class="line"><a name="l00141"></a><span class="lineno"><a class="line" href="status__code_8h.html#ad436437a84ee0a090f7eb4b07f8e353f">  141</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_REQUEST_TIMEOUT 408</span></div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160; </div>
+<div class="line"><a name="l00146"></a><span class="lineno"><a class="line" href="status__code_8h.html#a015f12a64bf4e50d0ffbbfb335c4fe0d">  146</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_GONE 410</span></div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160; </div>
+<div class="line"><a name="l00151"></a><span class="lineno"><a class="line" href="status__code_8h.html#a4cc8d5523af9e3c7153de095b40e55c3">  151</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_LENGTH_REQUIRED 411</span></div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160; </div>
+<div class="line"><a name="l00156"></a><span class="lineno"><a class="line" href="status__code_8h.html#ad667c98e5ea68332bfcef0ead11b56a0">  156</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_PRECONDITION_FAILED 412</span></div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160; </div>
+<div class="line"><a name="l00161"></a><span class="lineno"><a class="line" href="status__code_8h.html#a643265ab709225d965dc4123c0c45a99">  161</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_REQUEST_ENTITY_TOO_LARGE 413</span></div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160; </div>
+<div class="line"><a name="l00166"></a><span class="lineno"><a class="line" href="status__code_8h.html#a3daf37e4071e9ad0c240a77d1ebf2fc8">  166</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_REQUEST_URI_TOO_LARGE 414</span></div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160; </div>
+<div class="line"><a name="l00171"></a><span class="lineno"><a class="line" href="status__code_8h.html#a76aa0e75cdb96636f850114375a28437">  171</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_UNSUPPORTED_MEDIA_TYPE 415</span></div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160; </div>
+<div class="line"><a name="l00176"></a><span class="lineno"><a class="line" href="status__code_8h.html#aa551d7a4b783a1b14380d532723d123c">  176</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_PARAMETER_NOT_UNDERSTOOD 451</span></div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160; </div>
+<div class="line"><a name="l00181"></a><span class="lineno"><a class="line" href="status__code_8h.html#aff1b8f7956199190471ed94e0111bcc8">  181</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_CONFERENCE_NOT_FOUND 452</span></div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160; </div>
+<div class="line"><a name="l00186"></a><span class="lineno"><a class="line" href="status__code_8h.html#af34dcecb3bde151acedba600f009ea2d">  186</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_NOT_ENOUGH_BANDWIDTH 453</span></div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160; </div>
+<div class="line"><a name="l00191"></a><span class="lineno"><a class="line" href="status__code_8h.html#a288e1d85f114b0266a6c472ee277d068">  191</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_SESSION_NOT_FOUND 454</span></div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160; </div>
+<div class="line"><a name="l00196"></a><span class="lineno"><a class="line" href="status__code_8h.html#abdb44acc0bcb1c926dc4055292132fde">  196</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_METHOD_NOT_VALID_IN_THIS_STATE 455</span></div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160; </div>
+<div class="line"><a name="l00201"></a><span class="lineno"><a class="line" href="status__code_8h.html#ac35c72b5f1739da566a84cdcae6acf67">  201</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_HEADER_FIELD_NOT_VALID_FOR_RESOURCE 456</span></div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160; </div>
+<div class="line"><a name="l00206"></a><span class="lineno"><a class="line" href="status__code_8h.html#a9fdf530152f4df6f79f738dde89c1fc8">  206</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_INVALID_RANGE 457</span></div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160; </div>
+<div class="line"><a name="l00211"></a><span class="lineno"><a class="line" href="status__code_8h.html#a570a3a2c72ac3bea087b39afbb881d0b">  211</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_PARAMETER_IS_READ_ONLY 458</span></div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160; </div>
+<div class="line"><a name="l00216"></a><span class="lineno"><a class="line" href="status__code_8h.html#aa2dc8ce76d8bc9bdd9feab50a25bbc42">  216</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_AGGREGATE_OPERATION_NOT_ALLOWED 459</span></div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160; </div>
+<div class="line"><a name="l00221"></a><span class="lineno"><a class="line" href="status__code_8h.html#a3cbe4851b469f7cf2180f01ee6fafb3a">  221</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_ONLY_AGGREGATE_OPERATION_ALLOWED 460</span></div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160; </div>
+<div class="line"><a name="l00226"></a><span class="lineno"><a class="line" href="status__code_8h.html#a5f17edc17b7db863dc7a7a6845e8f511">  226</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_UNSUPPORTED_TRANSPORT 461</span></div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160; </div>
+<div class="line"><a name="l00231"></a><span class="lineno"><a class="line" href="status__code_8h.html#a3fab7483f1e9f85643cb00a4893569c7">  231</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_DESTINATION_UNREACHABLE 462</span></div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160; </div>
+<div class="line"><a name="l00236"></a><span class="lineno"><a class="line" href="status__code_8h.html#a8b114b549012e877b252e496040b173a">  236</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_INTERNAL_SERVER_ERROR 500</span></div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160; </div>
+<div class="line"><a name="l00241"></a><span class="lineno"><a class="line" href="status__code_8h.html#aa6961ed0eb2cb980d4a7c4bf9bc8ec30">  241</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_NOT_IMPLEMENTED 501</span></div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160; </div>
+<div class="line"><a name="l00246"></a><span class="lineno"><a class="line" href="status__code_8h.html#a30ac712a99b36ea53aed598cf2786c11">  246</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_BAD_GATEWAY 502</span></div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160; </div>
+<div class="line"><a name="l00251"></a><span class="lineno"><a class="line" href="status__code_8h.html#a59a40fc085a83c3ca4ac06499af68261">  251</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_SERVICE_UNAVAILABLE 503</span></div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160; </div>
+<div class="line"><a name="l00256"></a><span class="lineno"><a class="line" href="status__code_8h.html#a8c1f1ead3daf00787580b9d230414c3b">  256</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_GATEWAY_TIMEOUT 504</span></div>
+<div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160; </div>
+<div class="line"><a name="l00261"></a><span class="lineno"><a class="line" href="status__code_8h.html#a268f88c82e0b7373bec59056a01a38d1">  261</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_RTSP_VERSION_NOT_SUPPORTED 505</span></div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160; </div>
+<div class="line"><a name="l00266"></a><span class="lineno"><a class="line" href="status__code_8h.html#aa8319620878f88f43683598e32b2f6d7">  266</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_STATUS_OPTION_NOT_SUPPORTED 551</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="astatus__code_8h_html_a30c40703d337fe30b2b17c64213221f7"><div class="ttname"><a href="status__code_8h.html#a30c40703d337fe30b2b17c64213221f7">SmolRTSP_StatusCode_eq</a></div><div class="ttdeci">bool SmolRTSP_StatusCode_eq(SmolRTSP_StatusCode lhs, SmolRTSP_StatusCode rhs) SMOLRTSP_PRIV_MUST_USE</div><div class="ttdoc">Tests lhs and rhs for equality.</div></div>
 <div class="ttc" id="aerror_8h_html"><div class="ttname"><a href="error_8h.html">error.h</a></div><div class="ttdoc">Possible parsing errors.</div></div>
-<div class="ttc" id="astatus__code_8h_html_ac339032e6c3031ccc07cdd573bd8352a"><div class="ttname"><a href="status__code_8h.html#ac339032e6c3031ccc07cdd573bd8352a">SmolRTSP_StatusCode</a></div><div class="ttdeci">uint16_t SmolRTSP_StatusCode</div><div class="ttdoc">An RTSP status code.</div><div class="ttdef"><b>Definition:</b> status_code.h:21</div></div>
+<div class="ttc" id="astatus__code_8h_html_ac339032e6c3031ccc07cdd573bd8352a"><div class="ttname"><a href="status__code_8h.html#ac339032e6c3031ccc07cdd573bd8352a">SmolRTSP_StatusCode</a></div><div class="ttdeci">uint16_t SmolRTSP_StatusCode</div><div class="ttdoc">An RTSP status code.</div><div class="ttdef"><b>Definition:</b> status_code.h:20</div></div>
 <div class="ttc" id="astatus__code_8h_html_aa999834862fa6b879bd416af24a5dc69"><div class="ttname"><a href="status__code_8h.html#aa999834862fa6b879bd416af24a5dc69">SmolRTSP_StatusCode_parse</a></div><div class="ttdeci">SmolRTSP_ParseResult SmolRTSP_StatusCode_parse(SmolRTSP_StatusCode *restrict self, CharSlice99 input) SMOLRTSP_PRIV_MUST_USE</div><div class="ttdoc">Parses data to self.</div></div>
 <div class="ttc" id="astatus__code_8h_html_aaa2427a89df58604bf35ea04556ebda1"><div class="ttname"><a href="status__code_8h.html#aaa2427a89df58604bf35ea04556ebda1">SmolRTSP_StatusCode_serialize</a></div><div class="ttdeci">ssize_t SmolRTSP_StatusCode_serialize(SmolRTSP_StatusCode self, SmolRTSP_Writer w) SMOLRTSP_PRIV_MUST_USE</div><div class="ttdoc">Serialises self into w.</div></div>
 <div class="ttc" id="awriter_8h_html"><div class="ttname"><a href="writer_8h.html">writer.h</a></div><div class="ttdoc">The writer interface.</div></div>

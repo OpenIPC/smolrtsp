@@ -93,7 +93,8 @@ $(document).ready(function(){initNavTree('controller_8h.html',''); initResizable
 
 <p>An RTSP requests controller.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &lt;<a class="el" href="droppable_8h_source.html">smolrtsp/droppable.h</a>&gt;</code><br />
+<div class="textblock"><code>#include &lt;<a class="el" href="context_8h_source.html">smolrtsp/context.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="droppable_8h_source.html">smolrtsp/droppable.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="request_8h_source.html">smolrtsp/types/request.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="writer_8h_source.html">smolrtsp/writer.h</a>&gt;</code><br />
 <code>#include &lt;stddef.h&gt;</code><br />
@@ -103,28 +104,30 @@ Include dependency graph for controller.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="controller_8h__incl.png" border="0" usemap="#include_2smolrtsp_2controller_8h" alt=""/></div>
 <map name="include_2smolrtsp_2controller_8h" id="include_2smolrtsp_2controller_8h">
-<area shape="rect" title="An RTSP requests controller." alt="" coords="251,5,458,32"/>
-<area shape="rect" href="droppable_8h.html" title="Droppable types support." alt="" coords="5,80,165,107"/>
-<area shape="rect" title=" " alt="" coords="141,490,249,517"/>
-<area shape="rect" href="request_8h.html" title="An RTSP request." alt="" coords="1140,80,1324,107"/>
-<area shape="rect" href="writer_8h.html" title="The writer interface." alt="" coords="494,408,626,435"/>
-<area shape="rect" title=" " alt="" coords="627,490,701,517"/>
-<area shape="rect" href="error_8h.html" title="Possible parsing errors." alt="" coords="1157,333,1323,360"/>
-<area shape="rect" title=" " alt="" coords="1413,483,1582,524"/>
-<area shape="rect" title=" " alt="" coords="1369,408,1452,435"/>
-<area shape="rect" href="header__map_8h.html" title="An RTSP header map." alt="" coords="681,155,849,196"/>
-<area shape="rect" href="message__body_8h.html" title="An RTSP message body." alt="" coords="938,244,1121,285"/>
-<area shape="rect" href="request__line_8h.html" title="An RTSP request line." alt="" coords="1631,155,1803,196"/>
-<area shape="rect" title=" " alt="" coords="928,490,1008,517"/>
-<area shape="rect" title=" " alt="" coords="1186,408,1294,435"/>
-<area shape="rect" title=" " alt="" coords="523,490,597,517"/>
-<area shape="rect" title=" " alt="" coords="423,490,489,517"/>
-<area shape="rect" title=" " alt="" coords="273,490,348,517"/>
-<area shape="rect" href="header_8h.html" title="An RTSP header." alt="" coords="676,251,855,278"/>
-<area shape="rect" href="method_8h.html" title="An RTSP method." alt="" coords="1422,251,1607,278"/>
-<area shape="rect" href="request__uri_8h.html" title="An RTSP request URI." alt="" coords="1631,244,1803,285"/>
-<area shape="rect" href="rtsp__version_8h.html" title="An RTSP version." alt="" coords="1827,244,1975,285"/>
-<area shape="rect" title=" " alt="" coords="1905,333,1975,360"/>
+<area shape="rect" title="An RTSP requests controller." alt="" coords="706,5,913,32"/>
+<area shape="rect" href="context_8h.html" title="A request context." alt="" coords="457,162,601,189"/>
+<area shape="rect" href="droppable_8h.html" title="Droppable types support." alt="" coords="43,251,203,278"/>
+<area shape="rect" title=" " alt="" coords="157,490,265,517"/>
+<area shape="rect" href="writer_8h.html" title="The writer interface." alt="" coords="1033,408,1165,435"/>
+<area shape="rect" title=" " alt="" coords="2488,490,2563,517"/>
+<area shape="rect" href="request_8h.html" title="An RTSP request." alt="" coords="1331,80,1515,107"/>
+<area shape="rect" title=" " alt="" coords="1403,483,1573,524"/>
+<area shape="rect" href="message__body_8h.html" title="An RTSP message body." alt="" coords="1113,244,1295,285"/>
+<area shape="rect" title=" " alt="" coords="777,490,857,517"/>
+<area shape="rect" href="status__code_8h.html" title="An RTSP status code." alt="" coords="617,244,780,285"/>
+<area shape="rect" title=" " alt="" coords="785,333,855,360"/>
+<area shape="rect" href="error_8h.html" title="Possible parsing errors." alt="" coords="1285,333,1451,360"/>
+<area shape="rect" title=" " alt="" coords="1675,408,1757,435"/>
+<area shape="rect" title=" " alt="" coords="1291,408,1399,435"/>
+<area shape="rect" title=" " alt="" coords="1061,490,1136,517"/>
+<area shape="rect" title=" " alt="" coords="2215,490,2281,517"/>
+<area shape="rect" title=" " alt="" coords="2389,490,2464,517"/>
+<area shape="rect" href="header__map_8h.html" title="An RTSP header map." alt="" coords="2037,155,2205,196"/>
+<area shape="rect" href="request__line_8h.html" title="An RTSP request line." alt="" coords="1426,155,1598,196"/>
+<area shape="rect" href="header_8h.html" title="An RTSP header." alt="" coords="2032,251,2211,278"/>
+<area shape="rect" href="method_8h.html" title="An RTSP method." alt="" coords="1473,251,1658,278"/>
+<area shape="rect" href="request__uri_8h.html" title="An RTSP request URI." alt="" coords="1734,244,1906,285"/>
+<area shape="rect" href="rtsp__version_8h.html" title="An RTSP version." alt="" coords="941,244,1089,285"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -175,7 +178,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="comment">     * &lt;https://datatracker.ietf.org/doc/html/rfc2326#section-10.1&gt;.           \</span></div>
 <div class="line"><span class="comment">     */</span>                                                                        \</div>
 <div class="line">    vfunc99(                                                                   \</div>
-<div class="line">        ssize_t, options, VSelf99, SmolRTSP_Writer conn,                       \</div>
+<div class="line">        ssize_t, options, VSelf99, <a class="code" href="context_8h.html#a74d8be6059af5516c37fcebc14a70622">SmolRTSP_Context</a> *ctx,                      \</div>
 <div class="line">        <span class="keyword">const</span> <a class="code" href="structSmolRTSP__Request.html">SmolRTSP_Request</a> *req)                                           \</div>
 <div class="line">                                                                               \</div>
 <div class="line">    <span class="comment">/*                                                                         \</span></div>
@@ -183,7 +186,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="comment">     * &lt;https://datatracker.ietf.org/doc/html/rfc2326#section-10.2&gt;.           \</span></div>
 <div class="line"><span class="comment">     */</span>                                                                        \</div>
 <div class="line">    vfunc99(                                                                   \</div>
-<div class="line">        ssize_t, describe, VSelf99, SmolRTSP_Writer conn,                      \</div>
+<div class="line">        ssize_t, describe, VSelf99, <a class="code" href="context_8h.html#a74d8be6059af5516c37fcebc14a70622">SmolRTSP_Context</a> *ctx,                     \</div>
 <div class="line">        <span class="keyword">const</span> <a class="code" href="structSmolRTSP__Request.html">SmolRTSP_Request</a> *req)                                           \</div>
 <div class="line">                                                                               \</div>
 <div class="line">    <span class="comment">/*                                                                         \</span></div>
@@ -191,7 +194,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="comment">     * &lt;https://datatracker.ietf.org/doc/html/rfc2326#section-10.4&gt;.           \</span></div>
 <div class="line"><span class="comment">     */</span>                                                                        \</div>
 <div class="line">    vfunc99(                                                                   \</div>
-<div class="line">        ssize_t, setup, VSelf99, SmolRTSP_Writer conn,                         \</div>
+<div class="line">        ssize_t, setup, VSelf99, <a class="code" href="context_8h.html#a74d8be6059af5516c37fcebc14a70622">SmolRTSP_Context</a> *ctx,                        \</div>
 <div class="line">        <span class="keyword">const</span> <a class="code" href="structSmolRTSP__Request.html">SmolRTSP_Request</a> *req)                                           \</div>
 <div class="line">                                                                               \</div>
 <div class="line">    <span class="comment">/*                                                                         \</span></div>
@@ -199,7 +202,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="comment">     * &lt;https://datatracker.ietf.org/doc/html/rfc2326#section-10.5&gt;.           \</span></div>
 <div class="line"><span class="comment">     */</span>                                                                        \</div>
 <div class="line">    vfunc99(                                                                   \</div>
-<div class="line">        ssize_t, play, VSelf99, SmolRTSP_Writer conn,                          \</div>
+<div class="line">        ssize_t, play, VSelf99, <a class="code" href="context_8h.html#a74d8be6059af5516c37fcebc14a70622">SmolRTSP_Context</a> *ctx,                         \</div>
 <div class="line">        <span class="keyword">const</span> <a class="code" href="structSmolRTSP__Request.html">SmolRTSP_Request</a> *req)                                           \</div>
 <div class="line">                                                                               \</div>
 <div class="line">    <span class="comment">/*                                                                         \</span></div>
@@ -207,37 +210,37 @@ Functions</h2></td></tr>
 <div class="line"><span class="comment">     * &lt;https://datatracker.ietf.org/doc/html/rfc2326#section-10.7&gt;.           \</span></div>
 <div class="line"><span class="comment">     */</span>                                                                        \</div>
 <div class="line">    vfunc99(                                                                   \</div>
-<div class="line">        ssize_t, teardown, VSelf99, SmolRTSP_Writer conn,                      \</div>
+<div class="line">        ssize_t, teardown, VSelf99, <a class="code" href="context_8h.html#a74d8be6059af5516c37fcebc14a70622">SmolRTSP_Context</a> *ctx,                     \</div>
 <div class="line">        <span class="keyword">const</span> <a class="code" href="structSmolRTSP__Request.html">SmolRTSP_Request</a> *req)                                           \</div>
 <div class="line">                                                                               \</div>
 <div class="line">    <span class="comment">/*                                                                         \</span></div>
 <div class="line"><span class="comment">     * Handles a command that is neither of the above.                         \</span></div>
 <div class="line"><span class="comment">     */</span>                                                                        \</div>
 <div class="line">    vfunc99(                                                                   \</div>
-<div class="line">        ssize_t, unknown, VSelf99, SmolRTSP_Writer conn,                       \</div>
+<div class="line">        ssize_t, unknown, VSelf99, <a class="code" href="context_8h.html#a74d8be6059af5516c37fcebc14a70622">SmolRTSP_Context</a> *ctx,                      \</div>
 <div class="line">        <span class="keyword">const</span> <a class="code" href="structSmolRTSP__Request.html">SmolRTSP_Request</a> *req)                                           \</div>
 <div class="line">                                                                               \</div>
 <div class="line">    <span class="comment">/*                                                                         \</span></div>
 <div class="line"><span class="comment">     * A method that is invoked _before_ the actual request handling.          \</span></div>
 <div class="line"><span class="comment">     */</span>                                                                        \</div>
 <div class="line">    vfunc99(                                                                   \</div>
-<div class="line">        <span class="keywordtype">void</span>, before, VSelf99, SmolRTSP_Writer conn,                           \</div>
+<div class="line">        <span class="keywordtype">void</span>, before, VSelf99, <a class="code" href="context_8h.html#a74d8be6059af5516c37fcebc14a70622">SmolRTSP_Context</a> *ctx,                          \</div>
 <div class="line">        <span class="keyword">const</span> <a class="code" href="structSmolRTSP__Request.html">SmolRTSP_Request</a> *req)                                           \</div>
 <div class="line">                                                                               \</div>
 <div class="line">    <span class="comment">/*                                                                         \</span></div>
 <div class="line"><span class="comment">     * A method that is invoked _after_ request handling.                      \</span></div>
 <div class="line"><span class="comment">     */</span>                                                                        \</div>
 <div class="line">    vfunc99(                                                                   \</div>
-<div class="line">        <span class="keywordtype">void</span>, after, VSelf99, ssize_t ret, SmolRTSP_Writer conn,               \</div>
+<div class="line">        <span class="keywordtype">void</span>, after, VSelf99, ssize_t ret, <a class="code" href="context_8h.html#a74d8be6059af5516c37fcebc14a70622">SmolRTSP_Context</a> *ctx,              \</div>
 <div class="line">        <span class="keyword">const</span> <a class="code" href="structSmolRTSP__Request.html">SmolRTSP_Request</a> *req)</div>
 </div><!-- fragment -->
 <p>A controller that handles incoming RTSP requests. </p>
 <p>This is the central high-level interface, which should be invoked only in SmolRTSP integration code, such as <a href="https://github.com/OpenIPC/smolrtsp-libevent">OpenIPC/smolrtsp-libevent</a>. A simple usage example can be found <a href="https://github.com/OpenIPC/smolrtsp/blob/master/examples/server.c">here</a>.</p>
 <p>All RTSP command handlers accept the following parameters:</p><ul>
-<li><code>conn</code> &ndash; a writer object to which you respond via <a class="el" href="response_8h.html#a60717ca46b3a2be8ea63306ef331dc3f" title="The same as smolrtsp_respond_with_body but with an empty message body.">smolrtsp_respond</a>/<a class="el" href="response_8h.html#adcabc1ddde588b2e15f3b4a7991a1112" title="Writes an RTSP response to w.">smolrtsp_respond_with_body</a>.</li>
-<li><code>req</code> &ndash; an incoming request object.</li>
+<li><code>ctx</code> &ndash; a request context to which you respond via <a class="el" href="context_8h.html#acf926b0a4ae5415a115dfd063446c9a8" title="Writes an RTSP response to the underlying writer.">smolrtsp_respond</a>. You can set up response headers/body via <a class="el" href="context_8h.html#a68f915fdb73339921d52cc71caf5819c" title="Appends an RTSP header to the request context.">smolrtsp_header</a>/<a class="el" href="context_8h.html#a2e375380c9de64a6675d5a77f6b66c6f" title="Sets an RTSP body in the request context.">smolrtsp_body</a>. Note that you can also do it from within the <code>before</code> method, which is helpful for setting up initial headers.</li>
+<li><code>req</code> &ndash; a fully parsed request object.</li>
 </ul>
-<p>Additionally, they return <code>ssize_t</code> &ndash; the number of response bytes written or a negative value on error. Inside the <code>after</code> method, you will receive this success/failure code and will be able to handle an error if it is &lt;0. </p>
+<p>Command handlers return <code>ssize_t</code> &ndash; the number of response bytes written or a negative value on error (typically, it is a return value of <a class="el" href="context_8h.html#acf926b0a4ae5415a115dfd063446c9a8" title="Writes an RTSP response to the underlying writer.">smolrtsp_respond</a>). Inside the <code>after</code> method, you will receive this success/failure code and will be able to handle an error if it is &lt;0. </p>
 
 </div>
 </div>
@@ -265,7 +268,8 @@ Functions</h2></td></tr>
 </div>
 </div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="astructSmolRTSP__Request_html"><div class="ttname"><a href="structSmolRTSP__Request.html">SmolRTSP_Request</a></div><div class="ttdoc">An RTSP request.</div><div class="ttdef"><b>Definition:</b> request.h:20</div></div>
+<div class="ttc" id="astructSmolRTSP__Request_html"><div class="ttname"><a href="structSmolRTSP__Request.html">SmolRTSP_Request</a></div><div class="ttdoc">An RTSP request.</div><div class="ttdef"><b>Definition:</b> request.h:21</div></div>
+<div class="ttc" id="acontext_8h_html_a74d8be6059af5516c37fcebc14a70622"><div class="ttname"><a href="context_8h.html#a74d8be6059af5516c37fcebc14a70622">SmolRTSP_Context</a></div><div class="ttdeci">struct SmolRTSP_Context SmolRTSP_Context</div><div class="ttdoc">An opaque type used to conveniently respond to RTSP clients.</div><div class="ttdef"><b>Definition:</b> context.h:22</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

@@ -1,12 +1,11 @@
 <map id="include/smolrtsp/types/sdp.h" name="include/smolrtsp/types/sdp.h">
-<area shape="rect" id="node1" title="RFC 4566&#45;compliant SDP implementation." alt="" coords="505,5,676,47"/>
-<area shape="rect" id="node2" href="$writer_8h.html" title="The writer interface." alt="" coords="339,95,471,121"/>
-<area shape="rect" id="node8" title=" " alt="" coords="525,177,605,203"/>
-<area shape="rect" id="node9" title=" " alt="" coords="630,169,799,211"/>
-<area shape="rect" id="node10" title=" " alt="" coords="653,95,765,121"/>
-<area shape="rect" id="node3" title=" " alt="" coords="427,177,501,203"/>
-<area shape="rect" id="node4" title=" " alt="" coords="5,177,80,203"/>
-<area shape="rect" id="node5" title=" " alt="" coords="104,177,171,203"/>
-<area shape="rect" id="node6" title=" " alt="" coords="195,177,269,203"/>
-<area shape="rect" id="node7" title=" " alt="" coords="294,177,402,203"/>
+<area shape="rect" id="node1" title="RFC 4566&#45;compliant SDP implementation." alt="" coords="345,5,515,47"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,169,175,211"/>
+<area shape="rect" id="node3" href="$writer_8h.html" title="The writer interface." alt="" coords="364,95,496,121"/>
+<area shape="rect" id="node9" title=" " alt="" coords="719,177,799,203"/>
+<area shape="rect" id="node4" title=" " alt="" coords="199,177,274,203"/>
+<area shape="rect" id="node5" title=" " alt="" coords="298,177,373,203"/>
+<area shape="rect" id="node6" title=" " alt="" coords="397,177,463,203"/>
+<area shape="rect" id="node7" title=" " alt="" coords="487,177,562,203"/>
+<area shape="rect" id="node8" title=" " alt="" coords="587,177,695,203"/>
 </map>

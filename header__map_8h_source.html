@@ -90,68 +90,72 @@ $(document).ready(function(){initNavTree('header__map_8h_source.html',''); initR
 <a href="header__map_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#pragma once</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="error_8h.html">smolrtsp/types/error.h</a>&gt;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="header_8h.html">smolrtsp/types/header.h</a>&gt;</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;stddef.h&gt;</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;unistd.h&gt;</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;slice99.h&gt;</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &lt;smolrtsp/priv/compiler_attrs.h&gt;</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="header__map_8h.html#a9122faf1cd4b32e00304e27dfac72059">   24</a></span>&#160;<span class="preprocessor">#define SmolRTSP_HeaderMap_from_array(...)                                     \</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">    ((SmolRTSP_HeaderMap){                                                     \</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">        .headers = __VA_ARGS__,                                                \</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">        .len = SLICE99_ARRAY_LEN((SmolRTSP_Header[])__VA_ARGS__),              \</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">    })</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
-<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="header__map_8h.html#ad2f6e26e927942bc992306146b96eb86">   33</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_HEADER_MAP_CAPACITY 32</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
-<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="structSmolRTSP__HeaderMap.html">   38</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
-<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="structSmolRTSP__HeaderMap.html#ad5118cb4e185eef65b812796243508da">   42</a></span>&#160;    <a class="code" href="structSmolRTSP__Header.html">SmolRTSP_Header</a> headers[<a class="code" href="header__map_8h.html#ad2f6e26e927942bc992306146b96eb86">SMOLRTSP_HEADER_MAP_CAPACITY</a>];</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
-<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="structSmolRTSP__HeaderMap.html#afb882150f218ade1e4d0c7afc5d6474d">   47</a></span>&#160;    <span class="keywordtype">size_t</span> <a class="code" href="structSmolRTSP__HeaderMap.html#afb882150f218ade1e4d0c7afc5d6474d">len</a>;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;} <a class="code" href="structSmolRTSP__HeaderMap.html">SmolRTSP_HeaderMap</a>;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<a class="code" href="structSmolRTSP__HeaderMap.html">SmolRTSP_HeaderMap</a> <a class="code" href="header__map_8h.html#ab2ac497a17a9b6dc23bfff60fa2dccea">SmolRTSP_HeaderMap_empty</a>(<span class="keywordtype">void</span>) SMOLRTSP_PRIV_MUST_USE;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="header__map_8h.html#a55ffb9e6038193c559273451c8d0a9a5">SmolRTSP_HeaderMap_find</a>(</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <a class="code" href="structSmolRTSP__HeaderMap.html">SmolRTSP_HeaderMap</a> <span class="keyword">self</span>, CharSlice99 key,</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    CharSlice99 *restrict value) SMOLRTSP_PRIV_MUST_USE;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="header__map_8h.html#aa46bc81d131808f453a3fee98c4ffe62">SmolRTSP_HeaderMap_key_is_present</a>(<a class="code" href="structSmolRTSP__HeaderMap.html">SmolRTSP_HeaderMap</a> <span class="keyword">self</span>, CharSlice99 key)</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    SMOLRTSP_PRIV_MUST_USE;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;ssize_t <a class="code" href="header__map_8h.html#a244edb277db8cc9e08bc86b1d00c6886">SmolRTSP_HeaderMap_serialize</a>(<a class="code" href="structSmolRTSP__HeaderMap.html">SmolRTSP_HeaderMap</a> <span class="keyword">self</span>, SmolRTSP_Writer w)</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    SMOLRTSP_PRIV_MUST_USE;</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;SmolRTSP_ParseResult <a class="code" href="header__map_8h.html#a8abf8a95bcdf505c1a7acfa48c42e3e6">SmolRTSP_HeaderMap_parse</a>(</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <a class="code" href="structSmolRTSP__HeaderMap.html">SmolRTSP_HeaderMap</a> *restrict <span class="keyword">self</span>,</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    CharSlice99 input) SMOLRTSP_PRIV_MUST_USE;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160; </div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="header__map_8h.html#a7b79528ea6d97f53e945d930a912f2e5">SmolRTSP_HeaderMap_eq</a>(<a class="code" href="structSmolRTSP__HeaderMap.html">SmolRTSP_HeaderMap</a> lhs, <a class="code" href="structSmolRTSP__HeaderMap.html">SmolRTSP_HeaderMap</a> rhs)</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    SMOLRTSP_PRIV_MUST_USE;</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160; </div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="header__map_8h.html#a0b9209db7038615e774080441d82c0c9">SmolRTSP_HeaderMap_is_full</a>(<a class="code" href="structSmolRTSP__HeaderMap.html">SmolRTSP_HeaderMap</a> <span class="keyword">self</span>) SMOLRTSP_PRIV_MUST_USE;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;smolrtsp/priv/compiler_attrs.h&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="error_8h.html">smolrtsp/types/error.h</a>&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="header_8h.html">smolrtsp/types/header.h</a>&gt;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;stddef.h&gt;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;unistd.h&gt;</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &lt;slice99.h&gt;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="header__map_8h.html#a9122faf1cd4b32e00304e27dfac72059">   23</a></span>&#160;<span class="preprocessor">#define SmolRTSP_HeaderMap_from_array(...)                                     \</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">    ((SmolRTSP_HeaderMap){                                                     \</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">        .headers = __VA_ARGS__,                                                \</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">        .len = SLICE99_ARRAY_LEN((SmolRTSP_Header[])__VA_ARGS__),              \</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">    })</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="header__map_8h.html#ad2f6e26e927942bc992306146b96eb86">   32</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_HEADER_MAP_CAPACITY 32</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="structSmolRTSP__HeaderMap.html">   37</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="structSmolRTSP__HeaderMap.html#ad5118cb4e185eef65b812796243508da">   41</a></span>&#160;    <a class="code" href="structSmolRTSP__Header.html">SmolRTSP_Header</a> headers[<a class="code" href="header__map_8h.html#ad2f6e26e927942bc992306146b96eb86">SMOLRTSP_HEADER_MAP_CAPACITY</a>];</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="structSmolRTSP__HeaderMap.html#afb882150f218ade1e4d0c7afc5d6474d">   46</a></span>&#160;    <span class="keywordtype">size_t</span> <a class="code" href="structSmolRTSP__HeaderMap.html#afb882150f218ade1e4d0c7afc5d6474d">len</a>;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;} <a class="code" href="structSmolRTSP__HeaderMap.html">SmolRTSP_HeaderMap</a>;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<a class="code" href="structSmolRTSP__HeaderMap.html">SmolRTSP_HeaderMap</a> <a class="code" href="header__map_8h.html#ab2ac497a17a9b6dc23bfff60fa2dccea">SmolRTSP_HeaderMap_empty</a>(<span class="keywordtype">void</span>) SMOLRTSP_PRIV_MUST_USE;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="header__map_8h.html#a55ffb9e6038193c559273451c8d0a9a5">SmolRTSP_HeaderMap_find</a>(</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <a class="code" href="structSmolRTSP__HeaderMap.html">SmolRTSP_HeaderMap</a> <span class="keyword">self</span>, CharSlice99 key,</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    CharSlice99 *restrict value) SMOLRTSP_PRIV_MUST_USE;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="header__map_8h.html#ac022c21e18dc69c1c28d89a82e5e8b0b">SmolRTSP_HeaderMap_contains_key</a>(<a class="code" href="structSmolRTSP__HeaderMap.html">SmolRTSP_HeaderMap</a> <span class="keyword">self</span>, CharSlice99 key)</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    SMOLRTSP_PRIV_MUST_USE;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="keywordtype">void</span> <a class="code" href="header__map_8h.html#a81c386ff60caeb2cd873c70c9181e15d">SmolRTSP_HeaderMap_append</a>(</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <a class="code" href="structSmolRTSP__HeaderMap.html">SmolRTSP_HeaderMap</a> *restrict <span class="keyword">self</span>, <a class="code" href="structSmolRTSP__Header.html">SmolRTSP_Header</a> h);</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;ssize_t <a class="code" href="header__map_8h.html#a244edb277db8cc9e08bc86b1d00c6886">SmolRTSP_HeaderMap_serialize</a>(<a class="code" href="structSmolRTSP__HeaderMap.html">SmolRTSP_HeaderMap</a> <span class="keyword">self</span>, SmolRTSP_Writer w)</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    SMOLRTSP_PRIV_MUST_USE;</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160; </div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;SmolRTSP_ParseResult <a class="code" href="header__map_8h.html#a8abf8a95bcdf505c1a7acfa48c42e3e6">SmolRTSP_HeaderMap_parse</a>(</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    <a class="code" href="structSmolRTSP__HeaderMap.html">SmolRTSP_HeaderMap</a> *restrict <span class="keyword">self</span>,</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    CharSlice99 input) SMOLRTSP_PRIV_MUST_USE;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160; </div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="header__map_8h.html#a7b79528ea6d97f53e945d930a912f2e5">SmolRTSP_HeaderMap_eq</a>(<a class="code" href="structSmolRTSP__HeaderMap.html">SmolRTSP_HeaderMap</a> lhs, <a class="code" href="structSmolRTSP__HeaderMap.html">SmolRTSP_HeaderMap</a> rhs)</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    SMOLRTSP_PRIV_MUST_USE;</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160; </div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="header__map_8h.html#a216ca54672bee759b6dbfaa7ae3fbe6a">SmolRTSP_HeaderMap_is_full</a>(<span class="keyword">const</span> <a class="code" href="structSmolRTSP__HeaderMap.html">SmolRTSP_HeaderMap</a> *restrict <span class="keyword">self</span>)</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;    SMOLRTSP_PRIV_MUST_USE;</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="astructSmolRTSP__HeaderMap_html_afb882150f218ade1e4d0c7afc5d6474d"><div class="ttname"><a href="structSmolRTSP__HeaderMap.html#afb882150f218ade1e4d0c7afc5d6474d">SmolRTSP_HeaderMap::len</a></div><div class="ttdeci">size_t len</div><div class="ttdoc">The count of elements currently in headers.</div><div class="ttdef"><b>Definition:</b> header_map.h:47</div></div>
-<div class="ttc" id="astructSmolRTSP__Header_html"><div class="ttname"><a href="structSmolRTSP__Header.html">SmolRTSP_Header</a></div><div class="ttdoc">An RTSP header.</div><div class="ttdef"><b>Definition:</b> header.h:23</div></div>
+<div class="ttc" id="astructSmolRTSP__HeaderMap_html_afb882150f218ade1e4d0c7afc5d6474d"><div class="ttname"><a href="structSmolRTSP__HeaderMap.html#afb882150f218ade1e4d0c7afc5d6474d">SmolRTSP_HeaderMap::len</a></div><div class="ttdeci">size_t len</div><div class="ttdoc">The count of elements currently in headers.</div><div class="ttdef"><b>Definition:</b> header_map.h:46</div></div>
+<div class="ttc" id="astructSmolRTSP__Header_html"><div class="ttname"><a href="structSmolRTSP__Header.html">SmolRTSP_Header</a></div><div class="ttdoc">An RTSP header.</div><div class="ttdef"><b>Definition:</b> header.h:22</div></div>
+<div class="ttc" id="aheader__map_8h_html_a216ca54672bee759b6dbfaa7ae3fbe6a"><div class="ttname"><a href="header__map_8h.html#a216ca54672bee759b6dbfaa7ae3fbe6a">SmolRTSP_HeaderMap_is_full</a></div><div class="ttdeci">bool SmolRTSP_HeaderMap_is_full(const SmolRTSP_HeaderMap *restrict self) SMOLRTSP_PRIV_MUST_USE</div><div class="ttdoc">Tests whether self is full (no more space left for an additional header) or not.</div></div>
+<div class="ttc" id="aheader__map_8h_html_ac022c21e18dc69c1c28d89a82e5e8b0b"><div class="ttname"><a href="header__map_8h.html#ac022c21e18dc69c1c28d89a82e5e8b0b">SmolRTSP_HeaderMap_contains_key</a></div><div class="ttdeci">bool SmolRTSP_HeaderMap_contains_key(SmolRTSP_HeaderMap self, CharSlice99 key) SMOLRTSP_PRIV_MUST_USE</div><div class="ttdoc">Returns whether key is present in self.</div></div>
 <div class="ttc" id="aheader__map_8h_html_ab2ac497a17a9b6dc23bfff60fa2dccea"><div class="ttname"><a href="header__map_8h.html#ab2ac497a17a9b6dc23bfff60fa2dccea">SmolRTSP_HeaderMap_empty</a></div><div class="ttdeci">SmolRTSP_HeaderMap SmolRTSP_HeaderMap_empty(void) SMOLRTSP_PRIV_MUST_USE</div><div class="ttdoc">Returns an empty header map suitable for further parsing.</div></div>
-<div class="ttc" id="astructSmolRTSP__HeaderMap_html"><div class="ttname"><a href="structSmolRTSP__HeaderMap.html">SmolRTSP_HeaderMap</a></div><div class="ttdoc">An RTSP header map.</div><div class="ttdef"><b>Definition:</b> header_map.h:38</div></div>
+<div class="ttc" id="astructSmolRTSP__HeaderMap_html"><div class="ttname"><a href="structSmolRTSP__HeaderMap.html">SmolRTSP_HeaderMap</a></div><div class="ttdoc">An RTSP header map.</div><div class="ttdef"><b>Definition:</b> header_map.h:37</div></div>
 <div class="ttc" id="aheader__map_8h_html_a8abf8a95bcdf505c1a7acfa48c42e3e6"><div class="ttname"><a href="header__map_8h.html#a8abf8a95bcdf505c1a7acfa48c42e3e6">SmolRTSP_HeaderMap_parse</a></div><div class="ttdeci">SmolRTSP_ParseResult SmolRTSP_HeaderMap_parse(SmolRTSP_HeaderMap *restrict self, CharSlice99 input) SMOLRTSP_PRIV_MUST_USE</div><div class="ttdoc">Parses data to self.</div></div>
-<div class="ttc" id="aheader__map_8h_html_ad2f6e26e927942bc992306146b96eb86"><div class="ttname"><a href="header__map_8h.html#ad2f6e26e927942bc992306146b96eb86">SMOLRTSP_HEADER_MAP_CAPACITY</a></div><div class="ttdeci">#define SMOLRTSP_HEADER_MAP_CAPACITY</div><div class="ttdoc">The maximum number of headers in SmolRTSP_HeaderMap.headers.</div><div class="ttdef"><b>Definition:</b> header_map.h:33</div></div>
+<div class="ttc" id="aheader__map_8h_html_ad2f6e26e927942bc992306146b96eb86"><div class="ttname"><a href="header__map_8h.html#ad2f6e26e927942bc992306146b96eb86">SMOLRTSP_HEADER_MAP_CAPACITY</a></div><div class="ttdeci">#define SMOLRTSP_HEADER_MAP_CAPACITY</div><div class="ttdoc">The maximum number of headers in SmolRTSP_HeaderMap.headers.</div><div class="ttdef"><b>Definition:</b> header_map.h:32</div></div>
 <div class="ttc" id="aerror_8h_html"><div class="ttname"><a href="error_8h.html">error.h</a></div><div class="ttdoc">Possible parsing errors.</div></div>
 <div class="ttc" id="aheader__map_8h_html_a7b79528ea6d97f53e945d930a912f2e5"><div class="ttname"><a href="header__map_8h.html#a7b79528ea6d97f53e945d930a912f2e5">SmolRTSP_HeaderMap_eq</a></div><div class="ttdeci">bool SmolRTSP_HeaderMap_eq(SmolRTSP_HeaderMap lhs, SmolRTSP_HeaderMap rhs) SMOLRTSP_PRIV_MUST_USE</div><div class="ttdoc">Tests lhs and rhs for equality.</div></div>
 <div class="ttc" id="aheader__map_8h_html_a55ffb9e6038193c559273451c8d0a9a5"><div class="ttname"><a href="header__map_8h.html#a55ffb9e6038193c559273451c8d0a9a5">SmolRTSP_HeaderMap_find</a></div><div class="ttdeci">bool SmolRTSP_HeaderMap_find(SmolRTSP_HeaderMap self, CharSlice99 key, CharSlice99 *restrict value) SMOLRTSP_PRIV_MUST_USE</div><div class="ttdoc">Finds a value associated with key within self.</div></div>
-<div class="ttc" id="aheader__map_8h_html_aa46bc81d131808f453a3fee98c4ffe62"><div class="ttname"><a href="header__map_8h.html#aa46bc81d131808f453a3fee98c4ffe62">SmolRTSP_HeaderMap_key_is_present</a></div><div class="ttdeci">bool SmolRTSP_HeaderMap_key_is_present(SmolRTSP_HeaderMap self, CharSlice99 key) SMOLRTSP_PRIV_MUST_USE</div><div class="ttdoc">Returns whether key is present in self.</div></div>
+<div class="ttc" id="aheader__map_8h_html_a81c386ff60caeb2cd873c70c9181e15d"><div class="ttname"><a href="header__map_8h.html#a81c386ff60caeb2cd873c70c9181e15d">SmolRTSP_HeaderMap_append</a></div><div class="ttdeci">void SmolRTSP_HeaderMap_append(SmolRTSP_HeaderMap *restrict self, SmolRTSP_Header h)</div><div class="ttdoc">Appends a new header to a header map.</div></div>
 <div class="ttc" id="aheader__map_8h_html_a244edb277db8cc9e08bc86b1d00c6886"><div class="ttname"><a href="header__map_8h.html#a244edb277db8cc9e08bc86b1d00c6886">SmolRTSP_HeaderMap_serialize</a></div><div class="ttdeci">ssize_t SmolRTSP_HeaderMap_serialize(SmolRTSP_HeaderMap self, SmolRTSP_Writer w) SMOLRTSP_PRIV_MUST_USE</div><div class="ttdoc">Serialises self into w.</div></div>
 <div class="ttc" id="aheader_8h_html"><div class="ttname"><a href="header_8h.html">header.h</a></div><div class="ttdoc">An RTSP header.</div></div>
-<div class="ttc" id="aheader__map_8h_html_a0b9209db7038615e774080441d82c0c9"><div class="ttname"><a href="header__map_8h.html#a0b9209db7038615e774080441d82c0c9">SmolRTSP_HeaderMap_is_full</a></div><div class="ttdeci">bool SmolRTSP_HeaderMap_is_full(SmolRTSP_HeaderMap self) SMOLRTSP_PRIV_MUST_USE</div><div class="ttdoc">Tests whether self is full (no more space left for an additional header) or not.</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>

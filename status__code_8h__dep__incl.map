@@ -1,6 +1,8 @@
 <map id="include/smolrtsp/types/status_code.h" name="include/smolrtsp/types/status_code.h">
-<area shape="rect" id="node1" title="An RTSP status code." alt="" coords="5,5,176,47"/>
-<area shape="rect" id="node2" href="$smolrtsp_8h.html" title="Re&#45;exports all the functionality." alt="" coords="9,273,151,300"/>
-<area shape="rect" id="node3" href="$response__line_8h.html" title="An RTSP response line." alt="" coords="67,95,237,136"/>
-<area shape="rect" id="node4" href="$response_8h.html" title="An RTSP response." alt="" coords="117,184,288,225"/>
+<area shape="rect" id="node1" title="An RTSP status code." alt="" coords="35,5,205,47"/>
+<area shape="rect" id="node2" href="$smolrtsp_8h.html" title="Re&#45;exports all the functionality." alt="" coords="106,273,249,300"/>
+<area shape="rect" id="node3" href="$context_8h.html" title="A request context." alt="" coords="23,102,217,129"/>
+<area shape="rect" id="node5" href="$response__line_8h.html" title="An RTSP response line." alt="" coords="241,95,412,136"/>
+<area shape="rect" id="node4" href="$controller_8h.html" title="An RTSP requests controller." alt="" coords="74,191,281,218"/>
+<area shape="rect" id="node6" href="$response_8h.html" title="An RTSP response." alt="" coords="356,184,527,225"/>
 </map>

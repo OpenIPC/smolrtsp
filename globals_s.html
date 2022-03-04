@@ -89,8 +89,23 @@ $(document).ready(function(){initNavTree('globals_s.html',''); initResizable(); 
 <li>SLICE99_DEF_TYPED()
 : <a class="el" href="io__vec_8h.html#a5c06e3214b353829efa5167493dc9e5b">io_vec.h</a>
 </li>
+<li>smolrtsp_body()
+: <a class="el" href="context_8h.html#a2e375380c9de64a6675d5a77f6b66c6f">context.h</a>
+</li>
 <li>SMOLRTSP_CONTENT_SDP
 : <a class="el" href="util_8h.html#adf8475137e4dc7f44c539687c4920ac8">util.h</a>
+</li>
+<li>SmolRTSP_Context
+: <a class="el" href="context_8h.html#a74d8be6059af5516c37fcebc14a70622">context.h</a>
+</li>
+<li>SmolRTSP_Context_get_cseq()
+: <a class="el" href="context_8h.html#a8b9071b6dca6cd1b70d700646c9ce879">context.h</a>
+</li>
+<li>SmolRTSP_Context_get_writer()
+: <a class="el" href="context_8h.html#ab5a0fe6fc8b24540fe289ad6308cbf13">context.h</a>
+</li>
+<li>SmolRTSP_Context_new()
+: <a class="el" href="context_8h.html#a7f157d462417caa97f902ed5e5ddf455">context.h</a>
 </li>
 <li>SmolRTSP_Controller_EXTENDS
 : <a class="el" href="controller_8h.html#af5dca43be11f9698aa758192e927280b">controller.h</a>
@@ -311,6 +326,9 @@ $(document).ready(function(){initNavTree('globals_s.html',''); initResizable(); 
 <li>SmolRTSP_H265NalHeader_write_fu_header()
 : <a class="el" href="h265_8h.html#a167e9154298eee5d40811e7db415382b">h265.h</a>
 </li>
+<li>smolrtsp_header()
+: <a class="el" href="context_8h.html#a68f915fdb73339921d52cc71caf5819c">context.h</a>
+</li>
 <li>SMOLRTSP_HEADER_ACCEPT
 : <a class="el" href="header_8h.html#a6a1bf63b9a4db2e9fa28cb27b0afde77">header.h</a>
 </li>
@@ -440,6 +458,12 @@ $(document).ready(function(){initNavTree('globals_s.html',''); initResizable(); 
 <li>SMOLRTSP_HEADER_WWW_AUTHENTICATE
 : <a class="el" href="header_8h.html#a687f5c677edb6e9ccfd8561154e7df49">header.h</a>
 </li>
+<li>SmolRTSP_HeaderMap_append()
+: <a class="el" href="header__map_8h.html#a81c386ff60caeb2cd873c70c9181e15d">header_map.h</a>
+</li>
+<li>SmolRTSP_HeaderMap_contains_key()
+: <a class="el" href="header__map_8h.html#ac022c21e18dc69c1c28d89a82e5e8b0b">header_map.h</a>
+</li>
 <li>SmolRTSP_HeaderMap_empty()
 : <a class="el" href="header__map_8h.html#ab2ac497a17a9b6dc23bfff60fa2dccea">header_map.h</a>
 </li>
@@ -453,10 +477,7 @@ $(document).ready(function(){initNavTree('globals_s.html',''); initResizable(); 
 : <a class="el" href="header__map_8h.html#a9122faf1cd4b32e00304e27dfac72059">header_map.h</a>
 </li>
 <li>SmolRTSP_HeaderMap_is_full()
-: <a class="el" href="header__map_8h.html#a0b9209db7038615e774080441d82c0c9">header_map.h</a>
-</li>
-<li>SmolRTSP_HeaderMap_key_is_present()
-: <a class="el" href="header__map_8h.html#aa46bc81d131808f453a3fee98c4ffe62">header_map.h</a>
+: <a class="el" href="header__map_8h.html#a216ca54672bee759b6dbfaa7ae3fbe6a">header_map.h</a>
 </li>
 <li>SmolRTSP_HeaderMap_parse()
 : <a class="el" href="header__map_8h.html#a8abf8a95bcdf505c1a7acfa48c42e3e6">header_map.h</a>
@@ -681,10 +702,7 @@ $(document).ready(function(){initNavTree('globals_s.html',''); initResizable(); 
 : <a class="el" href="request__uri_8h.html#a633b24e5fee6a15b72c7abc36c856e61">request_uri.h</a>
 </li>
 <li>smolrtsp_respond()
-: <a class="el" href="response_8h.html#a60717ca46b3a2be8ea63306ef331dc3f">response.h</a>
-</li>
-<li>smolrtsp_respond_with_body()
-: <a class="el" href="response_8h.html#adcabc1ddde588b2e15f3b4a7991a1112">response.h</a>
+: <a class="el" href="context_8h.html#acf926b0a4ae5415a115dfd063446c9a8">context.h</a>
 </li>
 <li>SmolRTSP_Response_eq()
 : <a class="el" href="response_8h.html#aad6024d9ea4fd41f84dd2b6ecc3ccfed">response.h</a>
@@ -950,11 +968,11 @@ $(document).ready(function(){initNavTree('globals_s.html',''); initResizable(); 
 <li>smolrtsp_transport_udp()
 : <a class="el" href="transport_8h.html#a3875a72cf6f4cd52bad76d6692979c61">transport.h</a>
 </li>
-<li>smolrtsp_write_slices()
-: <a class="el" href="writer_8h.html#ae1ec627d3c1175f3a7300d03281367aa">writer.h</a>
-</li>
 <li>SMOLRTSP_WRITE_SLICES
 : <a class="el" href="writer_8h.html#a7c4c93fc4d3f9343fc9293697547690d">writer.h</a>
+</li>
+<li>smolrtsp_write_slices()
+: <a class="el" href="writer_8h.html#ae1ec627d3c1175f3a7300d03281367aa">writer.h</a>
 </li>
 <li>SmolRTSP_Writer_IFACE
 : <a class="el" href="writer_8h.html#ac784e32a74c37c9830a401d4ad2fdd99">writer.h</a>
