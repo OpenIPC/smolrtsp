@@ -3,6 +3,8 @@
  * @brief An RTSP request.
  */
 
+#pragma once
+
 #include <smolrtsp/types/error.h>
 #include <smolrtsp/types/header_map.h>
 #include <smolrtsp/types/message_body.h>

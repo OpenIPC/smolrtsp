@@ -29,6 +29,9 @@
      */                                                                        \
     vfunc99(int, transmit, VSelf99, SmolRTSP_IoVecSlice bufs)
 
+/**
+ * The superinterfaces of #SmolRTSP_Transport_IFACE.
+ */
 #define SmolRTSP_Transport_EXTENDS (SmolRTSP_Droppable)
 
 /**

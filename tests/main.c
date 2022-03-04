@@ -1,5 +1,8 @@
 #include <greatest.h>
 
+// Check that the main header compiles well.
+#include <smolrtsp.h>
+
 #define SMOLRTSP_SUITE(name)                                                   \
     extern void name(void);                                                    \
     RUN_SUITE(name)

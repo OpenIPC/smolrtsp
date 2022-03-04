@@ -52,6 +52,7 @@ set(SMOLRTSP_SOURCES
     include/smolrtsp/rtp_transport.h
     include/smolrtsp/nal_transport.h
     include/smolrtsp/droppable.h
+    include/smolrtsp/controller.h
     include/smolrtsp/io_vec.h
     src/types/error.c
     src/types/header_map.c
@@ -108,7 +109,8 @@ target_precompile_headers(
   include/smolrtsp/nal.h
   include/smolrtsp/writer.h
   include/smolrtsp/transport.h
-  include/smolrtsp/droppable.h)
+  include/smolrtsp/droppable.h
+  include/smolrtsp/controller.h)
 
 target_include_directories(${PROJECT_NAME} PUBLIC include)
 target_link_libraries(${PROJECT_NAME} PUBLIC slice99 metalang99 datatype99 interface99)

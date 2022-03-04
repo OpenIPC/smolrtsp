@@ -33,6 +33,7 @@
 
 #include <smolrtsp/nal.h>
 
+#include <smolrtsp/controller.h>
 #include <smolrtsp/droppable.h>
 #include <smolrtsp/io_vec.h>
 #include <smolrtsp/nal_transport.h>
