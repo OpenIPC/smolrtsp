@@ -1,6 +1,7 @@
 <map id="include/smolrtsp/types/method.h" name="include/smolrtsp/types/method.h">
 <area shape="rect" id="node1" title="An RTSP method." alt="" coords="5,5,176,47"/>
-<area shape="rect" id="node2" href="$smolrtsp_8h.html" title="Re&#45;exports all the functionality." alt="" coords="9,273,151,300"/>
+<area shape="rect" id="node2" href="$smolrtsp_8h.html" title="Re&#45;exports all the functionality." alt="" coords="34,348,177,375"/>
 <area shape="rect" id="node3" href="$request__line_8h.html" title="An RTSP request line." alt="" coords="67,95,237,136"/>
 <area shape="rect" id="node4" href="$request_8h.html" title="An RTSP request." alt="" coords="117,184,288,225"/>
+<area shape="rect" id="node5" href="$controller_8h.html" title="An RTSP requests controller." alt="" coords="169,273,375,300"/>
 </map>

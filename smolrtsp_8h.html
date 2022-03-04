@@ -106,6 +106,7 @@ $(document).ready(function(){initNavTree('smolrtsp_8h.html',''); initResizable()
 <code>#include &lt;<a class="el" href="sdp_8h_source.html">smolrtsp/types/sdp.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="status__code_8h_source.html">smolrtsp/types/status_code.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="nal_8h_source.html">smolrtsp/nal.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="controller_8h_source.html">smolrtsp/controller.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="droppable_8h_source.html">smolrtsp/droppable.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="io__vec_8h_source.html">smolrtsp/io_vec.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="nal__transport_8h_source.html">smolrtsp/nal_transport.h</a>&gt;</code><br />
@@ -118,45 +119,46 @@ Include dependency graph for smolrtsp.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="smolrtsp_8h__incl.png" border="0" usemap="#include_2smolrtsp_8h" alt=""/></div>
 <map name="include_2smolrtsp_8h" id="include_2smolrtsp_8h">
-<area shape="rect" title="Re&#45;exports all the functionality." alt="" coords="1787,5,1930,32"/>
-<area shape="rect" href="error_8h.html" title="Possible parsing errors." alt="" coords="1043,333,1208,360"/>
-<area shape="rect" href="writer_8h.html" title="The writer interface." alt="" coords="841,408,973,435"/>
-<area shape="rect" href="header_8h.html" title="An RTSP header." alt="" coords="205,251,384,278"/>
-<area shape="rect" href="header__map_8h.html" title="An RTSP header map." alt="" coords="337,155,505,196"/>
-<area shape="rect" href="message__body_8h.html" title="An RTSP message body." alt="" coords="510,244,693,285"/>
-<area shape="rect" href="method_8h.html" title="An RTSP method." alt="" coords="819,251,1005,278"/>
-<area shape="rect" href="reason__phrase_8h.html" title="An RTSP reason phrase." alt="" coords="2093,244,2259,285"/>
-<area shape="rect" href="request_8h.html" title="An RTSP request." alt="" coords="689,80,873,107"/>
-<area shape="rect" href="request__line_8h.html" title="An RTSP request line." alt="" coords="1286,155,1458,196"/>
-<area shape="rect" href="request__uri_8h.html" title="An RTSP request URI." alt="" coords="1897,244,2069,285"/>
-<area shape="rect" href="rtsp__version_8h.html" title="An RTSP version." alt="" coords="1435,244,1583,285"/>
-<area shape="rect" href="response_8h.html" title="An RTSP response." alt="" coords="1345,80,1540,107"/>
-<area shape="rect" href="response__line_8h.html" title="An RTSP response line." alt="" coords="1767,155,1950,196"/>
-<area shape="rect" href="status__code_8h.html" title="An RTSP status code." alt="" coords="1608,244,1771,285"/>
-<area shape="rect" href="rtp_8h.html" title="RFC 3550&#45;compliant RTP implementation." alt="" coords="2631,333,2785,360"/>
-<area shape="rect" href="sdp_8h.html" title="RFC 4566&#45;compliant SDP implementation." alt="" coords="2449,333,2607,360"/>
-<area shape="rect" href="nal_8h.html" title="A generic NAL (Network Abstraction Layer) representation." alt="" coords="2879,251,2993,278"/>
-<area shape="rect" href="droppable_8h.html" title="Droppable types support." alt="" coords="3945,408,4105,435"/>
-<area shape="rect" href="io__vec_8h.html" title="Vectored I/O support." alt="" coords="3517,408,3654,435"/>
-<area shape="rect" href="nal__transport_8h.html" title="An RTP/NAL data transport." alt="" coords="3424,162,3605,189"/>
-<area shape="rect" href="rtp__transport_8h.html" title="An RTP data transport." alt="" coords="3428,251,3607,278"/>
-<area shape="rect" href="transport_8h.html" title="RTSP data transport (level 4) implementations." alt="" coords="3617,333,3772,360"/>
-<area shape="rect" href="util_8h.html" title="Utilitary stuff." alt="" coords="2335,251,2451,278"/>
-<area shape="rect" title=" " alt="" coords="692,490,767,517"/>
-<area shape="rect" title=" " alt="" coords="1915,490,1995,517"/>
-<area shape="rect" title=" " alt="" coords="2073,483,2242,524"/>
-<area shape="rect" title=" " alt="" coords="1648,408,1731,435"/>
-<area shape="rect" title=" " alt="" coords="2301,408,2409,435"/>
-<area shape="rect" title=" " alt="" coords="869,490,944,517"/>
-<area shape="rect" title=" " alt="" coords="111,490,177,517"/>
-<area shape="rect" title=" " alt="" coords="5,490,80,517"/>
-<area shape="rect" title=" " alt="" coords="3854,490,3962,517"/>
-<area shape="rect" title=" " alt="" coords="3070,408,3141,435"/>
-<area shape="rect" title=" " alt="" coords="2535,408,2647,435"/>
-<area shape="rect" href="h264_8h.html" title="H.264 NAL representation." alt="" coords="3189,333,3339,360"/>
-<area shape="rect" href="h265_8h.html" title="H.265 NAL representation." alt="" coords="2861,333,3011,360"/>
-<area shape="rect" title=" " alt="" coords="3595,490,3698,517"/>
-<area shape="rect" title=" " alt="" coords="3475,490,3571,517"/>
+<area shape="rect" title="Re&#45;exports all the functionality." alt="" coords="1926,5,2069,32"/>
+<area shape="rect" href="error_8h.html" title="Possible parsing errors." alt="" coords="904,408,1069,435"/>
+<area shape="rect" href="writer_8h.html" title="The writer interface." alt="" coords="841,483,973,509"/>
+<area shape="rect" href="header_8h.html" title="An RTSP header." alt="" coords="296,326,475,353"/>
+<area shape="rect" href="header__map_8h.html" title="An RTSP header map." alt="" coords="479,229,647,271"/>
+<area shape="rect" href="message__body_8h.html" title="An RTSP message body." alt="" coords="601,319,783,360"/>
+<area shape="rect" href="method_8h.html" title="An RTSP method." alt="" coords="1501,326,1686,353"/>
+<area shape="rect" href="reason__phrase_8h.html" title="An RTSP reason phrase." alt="" coords="2050,319,2217,360"/>
+<area shape="rect" href="request_8h.html" title="An RTSP request." alt="" coords="1164,155,1348,181"/>
+<area shape="rect" href="request__line_8h.html" title="An RTSP request line." alt="" coords="1553,229,1725,271"/>
+<area shape="rect" href="request__uri_8h.html" title="An RTSP request URI." alt="" coords="1305,319,1477,360"/>
+<area shape="rect" href="rtsp__version_8h.html" title="An RTSP version." alt="" coords="2241,319,2389,360"/>
+<area shape="rect" href="response_8h.html" title="An RTSP response." alt="" coords="1800,155,1995,181"/>
+<area shape="rect" href="response__line_8h.html" title="An RTSP response line." alt="" coords="2121,229,2303,271"/>
+<area shape="rect" href="status__code_8h.html" title="An RTSP status code." alt="" coords="1761,319,1924,360"/>
+<area shape="rect" href="rtp_8h.html" title="RFC 3550&#45;compliant RTP implementation." alt="" coords="3099,408,3253,435"/>
+<area shape="rect" href="sdp_8h.html" title="RFC 4566&#45;compliant SDP implementation." alt="" coords="2587,408,2746,435"/>
+<area shape="rect" href="nal_8h.html" title="A generic NAL (Network Abstraction Layer) representation." alt="" coords="2587,326,2701,353"/>
+<area shape="rect" href="controller_8h.html" title="An RTSP requests controller." alt="" coords="1169,80,1325,107"/>
+<area shape="rect" href="droppable_8h.html" title="Droppable types support." alt="" coords="3981,483,4141,509"/>
+<area shape="rect" href="io__vec_8h.html" title="Vectored I/O support." alt="" coords="3769,483,3906,509"/>
+<area shape="rect" href="nal__transport_8h.html" title="An RTP/NAL data transport." alt="" coords="3513,237,3695,263"/>
+<area shape="rect" href="rtp__transport_8h.html" title="An RTP data transport." alt="" coords="3515,326,3693,353"/>
+<area shape="rect" href="transport_8h.html" title="RTSP data transport (level 4) implementations." alt="" coords="3733,408,3888,435"/>
+<area shape="rect" href="util_8h.html" title="Utilitary stuff." alt="" coords="859,326,975,353"/>
+<area shape="rect" title=" " alt="" coords="399,565,473,591"/>
+<area shape="rect" title=" " alt="" coords="1148,565,1228,591"/>
+<area shape="rect" title=" " alt="" coords="2423,557,2593,599"/>
+<area shape="rect" title=" " alt="" coords="1668,483,1751,509"/>
+<area shape="rect" title=" " alt="" coords="1525,483,1633,509"/>
+<area shape="rect" title=" " alt="" coords="869,565,944,591"/>
+<area shape="rect" title=" " alt="" coords="225,565,292,591"/>
+<area shape="rect" title=" " alt="" coords="69,565,144,591"/>
+<area shape="rect" title=" " alt="" coords="3983,565,4091,591"/>
+<area shape="rect" title=" " alt="" coords="3331,483,3402,509"/>
+<area shape="rect" title=" " alt="" coords="2545,483,2657,509"/>
+<area shape="rect" href="h264_8h.html" title="H.264 NAL representation." alt="" coords="2873,408,3023,435"/>
+<area shape="rect" href="h265_8h.html" title="H.265 NAL representation." alt="" coords="2259,408,2410,435"/>
+<area shape="rect" title=" " alt="" coords="3810,565,3913,591"/>
+<area shape="rect" title=" " alt="" coords="3689,565,3785,591"/>
 </map>
 </div>
 </div>
