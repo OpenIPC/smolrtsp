@@ -134,3 +134,20 @@ bool SmolRTSP_HeaderMap_eq(
  */
 bool SmolRTSP_HeaderMap_is_full(const SmolRTSP_HeaderMap *restrict self)
     SMOLRTSP_PRIV_MUST_USE;
+
+/**
+ * Attempts to parse a header.
+ *
+ * @param[in] headers The header map to search @p key in.
+ * @param[in] key The header key to search for.
+ * @param[in] fmt The `scanf-`like format string.
+ *
+ * @return The number of scanned parameters or -1 if @p key is not found.
+ *
+ * @pre `headers != NULL`
+ * @pre `fmt != NULL`
+ */
+int smolrtsp_scanf_header(
+    const SmolRTSP_HeaderMap *restrict headers, CharSlice99 key,
+    const char *restrict fmt, ...) SMOLRTSP_PRIV_MUST_USE
+    SMOLRTSP_PRIV_GCC_ATTR(format(scanf, 3, 4));

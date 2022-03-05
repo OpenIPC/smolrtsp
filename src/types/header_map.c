@@ -115,3 +115,23 @@ bool SmolRTSP_HeaderMap_is_full(const SmolRTSP_HeaderMap *restrict self) {
     assert(self);
     return SMOLRTSP_HEADER_MAP_CAPACITY == self->len;
 }
+
+int smolrtsp_scanf_header(
+    const SmolRTSP_HeaderMap *restrict headers, CharSlice99 key,
+    const char *restrict fmt, ...) {
+    assert(headers);
+    assert(fmt);
+
+    CharSlice99 val;
+    const bool val_found = SmolRTSP_HeaderMap_find(headers, key, &val);
+    if (!val_found) {
+        return -1;
+    }
+
+    va_list ap;
+    va_start(ap, fmt);
+    const int ret = vsscanf(CharSlice99_alloca_c_str(val), fmt, ap);
+    va_end(ap);
+
+    return ret;
+}

@@ -95,6 +95,26 @@ TEST is_full(void) {
     PASS();
 }
 
+TEST scanf_header(void) {
+    const SmolRTSP_HeaderMap map = HEADER_MAP;
+
+    size_t content_length = 0;
+    int ret = smolrtsp_scanf_header(
+        &map, SMOLRTSP_HEADER_CONTENT_LENGTH, "%zd", &content_length);
+    ASSERT_EQ(1, ret);
+    ASSERT_EQ(10, content_length);
+
+    ret = smolrtsp_scanf_header(&map, SMOLRTSP_HEADER_ACCEPT_LANGUAGE, "%*d");
+    ASSERT_EQ(0, ret);
+
+    char auth[32] = {0};
+    ret = smolrtsp_scanf_header(
+        &map, SMOLRTSP_HEADER_WWW_AUTHENTICATE, "%s", auth);
+    ASSERT_EQ(-1, ret);
+
+    PASS();
+}
+
 SUITE(types_header_map) {
     RUN_TEST(parse_header_map);
     RUN_TEST(serialize_header_map);
@@ -102,4 +122,5 @@ SUITE(types_header_map) {
     RUN_TEST(contains_key);
     RUN_TEST(append);
     RUN_TEST(is_full);
+    RUN_TEST(scanf_header);
 }
