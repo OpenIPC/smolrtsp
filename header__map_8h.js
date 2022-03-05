@@ -10,5 +10,6 @@ var header__map_8h =
     [ "SmolRTSP_HeaderMap_find", "header__map_8h.html#a7850401cbecbb52c9f7caf43da3f341f", null ],
     [ "SmolRTSP_HeaderMap_is_full", "header__map_8h.html#a216ca54672bee759b6dbfaa7ae3fbe6a", null ],
     [ "SmolRTSP_HeaderMap_parse", "header__map_8h.html#a8abf8a95bcdf505c1a7acfa48c42e3e6", null ],
-    [ "SmolRTSP_HeaderMap_serialize", "header__map_8h.html#a10e57f424903edff069ddd4f66829a04", null ]
+    [ "SmolRTSP_HeaderMap_serialize", "header__map_8h.html#a10e57f424903edff069ddd4f66829a04", null ],
+    [ "smolrtsp_scanf_header", "header__map_8h.html#a296da2b842d4665ab303ce788563da01", null ]
 ];

@@ -180,6 +180,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a216ca54672bee759b6dbfaa7ae3fbe6a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="header__map_8h.html#a216ca54672bee759b6dbfaa7ae3fbe6a">SmolRTSP_HeaderMap_is_full</a> (const <a class="el" href="structSmolRTSP__HeaderMap.html">SmolRTSP_HeaderMap</a> *restrict self) SMOLRTSP_PRIV_MUST_USE</td></tr>
 <tr class="memdesc:a216ca54672bee759b6dbfaa7ae3fbe6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests whether <code>self</code> is full (no more space left for an additional header) or not.  <a href="header__map_8h.html#a216ca54672bee759b6dbfaa7ae3fbe6a">More...</a><br /></td></tr>
 <tr class="separator:a216ca54672bee759b6dbfaa7ae3fbe6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a296da2b842d4665ab303ce788563da01"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="header__map_8h.html#a296da2b842d4665ab303ce788563da01">smolrtsp_scanf_header</a> (const <a class="el" href="structSmolRTSP__HeaderMap.html">SmolRTSP_HeaderMap</a> *restrict headers, CharSlice99 key, const char *restrict fmt,...) SMOLRTSP_PRIV_MUST_USE SMOLRTSP_PRIV_GCC_ATTR(format(scanf</td></tr>
+<tr class="memdesc:a296da2b842d4665ab303ce788563da01"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempts to parse a header.  <a href="header__map_8h.html#a296da2b842d4665ab303ce788563da01">More...</a><br /></td></tr>
+<tr class="separator:a296da2b842d4665ab303ce788563da01"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>An RTSP header map. </p>
@@ -450,6 +453,60 @@ Functions</h2></td></tr>
 <dl class="section pre"><dt>Precondition</dt><dd><code>self != NULL</code> </dd>
 <dd>
 <code>w.self &amp;&amp; w.vptr</code> </dd></dl>
+
+</div>
+</div>
+<a id="a296da2b842d4665ab303ce788563da01"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a296da2b842d4665ab303ce788563da01">&#9670;&nbsp;</a></span>smolrtsp_scanf_header()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int smolrtsp_scanf_header </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structSmolRTSP__HeaderMap.html">SmolRTSP_HeaderMap</a> *restrict&#160;</td>
+          <td class="paramname"><em>headers</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">CharSlice99&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *restrict&#160;</td>
+          <td class="paramname"><em>fmt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>...</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Attempts to parse a header. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">headers</td><td>The header map to search <code>key</code> in. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">key</td><td>The header key to search for. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">fmt</td><td>The <code>scanf-</code>like format string.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The number of scanned parameters or -1 if <code>key</code> is not found.</dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd><code>headers != NULL</code> </dd>
+<dd>
+<code>fmt != NULL</code> </dd></dl>
 
 </div>
 </div>
