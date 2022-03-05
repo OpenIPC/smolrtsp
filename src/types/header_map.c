@@ -15,11 +15,14 @@ SmolRTSP_HeaderMap SmolRTSP_HeaderMap_empty(void) {
 }
 
 bool SmolRTSP_HeaderMap_find(
-    SmolRTSP_HeaderMap self, CharSlice99 key, CharSlice99 *restrict value) {
-    for (size_t i = 0; i < self.len; i++) {
-        if (CharSlice99_primitive_eq(self.headers[i].key, key)) {
+    const SmolRTSP_HeaderMap *restrict self, CharSlice99 key,
+    CharSlice99 *restrict value) {
+    assert(self);
+
+    for (size_t i = 0; i < self->len; i++) {
+        if (CharSlice99_primitive_eq(self->headers[i].key, key)) {
             if (value != NULL) {
-                *value = self.headers[i].value;
+                *value = self->headers[i].value;
             }
             return true;
         }
@@ -28,7 +31,9 @@ bool SmolRTSP_HeaderMap_find(
     return false;
 }
 
-bool SmolRTSP_HeaderMap_contains_key(SmolRTSP_HeaderMap self, CharSlice99 key) {
+bool SmolRTSP_HeaderMap_contains_key(
+    const SmolRTSP_HeaderMap *restrict self, CharSlice99 key) {
+    assert(self);
     return SmolRTSP_HeaderMap_find(self, key, NULL);
 }
 

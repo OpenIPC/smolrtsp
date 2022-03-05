@@ -50,9 +50,11 @@ TEST serialize_header_map(void) {
 }
 
 TEST find(void) {
+    const SmolRTSP_HeaderMap map = HEADER_MAP;
+
     CharSlice99 content_length;
     const bool content_length_is_found = SmolRTSP_HeaderMap_find(
-        HEADER_MAP, SMOLRTSP_HEADER_CONTENT_LENGTH, &content_length);
+        &map, SMOLRTSP_HEADER_CONTENT_LENGTH, &content_length);
 
     ASSERT(content_length_is_found);
     ASSERT(
@@ -62,9 +64,11 @@ TEST find(void) {
 }
 
 TEST contains_key(void) {
-    ASSERT(SmolRTSP_HeaderMap_contains_key(
-        HEADER_MAP, SMOLRTSP_HEADER_CONTENT_LENGTH));
-    ASSERT(!SmolRTSP_HeaderMap_contains_key(HEADER_MAP, SMOLRTSP_HEADER_ALLOW));
+    const SmolRTSP_HeaderMap map = HEADER_MAP;
+
+    ASSERT(
+        SmolRTSP_HeaderMap_contains_key(&map, SMOLRTSP_HEADER_CONTENT_LENGTH));
+    ASSERT(!SmolRTSP_HeaderMap_contains_key(&map, SMOLRTSP_HEADER_ALLOW));
 
     PASS();
 }

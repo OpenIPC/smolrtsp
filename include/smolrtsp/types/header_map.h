@@ -62,16 +62,21 @@ SmolRTSP_HeaderMap SmolRTSP_HeaderMap_empty(void) SMOLRTSP_PRIV_MUST_USE;
  * @param[in] key The key to be searched in @p self.
  * @param[out] value The header value to be assigned, if found. If `NULL`, no
  * assignment is performed.
+ *
+ * @pre `self != NULL`
  */
 bool SmolRTSP_HeaderMap_find(
-    SmolRTSP_HeaderMap self, CharSlice99 key,
+    const SmolRTSP_HeaderMap *restrict self, CharSlice99 key,
     CharSlice99 *restrict value) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Returns whether @p key is present in @p self.
+ *
+ * @pre `self != NULL`
  */
-bool SmolRTSP_HeaderMap_contains_key(SmolRTSP_HeaderMap self, CharSlice99 key)
-    SMOLRTSP_PRIV_MUST_USE;
+bool SmolRTSP_HeaderMap_contains_key(
+    const SmolRTSP_HeaderMap *restrict self,
+    CharSlice99 key) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Appends a new header to a header map.
@@ -123,9 +128,9 @@ bool SmolRTSP_HeaderMap_eq(
  * Tests whether @p self is full (no more space left for an additional header)
  * or not.
  *
- * @pre `self != NULL`
+ * @return `true` if @p self is full, `false` otherwise.
  *
- * @return `true` if @p self is full, `false` otherwise
+ * @pre `self != NULL`
  */
 bool SmolRTSP_HeaderMap_is_full(const SmolRTSP_HeaderMap *restrict self)
     SMOLRTSP_PRIV_MUST_USE;

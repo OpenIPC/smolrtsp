@@ -27,7 +27,7 @@ ssize_t SmolRTSP_Request_serialize(
     CHK_WRITE_ERR(result, SmolRTSP_RequestLine_serialize(&self->start_line, w));
 
     if (!SmolRTSP_HeaderMap_contains_key(
-            self->header_map, SMOLRTSP_HEADER_C_SEQ)) {
+            &self->header_map, SMOLRTSP_HEADER_C_SEQ)) {
         const SmolRTSP_Header cseq = {
             SMOLRTSP_HEADER_C_SEQ,
             CharSlice99_alloca_fmt("%" PRIu32, self->cseq),
@@ -36,7 +36,7 @@ ssize_t SmolRTSP_Request_serialize(
     }
 
     if (!SmolRTSP_HeaderMap_contains_key(
-            self->header_map, SMOLRTSP_HEADER_CONTENT_LENGTH) &&
+            &self->header_map, SMOLRTSP_HEADER_CONTENT_LENGTH) &&
         !CharSlice99_is_empty(self->body)) {
         const SmolRTSP_Header content_length = {
             SMOLRTSP_HEADER_CONTENT_LENGTH,
@@ -65,7 +65,7 @@ SmolRTSP_Request_parse(SmolRTSP_Request *restrict self, CharSlice99 input) {
     CharSlice99 content_length;
     size_t content_length_int = 0;
     const bool content_length_found = SmolRTSP_HeaderMap_find(
-        self->header_map, SMOLRTSP_HEADER_CONTENT_LENGTH, &content_length);
+        &self->header_map, SMOLRTSP_HEADER_CONTENT_LENGTH, &content_length);
 
     if (content_length_found) {
         if (sscanf(
@@ -80,7 +80,7 @@ SmolRTSP_Request_parse(SmolRTSP_Request *restrict self, CharSlice99 input) {
 
     CharSlice99 cseq_value;
     const bool cseq_found = SmolRTSP_HeaderMap_find(
-        self->header_map, SMOLRTSP_HEADER_C_SEQ, &cseq_value);
+        &self->header_map, SMOLRTSP_HEADER_C_SEQ, &cseq_value);
     if (!cseq_found) {
         return SmolRTSP_ParseResult_Failure(SmolRTSP_ParseError_MissingCSeq());
     }
