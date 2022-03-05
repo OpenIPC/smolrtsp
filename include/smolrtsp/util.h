@@ -17,11 +17,6 @@
 #define SMOLRTSP_CRLF (CharSlice99_from_str("\r\n"))
 
 /**
- * `application/sdp` content type.
- */
-#define SMOLRTSP_CONTENT_SDP (CharSlice99_from_str("application/sdp"))
-
-/**
  * An RTSP lower transport.
  */
 typedef enum {

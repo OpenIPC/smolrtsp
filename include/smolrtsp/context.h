@@ -11,6 +11,7 @@
 #include <smolrtsp/types/status_code.h>
 #include <smolrtsp/writer.h>
 
+#include <stdarg.h>
 #include <stdint.h>
 
 #include <interface99.h>
@@ -53,13 +54,23 @@ SmolRTSP_Context_get_cseq(const SmolRTSP_Context *ctx) SMOLRTSP_PRIV_MUST_USE;
  *
  * @param[out] ctx The request context to modify.
  * @param[in] key The header key.
- * @param[in] value The header value.
+ * @param[in] fmt The `printf`-like format string.
  *
  * @pre `ctx != NULL`
  * @pre @p ctx must contain strictly less than #SMOLRTSP_HEADER_MAP_CAPACITY
  * headers.
+ * @pre `fmt != NULL`
  */
-void smolrtsp_header(SmolRTSP_Context *ctx, CharSlice99 key, CharSlice99 value);
+void smolrtsp_vheader(
+    SmolRTSP_Context *ctx, CharSlice99 key, const char *restrict fmt,
+    va_list list) SMOLRTSP_PRIV_GCC_ATTR(format(printf, 3, 0));
+
+/**
+ * The #smolrtsp_vheader twin.
+ */
+void smolrtsp_header(
+    SmolRTSP_Context *ctx, CharSlice99 key, const char *restrict fmt, ...)
+    SMOLRTSP_PRIV_GCC_ATTR(format(printf, 3, 4));
 
 /**
  * Sets an RTSP body in the request context.

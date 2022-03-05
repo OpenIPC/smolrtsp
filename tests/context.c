@@ -23,6 +23,25 @@ TEST context_creation(void) {
     PASS();
 }
 
+TEST respond_empty(void) {
+    char buffer[512] = {0};
+    SmolRTSP_Writer w = smolrtsp_string_writer(buffer);
+    const uint32_t cseq = 456;
+
+    SmolRTSP_Context *ctx = SmolRTSP_Context_new(w, cseq);
+
+    const char *expected =
+        "RTSP/1.0 404 Not found\r\n"
+        "CSeq: 456\r\n\r\n";
+
+    ssize_t ret = smolrtsp_respond(ctx, SMOLRTSP_STATUS_NOT_FOUND, "Not found");
+    ASSERT_EQ((ssize_t)strlen(expected), ret);
+    ASSERT_STR_EQ(expected, buffer);
+
+    VTABLE(SmolRTSP_Context, SmolRTSP_Droppable).drop(ctx);
+    PASS();
+}
+
 TEST respond(void) {
     char buffer[512] = {0};
     SmolRTSP_Writer w = smolrtsp_string_writer(buffer);
@@ -31,23 +50,22 @@ TEST respond(void) {
     SmolRTSP_Context *ctx = SmolRTSP_Context_new(w, cseq);
 
     smolrtsp_header(
-        ctx, SMOLRTSP_HEADER_DATE,
-        CharSlice99_from_str("Thu, 05 Jun 1997 18:57:19 GMT"));
+        ctx, SMOLRTSP_HEADER_DATE, "%s, 05 Jun 1997 %d:%d:%d GMT", "Thu", 18,
+        57, 19);
     smolrtsp_header(
-        ctx, SMOLRTSP_HEADER_CONTENT_TYPE,
-        CharSlice99_from_str("application/octet-stream"));
+        ctx, SMOLRTSP_HEADER_CONTENT_TYPE, "application/octet-stream");
 
     smolrtsp_body(ctx, CharSlice99_from_str("1234567890"));
 
     const char *expected =
-        "RTSP/1.0 200 OK\r\n"
+        "RTSP/1.0 404 Not found\r\n"
         "CSeq: 456\r\n"
         "Content-Length: 10\r\n"
         "Date: Thu, 05 Jun 1997 18:57:19 GMT\r\n"
         "Content-Type: application/octet-stream\r\n"
         "\r\n1234567890";
 
-    ssize_t ret = smolrtsp_respond(ctx, SMOLRTSP_STATUS_OK, "OK");
+    ssize_t ret = smolrtsp_respond(ctx, SMOLRTSP_STATUS_NOT_FOUND, "Not found");
     ASSERT_EQ((ssize_t)strlen(expected), ret);
     ASSERT_STR_EQ(expected, buffer);
 
@@ -57,5 +75,6 @@ TEST respond(void) {
 
 SUITE(context) {
     RUN_TEST(context_creation);
+    RUN_TEST(respond_empty);
     RUN_TEST(respond);
 }
