@@ -54,7 +54,8 @@ SmolRTSP_Context_get_cseq(const SmolRTSP_Context *ctx) SMOLRTSP_PRIV_MUST_USE;
  *
  * @param[out] ctx The request context to modify.
  * @param[in] key The header key.
- * @param[in] fmt The `printf`-like format string.
+ * @param[in] fmt The `printf`-like format string (header value).
+ * @param[in] list The variadic function arguments.
  *
  * @pre `ctx != NULL`
  * @pre @p ctx must contain strictly less than #SMOLRTSP_HEADER_MAP_CAPACITY

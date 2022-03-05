@@ -17,23 +17,13 @@
 /**
  * A controller that handles incoming RTSP requests.
  *
- * This is the central high-level interface, which should be invoked only in
- * SmolRTSP integration code, such as
- * [OpenIPC/smolrtsp-libevent](https://github.com/OpenIPC/smolrtsp-libevent). A
- * simple usage example can be found
- * [here](https://github.com/OpenIPC/smolrtsp/blob/master/examples/server.c).
- *
  * All RTSP command handlers accept the following parameters:
- *  - `ctx` -- a request context to which you respond via #smolrtsp_respond. You
- * can set up response headers/body via #smolrtsp_header/#smolrtsp_body. Note
- * that you can also do it from within the `before` method, which is helpful for
- * setting up initial headers.
+ *  - `ctx` -- a request context used to respond to your RTSP client.
  *  - `req` -- a fully parsed request object.
  *
  * Command handlers return `ssize_t` -- the number of response bytes written
  * or a negative value on error (typically, it is a return value of
- * #smolrtsp_respond). Inside the `after` method, you will receive this
- * success/failure code and will be able to handle an error if it is <0.
+ * #smolrtsp_respond/#smolrtsp_respond_ok or similar).
  */
 #define SmolRTSP_Controller_IFACE                                              \
                                                                                \
@@ -110,3 +100,32 @@
  * usage.
  */
 interface99(SmolRTSP_Controller);
+
+/**
+ * Dispatches an incoming request to @p controller.
+ *
+ * The algorithm is as follows:
+ *  1. Setup a request context #SmolRTSP_Context.
+ *  2. Invoke the `before` method of @p controller.
+ *  3. Invoke a corresponding command handler of @p controller.
+ *  4. Invoke the `after` method of @p controller.
+ *  5. Drop the request context.
+ *
+ * Inside the `before` method, you should do some preliminary stuff like logging
+ * a request or setting up initial response headers via #smolrtsp_header.
+ *
+ * Inside command handlers, you should handle the request and respond to your
+ * client via #smolrtsp_respond/#smolrtsp_respond_ok or similar. See also
+ * #smolrtsp_header and #smolrtsp_body.
+ *
+ * Inside the `after` method, you should handle the return value of a command
+ * handler invoked by #smolrtsp_dispatch. If it is <0, it means that something
+ * bad happened so that the handler has not been able to respond properly.
+ *
+ * @pre `conn.self && conn.vptr`
+ * @pre `controller.self && controller.vptr`
+ * @pre `req != NULL`
+ */
+void smolrtsp_dispatch(
+    SmolRTSP_Writer conn, SmolRTSP_Controller controller,
+    const SmolRTSP_Request *restrict req);

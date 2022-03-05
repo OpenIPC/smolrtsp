@@ -85,6 +85,7 @@ set(SMOLRTSP_SOURCES
     src/rtp_transport.c
     src/nal_transport.c
     src/io_vec.c
+    src/controller.c
     src/context.c
     src/macros.h
 )

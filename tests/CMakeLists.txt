@@ -35,6 +35,7 @@ add_executable(
   util.c
   writer.c
   io_vec.c
+  controller.c
   context.c
   transport.c)
 
