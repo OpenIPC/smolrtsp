@@ -159,26 +159,24 @@ Functions</h2></td></tr>
 <a class="el" href="structSmolRTSP__HeaderMap.html">SmolRTSP_HeaderMap</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="header__map_8h.html#ab2ac497a17a9b6dc23bfff60fa2dccea">SmolRTSP_HeaderMap_empty</a> (void) SMOLRTSP_PRIV_MUST_USE</td></tr>
 <tr class="memdesc:ab2ac497a17a9b6dc23bfff60fa2dccea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an empty header map suitable for further parsing. <br /></td></tr>
 <tr class="separator:ab2ac497a17a9b6dc23bfff60fa2dccea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a55ffb9e6038193c559273451c8d0a9a5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="header__map_8h.html#a55ffb9e6038193c559273451c8d0a9a5">SmolRTSP_HeaderMap_find</a> (<a class="el" href="structSmolRTSP__HeaderMap.html">SmolRTSP_HeaderMap</a> self, CharSlice99 key, CharSlice99 *restrict value) SMOLRTSP_PRIV_MUST_USE</td></tr>
-<tr class="memdesc:a55ffb9e6038193c559273451c8d0a9a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds a value associated with <code>key</code> within <code>self</code>.  <a href="header__map_8h.html#a55ffb9e6038193c559273451c8d0a9a5">More...</a><br /></td></tr>
-<tr class="separator:a55ffb9e6038193c559273451c8d0a9a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac022c21e18dc69c1c28d89a82e5e8b0b"><td class="memItemLeft" align="right" valign="top"><a id="ac022c21e18dc69c1c28d89a82e5e8b0b"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="header__map_8h.html#ac022c21e18dc69c1c28d89a82e5e8b0b">SmolRTSP_HeaderMap_contains_key</a> (<a class="el" href="structSmolRTSP__HeaderMap.html">SmolRTSP_HeaderMap</a> self, CharSlice99 key) SMOLRTSP_PRIV_MUST_USE</td></tr>
-<tr class="memdesc:ac022c21e18dc69c1c28d89a82e5e8b0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether <code>key</code> is present in <code>self</code>. <br /></td></tr>
-<tr class="separator:ac022c21e18dc69c1c28d89a82e5e8b0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7850401cbecbb52c9f7caf43da3f341f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="header__map_8h.html#a7850401cbecbb52c9f7caf43da3f341f">SmolRTSP_HeaderMap_find</a> (const <a class="el" href="structSmolRTSP__HeaderMap.html">SmolRTSP_HeaderMap</a> *restrict self, CharSlice99 key, CharSlice99 *restrict value) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:a7850401cbecbb52c9f7caf43da3f341f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds a value associated with <code>key</code> within <code>self</code>.  <a href="header__map_8h.html#a7850401cbecbb52c9f7caf43da3f341f">More...</a><br /></td></tr>
+<tr class="separator:a7850401cbecbb52c9f7caf43da3f341f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e49c32470232b1fddf590fc7db5b483"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="header__map_8h.html#a0e49c32470232b1fddf590fc7db5b483">SmolRTSP_HeaderMap_contains_key</a> (const <a class="el" href="structSmolRTSP__HeaderMap.html">SmolRTSP_HeaderMap</a> *restrict self, CharSlice99 key) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:a0e49c32470232b1fddf590fc7db5b483"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether <code>key</code> is present in <code>self</code>.  <a href="header__map_8h.html#a0e49c32470232b1fddf590fc7db5b483">More...</a><br /></td></tr>
+<tr class="separator:a0e49c32470232b1fddf590fc7db5b483"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a81c386ff60caeb2cd873c70c9181e15d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="header__map_8h.html#a81c386ff60caeb2cd873c70c9181e15d">SmolRTSP_HeaderMap_append</a> (<a class="el" href="structSmolRTSP__HeaderMap.html">SmolRTSP_HeaderMap</a> *restrict self, <a class="el" href="structSmolRTSP__Header.html">SmolRTSP_Header</a> h)</td></tr>
 <tr class="memdesc:a81c386ff60caeb2cd873c70c9181e15d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Appends a new header to a header map.  <a href="header__map_8h.html#a81c386ff60caeb2cd873c70c9181e15d">More...</a><br /></td></tr>
 <tr class="separator:a81c386ff60caeb2cd873c70c9181e15d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a244edb277db8cc9e08bc86b1d00c6886"><td class="memItemLeft" align="right" valign="top">ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="header__map_8h.html#a244edb277db8cc9e08bc86b1d00c6886">SmolRTSP_HeaderMap_serialize</a> (<a class="el" href="structSmolRTSP__HeaderMap.html">SmolRTSP_HeaderMap</a> self, SmolRTSP_Writer w) SMOLRTSP_PRIV_MUST_USE</td></tr>
-<tr class="memdesc:a244edb277db8cc9e08bc86b1d00c6886"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serialises <code>self</code> into <code>w</code>.  <a href="header__map_8h.html#a244edb277db8cc9e08bc86b1d00c6886">More...</a><br /></td></tr>
-<tr class="separator:a244edb277db8cc9e08bc86b1d00c6886"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10e57f424903edff069ddd4f66829a04"><td class="memItemLeft" align="right" valign="top">ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="header__map_8h.html#a10e57f424903edff069ddd4f66829a04">SmolRTSP_HeaderMap_serialize</a> (const <a class="el" href="structSmolRTSP__HeaderMap.html">SmolRTSP_HeaderMap</a> *restrict self, SmolRTSP_Writer w) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:a10e57f424903edff069ddd4f66829a04"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serialises <code>self</code> into <code>w</code>.  <a href="header__map_8h.html#a10e57f424903edff069ddd4f66829a04">More...</a><br /></td></tr>
+<tr class="separator:a10e57f424903edff069ddd4f66829a04"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8abf8a95bcdf505c1a7acfa48c42e3e6"><td class="memItemLeft" align="right" valign="top">SmolRTSP_ParseResult&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="header__map_8h.html#a8abf8a95bcdf505c1a7acfa48c42e3e6">SmolRTSP_HeaderMap_parse</a> (<a class="el" href="structSmolRTSP__HeaderMap.html">SmolRTSP_HeaderMap</a> *restrict self, CharSlice99 input) SMOLRTSP_PRIV_MUST_USE</td></tr>
 <tr class="memdesc:a8abf8a95bcdf505c1a7acfa48c42e3e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses <code>data</code> to <code>self</code>.  <a href="header__map_8h.html#a8abf8a95bcdf505c1a7acfa48c42e3e6">More...</a><br /></td></tr>
 <tr class="separator:a8abf8a95bcdf505c1a7acfa48c42e3e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7b79528ea6d97f53e945d930a912f2e5"><td class="memItemLeft" align="right" valign="top"><a id="a7b79528ea6d97f53e945d930a912f2e5"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="header__map_8h.html#a7b79528ea6d97f53e945d930a912f2e5">SmolRTSP_HeaderMap_eq</a> (<a class="el" href="structSmolRTSP__HeaderMap.html">SmolRTSP_HeaderMap</a> lhs, <a class="el" href="structSmolRTSP__HeaderMap.html">SmolRTSP_HeaderMap</a> rhs) SMOLRTSP_PRIV_MUST_USE</td></tr>
-<tr class="memdesc:a7b79528ea6d97f53e945d930a912f2e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests <code>lhs</code> and <code>rhs</code> for equality. <br /></td></tr>
-<tr class="separator:a7b79528ea6d97f53e945d930a912f2e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed7a6b3f83a9dac0a1dcca5f2685f6ee"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="header__map_8h.html#aed7a6b3f83a9dac0a1dcca5f2685f6ee">SmolRTSP_HeaderMap_eq</a> (const <a class="el" href="structSmolRTSP__HeaderMap.html">SmolRTSP_HeaderMap</a> *restrict lhs, const <a class="el" href="structSmolRTSP__HeaderMap.html">SmolRTSP_HeaderMap</a> *restrict rhs) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:aed7a6b3f83a9dac0a1dcca5f2685f6ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests <code>lhs</code> and <code>rhs</code> for equality.  <a href="header__map_8h.html#aed7a6b3f83a9dac0a1dcca5f2685f6ee">More...</a><br /></td></tr>
+<tr class="separator:aed7a6b3f83a9dac0a1dcca5f2685f6ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a216ca54672bee759b6dbfaa7ae3fbe6a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="header__map_8h.html#a216ca54672bee759b6dbfaa7ae3fbe6a">SmolRTSP_HeaderMap_is_full</a> (const <a class="el" href="structSmolRTSP__HeaderMap.html">SmolRTSP_HeaderMap</a> *restrict self) SMOLRTSP_PRIV_MUST_USE</td></tr>
 <tr class="memdesc:a216ca54672bee759b6dbfaa7ae3fbe6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests whether <code>self</code> is full (no more space left for an additional header) or not.  <a href="header__map_8h.html#a216ca54672bee759b6dbfaa7ae3fbe6a">More...</a><br /></td></tr>
 <tr class="separator:a216ca54672bee759b6dbfaa7ae3fbe6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -251,8 +249,72 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="head
 
 </div>
 </div>
-<a id="a55ffb9e6038193c559273451c8d0a9a5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a55ffb9e6038193c559273451c8d0a9a5">&#9670;&nbsp;</a></span>SmolRTSP_HeaderMap_find()</h2>
+<a id="a0e49c32470232b1fddf590fc7db5b483"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e49c32470232b1fddf590fc7db5b483">&#9670;&nbsp;</a></span>SmolRTSP_HeaderMap_contains_key()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool SmolRTSP_HeaderMap_contains_key </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structSmolRTSP__HeaderMap.html">SmolRTSP_HeaderMap</a> *restrict&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">CharSlice99&#160;</td>
+          <td class="paramname"><em>key</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns whether <code>key</code> is present in <code>self</code>. </p>
+<dl class="section pre"><dt>Precondition</dt><dd><code>self != NULL</code> </dd></dl>
+
+</div>
+</div>
+<a id="aed7a6b3f83a9dac0a1dcca5f2685f6ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed7a6b3f83a9dac0a1dcca5f2685f6ee">&#9670;&nbsp;</a></span>SmolRTSP_HeaderMap_eq()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool SmolRTSP_HeaderMap_eq </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structSmolRTSP__HeaderMap.html">SmolRTSP_HeaderMap</a> *restrict&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structSmolRTSP__HeaderMap.html">SmolRTSP_HeaderMap</a> *restrict&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Tests <code>lhs</code> and <code>rhs</code> for equality. </p>
+<dl class="section pre"><dt>Precondition</dt><dd><code>lhs != NULL</code> </dd>
+<dd>
+<code>rhs != NULL</code> </dd></dl>
+
+</div>
+</div>
+<a id="a7850401cbecbb52c9f7caf43da3f341f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7850401cbecbb52c9f7caf43da3f341f">&#9670;&nbsp;</a></span>SmolRTSP_HeaderMap_find()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -260,7 +322,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="head
         <tr>
           <td class="memname">bool SmolRTSP_HeaderMap_find </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structSmolRTSP__HeaderMap.html">SmolRTSP_HeaderMap</a>&#160;</td>
+          <td class="paramtype">const <a class="el" href="structSmolRTSP__HeaderMap.html">SmolRTSP_HeaderMap</a> *restrict&#160;</td>
           <td class="paramname"><em>self</em>, </td>
         </tr>
         <tr>
@@ -289,10 +351,11 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="head
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">self</td><td>The header map to be searched for <code>key</code>. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">key</td><td>The key to be searched in <code>self</code>. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">value</td><td>The header value to be assigned, if found. If <code>NULL</code>, no assignment is performed. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">value</td><td>The header value to be assigned, if found. If <code>NULL</code>, no assignment is performed.</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section pre"><dt>Precondition</dt><dd><code>self != NULL</code> </dd></dl>
 
 </div>
 </div>
@@ -313,8 +376,8 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="head
 </div><div class="memdoc">
 
 <p>Tests whether <code>self</code> is full (no more space left for an additional header) or not. </p>
-<dl class="section pre"><dt>Precondition</dt><dd><code>self != NULL</code></dd></dl>
-<dl class="section return"><dt>Returns</dt><dd><code>true</code> if <code>self</code> is full, <code>false</code> otherwise </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> if <code>self</code> is full, <code>false</code> otherwise.</dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd><code>self != NULL</code> </dd></dl>
 
 </div>
 </div>
@@ -349,8 +412,8 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="head
 
 </div>
 </div>
-<a id="a244edb277db8cc9e08bc86b1d00c6886"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a244edb277db8cc9e08bc86b1d00c6886">&#9670;&nbsp;</a></span>SmolRTSP_HeaderMap_serialize()</h2>
+<a id="a10e57f424903edff069ddd4f66829a04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a10e57f424903edff069ddd4f66829a04">&#9670;&nbsp;</a></span>SmolRTSP_HeaderMap_serialize()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -358,7 +421,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="head
         <tr>
           <td class="memname">ssize_t SmolRTSP_HeaderMap_serialize </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structSmolRTSP__HeaderMap.html">SmolRTSP_HeaderMap</a>&#160;</td>
+          <td class="paramtype">const <a class="el" href="structSmolRTSP__HeaderMap.html">SmolRTSP_HeaderMap</a> *restrict&#160;</td>
           <td class="paramname"><em>self</em>, </td>
         </tr>
         <tr>
@@ -384,7 +447,9 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="head
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of bytes written or a negative value on error.</dd></dl>
-<dl class="section pre"><dt>Precondition</dt><dd><code>w.self &amp;&amp; w.vptr</code> </dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd><code>self != NULL</code> </dd>
+<dd>
+<code>w.self &amp;&amp; w.vptr</code> </dd></dl>
 
 </div>
 </div>

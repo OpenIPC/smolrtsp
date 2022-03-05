@@ -12,6 +12,6 @@ var method_8h =
     [ "SMOLRTSP_METHOD_SETUP", "method_8h.html#a5ac555e4374760a969723d0faa28cff8", null ],
     [ "SMOLRTSP_METHOD_TEARDOWN", "method_8h.html#ad68afefe3b624f7988f86729de6d7119", null ],
     [ "SmolRTSP_Method", "method_8h.html#af4433ba33577ce1e651139c24ce6cd03", null ],
-    [ "SmolRTSP_Method_eq", "method_8h.html#adaaeff66054fc283ed88f3048dd86f90", null ],
+    [ "SmolRTSP_Method_eq", "method_8h.html#ae646075a52c64883b877b65e19ca80d6", null ],
     [ "SmolRTSP_Method_parse", "method_8h.html#afc107439eb2f60a73e2fd5948e7dd76c", null ]
 ];

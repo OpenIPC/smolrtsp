@@ -142,14 +142,46 @@ Functions</h2></td></tr>
 <tr class="memitem:afe603077387a0e80f8fd8bf2ed1f20ec"><td class="memItemLeft" align="right" valign="top">SmolRTSP_ParseResult&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="reason__phrase_8h.html#afe603077387a0e80f8fd8bf2ed1f20ec">SmolRTSP_ReasonPhrase_parse</a> (<a class="el" href="reason__phrase_8h.html#ab1f37f7d86845a6832c4b77fea0b2794">SmolRTSP_ReasonPhrase</a> *restrict self, CharSlice99 data) SMOLRTSP_PRIV_MUST_USE</td></tr>
 <tr class="memdesc:afe603077387a0e80f8fd8bf2ed1f20ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses <code>data</code> to <code>self</code>.  <a href="reason__phrase_8h.html#afe603077387a0e80f8fd8bf2ed1f20ec">More...</a><br /></td></tr>
 <tr class="separator:afe603077387a0e80f8fd8bf2ed1f20ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac94e0d325c735a545c891d66d708e4f2"><td class="memItemLeft" align="right" valign="top"><a id="ac94e0d325c735a545c891d66d708e4f2"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="reason__phrase_8h.html#ac94e0d325c735a545c891d66d708e4f2">SmolRTSP_ReasonPhrase_eq</a> (<a class="el" href="reason__phrase_8h.html#ab1f37f7d86845a6832c4b77fea0b2794">SmolRTSP_ReasonPhrase</a> lhs, <a class="el" href="reason__phrase_8h.html#ab1f37f7d86845a6832c4b77fea0b2794">SmolRTSP_ReasonPhrase</a> rhs) SMOLRTSP_PRIV_MUST_USE</td></tr>
-<tr class="memdesc:ac94e0d325c735a545c891d66d708e4f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests <code>lhs</code> and <code>rhs</code> for equality. <br /></td></tr>
-<tr class="separator:ac94e0d325c735a545c891d66d708e4f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac37e33d4a3cea2cd7fb87c08871a5848"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="reason__phrase_8h.html#ac37e33d4a3cea2cd7fb87c08871a5848">SmolRTSP_ReasonPhrase_eq</a> (const <a class="el" href="reason__phrase_8h.html#ab1f37f7d86845a6832c4b77fea0b2794">SmolRTSP_ReasonPhrase</a> *restrict lhs, const <a class="el" href="reason__phrase_8h.html#ab1f37f7d86845a6832c4b77fea0b2794">SmolRTSP_ReasonPhrase</a> *restrict rhs) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:ac37e33d4a3cea2cd7fb87c08871a5848"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests <code>lhs</code> and <code>rhs</code> for equality.  <a href="reason__phrase_8h.html#ac37e33d4a3cea2cd7fb87c08871a5848">More...</a><br /></td></tr>
+<tr class="separator:ac37e33d4a3cea2cd7fb87c08871a5848"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>An RTSP reason phrase. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
+<a id="ac37e33d4a3cea2cd7fb87c08871a5848"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac37e33d4a3cea2cd7fb87c08871a5848">&#9670;&nbsp;</a></span>SmolRTSP_ReasonPhrase_eq()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool SmolRTSP_ReasonPhrase_eq </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="reason__phrase_8h.html#ab1f37f7d86845a6832c4b77fea0b2794">SmolRTSP_ReasonPhrase</a> *restrict&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="reason__phrase_8h.html#ab1f37f7d86845a6832c4b77fea0b2794">SmolRTSP_ReasonPhrase</a> *restrict&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Tests <code>lhs</code> and <code>rhs</code> for equality. </p>
+<dl class="section pre"><dt>Precondition</dt><dd><code>lhs != NULL</code> </dd>
+<dd>
+<code>rhs != NULL</code> </dd></dl>
+
+</div>
+</div>
 <a id="afe603077387a0e80f8fd8bf2ed1f20ec"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#afe603077387a0e80f8fd8bf2ed1f20ec">&#9670;&nbsp;</a></span>SmolRTSP_ReasonPhrase_parse()</h2>
 

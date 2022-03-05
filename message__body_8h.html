@@ -149,14 +149,46 @@ Functions</h2></td></tr>
 <a class="el" href="message__body_8h.html#a7cf19e53447cd824890913d713bd5122">SmolRTSP_MessageBody</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="message__body_8h.html#ae9ce124724f7e6be7b06fee62a40a23d">SmolRTSP_MessageBody_empty</a> (void)</td></tr>
 <tr class="memdesc:ae9ce124724f7e6be7b06fee62a40a23d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an empty message body. <br /></td></tr>
 <tr class="separator:ae9ce124724f7e6be7b06fee62a40a23d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a43820bfa5aed9a927f084214161d43a0"><td class="memItemLeft" align="right" valign="top"><a id="a43820bfa5aed9a927f084214161d43a0"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="message__body_8h.html#a43820bfa5aed9a927f084214161d43a0">SmolRTSP_MessageBody_eq</a> (<a class="el" href="message__body_8h.html#a7cf19e53447cd824890913d713bd5122">SmolRTSP_MessageBody</a> lhs, <a class="el" href="message__body_8h.html#a7cf19e53447cd824890913d713bd5122">SmolRTSP_MessageBody</a> rhs) SMOLRTSP_PRIV_MUST_USE</td></tr>
-<tr class="memdesc:a43820bfa5aed9a927f084214161d43a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests <code>lhs</code> and <code>rhs</code> for equality. <br /></td></tr>
-<tr class="separator:a43820bfa5aed9a927f084214161d43a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf394daa42cea4b603389db94b5c9d67"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="message__body_8h.html#acf394daa42cea4b603389db94b5c9d67">SmolRTSP_MessageBody_eq</a> (const <a class="el" href="message__body_8h.html#a7cf19e53447cd824890913d713bd5122">SmolRTSP_MessageBody</a> *restrict lhs, const <a class="el" href="message__body_8h.html#a7cf19e53447cd824890913d713bd5122">SmolRTSP_MessageBody</a> *restrict rhs) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:acf394daa42cea4b603389db94b5c9d67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests <code>lhs</code> and <code>rhs</code> for equality.  <a href="message__body_8h.html#acf394daa42cea4b603389db94b5c9d67">More...</a><br /></td></tr>
+<tr class="separator:acf394daa42cea4b603389db94b5c9d67"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>An RTSP message body. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
+<a id="acf394daa42cea4b603389db94b5c9d67"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf394daa42cea4b603389db94b5c9d67">&#9670;&nbsp;</a></span>SmolRTSP_MessageBody_eq()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool SmolRTSP_MessageBody_eq </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="message__body_8h.html#a7cf19e53447cd824890913d713bd5122">SmolRTSP_MessageBody</a> *restrict&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="message__body_8h.html#a7cf19e53447cd824890913d713bd5122">SmolRTSP_MessageBody</a> *restrict&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Tests <code>lhs</code> and <code>rhs</code> for equality. </p>
+<dl class="section pre"><dt>Precondition</dt><dd><code>lhs != NULL</code> </dd>
+<dd>
+<code>rhs != NULL</code> </dd></dl>
+
+</div>
+</div>
 <a id="abdff7d56cf8c81fa2fd1d49d19b249b3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abdff7d56cf8c81fa2fd1d49d19b249b3">&#9670;&nbsp;</a></span>SmolRTSP_MessageBody_parse()</h2>
 

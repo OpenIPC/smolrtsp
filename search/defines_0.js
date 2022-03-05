@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['smolrtsp_5fcontent_5fsdp_586',['SMOLRTSP_CONTENT_SDP',['../util_8h.html#adf8475137e4dc7f44c539687c4920ac8',1,'util.h']]],
   ['smolrtsp_5fcontroller_5fextends_587',['SmolRTSP_Controller_EXTENDS',['../controller_8h.html#af5dca43be11f9698aa758192e927280b',1,'controller.h']]],
   ['smolrtsp_5fcontroller_5fiface_588',['SmolRTSP_Controller_IFACE',['../controller_8h.html#a426d66ae9c95741c9ae8d35da94445cd',1,'controller.h']]],
   ['smolrtsp_5fcrlf_589',['SMOLRTSP_CRLF',['../util_8h.html#ac04f5517058459181f72077af54c38cd',1,'util.h']]],

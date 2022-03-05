@@ -143,14 +143,46 @@ Functions</h2></td></tr>
 <tr class="memitem:a633b24e5fee6a15b72c7abc36c856e61"><td class="memItemLeft" align="right" valign="top">SmolRTSP_ParseResult&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request__uri_8h.html#a633b24e5fee6a15b72c7abc36c856e61">SmolRTSP_RequestUri_parse</a> (<a class="el" href="request__uri_8h.html#a6ce240ff0d1c32a35a9153d2af2251bb">SmolRTSP_RequestUri</a> *restrict self, CharSlice99 input) SMOLRTSP_PRIV_MUST_USE</td></tr>
 <tr class="memdesc:a633b24e5fee6a15b72c7abc36c856e61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses <code>data</code> to <code>self</code>.  <a href="request__uri_8h.html#a633b24e5fee6a15b72c7abc36c856e61">More...</a><br /></td></tr>
 <tr class="separator:a633b24e5fee6a15b72c7abc36c856e61"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af176ccd34e39824210d0df35ba6245b3"><td class="memItemLeft" align="right" valign="top"><a id="af176ccd34e39824210d0df35ba6245b3"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request__uri_8h.html#af176ccd34e39824210d0df35ba6245b3">SmolRTSP_RequestUri_eq</a> (<a class="el" href="request__uri_8h.html#a6ce240ff0d1c32a35a9153d2af2251bb">SmolRTSP_RequestUri</a> lhs, <a class="el" href="request__uri_8h.html#a6ce240ff0d1c32a35a9153d2af2251bb">SmolRTSP_RequestUri</a> rhs) SMOLRTSP_PRIV_MUST_USE</td></tr>
-<tr class="memdesc:af176ccd34e39824210d0df35ba6245b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests <code>lhs</code> and <code>rhs</code> for equality. <br /></td></tr>
-<tr class="separator:af176ccd34e39824210d0df35ba6245b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab66832602bcebbefb1510d50c37af234"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="request__uri_8h.html#ab66832602bcebbefb1510d50c37af234">SmolRTSP_RequestUri_eq</a> (const <a class="el" href="request__uri_8h.html#a6ce240ff0d1c32a35a9153d2af2251bb">SmolRTSP_RequestUri</a> *restrict lhs, const <a class="el" href="request__uri_8h.html#a6ce240ff0d1c32a35a9153d2af2251bb">SmolRTSP_RequestUri</a> *restrict rhs) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:ab66832602bcebbefb1510d50c37af234"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests <code>lhs</code> and <code>rhs</code> for equality.  <a href="request__uri_8h.html#ab66832602bcebbefb1510d50c37af234">More...</a><br /></td></tr>
+<tr class="separator:ab66832602bcebbefb1510d50c37af234"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>An RTSP request URI. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
+<a id="ab66832602bcebbefb1510d50c37af234"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab66832602bcebbefb1510d50c37af234">&#9670;&nbsp;</a></span>SmolRTSP_RequestUri_eq()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool SmolRTSP_RequestUri_eq </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="request__uri_8h.html#a6ce240ff0d1c32a35a9153d2af2251bb">SmolRTSP_RequestUri</a> *restrict&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="request__uri_8h.html#a6ce240ff0d1c32a35a9153d2af2251bb">SmolRTSP_RequestUri</a> *restrict&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Tests <code>lhs</code> and <code>rhs</code> for equality. </p>
+<dl class="section pre"><dt>Precondition</dt><dd><code>lhs != NULL</code> </dd>
+<dd>
+<code>rhs != NULL</code> </dd></dl>
+
+</div>
+</div>
 <a id="a633b24e5fee6a15b72c7abc36c856e61"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a633b24e5fee6a15b72c7abc36c856e61">&#9670;&nbsp;</a></span>SmolRTSP_RequestUri_parse()</h2>
 

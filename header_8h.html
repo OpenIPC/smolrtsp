@@ -303,20 +303,52 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a454eb1e9ee93aea9e1bf3cad5a5e9e40"><td class="memItemLeft" align="right" valign="top">ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="header_8h.html#a454eb1e9ee93aea9e1bf3cad5a5e9e40">SmolRTSP_Header_serialize</a> (<a class="el" href="structSmolRTSP__Header.html">SmolRTSP_Header</a> self, SmolRTSP_Writer w) SMOLRTSP_PRIV_MUST_USE</td></tr>
-<tr class="memdesc:a454eb1e9ee93aea9e1bf3cad5a5e9e40"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serialises <code>self</code> into <code>w</code>.  <a href="header_8h.html#a454eb1e9ee93aea9e1bf3cad5a5e9e40">More...</a><br /></td></tr>
-<tr class="separator:a454eb1e9ee93aea9e1bf3cad5a5e9e40"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aded7b8296de9544d7223113e19329c9a"><td class="memItemLeft" align="right" valign="top">ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="header_8h.html#aded7b8296de9544d7223113e19329c9a">SmolRTSP_Header_serialize</a> (const <a class="el" href="structSmolRTSP__Header.html">SmolRTSP_Header</a> *restrict self, SmolRTSP_Writer w) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:aded7b8296de9544d7223113e19329c9a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serialises <code>self</code> into <code>w</code>.  <a href="header_8h.html#aded7b8296de9544d7223113e19329c9a">More...</a><br /></td></tr>
+<tr class="separator:aded7b8296de9544d7223113e19329c9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a35f400689278b63b62a5a5cd3710c5fb"><td class="memItemLeft" align="right" valign="top">SmolRTSP_ParseResult&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="header_8h.html#a35f400689278b63b62a5a5cd3710c5fb">SmolRTSP_Header_parse</a> (<a class="el" href="structSmolRTSP__Header.html">SmolRTSP_Header</a> *restrict self, CharSlice99 input) SMOLRTSP_PRIV_MUST_USE</td></tr>
 <tr class="memdesc:a35f400689278b63b62a5a5cd3710c5fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses <code>data</code> to <code>self</code>.  <a href="header_8h.html#a35f400689278b63b62a5a5cd3710c5fb">More...</a><br /></td></tr>
 <tr class="separator:a35f400689278b63b62a5a5cd3710c5fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a76e2fa0d8ac8c8ce1e6ad7d38d5fadee"><td class="memItemLeft" align="right" valign="top"><a id="a76e2fa0d8ac8c8ce1e6ad7d38d5fadee"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="header_8h.html#a76e2fa0d8ac8c8ce1e6ad7d38d5fadee">SmolRTSP_Header_eq</a> (<a class="el" href="structSmolRTSP__Header.html">SmolRTSP_Header</a> lhs, <a class="el" href="structSmolRTSP__Header.html">SmolRTSP_Header</a> rhs) SMOLRTSP_PRIV_MUST_USE</td></tr>
-<tr class="memdesc:a76e2fa0d8ac8c8ce1e6ad7d38d5fadee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests <code>lhs</code> and <code>rhs</code> for equality. <br /></td></tr>
-<tr class="separator:a76e2fa0d8ac8c8ce1e6ad7d38d5fadee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad30a3b22169851f3680d7a6cdedd1939"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="header_8h.html#ad30a3b22169851f3680d7a6cdedd1939">SmolRTSP_Header_eq</a> (const <a class="el" href="structSmolRTSP__Header.html">SmolRTSP_Header</a> *restrict lhs, const <a class="el" href="structSmolRTSP__Header.html">SmolRTSP_Header</a> *restrict rhs) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:ad30a3b22169851f3680d7a6cdedd1939"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests <code>lhs</code> and <code>rhs</code> for equality.  <a href="header_8h.html#ad30a3b22169851f3680d7a6cdedd1939">More...</a><br /></td></tr>
+<tr class="separator:ad30a3b22169851f3680d7a6cdedd1939"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>An RTSP header. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
+<a id="ad30a3b22169851f3680d7a6cdedd1939"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad30a3b22169851f3680d7a6cdedd1939">&#9670;&nbsp;</a></span>SmolRTSP_Header_eq()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool SmolRTSP_Header_eq </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structSmolRTSP__Header.html">SmolRTSP_Header</a> *restrict&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structSmolRTSP__Header.html">SmolRTSP_Header</a> *restrict&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Tests <code>lhs</code> and <code>rhs</code> for equality. </p>
+<dl class="section pre"><dt>Precondition</dt><dd><code>lhs != NULL</code> </dd>
+<dd>
+<code>rhs != NULL</code> </dd></dl>
+
+</div>
+</div>
 <a id="a35f400689278b63b62a5a5cd3710c5fb"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a35f400689278b63b62a5a5cd3710c5fb">&#9670;&nbsp;</a></span>SmolRTSP_Header_parse()</h2>
 
@@ -348,8 +380,8 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="head
 
 </div>
 </div>
-<a id="a454eb1e9ee93aea9e1bf3cad5a5e9e40"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a454eb1e9ee93aea9e1bf3cad5a5e9e40">&#9670;&nbsp;</a></span>SmolRTSP_Header_serialize()</h2>
+<a id="aded7b8296de9544d7223113e19329c9a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aded7b8296de9544d7223113e19329c9a">&#9670;&nbsp;</a></span>SmolRTSP_Header_serialize()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -357,7 +389,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="head
         <tr>
           <td class="memname">ssize_t SmolRTSP_Header_serialize </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structSmolRTSP__Header.html">SmolRTSP_Header</a>&#160;</td>
+          <td class="paramtype">const <a class="el" href="structSmolRTSP__Header.html">SmolRTSP_Header</a> *restrict&#160;</td>
           <td class="paramname"><em>self</em>, </td>
         </tr>
         <tr>
@@ -383,7 +415,9 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="head
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of bytes written or a negative value on error.</dd></dl>
-<dl class="section pre"><dt>Precondition</dt><dd><code>w.self &amp;&amp; w.vptr</code> </dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd><code>self != NULL</code> </dd>
+<dd>
+<code>w.self &amp;&amp; w.vptr</code> </dd></dl>
 
 </div>
 </div>

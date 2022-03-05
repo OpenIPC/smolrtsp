@@ -324,23 +324,55 @@ typedef uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:aaa2427a89df58604bf35ea04556ebda1"><td class="memItemLeft" align="right" valign="top">ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="status__code_8h.html#aaa2427a89df58604bf35ea04556ebda1">SmolRTSP_StatusCode_serialize</a> (<a class="el" href="status__code_8h.html#ac339032e6c3031ccc07cdd573bd8352a">SmolRTSP_StatusCode</a> self, SmolRTSP_Writer w) SMOLRTSP_PRIV_MUST_USE</td></tr>
-<tr class="memdesc:aaa2427a89df58604bf35ea04556ebda1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serialises <code>self</code> into <code>w</code>.  <a href="status__code_8h.html#aaa2427a89df58604bf35ea04556ebda1">More...</a><br /></td></tr>
-<tr class="separator:aaa2427a89df58604bf35ea04556ebda1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4aec41f41121d9267cfc50162cc5379"><td class="memItemLeft" align="right" valign="top">ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="status__code_8h.html#ac4aec41f41121d9267cfc50162cc5379">SmolRTSP_StatusCode_serialize</a> (const <a class="el" href="status__code_8h.html#ac339032e6c3031ccc07cdd573bd8352a">SmolRTSP_StatusCode</a> *restrict self, SmolRTSP_Writer w) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:ac4aec41f41121d9267cfc50162cc5379"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serialises <code>self</code> into <code>w</code>.  <a href="status__code_8h.html#ac4aec41f41121d9267cfc50162cc5379">More...</a><br /></td></tr>
+<tr class="separator:ac4aec41f41121d9267cfc50162cc5379"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa999834862fa6b879bd416af24a5dc69"><td class="memItemLeft" align="right" valign="top"><a id="aa999834862fa6b879bd416af24a5dc69"></a>
 SmolRTSP_ParseResult&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="status__code_8h.html#aa999834862fa6b879bd416af24a5dc69">SmolRTSP_StatusCode_parse</a> (<a class="el" href="status__code_8h.html#ac339032e6c3031ccc07cdd573bd8352a">SmolRTSP_StatusCode</a> *restrict self, CharSlice99 input) SMOLRTSP_PRIV_MUST_USE</td></tr>
 <tr class="memdesc:aa999834862fa6b879bd416af24a5dc69"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses <code>data</code> to <code>self</code>. <br /></td></tr>
 <tr class="separator:aa999834862fa6b879bd416af24a5dc69"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a30c40703d337fe30b2b17c64213221f7"><td class="memItemLeft" align="right" valign="top"><a id="a30c40703d337fe30b2b17c64213221f7"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="status__code_8h.html#a30c40703d337fe30b2b17c64213221f7">SmolRTSP_StatusCode_eq</a> (<a class="el" href="status__code_8h.html#ac339032e6c3031ccc07cdd573bd8352a">SmolRTSP_StatusCode</a> lhs, <a class="el" href="status__code_8h.html#ac339032e6c3031ccc07cdd573bd8352a">SmolRTSP_StatusCode</a> rhs) SMOLRTSP_PRIV_MUST_USE</td></tr>
-<tr class="memdesc:a30c40703d337fe30b2b17c64213221f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests <code>lhs</code> and <code>rhs</code> for equality. <br /></td></tr>
-<tr class="separator:a30c40703d337fe30b2b17c64213221f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08ce064c288d6f7c07539b1866868c97"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="status__code_8h.html#a08ce064c288d6f7c07539b1866868c97">SmolRTSP_StatusCode_eq</a> (const <a class="el" href="status__code_8h.html#ac339032e6c3031ccc07cdd573bd8352a">SmolRTSP_StatusCode</a> *restrict lhs, const <a class="el" href="status__code_8h.html#ac339032e6c3031ccc07cdd573bd8352a">SmolRTSP_StatusCode</a> *restrict rhs) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:a08ce064c288d6f7c07539b1866868c97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tests <code>lhs</code> and <code>rhs</code> for equality.  <a href="status__code_8h.html#a08ce064c288d6f7c07539b1866868c97">More...</a><br /></td></tr>
+<tr class="separator:a08ce064c288d6f7c07539b1866868c97"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>An RTSP status code. </p>
 </div><h2 class="groupheader">Function Documentation</h2>
-<a id="aaa2427a89df58604bf35ea04556ebda1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaa2427a89df58604bf35ea04556ebda1">&#9670;&nbsp;</a></span>SmolRTSP_StatusCode_serialize()</h2>
+<a id="a08ce064c288d6f7c07539b1866868c97"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a08ce064c288d6f7c07539b1866868c97">&#9670;&nbsp;</a></span>SmolRTSP_StatusCode_eq()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool SmolRTSP_StatusCode_eq </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="status__code_8h.html#ac339032e6c3031ccc07cdd573bd8352a">SmolRTSP_StatusCode</a> *restrict&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="status__code_8h.html#ac339032e6c3031ccc07cdd573bd8352a">SmolRTSP_StatusCode</a> *restrict&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Tests <code>lhs</code> and <code>rhs</code> for equality. </p>
+<dl class="section pre"><dt>Precondition</dt><dd><code>lhs != NULL</code> </dd>
+<dd>
+<code>rhs != NULL</code> </dd></dl>
+
+</div>
+</div>
+<a id="ac4aec41f41121d9267cfc50162cc5379"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac4aec41f41121d9267cfc50162cc5379">&#9670;&nbsp;</a></span>SmolRTSP_StatusCode_serialize()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -348,7 +380,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat
         <tr>
           <td class="memname">ssize_t SmolRTSP_StatusCode_serialize </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="status__code_8h.html#ac339032e6c3031ccc07cdd573bd8352a">SmolRTSP_StatusCode</a>&#160;</td>
+          <td class="paramtype">const <a class="el" href="status__code_8h.html#ac339032e6c3031ccc07cdd573bd8352a">SmolRTSP_StatusCode</a> *restrict&#160;</td>
           <td class="paramname"><em>self</em>, </td>
         </tr>
         <tr>
@@ -374,7 +406,9 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>The number of bytes written or a negative value on error.</dd></dl>
-<dl class="section pre"><dt>Precondition</dt><dd><code>w.self &amp;&amp; w.vptr</code> </dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd><code>self != NULL</code> </dd>
+<dd>
+<code>w.self &amp;&amp; w.vptr</code> </dd></dl>
 
 </div>
 </div>
