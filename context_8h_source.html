@@ -127,7 +127,9 @@ $(document).ready(function(){initNavTree('context_8h_source.html',''); initResiz
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <a class="code" href="context_8h.html#a74d8be6059af5516c37fcebc14a70622">SmolRTSP_Context</a> *ctx, <a class="code" href="status__code_8h.html#ac339032e6c3031ccc07cdd573bd8352a">SmolRTSP_StatusCode</a> code,</div>
 <div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    const <span class="keywordtype">char</span> *reason) SMOLRTSP_PRIV_MUST_USE;</div>
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;<a class="code" href="context_8h.html#abfefd29027708c217723768f1fbab7b4">declImplExtern99</a>(SmolRTSP_Droppable, <a class="code" href="context_8h.html#a74d8be6059af5516c37fcebc14a70622">SmolRTSP_Context</a>);</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;ssize_t <a class="code" href="context_8h.html#afeda949b122b1d1999ddd25ca489550b">smolrtsp_respond_ok</a>(<a class="code" href="context_8h.html#a74d8be6059af5516c37fcebc14a70622">SmolRTSP_Context</a> *ctx);</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160; </div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<a class="code" href="context_8h.html#abfefd29027708c217723768f1fbab7b4">declImplExtern99</a>(SmolRTSP_Droppable, <a class="code" href="context_8h.html#a74d8be6059af5516c37fcebc14a70622">SmolRTSP_Context</a>);</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="adroppable_8h_html"><div class="ttname"><a href="droppable_8h.html">droppable.h</a></div><div class="ttdoc">Droppable types support.</div></div>
@@ -144,6 +146,7 @@ $(document).ready(function(){initNavTree('context_8h_source.html',''); initResiz
 <div class="ttc" id="acontext_8h_html_a7f157d462417caa97f902ed5e5ddf455"><div class="ttname"><a href="context_8h.html#a7f157d462417caa97f902ed5e5ddf455">SmolRTSP_Context_new</a></div><div class="ttdeci">SmolRTSP_Context * SmolRTSP_Context_new(SmolRTSP_Writer w, uint32_t cseq) SMOLRTSP_PRIV_MUST_USE</div><div class="ttdoc">Creates a new SmolRTSP context.</div></div>
 <div class="ttc" id="acontext_8h_html_a0ace1ebfae736c3239f911934eaf7cc2"><div class="ttname"><a href="context_8h.html#a0ace1ebfae736c3239f911934eaf7cc2">smolrtsp_header</a></div><div class="ttdeci">void void smolrtsp_header(SmolRTSP_Context *ctx, CharSlice99 key, const char *restrict fmt,...) SMOLRTSP_PRIV_GCC_ATTR(format(printf</div><div class="ttdoc">The smolrtsp_vheader twin.</div></div>
 <div class="ttc" id="acontext_8h_html_acf926b0a4ae5415a115dfd063446c9a8"><div class="ttname"><a href="context_8h.html#acf926b0a4ae5415a115dfd063446c9a8">smolrtsp_respond</a></div><div class="ttdeci">ssize_t smolrtsp_respond(SmolRTSP_Context *ctx, SmolRTSP_StatusCode code, const char *reason) SMOLRTSP_PRIV_MUST_USE</div><div class="ttdoc">Writes an RTSP response to the underlying writer.</div></div>
+<div class="ttc" id="acontext_8h_html_afeda949b122b1d1999ddd25ca489550b"><div class="ttname"><a href="context_8h.html#afeda949b122b1d1999ddd25ca489550b">smolrtsp_respond_ok</a></div><div class="ttdeci">ssize_t smolrtsp_respond_ok(SmolRTSP_Context *ctx)</div><div class="ttdoc">A shortcut for smolrtsp_respond(ctx, SMOLRTSP_STATUS_OK, &quot;OK&quot;).</div></div>
 <div class="ttc" id="awriter_8h_html"><div class="ttname"><a href="writer_8h.html">writer.h</a></div><div class="ttdoc">The writer interface.</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
