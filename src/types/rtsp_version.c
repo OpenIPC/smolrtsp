@@ -9,11 +9,13 @@
 
 #include <alloca.h>
 
-ssize_t
-SmolRTSP_RtspVersion_serialize(SmolRTSP_RtspVersion self, SmolRTSP_Writer w) {
+ssize_t SmolRTSP_RtspVersion_serialize(
+    const SmolRTSP_RtspVersion *restrict self, SmolRTSP_Writer w) {
+    assert(self);
     assert(w.self && w.vptr);
 
-    return VCALL(w, writef, "RTSP/%" PRIu8 ".%" PRIu8, self.major, self.minor);
+    return VCALL(
+        w, writef, "RTSP/%" PRIu8 ".%" PRIu8, self->major, self->minor);
 }
 
 SmolRTSP_ParseResult SmolRTSP_RtspVersion_parse(

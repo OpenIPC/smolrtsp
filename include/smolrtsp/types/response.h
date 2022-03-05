@@ -58,10 +58,12 @@ SmolRTSP_Response SmolRTSP_Response_uninit(void);
  *
  * @return The number of bytes written or a negative value on error.
  *
+ * @pre `self != NULL`
  * @pre `w.self && w.vptr`
  */
-ssize_t SmolRTSP_Response_serialize(SmolRTSP_Response self, SmolRTSP_Writer w)
-    SMOLRTSP_PRIV_MUST_USE;
+ssize_t SmolRTSP_Response_serialize(
+    const SmolRTSP_Response *restrict self,
+    SmolRTSP_Writer w) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Parses @p data to @p self.

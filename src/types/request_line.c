@@ -7,17 +7,18 @@
 #include <assert.h>
 #include <string.h>
 
-ssize_t
-SmolRTSP_RequestLine_serialize(SmolRTSP_RequestLine self, SmolRTSP_Writer w) {
+ssize_t SmolRTSP_RequestLine_serialize(
+    const SmolRTSP_RequestLine *restrict self, SmolRTSP_Writer w) {
+    assert(self);
     assert(w.self && w.vptr);
 
     ssize_t result = 0;
 
-    CHK_WRITE_ERR(result, VCALL(w, write, self.method));
+    CHK_WRITE_ERR(result, VCALL(w, write, self->method));
     CHK_WRITE_ERR(result, VCALL(w, write, CharSlice99_from_str(" ")));
-    CHK_WRITE_ERR(result, VCALL(w, write, self.uri));
+    CHK_WRITE_ERR(result, VCALL(w, write, self->uri));
     CHK_WRITE_ERR(result, VCALL(w, write, CharSlice99_from_str(" ")));
-    CHK_WRITE_ERR(result, SmolRTSP_RtspVersion_serialize(self.version, w));
+    CHK_WRITE_ERR(result, SmolRTSP_RtspVersion_serialize(&self->version, w));
     CHK_WRITE_ERR(result, VCALL(w, write, SMOLRTSP_CRLF));
 
     return result;

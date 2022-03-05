@@ -6,14 +6,16 @@
 #include <assert.h>
 #include <string.h>
 
-ssize_t SmolRTSP_Header_serialize(SmolRTSP_Header self, SmolRTSP_Writer w) {
+ssize_t SmolRTSP_Header_serialize(
+    const SmolRTSP_Header *restrict self, SmolRTSP_Writer w) {
+    assert(self);
     assert(w.self && w.vptr);
 
     return SMOLRTSP_WRITE_SLICES(
         w, {
-               self.key,
+               self->key,
                CharSlice99_from_str(": "),
-               self.value,
+               self->value,
                SMOLRTSP_CRLF,
            });
 }

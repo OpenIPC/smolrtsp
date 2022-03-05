@@ -25,8 +25,10 @@ TEST parse_status_code(void) {
 TEST serialize_status_code(void) {
     char buffer[20] = {0};
 
-    const ssize_t ret = SmolRTSP_StatusCode_serialize(
-        SMOLRTSP_STATUS_NOT_FOUND, smolrtsp_string_writer(buffer));
+    const SmolRTSP_StatusCode status = SMOLRTSP_STATUS_NOT_FOUND;
+
+    const ssize_t ret =
+        SmolRTSP_StatusCode_serialize(&status, smolrtsp_string_writer(buffer));
 
     const char *expected = "404";
 

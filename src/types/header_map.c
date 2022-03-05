@@ -41,14 +41,15 @@ void SmolRTSP_HeaderMap_append(
     self->len++;
 }
 
-ssize_t
-SmolRTSP_HeaderMap_serialize(SmolRTSP_HeaderMap self, SmolRTSP_Writer w) {
+ssize_t SmolRTSP_HeaderMap_serialize(
+    const SmolRTSP_HeaderMap *restrict self, SmolRTSP_Writer w) {
+    assert(self);
     assert(w.self && w.vptr);
 
     ssize_t result = 0;
 
-    for (size_t i = 0; i < self.len; i++) {
-        CHK_WRITE_ERR(result, SmolRTSP_Header_serialize(self.headers[i], w));
+    for (size_t i = 0; i < self->len; i++) {
+        CHK_WRITE_ERR(result, SmolRTSP_Header_serialize(&self->headers[i], w));
     }
 
     CHK_WRITE_ERR(result, VCALL(w, write, SMOLRTSP_CRLF));

@@ -42,7 +42,7 @@ TEST serialize_header_map(void) {
     const SmolRTSP_HeaderMap map = HEADER_MAP;
 
     const ssize_t ret =
-        SmolRTSP_HeaderMap_serialize(map, smolrtsp_string_writer(buffer));
+        SmolRTSP_HeaderMap_serialize(&map, smolrtsp_string_writer(buffer));
     ASSERT_EQ((ssize_t)strlen(HEADER_MAP_STR), ret);
     ASSERT_STR_EQ(HEADER_MAP_STR, buffer);
 

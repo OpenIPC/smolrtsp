@@ -43,10 +43,12 @@ typedef struct {
  *
  * @return The number of bytes written or a negative value on error.
  *
+ * @pre `self != NULL`
  * @pre `w.self && w.vptr`
  */
 ssize_t SmolRTSP_ResponseLine_serialize(
-    SmolRTSP_ResponseLine self, SmolRTSP_Writer w) SMOLRTSP_PRIV_MUST_USE;
+    const SmolRTSP_ResponseLine *restrict self,
+    SmolRTSP_Writer w) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Parses @p data to @p self.

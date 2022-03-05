@@ -25,7 +25,7 @@ TEST serialize_rtsp_version(void) {
     char buffer[20] = {0};
 
     const ssize_t ret = SmolRTSP_RtspVersion_serialize(
-        (SmolRTSP_RtspVersion){1, 0}, smolrtsp_string_writer(buffer));
+        &(SmolRTSP_RtspVersion){1, 0}, smolrtsp_string_writer(buffer));
 
     const char *expected = "RTSP/1.0";
 

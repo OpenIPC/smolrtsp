@@ -36,7 +36,7 @@ TEST serialize_response_line(void) {
     };
 
     const ssize_t ret =
-        SmolRTSP_ResponseLine_serialize(line, smolrtsp_string_writer(buffer));
+        SmolRTSP_ResponseLine_serialize(&line, smolrtsp_string_writer(buffer));
 
     const char *expected = "RTSP/1.0 200 OK\r\n";
 

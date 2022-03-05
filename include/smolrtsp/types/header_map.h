@@ -93,10 +93,12 @@ void SmolRTSP_HeaderMap_append(
  *
  * @return The number of bytes written or a negative value on error.
  *
+ * @pre `self != NULL`
  * @pre `w.self && w.vptr`
  */
-ssize_t SmolRTSP_HeaderMap_serialize(SmolRTSP_HeaderMap self, SmolRTSP_Writer w)
-    SMOLRTSP_PRIV_MUST_USE;
+ssize_t SmolRTSP_HeaderMap_serialize(
+    const SmolRTSP_HeaderMap *restrict self,
+    SmolRTSP_Writer w) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Parses @p data to @p self.

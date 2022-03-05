@@ -15,7 +15,7 @@ TEST serialize_sdp_line(void) {
     };
 
     const ssize_t ret =
-        SmolRTSP_SdpLine_serialize(sdp, smolrtsp_string_writer(buffer));
+        SmolRTSP_SdpLine_serialize(&sdp, smolrtsp_string_writer(buffer));
 
     const char *expected = "a=abc\r\n";
 

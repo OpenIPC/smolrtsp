@@ -35,7 +35,7 @@ TEST serialize_request_line(void) {
     };
 
     const ssize_t ret =
-        SmolRTSP_RequestLine_serialize(line, smolrtsp_string_writer(buffer));
+        SmolRTSP_RequestLine_serialize(&line, smolrtsp_string_writer(buffer));
 
     const char *expected = "DESCRIBE http://example.com RTSP/1.0\r\n";
 

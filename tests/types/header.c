@@ -31,7 +31,7 @@ TEST serialize_header(void) {
     };
 
     const ssize_t ret =
-        SmolRTSP_Header_serialize(header, smolrtsp_string_writer(buffer));
+        SmolRTSP_Header_serialize(&header, smolrtsp_string_writer(buffer));
 
     const char *expected = "Content-Length: 123\r\n";
 

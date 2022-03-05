@@ -27,10 +27,12 @@ typedef uint16_t SmolRTSP_StatusCode;
  *
  * @return The number of bytes written or a negative value on error.
  *
+ * @pre `self != NULL`
  * @pre `w.self && w.vptr`
  */
 ssize_t SmolRTSP_StatusCode_serialize(
-    SmolRTSP_StatusCode self, SmolRTSP_Writer w) SMOLRTSP_PRIV_MUST_USE;
+    const SmolRTSP_StatusCode *restrict self,
+    SmolRTSP_Writer w) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Parses @p data to @p self.

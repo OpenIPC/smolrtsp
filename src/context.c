@@ -64,7 +64,7 @@ ssize_t smolrtsp_respond(
         .cseq = ctx->cseq,
     };
 
-    return SmolRTSP_Response_serialize(response, ctx->writer);
+    return SmolRTSP_Response_serialize(&response, ctx->writer);
 }
 
 void SmolRTSP_Context_drop(VSelf) {

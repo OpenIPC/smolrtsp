@@ -17,35 +17,37 @@ SmolRTSP_Request SmolRTSP_Request_uninit(void) {
     return self;
 }
 
-ssize_t SmolRTSP_Request_serialize(SmolRTSP_Request self, SmolRTSP_Writer w) {
+ssize_t SmolRTSP_Request_serialize(
+    const SmolRTSP_Request *restrict self, SmolRTSP_Writer w) {
+    assert(self);
     assert(w.self && w.vptr);
 
     ssize_t result = 0;
 
-    CHK_WRITE_ERR(result, SmolRTSP_RequestLine_serialize(self.start_line, w));
+    CHK_WRITE_ERR(result, SmolRTSP_RequestLine_serialize(&self->start_line, w));
 
     if (!SmolRTSP_HeaderMap_contains_key(
-            self.header_map, SMOLRTSP_HEADER_C_SEQ)) {
+            self->header_map, SMOLRTSP_HEADER_C_SEQ)) {
         const SmolRTSP_Header cseq = {
             SMOLRTSP_HEADER_C_SEQ,
-            CharSlice99_alloca_fmt("%" PRIu32, self.cseq),
+            CharSlice99_alloca_fmt("%" PRIu32, self->cseq),
         };
-        CHK_WRITE_ERR(result, SmolRTSP_Header_serialize(cseq, w));
+        CHK_WRITE_ERR(result, SmolRTSP_Header_serialize(&cseq, w));
     }
 
     if (!SmolRTSP_HeaderMap_contains_key(
-            self.header_map, SMOLRTSP_HEADER_CONTENT_LENGTH) &&
-        !CharSlice99_is_empty(self.body)) {
+            self->header_map, SMOLRTSP_HEADER_CONTENT_LENGTH) &&
+        !CharSlice99_is_empty(self->body)) {
         const SmolRTSP_Header content_length = {
             SMOLRTSP_HEADER_CONTENT_LENGTH,
-            CharSlice99_alloca_fmt("%zd", self.body.len),
+            CharSlice99_alloca_fmt("%zd", self->body.len),
         };
-        CHK_WRITE_ERR(result, SmolRTSP_Header_serialize(content_length, w));
+        CHK_WRITE_ERR(result, SmolRTSP_Header_serialize(&content_length, w));
     }
 
-    CHK_WRITE_ERR(result, SmolRTSP_HeaderMap_serialize(self.header_map, w));
-    if (!CharSlice99_is_empty(self.body)) {
-        CHK_WRITE_ERR(result, VCALL(w, write, self.body));
+    CHK_WRITE_ERR(result, SmolRTSP_HeaderMap_serialize(&self->header_map, w));
+    if (!CharSlice99_is_empty(self->body)) {
+        CHK_WRITE_ERR(result, VCALL(w, write, self->body));
     }
 
     return result;

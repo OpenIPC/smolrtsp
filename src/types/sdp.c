@@ -8,14 +8,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-ssize_t SmolRTSP_SdpLine_serialize(SmolRTSP_SdpLine self, SmolRTSP_Writer w) {
+ssize_t SmolRTSP_SdpLine_serialize(
+    const SmolRTSP_SdpLine *restrict self, SmolRTSP_Writer w) {
+    assert(self);
     assert(w.self && w.vptr);
 
     return SMOLRTSP_WRITE_SLICES(
         w, {
-               CharSlice99_new(&self.ty, 1),
+               CharSlice99_new((char *)&self->ty, 1),
                CharSlice99_from_str("="),
-               self.value,
+               self->value,
                SMOLRTSP_CRLF,
            });
 }
