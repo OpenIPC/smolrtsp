@@ -94,6 +94,11 @@ ssize_t smolrtsp_respond(
     return SmolRTSP_Response_serialize(&response, ctx->writer);
 }
 
+ssize_t smolrtsp_respond_ok(SmolRTSP_Context *ctx) {
+    assert(ctx);
+    return smolrtsp_respond(ctx, SMOLRTSP_STATUS_OK, "OK");
+}
+
 void SmolRTSP_Context_drop(VSelf) {
     VSELF(SmolRTSP_Context);
     assert(self);

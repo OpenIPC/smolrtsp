@@ -73,8 +73,28 @@ TEST respond(void) {
     PASS();
 }
 
+TEST respond_ok(void) {
+    char buffer[512] = {0};
+    SmolRTSP_Writer w = smolrtsp_string_writer(buffer);
+    const uint32_t cseq = 456;
+
+    SmolRTSP_Context *ctx = SmolRTSP_Context_new(w, cseq);
+
+    const char *expected =
+        "RTSP/1.0 200 OK\r\n"
+        "CSeq: 456\r\n\r\n";
+
+    ssize_t ret = smolrtsp_respond_ok(ctx);
+    ASSERT_EQ((ssize_t)strlen(expected), ret);
+    ASSERT_STR_EQ(expected, buffer);
+
+    VTABLE(SmolRTSP_Context, SmolRTSP_Droppable).drop(ctx);
+    PASS();
+}
+
 SUITE(context) {
     RUN_TEST(context_creation);
     RUN_TEST(respond_empty);
     RUN_TEST(respond);
+    RUN_TEST(respond_ok);
 }

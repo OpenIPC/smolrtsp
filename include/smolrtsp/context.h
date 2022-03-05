@@ -102,6 +102,11 @@ ssize_t smolrtsp_respond(
     const char *reason) SMOLRTSP_PRIV_MUST_USE;
 
 /**
+ * A shortcut for `smolrtsp_respond(ctx, SMOLRTSP_STATUS_OK, "OK")`.
+ */
+ssize_t smolrtsp_respond_ok(SmolRTSP_Context *ctx);
+
+/**
  * Implements #SmolRTSP_Droppable_IFACE for #SmolRTSP_Context.
  *
  * See [Interface99](https://github.com/Hirrolot/interface99) for the macro
