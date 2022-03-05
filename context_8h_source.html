@@ -113,23 +113,23 @@ $(document).ready(function(){initNavTree('context_8h_source.html',''); initResiz
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;uint32_t</div>
 <div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<a class="code" href="context_8h.html#a8b9071b6dca6cd1b70d700646c9ce879">SmolRTSP_Context_get_cseq</a>(<span class="keyword">const</span> <a class="code" href="context_8h.html#a74d8be6059af5516c37fcebc14a70622">SmolRTSP_Context</a> *ctx) SMOLRTSP_PRIV_MUST_USE;</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="keywordtype">void</span> <a class="code" href="context_8h.html#a65447fe300c46400a5f82214dbb219a3">smolrtsp_vheader</a>(</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <a class="code" href="context_8h.html#a74d8be6059af5516c37fcebc14a70622">SmolRTSP_Context</a> *ctx, CharSlice99 key, <span class="keyword">const</span> <span class="keywordtype">char</span> *restrict fmt,</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    va_list list) SMOLRTSP_PRIV_GCC_ATTR(format(printf, 3, 0));</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="keywordtype">void</span> <a class="code" href="context_8h.html#a0ace1ebfae736c3239f911934eaf7cc2">smolrtsp_header</a>(</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <a class="code" href="context_8h.html#a74d8be6059af5516c37fcebc14a70622">SmolRTSP_Context</a> *ctx, CharSlice99 key, <span class="keyword">const</span> <span class="keywordtype">char</span> *restrict fmt, ...)</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    SMOLRTSP_PRIV_GCC_ATTR(format(printf, 3, 4));</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="keywordtype">void</span> <a class="code" href="context_8h.html#a65b50758cacbd71d91b4ff3f070f3d93">smolrtsp_body</a>(<a class="code" href="context_8h.html#a74d8be6059af5516c37fcebc14a70622">SmolRTSP_Context</a> *ctx, <a class="code" href="message__body_8h.html#a7cf19e53447cd824890913d713bd5122">SmolRTSP_MessageBody</a> body);</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;ssize_t <a class="code" href="context_8h.html#acf926b0a4ae5415a115dfd063446c9a8">smolrtsp_respond</a>(</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <a class="code" href="context_8h.html#a74d8be6059af5516c37fcebc14a70622">SmolRTSP_Context</a> *ctx, <a class="code" href="status__code_8h.html#ac339032e6c3031ccc07cdd573bd8352a">SmolRTSP_StatusCode</a> code,</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    const <span class="keywordtype">char</span> *reason) SMOLRTSP_PRIV_MUST_USE;</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;ssize_t <a class="code" href="context_8h.html#afeda949b122b1d1999ddd25ca489550b">smolrtsp_respond_ok</a>(<a class="code" href="context_8h.html#a74d8be6059af5516c37fcebc14a70622">SmolRTSP_Context</a> *ctx);</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160; </div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<a class="code" href="context_8h.html#abfefd29027708c217723768f1fbab7b4">declImplExtern99</a>(SmolRTSP_Droppable, <a class="code" href="context_8h.html#a74d8be6059af5516c37fcebc14a70622">SmolRTSP_Context</a>);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="keywordtype">void</span> <a class="code" href="context_8h.html#a65447fe300c46400a5f82214dbb219a3">smolrtsp_vheader</a>(</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <a class="code" href="context_8h.html#a74d8be6059af5516c37fcebc14a70622">SmolRTSP_Context</a> *ctx, CharSlice99 key, <span class="keyword">const</span> <span class="keywordtype">char</span> *restrict fmt,</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    va_list list) SMOLRTSP_PRIV_GCC_ATTR(format(printf, 3, 0));</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="keywordtype">void</span> <a class="code" href="context_8h.html#a0ace1ebfae736c3239f911934eaf7cc2">smolrtsp_header</a>(</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <a class="code" href="context_8h.html#a74d8be6059af5516c37fcebc14a70622">SmolRTSP_Context</a> *ctx, CharSlice99 key, <span class="keyword">const</span> <span class="keywordtype">char</span> *restrict fmt, ...)</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    SMOLRTSP_PRIV_GCC_ATTR(format(printf, 3, 4));</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="keywordtype">void</span> <a class="code" href="context_8h.html#a65b50758cacbd71d91b4ff3f070f3d93">smolrtsp_body</a>(<a class="code" href="context_8h.html#a74d8be6059af5516c37fcebc14a70622">SmolRTSP_Context</a> *ctx, <a class="code" href="message__body_8h.html#a7cf19e53447cd824890913d713bd5122">SmolRTSP_MessageBody</a> body);</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160; </div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;ssize_t <a class="code" href="context_8h.html#acf926b0a4ae5415a115dfd063446c9a8">smolrtsp_respond</a>(</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <a class="code" href="context_8h.html#a74d8be6059af5516c37fcebc14a70622">SmolRTSP_Context</a> *ctx, <a class="code" href="status__code_8h.html#ac339032e6c3031ccc07cdd573bd8352a">SmolRTSP_StatusCode</a> code,</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    const <span class="keywordtype">char</span> *reason) SMOLRTSP_PRIV_MUST_USE;</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160; </div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;ssize_t <a class="code" href="context_8h.html#afeda949b122b1d1999ddd25ca489550b">smolrtsp_respond_ok</a>(<a class="code" href="context_8h.html#a74d8be6059af5516c37fcebc14a70622">SmolRTSP_Context</a> *ctx);</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160; </div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<a class="code" href="context_8h.html#abfefd29027708c217723768f1fbab7b4">declImplExtern99</a>(SmolRTSP_Droppable, <a class="code" href="context_8h.html#a74d8be6059af5516c37fcebc14a70622">SmolRTSP_Context</a>);</div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <div class="ttc" id="adroppable_8h_html"><div class="ttname"><a href="droppable_8h.html">droppable.h</a></div><div class="ttdoc">Droppable types support.</div></div>
