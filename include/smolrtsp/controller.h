@@ -105,22 +105,24 @@ interface99(SmolRTSP_Controller);
  * Dispatches an incoming request to @p controller.
  *
  * The algorithm is as follows:
- *  1. Setup a request context #SmolRTSP_Context.
- *  2. Invoke the `before` method of @p controller.
- *  3. Invoke a corresponding command handler of @p controller.
- *  4. Invoke the `after` method of @p controller.
+ *
+ *  1. Setup a request context #SmolRTSP_Context. Later you can use it to
+ * configure an RTSP response via #smolrtsp_header, #smolrtsp_body, and similar.
+ *  2. Invoke the `before` method of @p controller. Here you should do some
+ * preliminary stuff like logging a request or setting up initial response
+ * headers via #smolrtsp_header.
+ *  3. Invoke a corresponding command handler of @p controller. Here you should
+ * handle the request and respond to your client via
+ * #smolrtsp_respond/#smolrtsp_respond_ok or similar.
+ *  4. Invoke the `after` method of @p controller. Here you should handle the
+ * return value of a command handler invoked by #smolrtsp_dispatch. If it is <0,
+ * it means that something bad happened so that the handler has not been able to
+ * respond properly.
  *  5. Drop the request context.
  *
- * Inside the `before` method, you should do some preliminary stuff like logging
- * a request or setting up initial response headers via #smolrtsp_header.
- *
- * Inside command handlers, you should handle the request and respond to your
- * client via #smolrtsp_respond/#smolrtsp_respond_ok or similar. See also
- * #smolrtsp_header and #smolrtsp_body.
- *
- * Inside the `after` method, you should handle the return value of a command
- * handler invoked by #smolrtsp_dispatch. If it is <0, it means that something
- * bad happened so that the handler has not been able to respond properly.
+ * @param[out] conn The writer to send RTSP responses.
+ * @param[in] controller The controller to handle the incoming request @p req.
+ * @param[in] req The fully parsed RTSP request object.
  *
  * @pre `conn.self && conn.vptr`
  * @pre `controller.self && controller.vptr`
