@@ -54,9 +54,13 @@ SmolRTSP_ParseResult SmolRTSP_Header_parse(
 
 /**
  * Tests @p lhs and @p rhs for equality.
+ *
+ * @pre `lhs != NULL`
+ * @pre `rhs != NULL`
  */
-bool SmolRTSP_Header_eq(SmolRTSP_Header lhs, SmolRTSP_Header rhs)
-    SMOLRTSP_PRIV_MUST_USE;
+bool SmolRTSP_Header_eq(
+    const SmolRTSP_Header *restrict lhs,
+    const SmolRTSP_Header *restrict rhs) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * `Accept`.

@@ -34,7 +34,7 @@
             of(SmolRTSP_ParseResult_Success, status) {                         \
                 ASSERT(SmolRTSP_ParseStatus_is_complete(*status));             \
                 /* ASSERT_EQ(input.len, status->offset); */                    \
-                ASSERT(T##_eq(result, expected));                              \
+                ASSERT(T##_eq(&result, &expected));                            \
             }                                                                  \
             of(SmolRTSP_ParseResult_Failure, error) {                          \
                 SmolRTSP_ParseError_print(                                     \

@@ -38,6 +38,11 @@ SmolRTSP_ParseResult SmolRTSP_StatusCode_parse(
     return SmolRTSP_ParseResult_complete(input.ptr - backup.ptr);
 }
 
-bool SmolRTSP_StatusCode_eq(SmolRTSP_StatusCode lhs, SmolRTSP_StatusCode rhs) {
-    return lhs == rhs;
+bool SmolRTSP_StatusCode_eq(
+    const SmolRTSP_StatusCode *restrict lhs,
+    const SmolRTSP_StatusCode *restrict rhs) {
+    assert(lhs);
+    assert(rhs);
+
+    return *lhs == *rhs;
 }

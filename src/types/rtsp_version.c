@@ -53,6 +53,10 @@ SmolRTSP_ParseResult SmolRTSP_RtspVersion_parse(
 }
 
 bool SmolRTSP_RtspVersion_eq(
-    SmolRTSP_RtspVersion lhs, SmolRTSP_RtspVersion rhs) {
-    return lhs.major == rhs.major && lhs.minor == rhs.minor;
+    const SmolRTSP_RtspVersion *restrict lhs,
+    const SmolRTSP_RtspVersion *restrict rhs) {
+    assert(lhs);
+    assert(rhs);
+
+    return lhs->major == rhs->major && lhs->minor == rhs->minor;
 }

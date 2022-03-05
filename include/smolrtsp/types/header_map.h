@@ -109,9 +109,13 @@ SmolRTSP_ParseResult SmolRTSP_HeaderMap_parse(
 
 /**
  * Tests @p lhs and @p rhs for equality.
+ *
+ * @pre `lhs != NULL`
+ * @pre `rhs != NULL`
  */
-bool SmolRTSP_HeaderMap_eq(SmolRTSP_HeaderMap lhs, SmolRTSP_HeaderMap rhs)
-    SMOLRTSP_PRIV_MUST_USE;
+bool SmolRTSP_HeaderMap_eq(
+    const SmolRTSP_HeaderMap *restrict lhs,
+    const SmolRTSP_HeaderMap *restrict rhs) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Tests whether @p self is full (no more space left for an additional header)

@@ -20,6 +20,10 @@ SmolRTSP_Method_parse(SmolRTSP_Method *restrict self, CharSlice99 input) {
     return SmolRTSP_ParseResult_complete(input.ptr - backup.ptr);
 }
 
-bool SmolRTSP_Method_eq(SmolRTSP_Method lhs, SmolRTSP_Method rhs) {
-    return CharSlice99_primitive_eq(lhs, rhs);
+bool SmolRTSP_Method_eq(
+    const SmolRTSP_Method *restrict lhs, const SmolRTSP_Method *restrict rhs) {
+    assert(lhs);
+    assert(rhs);
+
+    return CharSlice99_primitive_eq(*lhs, *rhs);
 }

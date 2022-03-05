@@ -45,7 +45,11 @@ SmolRTSP_Header_parse(SmolRTSP_Header *restrict self, CharSlice99 input) {
     return SmolRTSP_ParseResult_complete(input.ptr - backup.ptr);
 }
 
-bool SmolRTSP_Header_eq(SmolRTSP_Header lhs, SmolRTSP_Header rhs) {
-    return CharSlice99_primitive_eq(lhs.key, rhs.key) &&
-           CharSlice99_primitive_eq(lhs.value, rhs.value);
+bool SmolRTSP_Header_eq(
+    const SmolRTSP_Header *restrict lhs, const SmolRTSP_Header *restrict rhs) {
+    assert(lhs);
+    assert(rhs);
+
+    return CharSlice99_primitive_eq(lhs->key, rhs->key) &&
+           CharSlice99_primitive_eq(lhs->value, rhs->value);
 }

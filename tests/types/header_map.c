@@ -70,13 +70,13 @@ TEST contains_key(void) {
 }
 
 TEST append(void) {
-    SmolRTSP_HeaderMap map = SmolRTSP_HeaderMap_empty();
+    SmolRTSP_HeaderMap map = SmolRTSP_HeaderMap_empty(), expected = HEADER_MAP;
 
     for (size_t i = 0; i < HEADER_MAP.len; i++) {
         SmolRTSP_HeaderMap_append(&map, HEADER_MAP.headers[i]);
     }
 
-    ASSERT(SmolRTSP_HeaderMap_eq(map, HEADER_MAP));
+    ASSERT(SmolRTSP_HeaderMap_eq(&map, &expected));
     PASS();
 }
 

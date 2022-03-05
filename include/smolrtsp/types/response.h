@@ -73,6 +73,10 @@ SmolRTSP_ParseResult SmolRTSP_Response_parse(
 
 /**
  * Tests @p lhs and @p rhs for equality.
+ *
+ * @pre `lhs != NULL`
+ * @pre `rhs != NULL`
  */
-bool SmolRTSP_Response_eq(SmolRTSP_Response lhs, SmolRTSP_Response rhs)
-    SMOLRTSP_PRIV_MUST_USE;
+bool SmolRTSP_Response_eq(
+    const SmolRTSP_Response *restrict lhs,
+    const SmolRTSP_Response *restrict rhs) SMOLRTSP_PRIV_MUST_USE;

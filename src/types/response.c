@@ -94,8 +94,14 @@ SmolRTSP_Response_parse(SmolRTSP_Response *restrict self, CharSlice99 input) {
     return SmolRTSP_ParseResult_complete(input.ptr - backup.ptr);
 }
 
-bool SmolRTSP_Response_eq(SmolRTSP_Response lhs, SmolRTSP_Response rhs) {
-    return SmolRTSP_ResponseLine_eq(lhs.start_line, rhs.start_line) &&
-           SmolRTSP_HeaderMap_eq(lhs.header_map, rhs.header_map) &&
-           CharSlice99_primitive_eq(lhs.body, rhs.body) && lhs.cseq == rhs.cseq;
+bool SmolRTSP_Response_eq(
+    const SmolRTSP_Response *restrict lhs,
+    const SmolRTSP_Response *restrict rhs) {
+    assert(lhs);
+    assert(rhs);
+
+    return SmolRTSP_ResponseLine_eq(&lhs->start_line, &rhs->start_line) &&
+           SmolRTSP_HeaderMap_eq(&lhs->header_map, &rhs->header_map) &&
+           SmolRTSP_MessageBody_eq(&lhs->body, &rhs->body) &&
+           lhs->cseq == rhs->cseq;
 }

@@ -84,15 +84,20 @@ SmolRTSP_HeaderMap_parse(SmolRTSP_HeaderMap *restrict self, CharSlice99 input) {
     }
 }
 
-bool SmolRTSP_HeaderMap_eq(SmolRTSP_HeaderMap lhs, SmolRTSP_HeaderMap rhs) {
-    if (lhs.len != rhs.len) {
+bool SmolRTSP_HeaderMap_eq(
+    const SmolRTSP_HeaderMap *restrict lhs,
+    const SmolRTSP_HeaderMap *restrict rhs) {
+    assert(lhs);
+    assert(rhs);
+
+    if (lhs->len != rhs->len) {
         return false;
     }
 
-    const size_t len = lhs.len;
+    const size_t len = lhs->len;
 
     for (size_t i = 0; i < len; i++) {
-        if (!SmolRTSP_Header_eq(lhs.headers[i], rhs.headers[i])) {
+        if (!SmolRTSP_Header_eq(&lhs->headers[i], &rhs->headers[i])) {
             return false;
         }
     }

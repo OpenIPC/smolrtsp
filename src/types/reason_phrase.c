@@ -21,6 +21,10 @@ SmolRTSP_ParseResult SmolRTSP_ReasonPhrase_parse(
 }
 
 bool SmolRTSP_ReasonPhrase_eq(
-    SmolRTSP_ReasonPhrase lhs, SmolRTSP_ReasonPhrase rhs) {
-    return CharSlice99_primitive_eq(lhs, rhs);
+    const SmolRTSP_ReasonPhrase *restrict lhs,
+    const SmolRTSP_ReasonPhrase *restrict rhs) {
+    assert(lhs);
+    assert(rhs);
+
+    return CharSlice99_primitive_eq(*lhs, *rhs);
 }

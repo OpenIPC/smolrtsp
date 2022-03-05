@@ -27,9 +27,13 @@ SmolRTSP_ParseResult SmolRTSP_Method_parse(
 
 /**
  * Tests @p lhs and @p rhs for equality.
+ *
+ * @pre `lhs != NULL`
+ * @pre `rhs != NULL`
  */
-bool SmolRTSP_Method_eq(SmolRTSP_Method lhs, SmolRTSP_Method rhs)
-    SMOLRTSP_PRIV_MUST_USE;
+bool SmolRTSP_Method_eq(
+    const SmolRTSP_Method *restrict lhs,
+    const SmolRTSP_Method *restrict rhs) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * `OPTIONS`.

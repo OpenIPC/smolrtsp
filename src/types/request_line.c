@@ -38,8 +38,12 @@ SmolRTSP_ParseResult SmolRTSP_RequestLine_parse(
 }
 
 bool SmolRTSP_RequestLine_eq(
-    SmolRTSP_RequestLine lhs, SmolRTSP_RequestLine rhs) {
-    return CharSlice99_primitive_eq(lhs.method, rhs.method) &&
-           CharSlice99_primitive_eq(lhs.uri, rhs.uri) &&
-           SmolRTSP_RtspVersion_eq(lhs.version, rhs.version);
+    const SmolRTSP_RequestLine *restrict lhs,
+    const SmolRTSP_RequestLine *restrict rhs) {
+    assert(lhs);
+    assert(rhs);
+
+    return SmolRTSP_Method_eq(&lhs->method, &rhs->method) &&
+           SmolRTSP_RequestUri_eq(&lhs->uri, &rhs->uri) &&
+           SmolRTSP_RtspVersion_eq(&lhs->version, &rhs->version);
 }

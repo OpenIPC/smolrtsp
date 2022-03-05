@@ -37,8 +37,12 @@ SmolRTSP_ParseResult SmolRTSP_ResponseLine_parse(
 }
 
 bool SmolRTSP_ResponseLine_eq(
-    SmolRTSP_ResponseLine lhs, SmolRTSP_ResponseLine rhs) {
-    return SmolRTSP_RtspVersion_eq(lhs.version, rhs.version) &&
-           lhs.code == rhs.code &&
-           CharSlice99_primitive_eq(lhs.reason, rhs.reason);
+    const SmolRTSP_ResponseLine *restrict lhs,
+    const SmolRTSP_ResponseLine *restrict rhs) {
+    assert(lhs);
+    assert(rhs);
+
+    return SmolRTSP_RtspVersion_eq(&lhs->version, &rhs->version) &&
+           lhs->code == rhs->code &&
+           SmolRTSP_ReasonPhrase_eq(&lhs->reason, &rhs->reason);
 }

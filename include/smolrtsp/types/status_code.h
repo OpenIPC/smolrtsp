@@ -41,9 +41,13 @@ SmolRTSP_ParseResult SmolRTSP_StatusCode_parse(
 
 /**
  * Tests @p lhs and @p rhs for equality.
+ *
+ * @pre `lhs != NULL`
+ * @pre `rhs != NULL`
  */
-bool SmolRTSP_StatusCode_eq(SmolRTSP_StatusCode lhs, SmolRTSP_StatusCode rhs)
-    SMOLRTSP_PRIV_MUST_USE;
+bool SmolRTSP_StatusCode_eq(
+    const SmolRTSP_StatusCode *restrict lhs,
+    const SmolRTSP_StatusCode *restrict rhs) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * `Continue`.

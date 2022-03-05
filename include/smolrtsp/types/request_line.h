@@ -59,6 +59,10 @@ SmolRTSP_ParseResult SmolRTSP_RequestLine_parse(
 
 /**
  * Tests @p lhs and @p rhs for equality.
+ *
+ * @pre `lhs != NULL`
+ * @pre `rhs != NULL`
  */
-bool SmolRTSP_RequestLine_eq(SmolRTSP_RequestLine lhs, SmolRTSP_RequestLine rhs)
-    SMOLRTSP_PRIV_MUST_USE;
+bool SmolRTSP_RequestLine_eq(
+    const SmolRTSP_RequestLine *restrict lhs,
+    const SmolRTSP_RequestLine *restrict rhs) SMOLRTSP_PRIV_MUST_USE;

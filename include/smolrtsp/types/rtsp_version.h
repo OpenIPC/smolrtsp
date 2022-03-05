@@ -53,6 +53,10 @@ SmolRTSP_ParseResult SmolRTSP_RtspVersion_parse(
 
 /**
  * Tests @p lhs and @p rhs for equality.
+ *
+ * @pre `lhs != NULL`
+ * @pre `rhs != NULL`
  */
-bool SmolRTSP_RtspVersion_eq(SmolRTSP_RtspVersion lhs, SmolRTSP_RtspVersion rhs)
-    SMOLRTSP_PRIV_MUST_USE;
+bool SmolRTSP_RtspVersion_eq(
+    const SmolRTSP_RtspVersion *restrict lhs,
+    const SmolRTSP_RtspVersion *restrict rhs) SMOLRTSP_PRIV_MUST_USE;

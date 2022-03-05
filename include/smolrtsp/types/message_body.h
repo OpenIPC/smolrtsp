@@ -34,6 +34,10 @@ SmolRTSP_MessageBody SmolRTSP_MessageBody_empty(void);
 
 /**
  * Tests @p lhs and @p rhs for equality.
+ *
+ * @pre `lhs != NULL`
+ * @pre `rhs != NULL`
  */
-bool SmolRTSP_MessageBody_eq(SmolRTSP_MessageBody lhs, SmolRTSP_MessageBody rhs)
-    SMOLRTSP_PRIV_MUST_USE;
+bool SmolRTSP_MessageBody_eq(
+    const SmolRTSP_MessageBody *restrict lhs,
+    const SmolRTSP_MessageBody *restrict rhs) SMOLRTSP_PRIV_MUST_USE;

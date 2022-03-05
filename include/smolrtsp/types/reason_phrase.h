@@ -28,7 +28,10 @@ SmolRTSP_ParseResult SmolRTSP_ReasonPhrase_parse(
 
 /**
  * Tests @p lhs and @p rhs for equality.
+ *
+ * @pre `lhs != NULL`
+ * @pre `rhs != NULL`
  */
 bool SmolRTSP_ReasonPhrase_eq(
-    SmolRTSP_ReasonPhrase lhs,
-    SmolRTSP_ReasonPhrase rhs) SMOLRTSP_PRIV_MUST_USE;
+    const SmolRTSP_ReasonPhrase *restrict lhs,
+    const SmolRTSP_ReasonPhrase *restrict rhs) SMOLRTSP_PRIV_MUST_USE;

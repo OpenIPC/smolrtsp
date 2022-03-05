@@ -29,6 +29,10 @@ SmolRTSP_MessageBody SmolRTSP_MessageBody_empty(void) {
 }
 
 bool SmolRTSP_MessageBody_eq(
-    SmolRTSP_MessageBody lhs, SmolRTSP_MessageBody rhs) {
-    return CharSlice99_primitive_eq(lhs, rhs);
+    const SmolRTSP_MessageBody *restrict lhs,
+    const SmolRTSP_MessageBody *restrict rhs) {
+    assert(lhs);
+    assert(rhs);
+
+    return CharSlice99_primitive_eq(*lhs, *rhs);
 }
