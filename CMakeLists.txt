@@ -55,6 +55,7 @@ set(SMOLRTSP_SOURCES
     include/smolrtsp/controller.h
     include/smolrtsp/io_vec.h
     include/smolrtsp/context.h
+    include/smolrtsp/ip_addr.h
     src/types/error.c
     src/types/header_map.c
     src/types/header.c
@@ -87,6 +88,7 @@ set(SMOLRTSP_SOURCES
     src/io_vec.c
     src/controller.c
     src/context.c
+    src/ip_addr.c
     src/macros.h
 )
 
@@ -103,7 +105,7 @@ elseif(CMAKE_C_COMPILER_ID STREQUAL "GNU")
     -Wno-misleading-indentation)
 endif()
 
-# Precompile headers using Datatype99/Interface99.
+# Precompile headers that use Datatype99/Interface99.
 target_precompile_headers(
   ${PROJECT_NAME} PUBLIC
   include/smolrtsp/types/error.h
@@ -113,7 +115,8 @@ target_precompile_headers(
   include/smolrtsp/writer.h
   include/smolrtsp/transport.h
   include/smolrtsp/droppable.h
-  include/smolrtsp/controller.h)
+  include/smolrtsp/controller.h
+  include/smolrtsp/ip_addr.h)
 
 target_include_directories(${PROJECT_NAME} PUBLIC include)
 target_link_libraries(${PROJECT_NAME} PUBLIC slice99 metalang99 datatype99 interface99)
