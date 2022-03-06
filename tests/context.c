@@ -92,9 +92,29 @@ TEST respond_ok(void) {
     PASS();
 }
 
+TEST respond_internal_error(void) {
+    char buffer[512] = {0};
+    SmolRTSP_Writer w = smolrtsp_string_writer(buffer);
+    const uint32_t cseq = 456;
+
+    SmolRTSP_Context *ctx = SmolRTSP_Context_new(w, cseq);
+
+    const char *expected =
+        "RTSP/1.0 500 Internal error\r\n"
+        "CSeq: 456\r\n\r\n";
+
+    ssize_t ret = smolrtsp_respond_internal_error(ctx);
+    ASSERT_EQ((ssize_t)strlen(expected), ret);
+    ASSERT_STR_EQ(expected, buffer);
+
+    VTABLE(SmolRTSP_Context, SmolRTSP_Droppable).drop(ctx);
+    PASS();
+}
+
 SUITE(context) {
     RUN_TEST(context_creation);
     RUN_TEST(respond_empty);
     RUN_TEST(respond);
     RUN_TEST(respond_ok);
+    RUN_TEST(respond_internal_error);
 }

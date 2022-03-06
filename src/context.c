@@ -99,6 +99,12 @@ ssize_t smolrtsp_respond_ok(SmolRTSP_Context *ctx) {
     return smolrtsp_respond(ctx, SMOLRTSP_STATUS_OK, "OK");
 }
 
+ssize_t smolrtsp_respond_internal_error(SmolRTSP_Context *ctx) {
+    assert(ctx);
+    return smolrtsp_respond(
+        ctx, SMOLRTSP_STATUS_INTERNAL_SERVER_ERROR, "Internal error");
+}
+
 void SmolRTSP_Context_drop(VSelf) {
     VSELF(SmolRTSP_Context);
     assert(self);

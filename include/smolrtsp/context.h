@@ -108,6 +108,12 @@ ssize_t smolrtsp_respond(
 ssize_t smolrtsp_respond_ok(SmolRTSP_Context *ctx);
 
 /**
+ * A shortcut for `smolrtsp_respond(ctx, SMOLRTSP_STATUS_INTERNAL_SERVER_ERROR,
+ * "Internal error")`.
+ */
+ssize_t smolrtsp_respond_internal_error(SmolRTSP_Context *ctx);
+
+/**
  * Implements #SmolRTSP_Droppable_IFACE for #SmolRTSP_Context.
  *
  * See [Interface99](https://github.com/Hirrolot/interface99) for the macro
