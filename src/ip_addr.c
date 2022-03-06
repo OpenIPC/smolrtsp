@@ -14,6 +14,7 @@ SmolRTSP_IpAddr_to_sockaddr(SmolRTSP_IpAddr self, uint16_t port) {
                 .sin_family = AF_INET,
                 .sin_addr = *ipv4,
                 .sin_port = htons(port),
+                .sin_zero = {0},
             };
             memcpy(&result, &addr, sizeof addr);
         }
