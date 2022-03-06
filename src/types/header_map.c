@@ -7,6 +7,8 @@
 #include <assert.h>
 #include <string.h>
 
+#include <alloca.h>
+
 SmolRTSP_HeaderMap SmolRTSP_HeaderMap_empty(void) {
     SmolRTSP_HeaderMap self;
     memset(self.headers, '\0', sizeof self.headers);
