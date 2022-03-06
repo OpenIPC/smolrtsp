@@ -95,6 +95,21 @@ TEST parse_port_pair(void) {
     PASS();
 }
 
+TEST parse_interleaved(void) {
+    SmolRTSP_ChannelPair interleaved = {0};
+
+    ASSERT_EQ(
+        0,
+        smolrtsp_parse_interleaved(
+            &interleaved,
+            CharSlice99_from_str(
+                "RTP/AVP/UDP;unicast;interleaved=4-5;client_port=3056-3057")));
+    ASSERT_EQ(4, interleaved.rtp_channel);
+    ASSERT_EQ(5, interleaved.rtcp_channel);
+
+    PASS();
+}
+
 TEST interleaved_header(void) {
     uint8_t channel_id = 123;
     uint16_t payload_len = 54321;
@@ -124,6 +139,7 @@ SUITE(util) {
     RUN_TEST(parse_header_param);
     RUN_TEST(parse_range);
     RUN_TEST(parse_port_pair);
+    RUN_TEST(parse_interleaved);
     RUN_TEST(interleaved_header);
     RUN_TEST(parse_interleaved_header);
 }

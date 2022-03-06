@@ -42,15 +42,30 @@ const char *SmolRTSP_LowerTransport_str(SmolRTSP_LowerTransport self);
  */
 typedef struct {
     /**
-     * The RTP port part.
+     * The RTP port.
      */
     uint16_t rtp_port;
 
     /**
-     * The RTCP port part.
+     * The RTCP port.
      */
     uint16_t rtcp_port;
 } SmolRTSP_PortPair;
+
+/**
+ * An RTP/RTCP channel pair specified as a range, e.g., `interleaved=4-5`.
+ */
+typedef struct {
+    /**
+     * The RTP channel identifier.
+     */
+    uint8_t rtp_channel;
+
+    /**
+     * The RTCP channel identifier.
+     */
+    uint8_t rtcp_channel;
+} SmolRTSP_ChannelPair;
 
 /**
  * Parses a lower transport from @p value (either TCP or UDP).
@@ -98,6 +113,18 @@ int smolrtsp_parse_range(
 int smolrtsp_parse_port_pair(
     SmolRTSP_PortPair *restrict pair, const char *restrict param_name,
     CharSlice99 header_value);
+
+/**
+ * Parses the `interleaved` parameter of the #SMOLRTSP_HEADER_TRANSPORT header.
+ *
+ * @param[out] interleaved The destination address of the channel pair.
+ * @param[in] transport_value The `Transport` header value to search for the
+ * parameter.
+ *
+ * @pre `interleaved != NULL`
+ */
+int smolrtsp_parse_interleaved(
+    SmolRTSP_ChannelPair *restrict interleaved, CharSlice99 transport_value);
 
 /**
  * Parses a header value parameter in the form `<param-name>=<param-value>`.

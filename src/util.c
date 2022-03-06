@@ -64,13 +64,17 @@ int smolrtsp_parse_port_pair(
     assert(pair);
     assert(param_name);
 
-    if (smolrtsp_parse_range(
-            &pair->rtp_port, &pair->rtcp_port, SCNu16, param_name,
-            header_value) == -1) {
-        return -1;
-    }
+    return smolrtsp_parse_range(
+        &pair->rtp_port, &pair->rtcp_port, SCNu16, param_name, header_value);
+}
 
-    return 0;
+int smolrtsp_parse_interleaved(
+    SmolRTSP_ChannelPair *restrict interleaved, CharSlice99 transport_value) {
+    assert(interleaved);
+
+    return smolrtsp_parse_range(
+        &interleaved->rtp_channel, &interleaved->rtcp_channel, SCNu8,
+        "interleaved=", transport_value);
 }
 
 int smolrtsp_parse_header_param(
