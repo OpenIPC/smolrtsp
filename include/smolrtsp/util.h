@@ -17,6 +17,11 @@
 #define SMOLRTSP_CRLF (CharSlice99_from_str("\r\n"))
 
 /**
+ * The default RTSP port.
+ */
+#define SMOLRTSP_DEFAULT_PORT 554
+
+/**
  * An RTSP lower transport.
  */
 typedef enum {
