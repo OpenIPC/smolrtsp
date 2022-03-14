@@ -3,6 +3,7 @@ var util_8h =
     [ "SmolRTSP_PortPair", "structSmolRTSP__PortPair.html", "structSmolRTSP__PortPair" ],
     [ "SmolRTSP_ChannelPair", "structSmolRTSP__ChannelPair.html", "structSmolRTSP__ChannelPair" ],
     [ "SMOLRTSP_CRLF", "util_8h.html#ac04f5517058459181f72077af54c38cd", null ],
+    [ "SMOLRTSP_DEFAULT_PORT", "util_8h.html#a54427d6d5e6df6c7d0c9920ca4343e3a", null ],
     [ "SmolRTSP_LowerTransport", "util_8h.html#a1913c4e09e6a1c4acc7a875ec14a59ec", [
       [ "SmolRTSP_LowerTransport_TCP", "util_8h.html#a1913c4e09e6a1c4acc7a875ec14a59eca3d5e8e0c4a3e76d7388a5932e3d54fa6", null ],
       [ "SmolRTSP_LowerTransport_UDP", "util_8h.html#a1913c4e09e6a1c4acc7a875ec14a59eca4133e9bc8c588469f99b8ed758982e44", null ]
