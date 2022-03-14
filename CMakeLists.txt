@@ -55,7 +55,6 @@ set(SMOLRTSP_SOURCES
     include/smolrtsp/controller.h
     include/smolrtsp/io_vec.h
     include/smolrtsp/context.h
-    include/smolrtsp/ip_addr.h
     src/types/error.c
     src/types/header_map.c
     src/types/header.c
@@ -88,7 +87,6 @@ set(SMOLRTSP_SOURCES
     src/io_vec.c
     src/controller.c
     src/context.c
-    src/ip_addr.c
     src/macros.h
 )
 
@@ -115,8 +113,7 @@ target_precompile_headers(
   include/smolrtsp/writer.h
   include/smolrtsp/transport.h
   include/smolrtsp/droppable.h
-  include/smolrtsp/controller.h
-  include/smolrtsp/ip_addr.h)
+  include/smolrtsp/controller.h)
 
 target_include_directories(${PROJECT_NAME} PUBLIC include)
 target_link_libraries(${PROJECT_NAME} PUBLIC slice99 metalang99 datatype99 interface99)

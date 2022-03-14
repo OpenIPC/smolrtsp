@@ -35,7 +35,6 @@
 #include <smolrtsp/controller.h>
 #include <smolrtsp/droppable.h>
 #include <smolrtsp/io_vec.h>
-#include <smolrtsp/ip_addr.h>
 #include <smolrtsp/nal.h>
 #include <smolrtsp/nal_transport.h>
 #include <smolrtsp/rtp_transport.h>

@@ -36,7 +36,6 @@ int main(int argc, char *argv[]) {
     SMOLRTSP_SUITE(io_vec);
     SMOLRTSP_SUITE(context);
     SMOLRTSP_SUITE(controller);
-    SMOLRTSP_SUITE(ip_addr);
 
     GREATEST_MAIN_END();
 }

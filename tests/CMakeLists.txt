@@ -37,8 +37,7 @@ add_executable(
   io_vec.c
   controller.c
   context.c
-  transport.c
-  ip_addr.c)
+  transport.c)
 
 if(CMAKE_C_COMPILER_ID STREQUAL "Clang")
   target_compile_options(tests PRIVATE -Wall -Wextra -fsanitize=address -fmacro-backtrace-limit=1)
