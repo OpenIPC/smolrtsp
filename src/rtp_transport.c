@@ -11,13 +11,16 @@
 struct SmolRTSP_RtpTransport {
     uint16_t seq_num;
     uint32_t ssrc;
+    uint8_t payload_ty;
+    uint32_t clock_rate;
     SmolRTSP_Transport transport;
 };
 
 static uint32_t
 compute_timestamp(uint64_t timestamp_us, uint64_t clock_rate_kHz);
 
-SmolRTSP_RtpTransport *SmolRTSP_RtpTransport_new(SmolRTSP_Transport t) {
+SmolRTSP_RtpTransport *SmolRTSP_RtpTransport_new(
+    SmolRTSP_Transport t, uint8_t payload_ty, uint32_t clock_rate) {
     assert(t.self && t.vptr);
 
     SmolRTSP_RtpTransport *self = malloc(sizeof *self);
@@ -25,6 +28,8 @@ SmolRTSP_RtpTransport *SmolRTSP_RtpTransport_new(SmolRTSP_Transport t) {
 
     self->seq_num = 0;
     self->ssrc = (uint32_t)rand();
+    self->payload_ty = payload_ty;
+    self->clock_rate = clock_rate;
     self->transport = t;
 
     return self;
@@ -43,8 +48,7 @@ implExtern(SmolRTSP_Droppable, SmolRTSP_RtpTransport);
 
 int SmolRTSP_RtpTransport_send_packet(
     SmolRTSP_RtpTransport *self, uint64_t timestamp_us, bool marker,
-    uint8_t payload_ty, uint32_t clock_rate, U8Slice99 payload_header,
-    U8Slice99 payload) {
+    U8Slice99 payload_header, U8Slice99 payload) {
     assert(self);
 
     const SmolRTSP_RtpHeader header = {
@@ -53,9 +57,9 @@ int SmolRTSP_RtpTransport_send_packet(
         .extension = false,
         .csrc_count = 0,
         .marker = marker,
-        .payload_ty = payload_ty,
+        .payload_ty = self->payload_ty,
         .sequence_number = htons(self->seq_num),
-        .timestamp = htobe32(compute_timestamp(timestamp_us, clock_rate)),
+        .timestamp = htobe32(compute_timestamp(timestamp_us, self->clock_rate)),
         .ssrc = self->ssrc,
         .csrc = NULL,
         .extension_profile = htons(0),

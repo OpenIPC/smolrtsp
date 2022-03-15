@@ -38,9 +38,6 @@ NAL_HEADER_TEST_GETTER(
     size_t, size, SMOLRTSP_H264_NAL_HEADER_SIZE, SMOLRTSP_H265_NAL_HEADER_SIZE)
 NAL_HEADER_TEST_GETTER(
     size_t, fu_size, SMOLRTSP_H264_FU_HEADER_SIZE, SMOLRTSP_H265_FU_HEADER_SIZE)
-NAL_HEADER_TEST_GETTER(
-    uint32_t, clock_rate_kHz, SMOLRTSP_H264_CLOCK_RATE_KHZ,
-    SMOLRTSP_H265_CLOCK_RATE_KHZ)
 
 #undef NAL_HEADER_TEST_GETTER
 
@@ -121,8 +118,6 @@ SUITE(nal) {
     RUN_TEST(header_size_h265);
     RUN_TEST(header_fu_size_h264);
     RUN_TEST(header_fu_size_h265);
-    RUN_TEST(header_clock_rate_kHz_h264);
-    RUN_TEST(header_clock_rate_kHz_h265);
 
     RUN_TEST(header_serialize_h264);
     RUN_TEST(header_serialize_h265);

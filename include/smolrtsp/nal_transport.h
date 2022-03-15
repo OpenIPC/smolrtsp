@@ -6,8 +6,6 @@
  * <https://datatracker.ietf.org/doc/html/rfc6184>
  * @see RTP Payload Format for High Efficiency Video Coding (HEVC):
  * <https://datatracker.ietf.org/doc/html/rfc7798>
- *
- * TODO: more docs.
  */
 
 #pragma once
@@ -28,6 +26,8 @@ typedef struct SmolRTSP_NalTransport SmolRTSP_NalTransport;
 /**
  * Creates a new RTP/NAL transport.
  *
+ * @param[in] t The underlying RTP transport.
+ *
  * @pre `t != NULL`
  */
 SmolRTSP_NalTransport *
@@ -36,13 +36,18 @@ SmolRTSP_NalTransport_new(SmolRTSP_RtpTransport *t) SMOLRTSP_PRIV_MUST_USE;
 /**
  * Sends an RTP/NAL packet.
  *
+ * @param[out] self The RTP/NAL transport for sending this packet.
+ * @param[in] timestamp_us The number of microseconds passed since the last
+ * packet.
+ * @param[in] nal_unit The NAL unit of this RTP packet.
+ *
  * @pre `self != NULL`
  *
  * @return -1 if an I/O error occurred and sets `errno` appropriately, 0 on
  * success.
  */
 int SmolRTSP_NalTransport_send_packet(
-    SmolRTSP_NalTransport *self, uint64_t timestamp_us, uint8_t payload_type,
+    SmolRTSP_NalTransport *self, uint64_t timestamp_us,
     SmolRTSP_NalUnit nal_unit) SMOLRTSP_PRIV_MUST_USE;
 
 /**

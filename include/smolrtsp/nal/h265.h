@@ -28,11 +28,6 @@
     (/* payload-hdr */ sizeof(uint16_t) + /* fu-header */ sizeof(uint8_t))
 
 /**
- * The H.265 RTP clock rate in kHz.
- */
-#define SMOLRTSP_H265_CLOCK_RATE_KHZ 90
-
-/**
  * An H.265 NAL header.
  */
 typedef struct {
