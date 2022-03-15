@@ -150,9 +150,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a01f39d32a9cc22acbb1d5404c939b39d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="nal__transport_8h.html#afec555143193b4746bcddf7614953b65">SmolRTSP_NalTransport</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal__transport_8h.html#a01f39d32a9cc22acbb1d5404c939b39d">SmolRTSP_NalTransport_new</a> (<a class="el" href="rtp__transport_8h.html#a8c72a0e77af47185c469b8ddeec20f3d">SmolRTSP_RtpTransport</a> *t) SMOLRTSP_PRIV_MUST_USE</td></tr>
 <tr class="memdesc:a01f39d32a9cc22acbb1d5404c939b39d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new RTP/NAL transport.  <a href="nal__transport_8h.html#a01f39d32a9cc22acbb1d5404c939b39d">More...</a><br /></td></tr>
 <tr class="separator:a01f39d32a9cc22acbb1d5404c939b39d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab10be35a29611146f431269988bce90f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal__transport_8h.html#ab10be35a29611146f431269988bce90f">SmolRTSP_NalTransport_send_packet</a> (<a class="el" href="nal__transport_8h.html#afec555143193b4746bcddf7614953b65">SmolRTSP_NalTransport</a> *self, uint64_t timestamp_us, uint8_t payload_type, <a class="el" href="structSmolRTSP__NalUnit.html">SmolRTSP_NalUnit</a> nal_unit) SMOLRTSP_PRIV_MUST_USE</td></tr>
-<tr class="memdesc:ab10be35a29611146f431269988bce90f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends an RTP/NAL packet.  <a href="nal__transport_8h.html#ab10be35a29611146f431269988bce90f">More...</a><br /></td></tr>
-<tr class="separator:ab10be35a29611146f431269988bce90f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60ddd65d68d2ad6607e4a2c594e60bb7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal__transport_8h.html#a60ddd65d68d2ad6607e4a2c594e60bb7">SmolRTSP_NalTransport_send_packet</a> (<a class="el" href="nal__transport_8h.html#afec555143193b4746bcddf7614953b65">SmolRTSP_NalTransport</a> *self, uint64_t timestamp_us, <a class="el" href="structSmolRTSP__NalUnit.html">SmolRTSP_NalUnit</a> nal_unit) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:a60ddd65d68d2ad6607e4a2c594e60bb7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends an RTP/NAL packet.  <a href="nal__transport_8h.html#a60ddd65d68d2ad6607e4a2c594e60bb7">More...</a><br /></td></tr>
+<tr class="separator:a60ddd65d68d2ad6607e4a2c594e60bb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a69333ef1ac705df4786f4cbfd0b58c54"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal__transport_8h.html#a69333ef1ac705df4786f4cbfd0b58c54">declImplExtern99</a> (SmolRTSP_Droppable, <a class="el" href="nal__transport_8h.html#afec555143193b4746bcddf7614953b65">SmolRTSP_NalTransport</a>)</td></tr>
 <tr class="memdesc:a69333ef1ac705df4786f4cbfd0b58c54"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implements <a class="el" href="droppable_8h.html#a63327e52bfcd2c77b4fb293a45590312" title="Types that can be dropped (deallocated).">SmolRTSP_Droppable_IFACE</a> for <a class="el" href="nal__transport_8h.html#afec555143193b4746bcddf7614953b65" title="An RTP/NAL data transport.">SmolRTSP_NalTransport</a>.  <a href="nal__transport_8h.html#a69333ef1ac705df4786f4cbfd0b58c54">More...</a><br /></td></tr>
 <tr class="separator:a69333ef1ac705df4786f4cbfd0b58c54"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -161,8 +161,7 @@ Functions</h2></td></tr>
 <div class="textblock"><p>An RTP/NAL data transport. </p>
 <dl class="section see"><dt>See also</dt><dd>RTP Payload Format for H.264 Video: <a href="https://datatracker.ietf.org/doc/html/rfc6184">https://datatracker.ietf.org/doc/html/rfc6184</a> </dd>
 <dd>
-RTP Payload Format for High Efficiency Video Coding (HEVC): <a href="https://datatracker.ietf.org/doc/html/rfc7798">https://datatracker.ietf.org/doc/html/rfc7798</a></dd></dl>
-<p>TODO: more docs. </p>
+RTP Payload Format for High Efficiency Video Coding (HEVC): <a href="https://datatracker.ietf.org/doc/html/rfc7798">https://datatracker.ietf.org/doc/html/rfc7798</a> </dd></dl>
 </div><h2 class="groupheader">Function Documentation</h2>
 <a id="a69333ef1ac705df4786f4cbfd0b58c54"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a69333ef1ac705df4786f4cbfd0b58c54">&#9670;&nbsp;</a></span>declImplExtern99()</h2>
@@ -212,12 +211,18 @@ RTP Payload Format for High Efficiency Video Coding (HEVC): <a href="https://dat
 </div><div class="memdoc">
 
 <p>Creates a new RTP/NAL transport. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">t</td><td>The underlying RTP transport.</td></tr>
+  </table>
+  </dd>
+</dl>
 <dl class="section pre"><dt>Precondition</dt><dd><code>t != NULL</code> </dd></dl>
 
 </div>
 </div>
-<a id="ab10be35a29611146f431269988bce90f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab10be35a29611146f431269988bce90f">&#9670;&nbsp;</a></span>SmolRTSP_NalTransport_send_packet()</h2>
+<a id="a60ddd65d68d2ad6607e4a2c594e60bb7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60ddd65d68d2ad6607e4a2c594e60bb7">&#9670;&nbsp;</a></span>SmolRTSP_NalTransport_send_packet()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -237,12 +242,6 @@ RTP Payload Format for High Efficiency Video Coding (HEVC): <a href="https://dat
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">uint8_t&#160;</td>
-          <td class="paramname"><em>payload_type</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
           <td class="paramtype"><a class="el" href="structSmolRTSP__NalUnit.html">SmolRTSP_NalUnit</a>&#160;</td>
           <td class="paramname"><em>nal_unit</em>&#160;</td>
         </tr>
@@ -255,6 +254,14 @@ RTP Payload Format for High Efficiency Video Coding (HEVC): <a href="https://dat
 </div><div class="memdoc">
 
 <p>Sends an RTP/NAL packet. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[out]</td><td class="paramname">self</td><td>The RTP/NAL transport for sending this packet. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">timestamp_us</td><td>The number of microseconds passed since the last packet. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nal_unit</td><td>The NAL unit of this RTP packet.</td></tr>
+  </table>
+  </dd>
+</dl>
 <dl class="section pre"><dt>Precondition</dt><dd><code>self != NULL</code></dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>-1 if an I/O error occurred and sets <code>errno</code> appropriately, 0 on success. </dd></dl>
 

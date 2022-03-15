@@ -4,7 +4,6 @@ var nal_8h =
     [ "datatype99", "nal_8h.html#af7758ff65ddd510dc4dc87339ad171a5", null ],
     [ "smolrtsp_nal_fu_header", "nal_8h.html#ab41e0f64ca1e97dba2f5b45eb5377807", null ],
     [ "smolrtsp_nal_test_start_code", "nal_8h.html#a39ec553582653a83291df3395e1f21cb", null ],
-    [ "SmolRTSP_NalHeader_clock_rate_kHz", "nal_8h.html#a3436245761d724e67e34c34dabeed1f3", null ],
     [ "SmolRTSP_NalHeader_fu_size", "nal_8h.html#a455e664660b9eb7715953ddb1ff4841e", null ],
     [ "SmolRTSP_NalHeader_is_coded_slice_idr", "nal_8h.html#a053e8def47d6df3a220a771c3e643578", null ],
     [ "SmolRTSP_NalHeader_is_coded_slice_non_idr", "nal_8h.html#afd11c850c5ca27a78db9df7705605403", null ],
