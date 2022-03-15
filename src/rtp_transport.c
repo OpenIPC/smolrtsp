@@ -10,22 +10,21 @@
 
 struct SmolRTSP_RtpTransport {
     uint16_t seq_num;
-    uint8_t rtsp_stream_id;
+    uint32_t ssrc;
     SmolRTSP_Transport transport;
 };
 
 static uint32_t
 compute_timestamp(uint64_t timestamp_us, uint64_t clock_rate_kHz);
 
-SmolRTSP_RtpTransport *
-SmolRTSP_RtpTransport_new(SmolRTSP_Transport t, uint8_t rtsp_stream_id) {
+SmolRTSP_RtpTransport *SmolRTSP_RtpTransport_new(SmolRTSP_Transport t) {
     assert(t.self && t.vptr);
 
     SmolRTSP_RtpTransport *self = malloc(sizeof *self);
     assert(self);
 
     self->seq_num = 0;
-    self->rtsp_stream_id = rtsp_stream_id;
+    self->ssrc = (uint32_t)rand();
     self->transport = t;
 
     return self;
@@ -57,7 +56,7 @@ int SmolRTSP_RtpTransport_send_packet(
         .payload_ty = payload_ty,
         .sequence_number = htons(self->seq_num),
         .timestamp = htobe32(compute_timestamp(timestamp_us, clock_rate)),
-        .ssrc = htobe32(0 == self->rtsp_stream_id ? 0x280951d0 : 0x36b9e9b4),
+        .ssrc = self->ssrc,
         .csrc = NULL,
         .extension_profile = htons(0),
         .extension_payload_len = htons(0),

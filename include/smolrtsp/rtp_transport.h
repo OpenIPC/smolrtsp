@@ -26,9 +26,10 @@ typedef struct SmolRTSP_RtpTransport SmolRTSP_RtpTransport;
  * Creates a new RTP transport from the underlying level-4 protocol @p t.
  *
  * @pre `t.self && t.vptr`
+ * @pre The `rand` PRNG must be set up via `srand`.
  */
-SmolRTSP_RtpTransport *SmolRTSP_RtpTransport_new(
-    SmolRTSP_Transport t, uint8_t rtsp_stream_id) SMOLRTSP_PRIV_MUST_USE;
+SmolRTSP_RtpTransport *
+SmolRTSP_RtpTransport_new(SmolRTSP_Transport t) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Sends an RTP packet.
