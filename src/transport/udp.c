@@ -5,6 +5,8 @@
 #include <stddef.h>
 #include <stdlib.h>
 
+#include <arpa/inet.h>
+#include <netinet/in.h>
 #include <sys/socket.h>
 #include <sys/types.h>
 
@@ -17,6 +19,8 @@ typedef struct {
 declImpl(SmolRTSP_Transport, SmolRTSP_UdpTransport);
 
 static int send_packet(SmolRTSP_UdpTransport *self, struct msghdr message);
+static int
+new_sockaddr(struct sockaddr *addr, int af, const void *ip, uint16_t port);
 
 SmolRTSP_Transport smolrtsp_transport_udp(int fd) {
     assert(fd >= 0);
@@ -57,8 +61,8 @@ static int SmolRTSP_UdpTransport_transmit(VSelf, SmolRTSP_IoVecSlice bufs) {
 impl(SmolRTSP_Transport, SmolRTSP_UdpTransport);
 
 static int send_packet(SmolRTSP_UdpTransport *self, struct msghdr message) {
-    // Try to retransmit a packet several times on `EMSGSIZE`. The kernel will
-    // fragment an IP packet because if `IP_PMTUDISC_WANT` is set.
+    // Try to retransmit a packet several times on `EMSGSIZE`. The kernel
+    // will fragment an IP packet because if `IP_PMTUDISC_WANT` is set.
     size_t i = MAX_RETRANSMITS;
     do {
         const ssize_t ret = sendmsg(self->fd, &message, 0);
@@ -78,4 +82,62 @@ static int send_packet(SmolRTSP_UdpTransport *self, struct msghdr message) {
     } while (i > 0);
 
     return -1;
+}
+
+int smolrtsp_dgram_socket(int af, const void *restrict addr, uint16_t port) {
+    struct sockaddr_storage dest;
+    memset(&dest, '\0', sizeof dest);
+    if (new_sockaddr((struct sockaddr *)&dest, af, addr, port) == -1) {
+        return -1;
+    }
+
+    int fd;
+    if ((fd = socket(af, SOCK_DGRAM, 0)) == -1) {
+        goto fail;
+    }
+
+    if (connect(
+            fd, (const struct sockaddr *)&dest,
+            AF_INET == af ? sizeof(struct sockaddr_in)
+                          : sizeof(struct sockaddr_in6)) == -1) {
+        perror("connect");
+        goto fail;
+    }
+
+    const int enable_pmtud = 1;
+    if (setsockopt(
+            fd, IPPROTO_IP, IP_PMTUDISC_WANT, &enable_pmtud,
+            sizeof enable_pmtud) == -1) {
+        perror("setsockopt IP_PMTUDISC_WANT");
+        goto fail;
+    }
+
+    return fd;
+
+fail:
+    close(fd);
+    return -1;
+}
+
+static int
+new_sockaddr(struct sockaddr *addr, int af, const void *ip, uint16_t port) {
+    switch (af) {
+    case AF_INET: {
+        struct sockaddr_in *addr_in = (struct sockaddr_in *)addr;
+        addr_in->sin_family = AF_INET;
+        memcpy(&addr_in->sin_addr, ip, sizeof(struct in_addr));
+        addr_in->sin_port = htons(port);
+        return 0;
+    }
+    case AF_INET6: {
+        struct sockaddr_in6 *addr_in6 = (struct sockaddr_in6 *)addr;
+        addr_in6->sin6_family = AF_INET6;
+        memcpy(&addr_in6->sin6_addr, ip, sizeof(struct in6_addr));
+        addr_in6->sin6_port = htons(port);
+        return 0;
+    }
+    default:
+        errno = EAFNOSUPPORT;
+        return -1;
+    }
 }

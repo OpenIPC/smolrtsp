@@ -66,3 +66,22 @@ SmolRTSP_Transport smolrtsp_transport_tcp(SmolRTSP_Writer w, uint8_t channel_id)
  * @pre `fd >= 0`
  */
 SmolRTSP_Transport smolrtsp_transport_udp(int fd) SMOLRTSP_PRIV_MUST_USE;
+
+/**
+ * Creates a new datagram socket suitable for #smolrtsp_transport_udp.
+ *
+ * The algorithm is:
+ *  1. Create a socket using `socket(af, SOCK_DGRAM, 0)`.
+ *  2. Connect this socket to @p addr with @p port.
+ *  3. Set the `IP_PMTUDISC_WANT` option to allow IP fragmentation.
+ *
+ * @param[in] af The socket namespace. Can be `AF_INET` or `AF_INET6`; if none
+ * of them, returns -1 and sets `errno` to `EAFNOSUPPORT`.
+ * @param[in] addr The destination IP address: `struct in_addr` for `AF_INET`
+ * and `struct in6_addr` for `AF_INET6`.
+ * @param[in] port The destination IP port in the host byte order.
+ *
+ * @return A valid file descriptor or -1 on error (and sets `errno`
+ * appropriately).
+ */
+int smolrtsp_dgram_socket(int af, const void *restrict addr, uint16_t port);
