@@ -153,6 +153,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a3875a72cf6f4cd52bad76d6692979c61"><td class="memItemLeft" align="right" valign="top">SmolRTSP_Transport&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="transport_8h.html#a3875a72cf6f4cd52bad76d6692979c61">smolrtsp_transport_udp</a> (int fd) SMOLRTSP_PRIV_MUST_USE</td></tr>
 <tr class="memdesc:a3875a72cf6f4cd52bad76d6692979c61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new UDP transport.  <a href="transport_8h.html#a3875a72cf6f4cd52bad76d6692979c61">More...</a><br /></td></tr>
 <tr class="separator:a3875a72cf6f4cd52bad76d6692979c61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6572154b0ad673f142219981f7c39c34"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="transport_8h.html#a6572154b0ad673f142219981f7c39c34">smolrtsp_dgram_socket</a> (int af, const void *restrict addr, uint16_t port)</td></tr>
+<tr class="memdesc:a6572154b0ad673f142219981f7c39c34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new datagram socket suitable for <a class="el" href="transport_8h.html#a3875a72cf6f4cd52bad76d6692979c61" title="Creates a new UDP transport.">smolrtsp_transport_udp</a>.  <a href="transport_8h.html#a6572154b0ad673f142219981f7c39c34">More...</a><br /></td></tr>
+<tr class="separator:a6572154b0ad673f142219981f7c39c34"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>RTSP data transport (level 4) implementations. </p>
@@ -201,6 +204,56 @@ Functions</h2></td></tr>
 
 <p>Defines the <code>SmolRTSP_Transport</code> interface. </p>
 <p>See <a href="https://github.com/Hirrolot/interface99">Interface99</a> for the macro usage. </p>
+
+</div>
+</div>
+<a id="a6572154b0ad673f142219981f7c39c34"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6572154b0ad673f142219981f7c39c34">&#9670;&nbsp;</a></span>smolrtsp_dgram_socket()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int smolrtsp_dgram_socket </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>af</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const void *restrict&#160;</td>
+          <td class="paramname"><em>addr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>port</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Creates a new datagram socket suitable for <a class="el" href="transport_8h.html#a3875a72cf6f4cd52bad76d6692979c61" title="Creates a new UDP transport.">smolrtsp_transport_udp</a>. </p>
+<p>The algorithm is:</p><ol type="1">
+<li>Create a socket using <code>socket(af, SOCK_DGRAM, 0)</code>.</li>
+<li>Connect this socket to <code>addr</code> with <code>port</code>.</li>
+<li>Set the <code>IP_PMTUDISC_WANT</code> option to allow IP fragmentation.</li>
+</ol>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">af</td><td>The socket namespace. Can be <code>AF_INET</code> or <code>AF_INET6</code>; if none of them, returns -1 and sets <code>errno</code> to <code>EAFNOSUPPORT</code>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">addr</td><td>The destination IP address: <code>struct in_addr</code> for <code>AF_INET</code> and <code>struct in6_addr</code> for <code>AF_INET6</code>. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">port</td><td>The destination IP port in the host byte order.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A valid file descriptor or -1 on error (and sets <code>errno</code> appropriately). </dd></dl>
 
 </div>
 </div>
