@@ -17,7 +17,7 @@ struct SmolRTSP_RtpTransport {
 };
 
 static uint32_t
-compute_timestamp(uint64_t timestamp_us, uint64_t clock_rate_kHz);
+compute_timestamp(SmolRTSP_RtpTimestamp ts, uint32_t clock_rate);
 
 SmolRTSP_RtpTransport *SmolRTSP_RtpTransport_new(
     SmolRTSP_Transport t, uint8_t payload_ty, uint32_t clock_rate) {
@@ -47,7 +47,7 @@ static void SmolRTSP_RtpTransport_drop(VSelf) {
 implExtern(SmolRTSP_Droppable, SmolRTSP_RtpTransport);
 
 int SmolRTSP_RtpTransport_send_packet(
-    SmolRTSP_RtpTransport *self, uint64_t timestamp_us, bool marker,
+    SmolRTSP_RtpTransport *self, SmolRTSP_RtpTimestamp ts, bool marker,
     U8Slice99 payload_header, U8Slice99 payload) {
     assert(self);
 
@@ -59,7 +59,7 @@ int SmolRTSP_RtpTransport_send_packet(
         .marker = marker,
         .payload_ty = self->payload_ty,
         .sequence_number = htons(self->seq_num),
-        .timestamp = htobe32(compute_timestamp(timestamp_us, self->clock_rate)),
+        .timestamp = htobe32(compute_timestamp(ts, self->clock_rate)),
         .ssrc = self->ssrc,
         .csrc = NULL,
         .extension_profile = htons(0),
@@ -88,14 +88,18 @@ int SmolRTSP_RtpTransport_send_packet(
 }
 
 static uint32_t
-compute_timestamp(uint64_t timestamp_us, uint64_t clock_rate_kHz) {
-    const uint64_t timestamp_rem_us = (timestamp_us % 1000),
-                   timestamp_millisecs =
-                       (timestamp_us - timestamp_rem_us) / 1000;
+compute_timestamp(SmolRTSP_RtpTimestamp ts, uint32_t clock_rate) {
+    match(ts) {
+        of(SmolRTSP_RtpTimestamp_Raw, raw_ts) {
+            return *raw_ts;
+        }
+        of(SmolRTSP_RtpTimestamp_SysClockUs, time_us) {
+            const uint64_t us_rem = *time_us % 1000,
+                           ms = (*time_us - us_rem) / 1000;
+            uint32_t clock_rate_kHz = clock_rate / 1000;
+            return (ms * clock_rate_kHz) + ((us_rem * clock_rate) / 1e6);
+        }
+    }
 
-    const uint32_t timestamp =
-        timestamp_millisecs * clock_rate_kHz +
-        (uint32_t)(timestamp_rem_us * ((double)clock_rate_kHz / 1000.0));
-
-    return timestamp;
+    return 0;
 }

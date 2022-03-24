@@ -37,8 +37,7 @@ SmolRTSP_NalTransport_new(SmolRTSP_RtpTransport *t) SMOLRTSP_PRIV_MUST_USE;
  * Sends an RTP/NAL packet.
  *
  * @param[out] self The RTP/NAL transport for sending this packet.
- * @param[in] timestamp_us The number of microseconds passed since the last
- * packet.
+ * @param[in] ts The RTP timestamp for this packet.
  * @param[in] nal_unit The NAL unit of this RTP packet.
  *
  * @pre `self != NULL`
@@ -47,7 +46,7 @@ SmolRTSP_NalTransport_new(SmolRTSP_RtpTransport *t) SMOLRTSP_PRIV_MUST_USE;
  * success.
  */
 int SmolRTSP_NalTransport_send_packet(
-    SmolRTSP_NalTransport *self, uint64_t timestamp_us,
+    SmolRTSP_NalTransport *self, SmolRTSP_RtpTimestamp ts,
     SmolRTSP_NalUnit nal_unit) SMOLRTSP_PRIV_MUST_USE;
 
 /**
