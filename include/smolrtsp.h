@@ -37,6 +37,7 @@
 #include <smolrtsp/io_vec.h>
 #include <smolrtsp/nal.h>
 #include <smolrtsp/nal_transport.h>
+#include <smolrtsp/option.h>
 #include <smolrtsp/rtp_transport.h>
 #include <smolrtsp/transport.h>
 #include <smolrtsp/util.h>

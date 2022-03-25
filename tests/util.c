@@ -5,107 +5,101 @@
 
 #include <greatest.h>
 
-TEST parse_lower_transport(void) {
+TEST parse_transport_config(void) {
+    SmolRTSP_TransportConfig config;
+    memset(&config, '\0', sizeof config);
 
-#define CHECK(expected, input)                                                 \
-    ASSERT_EQ(                                                                 \
-        expected, smolrtsp_parse_lower_transport(CharSlice99_from_str(input)))
+    int ret = smolrtsp_parse_transport(
+        &config,
+        CharSlice99_from_str(
+            "RTP/AVP/UDP;unicast;client_port=3056-3057;interleaved=4-5"));
+    ASSERT_EQ(0, ret);
+    ASSERT_EQ(SmolRTSP_LowerTransport_UDP, config.lower);
+    ASSERT(config.unicast);
+    ASSERT(!config.multicast);
 
-    CHECK(SmolRTSP_LowerTransport_UDP, "RTP/AVP/UDP");
-    CHECK(SmolRTSP_LowerTransport_TCP, "RTP/AVP/TCP");
-    CHECK(SmolRTSP_LowerTransport_UDP, "RTP/AVP");
+    match(config.interleaved) {
+        of(SmolRTSP_ChannelPair_Some, val) {
+            ASSERT_EQ(4, val->rtp_channel);
+            ASSERT_EQ(5, val->rtcp_channel);
+        }
+        otherwise FAIL();
+    }
 
-    CHECK(
-        SmolRTSP_LowerTransport_UDP,
-        "RTP/AVP/UDP;unicast;client_port=3056-3057");
-    CHECK(
-        SmolRTSP_LowerTransport_TCP,
-        "RTP/AVP/TCP;unicast;client_port=3056-3057");
-    CHECK(SmolRTSP_LowerTransport_UDP, "RTP/AVP;unicast;client_port=3056-3057");
-
-    CHECK(-1, "RTP/blah;unicast;client_port=3056-3057");
-
-#undef CHECK
+    match(config.client_port) {
+        of(SmolRTSP_PortPair_Some, val) {
+            ASSERT_EQ(3056, val->rtp_port);
+            ASSERT_EQ(3057, val->rtcp_port);
+        }
+        otherwise FAIL();
+    }
 
     PASS();
 }
 
-TEST parse_header_param(void) {
-    CharSlice99 ret;
+TEST parse_transport_minimal(void) {
+    SmolRTSP_TransportConfig config;
+    memset(&config, '\0', sizeof config);
 
-#define CHECK(param_name, value, expected)                                     \
+#define CHECK_REST                                                             \
     do {                                                                       \
-        ASSERT_EQ(                                                             \
-            0, smolrtsp_parse_header_param(                                    \
-                   &ret, param_name, CharSlice99_from_str(value)));            \
-        ASSERT(CharSlice99_primitive_eq(ret, CharSlice99_from_str(expected))); \
+        ASSERT(!config.unicast);                                               \
+        ASSERT(!config.multicast);                                             \
+        ASSERT(MATCHES(config.interleaved, SmolRTSP_ChannelPair_None));        \
+        ASSERT(MATCHES(config.client_port, SmolRTSP_PortPair_None));           \
     } while (0)
 
-    CHECK(
-        "client_port=", "RTP/AVP/UDP;unicast;client_port=3056-3057",
-        "3056-3057");
-    CHECK(
-        "client_port=",
-        "RTP/AVP/UDP;unicast;client_port=3056-3057;server_port=5002-5003",
-        "3056-3057");
-    CHECK(
-        "server_port=",
-        "RTP/AVP/UDP;unicast;client_port=3056-3057;server_port=5002-5003",
-        "5002-5003");
+    int ret =
+        smolrtsp_parse_transport(&config, CharSlice99_from_str("RTP/AVP"));
+    ASSERT_EQ(0, ret);
+    ASSERT_EQ(SmolRTSP_LowerTransport_UDP, config.lower);
+    CHECK_REST;
 
-#undef CHECK
+    ret =
+        smolrtsp_parse_transport(&config, CharSlice99_from_str("RTP/AVP/TCP"));
+    ASSERT_EQ(0, ret);
+    ASSERT_EQ(SmolRTSP_LowerTransport_TCP, config.lower);
+    CHECK_REST;
 
-    ASSERT_EQ(
-        -1,
-        smolrtsp_parse_header_param(
-            &ret, "abracadabra",
-            CharSlice99_from_str("RTP/AVP/UDP;unicast;client_port=3056-3057")));
+    ret =
+        smolrtsp_parse_transport(&config, CharSlice99_from_str("RTP/AVP/UDP"));
+    ASSERT_EQ(0, ret);
+    ASSERT_EQ(SmolRTSP_LowerTransport_UDP, config.lower);
+    CHECK_REST;
 
-    PASS();
-}
-
-TEST parse_range(void) {
-    uint8_t interleaved_rtp_port = 0, interleaved_rtcp_port = 0;
-
-    ASSERT_EQ(
-        0,
-        smolrtsp_parse_range(
-            &interleaved_rtp_port, &interleaved_rtcp_port, SCNu8,
-            "interleaved=",
-            CharSlice99_from_str(
-                "RTP/AVP/UDP;unicast;client_port=3056-3057;interleaved=4-5")));
-    ASSERT_EQ(4, interleaved_rtp_port);
-    ASSERT_EQ(5, interleaved_rtcp_port);
+#undef CHECK_REST
 
     PASS();
 }
 
-TEST parse_port_pair(void) {
-    SmolRTSP_PortPair client_port = {0};
+TEST parse_transport_trailing_semicolon(void) {
+    SmolRTSP_TransportConfig config;
+    memset(&config, '\0', sizeof config);
 
-    ASSERT_EQ(
-        0,
-        smolrtsp_parse_port_pair(
-            &client_port, "client_port=",
-            CharSlice99_from_str(
-                "RTP/AVP/UDP;unicast;interleaved=4-5;client_port=3056-3057")));
-    ASSERT_EQ(3056, client_port.rtp_port);
-    ASSERT_EQ(3057, client_port.rtcp_port);
+    int ret = smolrtsp_parse_transport(
+        &config,
+        CharSlice99_from_str(
+            "RTP/AVP/UDP;unicast;client_port=3056-3057;interleaved=4-5;"));
+    ASSERT_EQ(0, ret);
+    ASSERT_EQ(SmolRTSP_LowerTransport_UDP, config.lower);
+    ASSERT(config.unicast);
+    ASSERT(!config.multicast);
 
-    PASS();
-}
+    match(config.interleaved) {
+        of(SmolRTSP_ChannelPair_Some, val) {
+            ASSERT_EQ(4, val->rtp_channel);
+            ASSERT_EQ(5, val->rtcp_channel);
+        }
+        otherwise FAIL();
+    }
 
-TEST parse_interleaved(void) {
-    SmolRTSP_ChannelPair interleaved = {0};
-
-    ASSERT_EQ(
-        0,
-        smolrtsp_parse_interleaved(
-            &interleaved,
-            CharSlice99_from_str(
-                "RTP/AVP/UDP;unicast;interleaved=4-5;client_port=3056-3057")));
-    ASSERT_EQ(4, interleaved.rtp_channel);
-    ASSERT_EQ(5, interleaved.rtcp_channel);
+    match(config.client_port) {
+        of(SmolRTSP_PortPair_Some, val) {
+            ASSERT_EQ(3056, val->rtp_port);
+            ASSERT_EQ(3057, val->rtcp_port);
+        }
+        otherwise FAIL();
+    }
 
     PASS();
 }
@@ -135,11 +129,9 @@ TEST parse_interleaved_header(void) {
 }
 
 SUITE(util) {
-    RUN_TEST(parse_lower_transport);
-    RUN_TEST(parse_header_param);
-    RUN_TEST(parse_range);
-    RUN_TEST(parse_port_pair);
-    RUN_TEST(parse_interleaved);
+    RUN_TEST(parse_transport_config);
+    RUN_TEST(parse_transport_minimal);
+    RUN_TEST(parse_transport_trailing_semicolon);
     RUN_TEST(interleaved_header);
     RUN_TEST(parse_interleaved_header);
 }

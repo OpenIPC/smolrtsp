@@ -5,6 +5,7 @@
 
 #pragma once
 
+#include <smolrtsp/option.h>
 #include <smolrtsp/types/error.h>
 
 #include <stdint.h>
@@ -58,6 +59,13 @@ typedef struct {
 } SmolRTSP_PortPair;
 
 /**
+ * Defines `SmolRTSP_PortPairOption`.
+ *
+ * See [Datatype99](https://github.com/Hirrolot/datatype99) for the macro usage.
+ */
+SMOLRTSP_DEF_OPTION(SmolRTSP_PortPair);
+
+/**
  * An RTP/RTCP channel pair specified as a range, e.g., `interleaved=4-5`.
  */
 typedef struct {
@@ -73,80 +81,58 @@ typedef struct {
 } SmolRTSP_ChannelPair;
 
 /**
- * Parses a lower transport from @p value (either TCP or UDP).
+ * Defines `SmolRTSP_ChannelPair`.
  *
- * @param[in] value The
+ * See [Datatype99](https://github.com/Hirrolot/datatype99) for the macro usage.
+ */
+SMOLRTSP_DEF_OPTION(SmolRTSP_ChannelPair);
+
+/**
+ * The RTSP transport configuration.
+ *
+ * @see <https://datatracker.ietf.org/doc/html/rfc2326#section-12.39>
+ */
+typedef struct {
+    /**
+     * The lower level transport (TCP or UDP).
+     */
+    SmolRTSP_LowerTransport lower;
+
+    /**
+     * True if the `unicast` parameter is present.
+     */
+    bool unicast;
+
+    /**
+     * True if the `multicast` parameter is present.
+     */
+    bool multicast;
+
+    /**
+     * The `interleaved` parameter, if present.
+     */
+    SmolRTSP_ChannelPairOption interleaved;
+
+    /**
+     * The `client_port` parameter, if present.
+     */
+    SmolRTSP_PortPairOption client_port;
+} SmolRTSP_TransportConfig;
+
+/**
+ * Parses the
  * [`Transport`](https://datatracker.ietf.org/doc/html/rfc2326#section-12.39)
- * header value.
+ * header.
  *
- * @return #SmolRTSP_LowerTransport or -1 on parsing error.
+ * @param[out] config The result of parsing. It remains unchanged on failure.
+ * @param[in] header_value The value of the `Transport` header.
+ *
+ * @return 0 on success, -1 on failure.
+ *
+ * @pre `config != NULL`
  */
-int smolrtsp_parse_lower_transport(CharSlice99 value);
-
-/**
- * Parses a header value parameter in the form
- * `<param-name>=%<num-specifier>-%<num-specifier>`.
- *
- * @param[out] num_0 The address of the first number.
- * @param[out] num_1 The address of the second number.
- * @param[in] num_specifier The `scanf`-like specifier for the aforementioned
- * numbers.
- * @param[in] param_name The name of the parameter as in
- * #smolrtsp_parse_header_param.
- * @param[in] header_value The header value to search for the string.
- *
- * @pre `num_0 != NULL`
- * @pre `num_1 != NULL`
- * @pre @p num_specifier and @p param_name are null-terminated strings.
- */
-int smolrtsp_parse_range(
-    void *restrict num_0, void *restrict num_1,
-    const char *restrict num_specifier, const char *restrict param_name,
-    CharSlice99 header_value);
-
-/**
- * Like #smolrtsp_parse_range but parses a port pair.
- *
- * @param[out] pair The destination address of the port pair.
- * @param[in] param_name The name of the parameter as in
- * #smolrtsp_parse_header_param.
- * @param[in] header_value The header value to search for the string.
- *
- * @pre `pair != NULL`
- * @pre @p param_name is a null-terminated string.
- */
-int smolrtsp_parse_port_pair(
-    SmolRTSP_PortPair *restrict pair, const char *restrict param_name,
-    CharSlice99 header_value);
-
-/**
- * Parses the `interleaved` parameter of the #SMOLRTSP_HEADER_TRANSPORT header.
- *
- * @param[out] interleaved The destination address of the channel pair.
- * @param[in] transport_value The `Transport` header value to search for the
- * parameter.
- *
- * @pre `interleaved != NULL`
- */
-int smolrtsp_parse_interleaved(
-    SmolRTSP_ChannelPair *restrict interleaved, CharSlice99 transport_value);
-
-/**
- * Parses a header value parameter in the form `<param-name>=<param-value>`.
- *
- * @param[out] param_value The pointer to a parameter value, if found.
- * @param[in] param_name The name of a parameter to parse plus the `=` sign. For
- * example, `"mode="` or `"client_port="`.
- * @param[in] header_value The header value.
- *
- * @return 0 if @p param_name has been found, -1 otherwise.
- *
- * @pre @p param_name is a null-terminated string.
- * @pre `param_value != NULL`
- */
-int smolrtsp_parse_header_param(
-    CharSlice99 *restrict param_value, const char *restrict param_name,
-    CharSlice99 header_value);
+int smolrtsp_parse_transport(
+    SmolRTSP_TransportConfig *restrict config, CharSlice99 header_value);
 
 /**
  * Returns a four-octet interleaved binary data header.

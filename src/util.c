@@ -2,6 +2,7 @@
 
 #include <assert.h>
 #include <inttypes.h>
+#include <stdbool.h>
 #include <stdio.h>
 #include <string.h>
 
@@ -18,89 +19,119 @@ const char *SmolRTSP_LowerTransport_str(SmolRTSP_LowerTransport self) {
     }
 }
 
-int smolrtsp_parse_lower_transport(CharSlice99 value) {
-    if (CharSlice99_primitive_starts_with(
-            value, CharSlice99_from_str("RTP/AVP/UDP"))) {
-        return SmolRTSP_LowerTransport_UDP;
-    } else if (CharSlice99_primitive_starts_with(
-                   value, CharSlice99_from_str("RTP/AVP/TCP"))) {
-        return SmolRTSP_LowerTransport_TCP;
-    } else if (CharSlice99_primitive_starts_with(
-                   value, CharSlice99_from_str("RTP/AVP"))) {
-        return SmolRTSP_LowerTransport_UDP;
-    } else {
+#define PARSE_RANGE(lhs, rhs, specifier, param)                                \
+    sscanf((param), "%*[^=]=%" specifier "-%" specifier, &(lhs), &(rhs))
+#define STARTS_WITH(str, beginning)                                            \
+    (strncmp((str), (beginning), strlen(beginning)) == 0)
+
+static int parse_lower_transport(
+    SmolRTSP_TransportConfig *restrict result, const char *header_value);
+static int parse_transport_param(
+    SmolRTSP_TransportConfig *restrict result, const char *param);
+static int parse_channel_pair(
+    SmolRTSP_ChannelPair *restrict val, const char *restrict param);
+static int
+parse_port_pair(SmolRTSP_PortPair *restrict val, const char *restrict param);
+
+int smolrtsp_parse_transport(
+    SmolRTSP_TransportConfig *restrict config, CharSlice99 header_value) {
+    assert(config);
+
+    SmolRTSP_TransportConfig result = {
+        .lower = 0,
+        .unicast = false,
+        .multicast = false,
+        .interleaved = SmolRTSP_ChannelPair_None(),
+        .client_port = SmolRTSP_PortPair_None(),
+    };
+
+    const char *input = CharSlice99_alloca_c_str(header_value);
+
+    if (parse_lower_transport(&result, input) == -1) {
         return -1;
     }
+    if ((input = strchr(input, ';')) == NULL) {
+        goto success;
+    }
+    input++;
+
+    while (input != NULL) {
+        const char *next_param = strchr(input, ';');
+        const CharSlice99 param =
+            NULL == next_param
+                ? CharSlice99_from_str((char *)input)
+                : CharSlice99_from_ptrdiff((char *)input, (char *)next_param);
+
+        if (parse_transport_param(&result, CharSlice99_alloca_c_str(param)) ==
+            -1) {
+            return -1;
+        }
+
+        input = next_param != NULL ? next_param + 1 : NULL;
+    }
+
+success:
+    *config = result;
+    return 0;
 }
 
-int smolrtsp_parse_range(
-    void *restrict num_0, void *restrict num_1,
-    const char *restrict num_specifier, const char *restrict param_name,
-    CharSlice99 header_value) {
-    assert(num_0);
-    assert(num_1);
-    assert(num_specifier);
-    assert(param_name);
-
-    CharSlice99 range;
-    if (smolrtsp_parse_header_param(&range, param_name, header_value) == -1) {
+static int parse_lower_transport(
+    SmolRTSP_TransportConfig *restrict result, const char *header_value) {
+    const char *rtp_avp = "RTP/AVP";
+    if (strncmp(header_value, rtp_avp, strlen(rtp_avp)) != 0) {
         return -1;
     }
+    header_value += strlen(rtp_avp);
 
-    char fmt[16] = {0};
-    snprintf(fmt, sizeof fmt, "%%%s-%%%s", num_specifier, num_specifier);
+    if (strncmp(header_value, "/TCP", strlen("/TCP")) == 0) {
+        result->lower = SmolRTSP_LowerTransport_TCP;
+    } else if (strncmp(header_value, "/UDP", strlen("/UDP")) == 0) {
+        result->lower = SmolRTSP_LowerTransport_UDP;
+    } else {
+        result->lower = SmolRTSP_LowerTransport_UDP;
+    }
 
-    char *port_pair_str = CharSlice99_alloca_c_str(range);
-    if (sscanf(port_pair_str, fmt, num_0, num_1) != 2) {
+    return 0;
+}
+
+static int parse_transport_param(
+    SmolRTSP_TransportConfig *restrict result, const char *param) {
+    if (STARTS_WITH(param, "unicast")) {
+        result->unicast = true;
+    } else if (STARTS_WITH(param, "multicast")) {
+        result->multicast = true;
+    } else if (STARTS_WITH(param, "interleaved")) {
+        SmolRTSP_ChannelPair val;
+        if (parse_channel_pair(&val, param) == -1) {
+            return -1;
+        }
+        result->interleaved = SmolRTSP_ChannelPair_Some(val);
+    } else if (STARTS_WITH(param, "client_port")) {
+        SmolRTSP_PortPair val;
+        if (parse_port_pair(&val, param) == -1) {
+            return -1;
+        }
+        result->client_port = SmolRTSP_PortPair_Some(val);
+    }
+
+    return 0;
+}
+
+static int parse_channel_pair(
+    SmolRTSP_ChannelPair *restrict val, const char *restrict param) {
+    if (PARSE_RANGE(val->rtp_channel, val->rtcp_channel, SCNu8, param) != 2) {
         return -1;
     }
 
     return 0;
 }
 
-int smolrtsp_parse_port_pair(
-    SmolRTSP_PortPair *restrict pair, const char *restrict param_name,
-    CharSlice99 header_value) {
-    assert(pair);
-    assert(param_name);
-
-    return smolrtsp_parse_range(
-        &pair->rtp_port, &pair->rtcp_port, SCNu16, param_name, header_value);
-}
-
-int smolrtsp_parse_interleaved(
-    SmolRTSP_ChannelPair *restrict interleaved, CharSlice99 transport_value) {
-    assert(interleaved);
-
-    return smolrtsp_parse_range(
-        &interleaved->rtp_channel, &interleaved->rtcp_channel, SCNu8,
-        "interleaved=", transport_value);
-}
-
-int smolrtsp_parse_header_param(
-    CharSlice99 *restrict param_value, const char *restrict param_name,
-    CharSlice99 header_value) {
-    assert(param_name);
-    assert(param_value);
-
-    char *header_value_str =
-        CharSlice99_alloca_c_str(header_value); // for strstr/strchr
-
-    char *param_name_ptr = strstr(header_value_str, param_name);
-    if (NULL == param_name_ptr) {
+static int
+parse_port_pair(SmolRTSP_PortPair *restrict val, const char *restrict param) {
+    if (PARSE_RANGE(val->rtp_port, val->rtcp_port, SCNu16, param) != 2) {
         return -1;
     }
 
-    char *semicolon_ptr = strchr(param_name_ptr, ';');
-    const ptrdiff_t start_idx =
-        (param_name_ptr - header_value_str) + strlen(param_name);
-    ptrdiff_t end_idx = header_value.len;
-
-    if (NULL != semicolon_ptr) {
-        end_idx = semicolon_ptr - header_value_str;
-    }
-
-    *param_value = CharSlice99_sub(header_value, start_idx, end_idx);
     return 0;
 }
 
