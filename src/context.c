@@ -12,6 +12,7 @@ struct SmolRTSP_Context {
     uint32_t cseq;
     SmolRTSP_HeaderMap header_map;
     SmolRTSP_MessageBody body;
+    ssize_t ret;
 };
 
 SmolRTSP_Context *SmolRTSP_Context_new(SmolRTSP_Writer w, uint32_t cseq) {
@@ -23,6 +24,7 @@ SmolRTSP_Context *SmolRTSP_Context_new(SmolRTSP_Writer w, uint32_t cseq) {
     self->cseq = cseq;
     self->header_map = SmolRTSP_HeaderMap_empty();
     self->body = SmolRTSP_MessageBody_empty();
+    self->ret = 0;
 
     return self;
 }
@@ -35,6 +37,11 @@ SmolRTSP_Writer SmolRTSP_Context_get_writer(const SmolRTSP_Context *ctx) {
 uint32_t SmolRTSP_Context_get_cseq(const SmolRTSP_Context *ctx) {
     assert(ctx);
     return ctx->cseq;
+}
+
+ssize_t SmolRTSP_Context_get_ret(const SmolRTSP_Context *ctx) {
+    assert(ctx);
+    return ctx->ret;
 }
 
 void smolrtsp_vheader(
@@ -91,7 +98,8 @@ ssize_t smolrtsp_respond(
         .cseq = ctx->cseq,
     };
 
-    return SmolRTSP_Response_serialize(&response, ctx->writer);
+    ctx->ret = SmolRTSP_Response_serialize(&response, ctx->writer);
+    return ctx->ret;
 }
 
 ssize_t smolrtsp_respond_ok(SmolRTSP_Context *ctx) {

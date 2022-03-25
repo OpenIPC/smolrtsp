@@ -24,64 +24,70 @@ impl(SmolRTSP_Droppable, Client);
 
 #define HEADER_TEST_METHOD CharSlice99_from_str("Test-Method")
 
-static ssize_t
+static void
 Client_options(VSelf, SmolRTSP_Context *ctx, const SmolRTSP_Request *req) {
     VSELF(Client);
 
     self->options_completed = true;
     assert(req == &options_req);
     smolrtsp_header(ctx, HEADER_TEST_METHOD, "options");
-    return smolrtsp_respond_ok(ctx);
+    const ssize_t ret = smolrtsp_respond_ok(ctx);
+    assert(ret > 0);
 }
 
-static ssize_t
+static void
 Client_describe(VSelf, SmolRTSP_Context *ctx, const SmolRTSP_Request *req) {
     VSELF(Client);
 
     self->describe_completed = true;
     assert(req == &describe_req);
     smolrtsp_header(ctx, HEADER_TEST_METHOD, "describe");
-    return smolrtsp_respond_ok(ctx);
+    const ssize_t ret = smolrtsp_respond_ok(ctx);
+    assert(ret > 0);
 }
 
-static ssize_t
+static void
 Client_setup(VSelf, SmolRTSP_Context *ctx, const SmolRTSP_Request *req) {
     VSELF(Client);
 
     self->setup_completed = true;
     assert(req == &setup_req);
     smolrtsp_header(ctx, HEADER_TEST_METHOD, "setup");
-    return smolrtsp_respond_ok(ctx);
+    const ssize_t ret = smolrtsp_respond_ok(ctx);
+    assert(ret > 0);
 }
 
-static ssize_t
+static void
 Client_play(VSelf, SmolRTSP_Context *ctx, const SmolRTSP_Request *req) {
     VSELF(Client);
 
     self->play_completed = true;
     assert(req == &play_req);
     smolrtsp_header(ctx, HEADER_TEST_METHOD, "play");
-    return smolrtsp_respond_ok(ctx);
+    const ssize_t ret = smolrtsp_respond_ok(ctx);
+    assert(ret > 0);
 }
 
-static ssize_t
+static void
 Client_teardown(VSelf, SmolRTSP_Context *ctx, const SmolRTSP_Request *req) {
     VSELF(Client);
 
     self->teardown_completed = true;
     assert(req == &teardown_req);
     smolrtsp_header(ctx, HEADER_TEST_METHOD, "teardown");
-    return smolrtsp_respond_ok(ctx);
+    const ssize_t ret = smolrtsp_respond_ok(ctx);
+    assert(ret > 0);
 }
 
-static ssize_t
+static void
 Client_unknown(VSelf, SmolRTSP_Context *ctx, const SmolRTSP_Request *req) {
     VSELF(Client);
 
     self->abracadabra_completed = true;
     assert(req == &abracadabra_req);
     smolrtsp_header(ctx, HEADER_TEST_METHOD, "abracadabra");
-    return smolrtsp_respond_ok(ctx);
+    const ssize_t ret = smolrtsp_respond_ok(ctx);
+    assert(ret > 0);
 }
 
 static void

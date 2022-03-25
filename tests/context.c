@@ -16,8 +16,8 @@ TEST context_creation(void) {
     ASSERT_EQ(w.self, got_writer.self);
     ASSERT_EQ(w.vptr, got_writer.vptr);
 
-    const uint32_t got_cseq = SmolRTSP_Context_get_cseq(ctx);
-    ASSERT_EQ(cseq, got_cseq);
+    ASSERT_EQ(cseq, SmolRTSP_Context_get_cseq(ctx));
+    ASSERT_EQ(0, SmolRTSP_Context_get_ret(ctx));
 
     VTABLE(SmolRTSP_Context, SmolRTSP_Droppable).drop(ctx);
     PASS();
@@ -36,6 +36,7 @@ TEST respond_empty(void) {
 
     ssize_t ret = smolrtsp_respond(ctx, SMOLRTSP_STATUS_NOT_FOUND, "Not found");
     ASSERT_EQ((ssize_t)strlen(expected), ret);
+    ASSERT_EQ(ret, SmolRTSP_Context_get_ret(ctx));
     ASSERT_STR_EQ(expected, buffer);
 
     VTABLE(SmolRTSP_Context, SmolRTSP_Droppable).drop(ctx);
@@ -67,6 +68,7 @@ TEST respond(void) {
 
     ssize_t ret = smolrtsp_respond(ctx, SMOLRTSP_STATUS_NOT_FOUND, "Not found");
     ASSERT_EQ((ssize_t)strlen(expected), ret);
+    ASSERT_EQ(ret, SmolRTSP_Context_get_ret(ctx));
     ASSERT_STR_EQ(expected, buffer);
 
     VTABLE(SmolRTSP_Context, SmolRTSP_Droppable).drop(ctx);
@@ -86,6 +88,7 @@ TEST respond_ok(void) {
 
     ssize_t ret = smolrtsp_respond_ok(ctx);
     ASSERT_EQ((ssize_t)strlen(expected), ret);
+    ASSERT_EQ(ret, SmolRTSP_Context_get_ret(ctx));
     ASSERT_STR_EQ(expected, buffer);
 
     VTABLE(SmolRTSP_Context, SmolRTSP_Droppable).drop(ctx);
@@ -105,6 +108,7 @@ TEST respond_internal_error(void) {
 
     ssize_t ret = smolrtsp_respond_internal_error(ctx);
     ASSERT_EQ((ssize_t)strlen(expected), ret);
+    ASSERT_EQ(ret, SmolRTSP_Context_get_ret(ctx));
     ASSERT_STR_EQ(expected, buffer);
 
     VTABLE(SmolRTSP_Context, SmolRTSP_Droppable).drop(ctx);

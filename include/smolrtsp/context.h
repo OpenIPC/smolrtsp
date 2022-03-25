@@ -50,6 +50,16 @@ uint32_t
 SmolRTSP_Context_get_cseq(const SmolRTSP_Context *ctx) SMOLRTSP_PRIV_MUST_USE;
 
 /**
+ * Retrieves the RTSP respond return value.
+ *
+ * If you have not responded yet, the result is 0.
+ *
+ * @pre `ctx != NULL`
+ */
+ssize_t
+SmolRTSP_Context_get_ret(const SmolRTSP_Context *ctx) SMOLRTSP_PRIV_MUST_USE;
+
+/**
  * Appends an RTSP header to the request context.
  *
  * @param[out] ctx The request context to modify.
@@ -99,8 +109,7 @@ void smolrtsp_body(SmolRTSP_Context *ctx, SmolRTSP_MessageBody body);
  * @return The number of bytes written or a negative value on error.
  */
 ssize_t smolrtsp_respond(
-    SmolRTSP_Context *ctx, SmolRTSP_StatusCode code,
-    const char *reason) SMOLRTSP_PRIV_MUST_USE;
+    SmolRTSP_Context *ctx, SmolRTSP_StatusCode code, const char *reason);
 
 /**
  * A shortcut for `smolrtsp_respond(ctx, SMOLRTSP_STATUS_OK, "OK")`.

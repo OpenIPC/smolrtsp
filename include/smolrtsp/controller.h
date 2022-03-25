@@ -20,10 +20,6 @@
  * All RTSP command handlers accept the following parameters:
  *  - `ctx` -- a request context used to respond to your RTSP client.
  *  - `req` -- a fully parsed request object.
- *
- * Command handlers return `ssize_t` -- the number of response bytes written
- * or a negative value on error (typically, it is a return value of
- * #smolrtsp_respond/#smolrtsp_respond_ok or similar).
  */
 #define SmolRTSP_Controller_IFACE                                              \
                                                                                \
@@ -32,7 +28,7 @@
      * <https://datatracker.ietf.org/doc/html/rfc2326#section-10.1>.           \
      */                                                                        \
     vfunc99(                                                                   \
-        ssize_t, options, VSelf99, SmolRTSP_Context *ctx,                      \
+        void, options, VSelf99, SmolRTSP_Context *ctx,                         \
         const SmolRTSP_Request *req)                                           \
                                                                                \
     /*                                                                         \
@@ -40,7 +36,7 @@
      * <https://datatracker.ietf.org/doc/html/rfc2326#section-10.2>.           \
      */                                                                        \
     vfunc99(                                                                   \
-        ssize_t, describe, VSelf99, SmolRTSP_Context *ctx,                     \
+        void, describe, VSelf99, SmolRTSP_Context *ctx,                        \
         const SmolRTSP_Request *req)                                           \
                                                                                \
     /*                                                                         \
@@ -48,7 +44,7 @@
      * <https://datatracker.ietf.org/doc/html/rfc2326#section-10.4>.           \
      */                                                                        \
     vfunc99(                                                                   \
-        ssize_t, setup, VSelf99, SmolRTSP_Context *ctx,                        \
+        void, setup, VSelf99, SmolRTSP_Context *ctx,                           \
         const SmolRTSP_Request *req)                                           \
                                                                                \
     /*                                                                         \
@@ -56,7 +52,7 @@
      * <https://datatracker.ietf.org/doc/html/rfc2326#section-10.5>.           \
      */                                                                        \
     vfunc99(                                                                   \
-        ssize_t, play, VSelf99, SmolRTSP_Context *ctx,                         \
+        void, play, VSelf99, SmolRTSP_Context *ctx,                            \
         const SmolRTSP_Request *req)                                           \
                                                                                \
     /*                                                                         \
@@ -64,14 +60,14 @@
      * <https://datatracker.ietf.org/doc/html/rfc2326#section-10.7>.           \
      */                                                                        \
     vfunc99(                                                                   \
-        ssize_t, teardown, VSelf99, SmolRTSP_Context *ctx,                     \
+        void, teardown, VSelf99, SmolRTSP_Context *ctx,                        \
         const SmolRTSP_Request *req)                                           \
                                                                                \
     /*                                                                         \
      * Handles a command that is neither of the above.                         \
      */                                                                        \
     vfunc99(                                                                   \
-        ssize_t, unknown, VSelf99, SmolRTSP_Context *ctx,                      \
+        void, unknown, VSelf99, SmolRTSP_Context *ctx,                         \
         const SmolRTSP_Request *req)                                           \
                                                                                \
     /*                                                                         \
@@ -114,10 +110,10 @@ interface99(SmolRTSP_Controller);
  *  3. Invoke a corresponding command handler of @p controller. Here you should
  * handle the request and respond to your client via
  * #smolrtsp_respond/#smolrtsp_respond_ok or similar.
- *  4. Invoke the `after` method of @p controller. Here you should handle the
- * return value of a command handler invoked by #smolrtsp_dispatch. If it is <0,
- * it means that something bad happened so that the handler has not been able to
- * respond properly.
+ *  4. Invoke the `after` method of @p controller. Here you automatically
+ * receive the return value of `smolrtsp_respond_*` (invoked during the step
+ * #3). If it is <0, it means that something bad happened so that the handler
+ * has not been able to respond properly.
  *  5. Drop the request context.
  *
  * @param[out] conn The writer to send RTSP responses.
