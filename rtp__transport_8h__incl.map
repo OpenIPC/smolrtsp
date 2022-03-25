@@ -1,11 +1,12 @@
 <map id="include/smolrtsp/rtp_transport.h" name="include/smolrtsp/rtp_transport.h">
-<area shape="rect" id="node1" title="An RTP data transport." alt="" coords="530,5,682,47"/>
+<area shape="rect" id="node1" title="An RTP data transport." alt="" coords="662,5,814,47"/>
 <area shape="rect" id="node2" href="$droppable_8h.html" title="Droppable types support." alt="" coords="63,169,223,196"/>
 <area shape="rect" id="node4" href="$transport_8h.html" title="RTSP data transport (level 4) implementations." alt="" coords="282,95,437,121"/>
 <area shape="rect" id="node9" title=" " alt="" coords="426,251,506,278"/>
 <area shape="rect" id="node10" title=" " alt="" coords="876,244,1045,285"/>
 <area shape="rect" id="node15" title=" " alt="" coords="775,95,858,121"/>
 <area shape="rect" id="node16" title=" " alt="" coords="883,95,953,121"/>
+<area shape="rect" id="node17" title=" " alt="" coords="977,95,1085,121"/>
 <area shape="rect" id="node3" title=" " alt="" coords="5,251,113,278"/>
 <area shape="rect" id="node5" href="$io__vec_8h.html" title="Vectored I/O support." alt="" coords="512,169,649,196"/>
 <area shape="rect" id="node11" href="$writer_8h.html" title="The writer interface." alt="" coords="299,169,431,196"/>

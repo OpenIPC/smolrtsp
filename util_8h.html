@@ -95,7 +95,8 @@ $(document).ready(function(){initNavTree('util_8h.html',''); initResizable(); })
 
 <p>Utilitary stuff.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &lt;<a class="el" href="error_8h_source.html">smolrtsp/types/error.h</a>&gt;</code><br />
+<div class="textblock"><code>#include &lt;<a class="el" href="option_8h_source.html">smolrtsp/option.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="error_8h_source.html">smolrtsp/types/error.h</a>&gt;</code><br />
 <code>#include &lt;stdint.h&gt;</code><br />
 <code>#include &lt;slice99.h&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -103,19 +104,20 @@ Include dependency graph for util.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="util_8h__incl.png" border="0" usemap="#include_2smolrtsp_2util_8h" alt=""/></div>
 <map name="include_2smolrtsp_2util_8h" id="include_2smolrtsp_2util_8h">
-<area shape="rect" title="Utilitary stuff." alt="" coords="656,5,823,32"/>
-<area shape="rect" href="error_8h.html" title="Possible parsing errors." alt="" coords="298,80,463,107"/>
-<area shape="rect" title=" " alt="" coords="719,237,799,263"/>
-<area shape="rect" title=" " alt="" coords="777,80,848,107"/>
-<area shape="rect" href="writer_8h.html" title="The writer interface." alt="" coords="459,155,591,181"/>
-<area shape="rect" title=" " alt="" coords="199,237,274,263"/>
-<area shape="rect" title=" " alt="" coords="5,229,175,271"/>
-<area shape="rect" title=" " alt="" coords="219,155,302,181"/>
-<area shape="rect" title=" " alt="" coords="327,155,435,181"/>
-<area shape="rect" title=" " alt="" coords="298,237,373,263"/>
-<area shape="rect" title=" " alt="" coords="397,237,463,263"/>
-<area shape="rect" title=" " alt="" coords="487,237,562,263"/>
-<area shape="rect" title=" " alt="" coords="587,237,695,263"/>
+<area shape="rect" title="Utilitary stuff." alt="" coords="474,5,641,32"/>
+<area shape="rect" href="option_8h.html" title="Optional values." alt="" coords="148,80,284,107"/>
+<area shape="rect" href="error_8h.html" title="Possible parsing errors." alt="" coords="344,80,509,107"/>
+<area shape="rect" title=" " alt="" coords="720,237,800,263"/>
+<area shape="rect" title=" " alt="" coords="726,80,797,107"/>
+<area shape="rect" title=" " alt="" coords="126,155,234,181"/>
+<area shape="rect" href="writer_8h.html" title="The writer interface." alt="" coords="361,155,493,181"/>
+<area shape="rect" title=" " alt="" coords="5,237,80,263"/>
+<area shape="rect" title=" " alt="" coords="105,229,274,271"/>
+<area shape="rect" title=" " alt="" coords="517,155,600,181"/>
+<area shape="rect" title=" " alt="" coords="621,237,696,263"/>
+<area shape="rect" title=" " alt="" coords="299,237,365,263"/>
+<area shape="rect" title=" " alt="" coords="389,237,464,263"/>
+<area shape="rect" title=" " alt="" coords="489,237,597,263"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -137,6 +139,9 @@ Data Structures</h2></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structSmolRTSP__ChannelPair.html">SmolRTSP_ChannelPair</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An RTP/RTCP channel pair specified as a range, e.g., <code>interleaved=4-5</code>.  <a href="structSmolRTSP__ChannelPair.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structSmolRTSP__TransportConfig.html">SmolRTSP_TransportConfig</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The RTSP transport configuration.  <a href="structSmolRTSP__TransportConfig.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
@@ -164,24 +169,18 @@ Functions</h2></td></tr>
 const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#a671bc6adbfb22b949bbb21980de85442">SmolRTSP_LowerTransport_str</a> (<a class="el" href="util_8h.html#a1913c4e09e6a1c4acc7a875ec14a59ec">SmolRTSP_LowerTransport</a> self)</td></tr>
 <tr class="memdesc:a671bc6adbfb22b949bbb21980de85442"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts <code>self</code> to a string representation (<code>"TCP"</code> for <a class="el" href="util_8h.html#a1913c4e09e6a1c4acc7a875ec14a59eca3d5e8e0c4a3e76d7388a5932e3d54fa6" title="TCP.">SmolRTSP_LowerTransport_TCP</a> and <code>"UDP"</code> for <a class="el" href="util_8h.html#a1913c4e09e6a1c4acc7a875ec14a59eca4133e9bc8c588469f99b8ed758982e44" title="UDP.">SmolRTSP_LowerTransport_UDP</a>). <br /></td></tr>
 <tr class="separator:a671bc6adbfb22b949bbb21980de85442"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a61b939ba5975e994bd4ee5a05933e997"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#a61b939ba5975e994bd4ee5a05933e997">smolrtsp_parse_lower_transport</a> (CharSlice99 value)</td></tr>
-<tr class="memdesc:a61b939ba5975e994bd4ee5a05933e997"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses a lower transport from <code>value</code> (either TCP or UDP).  <a href="util_8h.html#a61b939ba5975e994bd4ee5a05933e997">More...</a><br /></td></tr>
-<tr class="separator:a61b939ba5975e994bd4ee5a05933e997"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0a50c1dae69f89ed02efa454b5de85a1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#a0a50c1dae69f89ed02efa454b5de85a1">smolrtsp_parse_range</a> (void *restrict num_0, void *restrict num_1, const char *restrict num_specifier, const char *restrict param_name, CharSlice99 header_value)</td></tr>
-<tr class="memdesc:a0a50c1dae69f89ed02efa454b5de85a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses a header value parameter in the form <code>&lt;param-name&gt;=%&lt;num-specifier&gt;-%&lt;num-specifier&gt;</code>.  <a href="util_8h.html#a0a50c1dae69f89ed02efa454b5de85a1">More...</a><br /></td></tr>
-<tr class="separator:a0a50c1dae69f89ed02efa454b5de85a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af1e28d1ea9efc4d815768aa7ac706ffa"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#af1e28d1ea9efc4d815768aa7ac706ffa">smolrtsp_parse_port_pair</a> (<a class="el" href="structSmolRTSP__PortPair.html">SmolRTSP_PortPair</a> *restrict pair, const char *restrict param_name, CharSlice99 header_value)</td></tr>
-<tr class="memdesc:af1e28d1ea9efc4d815768aa7ac706ffa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Like <a class="el" href="util_8h.html#a0a50c1dae69f89ed02efa454b5de85a1" title="Parses a header value parameter in the form &lt;param-name&gt;=%&lt;num-specifier&gt;-%&lt;num-specifier&gt;.">smolrtsp_parse_range</a> but parses a port pair.  <a href="util_8h.html#af1e28d1ea9efc4d815768aa7ac706ffa">More...</a><br /></td></tr>
-<tr class="separator:af1e28d1ea9efc4d815768aa7ac706ffa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1ae4d436a31beda36c8544ceefb02a0a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#a1ae4d436a31beda36c8544ceefb02a0a">smolrtsp_parse_interleaved</a> (<a class="el" href="structSmolRTSP__ChannelPair.html">SmolRTSP_ChannelPair</a> *restrict interleaved, CharSlice99 transport_value)</td></tr>
-<tr class="memdesc:a1ae4d436a31beda36c8544ceefb02a0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses the <code>interleaved</code> parameter of the <a class="el" href="header_8h.html#a33f1e8063ee04334aef01a2943d8af9a" title="Transport.">SMOLRTSP_HEADER_TRANSPORT</a> header.  <a href="util_8h.html#a1ae4d436a31beda36c8544ceefb02a0a">More...</a><br /></td></tr>
-<tr class="separator:a1ae4d436a31beda36c8544ceefb02a0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abf5709caa14073bb9e48fa2c6e51ae76"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#abf5709caa14073bb9e48fa2c6e51ae76">smolrtsp_parse_header_param</a> (CharSlice99 *restrict param_value, const char *restrict param_name, CharSlice99 header_value)</td></tr>
-<tr class="memdesc:abf5709caa14073bb9e48fa2c6e51ae76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses a header value parameter in the form <code>&lt;param-name&gt;=&lt;param-value&gt;</code>.  <a href="util_8h.html#abf5709caa14073bb9e48fa2c6e51ae76">More...</a><br /></td></tr>
-<tr class="separator:abf5709caa14073bb9e48fa2c6e51ae76"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3a9dca14691e6f4c1fdda7b12216270f"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#a3a9dca14691e6f4c1fdda7b12216270f">smolrtsp_interleaved_header</a> (uint8_t channel_id, uint16_t payload_len)</td></tr>
-<tr class="memdesc:a3a9dca14691e6f4c1fdda7b12216270f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a four-octet interleaved binary data header.  <a href="util_8h.html#a3a9dca14691e6f4c1fdda7b12216270f">More...</a><br /></td></tr>
-<tr class="separator:a3a9dca14691e6f4c1fdda7b12216270f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d8f79b7a21db7aa05b327d920dfa966"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#a2d8f79b7a21db7aa05b327d920dfa966">SMOLRTSP_DEF_OPTION</a> (<a class="el" href="structSmolRTSP__PortPair.html">SmolRTSP_PortPair</a>)</td></tr>
+<tr class="memdesc:a2d8f79b7a21db7aa05b327d920dfa966"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines <code>SmolRTSP_PortPairOption</code>.  <a href="util_8h.html#a2d8f79b7a21db7aa05b327d920dfa966">More...</a><br /></td></tr>
+<tr class="separator:a2d8f79b7a21db7aa05b327d920dfa966"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab72eecaa404fbad784ac1cb2cd9b39de"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#ab72eecaa404fbad784ac1cb2cd9b39de">SMOLRTSP_DEF_OPTION</a> (<a class="el" href="structSmolRTSP__ChannelPair.html">SmolRTSP_ChannelPair</a>)</td></tr>
+<tr class="memdesc:ab72eecaa404fbad784ac1cb2cd9b39de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines <code><a class="el" href="structSmolRTSP__ChannelPair.html" title="An RTP/RTCP channel pair specified as a range, e.g., interleaved=4-5.">SmolRTSP_ChannelPair</a></code>.  <a href="util_8h.html#ab72eecaa404fbad784ac1cb2cd9b39de">More...</a><br /></td></tr>
+<tr class="separator:ab72eecaa404fbad784ac1cb2cd9b39de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50c6302c16dc1d19d5a96aae82e2fd2f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#a50c6302c16dc1d19d5a96aae82e2fd2f">smolrtsp_parse_transport</a> (<a class="el" href="structSmolRTSP__TransportConfig.html">SmolRTSP_TransportConfig</a> *restrict config, CharSlice99 header_value) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:a50c6302c16dc1d19d5a96aae82e2fd2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses the <a href="https://datatracker.ietf.org/doc/html/rfc2326#section-12.39"><code>Transport</code></a> header.  <a href="util_8h.html#a50c6302c16dc1d19d5a96aae82e2fd2f">More...</a><br /></td></tr>
+<tr class="separator:a50c6302c16dc1d19d5a96aae82e2fd2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96508da46feee8ed0be450abb3e35d96"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#a96508da46feee8ed0be450abb3e35d96">smolrtsp_interleaved_header</a> (uint8_t channel_id, uint16_t payload_len) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:a96508da46feee8ed0be450abb3e35d96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a four-octet interleaved binary data header.  <a href="util_8h.html#a96508da46feee8ed0be450abb3e35d96">More...</a><br /></td></tr>
+<tr class="separator:a96508da46feee8ed0be450abb3e35d96"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a60e13d33f4e9c621cc93079b08339090"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#a60e13d33f4e9c621cc93079b08339090">smolrtsp_parse_interleaved_header</a> (uint32_t data, uint8_t *restrict channel_id, uint16_t *restrict payload_len)</td></tr>
 <tr class="memdesc:a60e13d33f4e9c621cc93079b08339090"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses an four-octet interleaved binary data header <code>data</code>.  <a href="util_8h.html#a60e13d33f4e9c621cc93079b08339090">More...</a><br /></td></tr>
 <tr class="separator:a60e13d33f4e9c621cc93079b08339090"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -212,8 +211,50 @@ const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="a3a9dca14691e6f4c1fdda7b12216270f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3a9dca14691e6f4c1fdda7b12216270f">&#9670;&nbsp;</a></span>smolrtsp_interleaved_header()</h2>
+<a id="ab72eecaa404fbad784ac1cb2cd9b39de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab72eecaa404fbad784ac1cb2cd9b39de">&#9670;&nbsp;</a></span>SMOLRTSP_DEF_OPTION() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">SMOLRTSP_DEF_OPTION </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structSmolRTSP__ChannelPair.html">SmolRTSP_ChannelPair</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Defines <code><a class="el" href="structSmolRTSP__ChannelPair.html" title="An RTP/RTCP channel pair specified as a range, e.g., interleaved=4-5.">SmolRTSP_ChannelPair</a></code>. </p>
+<p>See <a href="https://github.com/Hirrolot/datatype99">Datatype99</a> for the macro usage. </p>
+
+</div>
+</div>
+<a id="a2d8f79b7a21db7aa05b327d920dfa966"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d8f79b7a21db7aa05b327d920dfa966">&#9670;&nbsp;</a></span>SMOLRTSP_DEF_OPTION() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">SMOLRTSP_DEF_OPTION </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structSmolRTSP__PortPair.html">SmolRTSP_PortPair</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Defines <code>SmolRTSP_PortPairOption</code>. </p>
+<p>See <a href="https://github.com/Hirrolot/datatype99">Datatype99</a> for the macro usage. </p>
+
+</div>
+</div>
+<a id="a96508da46feee8ed0be450abb3e35d96"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a96508da46feee8ed0be450abb3e35d96">&#9670;&nbsp;</a></span>smolrtsp_interleaved_header()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -247,92 +288,6 @@ const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
   </dd>
 </dl>
 <dl class="section see"><dt>See also</dt><dd><a href="https://datatracker.ietf.org/doc/html/rfc2326#section-10.12">https://datatracker.ietf.org/doc/html/rfc2326#section-10.12</a> </dd></dl>
-
-</div>
-</div>
-<a id="abf5709caa14073bb9e48fa2c6e51ae76"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abf5709caa14073bb9e48fa2c6e51ae76">&#9670;&nbsp;</a></span>smolrtsp_parse_header_param()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int smolrtsp_parse_header_param </td>
-          <td>(</td>
-          <td class="paramtype">CharSlice99 *restrict&#160;</td>
-          <td class="paramname"><em>param_value</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const char *restrict&#160;</td>
-          <td class="paramname"><em>param_name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">CharSlice99&#160;</td>
-          <td class="paramname"><em>header_value</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Parses a header value parameter in the form <code>&lt;param-name&gt;=&lt;param-value&gt;</code>. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[out]</td><td class="paramname">param_value</td><td>The pointer to a parameter value, if found. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">param_name</td><td>The name of a parameter to parse plus the <code>=</code> sign. For example, <code>"mode="</code> or <code>"client_port="</code>. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">header_value</td><td>The header value.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>0 if <code>param_name</code> has been found, -1 otherwise.</dd></dl>
-<dl class="section pre"><dt>Precondition</dt><dd><code>param_name</code> is a null-terminated string. </dd>
-<dd>
-<code>param_value != NULL</code> </dd></dl>
-
-</div>
-</div>
-<a id="a1ae4d436a31beda36c8544ceefb02a0a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1ae4d436a31beda36c8544ceefb02a0a">&#9670;&nbsp;</a></span>smolrtsp_parse_interleaved()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int smolrtsp_parse_interleaved </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structSmolRTSP__ChannelPair.html">SmolRTSP_ChannelPair</a> *restrict&#160;</td>
-          <td class="paramname"><em>interleaved</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">CharSlice99&#160;</td>
-          <td class="paramname"><em>transport_value</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Parses the <code>interleaved</code> parameter of the <a class="el" href="header_8h.html#a33f1e8063ee04334aef01a2943d8af9a" title="Transport.">SMOLRTSP_HEADER_TRANSPORT</a> header. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[out]</td><td class="paramname">interleaved</td><td>The destination address of the channel pair. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">transport_value</td><td>The <code>Transport</code> header value to search for the parameter.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section pre"><dt>Precondition</dt><dd><code>interleaved != NULL</code> </dd></dl>
 
 </div>
 </div>
@@ -384,50 +339,17 @@ const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 
 </div>
 </div>
-<a id="a61b939ba5975e994bd4ee5a05933e997"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a61b939ba5975e994bd4ee5a05933e997">&#9670;&nbsp;</a></span>smolrtsp_parse_lower_transport()</h2>
+<a id="a50c6302c16dc1d19d5a96aae82e2fd2f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a50c6302c16dc1d19d5a96aae82e2fd2f">&#9670;&nbsp;</a></span>smolrtsp_parse_transport()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int smolrtsp_parse_lower_transport </td>
+          <td class="memname">int smolrtsp_parse_transport </td>
           <td>(</td>
-          <td class="paramtype">CharSlice99&#160;</td>
-          <td class="paramname"><em>value</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Parses a lower transport from <code>value</code> (either TCP or UDP). </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">value</td><td>The <a href="https://datatracker.ietf.org/doc/html/rfc2326#section-12.39"><code>Transport</code></a> header value.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="util_8h.html#a1913c4e09e6a1c4acc7a875ec14a59ec" title="An RTSP lower transport.">SmolRTSP_LowerTransport</a> or -1 on parsing error. </dd></dl>
-
-</div>
-</div>
-<a id="af1e28d1ea9efc4d815768aa7ac706ffa"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af1e28d1ea9efc4d815768aa7ac706ffa">&#9670;&nbsp;</a></span>smolrtsp_parse_port_pair()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int smolrtsp_parse_port_pair </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structSmolRTSP__PortPair.html">SmolRTSP_PortPair</a> *restrict&#160;</td>
-          <td class="paramname"><em>pair</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const char *restrict&#160;</td>
-          <td class="paramname"><em>param_name</em>, </td>
+          <td class="paramtype"><a class="el" href="structSmolRTSP__TransportConfig.html">SmolRTSP_TransportConfig</a> *restrict&#160;</td>
+          <td class="paramname"><em>config</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -443,81 +365,16 @@ const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
       </table>
 </div><div class="memdoc">
 
-<p>Like <a class="el" href="util_8h.html#a0a50c1dae69f89ed02efa454b5de85a1" title="Parses a header value parameter in the form &lt;param-name&gt;=%&lt;num-specifier&gt;-%&lt;num-specifier&gt;.">smolrtsp_parse_range</a> but parses a port pair. </p>
+<p>Parses the <a href="https://datatracker.ietf.org/doc/html/rfc2326#section-12.39"><code>Transport</code></a> header. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[out]</td><td class="paramname">pair</td><td>The destination address of the port pair. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">param_name</td><td>The name of the parameter as in <a class="el" href="util_8h.html#abf5709caa14073bb9e48fa2c6e51ae76" title="Parses a header value parameter in the form &lt;param-name&gt;=&lt;param-value&gt;.">smolrtsp_parse_header_param</a>. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">header_value</td><td>The header value to search for the string.</td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">config</td><td>The result of parsing. It remains unchanged on failure. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">header_value</td><td>The value of the <code>Transport</code> header.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section pre"><dt>Precondition</dt><dd><code>pair != NULL</code> </dd>
-<dd>
-<code>param_name</code> is a null-terminated string. </dd></dl>
-
-</div>
-</div>
-<a id="a0a50c1dae69f89ed02efa454b5de85a1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0a50c1dae69f89ed02efa454b5de85a1">&#9670;&nbsp;</a></span>smolrtsp_parse_range()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int smolrtsp_parse_range </td>
-          <td>(</td>
-          <td class="paramtype">void *restrict&#160;</td>
-          <td class="paramname"><em>num_0</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">void *restrict&#160;</td>
-          <td class="paramname"><em>num_1</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const char *restrict&#160;</td>
-          <td class="paramname"><em>num_specifier</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const char *restrict&#160;</td>
-          <td class="paramname"><em>param_name</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">CharSlice99&#160;</td>
-          <td class="paramname"><em>header_value</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Parses a header value parameter in the form <code>&lt;param-name&gt;=%&lt;num-specifier&gt;-%&lt;num-specifier&gt;</code>. </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramdir">[out]</td><td class="paramname">num_0</td><td>The address of the first number. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">num_1</td><td>The address of the second number. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">num_specifier</td><td>The <code>scanf</code>-like specifier for the aforementioned numbers. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">param_name</td><td>The name of the parameter as in <a class="el" href="util_8h.html#abf5709caa14073bb9e48fa2c6e51ae76" title="Parses a header value parameter in the form &lt;param-name&gt;=&lt;param-value&gt;.">smolrtsp_parse_header_param</a>. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">header_value</td><td>The header value to search for the string.</td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section pre"><dt>Precondition</dt><dd><code>num_0 != NULL</code> </dd>
-<dd>
-<code>num_1 != NULL</code> </dd>
-<dd>
-<code>num_specifier</code> and <code>param_name</code> are null-terminated strings. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>0 on success, -1 on failure.</dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd><code>config != NULL</code> </dd></dl>
 
 </div>
 </div>

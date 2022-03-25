@@ -8,6 +8,7 @@ var dir_d9df11550791e941c069ba1bdc5c3ae8 =
     [ "io_vec.h", "io__vec_8h.html", "io__vec_8h" ],
     [ "nal.h", "nal_8h.html", "nal_8h" ],
     [ "nal_transport.h", "nal__transport_8h.html", "nal__transport_8h" ],
+    [ "option.h", "option_8h.html", "option_8h" ],
     [ "rtp_transport.h", "rtp__transport_8h.html", "rtp__transport_8h" ],
     [ "transport.h", "transport_8h.html", "transport_8h" ],
     [ "util.h", "util_8h.html", "util_8h" ],

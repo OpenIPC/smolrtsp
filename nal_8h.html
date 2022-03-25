@@ -85,6 +85,7 @@ $(document).ready(function(){initNavTree('nal_8h.html',''); initResizable(); });
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Data Structures</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">nal.h File Reference</div>  </div>
@@ -134,6 +135,12 @@ Data Structures</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A generic NAL unit (either H.264 or H.265).  <a href="structSmolRTSP__NalUnit.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:a75ab3f552b5a89a907c46e3150c88cfd"><td class="memItemLeft" align="right" valign="top">typedef size_t(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_8h.html#a75ab3f552b5a89a907c46e3150c88cfd">SmolRTSP_NalStartCodeTester</a>) (U8Slice99 data)</td></tr>
+<tr class="memdesc:a75ab3f552b5a89a907c46e3150c88cfd"><td class="mdescLeft">&#160;</td><td class="mdescRight">A function that tests whether <code>data</code> starts with some start code.  <a href="nal_8h.html#a75ab3f552b5a89a907c46e3150c88cfd">More...</a><br /></td></tr>
+<tr class="separator:a75ab3f552b5a89a907c46e3150c88cfd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:af7758ff65ddd510dc4dc87339ad171a5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_8h.html#af7758ff65ddd510dc4dc87339ad171a5">datatype99</a> (SmolRTSP_NalHeader,(SmolRTSP_NalHeader_H264, <a class="el" href="structSmolRTSP__H264NalHeader.html">SmolRTSP_H264NalHeader</a>),(SmolRTSP_NalHeader_H265, <a class="el" href="structSmolRTSP__H265NalHeader.html">SmolRTSP_H265NalHeader</a>))</td></tr>
@@ -180,13 +187,42 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_
 uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_8h.html#ab41e0f64ca1e97dba2f5b45eb5377807">smolrtsp_nal_fu_header</a> (bool is_first_fragment, bool is_last_fragment, uint8_t unit_type) SMOLRTSP_PRIV_MUST_USE</td></tr>
 <tr class="memdesc:ab41e0f64ca1e97dba2f5b45eb5377807"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a generic NAL FU header. <br /></td></tr>
 <tr class="separator:ab41e0f64ca1e97dba2f5b45eb5377807"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a39ec553582653a83291df3395e1f21cb"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_8h.html#a39ec553582653a83291df3395e1f21cb">smolrtsp_nal_test_start_code</a> (U8Slice99 data) SMOLRTSP_PRIV_MUST_USE</td></tr>
-<tr class="memdesc:a39ec553582653a83291df3395e1f21cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the length of a start code sequence in <code>data</code>, which is either <code>0x000001</code> or <code>0x00000001</code>.  <a href="nal_8h.html#a39ec553582653a83291df3395e1f21cb">More...</a><br /></td></tr>
-<tr class="separator:a39ec553582653a83291df3395e1f21cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11cc9547143f98bc24318ad035b31144"><td class="memItemLeft" align="right" valign="top"><a class="el" href="nal_8h.html#a75ab3f552b5a89a907c46e3150c88cfd">SmolRTSP_NalStartCodeTester</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_8h.html#a11cc9547143f98bc24318ad035b31144">smolrtsp_determine_start_code</a> (U8Slice99 data)</td></tr>
+<tr class="memdesc:a11cc9547143f98bc24318ad035b31144"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a start code tester for <code>data</code>.  <a href="nal_8h.html#a11cc9547143f98bc24318ad035b31144">More...</a><br /></td></tr>
+<tr class="separator:a11cc9547143f98bc24318ad035b31144"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad608a621a4fc88eaf5a540329c14c7cf"><td class="memItemLeft" align="right" valign="top"><a id="ad608a621a4fc88eaf5a540329c14c7cf"></a>
+size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_8h.html#ad608a621a4fc88eaf5a540329c14c7cf">smolrtsp_test_start_code_3b</a> (U8Slice99 data)</td></tr>
+<tr class="memdesc:ad608a621a4fc88eaf5a540329c14c7cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">The 3-byte start code tester (<code>0x000001</code>). <br /></td></tr>
+<tr class="separator:ad608a621a4fc88eaf5a540329c14c7cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf2e3c7a35405033c169bf789fd0320a"><td class="memItemLeft" align="right" valign="top"><a id="adf2e3c7a35405033c169bf789fd0320a"></a>
+size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_8h.html#adf2e3c7a35405033c169bf789fd0320a">smolrtsp_test_start_code_4b</a> (U8Slice99 data)</td></tr>
+<tr class="memdesc:adf2e3c7a35405033c169bf789fd0320a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The 3-byte start code tester (<code>0x00000001</code>). <br /></td></tr>
+<tr class="separator:adf2e3c7a35405033c169bf789fd0320a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A generic <a href="https://en.wikipedia.org/wiki/Network_Abstraction_Layer">NAL (Network Abstraction Layer)</a> representation. </p>
-</div><h2 class="groupheader">Function Documentation</h2>
+</div><h2 class="groupheader">Typedef Documentation</h2>
+<a id="a75ab3f552b5a89a907c46e3150c88cfd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a75ab3f552b5a89a907c46e3150c88cfd">&#9670;&nbsp;</a></span>SmolRTSP_NalStartCodeTester</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef size_t(* SmolRTSP_NalStartCodeTester) (U8Slice99 data)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>A function that tests whether <code>data</code> starts with some start code. </p>
+<dl class="section return"><dt>Returns</dt><dd>The number of start code bytes. If there is no start code in the beginning of <code>data</code>, returns 0.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="nal_8h.html#ad608a621a4fc88eaf5a540329c14c7cf" title="The 3-byte start code tester (0x000001).">smolrtsp_test_start_code_3b</a> </dd>
+<dd>
+<a class="el" href="nal_8h.html#adf2e3c7a35405033c169bf789fd0320a" title="The 3-byte start code tester (0x00000001).">smolrtsp_test_start_code_4b</a> </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
 <a id="af7758ff65ddd510dc4dc87339ad171a5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af7758ff65ddd510dc4dc87339ad171a5">&#9670;&nbsp;</a></span>datatype99()</h2>
 
@@ -224,14 +260,14 @@ uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="n
 
 </div>
 </div>
-<a id="a39ec553582653a83291df3395e1f21cb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a39ec553582653a83291df3395e1f21cb">&#9670;&nbsp;</a></span>smolrtsp_nal_test_start_code()</h2>
+<a id="a11cc9547143f98bc24318ad035b31144"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a11cc9547143f98bc24318ad035b31144">&#9670;&nbsp;</a></span>smolrtsp_determine_start_code()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">size_t smolrtsp_nal_test_start_code </td>
+          <td class="memname"><a class="el" href="nal_8h.html#a75ab3f552b5a89a907c46e3150c88cfd">SmolRTSP_NalStartCodeTester</a> smolrtsp_determine_start_code </td>
           <td>(</td>
           <td class="paramtype">U8Slice99&#160;</td>
           <td class="paramname"><em>data</em></td><td>)</td>
@@ -240,8 +276,9 @@ uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="n
       </table>
 </div><div class="memdoc">
 
-<p>Computes the length of a start code sequence in <code>data</code>, which is either <code>0x000001</code> or <code>0x00000001</code>. </p>
-<p>If there is no start code in <code>data</code>, the result is 0. </p>
+<p>Returns a start code tester for <code>data</code>. </p>
+<p>If <code>data</code> does not begin with a start code (either <code>0x000001</code> or <code>0x00000001</code>), returns <code>NULL</code>.</p>
+<p>This function is useful when you have some <code>*.h264</code> bitstream file and you want to determine what start code it uses &ndash; just pass the beginning of this file to <a class="el" href="nal_8h.html#a11cc9547143f98bc24318ad035b31144" title="Returns a start code tester for data.">smolrtsp_determine_start_code</a> and invoke the returned tester multiple times afterwards. </p>
 
 </div>
 </div>

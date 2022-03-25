@@ -156,6 +156,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a8b9071b6dca6cd1b70d700646c9ce879"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="context_8h.html#a8b9071b6dca6cd1b70d700646c9ce879">SmolRTSP_Context_get_cseq</a> (const <a class="el" href="context_8h.html#a74d8be6059af5516c37fcebc14a70622">SmolRTSP_Context</a> *ctx) SMOLRTSP_PRIV_MUST_USE</td></tr>
 <tr class="memdesc:a8b9071b6dca6cd1b70d700646c9ce879"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves <code>cseq</code> specified in <a class="el" href="context_8h.html#a7f157d462417caa97f902ed5e5ddf455" title="Creates a new SmolRTSP context.">SmolRTSP_Context_new</a>.  <a href="context_8h.html#a8b9071b6dca6cd1b70d700646c9ce879">More...</a><br /></td></tr>
 <tr class="separator:a8b9071b6dca6cd1b70d700646c9ce879"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a13e3d13510f32438858892f6876378"><td class="memItemLeft" align="right" valign="top">ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="context_8h.html#a2a13e3d13510f32438858892f6876378">SmolRTSP_Context_get_ret</a> (const <a class="el" href="context_8h.html#a74d8be6059af5516c37fcebc14a70622">SmolRTSP_Context</a> *ctx) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:a2a13e3d13510f32438858892f6876378"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the RTSP respond return value.  <a href="context_8h.html#a2a13e3d13510f32438858892f6876378">More...</a><br /></td></tr>
+<tr class="separator:a2a13e3d13510f32438858892f6876378"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a65447fe300c46400a5f82214dbb219a3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="context_8h.html#a65447fe300c46400a5f82214dbb219a3">smolrtsp_vheader</a> (<a class="el" href="context_8h.html#a74d8be6059af5516c37fcebc14a70622">SmolRTSP_Context</a> *ctx, CharSlice99 key, const char *restrict fmt, va_list list) SMOLRTSP_PRIV_GCC_ATTR(format(printf</td></tr>
 <tr class="memdesc:a65447fe300c46400a5f82214dbb219a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Appends an RTSP header to the request context.  <a href="context_8h.html#a65447fe300c46400a5f82214dbb219a3">More...</a><br /></td></tr>
 <tr class="separator:a65447fe300c46400a5f82214dbb219a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -166,9 +169,9 @@ void void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href=
 <tr class="memitem:a65b50758cacbd71d91b4ff3f070f3d93"><td class="memItemLeft" align="right" valign="top">void void void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="context_8h.html#a65b50758cacbd71d91b4ff3f070f3d93">smolrtsp_body</a> (<a class="el" href="context_8h.html#a74d8be6059af5516c37fcebc14a70622">SmolRTSP_Context</a> *ctx, <a class="el" href="message__body_8h.html#a7cf19e53447cd824890913d713bd5122">SmolRTSP_MessageBody</a> body)</td></tr>
 <tr class="memdesc:a65b50758cacbd71d91b4ff3f070f3d93"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets an RTSP body in the request context.  <a href="context_8h.html#a65b50758cacbd71d91b4ff3f070f3d93">More...</a><br /></td></tr>
 <tr class="separator:a65b50758cacbd71d91b4ff3f070f3d93"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acf926b0a4ae5415a115dfd063446c9a8"><td class="memItemLeft" align="right" valign="top">ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="context_8h.html#acf926b0a4ae5415a115dfd063446c9a8">smolrtsp_respond</a> (<a class="el" href="context_8h.html#a74d8be6059af5516c37fcebc14a70622">SmolRTSP_Context</a> *ctx, <a class="el" href="status__code_8h.html#ac339032e6c3031ccc07cdd573bd8352a">SmolRTSP_StatusCode</a> code, const char *reason) SMOLRTSP_PRIV_MUST_USE</td></tr>
-<tr class="memdesc:acf926b0a4ae5415a115dfd063446c9a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes an RTSP response to the underlying writer.  <a href="context_8h.html#acf926b0a4ae5415a115dfd063446c9a8">More...</a><br /></td></tr>
-<tr class="separator:acf926b0a4ae5415a115dfd063446c9a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adee0347ecb7b4bcedf9d142990b386c4"><td class="memItemLeft" align="right" valign="top">ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="context_8h.html#adee0347ecb7b4bcedf9d142990b386c4">smolrtsp_respond</a> (<a class="el" href="context_8h.html#a74d8be6059af5516c37fcebc14a70622">SmolRTSP_Context</a> *ctx, <a class="el" href="status__code_8h.html#ac339032e6c3031ccc07cdd573bd8352a">SmolRTSP_StatusCode</a> code, const char *reason)</td></tr>
+<tr class="memdesc:adee0347ecb7b4bcedf9d142990b386c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes an RTSP response to the underlying writer.  <a href="context_8h.html#adee0347ecb7b4bcedf9d142990b386c4">More...</a><br /></td></tr>
+<tr class="separator:adee0347ecb7b4bcedf9d142990b386c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afeda949b122b1d1999ddd25ca489550b"><td class="memItemLeft" align="right" valign="top"><a id="afeda949b122b1d1999ddd25ca489550b"></a>
 ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="context_8h.html#afeda949b122b1d1999ddd25ca489550b">smolrtsp_respond_ok</a> (<a class="el" href="context_8h.html#a74d8be6059af5516c37fcebc14a70622">SmolRTSP_Context</a> *ctx)</td></tr>
 <tr class="memdesc:afeda949b122b1d1999ddd25ca489550b"><td class="mdescLeft">&#160;</td><td class="mdescRight">A shortcut for <code>smolrtsp_respond(ctx, SMOLRTSP_STATUS_OK, "OK")</code>. <br /></td></tr>
@@ -274,6 +277,28 @@ ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 
 </div>
 </div>
+<a id="a2a13e3d13510f32438858892f6876378"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a13e3d13510f32438858892f6876378">&#9670;&nbsp;</a></span>SmolRTSP_Context_get_ret()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ssize_t SmolRTSP_Context_get_ret </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="context_8h.html#a74d8be6059af5516c37fcebc14a70622">SmolRTSP_Context</a> *&#160;</td>
+          <td class="paramname"><em>ctx</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retrieves the RTSP respond return value. </p>
+<p>If you have not responded yet, the result is 0.</p>
+<dl class="section pre"><dt>Precondition</dt><dd><code>ctx != NULL</code> </dd></dl>
+
+</div>
+</div>
 <a id="ab5a0fe6fc8b24540fe289ad6308cbf13"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab5a0fe6fc8b24540fe289ad6308cbf13">&#9670;&nbsp;</a></span>SmolRTSP_Context_get_writer()</h2>
 
@@ -333,8 +358,8 @@ ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="c
 
 </div>
 </div>
-<a id="acf926b0a4ae5415a115dfd063446c9a8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acf926b0a4ae5415a115dfd063446c9a8">&#9670;&nbsp;</a></span>smolrtsp_respond()</h2>
+<a id="adee0347ecb7b4bcedf9d142990b386c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adee0347ecb7b4bcedf9d142990b386c4">&#9670;&nbsp;</a></span>smolrtsp_respond()</h2>
 
 <div class="memitem">
 <div class="memproto">
