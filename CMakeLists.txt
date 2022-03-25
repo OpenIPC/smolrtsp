@@ -113,7 +113,8 @@ target_precompile_headers(
   include/smolrtsp/writer.h
   include/smolrtsp/transport.h
   include/smolrtsp/droppable.h
-  include/smolrtsp/controller.h)
+  include/smolrtsp/controller.h
+  include/smolrtsp/rtp_transport.h)
 
 target_include_directories(${PROJECT_NAME} PUBLIC include)
 target_link_libraries(${PROJECT_NAME} PUBLIC slice99 metalang99 datatype99 interface99)

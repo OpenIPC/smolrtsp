@@ -87,13 +87,37 @@ TEST header_serialize_fu_h265(void) {
     PASS();
 }
 
-TEST start_code(void) {
-    ASSERT_EQ(0, smolrtsp_nal_test_start_code(U8Slice99_empty()));
+TEST determine_start_code(void) {
+    ASSERT_EQ(NULL, smolrtsp_determine_start_code(U8Slice99_empty()));
 
 #define CHECK(expected, ...)                                                   \
     ASSERT_EQ(                                                                 \
         expected,                                                              \
-        smolrtsp_nal_test_start_code(                                          \
+        smolrtsp_determine_start_code(                                         \
+            (U8Slice99)Slice99_typed_from_array((uint8_t[]){__VA_ARGS__})))
+
+    CHECK(NULL, 0x00);
+    CHECK(NULL, 0x00, 0x00);
+    CHECK(smolrtsp_test_start_code_3b, 0x00, 0x00, 0x01);
+    CHECK(smolrtsp_test_start_code_3b, 0x00, 0x00, 0x01, 0xAB);
+    CHECK(smolrtsp_test_start_code_3b, 0x00, 0x00, 0x01, 0xAB, 0x8C);
+
+    CHECK(smolrtsp_test_start_code_4b, 0x00, 0x00, 0x00, 0x01);
+    CHECK(smolrtsp_test_start_code_4b, 0x00, 0x00, 0x00, 0x01, 0xAB);
+    CHECK(smolrtsp_test_start_code_4b, 0x00, 0x00, 0x00, 0x01, 0xAB, 0x8C);
+
+#undef CHECK
+
+    PASS();
+}
+
+TEST test_start_code_3b(void) {
+    ASSERT_EQ(0, smolrtsp_test_start_code_3b(U8Slice99_empty()));
+
+#define CHECK(expected, ...)                                                   \
+    ASSERT_EQ(                                                                 \
+        expected,                                                              \
+        smolrtsp_test_start_code_3b(                                           \
             (U8Slice99)Slice99_typed_from_array((uint8_t[]){__VA_ARGS__})))
 
     CHECK(0, 0x00);
@@ -102,6 +126,22 @@ TEST start_code(void) {
     CHECK(3, 0x00, 0x00, 0x01, 0xAB);
     CHECK(3, 0x00, 0x00, 0x01, 0xAB, 0x8C);
 
+#undef CHECK
+
+    PASS();
+}
+
+TEST test_start_code_4b(void) {
+    ASSERT_EQ(0, smolrtsp_test_start_code_4b(U8Slice99_empty()));
+
+#define CHECK(expected, ...)                                                   \
+    ASSERT_EQ(                                                                 \
+        expected,                                                              \
+        smolrtsp_test_start_code_4b(                                           \
+            (U8Slice99)Slice99_typed_from_array((uint8_t[]){__VA_ARGS__})))
+
+    CHECK(0, 0x00);
+    CHECK(0, 0x00, 0x00);
     CHECK(4, 0x00, 0x00, 0x00, 0x01);
     CHECK(4, 0x00, 0x00, 0x00, 0x01, 0xAB);
     CHECK(4, 0x00, 0x00, 0x00, 0x01, 0xAB, 0x8C);
@@ -124,5 +164,7 @@ SUITE(nal) {
     RUN_TEST(header_serialize_fu_h264);
     RUN_TEST(header_serialize_fu_h265);
 
-    RUN_TEST(start_code);
+    RUN_TEST(determine_start_code);
+    RUN_TEST(test_start_code_3b);
+    RUN_TEST(test_start_code_4b);
 }

@@ -132,9 +132,35 @@ uint8_t smolrtsp_nal_fu_header(
     uint8_t unit_type) SMOLRTSP_PRIV_MUST_USE;
 
 /**
- * Computes the length of a start code sequence in @p data, which is either
- * `0x000001` or `0x00000001`.
+ * A function that tests whether @p data starts with some start code.
  *
- * If there is no start code in @p data, the result is 0.
+ * @return The number of start code bytes. If there is no start code in the
+ * beginning of @p data, returns 0.
+ *
+ * @see #smolrtsp_test_start_code_3b
+ * @see #smolrtsp_test_start_code_4b
  */
-size_t smolrtsp_nal_test_start_code(U8Slice99 data) SMOLRTSP_PRIV_MUST_USE;
+typedef size_t (*SmolRTSP_NalStartCodeTester)(U8Slice99 data);
+
+/**
+ * Returns a start code tester for @p data.
+ *
+ * If @p data does not begin with a start code (either `0x000001` or
+ * `0x00000001`), returns `NULL`.
+ *
+ * This function is useful when you have some `*.h264` bitstream file and you
+ * want to determine what start code it uses -- just pass the beginning of this
+ * file to #smolrtsp_determine_start_code and invoke the returned tester
+ * multiple times afterwards.
+ */
+SmolRTSP_NalStartCodeTester smolrtsp_determine_start_code(U8Slice99 data);
+
+/**
+ * The 3-byte start code tester (`0x000001`).
+ */
+size_t smolrtsp_test_start_code_3b(U8Slice99 data);
+
+/**
+ * The 3-byte start code tester (`0x00000001`).
+ */
+size_t smolrtsp_test_start_code_4b(U8Slice99 data);

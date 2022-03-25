@@ -105,10 +105,22 @@ uint8_t smolrtsp_nal_fu_header(
     return fu_header;
 }
 
-size_t smolrtsp_nal_test_start_code(U8Slice99 data) {
-    static const uint8_t start_code_3b[] = {0x00, 0x00, 0x01},
-                         start_code_4b[] = {0x00, 0x00, 0x00, 0x01};
+static const uint8_t start_code_3b[] = {0x00, 0x00, 0x01},
+                     start_code_4b[] = {0x00, 0x00, 0x00, 0x01};
 
+SmolRTSP_NalStartCodeTester smolrtsp_determine_start_code(U8Slice99 data) {
+    if (smolrtsp_test_start_code_3b(data)) {
+        return smolrtsp_test_start_code_3b;
+    }
+
+    if (smolrtsp_test_start_code_4b(data)) {
+        return smolrtsp_test_start_code_4b;
+    }
+
+    return NULL;
+}
+
+size_t smolrtsp_test_start_code_3b(U8Slice99 data) {
     if (data.len < 3) {
         return 0;
     }
@@ -116,6 +128,10 @@ size_t smolrtsp_nal_test_start_code(U8Slice99 data) {
         return 3;
     }
 
+    return 0;
+}
+
+size_t smolrtsp_test_start_code_4b(U8Slice99 data) {
     if (data.len < 4) {
         return 0;
     }
