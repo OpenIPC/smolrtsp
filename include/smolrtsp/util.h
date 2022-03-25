@@ -81,7 +81,7 @@ typedef struct {
 } SmolRTSP_ChannelPair;
 
 /**
- * Defines `SmolRTSP_ChannelPair`.
+ * Defines `SmolRTSP_ChannelPairOption`.
  *
  * See [Datatype99](https://github.com/Hirrolot/datatype99) for the macro usage.
  */
