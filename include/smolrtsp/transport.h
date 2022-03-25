@@ -85,3 +85,14 @@ SmolRTSP_Transport smolrtsp_transport_udp(int fd) SMOLRTSP_PRIV_MUST_USE;
  * appropriately).
  */
 int smolrtsp_dgram_socket(int af, const void *restrict addr, uint16_t port);
+
+/**
+ * Returns a pointer to the IP address of @p addr.
+ *
+ * Currently, only `AF_INET` and `AF_INET6` are supported. Otherwise, `NULL` is
+ * returned.
+ *
+ * @pre `addr != NULL`
+ */
+void *smolrtsp_sockaddr_get_ip(const struct sockaddr *restrict addr)
+    SMOLRTSP_PRIV_MUST_USE;

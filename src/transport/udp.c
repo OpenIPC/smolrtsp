@@ -141,3 +141,16 @@ new_sockaddr(struct sockaddr *addr, int af, const void *ip, uint16_t port) {
         return -1;
     }
 }
+
+void *smolrtsp_sockaddr_get_ip(const struct sockaddr *restrict addr) {
+    assert(addr);
+
+    switch (addr->sa_family) {
+    case AF_INET:
+        return (void *)&((struct sockaddr_in *)addr)->sin_addr;
+    case AF_INET6:
+        return (void *)&((struct sockaddr_in6 *)addr)->sin6_addr;
+    default:
+        return NULL;
+    }
+}

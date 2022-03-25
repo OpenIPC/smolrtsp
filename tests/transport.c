@@ -73,7 +73,44 @@ TEST check_udp(void) {
     PASS();
 }
 
+TEST sockaddr_get_ipv4(void) {
+    struct sockaddr_storage addr;
+    memset(&addr, '\0', sizeof addr);
+    addr.ss_family = AF_INET;
+
+    ASSERT_EQ(
+        (void *)&((struct sockaddr_in *)&addr)->sin_addr,
+        smolrtsp_sockaddr_get_ip((const struct sockaddr *)&addr));
+
+    PASS();
+}
+
+TEST sockaddr_get_ipv6(void) {
+    struct sockaddr_storage addr;
+    memset(&addr, '\0', sizeof addr);
+    addr.ss_family = AF_INET6;
+
+    ASSERT_EQ(
+        (void *)&((struct sockaddr_in6 *)&addr)->sin6_addr,
+        smolrtsp_sockaddr_get_ip((const struct sockaddr *)&addr));
+
+    PASS();
+}
+
+TEST sockaddr_get_unknown(void) {
+    struct sockaddr_storage addr;
+    memset(&addr, '\0', sizeof addr);
+    addr.ss_family = AF_UNIX;
+
+    ASSERT_EQ(NULL, smolrtsp_sockaddr_get_ip((const struct sockaddr *)&addr));
+
+    PASS();
+}
+
 SUITE(transport) {
     RUN_TEST(check_tcp);
     RUN_TEST(check_udp);
+    RUN_TEST(sockaddr_get_ipv4);
+    RUN_TEST(sockaddr_get_ipv6);
+    RUN_TEST(sockaddr_get_unknown);
 }
