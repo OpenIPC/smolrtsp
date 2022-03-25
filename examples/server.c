@@ -73,19 +73,21 @@ static void listener_cb(
 static void on_event_cb(struct bufferevent *bev, short events, void *ctx);
 static void on_sigint_cb(evutil_socket_t sig, short events, void *ctx);
 
-void start_audio(Stream *stream);
-void start_video(Stream *stream);
-
-void send_nalu(
-    SmolRTSP_NalTransport *t, uint32_t *timestamp, const uint8_t *nalu_start,
-    const uint8_t *nalu_end);
-
+static int setup_transport(
+    Client *self, SmolRTSP_Context *ctx, const SmolRTSP_Request *req,
+    SmolRTSP_Transport *t);
 static int setup_tcp(
     SmolRTSP_Context *ctx, SmolRTSP_Transport *t,
     SmolRTSP_TransportConfig config);
 static int setup_udp(
     const struct sockaddr *addr, SmolRTSP_Context *ctx, SmolRTSP_Transport *t,
     SmolRTSP_TransportConfig config);
+
+static void start_audio(Stream *stream);
+static void start_video(Stream *stream);
+static void send_nalu(
+    SmolRTSP_NalTransport *t, uint32_t *timestamp, const uint8_t *nalu_start,
+    const uint8_t *nalu_end);
 
 int main(void) {
     srand(time(NULL));
@@ -248,37 +250,9 @@ static void
 Client_setup(VSelf, SmolRTSP_Context *ctx, const SmolRTSP_Request *req) {
     VSELF(Client);
 
-    CharSlice99 transport_val;
-    const bool transport_found = SmolRTSP_HeaderMap_find(
-        &req->header_map, SMOLRTSP_HEADER_TRANSPORT, &transport_val);
-    if (!transport_found) {
-        smolrtsp_respond(
-            ctx, SMOLRTSP_STATUS_BAD_REQUEST, "`Transport' not present");
+    SmolRTSP_Transport transport;
+    if (setup_transport(self, ctx, req, &transport) == -1) {
         return;
-    }
-
-    SmolRTSP_TransportConfig config;
-    if (smolrtsp_parse_transport(&config, transport_val) == -1) {
-        smolrtsp_respond(
-            ctx, SMOLRTSP_STATUS_BAD_REQUEST, "Malformed `Transport'");
-        return;
-    }
-
-    SmolRTSP_Transport t;
-    switch (config.lower) {
-    case SmolRTSP_LowerTransport_TCP:
-        if (setup_tcp(ctx, &t, config) == -1) {
-            smolrtsp_respond_internal_error(ctx);
-            return;
-        }
-        break;
-    case SmolRTSP_LowerTransport_UDP:
-        if (setup_udp((const struct sockaddr *)&self->addr, ctx, &t, config) ==
-            -1) {
-            smolrtsp_respond_internal_error(ctx);
-            return;
-        }
-        break;
     }
 
     const size_t stream_id =
@@ -307,10 +281,10 @@ Client_setup(VSelf, SmolRTSP_Context *ctx, const SmolRTSP_Request *req) {
 
     if (AUDIO_STREAM_ID == stream_id) {
         stream->transport = SmolRTSP_RtpTransport_new(
-            t, AUDIO_PCMU_PAYLOAD_TYPE, AUDIO_SAMPLE_RATE);
+            transport, AUDIO_PCMU_PAYLOAD_TYPE, AUDIO_SAMPLE_RATE);
     } else {
-        stream->transport =
-            SmolRTSP_RtpTransport_new(t, VIDEO_PAYLOAD_TYPE, VIDEO_SAMPLE_RATE);
+        stream->transport = SmolRTSP_RtpTransport_new(
+            transport, VIDEO_PAYLOAD_TYPE, VIDEO_SAMPLE_RATE);
     }
 
     smolrtsp_header(
@@ -402,85 +376,42 @@ static void Client_after(
 
 impl(SmolRTSP_Controller, Client);
 
-void start_audio(Stream *stream) {
-    for (size_t i = 0; i * AUDIO_SAMPLES_PER_PACKET < ___media_audio_g711a_len;
-         i++) {
-        const SmolRTSP_RtpTimestamp ts =
-            SmolRTSP_RtpTimestamp_Raw(i * AUDIO_SAMPLES_PER_PACKET);
-        const bool marker = false;
-        const size_t samples_count =
-            ___media_audio_g711a_len <
-                    i * AUDIO_SAMPLES_PER_PACKET + AUDIO_SAMPLES_PER_PACKET
-                ? ___media_audio_g711a_len % AUDIO_SAMPLES_PER_PACKET
-                : AUDIO_SAMPLES_PER_PACKET;
-        const U8Slice99 header = U8Slice99_empty(),
-                        payload = U8Slice99_new(
-                            ___media_audio_g711a + i * AUDIO_SAMPLES_PER_PACKET,
-                            samples_count);
+static int setup_transport(
+    Client *self, SmolRTSP_Context *ctx, const SmolRTSP_Request *req,
+    SmolRTSP_Transport *t) {
+    CharSlice99 transport_val;
+    const bool transport_found = SmolRTSP_HeaderMap_find(
+        &req->header_map, SMOLRTSP_HEADER_TRANSPORT, &transport_val);
+    if (!transport_found) {
+        smolrtsp_respond(
+            ctx, SMOLRTSP_STATUS_BAD_REQUEST, "`Transport' not present");
+        return -1;
+    }
 
-        if (SmolRTSP_RtpTransport_send_packet(
-                stream->transport, ts, marker, header, payload) == -1) {
-            perror("Failed to send RTP/PCMU");
+    SmolRTSP_TransportConfig config;
+    if (smolrtsp_parse_transport(&config, transport_val) == -1) {
+        smolrtsp_respond(
+            ctx, SMOLRTSP_STATUS_BAD_REQUEST, "Malformed `Transport'");
+        return -1;
+    }
+
+    switch (config.lower) {
+    case SmolRTSP_LowerTransport_TCP:
+        if (setup_tcp(ctx, t, config) == -1) {
+            smolrtsp_respond_internal_error(ctx);
+            return -1;
         }
-    }
-
-    VTABLE(SmolRTSP_RtpTransport, SmolRTSP_Droppable).drop(stream->transport);
-}
-
-void start_video(Stream *stream) {
-    SmolRTSP_NalTransport *transport =
-        SmolRTSP_NalTransport_new(stream->transport);
-
-    U8Slice99 video = Slice99_typed_from_array(___media_video_h264);
-    uint8_t *nalu_start = NULL;
-
-    uint32_t timestamp = 0;
-
-    SmolRTSP_NalStartCodeTester start_code_tester;
-    if ((start_code_tester = smolrtsp_determine_start_code(video)) == NULL) {
-        fputs("Invalid video file.\n", stderr);
-        abort();
-    }
-
-    while (!U8Slice99_is_empty(video)) {
-        const size_t start_code_len = start_code_tester(video);
-        if (0 == start_code_len) {
-            video = U8Slice99_advance(video, 1);
-            continue;
+        break;
+    case SmolRTSP_LowerTransport_UDP:
+        if (setup_udp((const struct sockaddr *)&self->addr, ctx, t, config) ==
+            -1) {
+            smolrtsp_respond_internal_error(ctx);
+            return -1;
         }
-
-        if (NULL != nalu_start) {
-            send_nalu(transport, &timestamp, nalu_start, video.ptr);
-        }
-
-        video = U8Slice99_advance(video, start_code_len);
-        nalu_start = video.ptr;
+        break;
     }
 
-    send_nalu(transport, &timestamp, nalu_start, video.ptr);
-
-    VTABLE(SmolRTSP_NalTransport, SmolRTSP_Droppable).drop(transport);
-}
-
-void send_nalu(
-    SmolRTSP_NalTransport *t, uint32_t *timestamp, const uint8_t *nalu_start,
-    const uint8_t *nalu_end) {
-    const SmolRTSP_NalUnit nalu = {
-        .header = SmolRTSP_NalHeader_H264(
-            SmolRTSP_H264NalHeader_parse(nalu_start[0])),
-        .payload = U8Slice99_from_ptrdiff(
-            (uint8_t *)nalu_start + 1, (uint8_t *)nalu_end),
-    };
-
-    if (SmolRTSP_NalHeader_unit_type(nalu.header) ==
-        SMOLRTSP_H264_NAL_UNIT_AUD) {
-        *timestamp += VIDEO_SAMPLE_RATE / VIDEO_FPS;
-    }
-
-    if (SmolRTSP_NalTransport_send_packet(
-            t, SmolRTSP_RtpTimestamp_Raw(*timestamp), nalu) == -1) {
-        perror("Failed to send RTP/NAL");
-    }
+    return 0;
 }
 
 static int setup_tcp(
@@ -526,4 +457,85 @@ static int setup_udp(
     smolrtsp_respond(
         ctx, SMOLRTSP_STATUS_BAD_REQUEST, "`client_port' not found");
     return -1;
+}
+
+static void start_audio(Stream *stream) {
+    for (size_t i = 0; i * AUDIO_SAMPLES_PER_PACKET < ___media_audio_g711a_len;
+         i++) {
+        const SmolRTSP_RtpTimestamp ts =
+            SmolRTSP_RtpTimestamp_Raw(i * AUDIO_SAMPLES_PER_PACKET);
+        const bool marker = false;
+        const size_t samples_count =
+            ___media_audio_g711a_len <
+                    i * AUDIO_SAMPLES_PER_PACKET + AUDIO_SAMPLES_PER_PACKET
+                ? ___media_audio_g711a_len % AUDIO_SAMPLES_PER_PACKET
+                : AUDIO_SAMPLES_PER_PACKET;
+        const U8Slice99 header = U8Slice99_empty(),
+                        payload = U8Slice99_new(
+                            ___media_audio_g711a + i * AUDIO_SAMPLES_PER_PACKET,
+                            samples_count);
+
+        if (SmolRTSP_RtpTransport_send_packet(
+                stream->transport, ts, marker, header, payload) == -1) {
+            perror("Failed to send RTP/PCMU");
+        }
+    }
+
+    VTABLE(SmolRTSP_RtpTransport, SmolRTSP_Droppable).drop(stream->transport);
+}
+
+static void start_video(Stream *stream) {
+    SmolRTSP_NalTransport *transport =
+        SmolRTSP_NalTransport_new(stream->transport);
+
+    U8Slice99 video = Slice99_typed_from_array(___media_video_h264);
+    uint8_t *nalu_start = NULL;
+
+    uint32_t timestamp = 0;
+
+    SmolRTSP_NalStartCodeTester start_code_tester;
+    if ((start_code_tester = smolrtsp_determine_start_code(video)) == NULL) {
+        fputs("Invalid video file.\n", stderr);
+        abort();
+    }
+
+    while (!U8Slice99_is_empty(video)) {
+        const size_t start_code_len = start_code_tester(video);
+        if (0 == start_code_len) {
+            video = U8Slice99_advance(video, 1);
+            continue;
+        }
+
+        if (NULL != nalu_start) {
+            send_nalu(transport, &timestamp, nalu_start, video.ptr);
+        }
+
+        video = U8Slice99_advance(video, start_code_len);
+        nalu_start = video.ptr;
+    }
+
+    send_nalu(transport, &timestamp, nalu_start, video.ptr);
+
+    VTABLE(SmolRTSP_NalTransport, SmolRTSP_Droppable).drop(transport);
+}
+
+static void send_nalu(
+    SmolRTSP_NalTransport *t, uint32_t *timestamp, const uint8_t *nalu_start,
+    const uint8_t *nalu_end) {
+    const SmolRTSP_NalUnit nalu = {
+        .header = SmolRTSP_NalHeader_H264(
+            SmolRTSP_H264NalHeader_parse(nalu_start[0])),
+        .payload = U8Slice99_from_ptrdiff(
+            (uint8_t *)nalu_start + 1, (uint8_t *)nalu_end),
+    };
+
+    if (SmolRTSP_NalHeader_unit_type(nalu.header) ==
+        SMOLRTSP_H264_NAL_UNIT_AUD) {
+        *timestamp += VIDEO_SAMPLE_RATE / VIDEO_FPS;
+    }
+
+    if (SmolRTSP_NalTransport_send_packet(
+            t, SmolRTSP_RtpTimestamp_Raw(*timestamp), nalu) == -1) {
+        perror("Failed to send RTP/NAL");
+    }
 }
