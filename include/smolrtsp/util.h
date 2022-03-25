@@ -132,7 +132,8 @@ typedef struct {
  * @pre `config != NULL`
  */
 int smolrtsp_parse_transport(
-    SmolRTSP_TransportConfig *restrict config, CharSlice99 header_value);
+    SmolRTSP_TransportConfig *restrict config,
+    CharSlice99 header_value) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Returns a four-octet interleaved binary data header.
@@ -143,7 +144,8 @@ int smolrtsp_parse_transport(
  *
  * @see <https://datatracker.ietf.org/doc/html/rfc2326#section-10.12>
  */
-uint32_t smolrtsp_interleaved_header(uint8_t channel_id, uint16_t payload_len);
+uint32_t smolrtsp_interleaved_header(uint8_t channel_id, uint16_t payload_len)
+    SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Parses an four-octet interleaved binary data header @p data.
