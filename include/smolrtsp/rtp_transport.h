@@ -36,7 +36,7 @@ typedef struct SmolRTSP_RtpTransport SmolRTSP_RtpTransport;
  */
 
 // clang-format off
-datatype(
+datatype99(
     SmolRTSP_RtpTimestamp,
     (SmolRTSP_RtpTimestamp_Raw, uint32_t),
     (SmolRTSP_RtpTimestamp_SysClockUs, uint64_t)
