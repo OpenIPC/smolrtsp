@@ -440,7 +440,7 @@ static int setup_udp(
     ifLet(config.client_port, SmolRTSP_PortPair_Some, client_port) {
         int fd;
         if ((fd = smolrtsp_dgram_socket(
-                 addr->sa_family, smolrtsp_sockaddr_get_ip(addr),
+                 addr->sa_family, smolrtsp_sockaddr_ip(addr),
                  client_port->rtp_port)) == -1) {
             return -1;
         }

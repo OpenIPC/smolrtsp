@@ -94,5 +94,5 @@ int smolrtsp_dgram_socket(int af, const void *restrict addr, uint16_t port);
  *
  * @pre `addr != NULL`
  */
-void *smolrtsp_sockaddr_get_ip(const struct sockaddr *restrict addr)
+void *smolrtsp_sockaddr_ip(const struct sockaddr *restrict addr)
     SMOLRTSP_PRIV_MUST_USE;
