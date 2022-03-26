@@ -19,7 +19,7 @@
  * See [Datatype99](https://github.com/Hirrolot/datatype99) for the macro usage.
  */
 #define SMOLRTSP_DEF_OPTION(...)                                               \
-    ML99_OVERLOAD(SMOLRTSP_DEF_OPTION_, __VA_ARGS__)
+    ML99_OVERLOAD(SMOLRTSP_PRIV_DEF_OPTION_, __VA_ARGS__)
 
 #define SMOLRTSP_PRIV_DEF_OPTION_1(T)                                          \
     datatype99(T##Option, (T##_Some, T), (T##_None))
