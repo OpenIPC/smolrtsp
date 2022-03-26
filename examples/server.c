@@ -3,9 +3,9 @@
  *
  * To obtain `audio.g711a` and `video.h264`:
  *
- * $ ffmpeg -i http://docs.evostream.com/sample_content/assets/bun33s.mp4
- * -acodec pcm_mulaw -f mulaw -ar 8000 -ac 1 audio.g711a -vcodec h264 -x264opts
- * aud=1 video.h264
+ * $ ffmpeg -i http://docs.evostream.com/sample_content/assets/bun33s.mp4 \
+ *     -acodec pcm_mulaw -f mulaw -ar 8000 -ac 1 audio.g711a \
+ *     -vcodec h264 -x264opts aud=1 video.h264
  *
  * [1] https://libevent.org/
  */
@@ -83,8 +83,8 @@ static int setup_udp(
     const struct sockaddr *addr, SmolRTSP_Context *ctx, SmolRTSP_Transport *t,
     SmolRTSP_TransportConfig config);
 
-static void start_audio(Stream *stream);
-static void start_video(Stream *stream);
+static void play_audio(Stream *stream);
+static void play_video(Stream *stream);
 static void send_nalu(
     SmolRTSP_NalTransport *t, uint32_t *timestamp, const uint8_t *nalu_start,
     const uint8_t *nalu_end);
@@ -310,9 +310,9 @@ Client_play(VSelf, SmolRTSP_Context *ctx, const SmolRTSP_Request *req) {
     for (size_t i = 0; i < MAX_STREAMS; i++) {
         if (self->streams[i].session_id == session_id) {
             if (AUDIO_STREAM_ID == i) {
-                start_audio(&self->streams[i]);
+                play_audio(&self->streams[i]);
             } else {
-                start_video(&self->streams[i]);
+                play_video(&self->streams[i]);
             }
 
             played = true;
@@ -459,7 +459,7 @@ static int setup_udp(
     return -1;
 }
 
-static void start_audio(Stream *stream) {
+static void play_audio(Stream *stream) {
     for (size_t i = 0; i * AUDIO_SAMPLES_PER_PACKET < ___media_audio_g711a_len;
          i++) {
         const SmolRTSP_RtpTimestamp ts =
@@ -484,9 +484,11 @@ static void start_audio(Stream *stream) {
     VTABLE(SmolRTSP_RtpTransport, SmolRTSP_Droppable).drop(stream->transport);
 }
 
-static void start_video(Stream *stream) {
+static void play_video(Stream *stream) {
+    const SmolRTSP_NalTransportConfig config =
+        SmolRTSP_NalTransportConfig_default();
     SmolRTSP_NalTransport *transport =
-        SmolRTSP_NalTransport_new(stream->transport);
+        SmolRTSP_NalTransport_new(stream->transport, config);
 
     U8Slice99 video = Slice99_typed_from_array(___media_video_h264);
     uint8_t *nalu_start = NULL;
