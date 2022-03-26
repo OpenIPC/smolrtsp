@@ -40,6 +40,10 @@
 // H.264 video with AUDs, 25 FPS.
 #include "media/video.h264.h"
 
+// Comment one of these lines if you do not need audio or video.
+#define ENABLE_AUDIO
+#define ENABLE_VIDEO
+
 #define AUDIO_PCMU_PAYLOAD_TYPE  0
 #define AUDIO_SAMPLE_RATE        8000
 #define AUDIO_SAMPLES_PER_PACKET 160
@@ -215,27 +219,33 @@ Client_describe(VSelf, SmolRTSP_Context *ctx, const SmolRTSP_Request *req) {
 
     char sdp_buf[1024] = {0};
     SmolRTSP_Writer sdp = smolrtsp_string_writer(sdp_buf);
-    ssize_t ret;
+    ssize_t ret = 0;
 
     // clang-format off
     SMOLRTSP_SDP_DESCRIBE(
         ret, sdp,
-
         (SMOLRTSP_SDP_VERSION, "0"),
         (SMOLRTSP_SDP_ORIGIN, "SmolRTSP 3855320066 3855320129 IN IP4 0.0.0.0"),
         (SMOLRTSP_SDP_SESSION_NAME, "SmolRTSP example"),
         (SMOLRTSP_SDP_CONNECTION, "IN IP4 0.0.0.0"),
-        (SMOLRTSP_SDP_TIME, "0 0"),
+        (SMOLRTSP_SDP_TIME, "0 0"));
 
+#ifdef ENABLE_AUDIO
+    SMOLRTSP_SDP_DESCRIBE(
+        ret, sdp,
         (SMOLRTSP_SDP_MEDIA, "audio 0 RTP/AVP %d", AUDIO_PCMU_PAYLOAD_TYPE),
-        (SMOLRTSP_SDP_ATTR, "control:audio"),
+        (SMOLRTSP_SDP_ATTR, "control:audio"));
+#endif
 
+#ifdef ENABLE_VIDEO
+    SMOLRTSP_SDP_DESCRIBE(
+        ret, sdp,
         (SMOLRTSP_SDP_MEDIA, "video 0 RTP/AVP %d", VIDEO_PAYLOAD_TYPE),
         (SMOLRTSP_SDP_ATTR, "control:video"),
         (SMOLRTSP_SDP_ATTR, "rtpmap:%d H264/%" PRIu32, VIDEO_PAYLOAD_TYPE, VIDEO_SAMPLE_RATE),
         (SMOLRTSP_SDP_ATTR, "fmtp:%d packetization-mode=1", VIDEO_PAYLOAD_TYPE),
-        (SMOLRTSP_SDP_ATTR, "framerate:%d", VIDEO_FPS)
-    );
+        (SMOLRTSP_SDP_ATTR, "framerate:%d", VIDEO_FPS));
+#endif
     // clang-format on
 
     assert(ret > 0);
