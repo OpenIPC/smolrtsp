@@ -74,9 +74,14 @@ SmolRTSP_NalTransport *SmolRTSP_NalTransport_new(
 /**
  * Sends an RTP/NAL packet.
  *
+ * If @p nalu is larger than the limit values from #SmolRTSP_NalTransportConfig
+ * (configured via #SmolRTSP_NalTransport_new),
+ * @p nalu will be
+ * [fragmented](https://datatracker.ietf.org/doc/html/rfc6184#section-5.8).
+ *
  * @param[out] self The RTP/NAL transport for sending this packet.
  * @param[in] ts The RTP timestamp for this packet.
- * @param[in] nal_unit The NAL unit of this RTP packet.
+ * @param[in] nalu The NAL unit of this RTP packet.
  *
  * @pre `self != NULL`
  *
@@ -85,7 +90,7 @@ SmolRTSP_NalTransport *SmolRTSP_NalTransport_new(
  */
 int SmolRTSP_NalTransport_send_packet(
     SmolRTSP_NalTransport *self, SmolRTSP_RtpTimestamp ts,
-    SmolRTSP_NalUnit nal_unit) SMOLRTSP_PRIV_MUST_USE;
+    SmolRTSP_NalUnit nalu) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Implements #SmolRTSP_Droppable_IFACE for #SmolRTSP_NalTransport.
