@@ -2,9 +2,9 @@ name: C/C++ CI
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
 jobs:
   test:
@@ -17,19 +17,21 @@ jobs:
       CC: ${{ matrix.compiler }}
 
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-    - name: Tests
-      run: bash scripts/test.sh
+      - name: Tests
+        run: bash scripts/test.sh
 
   test-server:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
+      - uses: FedericoCarboni/setup-ffmpeg@v1
+        id: setup-ffmpeg
 
-      - name: Install libevent, FFmpeg
-        run: sudo apt install libevent-dev ffmpeg --fix-missing
+      - name: Install libevent
+        run: sudo apt install libevent-dev
 
       - name: Test the example server
         run: bash scripts/test-server.sh
@@ -61,5 +63,5 @@ jobs:
       - name: Deploy the docs
         uses: peaceiris/actions-gh-pages@v3
         with:
-           github_token: ${{ secrets.GITHUB_TOKEN }}
-           publish_dir: ./docs/
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs/
