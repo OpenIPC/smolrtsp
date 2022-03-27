@@ -28,8 +28,8 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Install libevent
-        run: sudo apt install libevent-dev
+      - name: Install libevent, NASM
+        run: sudo apt install libevent-dev nasm
 
       - name: Install FFmpeg
         run: |
