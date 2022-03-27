@@ -34,7 +34,7 @@ jobs:
         run: sudo apt install libevent-dev
 
       - name: Test the example server
-        run: bash scripts/test-server.sh
+        run: sudo bash scripts/test-server.sh
 
   check-fmt:
     runs-on: ubuntu-latest
