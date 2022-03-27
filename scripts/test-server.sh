@@ -1,16 +1,23 @@
 #!/bin/bash
 
+set -e
+
 mkdir examples/build -p
 cd examples/build
 cmake ..
 cmake --build .
 ./server &
+server_pid=$!
 
-# To avoid missing some RTP packets.
 sleep 1s
 
-ffmpeg -y -i rtsp://localhost -vcodec copy test.h264 -acodec copy -f mulaw test.g711a
-cmp test.h264 ../media/video.h264
-cmp test.g711a ../media/audio.g711a
+cd ../..
 
-echo "The server is ok."
+bash scripts/test-server-ffmpeg.sh tcp &
+tcp_pid=$!
+bash scripts/test-server-ffmpeg.sh udp &
+udp_pid=$!
+
+wait $tcp_pid
+wait $udp_pid
+kill $server_pid
