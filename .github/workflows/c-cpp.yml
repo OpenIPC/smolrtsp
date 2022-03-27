@@ -28,6 +28,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Install libevent
+        run: sudo apt install libevent-dev
+
       - name: Test the example server
         run: bash scripts/test-server.sh
 
