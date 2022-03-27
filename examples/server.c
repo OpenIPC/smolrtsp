@@ -158,6 +158,8 @@ int main(void) {
         return EXIT_FAILURE;
     }
 
+    puts("Server started.");
+
     event_base_dispatch(base);
 
     evconnlistener_free(listener);

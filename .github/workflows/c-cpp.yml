@@ -22,6 +22,15 @@ jobs:
     - name: Tests
       run: bash scripts/test.sh
 
+  test-server:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Test the example server
+        run: bash scripts/test-server.sh
+
   check-fmt:
     runs-on: ubuntu-latest
 
