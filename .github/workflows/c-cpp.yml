@@ -31,8 +31,14 @@ jobs:
       - name: Install libevent
         run: sudo apt install libevent-dev
 
-      - uses: FedericoCarboni/setup-ffmpeg@v1
-        id: setup-ffmpeg
+      - name: Install FFmpeg
+        run: |
+          wget https://ffmpeg.org/releases/ffmpeg-snapshot.tar.bz2
+          tar -xf ffmpeg-snapshot.tar.bz2
+          cd ffmpeg
+          ./configure
+          sudo make install -j $(nproc)
+
       - name: Test the example server
         run: sudo bash scripts/test-server.sh
 
