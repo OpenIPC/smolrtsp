@@ -36,7 +36,18 @@ jobs:
           wget https://ffmpeg.org/releases/ffmpeg-snapshot.tar.bz2
           tar -xf ffmpeg-snapshot.tar.bz2
           cd ffmpeg
-          ./configure
+          ./configure --disable-everything --disable-doc \
+            --disable-ffplay --disable-ffprobe \
+            --enable-protocol=udp \
+            --enable-protocol=tcp \
+            --enable-protocol=rtp \
+            --enable-protocol=file \
+            --enable-demuxer=rtp \
+            --enable-demuxer=rtsp \
+            --enable-muxer=h264 \
+            --enable-muxer=pcm_mulaw \
+            --enable-decoder=h264 \
+            --enable-parser=h264
           sudo make install -j $(nproc)
 
       - name: Test the example server
