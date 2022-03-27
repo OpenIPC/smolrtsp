@@ -47,6 +47,8 @@
 #define AUDIO_PCMU_PAYLOAD_TYPE  0
 #define AUDIO_SAMPLE_RATE        8000
 #define AUDIO_SAMPLES_PER_PACKET 160
+#define AUDIO_PACKETIZATION_TIME_US                                            \
+    (1e6 / (AUDIO_SAMPLE_RATE / AUDIO_SAMPLES_PER_PACKET))
 
 #define VIDEO_PAYLOAD_TYPE 96 // dynamic PT
 #define VIDEO_SAMPLE_RATE  90000
@@ -60,13 +62,17 @@
 typedef struct {
     uint64_t session_id;
     SmolRTSP_RtpTransport *transport;
+    struct event *ev;
+    SmolRTSP_Droppable ctx;
 } Stream;
 
 typedef struct {
     struct event_base *base;
+    struct bufferevent *bev;
     struct sockaddr_storage addr;
     size_t addr_len;
     Stream streams[MAX_STREAMS];
+    int streams_playing;
 } Client;
 
 declImpl(SmolRTSP_Controller, Client);
@@ -87,11 +93,35 @@ static int setup_udp(
     const struct sockaddr *addr, SmolRTSP_Context *ctx, SmolRTSP_Transport *t,
     SmolRTSP_TransportConfig config);
 
-static void play_audio(Stream *stream);
-static void play_video(Stream *stream);
-static void send_nalu(
-    SmolRTSP_NalTransport *t, uint32_t *timestamp, const uint8_t *nalu_start,
-    const uint8_t *nalu_end);
+typedef struct {
+    SmolRTSP_RtpTransport *transport;
+    size_t i;
+    struct event *ev;
+    struct bufferevent *bev;
+    int *streams_playing;
+} AudioCtx;
+
+static SmolRTSP_Droppable play_audio(
+    struct event_base *base, struct bufferevent *bev, SmolRTSP_RtpTransport *t,
+    struct event **ev, int *streams_playing);
+static void send_audio_packet_cb(evutil_socket_t fd, short events, void *arg);
+
+typedef struct {
+    SmolRTSP_NalTransport *transport;
+    SmolRTSP_NalStartCodeTester start_code_tester;
+    uint32_t timestamp;
+    U8Slice99 video;
+    uint8_t *nalu_start;
+    struct event *ev;
+    struct bufferevent *bev;
+    int *streams_playing;
+} VideoCtx;
+
+static SmolRTSP_Droppable play_video(
+    struct event_base *base, struct bufferevent *bev, SmolRTSP_RtpTransport *t,
+    struct event **ev, int *streams_playing);
+static void send_video_packet_cb(evutil_socket_t fd, short events, void *arg);
+static bool send_nalu(VideoCtx *ctx);
 
 int main(void) {
     srand(time(NULL));
@@ -158,6 +188,7 @@ static void listener_cb(
     Client *client = calloc(1, sizeof *client);
     assert(client);
     client->base = base;
+    client->bev = bev;
     memcpy(&client->addr, sa, socklen);
     client->addr_len = socklen;
 
@@ -193,6 +224,11 @@ static void on_sigint_cb(evutil_socket_t sig, short events, void *ctx) {
 
 static void Client_drop(VSelf) {
     VSELF(Client);
+
+    for (size_t i = 0; i < MAX_STREAMS; i++) {
+        VCALL(self->streams[i].ctx, drop);
+    }
+
     free(self);
 }
 
@@ -320,30 +356,55 @@ Client_play(VSelf, SmolRTSP_Context *ctx, const SmolRTSP_Request *req) {
     for (size_t i = 0; i < MAX_STREAMS; i++) {
         if (self->streams[i].session_id == session_id) {
             if (AUDIO_STREAM_ID == i) {
-                play_audio(&self->streams[i]);
+                self->streams[i].ctx = play_audio(
+                    self->base, self->bev, self->streams[i].transport,
+                    &self->streams[i].ev, &self->streams_playing);
             } else {
-                play_video(&self->streams[i]);
+                self->streams[i].ctx = play_video(
+                    self->base, self->bev, self->streams[i].transport,
+                    &self->streams[i].ev, &self->streams_playing);
             }
 
             played = true;
         }
     }
 
-    if (played) {
-        smolrtsp_header(ctx, SMOLRTSP_HEADER_RANGE, "npt=now-");
-        smolrtsp_respond_ok(ctx);
-    } else {
+    if (!played) {
         smolrtsp_respond(
             ctx, SMOLRTSP_STATUS_SESSION_NOT_FOUND, "Invalid Session ID");
+        return;
     }
+
+    smolrtsp_header(ctx, SMOLRTSP_HEADER_RANGE, "npt=now-");
+    smolrtsp_respond_ok(ctx);
 }
 
 static void
 Client_teardown(VSelf, SmolRTSP_Context *ctx, const SmolRTSP_Request *req) {
     VSELF(Client);
 
-    (void)self;
-    (void)req;
+    uint64_t session_id;
+    if (smolrtsp_scanf_header(
+            &req->header_map, SMOLRTSP_HEADER_SESSION, "%" SCNu64,
+            &session_id) != 1) {
+        smolrtsp_respond(
+            ctx, SMOLRTSP_STATUS_BAD_REQUEST, "Malformed `Session'");
+        return;
+    }
+
+    bool teardowned = false;
+    for (size_t i = 0; i < MAX_STREAMS; i++) {
+        if (self->streams[i].session_id == session_id) {
+            event_del(self->streams[i].ev);
+            teardowned = true;
+        }
+    }
+
+    if (!teardowned) {
+        smolrtsp_respond(
+            ctx, SMOLRTSP_STATUS_SESSION_NOT_FOUND, "Invalid Session ID");
+        return;
+    }
 
     smolrtsp_respond_ok(ctx);
 }
@@ -469,41 +530,95 @@ static int setup_udp(
     return -1;
 }
 
-static void play_audio(Stream *stream) {
-    for (size_t i = 0; i * AUDIO_SAMPLES_PER_PACKET < ___media_audio_g711a_len;
-         i++) {
-        const SmolRTSP_RtpTimestamp ts =
-            SmolRTSP_RtpTimestamp_Raw(i * AUDIO_SAMPLES_PER_PACKET);
-        const bool marker = false;
-        const size_t samples_count =
-            ___media_audio_g711a_len <
-                    i * AUDIO_SAMPLES_PER_PACKET + AUDIO_SAMPLES_PER_PACKET
-                ? ___media_audio_g711a_len % AUDIO_SAMPLES_PER_PACKET
-                : AUDIO_SAMPLES_PER_PACKET;
-        const U8Slice99 header = U8Slice99_empty(),
-                        payload = U8Slice99_new(
-                            ___media_audio_g711a + i * AUDIO_SAMPLES_PER_PACKET,
-                            samples_count);
+static void AudioCtx_drop(VSelf) {
+    VSELF(AudioCtx);
 
-        if (SmolRTSP_RtpTransport_send_packet(
-                stream->transport, ts, marker, header, payload) == -1) {
-            perror("Failed to send RTP/PCMU");
-        }
-    }
-
-    VTABLE(SmolRTSP_RtpTransport, SmolRTSP_Droppable).drop(stream->transport);
+    event_free(self->ev);
+    VTABLE(SmolRTSP_RtpTransport, SmolRTSP_Droppable).drop(self->transport);
+    free(self);
 }
 
-static void play_video(Stream *stream) {
-    const SmolRTSP_NalTransportConfig config =
-        SmolRTSP_NalTransportConfig_default();
-    SmolRTSP_NalTransport *transport =
-        SmolRTSP_NalTransport_new(stream->transport, config);
+impl(SmolRTSP_Droppable, AudioCtx);
 
+static SmolRTSP_Droppable play_audio(
+    struct event_base *base, struct bufferevent *bev, SmolRTSP_RtpTransport *t,
+    struct event **ev, int *streams_playing) {
+    AudioCtx *ctx = malloc(sizeof *ctx);
+    assert(ctx);
+    *ctx = (AudioCtx){
+        .transport = t,
+        .i = 0,
+        .ev = NULL,
+        .streams_playing = streams_playing,
+        .bev = bev,
+    };
+
+    ctx->ev = event_new(
+        base, -1, EV_PERSIST | EV_TIMEOUT, send_audio_packet_cb, (void *)ctx);
+    assert(ctx->ev);
+
+    event_add(
+        ctx->ev, &(const struct timeval){
+                     .tv_sec = 0,
+                     .tv_usec = AUDIO_PACKETIZATION_TIME_US,
+                 });
+    *ev = ctx->ev;
+    (*streams_playing)++;
+
+    return DYN(AudioCtx, SmolRTSP_Droppable, ctx);
+}
+
+static void send_audio_packet_cb(evutil_socket_t fd, short events, void *arg) {
+    (void)fd;
+    (void)events;
+
+    AudioCtx *ctx = arg;
+
+    if (ctx->i * AUDIO_SAMPLES_PER_PACKET >= ___media_audio_g711a_len) {
+        event_del(ctx->ev);
+        (*ctx->streams_playing)--;
+        if (0 == *ctx->streams_playing) {
+            bufferevent_trigger_event(ctx->bev, BEV_EVENT_EOF, 0);
+        }
+        return;
+    }
+
+    const SmolRTSP_RtpTimestamp ts =
+        SmolRTSP_RtpTimestamp_Raw(ctx->i * AUDIO_SAMPLES_PER_PACKET);
+    const bool marker = false;
+    const size_t samples_count =
+        ___media_audio_g711a_len <
+                ctx->i * AUDIO_SAMPLES_PER_PACKET + AUDIO_SAMPLES_PER_PACKET
+            ? ___media_audio_g711a_len % AUDIO_SAMPLES_PER_PACKET
+            : AUDIO_SAMPLES_PER_PACKET;
+    const U8Slice99 header = U8Slice99_empty(),
+                    payload = U8Slice99_new(
+                        ___media_audio_g711a +
+                            ctx->i * AUDIO_SAMPLES_PER_PACKET,
+                        samples_count);
+
+    if (SmolRTSP_RtpTransport_send_packet(
+            ctx->transport, ts, marker, header, payload) == -1) {
+        perror("Failed to send RTP/PCMU");
+    }
+
+    ctx->i++;
+}
+
+static void VideoCtx_drop(VSelf) {
+    VSELF(VideoCtx);
+
+    event_free(self->ev);
+    VTABLE(SmolRTSP_NalTransport, SmolRTSP_Droppable).drop(self->transport);
+    free(self);
+}
+
+impl(SmolRTSP_Droppable, VideoCtx);
+
+static SmolRTSP_Droppable play_video(
+    struct event_base *base, struct bufferevent *bev, SmolRTSP_RtpTransport *t,
+    struct event **ev, int *streams_playing) {
     U8Slice99 video = Slice99_typed_from_array(___media_video_h264);
-    uint8_t *nalu_start = NULL;
-
-    uint32_t timestamp = 0;
 
     SmolRTSP_NalStartCodeTester start_code_tester;
     if ((start_code_tester = smolrtsp_determine_start_code(video)) == NULL) {
@@ -511,43 +626,90 @@ static void play_video(Stream *stream) {
         abort();
     }
 
-    while (!U8Slice99_is_empty(video)) {
-        const size_t start_code_len = start_code_tester(video);
-        if (0 == start_code_len) {
-            video = U8Slice99_advance(video, 1);
-            continue;
-        }
+    VideoCtx *ctx = malloc(sizeof *ctx);
+    assert(ctx);
+    *ctx = (VideoCtx){
+        .transport = SmolRTSP_NalTransport_new(t),
+        .start_code_tester = start_code_tester,
+        .timestamp = 0,
+        .video = video,
+        .nalu_start = NULL,
+        .ev = NULL,
+        .bev = bev,
+        .streams_playing = streams_playing,
+    };
 
-        if (NULL != nalu_start) {
-            send_nalu(transport, &timestamp, nalu_start, video.ptr);
-        }
+    ctx->ev = event_new(
+        base, -1, EV_PERSIST | EV_TIMEOUT, send_video_packet_cb, (void *)ctx);
+    assert(ctx->ev);
 
-        video = U8Slice99_advance(video, start_code_len);
-        nalu_start = video.ptr;
-    }
+    event_add(
+        ctx->ev, &(const struct timeval){
+                     .tv_sec = 0,
+                     .tv_usec = 1e6 / VIDEO_FPS,
+                 });
+    *ev = ctx->ev;
+    (*streams_playing)++;
 
-    send_nalu(transport, &timestamp, nalu_start, video.ptr);
-
-    VTABLE(SmolRTSP_NalTransport, SmolRTSP_Droppable).drop(transport);
+    return DYN(VideoCtx, SmolRTSP_Droppable, ctx);
 }
 
-static void send_nalu(
-    SmolRTSP_NalTransport *t, uint32_t *timestamp, const uint8_t *nalu_start,
-    const uint8_t *nalu_end) {
+static void send_video_packet_cb(evutil_socket_t fd, short events, void *arg) {
+    (void)fd;
+    (void)events;
+
+    VideoCtx *ctx = arg;
+
+again:
+    if (U8Slice99_is_empty(ctx->video)) {
+        send_nalu(ctx);
+        event_del(ctx->ev);
+        (*ctx->streams_playing)--;
+        if (0 == *ctx->streams_playing) {
+            bufferevent_trigger_event(ctx->bev, BEV_EVENT_EOF, 0);
+        }
+        return;
+    }
+
+    const size_t start_code_len = ctx->start_code_tester(ctx->video);
+    if (0 == start_code_len) {
+        ctx->video = U8Slice99_advance(ctx->video, 1);
+        goto again;
+    }
+
+    bool au_found = false;
+    if (NULL != ctx->nalu_start) {
+        au_found = send_nalu(ctx);
+    }
+
+    ctx->video = U8Slice99_advance(ctx->video, start_code_len);
+    ctx->nalu_start = ctx->video.ptr;
+
+    if (!au_found) {
+        goto again;
+    }
+}
+
+static bool send_nalu(VideoCtx *ctx) {
     const SmolRTSP_NalUnit nalu = {
         .header = SmolRTSP_NalHeader_H264(
-            SmolRTSP_H264NalHeader_parse(nalu_start[0])),
-        .payload = U8Slice99_from_ptrdiff(
-            (uint8_t *)nalu_start + 1, (uint8_t *)nalu_end),
+            SmolRTSP_H264NalHeader_parse(ctx->nalu_start[0])),
+        .payload = U8Slice99_from_ptrdiff(ctx->nalu_start + 1, ctx->video.ptr),
     };
+
+    bool au_found = false;
 
     if (SmolRTSP_NalHeader_unit_type(nalu.header) ==
         SMOLRTSP_H264_NAL_UNIT_AUD) {
-        *timestamp += VIDEO_SAMPLE_RATE / VIDEO_FPS;
+        ctx->timestamp += VIDEO_SAMPLE_RATE / VIDEO_FPS;
+        au_found = true;
     }
 
     if (SmolRTSP_NalTransport_send_packet(
-            t, SmolRTSP_RtpTimestamp_Raw(*timestamp), nalu) == -1) {
+            ctx->transport, SmolRTSP_RtpTimestamp_Raw(ctx->timestamp), nalu) ==
+        -1) {
         perror("Failed to send RTP/NAL");
     }
+
+    return au_found;
 }
