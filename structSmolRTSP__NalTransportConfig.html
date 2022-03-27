@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>SmolRTSP: include/smolrtsp/option.h Source File</title>
+<title>SmolRTSP: SmolRTSP_NalTransportConfig Struct Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -64,7 +64,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('option_8h_source.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('structSmolRTSP__NalTransportConfig.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -83,29 +83,40 @@ $(document).ready(function(){initNavTree('option_8h_source.html',''); initResiza
 </div>
 
 <div class="header">
+  <div class="summary">
+<a href="#pub-attribs">Data Fields</a>  </div>
   <div class="headertitle">
-<div class="title">option.h</div>  </div>
+<div class="title">SmolRTSP_NalTransportConfig Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="option_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#pragma once</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;datatype99.h&gt;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;metalang99.h&gt;</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="option_8h.html#aa58e8736828aa4bf268a5d54748664de">   21</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_DEF_OPTION(...)                                               \</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">    ML99_OVERLOAD(SMOLRTSP_PRIV_DEF_OPTION_, __VA_ARGS__)</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#define SMOLRTSP_PRIV_DEF_OPTION_1(T)                                          \</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">    datatype99(T##Option, (T##_Some, T), (T##_None))</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define SMOLRTSP_PRIV_DEF_OPTION_2(name, T)                                    \</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">    datatype99(name##Option, (name##_Some, T), (name##_None))</span></div>
-</div><!-- fragment --></div><!-- contents -->
+
+<p>The configuration structure for <a class="el" href="nal__transport_8h.html#afec555143193b4746bcddf7614953b65" title="An RTP/NAL data transport.">SmolRTSP_NalTransport</a>.  
+ <a href="structSmolRTSP__NalTransportConfig.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="nal__transport_8h_source.html">nal_transport.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Data Fields</h2></td></tr>
+<tr class="memitem:a0f17bfa9433696e0fdf3587287baa772"><td class="memItemLeft" align="right" valign="top"><a id="a0f17bfa9433696e0fdf3587287baa772"></a>
+size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structSmolRTSP__NalTransportConfig.html#a0f17bfa9433696e0fdf3587287baa772">max_h264_nalu_size</a></td></tr>
+<tr class="memdesc:a0f17bfa9433696e0fdf3587287baa772"><td class="mdescLeft">&#160;</td><td class="mdescRight">The maximum size of an H.264 NAL unit (including the header). <br /></td></tr>
+<tr class="separator:a0f17bfa9433696e0fdf3587287baa772"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7bc7a1085e243929bf8f367e72de7283"><td class="memItemLeft" align="right" valign="top"><a id="a7bc7a1085e243929bf8f367e72de7283"></a>
+size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structSmolRTSP__NalTransportConfig.html#a7bc7a1085e243929bf8f367e72de7283">max_h265_nalu_size</a></td></tr>
+<tr class="memdesc:a7bc7a1085e243929bf8f367e72de7283"><td class="mdescLeft">&#160;</td><td class="mdescRight">The maximum size of an H.265 NAL unit (including the header). <br /></td></tr>
+<tr class="separator:a7bc7a1085e243929bf8f367e72de7283"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>The configuration structure for <a class="el" href="nal__transport_8h.html#afec555143193b4746bcddf7614953b65" title="An RTP/NAL data transport.">SmolRTSP_NalTransport</a>. </p>
+</div><hr/>The documentation for this struct was generated from the following file:<ul>
+<li>include/smolrtsp/<a class="el" href="nal__transport_8h_source.html">nal_transport.h</a></li>
+</ul>
+</div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="dir_d9df11550791e941c069ba1bdc5c3ae8.html">smolrtsp</a></li><li class="navelem"><a class="el" href="option_8h.html">option.h</a></li>
+    <li class="navelem"><a class="el" href="structSmolRTSP__NalTransportConfig.html">SmolRTSP_NalTransportConfig</a></li>
     <li class="footer">Generated by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>

@@ -120,7 +120,7 @@ $(document).ready(function(){initNavTree('sdp_8h_source.html',''); initResizable
 <div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160; </div>
 <div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="preprocessor">#define SMOLRTSP_PRIV_SDP_DESCRIBE(ret, w, ...)                                \</span></div>
 <div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="preprocessor">    do {                                                                       \</span></div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="preprocessor">        ssize_t smolrtsp_priv_sdp_ret = ret = 0;                               \</span></div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="preprocessor">        ssize_t smolrtsp_priv_sdp_ret = 0;                                     \</span></div>
 <div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;<span class="preprocessor">        ML99_EVAL(ML99_variadicsForEach(                                       \</span></div>
 <div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="preprocessor">            ML99_compose(                                                      \</span></div>
 <div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;<span class="preprocessor">                ML99_appl(v(SMOLRTSP_PRIV_genSdpPrintf), v(ret, w)),           \</span></div>

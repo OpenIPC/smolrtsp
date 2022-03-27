@@ -84,6 +84,8 @@ $(document).ready(function(){initNavTree('nal__transport_8h.html',''); initResiz
 
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Data Structures</a> &#124;
+<a href="#define-members">Macros</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
@@ -96,6 +98,7 @@ $(document).ready(function(){initNavTree('nal__transport_8h.html',''); initResiz
 <div class="textblock"><code>#include &lt;<a class="el" href="droppable_8h_source.html">smolrtsp/droppable.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="nal_8h_source.html">smolrtsp/nal.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="rtp__transport_8h_source.html">smolrtsp/rtp_transport.h</a>&gt;</code><br />
+<code>#include &lt;stddef.h&gt;</code><br />
 <code>#include &lt;stdint.h&gt;</code><br />
 <code>#include &lt;smolrtsp/priv/compiler_attrs.h&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -103,27 +106,27 @@ Include dependency graph for nal_transport.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="nal__transport_8h__incl.png" border="0" usemap="#include_2smolrtsp_2nal__transport_8h" alt=""/></div>
 <map name="include_2smolrtsp_2nal__transport_8h" id="include_2smolrtsp_2nal__transport_8h">
-<area shape="rect" title="An RTP/NAL data transport." alt="" coords="690,5,845,47"/>
-<area shape="rect" href="droppable_8h.html" title="Droppable types support." alt="" coords="1351,244,1511,271"/>
-<area shape="rect" href="nal_8h.html" title="A generic NAL (Network Abstraction Layer) representation." alt="" coords="381,169,495,196"/>
+<area shape="rect" title="An RTP/NAL data transport." alt="" coords="765,5,919,47"/>
+<area shape="rect" href="droppable_8h.html" title="Droppable types support." alt="" coords="1363,244,1523,271"/>
+<area shape="rect" href="nal_8h.html" title="A generic NAL (Network Abstraction Layer) representation." alt="" coords="393,169,507,196"/>
 <area shape="rect" title=" " alt="" coords="5,326,76,353"/>
-<area shape="rect" title=" " alt="" coords="604,319,773,360"/>
-<area shape="rect" href="rtp__transport_8h.html" title="An RTP data transport." alt="" coords="678,95,857,121"/>
-<area shape="rect" title=" " alt="" coords="1433,326,1541,353"/>
-<area shape="rect" href="h264_8h.html" title="H.264 NAL representation." alt="" coords="193,244,344,271"/>
-<area shape="rect" title=" " alt="" coords="126,326,209,353"/>
-<area shape="rect" title=" " alt="" coords="461,326,541,353"/>
-<area shape="rect" href="h265_8h.html" title="H.265 NAL representation." alt="" coords="420,244,571,271"/>
-<area shape="rect" title=" " alt="" coords="647,244,755,271"/>
-<area shape="rect" href="transport_8h.html" title="RTSP data transport (level 4) implementations." alt="" coords="1001,169,1155,196"/>
-<area shape="rect" href="io__vec_8h.html" title="Vectored I/O support." alt="" coords="983,244,1120,271"/>
-<area shape="rect" href="writer_8h.html" title="The writer interface." alt="" coords="1144,244,1276,271"/>
-<area shape="rect" title=" " alt="" coords="1046,326,1121,353"/>
-<area shape="rect" title=" " alt="" coords="919,326,1021,353"/>
-<area shape="rect" title=" " alt="" coords="798,326,894,353"/>
-<area shape="rect" title=" " alt="" coords="1334,326,1409,353"/>
-<area shape="rect" title=" " alt="" coords="1145,326,1211,353"/>
-<area shape="rect" title=" " alt="" coords="1235,326,1310,353"/>
+<area shape="rect" title=" " alt="" coords="653,319,823,360"/>
+<area shape="rect" href="rtp__transport_8h.html" title="An RTP data transport." alt="" coords="690,95,869,121"/>
+<area shape="rect" title=" " alt="" coords="1382,326,1457,353"/>
+<area shape="rect" title=" " alt="" coords="1481,326,1589,353"/>
+<area shape="rect" href="h264_8h.html" title="H.264 NAL representation." alt="" coords="205,244,356,271"/>
+<area shape="rect" title=" " alt="" coords="182,326,265,353"/>
+<area shape="rect" title=" " alt="" coords="507,326,587,353"/>
+<area shape="rect" href="h265_8h.html" title="H.265 NAL representation." alt="" coords="432,244,583,271"/>
+<area shape="rect" title=" " alt="" coords="659,244,767,271"/>
+<area shape="rect" href="transport_8h.html" title="RTSP data transport (level 4) implementations." alt="" coords="1013,169,1167,196"/>
+<area shape="rect" href="io__vec_8h.html" title="Vectored I/O support." alt="" coords="995,244,1132,271"/>
+<area shape="rect" href="writer_8h.html" title="The writer interface." alt="" coords="1156,244,1288,271"/>
+<area shape="rect" title=" " alt="" coords="847,326,949,353"/>
+<area shape="rect" title=" " alt="" coords="974,326,1070,353"/>
+<area shape="rect" title=" " alt="" coords="1185,326,1259,353"/>
+<area shape="rect" title=" " alt="" coords="1094,326,1161,353"/>
+<area shape="rect" title=" " alt="" coords="1283,326,1358,353"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -138,6 +141,23 @@ This graph shows which files directly or indirectly include this file:</div>
 </div>
 <p><a href="nal__transport_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structSmolRTSP__NalTransportConfig.html">SmolRTSP_NalTransportConfig</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The configuration structure for <a class="el" href="nal__transport_8h.html#afec555143193b4746bcddf7614953b65" title="An RTP/NAL data transport.">SmolRTSP_NalTransport</a>.  <a href="structSmolRTSP__NalTransportConfig.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:abd0dbc61b2891d906f798d64626f1d1f"><td class="memItemLeft" align="right" valign="top"><a id="abd0dbc61b2891d906f798d64626f1d1f"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal__transport_8h.html#abd0dbc61b2891d906f798d64626f1d1f">SMOLRTSP_MAX_H264_NALU_SIZE</a>&#160;&#160;&#160;1200</td></tr>
+<tr class="memdesc:abd0dbc61b2891d906f798d64626f1d1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">The default value for <a class="el" href="structSmolRTSP__NalTransportConfig.html#a0f17bfa9433696e0fdf3587287baa772" title="The maximum size of an H.264 NAL unit (including the header).">SmolRTSP_NalTransportConfig.max_h264_nalu_size</a>. <br /></td></tr>
+<tr class="separator:abd0dbc61b2891d906f798d64626f1d1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2ac9ff16e6c557e21a2c4136011609b"><td class="memItemLeft" align="right" valign="top"><a id="ae2ac9ff16e6c557e21a2c4136011609b"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal__transport_8h.html#ae2ac9ff16e6c557e21a2c4136011609b">SMOLRTSP_MAX_H265_NALU_SIZE</a>&#160;&#160;&#160;4096</td></tr>
+<tr class="memdesc:ae2ac9ff16e6c557e21a2c4136011609b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The default value for <a class="el" href="structSmolRTSP__NalTransportConfig.html#a7bc7a1085e243929bf8f367e72de7283" title="The maximum size of an H.265 NAL unit (including the header).">SmolRTSP_NalTransportConfig.max_h265_nalu_size</a>. <br /></td></tr>
+<tr class="separator:ae2ac9ff16e6c557e21a2c4136011609b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
 <tr class="memitem:afec555143193b4746bcddf7614953b65"><td class="memItemLeft" align="right" valign="top"><a id="afec555143193b4746bcddf7614953b65"></a>
@@ -147,12 +167,18 @@ typedef struct <a class="el" href="nal__transport_8h.html#afec555143193b4746bcdd
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:af6d8728863fffaf833c6b8bfa979f528"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structSmolRTSP__NalTransportConfig.html">SmolRTSP_NalTransportConfig</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal__transport_8h.html#af6d8728863fffaf833c6b8bfa979f528">SmolRTSP_NalTransportConfig_default</a> (void)</td></tr>
+<tr class="memdesc:af6d8728863fffaf833c6b8bfa979f528"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the default <a class="el" href="structSmolRTSP__NalTransportConfig.html" title="The configuration structure for SmolRTSP_NalTransport.">SmolRTSP_NalTransportConfig</a>.  <a href="nal__transport_8h.html#af6d8728863fffaf833c6b8bfa979f528">More...</a><br /></td></tr>
+<tr class="separator:af6d8728863fffaf833c6b8bfa979f528"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a01f39d32a9cc22acbb1d5404c939b39d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="nal__transport_8h.html#afec555143193b4746bcddf7614953b65">SmolRTSP_NalTransport</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal__transport_8h.html#a01f39d32a9cc22acbb1d5404c939b39d">SmolRTSP_NalTransport_new</a> (<a class="el" href="rtp__transport_8h.html#a8c72a0e77af47185c469b8ddeec20f3d">SmolRTSP_RtpTransport</a> *t) SMOLRTSP_PRIV_MUST_USE</td></tr>
-<tr class="memdesc:a01f39d32a9cc22acbb1d5404c939b39d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new RTP/NAL transport.  <a href="nal__transport_8h.html#a01f39d32a9cc22acbb1d5404c939b39d">More...</a><br /></td></tr>
+<tr class="memdesc:a01f39d32a9cc22acbb1d5404c939b39d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new RTP/NAL transport with the default configuration.  <a href="nal__transport_8h.html#a01f39d32a9cc22acbb1d5404c939b39d">More...</a><br /></td></tr>
 <tr class="separator:a01f39d32a9cc22acbb1d5404c939b39d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af4f755336f7a4e33d67208fa79cc3e7b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal__transport_8h.html#af4f755336f7a4e33d67208fa79cc3e7b">SmolRTSP_NalTransport_send_packet</a> (<a class="el" href="nal__transport_8h.html#afec555143193b4746bcddf7614953b65">SmolRTSP_NalTransport</a> *self, SmolRTSP_RtpTimestamp ts, <a class="el" href="structSmolRTSP__NalUnit.html">SmolRTSP_NalUnit</a> nal_unit) SMOLRTSP_PRIV_MUST_USE</td></tr>
-<tr class="memdesc:af4f755336f7a4e33d67208fa79cc3e7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends an RTP/NAL packet.  <a href="nal__transport_8h.html#af4f755336f7a4e33d67208fa79cc3e7b">More...</a><br /></td></tr>
-<tr class="separator:af4f755336f7a4e33d67208fa79cc3e7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad57b3c76f53290af8bf75c9e20b153d2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="nal__transport_8h.html#afec555143193b4746bcddf7614953b65">SmolRTSP_NalTransport</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal__transport_8h.html#ad57b3c76f53290af8bf75c9e20b153d2">SmolRTSP_NalTransport_new_with_config</a> (<a class="el" href="rtp__transport_8h.html#a8c72a0e77af47185c469b8ddeec20f3d">SmolRTSP_RtpTransport</a> *t, <a class="el" href="structSmolRTSP__NalTransportConfig.html">SmolRTSP_NalTransportConfig</a> config) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:ad57b3c76f53290af8bf75c9e20b153d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new RTP/NAL transport with a custom configuration.  <a href="nal__transport_8h.html#ad57b3c76f53290af8bf75c9e20b153d2">More...</a><br /></td></tr>
+<tr class="separator:ad57b3c76f53290af8bf75c9e20b153d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7df9c834940a3911fc721958aad7f211"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal__transport_8h.html#a7df9c834940a3911fc721958aad7f211">SmolRTSP_NalTransport_send_packet</a> (<a class="el" href="nal__transport_8h.html#afec555143193b4746bcddf7614953b65">SmolRTSP_NalTransport</a> *self, SmolRTSP_RtpTimestamp ts, <a class="el" href="structSmolRTSP__NalUnit.html">SmolRTSP_NalUnit</a> nalu) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:a7df9c834940a3911fc721958aad7f211"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends an RTP/NAL packet.  <a href="nal__transport_8h.html#a7df9c834940a3911fc721958aad7f211">More...</a><br /></td></tr>
+<tr class="separator:a7df9c834940a3911fc721958aad7f211"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a69333ef1ac705df4786f4cbfd0b58c54"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal__transport_8h.html#a69333ef1ac705df4786f4cbfd0b58c54">declImplExtern99</a> (SmolRTSP_Droppable, <a class="el" href="nal__transport_8h.html#afec555143193b4746bcddf7614953b65">SmolRTSP_NalTransport</a>)</td></tr>
 <tr class="memdesc:a69333ef1ac705df4786f4cbfd0b58c54"><td class="mdescLeft">&#160;</td><td class="mdescRight">Implements <a class="el" href="droppable_8h.html#a63327e52bfcd2c77b4fb293a45590312" title="Types that can be dropped (deallocated).">SmolRTSP_Droppable_IFACE</a> for <a class="el" href="nal__transport_8h.html#afec555143193b4746bcddf7614953b65" title="An RTP/NAL data transport.">SmolRTSP_NalTransport</a>.  <a href="nal__transport_8h.html#a69333ef1ac705df4786f4cbfd0b58c54">More...</a><br /></td></tr>
 <tr class="separator:a69333ef1ac705df4786f4cbfd0b58c54"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -210,7 +236,7 @@ RTP Payload Format for High Efficiency Video Coding (HEVC): <a href="https://dat
       </table>
 </div><div class="memdoc">
 
-<p>Creates a new RTP/NAL transport. </p>
+<p>Creates a new RTP/NAL transport with the default configuration. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">t</td><td>The underlying RTP transport.</td></tr>
@@ -221,8 +247,46 @@ RTP Payload Format for High Efficiency Video Coding (HEVC): <a href="https://dat
 
 </div>
 </div>
-<a id="af4f755336f7a4e33d67208fa79cc3e7b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af4f755336f7a4e33d67208fa79cc3e7b">&#9670;&nbsp;</a></span>SmolRTSP_NalTransport_send_packet()</h2>
+<a id="ad57b3c76f53290af8bf75c9e20b153d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad57b3c76f53290af8bf75c9e20b153d2">&#9670;&nbsp;</a></span>SmolRTSP_NalTransport_new_with_config()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="nal__transport_8h.html#afec555143193b4746bcddf7614953b65">SmolRTSP_NalTransport</a>* SmolRTSP_NalTransport_new_with_config </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="rtp__transport_8h.html#a8c72a0e77af47185c469b8ddeec20f3d">SmolRTSP_RtpTransport</a> *&#160;</td>
+          <td class="paramname"><em>t</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structSmolRTSP__NalTransportConfig.html">SmolRTSP_NalTransportConfig</a>&#160;</td>
+          <td class="paramname"><em>config</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Creates a new RTP/NAL transport with a custom configuration. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">t</td><td>The underlying RTP transport. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">config</td><td>The transmission configuration structure.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section pre"><dt>Precondition</dt><dd><code>t != NULL</code> </dd></dl>
+
+</div>
+</div>
+<a id="a7df9c834940a3911fc721958aad7f211"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7df9c834940a3911fc721958aad7f211">&#9670;&nbsp;</a></span>SmolRTSP_NalTransport_send_packet()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -243,7 +307,7 @@ RTP Payload Format for High Efficiency Video Coding (HEVC): <a href="https://dat
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="structSmolRTSP__NalUnit.html">SmolRTSP_NalUnit</a>&#160;</td>
-          <td class="paramname"><em>nal_unit</em>&#160;</td>
+          <td class="paramname"><em>nalu</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -254,16 +318,42 @@ RTP Payload Format for High Efficiency Video Coding (HEVC): <a href="https://dat
 </div><div class="memdoc">
 
 <p>Sends an RTP/NAL packet. </p>
+<p>If <code>nalu</code> is larger than the limit values from <a class="el" href="structSmolRTSP__NalTransportConfig.html" title="The configuration structure for SmolRTSP_NalTransport.">SmolRTSP_NalTransportConfig</a> (configured via <a class="el" href="nal__transport_8h.html#a01f39d32a9cc22acbb1d5404c939b39d" title="Creates a new RTP/NAL transport with the default configuration.">SmolRTSP_NalTransport_new</a>), <code>nalu</code> will be <a href="https://datatracker.ietf.org/doc/html/rfc6184#section-5.8">fragmented</a>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[out]</td><td class="paramname">self</td><td>The RTP/NAL transport for sending this packet. </td></tr>
     <tr><td class="paramdir">[in]</td><td class="paramname">ts</td><td>The RTP timestamp for this packet. </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">nal_unit</td><td>The NAL unit of this RTP packet.</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">nalu</td><td>The NAL unit of this RTP packet.</td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section pre"><dt>Precondition</dt><dd><code>self != NULL</code></dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>-1 if an I/O error occurred and sets <code>errno</code> appropriately, 0 on success. </dd></dl>
+
+</div>
+</div>
+<a id="af6d8728863fffaf833c6b8bfa979f528"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6d8728863fffaf833c6b8bfa979f528">&#9670;&nbsp;</a></span>SmolRTSP_NalTransportConfig_default()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structSmolRTSP__NalTransportConfig.html">SmolRTSP_NalTransportConfig</a> SmolRTSP_NalTransportConfig_default </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the default <a class="el" href="structSmolRTSP__NalTransportConfig.html" title="The configuration structure for SmolRTSP_NalTransport.">SmolRTSP_NalTransportConfig</a>. </p>
+<p>The default values are:</p>
+<ul>
+<li><code>max_h264_nalu_size</code> is <a class="el" href="nal__transport_8h.html#abd0dbc61b2891d906f798d64626f1d1f" title="The default value for SmolRTSP_NalTransportConfig.max_h264_nalu_size.">SMOLRTSP_MAX_H264_NALU_SIZE</a>.</li>
+<li><code>max_h265_nalu_size</code> is <a class="el" href="nal__transport_8h.html#ae2ac9ff16e6c557e21a2c4136011609b" title="The default value for SmolRTSP_NalTransportConfig.max_h265_nalu_size.">SMOLRTSP_MAX_H265_NALU_SIZE</a>. </li>
+</ul>
 
 </div>
 </div>

@@ -93,13 +93,15 @@ $(document).ready(function(){initNavTree('option_8h.html',''); initResizable(); 
 <p>Optional values.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;datatype99.h&gt;</code><br />
+<code>#include &lt;metalang99.h&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for option.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="option_8h__incl.png" border="0" usemap="#include_2smolrtsp_2option_8h" alt=""/></div>
 <map name="include_2smolrtsp_2option_8h" id="include_2smolrtsp_2option_8h">
-<area shape="rect" title="Optional values." alt="" coords="5,5,192,32"/>
-<area shape="rect" title=" " alt="" coords="45,80,153,107"/>
+<area shape="rect" title="Optional values." alt="" coords="33,5,219,32"/>
+<area shape="rect" title=" " alt="" coords="5,80,113,107"/>
+<area shape="rect" title=" " alt="" coords="138,80,250,107"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -117,15 +119,21 @@ This graph shows which files directly or indirectly include this file:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:afda68b2f016cc10c52b0c9c2644adf57"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="option_8h.html#afda68b2f016cc10c52b0c9c2644adf57">SMOLRTSP_DEF_OPTION</a>(T)&#160;&#160;&#160;<a class="el" href="error_8h.html#a2fb12375da217b97eb1751058324f3e6">datatype99</a>(T##Option, (T##_Some, T), (T##_None))</td></tr>
-<tr class="memdesc:afda68b2f016cc10c52b0c9c2644adf57"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines an optional value of type <code>T</code>.  <a href="option_8h.html#afda68b2f016cc10c52b0c9c2644adf57">More...</a><br /></td></tr>
-<tr class="separator:afda68b2f016cc10c52b0c9c2644adf57"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa58e8736828aa4bf268a5d54748664de"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="option_8h.html#aa58e8736828aa4bf268a5d54748664de">SMOLRTSP_DEF_OPTION</a>(...)&#160;&#160;&#160;ML99_OVERLOAD(SMOLRTSP_PRIV_DEF_OPTION_, __VA_ARGS__)</td></tr>
+<tr class="memdesc:aa58e8736828aa4bf268a5d54748664de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines a typed optional value.  <a href="option_8h.html#aa58e8736828aa4bf268a5d54748664de">More...</a><br /></td></tr>
+<tr class="separator:aa58e8736828aa4bf268a5d54748664de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8c39986afd15fcb35c82c55b97f7a8c"><td class="memItemLeft" align="right" valign="top"><a id="ae8c39986afd15fcb35c82c55b97f7a8c"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SMOLRTSP_PRIV_DEF_OPTION_1</b>(T)&#160;&#160;&#160;<a class="el" href="error_8h.html#a2fb12375da217b97eb1751058324f3e6">datatype99</a>(T##Option, (T##_Some, T), (T##_None))</td></tr>
+<tr class="separator:ae8c39986afd15fcb35c82c55b97f7a8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a04ac380178fbe8f547019ca3e0bd67ba"><td class="memItemLeft" align="right" valign="top"><a id="a04ac380178fbe8f547019ca3e0bd67ba"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SMOLRTSP_PRIV_DEF_OPTION_2</b>(name,  T)&#160;&#160;&#160;<a class="el" href="error_8h.html#a2fb12375da217b97eb1751058324f3e6">datatype99</a>(name##Option, (name##_Some, T), (name##_None))</td></tr>
+<tr class="separator:a04ac380178fbe8f547019ca3e0bd67ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Optional values. </p>
 </div><h2 class="groupheader">Macro Definition Documentation</h2>
-<a id="afda68b2f016cc10c52b0c9c2644adf57"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afda68b2f016cc10c52b0c9c2644adf57">&#9670;&nbsp;</a></span>SMOLRTSP_DEF_OPTION</h2>
+<a id="aa58e8736828aa4bf268a5d54748664de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa58e8736828aa4bf268a5d54748664de">&#9670;&nbsp;</a></span>SMOLRTSP_DEF_OPTION</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -134,13 +142,17 @@ Macros</h2></td></tr>
           <td class="memname">#define SMOLRTSP_DEF_OPTION</td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname">T</td><td>)</td>
-          <td>&#160;&#160;&#160;<a class="el" href="error_8h.html#a2fb12375da217b97eb1751058324f3e6">datatype99</a>(T##Option, (T##_Some, T), (T##_None))</td>
+          <td class="paramname"><em>...</em></td><td>)</td>
+          <td>&#160;&#160;&#160;ML99_OVERLOAD(SMOLRTSP_PRIV_DEF_OPTION_, __VA_ARGS__)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Defines an optional value of type <code>T</code>. </p>
+<p>Defines a typed optional value. </p>
+<ul>
+<li><code><a class="el" href="option_8h.html#aa58e8736828aa4bf268a5d54748664de" title="Defines a typed optional value.">SMOLRTSP_DEF_OPTION(T)</a></code> expands to <code>datatype99(T##Option, (T##_Some, T), (T##_None))</code>.</li>
+<li><code><a class="el" href="option_8h.html#aa58e8736828aa4bf268a5d54748664de" title="Defines a typed optional value.">SMOLRTSP_DEF_OPTION(name, T)</a></code> expands to <code>datatype99(name##Option, (name##_Some, T), (name##_None))</code>.</li>
+</ul>
 <p>See <a href="https://github.com/Hirrolot/datatype99">Datatype99</a> for the macro usage. </p>
 
 </div>
