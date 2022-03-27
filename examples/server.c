@@ -44,6 +44,8 @@
 #define ENABLE_AUDIO
 #define ENABLE_VIDEO
 
+#define SERVER_PORT SMOLRTSP_DEFAULT_PORT
+
 #define AUDIO_PCMU_PAYLOAD_TYPE  0
 #define AUDIO_SAMPLE_RATE        8000
 #define AUDIO_SAMPLES_PER_PACKET 160
@@ -134,7 +136,7 @@ int main(void) {
 
     struct sockaddr_in sin = {
         .sin_family = AF_INET,
-        .sin_port = htons(SMOLRTSP_DEFAULT_PORT),
+        .sin_port = htons(SERVER_PORT),
     };
 
     struct evconnlistener *listener;
@@ -158,7 +160,7 @@ int main(void) {
         return EXIT_FAILURE;
     }
 
-    puts("Server started.");
+    printf("Server started on port %d.\n", SERVER_PORT);
 
     event_base_dispatch(base);
 
