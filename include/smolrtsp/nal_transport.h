@@ -60,14 +60,24 @@ SmolRTSP_NalTransportConfig SmolRTSP_NalTransportConfig_default(void);
 typedef struct SmolRTSP_NalTransport SmolRTSP_NalTransport;
 
 /**
- * Creates a new RTP/NAL transport.
+ * Creates a new RTP/NAL transport with the default configuration.
+ *
+ * @param[in] t The underlying RTP transport.
+ *
+ * @pre `t != NULL`
+ */
+SmolRTSP_NalTransport *
+SmolRTSP_NalTransport_new(SmolRTSP_RtpTransport *t) SMOLRTSP_PRIV_MUST_USE;
+
+/**
+ * Creates a new RTP/NAL transport with a custom configuration.
  *
  * @param[in] t The underlying RTP transport.
  * @param[in] config The transmission configuration structure.
  *
  * @pre `t != NULL`
  */
-SmolRTSP_NalTransport *SmolRTSP_NalTransport_new(
+SmolRTSP_NalTransport *SmolRTSP_NalTransport_new_with_config(
     SmolRTSP_RtpTransport *t,
     SmolRTSP_NalTransportConfig config) SMOLRTSP_PRIV_MUST_USE;
 

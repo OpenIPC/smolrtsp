@@ -27,7 +27,14 @@ struct SmolRTSP_NalTransport {
     SmolRTSP_NalTransportConfig config;
 };
 
-SmolRTSP_NalTransport *SmolRTSP_NalTransport_new(
+SmolRTSP_NalTransport *SmolRTSP_NalTransport_new(SmolRTSP_RtpTransport *t) {
+    assert(t);
+
+    return SmolRTSP_NalTransport_new_with_config(
+        t, SmolRTSP_NalTransportConfig_default());
+}
+
+SmolRTSP_NalTransport *SmolRTSP_NalTransport_new_with_config(
     SmolRTSP_RtpTransport *t, SmolRTSP_NalTransportConfig config) {
     assert(t);
 
