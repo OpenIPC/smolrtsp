@@ -27,12 +27,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - uses: FedericoCarboni/setup-ffmpeg@v1
-        id: setup-ffmpeg
 
       - name: Install libevent
         run: sudo apt install libevent-dev
 
+      - uses: FedericoCarboni/setup-ffmpeg@v1
+        id: setup-ffmpeg
       - name: Test the example server
         run: sudo bash scripts/test-server.sh
 
