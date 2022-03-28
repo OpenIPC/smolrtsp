@@ -65,8 +65,8 @@ ssize_t smolrtsp_sdp_printf(
 /**
  * Writes a sequence of SDP lines to @p w.
  *
- * @param[out] ret The variable name of type `ssize_t` with the same semantics
- * as the return value of #smolrtsp_sdp_printf.
+ * @param[out] ret The variable name of type `ssize_t` that will be incremented
+ * with a number of bytes written to @p w.
  * @param[out] w The variable name of type `SmolRTSP_Writer` to be provided with
  * SDP data.
  *
@@ -119,7 +119,7 @@ ssize_t smolrtsp_sdp_printf(
 
 #define SMOLRTSP_PRIV_SDP_DESCRIBE(ret, w, ...)                                \
     do {                                                                       \
-        ssize_t smolrtsp_priv_sdp_ret = ret = 0;                               \
+        ssize_t smolrtsp_priv_sdp_ret = 0;                                     \
         ML99_EVAL(ML99_variadicsForEach(                                       \
             ML99_compose(                                                      \
                 ML99_appl(v(SMOLRTSP_PRIV_genSdpPrintf), v(ret, w)),           \

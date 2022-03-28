@@ -15,17 +15,34 @@ static int send_fu(
     SmolRTSP_RtpTransport *t, SmolRTSP_RtpTimestamp ts, SmolRTSP_NalUnit fu,
     bool is_first_fragment, bool is_last_fragment);
 
+SmolRTSP_NalTransportConfig SmolRTSP_NalTransportConfig_default(void) {
+    return (SmolRTSP_NalTransportConfig){
+        .max_h264_nalu_size = SMOLRTSP_MAX_H264_NALU_SIZE,
+        .max_h265_nalu_size = SMOLRTSP_MAX_H264_NALU_SIZE,
+    };
+}
+
 struct SmolRTSP_NalTransport {
     SmolRTSP_RtpTransport *transport;
+    SmolRTSP_NalTransportConfig config;
 };
 
 SmolRTSP_NalTransport *SmolRTSP_NalTransport_new(SmolRTSP_RtpTransport *t) {
+    assert(t);
+
+    return SmolRTSP_NalTransport_new_with_config(
+        t, SmolRTSP_NalTransportConfig_default());
+}
+
+SmolRTSP_NalTransport *SmolRTSP_NalTransport_new_with_config(
+    SmolRTSP_RtpTransport *t, SmolRTSP_NalTransportConfig config) {
     assert(t);
 
     SmolRTSP_NalTransport *self = malloc(sizeof *self);
     assert(self);
 
     self->transport = t;
+    self->config = config;
 
     return self;
 }
@@ -41,21 +58,18 @@ static void SmolRTSP_NalTransport_drop(VSelf) {
 
 implExtern(SmolRTSP_Droppable, SmolRTSP_NalTransport);
 
-// TODO: justify these magic numbers.
-
-#define MAX_H264_PACKET_SIZE 1200
-#define MAX_H265_PACKET_SIZE 4096
-
 int SmolRTSP_NalTransport_send_packet(
     SmolRTSP_NalTransport *self, SmolRTSP_RtpTimestamp ts,
     SmolRTSP_NalUnit nalu) {
     assert(self);
 
     const size_t max_packet_size = MATCHES(nalu.header, SmolRTSP_NalHeader_H264)
-                                       ? MAX_H264_PACKET_SIZE
-                                       : MAX_H265_PACKET_SIZE;
+                                       ? self->config.max_h264_nalu_size
+                                       : self->config.max_h265_nalu_size,
+                 nalu_size =
+                     SmolRTSP_NalHeader_size(nalu.header) + nalu.payload.len;
 
-    if (nalu.payload.len < max_packet_size) {
+    if (nalu_size < max_packet_size) {
         const bool marker =
             SmolRTSP_NalHeader_is_coded_slice_idr(nalu.header) ||
             SmolRTSP_NalHeader_is_coded_slice_non_idr(nalu.header);

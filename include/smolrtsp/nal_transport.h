@@ -14,9 +14,45 @@
 #include <smolrtsp/nal.h>
 #include <smolrtsp/rtp_transport.h>
 
+#include <stddef.h>
 #include <stdint.h>
 
 #include <smolrtsp/priv/compiler_attrs.h>
+
+/**
+ * The default value for #SmolRTSP_NalTransportConfig.max_h264_nalu_size.
+ */
+#define SMOLRTSP_MAX_H264_NALU_SIZE 1200
+
+/**
+ * The default value for #SmolRTSP_NalTransportConfig.max_h265_nalu_size.
+ */
+#define SMOLRTSP_MAX_H265_NALU_SIZE 4096
+
+/**
+ * The configuration structure for #SmolRTSP_NalTransport.
+ */
+typedef struct {
+    /**
+     * The maximum size of an H.264 NAL unit (including the header).
+     */
+    size_t max_h264_nalu_size;
+
+    /**
+     * The maximum size of an H.265 NAL unit (including the header).
+     */
+    size_t max_h265_nalu_size;
+} SmolRTSP_NalTransportConfig;
+
+/**
+ * Returns the default #SmolRTSP_NalTransportConfig.
+ *
+ * The default values are:
+ *
+ *  - `max_h264_nalu_size` is #SMOLRTSP_MAX_H264_NALU_SIZE.
+ *  - `max_h265_nalu_size` is #SMOLRTSP_MAX_H265_NALU_SIZE.
+ */
+SmolRTSP_NalTransportConfig SmolRTSP_NalTransportConfig_default(void);
 
 /**
  * An RTP/NAL data transport.
@@ -24,7 +60,7 @@
 typedef struct SmolRTSP_NalTransport SmolRTSP_NalTransport;
 
 /**
- * Creates a new RTP/NAL transport.
+ * Creates a new RTP/NAL transport with the default configuration.
  *
  * @param[in] t The underlying RTP transport.
  *
@@ -34,11 +70,28 @@ SmolRTSP_NalTransport *
 SmolRTSP_NalTransport_new(SmolRTSP_RtpTransport *t) SMOLRTSP_PRIV_MUST_USE;
 
 /**
+ * Creates a new RTP/NAL transport with a custom configuration.
+ *
+ * @param[in] t The underlying RTP transport.
+ * @param[in] config The transmission configuration structure.
+ *
+ * @pre `t != NULL`
+ */
+SmolRTSP_NalTransport *SmolRTSP_NalTransport_new_with_config(
+    SmolRTSP_RtpTransport *t,
+    SmolRTSP_NalTransportConfig config) SMOLRTSP_PRIV_MUST_USE;
+
+/**
  * Sends an RTP/NAL packet.
+ *
+ * If @p nalu is larger than the limit values from #SmolRTSP_NalTransportConfig
+ * (configured via #SmolRTSP_NalTransport_new),
+ * @p nalu will be
+ * [fragmented](https://datatracker.ietf.org/doc/html/rfc6184#section-5.8).
  *
  * @param[out] self The RTP/NAL transport for sending this packet.
  * @param[in] ts The RTP timestamp for this packet.
- * @param[in] nal_unit The NAL unit of this RTP packet.
+ * @param[in] nalu The NAL unit of this RTP packet.
  *
  * @pre `self != NULL`
  *
@@ -47,7 +100,7 @@ SmolRTSP_NalTransport_new(SmolRTSP_RtpTransport *t) SMOLRTSP_PRIV_MUST_USE;
  */
 int SmolRTSP_NalTransport_send_packet(
     SmolRTSP_NalTransport *self, SmolRTSP_RtpTimestamp ts,
-    SmolRTSP_NalUnit nal_unit) SMOLRTSP_PRIV_MUST_USE;
+    SmolRTSP_NalUnit nalu) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Implements #SmolRTSP_Droppable_IFACE for #SmolRTSP_NalTransport.

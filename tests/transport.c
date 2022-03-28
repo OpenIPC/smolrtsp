@@ -80,7 +80,7 @@ TEST sockaddr_get_ipv4(void) {
 
     ASSERT_EQ(
         (void *)&((struct sockaddr_in *)&addr)->sin_addr,
-        smolrtsp_sockaddr_get_ip((const struct sockaddr *)&addr));
+        smolrtsp_sockaddr_ip((const struct sockaddr *)&addr));
 
     PASS();
 }
@@ -92,7 +92,7 @@ TEST sockaddr_get_ipv6(void) {
 
     ASSERT_EQ(
         (void *)&((struct sockaddr_in6 *)&addr)->sin6_addr,
-        smolrtsp_sockaddr_get_ip((const struct sockaddr *)&addr));
+        smolrtsp_sockaddr_ip((const struct sockaddr *)&addr));
 
     PASS();
 }
@@ -102,7 +102,7 @@ TEST sockaddr_get_unknown(void) {
     memset(&addr, '\0', sizeof addr);
     addr.ss_family = AF_UNIX;
 
-    ASSERT_EQ(NULL, smolrtsp_sockaddr_get_ip((const struct sockaddr *)&addr));
+    ASSERT_EQ(NULL, smolrtsp_sockaddr_ip((const struct sockaddr *)&addr));
 
     PASS();
 }

@@ -142,7 +142,7 @@ new_sockaddr(struct sockaddr *addr, int af, const void *ip, uint16_t port) {
     }
 }
 
-void *smolrtsp_sockaddr_get_ip(const struct sockaddr *restrict addr) {
+void *smolrtsp_sockaddr_ip(const struct sockaddr *restrict addr) {
     assert(addr);
 
     switch (addr->sa_family) {
