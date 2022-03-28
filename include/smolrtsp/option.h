@@ -21,7 +21,11 @@
 #define SMOLRTSP_DEF_OPTION(...)                                               \
     ML99_OVERLOAD(SMOLRTSP_PRIV_DEF_OPTION_, __VA_ARGS__)
 
+#ifndef DOXYGEN_IGNORE
+
 #define SMOLRTSP_PRIV_DEF_OPTION_1(T)                                          \
     datatype99(T##Option, (T##_Some, T), (T##_None))
 #define SMOLRTSP_PRIV_DEF_OPTION_2(name, T)                                    \
     datatype99(name##Option, (name##_Some, T), (name##_None))
+
+#endif // DOXYGEN_IGNORE
