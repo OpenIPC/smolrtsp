@@ -20,6 +20,25 @@ SmolRTSP is a simple [RTSP 1.0] server library tailored for embedded devices, su
 [Majestic]: https://openipc.github.io/wiki/en/majestic-streamer.html
 [OpenIPC]: https://openipc.org/
 
+## Features
+
+ - Supported protocols:
+   - [x] RTSP 1.0 ([RFC 2326])
+   - [x] RTP ([RFC 3550])
+   - [x] RTP over TCP (interleaved binary data)
+   - [x] RTP over UDP
+   - [x] SDP ([RFC 4566])
+   - [ ] RTCP
+ - Supported RTP payload formats:
+   - [x] [H.264]
+   - [x] [H.265]
+
+[RFC 3550]: https://datatracker.ietf.org/doc/html/rfc3550
+[RFC 4566]: https://datatracker.ietf.org/doc/html/rfc4566
+[RFC 2326]: https://datatracker.ietf.org/doc/html/rfc2326
+[H.264]: https://en.wikipedia.org/wiki/Advanced_Video_Coding
+[H.265]: https://en.wikipedia.org/wiki/High_Efficiency_Video_Coding
+
 ## Installation
 
 If you use CMake, the recommended way is [`FetchContent`]:
