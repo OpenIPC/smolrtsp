@@ -30,14 +30,14 @@ SmolRTSP is a simple [RTSP 1.0] server library tailored for embedded devices, su
    - [x] SDP ([RFC 4566])
    - [ ] RTCP
  - Supported RTP payload formats:
-   - [x] [H.264]
-   - [x] [H.265]
+   - [x] H.264 ([RFC 6184])
+   - [x] H.265 ([RFC 7798])
 
 [RFC 3550]: https://datatracker.ietf.org/doc/html/rfc3550
 [RFC 4566]: https://datatracker.ietf.org/doc/html/rfc4566
 [RFC 2326]: https://datatracker.ietf.org/doc/html/rfc2326
-[H.264]: https://en.wikipedia.org/wiki/Advanced_Video_Coding
-[H.265]: https://en.wikipedia.org/wiki/High_Efficiency_Video_Coding
+[RFC 6184]: https://datatracker.ietf.org/doc/html/rfc6184
+[RFC 7798]: https://datatracker.ietf.org/doc/html/rfc7798
 
 ## Installation
 
