@@ -324,7 +324,7 @@ var searchData=
   ['smolrtsp_5ftransport_5fudp_383',['smolrtsp_transport_udp',['../transport_8h.html#a3875a72cf6f4cd52bad76d6692979c61',1,'transport.h']]],
   ['smolrtsp_5ftransportconfig_384',['SmolRTSP_TransportConfig',['../structSmolRTSP__TransportConfig.html',1,'']]],
   ['smolrtsp_5fvheader_385',['smolrtsp_vheader',['../context_8h.html#a65447fe300c46400a5f82214dbb219a3',1,'context.h']]],
-  ['smolrtsp_5fwrite_5fslices_386',['smolrtsp_write_slices',['../writer_8h.html#ae1ec627d3c1175f3a7300d03281367aa',1,'smolrtsp_write_slices(SmolRTSP_Writer w, size_t len, const CharSlice99 data[restrict static len]) SMOLRTSP_PRIV_MUST_USE:&#160;writer.h'],['../writer_8h.html#a7c4c93fc4d3f9343fc9293697547690d',1,'SMOLRTSP_WRITE_SLICES():&#160;writer.h']]],
+  ['smolrtsp_5fwrite_5fslices_386',['SMOLRTSP_WRITE_SLICES',['../writer_8h.html#a7c4c93fc4d3f9343fc9293697547690d',1,'SMOLRTSP_WRITE_SLICES():&#160;writer.h'],['../writer_8h.html#ae1ec627d3c1175f3a7300d03281367aa',1,'smolrtsp_write_slices(SmolRTSP_Writer w, size_t len, const CharSlice99 data[restrict static len]) SMOLRTSP_PRIV_MUST_USE:&#160;writer.h']]],
   ['smolrtsp_5fwriter_5fiface_387',['SmolRTSP_Writer_IFACE',['../writer_8h.html#ac784e32a74c37c9830a401d4ad2fdd99',1,'writer.h']]],
   ['ssrc_388',['ssrc',['../structSmolRTSP__RtpHeader.html#ab1f09aacc7466e21463974b2503a3bc8',1,'SmolRTSP_RtpHeader']]],
   ['start_5fline_389',['start_line',['../structSmolRTSP__Request.html#adbebd315db03d12bce46bd291e987fba',1,'SmolRTSP_Request::start_line()'],['../structSmolRTSP__Response.html#a53b691aa7a5ff7188dce016305362438',1,'SmolRTSP_Response::start_line()']]],

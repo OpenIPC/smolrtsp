@@ -96,10 +96,14 @@ $(document).ready(function(){initNavTree('option_8h_source.html',''); initResiza
 <div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="option_8h.html#aa58e8736828aa4bf268a5d54748664de">   21</a></span>&#160;<span class="preprocessor">#define SMOLRTSP_DEF_OPTION(...)                                               \</span></div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">    ML99_OVERLOAD(SMOLRTSP_PRIV_DEF_OPTION_, __VA_ARGS__)</span></div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#define SMOLRTSP_PRIV_DEF_OPTION_1(T)                                          \</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">    datatype99(T##Option, (T##_Some, T), (T##_None))</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define SMOLRTSP_PRIV_DEF_OPTION_2(name, T)                                    \</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">    datatype99(name##Option, (name##_Some, T), (name##_None))</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#ifndef DOXYGEN_IGNORE</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#define SMOLRTSP_PRIV_DEF_OPTION_1(T)                                          \</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">    datatype99(T##Option, (T##_Some, T), (T##_None))</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#define SMOLRTSP_PRIV_DEF_OPTION_2(name, T)                                    \</span></div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">    datatype99(name##Option, (name##_Some, T), (name##_None))</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#endif // DOXYGEN_IGNORE</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
