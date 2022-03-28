@@ -68,3 +68,11 @@ Then open a new terminal window to start playing:
 ```
 $ ffplay rtsp://localhost
 ```
+
+## Integration
+
+SmolRTSP is agnostic to a network backend: you can run it atop of any network/event loop framework. Currently, we support the following integrations:
+
+ - [`OpenIPC/smolrtsp-libevent`](https://github.com/OpenIPC/smolrtsp-libevent) ([libevent](https://libevent.org/))
+
+Feel free to extend this list with your own integration code.
