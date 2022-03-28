@@ -44,3 +44,23 @@ endif()
 ```
 
 If you want to build a shared library, enable the compile-time CMake option `SMOLRTSP_SHARED`; otherwise, SmolRTSP will be compiled as a static library.
+
+## Usage
+
+A simple example server that streams H.264 video and G.711 Mu-Law audio can be found at [`examples/server.c`](examples/server.c).
+
+![server demo](media/example-server-demo.png)
+
+Run it as follows:
+
+```
+$ cd examples/build
+$ cmake .. && cmake --build .
+$ sudo ./server
+```
+
+Then open a new terminal window to start playing:
+
+```
+$ ffplay rtsp://localhost
+```
