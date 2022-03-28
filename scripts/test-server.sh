@@ -9,7 +9,7 @@ cmake --build .
 ./server &
 server_pid=$!
 
-sleep 1s
+sleep 2s
 
 cd ../..
 
