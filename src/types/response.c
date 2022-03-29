@@ -60,6 +60,29 @@ SmolRTSP_Response_parse(SmolRTSP_Response *restrict self, CharSlice99 input) {
 
     const CharSlice99 backup = input;
 
+    // TODO: implement proper parsing of interleaved binary data.
+    for (;;) {
+        if (input.len < sizeof(uint32_t)) {
+            return SmolRTSP_ParseResult_partial();
+        }
+
+        if ('$' == input.ptr[0]) {
+            uint8_t channel_id = 0;
+            uint16_t payload_len = 0;
+            smolrtsp_parse_interleaved_header(
+                (const uint8_t *)input.ptr, &channel_id, &payload_len);
+
+            input = CharSlice99_advance(input, sizeof(uint32_t));
+
+            if (input.len < (size_t)payload_len) {
+                return SmolRTSP_ParseResult_partial();
+            }
+            input = CharSlice99_advance(input, (size_t)payload_len);
+        } else {
+            break;
+        }
+    }
+
     MATCH(SmolRTSP_ResponseLine_parse(&self->start_line, input));
     MATCH(SmolRTSP_HeaderMap_parse(&self->header_map, input));
 

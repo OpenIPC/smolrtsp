@@ -117,13 +117,14 @@ TEST interleaved_header(void) {
 }
 
 TEST parse_interleaved_header(void) {
+    const uint8_t data[] = {'$', 42, 0b00110000, 0b00111001};
     uint8_t channel_id = 0;
     uint16_t payload_len = 0;
 
-    smolrtsp_parse_interleaved_header(0xd4317b24, &channel_id, &payload_len);
+    smolrtsp_parse_interleaved_header(data, &channel_id, &payload_len);
 
-    ASSERT_EQ(123, channel_id);
-    ASSERT_EQ(54321, payload_len);
+    ASSERT_EQ_FMT(42, channel_id, "%" PRIu8);
+    ASSERT_EQ_FMT(12345, payload_len, "%" PRIu16);
 
     PASS();
 }

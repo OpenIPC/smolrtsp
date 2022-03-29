@@ -153,7 +153,7 @@ uint32_t smolrtsp_interleaved_header(uint8_t channel_id, uint16_t payload_len)
  * @param[in] data The header to parse.
  * @param[out] channel_id The one-byte channel identifier.
  * @param[out] payload_len The length of the encapsulated binary data
- * (network byte order).
+ * (host byte order).
  *
  * @pre `channel_id != NULL`
  * @pre `payload_len != NULL`
@@ -161,5 +161,5 @@ uint32_t smolrtsp_interleaved_header(uint8_t channel_id, uint16_t payload_len)
  * @see <https://datatracker.ietf.org/doc/html/rfc2326#section-10.12>
  */
 void smolrtsp_parse_interleaved_header(
-    uint32_t data, uint8_t *restrict channel_id,
+    const uint8_t data[restrict static 4], uint8_t *restrict channel_id,
     uint16_t *restrict payload_len);

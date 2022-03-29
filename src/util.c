@@ -7,6 +7,7 @@
 #include <string.h>
 
 #include <alloca.h>
+#include <arpa/inet.h>
 
 const char *SmolRTSP_LowerTransport_str(SmolRTSP_LowerTransport self) {
     switch (self) {
@@ -148,16 +149,13 @@ uint32_t smolrtsp_interleaved_header(uint8_t channel_id, uint16_t payload_len) {
 }
 
 void smolrtsp_parse_interleaved_header(
-    uint32_t data, uint8_t *restrict channel_id,
+    const uint8_t data[restrict static 4], uint8_t *restrict channel_id,
     uint16_t *restrict payload_len) {
     assert(channel_id);
-    assert(data);
+    assert(payload_len);
+    assert('$' == data[0]);
 
-    uint8_t bytes[sizeof(uint32_t)] = {0};
-    memcpy(bytes, &data, sizeof data);
-
-    assert('$' == bytes[0]);
-
-    *channel_id = bytes[1];
-    memcpy(payload_len, &bytes[2], sizeof *payload_len);
+    *channel_id = data[1];
+    memcpy(payload_len, data + 2, sizeof *payload_len);
+    *payload_len = ntohs(*payload_len);
 }
