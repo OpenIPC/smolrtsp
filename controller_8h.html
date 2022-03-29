@@ -85,6 +85,7 @@ $(document).ready(function(){initNavTree('controller_8h.html',''); initResizable
 <div class="header">
   <div class="summary">
 <a href="#define-members">Macros</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">controller.h File Reference</div>  </div>
@@ -151,6 +152,14 @@ Macros</h2></td></tr>
 #define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="controller_8h.html#af5dca43be11f9698aa758192e927280b">SmolRTSP_Controller_EXTENDS</a>&#160;&#160;&#160;(SmolRTSP_Droppable)</td></tr>
 <tr class="memdesc:af5dca43be11f9698aa758192e927280b"><td class="mdescLeft">&#160;</td><td class="mdescRight">The superinterfaces of <a class="el" href="controller_8h.html#a426d66ae9c95741c9ae8d35da94445cd" title="A controller that handles incoming RTSP requests.">SmolRTSP_Controller_IFACE</a>. <br /></td></tr>
 <tr class="separator:af5dca43be11f9698aa758192e927280b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:a0a4c29b584a2ddbb29534ff7b6986ba6"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="controller_8h.html#a0a4c29b584a2ddbb29534ff7b6986ba6">SmolRTSP_ControlFlow</a> { <a class="el" href="controller_8h.html#a0a4c29b584a2ddbb29534ff7b6986ba6ac5ff2eff040aa97cb27fe7195269d413">SmolRTSP_ControlFlow_Break</a>, 
+<a class="el" href="controller_8h.html#a0a4c29b584a2ddbb29534ff7b6986ba6ac5aee4edf74535c6adeb9829e39cd954">SmolRTSP_ControlFlow_Continue</a>
+ }</td></tr>
+<tr class="memdesc:a0a4c29b584a2ddbb29534ff7b6986ba6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether to stop or continue some processing.  <a href="controller_8h.html#a0a4c29b584a2ddbb29534ff7b6986ba6">More...</a><br /></td></tr>
+<tr class="separator:a0a4c29b584a2ddbb29534ff7b6986ba6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
@@ -227,7 +236,7 @@ Functions</h2></td></tr>
 <div class="line"><span class="comment">     * A method that is invoked _before_ the actual request handling.          \</span></div>
 <div class="line"><span class="comment">     */</span>                                                                        \</div>
 <div class="line">    vfunc99(                                                                   \</div>
-<div class="line">        <span class="keywordtype">void</span>, before, VSelf99, <a class="code" href="context_8h.html#a74d8be6059af5516c37fcebc14a70622">SmolRTSP_Context</a> *ctx,                          \</div>
+<div class="line">        <a class="code" href="controller_8h.html#a0a4c29b584a2ddbb29534ff7b6986ba6">SmolRTSP_ControlFlow</a>, before, VSelf99, <a class="code" href="context_8h.html#a74d8be6059af5516c37fcebc14a70622">SmolRTSP_Context</a> *ctx,          \</div>
 <div class="line">        <span class="keyword">const</span> <a class="code" href="structSmolRTSP__Request.html">SmolRTSP_Request</a> *req)                                           \</div>
 <div class="line">                                                                               \</div>
 <div class="line">    <span class="comment">/*                                                                         \</span></div>
@@ -242,6 +251,29 @@ Functions</h2></td></tr>
 <li><code>ctx</code> &ndash; a request context used to respond to your RTSP client.</li>
 <li><code>req</code> &ndash; a fully parsed request object. </li>
 </ul>
+
+</div>
+</div>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="a0a4c29b584a2ddbb29534ff7b6986ba6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a4c29b584a2ddbb29534ff7b6986ba6">&#9670;&nbsp;</a></span>SmolRTSP_ControlFlow</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="controller_8h.html#a0a4c29b584a2ddbb29534ff7b6986ba6">SmolRTSP_ControlFlow</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Whether to stop or continue some processing. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a0a4c29b584a2ddbb29534ff7b6986ba6ac5ff2eff040aa97cb27fe7195269d413"></a>SmolRTSP_ControlFlow_Break&#160;</td><td class="fielddoc"><p>Break processing. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a0a4c29b584a2ddbb29534ff7b6986ba6ac5aee4edf74535c6adeb9829e39cd954"></a>SmolRTSP_ControlFlow_Continue&#160;</td><td class="fielddoc"><p>Continue processing. </p>
+</td></tr>
+</table>
 
 </div>
 </div>
@@ -303,9 +335,9 @@ Functions</h2></td></tr>
 <p>The algorithm is as follows:</p>
 <ol type="1">
 <li>Setup a request context <a class="el" href="context_8h.html#a74d8be6059af5516c37fcebc14a70622" title="An opaque type used to conveniently respond to RTSP clients.">SmolRTSP_Context</a>. Later you can use it to configure an RTSP response via <a class="el" href="context_8h.html#a0ace1ebfae736c3239f911934eaf7cc2" title="The smolrtsp_vheader twin.">smolrtsp_header</a>, <a class="el" href="context_8h.html#a65b50758cacbd71d91b4ff3f070f3d93" title="Sets an RTSP body in the request context.">smolrtsp_body</a>, and similar.</li>
-<li>Invoke the <code>before</code> method of <code>controller</code>. Here you should do some preliminary stuff like logging a request or setting up initial response headers via <a class="el" href="context_8h.html#a0ace1ebfae736c3239f911934eaf7cc2" title="The smolrtsp_vheader twin.">smolrtsp_header</a>.</li>
+<li>Invoke the <code>before</code> method of <code>controller</code>. Here you should do some preliminary stuff like logging a request or setting up initial response headers via <a class="el" href="context_8h.html#a0ace1ebfae736c3239f911934eaf7cc2" title="The smolrtsp_vheader twin.">smolrtsp_header</a>. If <code>before</code> returns <a class="el" href="controller_8h.html#a0a4c29b584a2ddbb29534ff7b6986ba6ac5ff2eff040aa97cb27fe7195269d413" title="Break processing.">SmolRTSP_ControlFlow_Break</a>, jump to step #4.</li>
 <li>Invoke a corresponding command handler of <code>controller</code>. Here you should handle the request and respond to your client via <a class="el" href="context_8h.html#adee0347ecb7b4bcedf9d142990b386c4" title="Writes an RTSP response to the underlying writer.">smolrtsp_respond</a>/<a class="el" href="context_8h.html#afeda949b122b1d1999ddd25ca489550b" title="A shortcut for smolrtsp_respond(ctx, SMOLRTSP_STATUS_OK, &quot;OK&quot;).">smolrtsp_respond_ok</a> or similar.</li>
-<li>Invoke the <code>after</code> method of <code>controller</code>. Here you automatically receive the return value of <code>smolrtsp_respond_*</code> (invoked during the step #3). If it is &lt;0, it means that something bad happened so that the handler has not been able to respond properly.</li>
+<li>Invoke the <code>after</code> method of <code>controller</code>. Here you automatically receive the return value of <code>smolrtsp_respond_*</code> (invoked during one of the previous steps). If it is &lt;0, it means that something bad happened so that the handler has not been able to respond properly.</li>
 <li>Drop the request context.</li>
 </ol>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -328,6 +360,7 @@ Functions</h2></td></tr>
 </div><!-- doc-content -->
 <div class="ttc" id="astructSmolRTSP__Request_html"><div class="ttname"><a href="structSmolRTSP__Request.html">SmolRTSP_Request</a></div><div class="ttdoc">An RTSP request.</div><div class="ttdef"><b>Definition:</b> request.h:21</div></div>
 <div class="ttc" id="acontext_8h_html_a74d8be6059af5516c37fcebc14a70622"><div class="ttname"><a href="context_8h.html#a74d8be6059af5516c37fcebc14a70622">SmolRTSP_Context</a></div><div class="ttdeci">struct SmolRTSP_Context SmolRTSP_Context</div><div class="ttdoc">An opaque type used to conveniently respond to RTSP clients.</div><div class="ttdef"><b>Definition:</b> context.h:23</div></div>
+<div class="ttc" id="acontroller_8h_html_a0a4c29b584a2ddbb29534ff7b6986ba6"><div class="ttname"><a href="controller_8h.html#a0a4c29b584a2ddbb29534ff7b6986ba6">SmolRTSP_ControlFlow</a></div><div class="ttdeci">SmolRTSP_ControlFlow</div><div class="ttdoc">Whether to stop or continue some processing.</div><div class="ttdef"><b>Definition:</b> controller.h:20</div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
