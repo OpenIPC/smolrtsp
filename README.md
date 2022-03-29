@@ -56,17 +56,12 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(smolrtsp)
 
 target_link_libraries(MyProject smolrtsp)
-
-# SmolRTSP relies on some macro machinery. To avoid useleless macro expansion
-# errors, please write this:
-if(CMAKE_C_COMPILER_ID STREQUAL "Clang")
-  target_compile_options(MyProject PRIVATE -fmacro-backtrace-limit=1)
-elseif(CMAKE_C_COMPILER_ID STREQUAL "GNU")
-  target_compile_options(MyProject PRIVATE -ftrack-macro-expansion=0)
-endif()
 ```
 
-If you want to build a shared library, enable the compile-time CMake option `SMOLRTSP_SHARED`; otherwise, SmolRTSP will be compiled as a static library.
+### Options
+
+ - If you want to build a shared library, enable the compile-time CMake option `SMOLRTSP_SHARED`; otherwise, SmolRTSP will be compiled as a static library.
+ - If you want to see full macro expansion backtraces, enable `SMOLRTSP_FULL_MACRO_EXPANSION`. (Although this is not recommended because SmolRTSP relies on some heavy macro machinery.)
 
 ## Usage
 

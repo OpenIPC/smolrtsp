@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.16)
 project(smolrtsp LANGUAGES C)
 
 option(SMOLRTSP_SHARED "Build a shared library" OFF)
+option(SMOLRTSP_FULL_MACRO_EXPANSION "Show full macro expansion backtraces" OFF)
 
 include(FetchContent)
 
@@ -98,10 +99,17 @@ else()
 endif()
 
 if(CMAKE_C_COMPILER_ID STREQUAL "Clang")
-  target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -fmacro-backtrace-limit=1)
+  target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra)
 elseif(CMAKE_C_COMPILER_ID STREQUAL "GNU")
-  target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -ftrack-macro-expansion=0
-    -Wno-misleading-indentation)
+  target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -Wno-misleading-indentation)
+endif()
+
+if(NOT SMOLRTSP_FULL_MACRO_EXPANSION)
+  if(CMAKE_C_COMPILER_ID STREQUAL "Clang")
+    target_compile_options(${PROJECT_NAME} PUBLIC -fmacro-backtrace-limit=1)
+  elseif(CMAKE_C_COMPILER_ID STREQUAL "GNU")
+    target_compile_options(${PROJECT_NAME} PUBLIC -ftrack-macro-expansion=0)
+  endif()
 endif()
 
 # Precompile headers that use Datatype99/Interface99.

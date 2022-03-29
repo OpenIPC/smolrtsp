@@ -40,13 +40,12 @@ add_executable(
   transport.c)
 
 if(CMAKE_C_COMPILER_ID STREQUAL "Clang")
-  target_compile_options(tests PRIVATE -Wall -Wextra -fsanitize=address -fmacro-backtrace-limit=1)
-  target_link_options(tests PRIVATE -fsanitize=address)
+  target_compile_options(tests PRIVATE -Wall -Wextra -fsanitize=address)
 elseif(CMAKE_C_COMPILER_ID STREQUAL "GNU")
-  target_compile_options(tests PRIVATE -Wall -Wextra -fsanitize=address -ftrack-macro-expansion=0
-    -Wno-misleading-indentation)
-  target_link_options(tests PRIVATE -fsanitize=address)
+  target_compile_options(tests PRIVATE -Wall -Wextra -fsanitize=address -Wno-misleading-indentation)
 endif()
+
+target_link_options(tests PRIVATE -fsanitize=address)
 
 target_link_libraries(tests smolrtsp)
 target_include_directories(tests PRIVATE ${greatest_SOURCE_DIR})
