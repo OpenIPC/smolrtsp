@@ -182,9 +182,9 @@ const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr class="memitem:a96508da46feee8ed0be450abb3e35d96"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#a96508da46feee8ed0be450abb3e35d96">smolrtsp_interleaved_header</a> (uint8_t channel_id, uint16_t payload_len) SMOLRTSP_PRIV_MUST_USE</td></tr>
 <tr class="memdesc:a96508da46feee8ed0be450abb3e35d96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a four-octet interleaved binary data header.  <a href="util_8h.html#a96508da46feee8ed0be450abb3e35d96">More...</a><br /></td></tr>
 <tr class="separator:a96508da46feee8ed0be450abb3e35d96"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a60e13d33f4e9c621cc93079b08339090"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#a60e13d33f4e9c621cc93079b08339090">smolrtsp_parse_interleaved_header</a> (uint32_t data, uint8_t *restrict channel_id, uint16_t *restrict payload_len)</td></tr>
-<tr class="memdesc:a60e13d33f4e9c621cc93079b08339090"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses an four-octet interleaved binary data header <code>data</code>.  <a href="util_8h.html#a60e13d33f4e9c621cc93079b08339090">More...</a><br /></td></tr>
-<tr class="separator:a60e13d33f4e9c621cc93079b08339090"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0a7a7670f0477d14cb44ce8c164f250"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#ae0a7a7670f0477d14cb44ce8c164f250">smolrtsp_parse_interleaved_header</a> (const uint8_t data[restrict static 4], uint8_t *restrict channel_id, uint16_t *restrict payload_len)</td></tr>
+<tr class="memdesc:ae0a7a7670f0477d14cb44ce8c164f250"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses an four-octet interleaved binary data header <code>data</code>.  <a href="util_8h.html#ae0a7a7670f0477d14cb44ce8c164f250">More...</a><br /></td></tr>
+<tr class="separator:ae0a7a7670f0477d14cb44ce8c164f250"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Utilitary stuff. </p>
@@ -292,8 +292,8 @@ const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 
 </div>
 </div>
-<a id="a60e13d33f4e9c621cc93079b08339090"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a60e13d33f4e9c621cc93079b08339090">&#9670;&nbsp;</a></span>smolrtsp_parse_interleaved_header()</h2>
+<a id="ae0a7a7670f0477d14cb44ce8c164f250"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0a7a7670f0477d14cb44ce8c164f250">&#9670;&nbsp;</a></span>smolrtsp_parse_interleaved_header()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -301,8 +301,8 @@ const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
         <tr>
           <td class="memname">void smolrtsp_parse_interleaved_header </td>
           <td>(</td>
-          <td class="paramtype">uint32_t&#160;</td>
-          <td class="paramname"><em>data</em>, </td>
+          <td class="paramtype">const uint8_t&#160;</td>
+          <td class="paramname"><em>data</em>[restrict static 4], </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -329,7 +329,7 @@ const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">data</td><td>The header to parse. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">channel_id</td><td>The one-byte channel identifier. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">payload_len</td><td>The length of the encapsulated binary data (network byte order).</td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">payload_len</td><td>The length of the encapsulated binary data (host byte order).</td></tr>
   </table>
   </dd>
 </dl>
