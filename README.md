@@ -63,7 +63,7 @@ target_link_libraries(MyProject smolrtsp)
 | Option | Description | Default |
 |--------|-------------|---------|
 | `SMOLRTSP_SHARED` | Build a shared library instead of static. | `OFF` |
-| `SMOLRTSP_FULL_MACRO_EXPANSION` | Show full macro expansion backtraces (not recommended). | `OFF` |
+| `SMOLRTSP_FULL_MACRO_EXPANSION` | Show full macro expansion backtraces (**DANGEROUS**: may impair diagnostics and slow down compilation). | `OFF` |
 
 ## Usage
 
