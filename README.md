@@ -60,8 +60,10 @@ target_link_libraries(MyProject smolrtsp)
 
 ### Options
 
- - Enable `SMOLRTSP_SHARED` to build a shared library. By default, SmolRTSP is built as a static library.
- - Enable `SMOLRTSP_FULL_MACRO_EXPANSION` to see full macro expansion backtraces. (Although this is not recommended because SmolRTSP relies on some heavy macro machinery.)
+| Option | Description | Default |
+|--------|-------------|---------|
+| `SMOLRTSP_SHARED` | Build a shared library instead of static. | `OFF` |
+| `SMOLRTSP_FULL_MACRO_EXPANSION` | Show full macro expansion backtraces (not recommended). | `OFF` |
 
 ## Usage
 
