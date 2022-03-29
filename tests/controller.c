@@ -90,7 +90,7 @@ Client_unknown(VSelf, SmolRTSP_Context *ctx, const SmolRTSP_Request *req) {
     assert(ret > 0);
 }
 
-static void
+static SmolRTSP_ControlFlow
 Client_before(VSelf, SmolRTSP_Context *ctx, const SmolRTSP_Request *req) {
     VSELF(Client);
     self->before_invoked_n++;
@@ -100,6 +100,8 @@ Client_before(VSelf, SmolRTSP_Context *ctx, const SmolRTSP_Request *req) {
     // Set up initial headers.
     smolrtsp_header(ctx, SMOLRTSP_HEADER_AUTHORIZATION, "WWW-Authenticate");
     smolrtsp_header(ctx, SMOLRTSP_HEADER_SERVER, "MyServer");
+
+    return SmolRTSP_ControlFlow_Continue;
 }
 
 static void Client_after(

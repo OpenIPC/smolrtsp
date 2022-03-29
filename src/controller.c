@@ -11,7 +11,9 @@ void smolrtsp_dispatch(
 
     SmolRTSP_Context *ctx = SmolRTSP_Context_new(conn, req->cseq);
 
-    VCALL(controller, before, ctx, req);
+    if (VCALL(controller, before, ctx, req) == SmolRTSP_ControlFlow_Break) {
+        goto after;
+    }
 
     const SmolRTSP_Method method = req->start_line.method,
                           options = SMOLRTSP_METHOD_OPTIONS,
@@ -34,6 +36,7 @@ void smolrtsp_dispatch(
         VCALL(controller, unknown, ctx, req);
     }
 
+after:
     VCALL(controller, after, SmolRTSP_Context_get_ret(ctx), ctx, req);
 
     VTABLE(SmolRTSP_Context, SmolRTSP_Droppable).drop(ctx);

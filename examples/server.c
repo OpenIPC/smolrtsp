@@ -423,7 +423,7 @@ Client_unknown(VSelf, SmolRTSP_Context *ctx, const SmolRTSP_Request *req) {
     smolrtsp_respond(ctx, SMOLRTSP_STATUS_METHOD_NOT_ALLOWED, "Unknown method");
 }
 
-static void
+static SmolRTSP_ControlFlow
 Client_before(VSelf, SmolRTSP_Context *ctx, const SmolRTSP_Request *req) {
     VSELF(Client);
 
@@ -434,6 +434,8 @@ Client_before(VSelf, SmolRTSP_Context *ctx, const SmolRTSP_Request *req) {
         "%s %s CSeq=%" PRIu32 ".\n",
         CharSlice99_alloca_c_str(req->start_line.method),
         CharSlice99_alloca_c_str(req->start_line.uri), req->cseq);
+
+    return SmolRTSP_ControlFlow_Continue;
 }
 
 static void Client_after(

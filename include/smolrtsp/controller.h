@@ -15,6 +15,21 @@
 #include <interface99.h>
 
 /**
+ * Whether to stop or continue some processing.
+ */
+typedef enum {
+    /**
+     * Break processing.
+     */
+    SmolRTSP_ControlFlow_Break,
+
+    /**
+     * Continue processing.
+     */
+    SmolRTSP_ControlFlow_Continue,
+} SmolRTSP_ControlFlow;
+
+/**
  * A controller that handles incoming RTSP requests.
  *
  * All RTSP command handlers accept the following parameters:
@@ -74,7 +89,7 @@
      * A method that is invoked _before_ the actual request handling.          \
      */                                                                        \
     vfunc99(                                                                   \
-        void, before, VSelf99, SmolRTSP_Context *ctx,                          \
+        SmolRTSP_ControlFlow, before, VSelf99, SmolRTSP_Context *ctx,          \
         const SmolRTSP_Request *req)                                           \
                                                                                \
     /*                                                                         \
@@ -106,14 +121,15 @@ interface99(SmolRTSP_Controller);
  * configure an RTSP response via #smolrtsp_header, #smolrtsp_body, and similar.
  *  2. Invoke the `before` method of @p controller. Here you should do some
  * preliminary stuff like logging a request or setting up initial response
- * headers via #smolrtsp_header.
+ * headers via #smolrtsp_header. If `before` returns
+ * #SmolRTSP_ControlFlow_Break, jump to step #4.
  *  3. Invoke a corresponding command handler of @p controller. Here you should
  * handle the request and respond to your client via
  * #smolrtsp_respond/#smolrtsp_respond_ok or similar.
  *  4. Invoke the `after` method of @p controller. Here you automatically
- * receive the return value of `smolrtsp_respond_*` (invoked during the step
- * #3). If it is <0, it means that something bad happened so that the handler
- * has not been able to respond properly.
+ * receive the return value of `smolrtsp_respond_*` (invoked during one of the
+ * previous steps). If it is <0, it means that something bad happened so that
+ * the handler has not been able to respond properly.
  *  5. Drop the request context.
  *
  * @param[out] conn The writer to send RTSP responses.
