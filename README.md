@@ -2,7 +2,7 @@
 
 # SmolRTSP
 [![CI](https://github.com/Hirrolot/smolrtsp/workflows/C/C++%20CI/badge.svg)](https://github.com/Hirrolot/smolrtsp/actions)
-[![Docs](https://img.shields.io/badge/docs-latest-blue)](https://openipc.org/smolrtsp/)
+[![Docs](https://img.shields.io/badge/docs-latest-blue)](https://openipc.org/smolrtsp/files.html)
 
 SmolRTSP is a simple [RTSP 1.0] server library tailored for embedded devices, such as IP cameras. It supports both TCP and UDP, allows any payload format, and provides a convenient and flexible API.
 
