@@ -187,9 +187,9 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_
 uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_8h.html#ab41e0f64ca1e97dba2f5b45eb5377807">smolrtsp_nal_fu_header</a> (bool is_first_fragment, bool is_last_fragment, uint8_t unit_type) SMOLRTSP_PRIV_MUST_USE</td></tr>
 <tr class="memdesc:ab41e0f64ca1e97dba2f5b45eb5377807"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a generic NAL FU header. <br /></td></tr>
 <tr class="separator:ab41e0f64ca1e97dba2f5b45eb5377807"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a11cc9547143f98bc24318ad035b31144"><td class="memItemLeft" align="right" valign="top"><a class="el" href="nal_8h.html#a75ab3f552b5a89a907c46e3150c88cfd">SmolRTSP_NalStartCodeTester</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_8h.html#a11cc9547143f98bc24318ad035b31144">smolrtsp_determine_start_code</a> (U8Slice99 data)</td></tr>
-<tr class="memdesc:a11cc9547143f98bc24318ad035b31144"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a start code tester for <code>data</code>.  <a href="nal_8h.html#a11cc9547143f98bc24318ad035b31144">More...</a><br /></td></tr>
-<tr class="separator:a11cc9547143f98bc24318ad035b31144"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a283af6a547a8ed910f28b4a96b3e1dba"><td class="memItemLeft" align="right" valign="top"><a class="el" href="nal_8h.html#a75ab3f552b5a89a907c46e3150c88cfd">SmolRTSP_NalStartCodeTester</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_8h.html#a283af6a547a8ed910f28b4a96b3e1dba">smolrtsp_determine_start_code</a> (U8Slice99 data) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:a283af6a547a8ed910f28b4a96b3e1dba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a start code tester for <code>data</code>.  <a href="nal_8h.html#a283af6a547a8ed910f28b4a96b3e1dba">More...</a><br /></td></tr>
+<tr class="separator:a283af6a547a8ed910f28b4a96b3e1dba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad608a621a4fc88eaf5a540329c14c7cf"><td class="memItemLeft" align="right" valign="top"><a id="ad608a621a4fc88eaf5a540329c14c7cf"></a>
 size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_8h.html#ad608a621a4fc88eaf5a540329c14c7cf">smolrtsp_test_start_code_3b</a> (U8Slice99 data)</td></tr>
 <tr class="memdesc:ad608a621a4fc88eaf5a540329c14c7cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">The 3-byte start code tester (<code>0x000001</code>). <br /></td></tr>
@@ -260,8 +260,8 @@ size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="na
 
 </div>
 </div>
-<a id="a11cc9547143f98bc24318ad035b31144"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a11cc9547143f98bc24318ad035b31144">&#9670;&nbsp;</a></span>smolrtsp_determine_start_code()</h2>
+<a id="a283af6a547a8ed910f28b4a96b3e1dba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a283af6a547a8ed910f28b4a96b3e1dba">&#9670;&nbsp;</a></span>smolrtsp_determine_start_code()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -278,7 +278,7 @@ size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="na
 
 <p>Returns a start code tester for <code>data</code>. </p>
 <p>If <code>data</code> does not begin with a start code (either <code>0x000001</code> or <code>0x00000001</code>), returns <code>NULL</code>.</p>
-<p>This function is useful when you have some <code>*.h264</code> bitstream file and you want to determine what start code it uses &ndash; just pass the beginning of this file to <a class="el" href="nal_8h.html#a11cc9547143f98bc24318ad035b31144" title="Returns a start code tester for data.">smolrtsp_determine_start_code</a> and invoke the returned tester multiple times afterwards. </p>
+<p>This function is useful when you have some <code>*.h264</code> bitstream file and you want to determine what start code it uses &ndash; just pass the beginning of this file to <a class="el" href="nal_8h.html#a283af6a547a8ed910f28b4a96b3e1dba" title="Returns a start code tester for data.">smolrtsp_determine_start_code</a> and invoke the returned tester multiple times afterwards. </p>
 
 </div>
 </div>

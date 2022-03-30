@@ -3,7 +3,7 @@ var nal_8h =
     [ "SmolRTSP_NalUnit", "structSmolRTSP__NalUnit.html", "structSmolRTSP__NalUnit" ],
     [ "SmolRTSP_NalStartCodeTester", "nal_8h.html#a75ab3f552b5a89a907c46e3150c88cfd", null ],
     [ "datatype99", "nal_8h.html#af7758ff65ddd510dc4dc87339ad171a5", null ],
-    [ "smolrtsp_determine_start_code", "nal_8h.html#a11cc9547143f98bc24318ad035b31144", null ],
+    [ "smolrtsp_determine_start_code", "nal_8h.html#a283af6a547a8ed910f28b4a96b3e1dba", null ],
     [ "smolrtsp_nal_fu_header", "nal_8h.html#ab41e0f64ca1e97dba2f5b45eb5377807", null ],
     [ "SmolRTSP_NalHeader_fu_size", "nal_8h.html#a455e664660b9eb7715953ddb1ff4841e", null ],
     [ "SmolRTSP_NalHeader_is_coded_slice_idr", "nal_8h.html#a053e8def47d6df3a220a771c3e643578", null ],
