@@ -6,6 +6,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## unreleased
 
+### Fixed
+
+ - Mark the following functions with `__attribute__((warn_unused_result))` (when available):
+   - `SmolRTSP_ParseError_print`.
+   - `SmolRTSP_MessageBody_empty`.
+   - `SmolRTSP_Request_uninit`.
+   - `SmolRTSP_Response_uninit`.
+   - `SmolRTSP_NalTransportConfig_default`.
+   - `smolrtsp_determine_start_code`.
+   - `smolrtsp_dgram_socket`.
+
 ## 0.1.0 - 2022-03-30
 
 ### Added

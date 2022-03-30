@@ -43,7 +43,7 @@ typedef struct {
 /**
  * Returns an RTSP response suitable for being parsed.
  */
-SmolRTSP_Response SmolRTSP_Response_uninit(void);
+SmolRTSP_Response SmolRTSP_Response_uninit(void) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Serialises @p self into @p w.

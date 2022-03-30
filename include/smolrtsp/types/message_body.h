@@ -30,7 +30,7 @@ SmolRTSP_ParseResult SmolRTSP_MessageBody_parse(
 /**
  * Returns an empty message body.
  */
-SmolRTSP_MessageBody SmolRTSP_MessageBody_empty(void);
+SmolRTSP_MessageBody SmolRTSP_MessageBody_empty(void) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Tests @p lhs and @p rhs for equality.

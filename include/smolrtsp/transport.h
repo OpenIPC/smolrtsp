@@ -84,7 +84,8 @@ SmolRTSP_Transport smolrtsp_transport_udp(int fd) SMOLRTSP_PRIV_MUST_USE;
  * @return A valid file descriptor or -1 on error (and sets `errno`
  * appropriately).
  */
-int smolrtsp_dgram_socket(int af, const void *restrict addr, uint16_t port);
+int smolrtsp_dgram_socket(int af, const void *restrict addr, uint16_t port)
+    SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Returns a pointer to the IP address of @p addr.

@@ -153,7 +153,8 @@ typedef size_t (*SmolRTSP_NalStartCodeTester)(U8Slice99 data);
  * file to #smolrtsp_determine_start_code and invoke the returned tester
  * multiple times afterwards.
  */
-SmolRTSP_NalStartCodeTester smolrtsp_determine_start_code(U8Slice99 data);
+SmolRTSP_NalStartCodeTester
+smolrtsp_determine_start_code(U8Slice99 data) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * The 3-byte start code tester (`0x000001`).

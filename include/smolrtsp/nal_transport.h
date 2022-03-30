@@ -52,7 +52,8 @@ typedef struct {
  *  - `max_h264_nalu_size` is #SMOLRTSP_MAX_H264_NALU_SIZE.
  *  - `max_h265_nalu_size` is #SMOLRTSP_MAX_H265_NALU_SIZE.
  */
-SmolRTSP_NalTransportConfig SmolRTSP_NalTransportConfig_default(void);
+SmolRTSP_NalTransportConfig
+SmolRTSP_NalTransportConfig_default(void) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * An RTP/NAL data transport.

@@ -84,7 +84,8 @@ datatype99(
  *
  * @pre `w.self && w.vptr`
  */
-int SmolRTSP_ParseError_print(SmolRTSP_ParseError self, SmolRTSP_Writer w);
+int SmolRTSP_ParseError_print(SmolRTSP_ParseError self, SmolRTSP_Writer w)
+    SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * A status of successful parsing.
