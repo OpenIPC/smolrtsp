@@ -74,6 +74,7 @@ A simple example server that streams H.264 video and G.711 Mu-Law audio can be f
 Run it as follows:
 
 ```
+$ mkdir examples/build
 $ cd examples/build
 $ cmake .. && cmake --build .
 $ sudo ./server
