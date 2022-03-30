@@ -15,13 +15,7 @@ FetchContent_Declare(
     GIT_TAG 27b71a0d2e2ca3c2abd869cb4244620b212ecf34
 )
 
-FetchContent_Declare(
-    h264-splitter
-    GIT_REPOSITORY https://github.com/ckevar/h264-splitter.git
-    GIT_TAG 8fe8688367a9e7a5a5c40458ac5923a97d789cb1
-)
-
-FetchContent_MakeAvailable(smolrtsp-libevent h264-splitter)
+FetchContent_MakeAvailable(smolrtsp-libevent)
 
 add_executable(server server.c)
 
