@@ -11,8 +11,7 @@ include(FetchContent)
 
 FetchContent_Declare(
     smolrtsp-libevent
-    GIT_REPOSITORY https://github.com/OpenIPC/smolrtsp-libevent.git
-    GIT_TAG 27b71a0d2e2ca3c2abd869cb4244620b212ecf34
+    URL https://github.com/OpenIPC/smolrtsp-libevent/archive/refs/tags/v0.1.0.tar.gz
 )
 
 FetchContent_MakeAvailable(smolrtsp-libevent)
