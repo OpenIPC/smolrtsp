@@ -37,8 +37,9 @@
                 ASSERT(T##_eq(&result, &expected));                            \
             }                                                                  \
             of(SmolRTSP_ParseResult_Failure, error) {                          \
-                SmolRTSP_ParseError_print(                                     \
+                const int err_bytes = SmolRTSP_ParseError_print(               \
                     *error, smolrtsp_file_writer(stderr));                     \
+                ASSERT(err_bytes >= 0);                                        \
                 FAILm("Parsing failed");                                       \
             }                                                                  \
         }                                                                      \
