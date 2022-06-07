@@ -97,7 +97,8 @@ compute_timestamp(SmolRTSP_RtpTimestamp ts, uint32_t clock_rate) {
             const uint64_t us_rem = *time_us % 1000,
                            ms = (*time_us - us_rem) / 1000;
             uint32_t clock_rate_kHz = clock_rate / 1000;
-            return (ms * clock_rate_kHz) + ((us_rem * clock_rate) / 1e6);
+            return ms * clock_rate_kHz +
+                   (uint32_t)(us_rem * ((double)clock_rate_kHz / 1000.0));
         }
     }
 
