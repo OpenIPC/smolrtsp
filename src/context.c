@@ -58,7 +58,8 @@ void smolrtsp_vheader(
     char *value = malloc(space_required + 1 /* null character */);
     assert(value);
 
-    const int bytes_written = vsprintf(value, fmt, list);
+    const int bytes_written __attribute__((unused)) =
+        vsprintf(value, fmt, list);
     assert(space_required == bytes_written);
 
     const SmolRTSP_Header h = {key, CharSlice99_from_str(value)};
