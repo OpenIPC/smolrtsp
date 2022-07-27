@@ -93,3 +93,11 @@ SmolRTSP is agnostic to a network backend: you can run it atop of any network/ev
  - [`OpenIPC/smolrtsp-libevent`](https://github.com/OpenIPC/smolrtsp-libevent) ([libevent](https://libevent.org/))
 
 Feel free to extend this list with your own integration code.
+
+## Release procedure
+
+ 1. Update the `PROJECT_NUMBER` field in `Doxyfile`.
+ 2. Update `CHANGELOG.md`.
+ 3. Release the project in [GitHub Releases].
+
+[GitHub Releases]: https://github.com/OpenIPC/smolrtsp/releases
