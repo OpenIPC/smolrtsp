@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## unreleased
 
+## 0.1.2 - 2022-07-27
+
+### Fixed
+
+ - Suppress a compilation warning for an unused variable in `smolrtsp_vheader`.
+ - Overflow while computing an RTP timestamp.
+
 ## 0.1.1 - 2022-03-31
 
 ### Fixed
