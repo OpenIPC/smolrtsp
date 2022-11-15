@@ -1,30 +1,35 @@
 cmake_minimum_required(VERSION 3.16)
 project(smolrtsp LANGUAGES C)
 
+# Fix the warnings about `DOWNLOAD_EXTRACT_TIMESTAMP` in newer CMake versions.
+if (CMAKE_VERSION VERSION_GREATER_EQUAL "3.24.0")
+    cmake_policy(SET CMP0135 NEW)
+endif()
+
 option(SMOLRTSP_SHARED "Build a shared library" OFF)
 option(SMOLRTSP_FULL_MACRO_EXPANSION "Show full macro expansion backtraces" OFF)
 
 include(FetchContent)
 
 FetchContent_Declare(
-    slice99
-    URL https://github.com/Hirrolot/slice99/archive/refs/tags/v0.7.6.tar.gz
-)
+  slice99
+  GIT_REPOSITORY https://github.com/Hirrolot/slice99
+  GIT_TAG 7075e1e)
 
 FetchContent_Declare(
-    metalang99
-    URL https://github.com/Hirrolot/metalang99/archive/refs/tags/v1.13.1.tar.gz
-)
+  metalang99
+  GIT_REPOSITORY https://github.com/Hirrolot/metalang99
+  GIT_TAG e0eb4e1)
 
 FetchContent_Declare(
-    datatype99
-    URL https://github.com/Hirrolot/datatype99/archive/refs/tags/v1.6.2.tar.gz
-)
+  datatype99
+  GIT_REPOSITORY https://github.com/Hirrolot/datatype99
+  GIT_TAG aa24712)
 
 FetchContent_Declare(
-    interface99
-    URL https://github.com/Hirrolot/interface99/archive/refs/tags/v0.8.3.tar.gz
-)
+  interface99
+  GIT_REPOSITORY https://github.com/Hirrolot/interface99
+  GIT_TAG 73c7c1e)
 
 FetchContent_MakeAvailable(slice99 datatype99 interface99)
 
