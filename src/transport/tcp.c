@@ -19,8 +19,8 @@ typedef struct {
 
 declImpl(SmolRTSP_Transport, SmolRTSP_TcpTransport);
 
-SmolRTSP_Transport
-smolrtsp_transport_tcp(SmolRTSP_Writer w, uint8_t channel_id, size_t max_buffer) {
+SmolRTSP_Transport smolrtsp_transport_tcp(
+    SmolRTSP_Writer w, uint8_t channel_id, size_t max_buffer) {
     assert(w.self && w.vptr);
 
     SmolRTSP_TcpTransport *self = malloc(sizeof *self);

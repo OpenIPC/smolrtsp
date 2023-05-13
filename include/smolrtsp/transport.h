@@ -28,7 +28,7 @@
      * on success.                                                             \
      */                                                                        \
     vfunc99(int, transmit, VSelf99, SmolRTSP_IoVecSlice bufs)                  \
-        vfunc99(bool, is_full, VSelf99)
+    vfunc99(bool, is_full, VSelf99)
 
 /**
  * The superinterfaces of #SmolRTSP_Transport_IFACE.
