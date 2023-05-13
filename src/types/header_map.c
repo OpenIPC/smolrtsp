@@ -86,7 +86,7 @@ SmolRTSP_HeaderMap_parse(SmolRTSP_HeaderMap *restrict self, CharSlice99 input) {
                 SmolRTSP_ParseError_HeaderMapOverflow());
         }
 
-        SmolRTSP_Header header;
+        SmolRTSP_Header header = {0};
         MATCH(SmolRTSP_Header_parse(&header, input));
         SmolRTSP_HeaderMap_append(self, header);
     }
