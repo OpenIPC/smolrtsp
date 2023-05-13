@@ -233,6 +233,21 @@ Functions</h2></td></tr>
 <div class="line">    vfunc99(ssize_t, write, VSelf99, CharSlice99 data)                         \</div>
 <div class="line">                                                                               \</div>
 <div class="line">    <span class="comment">/*                                                                         \</span></div>
+<div class="line"><span class="comment">     * Lock writer to prevent race conditions on TCP interleaved channels      \</span></div>
+<div class="line"><span class="comment">     */</span>                                                                        \</div>
+<div class="line">    vfunc99(<span class="keywordtype">void</span>, lock, VSelf99)                                               \</div>
+<div class="line">                                                                               \</div>
+<div class="line">    <span class="comment">/*                                                                         \</span></div>
+<div class="line"><span class="comment">     * Unlock writer locked by `lock`                                          \</span></div>
+<div class="line"><span class="comment">     */</span>                                                                        \</div>
+<div class="line">    vfunc99(<span class="keywordtype">void</span>, unlock, VSelf99)                                             \</div>
+<div class="line">                                                                               \</div>
+<div class="line">    <span class="comment">/*                                                                         \</span></div>
+<div class="line"><span class="comment">     * Get current size of output buffer                                       \</span></div>
+<div class="line"><span class="comment">     */</span>                                                                        \</div>
+<div class="line">    vfunc99(<span class="keywordtype">size_t</span>, filled, VSelf99)                                           \</div>
+<div class="line">                                                                               \</div>
+<div class="line">    <span class="comment">/*                                                                         \</span></div>
 <div class="line"><span class="comment">     * Writes a formatted string into itself.                                  \</span></div>
 <div class="line"><span class="comment">     *                                                                         \</span></div>
 <div class="line"><span class="comment">     * @param[in] fmt The `printf`-like format string.                         \</span></div>

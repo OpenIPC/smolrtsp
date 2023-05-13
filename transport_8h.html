@@ -147,9 +147,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a1ed54d2a026274f143e7a77d9f39f9c0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="transport_8h.html#a1ed54d2a026274f143e7a77d9f39f9c0">interface99</a> (SmolRTSP_Transport)</td></tr>
 <tr class="memdesc:a1ed54d2a026274f143e7a77d9f39f9c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines the <code>SmolRTSP_Transport</code> interface.  <a href="transport_8h.html#a1ed54d2a026274f143e7a77d9f39f9c0">More...</a><br /></td></tr>
 <tr class="separator:a1ed54d2a026274f143e7a77d9f39f9c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a374a129bdceb61d8629c5d5eb7779ad3"><td class="memItemLeft" align="right" valign="top">SmolRTSP_Transport&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="transport_8h.html#a374a129bdceb61d8629c5d5eb7779ad3">smolrtsp_transport_tcp</a> (SmolRTSP_Writer w, uint8_t channel_id) SMOLRTSP_PRIV_MUST_USE</td></tr>
-<tr class="memdesc:a374a129bdceb61d8629c5d5eb7779ad3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new TCP transport.  <a href="transport_8h.html#a374a129bdceb61d8629c5d5eb7779ad3">More...</a><br /></td></tr>
-<tr class="separator:a374a129bdceb61d8629c5d5eb7779ad3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c91426d77ff930a8109d6c3507c5e45"><td class="memItemLeft" align="right" valign="top">SmolRTSP_Transport&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="transport_8h.html#a7c91426d77ff930a8109d6c3507c5e45">smolrtsp_transport_tcp</a> (SmolRTSP_Writer w, uint8_t channel_id, size_t max_buffer) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:a7c91426d77ff930a8109d6c3507c5e45"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new TCP transport.  <a href="transport_8h.html#a7c91426d77ff930a8109d6c3507c5e45">More...</a><br /></td></tr>
+<tr class="separator:a7c91426d77ff930a8109d6c3507c5e45"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3875a72cf6f4cd52bad76d6692979c61"><td class="memItemLeft" align="right" valign="top">SmolRTSP_Transport&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="transport_8h.html#a3875a72cf6f4cd52bad76d6692979c61">smolrtsp_transport_udp</a> (int fd) SMOLRTSP_PRIV_MUST_USE</td></tr>
 <tr class="memdesc:a3875a72cf6f4cd52bad76d6692979c61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new UDP transport.  <a href="transport_8h.html#a3875a72cf6f4cd52bad76d6692979c61">More...</a><br /></td></tr>
 <tr class="separator:a3875a72cf6f4cd52bad76d6692979c61"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -181,7 +181,8 @@ Functions</h2></td></tr>
 <div class="line"><span class="comment">     * @return -1 if an I/O error occurred and sets `errno` appropriately, 0   \</span></div>
 <div class="line"><span class="comment">     * on success.                                                             \</span></div>
 <div class="line"><span class="comment">     */</span>                                                                        \</div>
-<div class="line">    vfunc99(<span class="keywordtype">int</span>, transmit, VSelf99, SmolRTSP_IoVecSlice bufs)</div>
+<div class="line">    vfunc99(<span class="keywordtype">int</span>, transmit, VSelf99, SmolRTSP_IoVecSlice bufs)                  \</div>
+<div class="line">        vfunc99(<span class="keywordtype">bool</span>, is_full, VSelf99)</div>
 </div><!-- fragment -->
 <p>A transport-level RTSP data transmitter. </p>
 <p>See <a href="https://github.com/Hirrolot/interface99">Interface99</a> for the macro usage. </p>
@@ -282,8 +283,8 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a374a129bdceb61d8629c5d5eb7779ad3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a374a129bdceb61d8629c5d5eb7779ad3">&#9670;&nbsp;</a></span>smolrtsp_transport_tcp()</h2>
+<a id="a7c91426d77ff930a8109d6c3507c5e45"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c91426d77ff930a8109d6c3507c5e45">&#9670;&nbsp;</a></span>smolrtsp_transport_tcp()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -298,7 +299,13 @@ Functions</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">uint8_t&#160;</td>
-          <td class="paramname"><em>channel_id</em>&#160;</td>
+          <td class="paramname"><em>channel_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>max_buffer</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
