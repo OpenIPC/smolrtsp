@@ -58,6 +58,13 @@ static int SmolRTSP_UdpTransport_transmit(VSelf, SmolRTSP_IoVecSlice bufs) {
     return send_packet(self, msg);
 }
 
+static bool SmolRTSP_UdpTransport_is_full(VSelf) {
+    VSELF(SmolRTSP_UdpTransport);
+    (void)self;
+
+    return false;
+}
+
 impl(SmolRTSP_Transport, SmolRTSP_UdpTransport);
 
 static int send_packet(SmolRTSP_UdpTransport *self, struct msghdr message) {

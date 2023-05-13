@@ -110,3 +110,6 @@ int SmolRTSP_NalTransport_send_packet(
  * usage.
  */
 declImplExtern99(SmolRTSP_Droppable, SmolRTSP_NalTransport);
+
+bool
+SmolRTSP_NalTransport_is_full(SmolRTSP_NalTransport *self);

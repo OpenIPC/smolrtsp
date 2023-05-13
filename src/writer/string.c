@@ -13,6 +13,22 @@ static ssize_t StringWriter_write(VSelf, CharSlice99 data) {
     return data.len;
 }
 
+static void StringWriter_lock(VSelf) {
+    VSELF(StringWriter);
+    (void)self;
+}
+
+static void StringWriter_unlock(VSelf) {
+    VSELF(StringWriter);
+    (void)self;
+}
+
+static size_t StringWriter_filled(VSelf) {
+    VSELF(StringWriter);
+    (void)self;
+    return 0;
+}
+
 static int StringWriter_vwritef(VSelf, const char *restrict fmt, va_list ap) {
     VSELF(StringWriter);
 

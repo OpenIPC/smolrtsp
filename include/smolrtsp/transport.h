@@ -27,7 +27,8 @@
      * @return -1 if an I/O error occurred and sets `errno` appropriately, 0   \
      * on success.                                                             \
      */                                                                        \
-    vfunc99(int, transmit, VSelf99, SmolRTSP_IoVecSlice bufs)
+    vfunc99(int, transmit, VSelf99, SmolRTSP_IoVecSlice bufs)                  \
+        vfunc99(bool, is_full, VSelf99)
 
 /**
  * The superinterfaces of #SmolRTSP_Transport_IFACE.
@@ -51,8 +52,9 @@ interface99(SmolRTSP_Transport);
  *
  * @pre `w.self && w.vptr`
  */
-SmolRTSP_Transport smolrtsp_transport_tcp(SmolRTSP_Writer w, uint8_t channel_id)
-    SMOLRTSP_PRIV_MUST_USE;
+SmolRTSP_Transport smolrtsp_transport_tcp(
+    SmolRTSP_Writer w, uint8_t channel_id,
+    size_t max_buffer) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Creates a new UDP transport.
