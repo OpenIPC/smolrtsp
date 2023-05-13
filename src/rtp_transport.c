@@ -104,3 +104,7 @@ compute_timestamp(SmolRTSP_RtpTimestamp ts, uint32_t clock_rate) {
 
     return 0;
 }
+
+bool SmolRTSP_RtpTransport_is_full(SmolRTSP_RtpTransport *self) {
+    return VCALL(self->transport, is_full);
+}

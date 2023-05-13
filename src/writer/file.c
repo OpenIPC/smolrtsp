@@ -17,6 +17,22 @@ static ssize_t FileWriter_write(VSelf, CharSlice99 data) {
     return ret;
 }
 
+static void FileWriter_lock(VSelf) {
+    VSELF(FileWriter);
+    (void)self;
+}
+
+static void FileWriter_unlock(VSelf) {
+    VSELF(FileWriter);
+    (void)self;
+}
+
+static size_t FileWriter_filled(VSelf) {
+    VSELF(FileWriter);
+    (void)self;
+    return 0;
+}
+
 static int FileWriter_vwritef(VSelf, const char *restrict fmt, va_list ap) {
     VSELF(FileWriter);
 

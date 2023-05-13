@@ -83,3 +83,6 @@ int SmolRTSP_RtpTransport_send_packet(
  * usage.
  */
 declImplExtern99(SmolRTSP_Droppable, SmolRTSP_RtpTransport);
+
+bool
+SmolRTSP_RtpTransport_is_full(SmolRTSP_RtpTransport *self);

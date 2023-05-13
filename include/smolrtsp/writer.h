@@ -31,6 +31,21 @@
     vfunc99(ssize_t, write, VSelf99, CharSlice99 data)                         \
                                                                                \
     /*                                                                         \
+     * Lock writer to prevent race conditions on TCP interleaved channels      \
+     */                                                                        \
+    vfunc99(void, lock, VSelf99)                                               \
+                                                                               \
+    /*                                                                         \
+     * Unlock writer locked by `lock`                                          \
+     */                                                                        \
+    vfunc99(void, unlock, VSelf99)                                             \
+                                                                               \
+    /*                                                                         \
+     * Get current size of output buffer                                       \
+     */                                                                        \
+    vfunc99(size_t, filled, VSelf99)                                           \
+                                                                               \
+    /*                                                                         \
      * Writes a formatted string into itself.                                  \
      *                                                                         \
      * @param[in] fmt The `printf`-like format string.                         \

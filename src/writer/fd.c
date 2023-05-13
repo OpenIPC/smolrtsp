@@ -11,6 +11,22 @@ static ssize_t FdWriter_write(VSelf, CharSlice99 data) {
     return write(*self, data.ptr, data.len);
 }
 
+static void FdWriter_lock(VSelf) {
+    VSELF(FdWriter);
+    (void)self;
+}
+
+static void FdWriter_unlock(VSelf) {
+    VSELF(FdWriter);
+    (void)self;
+}
+
+static size_t FdWriter_filled(VSelf) {
+    VSELF(FdWriter);
+    (void)self;
+    return 0;
+}
+
 static int FdWriter_vwritef(VSelf, const char *restrict fmt, va_list ap) {
     VSELF(FdWriter);
 
