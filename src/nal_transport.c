@@ -58,9 +58,8 @@ static void SmolRTSP_NalTransport_drop(VSelf) {
 
 implExtern(SmolRTSP_Droppable, SmolRTSP_NalTransport);
 
-bool
-SmolRTSP_NalTransport_is_full(SmolRTSP_NalTransport *self) {
-	return SmolRTSP_RtpTransport_is_full(self->transport);
+bool SmolRTSP_NalTransport_is_full(SmolRTSP_NalTransport *self) {
+    return SmolRTSP_RtpTransport_is_full(self->transport);
 }
 
 int SmolRTSP_NalTransport_send_packet(

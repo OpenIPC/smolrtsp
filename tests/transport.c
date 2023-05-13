@@ -44,7 +44,7 @@ TEST check_tcp(void) {
     const uint8_t chn_id = 123;
 
     SmolRTSP_Transport tcp =
-        smolrtsp_transport_tcp(smolrtsp_fd_writer(&fds[0]), chn_id);
+        smolrtsp_transport_tcp(smolrtsp_fd_writer(&fds[0]), chn_id, 0);
 
     const char total_len = strlen(DATA_0) + strlen(DATA_1);
     const char expected[] = {'$', chn_id, 0,   total_len, 'a', 'b', 'c',

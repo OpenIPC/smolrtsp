@@ -496,7 +496,7 @@ static int setup_tcp(
     SmolRTSP_TransportConfig config) {
     ifLet(config.interleaved, SmolRTSP_ChannelPair_Some, interleaved) {
         *t = smolrtsp_transport_tcp(
-            SmolRTSP_Context_get_writer(ctx), interleaved->rtp_channel);
+            SmolRTSP_Context_get_writer(ctx), interleaved->rtp_channel, 0);
 
         smolrtsp_header(
             ctx, SMOLRTSP_HEADER_TRANSPORT,
