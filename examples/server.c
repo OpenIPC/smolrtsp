@@ -230,7 +230,9 @@ static void Client_drop(VSelf) {
     VSELF(Client);
 
     for (size_t i = 0; i < MAX_STREAMS; i++) {
-        VCALL(self->streams[i].ctx, drop);
+        if (self->streams[i].ctx.vptr != NULL) {
+            VCALL(self->streams[i].ctx, drop);
+        }
     }
 
     free(self);
