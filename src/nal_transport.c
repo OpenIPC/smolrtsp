@@ -18,7 +18,7 @@ static int send_fu(
 SmolRTSP_NalTransportConfig SmolRTSP_NalTransportConfig_default(void) {
     return (SmolRTSP_NalTransportConfig){
         .max_h264_nalu_size = SMOLRTSP_MAX_H264_NALU_SIZE,
-        .max_h265_nalu_size = SMOLRTSP_MAX_H264_NALU_SIZE,
+        .max_h265_nalu_size = SMOLRTSP_MAX_H265_NALU_SIZE,
     };
 }
 
