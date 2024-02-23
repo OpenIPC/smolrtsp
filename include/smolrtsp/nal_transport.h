@@ -27,7 +27,7 @@
 /**
  * The default value for #SmolRTSP_NalTransportConfig.max_h265_nalu_size.
  */
-#define SMOLRTSP_MAX_H265_NALU_SIZE 4096
+#define SMOLRTSP_MAX_H265_NALU_SIZE 1400
 
 /**
  * The configuration structure for #SmolRTSP_NalTransport.
