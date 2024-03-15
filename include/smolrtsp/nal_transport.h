@@ -27,7 +27,7 @@
 /**
  * The default value for #SmolRTSP_NalTransportConfig.max_h265_nalu_size.
  */
-#define SMOLRTSP_MAX_H265_NALU_SIZE 1400
+#define SMOLRTSP_MAX_H265_NALU_SIZE 1200
 
 /**
  * The configuration structure for #SmolRTSP_NalTransport.
@@ -42,6 +42,11 @@ typedef struct {
      * The maximum size of an H.265 NAL unit (including the header).
      */
     size_t max_h265_nalu_size;
+
+    /**
+     * The encoder uses slice segments.
+     */
+    bool is_coded_slice;
 } SmolRTSP_NalTransportConfig;
 
 /**
@@ -51,6 +56,7 @@ typedef struct {
  *
  *  - `max_h264_nalu_size` is #SMOLRTSP_MAX_H264_NALU_SIZE.
  *  - `max_h265_nalu_size` is #SMOLRTSP_MAX_H265_NALU_SIZE.
+ *  - `is_coded_slice` is `false`.
  */
 SmolRTSP_NalTransportConfig
 SmolRTSP_NalTransportConfig_default(void) SMOLRTSP_PRIV_MUST_USE;
