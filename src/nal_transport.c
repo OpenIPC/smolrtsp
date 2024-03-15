@@ -19,7 +19,7 @@ SmolRTSP_NalTransportConfig SmolRTSP_NalTransportConfig_default(void) {
     return (SmolRTSP_NalTransportConfig){
         .max_h264_nalu_size = SMOLRTSP_MAX_H264_NALU_SIZE,
         .max_h265_nalu_size = SMOLRTSP_MAX_H265_NALU_SIZE,
-        .is_coded_slice = false;
+        .is_coded_slice = false,
     };
 }
 
@@ -88,8 +88,9 @@ int SmolRTSP_NalTransport_send_packet(
             U8Slice99_new(header_buf, header_buf_size), nalu.payload);
     }
 
-    return send_fragmentized_nal_data(self->transport, ts,
-        max_packet_size, nalu, self->config.is_coded_slice);
+    return send_fragmentized_nal_data(
+        self->transport, ts, max_packet_size, nalu,
+        self->config.is_coded_slice);
 }
 
 // See <https://tools.ietf.org/html/rfc6184#section-5.8> (H.264),
