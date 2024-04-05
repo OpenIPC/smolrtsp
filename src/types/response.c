@@ -1,3 +1,4 @@
+#include <smolrtsp/util.h>
 #include <smolrtsp/types/response.h>
 
 #include "../macros.h"
