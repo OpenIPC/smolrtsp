@@ -45,7 +45,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Install libevent
         run: sudo apt update && sudo apt install -y clang-format
@@ -60,7 +60,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Install Doxygen
         run: sudo apt update && sudo apt install -y doxygen graphviz
@@ -70,7 +70,7 @@ jobs:
 
       - name: Deploy the docs
         if: ${{ !env.ACT && github.event_name != 'pull_request' }}
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs/
