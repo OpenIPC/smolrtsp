@@ -1,5 +1,5 @@
-#include <smolrtsp/util.h>
 #include <smolrtsp/types/response.h>
+#include <smolrtsp/util.h>
 
 #include "../macros.h"
 #include "parsing.h"
