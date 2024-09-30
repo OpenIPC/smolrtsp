@@ -1,8 +1,8 @@
 ![OpenIPC Logo](https://cdn.themactep.com/images/logo_openipc.png)
 
 # SmolRTSP
-[![CI](https://github.com/Hirrolot/smolrtsp/workflows/C/C++%20CI/badge.svg)](https://github.com/Hirrolot/smolrtsp/actions)
-[![Docs](https://img.shields.io/badge/docs-latest-blue)](https://openipc.org/smolrtsp/files.html)
+[![CI](https://github.com/OpenIPC/smolrtsp/workflows/C/C++%20CI/badge.svg)](https://github.com/OpenIPC/smolrtsp/actions)
+[![Docs](https://img.shields.io/badge/docs-latest-blue)](https://openipc.github.io/smolrtsp/)
 
 SmolRTSP is a simple [RTSP 1.0] server library tailored for embedded devices, such as IP cameras. It supports both TCP and UDP, allows any payload format, and provides a convenient and flexible API.
 
