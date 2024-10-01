@@ -21,7 +21,7 @@
 /**
  * A generic NAL header (either H.264 or H.265).
  *
- * See [Datatype99](https://github.com/Hirrolot/datatype99) for the macro usage.
+ * See [Datatype99](https://github.com/hirrolot/datatype99) for the macro usage.
  */
 
 // clang-format off

@@ -59,7 +59,7 @@ SmolRTSP_ParseType_str(SmolRTSP_ParseType self) SMOLRTSP_PRIV_MUST_USE;
  *  - `MissingCSeq` -- Missing the `CSeq` header.
  *  - `InvalidCSeq` -- Failed to parse the `CSeq` header.
  *
- * See [Datatype99](https://github.com/Hirrolot/datatype99) for the macro usage.
+ * See [Datatype99](https://github.com/hirrolot/datatype99) for the macro usage.
  */
 
 // clang-format off
@@ -96,7 +96,7 @@ int SmolRTSP_ParseError_print(SmolRTSP_ParseError self, SmolRTSP_Writer w)
  *    1. A number of consumed bytes from the beginning of input.
  *  - `Partial` -- Need more data to continue parsing.
  *
- * See [Datatype99](https://github.com/Hirrolot/datatype99) for the macro usage.
+ * See [Datatype99](https://github.com/hirrolot/datatype99) for the macro usage.
  */
 
 // clang-format off
@@ -122,7 +122,7 @@ bool SmolRTSP_ParseStatus_is_partial(SmolRTSP_ParseStatus self)
 /**
  * A result of parsing (either success or failure).
  *
- * See [Datatype99](https://github.com/Hirrolot/datatype99) for the macro usage.
+ * See [Datatype99](https://github.com/hirrolot/datatype99) for the macro usage.
  */
 
 // clang-format off

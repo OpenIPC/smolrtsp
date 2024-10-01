@@ -32,7 +32,7 @@ typedef struct SmolRTSP_RtpTransport SmolRTSP_RtpTransport;
  * clock (e.g., `clock_gettime`). It should be used when a raw timestamp cannot
  * be computed, as typically occurs with real-time video.
  *
- * See [Datatype99](https://github.com/Hirrolot/datatype99) for the macro usage.
+ * See [Datatype99](https://github.com/hirrolot/datatype99) for the macro usage.
  */
 
 // clang-format off
@@ -79,7 +79,7 @@ int SmolRTSP_RtpTransport_send_packet(
 /**
  * Implements #SmolRTSP_Droppable_IFACE for #SmolRTSP_RtpTransport.
  *
- * See [Interface99](https://github.com/Hirrolot/interface99) for the macro
+ * See [Interface99](https://github.com/hirrolot/interface99) for the macro
  * usage.
  */
 declImplExtern99(SmolRTSP_Droppable, SmolRTSP_RtpTransport);

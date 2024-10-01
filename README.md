@@ -16,7 +16,7 @@ SmolRTSP is a simple [RTSP 1.0] server library tailored for embedded devices, su
  - **Battle-tested.** SmolRTSP is used by [Majestic], an IP camera streamer developed by [OpenIPC].
 
 [libevent]: https://libevent.org/
-[array slices]: https://github.com/Hirrolot/slice99
+[array slices]: https://github.com/hirrolot/slice99
 [Majestic]: https://openipc.github.io/wiki/en/majestic-streamer.html
 [OpenIPC]: https://openipc.org/
 

@@ -13,22 +13,22 @@ include(FetchContent)
 
 FetchContent_Declare(
   slice99
-  GIT_REPOSITORY https://github.com/Hirrolot/slice99
+  GIT_REPOSITORY https://github.com/hirrolot/slice99
   GIT_TAG 7075e1e)
 
 FetchContent_Declare(
   metalang99
-  GIT_REPOSITORY https://github.com/Hirrolot/metalang99
+  GIT_REPOSITORY https://github.com/hirrolot/metalang99
   GIT_TAG e0eb4e1)
 
 FetchContent_Declare(
   datatype99
-  GIT_REPOSITORY https://github.com/Hirrolot/datatype99
+  GIT_REPOSITORY https://github.com/hirrolot/datatype99
   GIT_TAG aa24712)
 
 FetchContent_Declare(
   interface99
-  GIT_REPOSITORY https://github.com/Hirrolot/interface99
+  GIT_REPOSITORY https://github.com/hirrolot/interface99
   GIT_TAG 73c7c1e)
 
 FetchContent_MakeAvailable(slice99 datatype99 interface99)

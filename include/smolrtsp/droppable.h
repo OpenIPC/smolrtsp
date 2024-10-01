@@ -10,7 +10,7 @@
 /**
  * Types that can be dropped (deallocated).
  *
- * See [Interface99](https://github.com/Hirrolot/interface99) for the macro
+ * See [Interface99](https://github.com/hirrolot/interface99) for the macro
  * usage.
  */
 #define SmolRTSP_Droppable_IFACE                                               \
@@ -23,7 +23,7 @@
 /**
  * Defines the `SmolRTSP_Droppable` interface.
  *
- * See [Interface99](https://github.com/Hirrolot/interface99) for the macro
+ * See [Interface99](https://github.com/hirrolot/interface99) for the macro
  * usage.
  */
 interface99(SmolRTSP_Droppable);

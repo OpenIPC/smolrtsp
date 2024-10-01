@@ -16,7 +16,7 @@
  *  - `SMOLRTSP_DEF_OPTION(name, T)` expands to `datatype99(name##Option,
  * (name##_Some, T), (name##_None))`.
  *
- * See [Datatype99](https://github.com/Hirrolot/datatype99) for the macro usage.
+ * See [Datatype99](https://github.com/hirrolot/datatype99) for the macro usage.
  */
 #define SMOLRTSP_DEF_OPTION(...)                                               \
     ML99_OVERLOAD(SMOLRTSP_PRIV_DEF_OPTION_, __VA_ARGS__)

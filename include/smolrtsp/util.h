@@ -61,7 +61,7 @@ typedef struct {
 /**
  * Defines `SmolRTSP_PortPairOption`.
  *
- * See [Datatype99](https://github.com/Hirrolot/datatype99) for the macro usage.
+ * See [Datatype99](https://github.com/hirrolot/datatype99) for the macro usage.
  */
 SMOLRTSP_DEF_OPTION(SmolRTSP_PortPair);
 
@@ -83,7 +83,7 @@ typedef struct {
 /**
  * Defines `SmolRTSP_ChannelPairOption`.
  *
- * See [Datatype99](https://github.com/Hirrolot/datatype99) for the macro usage.
+ * See [Datatype99](https://github.com/hirrolot/datatype99) for the macro usage.
  */
 SMOLRTSP_DEF_OPTION(SmolRTSP_ChannelPair);
 

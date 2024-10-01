@@ -112,7 +112,7 @@ int SmolRTSP_NalTransport_send_packet(
 /**
  * Implements #SmolRTSP_Droppable_IFACE for #SmolRTSP_NalTransport.
  *
- * See [Interface99](https://github.com/Hirrolot/interface99) for the macro
+ * See [Interface99](https://github.com/hirrolot/interface99) for the macro
  * usage.
  */
 declImplExtern99(SmolRTSP_Droppable, SmolRTSP_NalTransport);

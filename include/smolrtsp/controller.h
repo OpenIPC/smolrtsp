@@ -107,7 +107,7 @@ typedef enum {
 /**
  * Defines the `SmolRTSP_Controller` interface.
  *
- * See [Interface99](https://github.com/Hirrolot/interface99) for the macro
+ * See [Interface99](https://github.com/hirrolot/interface99) for the macro
  * usage.
  */
 interface99(SmolRTSP_Controller);

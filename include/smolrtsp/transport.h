@@ -16,7 +16,7 @@
 /**
  * A transport-level RTSP data transmitter.
  *
- * See [Interface99](https://github.com/Hirrolot/interface99) for the macro
+ * See [Interface99](https://github.com/hirrolot/interface99) for the macro
  * usage.
  */
 #define SmolRTSP_Transport_IFACE                                               \
@@ -38,7 +38,7 @@
 /**
  * Defines the `SmolRTSP_Transport` interface.
  *
- * See [Interface99](https://github.com/Hirrolot/interface99) for the macro
+ * See [Interface99](https://github.com/hirrolot/interface99) for the macro
  * usage.
  */
 interface99(SmolRTSP_Transport);
