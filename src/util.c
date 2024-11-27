@@ -120,7 +120,7 @@ static int parse_transport_param(
 
 static int parse_channel_pair(
     SmolRTSP_ChannelPair *restrict val, const char *restrict param) {
-    if (PARSE_RANGE(val->rtp_channel, val->rtcp_channel, SCNu8, param) != 2) {
+    if (PARSE_RANGE(val->rtp_channel, val->rtcp_channel, SCNu8, param) < 1) {
         return -1;
     }
 
@@ -129,7 +129,7 @@ static int parse_channel_pair(
 
 static int
 parse_port_pair(SmolRTSP_PortPair *restrict val, const char *restrict param) {
-    if (PARSE_RANGE(val->rtp_port, val->rtcp_port, SCNu16, param) != 2) {
+    if (PARSE_RANGE(val->rtp_port, val->rtcp_port, SCNu16, param) < 1) {
         return -1;
     }
 
