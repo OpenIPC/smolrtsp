@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+ - Update the minimum required CMake version to 3.10.0 due to deprecation (see [metalang99/issues/33](https://github.com/hirrolot/metalang99/issues/33)).
+
+### Fixed
+
  - Fix the `SmolRTSP_NalTransportConfig_default` value for H.265 ([PR #17](https://github.com/OpenIPC/smolrtsp/pull/17)).
 
 ## 0.1.3 - 2023-03-12
