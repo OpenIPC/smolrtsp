@@ -1,5 +1,8 @@
 <map id="include/smolrtsp/rtp_transport.h" name="include/smolrtsp/rtp_transport.h">
-<area shape="rect" id="node1" title="An RTP data transport." alt="" coords="5,5,157,47"/>
-<area shape="rect" id="node2" href="$smolrtsp_8h.html" title="Re&#45;exports all the functionality." alt="" coords="10,184,153,211"/>
-<area shape="rect" id="node3" href="$nal__transport_8h.html" title="An RTP/NAL data transport." alt="" coords="61,95,216,136"/>
+<area shape="rect" id="Node000001" title="An RTP data transport." alt="" coords="5,5,157,45"/>
+<area shape="rect" id="Node000002" href="$smolrtsp_8h.html" title="Re&#45;exports all the functionality." alt="" coords="10,181,153,207"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="65,59,52,94,49,113,52,133,62,158,75,180,71,183,57,161,47,134,44,113,47,93,60,57"/>
+<area shape="rect" id="Node000003" href="$nal__transport_8h.html" title="An RTP/NAL data transport." alt="" coords="61,93,216,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="104,56,128,92,124,95,100,58"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="119,146,92,183,88,179,114,143"/>
 </map>

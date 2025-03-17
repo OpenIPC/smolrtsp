@@ -1,4 +1,5 @@
 <map id="include/smolrtsp/droppable.h" name="include/smolrtsp/droppable.h">
-<area shape="rect" id="node1" title="Droppable types support." alt="" coords="5,5,216,32"/>
-<area shape="rect" id="node2" title=" " alt="" coords="57,80,165,107"/>
+<area shape="rect" id="Node000001" title="Droppable types support." alt="" coords="5,5,216,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="57,79,165,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="113,31,113,65,108,65,108,31"/>
 </map>

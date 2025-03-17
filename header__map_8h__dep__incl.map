@@ -1,7 +1,14 @@
 <map id="include/smolrtsp/types/header_map.h" name="include/smolrtsp/types/header_map.h">
-<area shape="rect" id="node1" title="An RTSP header map." alt="" coords="27,5,198,47"/>
-<area shape="rect" id="node2" href="$smolrtsp_8h.html" title="Re&#45;exports all the functionality." alt="" coords="5,273,148,300"/>
-<area shape="rect" id="node3" href="$request_8h.html" title="An RTSP request." alt="" coords="27,95,198,136"/>
-<area shape="rect" id="node5" href="$response_8h.html" title="An RTSP response." alt="" coords="275,184,446,225"/>
-<area shape="rect" id="node4" href="$controller_8h.html" title="An RTSP requests controller." alt="" coords="44,191,251,218"/>
+<area shape="rect" id="Node000001" title="An RTSP header map." alt="" coords="27,5,198,45"/>
+<area shape="rect" id="Node000002" href="$smolrtsp_8h.html" title="Re&#45;exports all the functionality." alt="" coords="5,269,148,295"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="58,55,35,72,18,94,13,118,13,154,17,192,24,220,42,247,63,267,59,271,38,250,20,222,12,193,8,154,8,117,13,92,31,68,54,50"/>
+<area shape="rect" id="Node000003" href="$request_8h.html" title="An RTSP request." alt="" coords="27,93,198,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="115,59,115,93,110,93,110,59"/>
+<area shape="rect" id="Node000005" href="$response_8h.html" title="An RTSP response." alt="" coords="275,181,446,221"/>
+<area shape="poly" id="edge6_Node000001_Node000005" title=" " alt="" coords="153,51,212,91,336,179,333,183,208,96,150,55"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="68,143,48,161,34,182,29,201,34,220,48,247,66,267,62,271,44,250,29,222,24,201,29,180,44,158,65,139"/>
+<area shape="rect" id="Node000004" href="$controller_8h.html" title="An RTSP requests controller." alt="" coords="44,189,251,214"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="128,145,145,187,140,189,123,147"/>
+<area shape="poly" id="edge5_Node000004_Node000002" title=" " alt="" coords="130,226,89,271,85,267,126,223"/>
+<area shape="poly" id="edge7_Node000005_Node000002" title=" " alt="" coords="280,228,119,272,117,267,279,222"/>
 </map>

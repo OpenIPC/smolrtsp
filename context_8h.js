@@ -6,7 +6,7 @@ var context_8h =
     [ "SmolRTSP_Context_get_cseq", "context_8h.html#a8b9071b6dca6cd1b70d700646c9ce879", null ],
     [ "SmolRTSP_Context_get_ret", "context_8h.html#a2a13e3d13510f32438858892f6876378", null ],
     [ "SmolRTSP_Context_get_writer", "context_8h.html#ab5a0fe6fc8b24540fe289ad6308cbf13", null ],
-    [ "SmolRTSP_Context_new", "context_8h.html#a7f157d462417caa97f902ed5e5ddf455", null ],
+    [ "SmolRTSP_Context_new", "context_8h.html#a0d70ae26daf6ca2a81823f9fecdc4edb", null ],
     [ "smolrtsp_header", "context_8h.html#a0ace1ebfae736c3239f911934eaf7cc2", null ],
     [ "smolrtsp_respond", "context_8h.html#adee0347ecb7b4bcedf9d142990b386c4", null ],
     [ "smolrtsp_respond_internal_error", "context_8h.html#a30d439633564a8a21fa2b2347d5f31d1", null ],

@@ -1,8 +1,17 @@
 <map id="include/smolrtsp/types/header.h" name="include/smolrtsp/types/header.h">
-<area shape="rect" id="node1" title="An RTSP header." alt="" coords="5,5,176,47"/>
-<area shape="rect" id="node2" href="$smolrtsp_8h.html" title="Re&#45;exports all the functionality." alt="" coords="59,363,202,389"/>
-<area shape="rect" id="node3" href="$header__map_8h.html" title="An RTSP header map." alt="" coords="92,95,263,136"/>
-<area shape="rect" id="node4" href="$request_8h.html" title="An RTSP request." alt="" coords="117,184,288,225"/>
-<area shape="rect" id="node6" href="$response_8h.html" title="An RTSP response." alt="" coords="400,273,571,315"/>
-<area shape="rect" id="node5" href="$controller_8h.html" title="An RTSP requests controller." alt="" coords="169,281,375,307"/>
+<area shape="rect" id="Node000001" title="An RTSP header." alt="" coords="5,5,176,45"/>
+<area shape="rect" id="Node000002" href="$smolrtsp_8h.html" title="Re&#45;exports all the functionality." alt="" coords="59,357,202,383"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="87,59,83,94,82,154,85,221,96,309,108,335,123,356,119,359,104,337,91,310,80,222,76,155,77,93,82,59"/>
+<area shape="rect" id="Node000003" href="$header__map_8h.html" title="An RTSP header map." alt="" coords="92,93,263,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="121,53,160,91,156,95,118,57"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="139,144,121,162,108,182,100,206,98,231,102,281,115,325,128,356,123,358,110,326,97,282,92,231,95,205,103,180,117,158,135,140"/>
+<area shape="rect" id="Node000004" href="$request_8h.html" title="An RTSP request." alt="" coords="117,181,288,221"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="189,146,200,180,195,182,184,147"/>
+<area shape="rect" id="Node000006" href="$response_8h.html" title="An RTSP response." alt="" coords="400,269,571,309"/>
+<area shape="poly" id="edge8_Node000003_Node000006" title=" " alt="" coords="226,138,301,179,455,267,452,272,299,184,223,142"/>
+<area shape="poly" id="edge5_Node000004_Node000002" title=" " alt="" coords="181,234,158,270,143,318,135,358,130,357,137,317,154,268,176,231"/>
+<area shape="rect" id="Node000005" href="$controller_8h.html" title="An RTSP requests controller." alt="" coords="169,277,375,302"/>
+<area shape="poly" id="edge6_Node000004_Node000005" title=" " alt="" coords="229,230,264,275,260,278,224,234"/>
+<area shape="poly" id="edge7_Node000005_Node000002" title=" " alt="" coords="240,311,153,359,150,355,238,306"/>
+<area shape="poly" id="edge9_Node000006_Node000002" title=" " alt="" coords="388,315,183,360,182,355,386,310"/>
 </map>

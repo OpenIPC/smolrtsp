@@ -1,6 +1,9 @@
 <map id="include/smolrtsp/nal/h265.h" name="include/smolrtsp/nal/h265.h">
-<area shape="rect" id="node1" title="H.265 NAL representation." alt="" coords="75,5,229,47"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,102,88,129"/>
-<area shape="rect" id="node3" title=" " alt="" coords="112,102,192,129"/>
-<area shape="rect" id="node4" title=" " alt="" coords="217,95,386,136"/>
+<area shape="rect" id="Node000001" title="H.265 NAL representation." alt="" coords="75,5,229,45"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,101,88,126"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="130,48,73,94,70,90,127,44"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="112,101,192,126"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="155,46,155,87,149,87,149,46"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="217,93,386,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="186,43,258,84,256,89,183,48"/>
 </map>

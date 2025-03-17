@@ -1,9 +1,23 @@
 <map id="include/smolrtsp/droppable.h" name="include/smolrtsp/droppable.h">
-<area shape="rect" id="node1" title="Droppable types support." alt="" coords="195,5,406,32"/>
-<area shape="rect" id="node2" href="$smolrtsp_8h.html" title="Re&#45;exports all the functionality." alt="" coords="194,333,337,360"/>
-<area shape="rect" id="node3" href="$context_8h.html" title="A request context." alt="" coords="43,80,238,107"/>
-<area shape="rect" id="node4" href="$controller_8h.html" title="An RTSP requests controller." alt="" coords="81,162,288,189"/>
-<area shape="rect" id="node5" href="$nal__transport_8h.html" title="An RTP/NAL data transport." alt="" coords="247,244,402,285"/>
-<area shape="rect" id="node6" href="$rtp__transport_8h.html" title="An RTP data transport." alt="" coords="363,155,515,196"/>
-<area shape="rect" id="node7" href="$transport_8h.html" title="RTSP data transport (level 4) implementations." alt="" coords="414,80,619,107"/>
+<area shape="rect" id="Node000001" title="Droppable types support." alt="" coords="194,5,405,31"/>
+<area shape="rect" id="Node000002" href="$smolrtsp_8h.html" title="Re&#45;exports all the functionality." alt="" coords="194,328,336,353"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="181,33,90,52,54,65,32,80,16,107,9,133,10,158,19,182,33,206,53,230,101,278,124,294,148,308,200,325,198,330,146,312,121,299,98,282,49,234,29,209,14,184,5,159,4,132,11,105,28,77,52,60,89,46,180,28"/>
+<area shape="rect" id="Node000003" href="$context_8h.html" title="A request context." alt="" coords="42,79,237,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="263,39,167,81,165,76,261,34"/>
+<area shape="rect" id="Node000004" href="$controller_8h.html" title="An RTSP requests controller." alt="" coords="80,159,287,185"/>
+<area shape="poly" id="edge6_Node000001_Node000004" title=" " alt="" coords="290,44,251,106,224,137,198,161,195,157,220,133,247,102,285,41"/>
+<area shape="rect" id="Node000005" href="$nal__transport_8h.html" title="An RTP/NAL data transport." alt="" coords="246,240,401,280"/>
+<area shape="poly" id="edge7_Node000001_Node000005" title=" " alt="" coords="305,44,324,239,319,240,299,45"/>
+<area shape="rect" id="Node000006" href="$rtp__transport_8h.html" title="An RTP data transport." alt="" coords="362,152,514,192"/>
+<area shape="poly" id="edge9_Node000001_Node000006" title=" " alt="" coords="321,39,423,150,419,154,317,43"/>
+<area shape="rect" id="Node000007" href="$transport_8h.html" title="RTSP data transport (level 4) implementations." alt="" coords="413,79,618,104"/>
+<area shape="poly" id="edge12_Node000001_Node000007" title=" " alt="" coords="348,32,481,76,480,81,346,37"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="107,113,86,131,70,153,64,172,70,191,85,216,104,238,150,277,197,306,237,326,235,330,194,311,146,281,101,242,81,219,65,193,59,172,65,151,82,127,104,109"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="155,115,179,158,175,160,150,117"/>
+<area shape="poly" id="edge5_Node000004_Node000002" title=" " alt="" coords="197,197,237,279,261,326,256,329,232,281,193,199"/>
+<area shape="poly" id="edge8_Node000005_Node000002" title=" " alt="" coords="304,293,276,329,272,326,299,289"/>
+<area shape="poly" id="edge10_Node000006_Node000002" title=" " alt="" coords="441,207,434,245,426,264,415,282,396,299,375,313,329,330,327,325,372,308,393,295,411,278,422,262,429,243,436,206"/>
+<area shape="poly" id="edge11_Node000006_Node000005" title=" " alt="" coords="404,202,351,242,347,238,400,198"/>
+<area shape="poly" id="edge13_Node000007_Node000002" title=" " alt="" coords="527,117,534,153,534,173,529,193,513,224,496,246,444,282,382,312,322,330,320,325,381,307,441,278,492,242,509,221,524,191,528,173,529,154,522,118"/>
+<area shape="poly" id="edge14_Node000007_Node000006" title=" " alt="" coords="497,116,459,154,455,150,493,112"/>
 </map>

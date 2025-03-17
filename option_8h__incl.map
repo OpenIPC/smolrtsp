@@ -1,5 +1,7 @@
 <map id="include/smolrtsp/option.h" name="include/smolrtsp/option.h">
-<area shape="rect" id="node1" title="Optional values." alt="" coords="33,5,219,32"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,80,113,107"/>
-<area shape="rect" id="node3" title=" " alt="" coords="138,80,250,107"/>
+<area shape="rect" id="Node000001" title="Optional values." alt="" coords="33,5,219,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,79,113,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="117,33,81,70,78,67,113,29"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="138,79,250,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="139,29,175,67,171,70,135,33"/>
 </map>

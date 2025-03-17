@@ -1,6 +1,11 @@
 <map id="include/smolrtsp/types/reason_phrase.h" name="include/smolrtsp/types/reason_phrase.h">
-<area shape="rect" id="node1" title="An RTSP reason phrase." alt="" coords="5,5,176,47"/>
-<area shape="rect" id="node2" href="$smolrtsp_8h.html" title="Re&#45;exports all the functionality." alt="" coords="9,273,151,300"/>
-<area shape="rect" id="node3" href="$response__line_8h.html" title="An RTSP response line." alt="" coords="67,95,237,136"/>
-<area shape="rect" id="node4" href="$response_8h.html" title="An RTSP response." alt="" coords="117,184,288,225"/>
+<area shape="rect" id="Node000001" title="An RTSP reason phrase." alt="" coords="5,5,176,45"/>
+<area shape="rect" id="Node000002" href="$smolrtsp_8h.html" title="Re&#45;exports all the functionality." alt="" coords="9,269,151,295"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="73,58,57,94,52,144,57,194,68,238,78,268,73,270,63,239,52,195,47,144,52,93,68,56"/>
+<area shape="rect" id="Node000003" href="$response__line_8h.html" title="An RTSP response line." alt="" coords="67,93,237,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="114,55,141,92,136,95,110,58"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="130,146,108,182,92,230,84,270,79,269,87,229,103,180,126,143"/>
+<area shape="rect" id="Node000004" href="$response_8h.html" title="An RTSP response." alt="" coords="117,181,288,221"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="173,144,194,180,189,182,168,147"/>
+<area shape="poly" id="edge5_Node000004_Node000002" title=" " alt="" coords="163,231,99,271,97,267,160,227"/>
 </map>

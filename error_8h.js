@@ -17,5 +17,5 @@ var error_8h =
     [ "SmolRTSP_ParseResult_partial", "error_8h.html#a3edf0a328c91b652bf0506e621c85408", null ],
     [ "SmolRTSP_ParseStatus_is_complete", "error_8h.html#a282840de30eb688ab7a6355d32b91983", null ],
     [ "SmolRTSP_ParseStatus_is_partial", "error_8h.html#a9998be2568fcbd11063a7281a7241c48", null ],
-    [ "SmolRTSP_ParseType_str", "error_8h.html#a51ce1aa9a992814a0de92455aa72de65", null ]
+    [ "SmolRTSP_ParseType_str", "error_8h.html#a817a27f5532ac916c2828138fd9d0ca2", null ]
 ];

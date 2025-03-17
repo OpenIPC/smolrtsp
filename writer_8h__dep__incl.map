@@ -1,24 +1,85 @@
 <map id="include/smolrtsp/writer.h" name="include/smolrtsp/writer.h">
-<area shape="rect" id="node1" title="The writer interface." alt="" coords="349,5,532,32"/>
-<area shape="rect" id="node2" href="$smolrtsp_8h.html" title="Re&#45;exports all the functionality." alt="" coords="1033,527,1176,553"/>
-<area shape="rect" id="node3" href="$context_8h.html" title="A request context." alt="" coords="110,355,304,382"/>
-<area shape="rect" id="node4" href="$controller_8h.html" title="An RTSP requests controller." alt="" coords="46,445,253,471"/>
-<area shape="rect" id="node5" href="$transport_8h.html" title="RTSP data transport (level 4) implementations." alt="" coords="1732,266,1938,293"/>
-<area shape="rect" id="node8" href="$error_8h.html" title="Possible parsing errors." alt="" coords="680,80,851,121"/>
-<area shape="rect" id="node10" href="$header_8h.html" title="An RTSP header." alt="" coords="355,169,526,211"/>
-<area shape="rect" id="node20" href="$rtsp__version_8h.html" title="An RTSP version." alt="" coords="1243,169,1414,211"/>
-<area shape="rect" id="node21" href="$status__code_8h.html" title="An RTSP status code." alt="" coords="160,169,331,211"/>
-<area shape="rect" id="node22" href="$sdp_8h.html" title="RFC 4566&#45;compliant SDP implementation." alt="" coords="1900,80,2071,121"/>
-<area shape="rect" id="node6" href="$rtp__transport_8h.html" title="An RTP data transport." alt="" coords="1784,348,1936,389"/>
-<area shape="rect" id="node7" href="$nal__transport_8h.html" title="An RTP/NAL data transport." alt="" coords="1783,437,1938,479"/>
-<area shape="rect" id="node9" href="$util_8h.html" title="Utilitary stuff." alt="" coords="1541,445,1708,471"/>
-<area shape="rect" id="node11" href="$header__map_8h.html" title="An RTSP header map." alt="" coords="651,259,822,300"/>
-<area shape="rect" id="node12" href="$request_8h.html" title="An RTSP request." alt="" coords="528,348,699,389"/>
-<area shape="rect" id="node13" href="$response_8h.html" title="An RTSP response." alt="" coords="774,348,944,389"/>
-<area shape="rect" id="node14" href="$message__body_8h.html" title="An RTSP message body." alt="" coords="406,259,576,300"/>
-<area shape="rect" id="node15" href="$method_8h.html" title="An RTSP method." alt="" coords="998,169,1168,211"/>
-<area shape="rect" id="node16" href="$request__line_8h.html" title="An RTSP request line." alt="" coords="1192,259,1363,300"/>
-<area shape="rect" id="node17" href="$reason__phrase_8h.html" title="An RTSP reason phrase." alt="" coords="803,169,974,211"/>
-<area shape="rect" id="node18" href="$response__line_8h.html" title="An RTSP response line." alt="" coords="896,259,1067,300"/>
-<area shape="rect" id="node19" href="$request__uri_8h.html" title="An RTSP request URI." alt="" coords="1438,169,1608,211"/>
+<area shape="rect" id="Node000001" title="The writer interface." alt="" coords="333,5,515,31"/>
+<area shape="rect" id="Node000002" href="$smolrtsp_8h.html" title="Re&#45;exports all the functionality." alt="" coords="945,519,1087,544"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="319,31,180,50,119,64,77,81,47,102,25,124,12,150,8,185,8,364,11,390,20,410,34,424,52,435,99,451,154,468,222,486,313,499,536,517,765,525,944,527,944,533,765,531,535,522,312,505,221,491,153,473,97,456,50,440,30,428,16,412,6,391,3,364,3,185,7,148,21,121,43,98,75,76,117,59,179,45,318,25"/>
+<area shape="rect" id="Node000003" href="$context_8h.html" title="A request context." alt="" coords="192,350,387,375"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="350,37,293,54,233,81,177,118,154,142,134,168,125,195,129,222,142,249,164,274,218,318,268,348,265,352,215,322,160,278,138,252,123,224,120,195,130,165,150,138,174,114,230,76,291,49,348,31"/>
+<area shape="rect" id="Node000004" href="$controller_8h.html" title="An RTSP requests controller." alt="" coords="193,438,399,463"/>
+<area shape="poly" id="edge6_Node000001_Node000004" title=" " alt="" coords="319,26,232,39,189,51,148,67,112,88,84,114,65,146,59,186,59,276,64,308,78,337,100,361,127,382,190,415,249,435,247,440,187,420,124,387,96,365,74,340,59,310,53,276,53,185,60,145,80,111,109,84,145,62,187,46,231,34,318,21"/>
+<area shape="rect" id="Node000005" href="$transport_8h.html" title="RTSP data transport (level 4) implementations." alt="" coords="1643,262,1848,287"/>
+<area shape="poly" id="edge7_Node000001_Node000005" title=" " alt="" coords="529,16,800,19,970,26,1147,38,1319,57,1477,83,1546,100,1608,118,1659,140,1700,165,1721,187,1734,214,1747,261,1741,262,1729,215,1716,190,1697,169,1657,145,1606,123,1545,105,1476,88,1319,62,1146,44,970,32,800,25,529,21"/>
+<area shape="rect" id="Node000008" href="$error_8h.html" title="Possible parsing errors." alt="" coords="664,79,835,119"/>
+<area shape="poly" id="edge13_Node000001_Node000008" title=" " alt="" coords="485,31,672,76,670,81,484,36"/>
+<area shape="rect" id="Node000009" href="$header_8h.html" title="An RTSP header." alt="" coords="339,167,509,207"/>
+<area shape="poly" id="edge57_Node000001_Node000009" title=" " alt="" coords="427,44,427,166,421,166,421,44"/>
+<area shape="rect" id="Node000019" href="$rtsp__version_8h.html" title="An RTSP version." alt="" coords="1277,167,1448,207"/>
+<area shape="poly" id="edge58_Node000001_Node000019" title=" " alt="" coords="529,29,680,50,847,76,1084,122,1281,164,1280,169,1083,127,846,81,679,55,528,35"/>
+<area shape="rect" id="Node000020" href="$status__code_8h.html" title="An RTSP status code." alt="" coords="144,167,315,207"/>
+<area shape="poly" id="edge61_Node000001_Node000020" title=" " alt="" coords="402,42,253,168,250,164,398,38"/>
+<area shape="rect" id="Node000022" href="$sdp_8h.html" title="RFC 4566&#45;compliant SDP implementation." alt="" coords="1816,79,1987,119"/>
+<area shape="poly" id="edge59_Node000001_Node000022" title=" " alt="" coords="529,18,1056,34,1404,51,1756,76,1816,82,1815,88,1756,81,1403,56,1056,39,529,24"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="325,379,412,428,441,451,453,460,470,468,510,479,562,489,691,505,944,524,944,529,691,510,561,494,508,484,468,473,450,464,437,455,409,433,322,384"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="294,389,298,437,292,438,289,389"/>
+<area shape="poly" id="edge5_Node000004_Node000002" title=" " alt="" coords="380,463,419,468,711,500,945,521,944,527,710,505,418,473,380,468"/>
+<area shape="poly" id="edge8_Node000005_Node000002" title=" " alt="" coords="1724,299,1704,320,1685,344,1675,363,1670,380,1665,413,1656,444,1647,459,1631,473,1601,484,1549,495,1400,511,1088,530,1088,525,1400,506,1548,489,1599,479,1628,468,1642,455,1651,441,1659,412,1665,379,1670,360,1680,341,1700,316,1720,295"/>
+<area shape="rect" id="Node000006" href="$rtp__transport_8h.html" title="An RTP data transport." alt="" coords="1695,343,1847,383"/>
+<area shape="poly" id="edge9_Node000005_Node000006" title=" " alt="" coords="1755,300,1768,341,1762,343,1750,301"/>
+<area shape="poly" id="edge10_Node000006_Node000002" title=" " alt="" coords="1819,388,1843,406,1862,427,1871,450,1869,462,1862,473,1846,483,1820,492,1745,506,1644,517,1527,524,1283,532,1087,533,1087,528,1283,526,1527,519,1644,512,1744,501,1819,487,1844,478,1858,469,1864,460,1866,450,1858,430,1839,410,1815,392"/>
+<area shape="rect" id="Node000007" href="$nal__transport_8h.html" title="An RTP/NAL data transport." alt="" coords="1693,431,1848,471"/>
+<area shape="poly" id="edge11_Node000006_Node000007" title=" " alt="" coords="1773,397,1773,430,1768,430,1768,397"/>
+<area shape="poly" id="edge12_Node000007_Node000002" title=" " alt="" coords="1680,473,1675,473,1511,494,1347,510,1088,529,1087,523,1347,504,1510,488,1674,468,1679,467"/>
+<area shape="poly" id="edge14_Node000008_Node000002" title=" " alt="" coords="848,119,920,141,950,152,971,165,1002,193,1024,222,1038,251,1046,281,1050,349,1049,431,1051,451,1049,471,1039,498,1026,520,1022,517,1034,496,1044,470,1046,451,1044,431,1045,349,1041,282,1033,253,1019,224,998,197,968,169,948,157,918,146,846,125"/>
+<area shape="poly" id="edge15_Node000008_Node000009" title=" " alt="" coords="666,125,496,169,495,164,664,120"/>
+<area shape="rect" id="Node000010" href="$header__map_8h.html" title="An RTSP header map." alt="" coords="563,255,733,295"/>
+<area shape="poly" id="edge24_Node000008_Node000010" title=" " alt="" coords="716,130,698,148,682,168,663,213,653,255,648,254,658,212,678,165,694,144,712,126"/>
+<area shape="rect" id="Node000011" href="$request_8h.html" title="An RTSP request." alt="" coords="461,343,632,383"/>
+<area shape="poly" id="edge40_Node000008_Node000011" title=" " alt="" coords="672,126,621,145,572,169,548,189,523,209,497,219,474,223,431,224,411,225,393,229,375,239,358,256,350,272,351,285,359,298,372,309,413,329,461,343,460,348,411,334,369,314,355,301,346,287,345,271,354,253,372,234,391,224,410,219,430,218,473,218,496,214,520,204,545,185,569,164,619,140,670,121"/>
+<area shape="rect" id="Node000012" href="$response_8h.html" title="An RTSP response." alt="" coords="757,343,928,383"/>
+<area shape="poly" id="edge45_Node000008_Node000012" title=" " alt="" coords="749,132,749,168,755,206,769,246,788,283,829,341,824,344,784,286,764,248,749,207,744,169,744,132"/>
+<area shape="rect" id="Node000013" href="$message__body_8h.html" title="An RTSP message body." alt="" coords="368,255,539,295"/>
+<area shape="poly" id="edge25_Node000008_Node000013" title=" " alt="" coords="707,128,487,257,484,252,704,123"/>
+<area shape="rect" id="Node000014" href="$method_8h.html" title="An RTSP method." alt="" coords="1032,167,1203,207"/>
+<area shape="poly" id="edge30_Node000008_Node000014" title=" " alt="" coords="844,119,1037,164,1036,169,843,124"/>
+<area shape="rect" id="Node000015" href="$request__line_8h.html" title="An RTSP request line." alt="" coords="1155,255,1325,295"/>
+<area shape="poly" id="edge41_Node000008_Node000015" title=" " alt="" coords="848,99,949,104,1058,115,1153,134,1190,148,1216,165,1232,185,1240,209,1244,254,1239,255,1235,210,1227,188,1213,169,1188,153,1152,140,1057,120,949,109,848,104"/>
+<area shape="rect" id="Node000016" href="$reason__phrase_8h.html" title="An RTSP reason phrase." alt="" coords="787,167,957,207"/>
+<area shape="poly" id="edge35_Node000008_Node000016" title=" " alt="" coords="789,124,846,164,843,169,786,129"/>
+<area shape="rect" id="Node000017" href="$response__line_8h.html" title="An RTSP response line." alt="" coords="808,255,979,295"/>
+<area shape="poly" id="edge46_Node000008_Node000017" title=" " alt="" coords="753,132,760,169,767,188,777,205,806,232,841,252,838,257,803,237,773,208,762,190,755,171,748,133"/>
+<area shape="rect" id="Node000018" href="$request__uri_8h.html" title="An RTSP request URI." alt="" coords="1472,167,1643,207"/>
+<area shape="poly" id="edge42_Node000008_Node000018" title=" " alt="" coords="849,104,1125,126,1292,143,1460,164,1472,166,1472,171,1460,169,1292,148,1124,131,848,109"/>
+<area shape="poly" id="edge47_Node000008_Node000019" title=" " alt="" coords="848,109,1039,133,1259,164,1277,167,1277,172,1258,169,1038,138,848,114"/>
+<area shape="poly" id="edge51_Node000008_Node000020" title=" " alt="" coords="651,117,327,169,315,171,314,166,326,164,650,112"/>
+<area shape="rect" id="Node000021" href="$util_8h.html" title="Utilitary stuff." alt="" coords="1451,438,1618,463"/>
+<area shape="poly" id="edge55_Node000008_Node000021" title=" " alt="" coords="848,97,1061,100,1315,109,1435,118,1538,129,1614,145,1640,154,1657,165,1663,175,1663,185,1657,208,1647,233,1633,256,1543,439,1538,437,1628,253,1642,230,1652,206,1658,185,1658,177,1653,169,1638,159,1613,150,1537,134,1435,123,1315,114,1061,105,848,103"/>
+<area shape="poly" id="edge16_Node000009_Node000002" title=" " alt="" coords="379,217,360,234,345,256,340,275,345,293,397,338,451,381,520,431,552,450,596,468,688,494,782,511,871,521,945,526,944,531,870,527,781,517,686,500,594,473,549,455,517,436,448,385,393,342,340,296,334,275,340,254,356,231,376,213"/>
+<area shape="poly" id="edge17_Node000009_Node000010" title=" " alt="" coords="487,209,600,252,598,257,485,214"/>
+<area shape="poly" id="edge18_Node000010_Node000002" title=" " alt="" coords="673,304,706,342,747,381,811,425,879,464,989,516,987,521,876,469,808,430,744,385,702,346,669,308"/>
+<area shape="poly" id="edge19_Node000010_Node000011" title=" " alt="" coords="617,306,571,344,567,340,613,302"/>
+<area shape="poly" id="edge22_Node000010_Node000012" title=" " alt="" coords="704,298,801,340,799,345,702,303"/>
+<area shape="poly" id="edge20_Node000011_Node000002" title=" " alt="" coords="569,392,605,433,627,452,652,468,705,486,782,501,945,521,944,526,782,506,704,491,650,473,624,457,601,437,565,396"/>
+<area shape="poly" id="edge21_Node000011_Node000004" title=" " alt="" coords="479,390,330,441,329,435,478,385"/>
+<area shape="poly" id="edge23_Node000012_Node000002" title=" " alt="" coords="871,391,948,469,1004,517,1000,521,945,473,868,395"/>
+<area shape="poly" id="edge26_Node000013_Node000002" title=" " alt="" coords="537,296,591,316,645,340,684,367,731,405,778,443,816,468,889,497,958,516,957,521,887,502,813,473,774,447,727,409,681,371,643,345,589,321,535,301"/>
+<area shape="poly" id="edge27_Node000013_Node000003" title=" " alt="" coords="407,303,312,352,310,348,404,299"/>
+<area shape="poly" id="edge28_Node000013_Node000011" title=" " alt="" coords="486,302,528,340,524,344,482,306"/>
+<area shape="poly" id="edge29_Node000013_Node000012" title=" " alt="" coords="553,295,758,340,757,345,551,300"/>
+<area shape="poly" id="edge31_Node000014_Node000002" title=" " alt="" coords="1124,220,1126,271,1124,336,1112,405,1102,440,1088,472,1065,500,1038,520,1035,516,1061,496,1083,469,1097,438,1107,404,1119,335,1121,271,1118,221"/>
+<area shape="poly" id="edge32_Node000014_Node000015" title=" " alt="" coords="1157,212,1214,252,1211,257,1154,217"/>
+<area shape="poly" id="edge33_Node000015_Node000002" title=" " alt="" coords="1232,309,1198,389,1171,433,1138,473,1096,502,1054,521,1052,516,1094,497,1134,469,1167,430,1193,386,1227,307"/>
+<area shape="poly" id="edge34_Node000015_Node000011" title=" " alt="" coords="1142,291,633,353,632,348,1141,285"/>
+<area shape="poly" id="edge36_Node000016_Node000002" title=" " alt="" coords="943,211,971,229,993,253,1011,288,1023,326,1029,365,1031,404,1028,473,1021,519,1016,518,1023,472,1026,404,1024,366,1017,327,1006,290,988,256,967,233,940,215"/>
+<area shape="poly" id="edge37_Node000016_Node000017" title=" " alt="" coords="883,220,891,254,886,255,877,221"/>
+<area shape="poly" id="edge38_Node000017_Node000002" title=" " alt="" coords="919,305,942,341,988,442,1015,518,1010,520,983,444,938,344,914,307"/>
+<area shape="poly" id="edge39_Node000017_Node000012" title=" " alt="" coords="877,308,856,344,852,341,873,305"/>
+<area shape="poly" id="edge43_Node000018_Node000002" title=" " alt="" coords="1533,219,1480,273,1406,341,1317,412,1269,444,1220,473,1149,503,1080,521,1078,516,1147,497,1217,468,1266,440,1314,407,1402,337,1476,269,1529,215"/>
+<area shape="poly" id="edge44_Node000018_Node000015" title=" " alt="" coords="1475,213,1310,257,1309,252,1474,208"/>
+<area shape="poly" id="edge48_Node000019_Node000002" title=" " alt="" coords="1362,221,1354,258,1340,296,1305,355,1271,398,1230,433,1173,473,1117,502,1062,521,1061,516,1115,497,1171,468,1227,429,1267,394,1300,352,1335,294,1349,256,1357,220"/>
+<area shape="poly" id="edge49_Node000019_Node000015" title=" " alt="" coords="1326,217,1269,257,1266,252,1323,212"/>
+<area shape="poly" id="edge50_Node000019_Node000017" title=" " alt="" coords="1264,209,979,260,978,255,1263,203"/>
+<area shape="poly" id="edge52_Node000020_Node000002" title=" " alt="" coords="212,220,184,273,160,340,154,375,155,409,164,441,182,469,196,478,220,487,295,501,394,511,510,519,751,526,945,528,945,533,751,532,509,524,394,517,294,506,219,492,194,483,178,473,159,443,150,410,149,375,155,339,179,271,207,217"/>
+<area shape="poly" id="edge53_Node000020_Node000003" title=" " alt="" coords="240,219,264,294,286,349,282,351,259,296,235,220"/>
+<area shape="poly" id="edge54_Node000020_Node000017" title=" " alt="" coords="329,204,539,230,746,252,808,260,807,265,745,257,538,236,328,209"/>
+<area shape="poly" id="edge56_Node000021_Node000002" title=" " alt="" coords="1462,468,1432,473,1088,523,1087,518,1432,468,1461,463"/>
+<area shape="poly" id="edge60_Node000022_Node000002" title=" " alt="" coords="1914,131,1930,196,1936,235,1939,273,1939,364,1937,399,1929,427,1913,451,1885,473,1840,488,1760,501,1535,518,1285,528,1088,532,1087,527,1285,522,1535,513,1759,495,1838,483,1883,468,1909,447,1924,425,1931,398,1933,364,1933,273,1931,235,1925,197,1909,133"/>
 </map>

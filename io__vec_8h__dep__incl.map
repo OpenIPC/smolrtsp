@@ -1,7 +1,14 @@
 <map id="include/smolrtsp/io_vec.h" name="include/smolrtsp/io_vec.h">
-<area shape="rect" id="node1" title="Vectored I/O support." alt="" coords="5,5,152,47"/>
-<area shape="rect" id="node2" href="$smolrtsp_8h.html" title="Re&#45;exports all the functionality." alt="" coords="14,348,157,375"/>
-<area shape="rect" id="node3" href="$transport_8h.html" title="RTSP data transport (level 4) implementations." alt="" coords="47,95,252,121"/>
-<area shape="rect" id="node4" href="$rtp__transport_8h.html" title="An RTP data transport." alt="" coords="97,169,249,211"/>
-<area shape="rect" id="node5" href="$nal__transport_8h.html" title="An RTP/NAL data transport." alt="" coords="148,259,303,300"/>
+<area shape="rect" id="Node000001" title="Vectored I/O support." alt="" coords="5,5,152,45"/>
+<area shape="rect" id="Node000002" href="$smolrtsp_8h.html" title="Re&#45;exports all the functionality." alt="" coords="14,343,157,368"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="56,58,37,94,30,130,30,167,34,203,42,239,63,300,82,341,77,343,58,302,37,240,29,204,24,167,25,129,32,92,51,55"/>
+<area shape="rect" id="Node000003" href="$transport_8h.html" title="RTSP data transport (level 4) implementations." alt="" coords="47,93,252,119"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="107,54,141,91,137,95,103,57"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="121,129,102,146,88,168,75,216,74,266,78,310,85,342,80,343,73,311,68,266,70,215,83,166,98,143,117,125"/>
+<area shape="rect" id="Node000004" href="$rtp__transport_8h.html" title="An RTP data transport." alt="" coords="97,167,249,207"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="159,131,170,166,165,167,154,132"/>
+<area shape="poly" id="edge5_Node000004_Node000002" title=" " alt="" coords="158,220,138,256,93,344,89,341,134,253,153,218"/>
+<area shape="rect" id="Node000005" href="$nal__transport_8h.html" title="An RTP/NAL data transport." alt="" coords="148,255,303,295"/>
+<area shape="poly" id="edge6_Node000004_Node000005" title=" " alt="" coords="194,217,216,253,212,256,190,220"/>
+<area shape="poly" id="edge7_Node000005_Node000002" title=" " alt="" coords="181,304,107,345,105,340,179,299"/>
 </map>

@@ -1,15 +1,33 @@
 <map id="include/smolrtsp/transport.h" name="include/smolrtsp/transport.h">
-<area shape="rect" id="node1" title="RTSP data transport (level 4) implementations." alt="" coords="323,5,529,32"/>
-<area shape="rect" id="node2" href="$droppable_8h.html" title="Droppable types support." alt="" coords="15,80,175,107"/>
-<area shape="rect" id="node3" title=" " alt="" coords="5,162,113,189"/>
-<area shape="rect" id="node4" href="$io__vec_8h.html" title="Vectored I/O support." alt="" coords="357,80,495,107"/>
-<area shape="rect" id="node9" title=" " alt="" coords="491,155,660,196"/>
-<area shape="rect" id="node10" href="$writer_8h.html" title="The writer interface." alt="" coords="624,80,756,107"/>
-<area shape="rect" id="node5" title=" " alt="" coords="685,162,759,189"/>
-<area shape="rect" id="node6" title=" " alt="" coords="259,162,361,189"/>
-<area shape="rect" id="node7" title=" " alt="" coords="138,162,234,189"/>
-<area shape="rect" id="node8" title=" " alt="" coords="386,162,466,189"/>
-<area shape="rect" id="node11" title=" " alt="" coords="882,162,957,189"/>
-<area shape="rect" id="node12" title=" " alt="" coords="981,162,1047,189"/>
-<area shape="rect" id="node13" title=" " alt="" coords="783,162,858,189"/>
+<area shape="rect" id="Node000001" title="RTSP data transport (level 4) implementations." alt="" coords="323,5,529,31"/>
+<area shape="rect" id="Node000002" href="$droppable_8h.html" title="Droppable types support." alt="" coords="15,79,175,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="373,33,163,78,161,73,372,28"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="5,159,113,185"/>
+<area shape="poly" id="edge17_Node000001_Node000003" title=" " alt="" coords="399,33,101,156,99,151,397,28"/>
+<area shape="rect" id="Node000004" href="$io__vec_8h.html" title="Vectored I/O support." alt="" coords="357,79,495,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="429,31,429,65,423,65,423,31"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="491,152,660,192"/>
+<area shape="poly" id="edge18_Node000001_Node000009" title=" " alt="" coords="447,29,477,50,509,77,536,108,558,139,554,142,532,111,505,81,474,54,444,33"/>
+<area shape="rect" id="Node000010" href="$writer_8h.html" title="The writer interface." alt="" coords="624,79,756,104"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="469,28,635,72,633,78,468,33"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="92,105,73,148,68,146,88,103"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="685,159,759,185"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="482,101,573,122,673,149,681,152,680,157,672,155,571,127,481,107"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="259,159,361,185"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="410,106,340,154,337,149,407,102"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="138,159,234,185"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="392,107,235,158,233,153,390,101"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="386,159,466,185"/>
+<area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="429,104,429,145,423,145,423,104"/>
+<area shape="poly" id="edge8_Node000004_Node000009" title=" " alt="" coords="449,102,529,143,526,148,447,107"/>
+<area shape="poly" id="edge14_Node000010_Node000003" title=" " alt="" coords="624,99,402,116,264,132,127,155,109,158,108,153,125,149,264,127,402,111,624,93"/>
+<area shape="poly" id="edge11_Node000010_Node000005" title=" " alt="" coords="697,103,714,145,710,147,692,105"/>
+<area shape="poly" id="edge15_Node000010_Node000008" title=" " alt="" coords="647,107,480,155,471,158,469,152,479,149,646,101"/>
+<area shape="poly" id="edge16_Node000010_Node000009" title=" " alt="" coords="675,106,616,146,613,142,672,102"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="882,159,957,185"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="727,102,871,149,878,152,876,157,869,155,725,107"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="981,159,1047,185"/>
+<area shape="poly" id="edge12_Node000010_Node000012" title=" " alt="" coords="757,101,858,120,969,149,976,152,975,157,968,155,856,126,756,106"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="783,159,858,185"/>
+<area shape="poly" id="edge13_Node000010_Node000013" title=" " alt="" coords="711,102,791,150,788,154,708,106"/>
 </map>

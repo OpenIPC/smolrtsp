@@ -1,6 +1,10 @@
 <map id="include/smolrtsp/nal/h264.h" name="include/smolrtsp/nal/h264.h">
-<area shape="rect" id="node1" title="H.264 NAL representation." alt="" coords="11,5,166,47"/>
-<area shape="rect" id="node2" href="$nal_8h.html" title="A generic NAL (Network Abstraction Layer) representation." alt="" coords="5,95,172,121"/>
-<area shape="rect" id="node3" href="$smolrtsp_8h.html" title="Re&#45;exports all the functionality." alt="" coords="17,259,160,285"/>
-<area shape="rect" id="node4" href="$nal__transport_8h.html" title="An RTP/NAL data transport." alt="" coords="69,169,223,211"/>
+<area shape="rect" id="Node000001" title="H.264 NAL representation." alt="" coords="11,5,166,45"/>
+<area shape="rect" id="Node000002" href="$nal_8h.html" title="A generic NAL (Network Abstraction Layer) representation." alt="" coords="5,93,172,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="91,59,91,93,86,93,86,59"/>
+<area shape="rect" id="Node000003" href="$smolrtsp_8h.html" title="Re&#45;exports all the functionality." alt="" coords="17,255,160,280"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="75,131,59,167,56,187,59,206,70,232,82,253,78,256,65,234,54,207,51,187,54,166,70,129"/>
+<area shape="rect" id="Node000004" href="$nal__transport_8h.html" title="An RTP/NAL data transport." alt="" coords="69,167,223,207"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="107,128,134,165,130,168,103,131"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="126,220,99,256,95,253,122,216"/>
 </map>

@@ -1,6 +1,11 @@
 <map id="include/smolrtsp/transport.h" name="include/smolrtsp/transport.h">
-<area shape="rect" id="node1" title="RTSP data transport (level 4) implementations." alt="" coords="5,5,211,32"/>
-<area shape="rect" id="node2" href="$smolrtsp_8h.html" title="Re&#45;exports all the functionality." alt="" coords="31,259,174,285"/>
-<area shape="rect" id="node3" href="$rtp__transport_8h.html" title="An RTP data transport." alt="" coords="89,80,241,121"/>
-<area shape="rect" id="node4" href="$nal__transport_8h.html" title="An RTP/NAL data transport." alt="" coords="140,169,295,211"/>
+<area shape="rect" id="Node000001" title="RTSP data transport (level 4) implementations." alt="" coords="5,5,211,31"/>
+<area shape="rect" id="Node000002" href="$smolrtsp_8h.html" title="Re&#45;exports all the functionality." alt="" coords="31,255,174,280"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="95,44,80,79,75,130,80,180,91,223,101,254,96,255,85,224,75,180,70,130,75,78,90,41"/>
+<area shape="rect" id="Node000003" href="$rtp__transport_8h.html" title="An RTP data transport." alt="" coords="89,79,241,119"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="127,40,154,77,149,80,122,43"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="148,132,130,168,116,215,107,255,102,254,110,214,126,166,144,130"/>
+<area shape="rect" id="Node000004" href="$nal__transport_8h.html" title="An RTP/NAL data transport." alt="" coords="140,167,295,207"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="186,129,208,165,204,168,182,132"/>
+<area shape="poly" id="edge5_Node000004_Node000002" title=" " alt="" coords="180,217,121,257,118,252,177,212"/>
 </map>

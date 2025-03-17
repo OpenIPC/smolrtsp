@@ -1,4 +1,5 @@
 <map id="include/smolrtsp/nal_transport.h" name="include/smolrtsp/nal_transport.h">
-<area shape="rect" id="node1" title="An RTP/NAL data transport." alt="" coords="5,5,160,47"/>
-<area shape="rect" id="node2" href="$smolrtsp_8h.html" title="Re&#45;exports all the functionality." alt="" coords="11,95,154,121"/>
+<area shape="rect" id="Node000001" title="An RTP/NAL data transport." alt="" coords="5,5,160,45"/>
+<area shape="rect" id="Node000002" href="$smolrtsp_8h.html" title="Re&#45;exports all the functionality." alt="" coords="11,93,154,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="85,59,85,93,80,93,80,59"/>
 </map>
