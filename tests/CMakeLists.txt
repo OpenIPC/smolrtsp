@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0.2)
+cmake_minimum_required(VERSION 3.16)
 project(tests LANGUAGES C)
 
 # Fix the warnings about `DOWNLOAD_EXTRACT_TIMESTAMP` in newer CMake versions.
