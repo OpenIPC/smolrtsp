@@ -13,23 +13,23 @@ include(FetchContent)
 
 FetchContent_Declare(
   slice99
-  GIT_REPOSITORY https://github.com/hirrolot/slice99
-  GIT_TAG 7075e1e)
+  URL https://github.com/hirrolot/slice99/archive/refs/tags/v0.7.8.tar.gz
+)
 
 FetchContent_Declare(
   metalang99
-  GIT_REPOSITORY https://github.com/hirrolot/metalang99
-  GIT_TAG e0eb4e1)
+  URL https://github.com/hirrolot/metalang99/archive/refs/tags/v1.13.5.tar.gz
+)
 
 FetchContent_Declare(
   datatype99
-  GIT_REPOSITORY https://github.com/hirrolot/datatype99
-  GIT_TAG aa24712)
+  URL https://github.com/hirrolot/datatype99/archive/refs/tags/v1.6.5.tar.gz
+)
 
 FetchContent_Declare(
   interface99
-  GIT_REPOSITORY https://github.com/hirrolot/interface99
-  GIT_TAG 73c7c1e)
+  URL https://github.com/hirrolot/interface99/archive/refs/tags/v1.0.2.tar.gz
+)
 
 FetchContent_MakeAvailable(slice99 datatype99 interface99)
 
