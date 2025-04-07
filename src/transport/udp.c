@@ -14,6 +14,8 @@
 
 typedef struct {
     int fd;
+    char addr[128];
+    size_t len;
 } SmolRTSP_UdpTransport;
 
 declImpl(SmolRTSP_Transport, SmolRTSP_UdpTransport);
@@ -28,6 +30,21 @@ SmolRTSP_Transport smolrtsp_transport_udp(int fd) {
     SmolRTSP_UdpTransport *self = malloc(sizeof *self);
     assert(self);
     self->fd = fd;
+    self->len = 0;
+
+    return DYN(SmolRTSP_UdpTransport, SmolRTSP_Transport, self);
+}
+
+SmolRTSP_Transport
+smolrtsp_transport_udp_address(int fd, void *addr, size_t len) {
+    assert(fd >= 0);
+    assert(addr && len > 0);
+
+    SmolRTSP_UdpTransport *self = malloc(sizeof *self);
+    assert(self);
+    self->fd = fd;
+    self->len = len;
+    memcpy(&self->addr, addr, len);
 
     return DYN(SmolRTSP_UdpTransport, SmolRTSP_Transport, self);
 }
@@ -46,8 +63,8 @@ static int SmolRTSP_UdpTransport_transmit(VSelf, SmolRTSP_IoVecSlice bufs) {
     assert(self);
 
     const struct msghdr msg = {
-        .msg_name = NULL,
-        .msg_namelen = 0,
+        .msg_name = self->addr,
+        .msg_namelen = self->len,
         .msg_iov = bufs.ptr,
         .msg_iovlen = bufs.len,
         .msg_control = NULL,

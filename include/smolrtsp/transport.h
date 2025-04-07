@@ -70,6 +70,19 @@ SmolRTSP_Transport smolrtsp_transport_tcp(
 SmolRTSP_Transport smolrtsp_transport_udp(int fd) SMOLRTSP_PRIV_MUST_USE;
 
 /**
+ * Creates a new UDP transport with address.
+ *
+ * @param[in] fd The socket file descriptor to be provided with data.
+ * @param[in] addr Pointer to address data (e.g., sockaddr_un or sockaddr_in).
+ * @param[in] len Length of the address in bytes.
+ *
+ * @pre `fd >= 0`
+ * @pre `addr && len > 0`
+ */
+SmolRTSP_Transport smolrtsp_transport_udp_address(
+    int fd, void *addr, size_t len) SMOLRTSP_PRIV_MUST_USE;
+
+/**
  * Creates a new datagram socket suitable for #smolrtsp_transport_udp.
  *
  * The algorithm is:
