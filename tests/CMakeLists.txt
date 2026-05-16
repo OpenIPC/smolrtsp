@@ -33,6 +33,7 @@ add_executable(
   types/rtsp_version.c
   types/status_code.c
   types/sdp.c
+  types/rtcp.c
   types/test_util.h
   nal/h264.c
   nal/h265.c

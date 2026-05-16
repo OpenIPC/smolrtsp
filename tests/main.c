@@ -25,6 +25,7 @@ int main(int argc, char *argv[]) {
     SMOLRTSP_SUITE(types_rtsp_version);
     SMOLRTSP_SUITE(types_sdp);
     SMOLRTSP_SUITE(types_status_code);
+    SMOLRTSP_SUITE(types_rtcp);
 
     SMOLRTSP_SUITE(nal_h264);
     SMOLRTSP_SUITE(nal_h265);

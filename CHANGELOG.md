@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## unreleased
 
+### Added
+
+ - RTCP Sender Report (SR) serialization per [RFC 3550 §6.4.1](https://datatracker.ietf.org/doc/html/rfc3550#section-6.4.1). New header `smolrtsp/types/rtcp.h` exposing `SmolRTSP_RtcpSr`, `SmolRTSP_RtcpSr_size`, and `SmolRTSP_RtcpSr_serialize`. Currently emits the fixed 28-byte SR header (RC = 0); reception report blocks, SDES and BYE remain unimplemented (see #7).
+
 ### Fixed
 
  - Update the minimum required CMake version to 3.10.0 due to deprecation (see [metalang99/issues/33](https://github.com/hirrolot/metalang99/issues/33)).
