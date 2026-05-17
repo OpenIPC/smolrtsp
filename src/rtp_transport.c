@@ -71,7 +71,15 @@ int SmolRTSP_RtpTransport_send_packet(
         .payload_ty = self->payload_ty,
         .sequence_number = htons(self->seq_num),
         .timestamp = htobe32(compute_timestamp(ts, self->clock_rate)),
-        .ssrc = self->ssrc,
+        /* SSRC is the only multi-byte RTP-header field that was
+         * passed in host order — every other (sequence, timestamp,
+         * extension_*) is htobe32/htons'd in this same struct.
+         * Without this swap, on little-endian hosts the wire bytes
+         * are the byte-reversal of the SSRC, so receivers can't
+         * correlate the RTP stream with the htonl-ed SSRC in our
+         * RTCP packets (SR/RR/SDES/BYE). RFC 3550 §5.1 requires
+         * network byte order for all multi-byte RTP fields. */
+        .ssrc = htonl(self->ssrc),
         .csrc = NULL,
         .extension_profile = htons(0),
         .extension_payload_len = htons(0),
