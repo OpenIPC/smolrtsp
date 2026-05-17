@@ -11,6 +11,8 @@
 struct SmolRTSP_RtpTransport {
     uint16_t seq_num;
     uint32_t ssrc;
+    uint32_t pkt_count;
+    uint32_t octet_count;
     uint8_t payload_ty;
     uint32_t clock_rate;
     SmolRTSP_Transport transport;
@@ -28,6 +30,8 @@ SmolRTSP_RtpTransport *SmolRTSP_RtpTransport_new(
 
     self->seq_num = 0;
     self->ssrc = (uint32_t)rand();
+    self->pkt_count = 0;
+    self->octet_count = 0;
     self->payload_ty = payload_ty;
     self->clock_rate = clock_rate;
     self->transport = t;
@@ -82,6 +86,11 @@ int SmolRTSP_RtpTransport_send_packet(
     const int ret = VCALL(self->transport, transmit, bufs);
     if (ret != -1) {
         self->seq_num++;
+        self->pkt_count++;
+        /* RFC 3550 §6.4.1: octet count covers payload only (no RTP header
+         * or padding). The codec-specific `payload_header` is part of the
+         * payload from the receiver's point of view. */
+        self->octet_count += (uint32_t)(payload_header.len + payload.len);
     }
 
     return ret;
@@ -107,4 +116,19 @@ compute_timestamp(SmolRTSP_RtpTimestamp ts, uint32_t clock_rate) {
 
 bool SmolRTSP_RtpTransport_is_full(SmolRTSP_RtpTransport *self) {
     return VCALL(self->transport, is_full);
+}
+
+uint32_t SmolRTSP_RtpTransport_ssrc(SmolRTSP_RtpTransport *self) {
+    assert(self);
+    return self->ssrc;
+}
+
+uint32_t SmolRTSP_RtpTransport_pkt_count(SmolRTSP_RtpTransport *self) {
+    assert(self);
+    return self->pkt_count;
+}
+
+uint32_t SmolRTSP_RtpTransport_octet_count(SmolRTSP_RtpTransport *self) {
+    assert(self);
+    return self->octet_count;
 }

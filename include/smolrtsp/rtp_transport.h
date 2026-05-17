@@ -85,3 +85,42 @@ int SmolRTSP_RtpTransport_send_packet(
 declImplExtern99(SmolRTSP_Droppable, SmolRTSP_RtpTransport);
 
 bool SmolRTSP_RtpTransport_is_full(SmolRTSP_RtpTransport *self);
+
+/**
+ * Returns the Synchronization Source (SSRC) identifier used by @p self
+ * on every RTP packet it sends.
+ *
+ * Useful when constructing an RTCP Sender Report (see
+ * #SmolRTSP_RtcpSr in `<smolrtsp/types/rtcp.h>`) that needs to carry
+ * the matching SSRC so receivers can pair the SR with the RTP stream
+ * per RFC 3550 §6.4.1.
+ *
+ * @pre `self != NULL`
+ */
+uint32_t
+SmolRTSP_RtpTransport_ssrc(SmolRTSP_RtpTransport *self) SMOLRTSP_PRIV_MUST_USE;
+
+/**
+ * Returns the total number of RTP data packets successfully transmitted
+ * by @p self since it was created.
+ *
+ * Maps to the "sender's packet count" field of an RTCP Sender Report
+ * (RFC 3550 §6.4.1).
+ *
+ * @pre `self != NULL`
+ */
+uint32_t SmolRTSP_RtpTransport_pkt_count(SmolRTSP_RtpTransport *self)
+    SMOLRTSP_PRIV_MUST_USE;
+
+/**
+ * Returns the total number of payload octets (i.e., not including the
+ * RTP header or padding) successfully transmitted by @p self since it
+ * was created.
+ *
+ * Maps to the "sender's octet count" field of an RTCP Sender Report
+ * (RFC 3550 §6.4.1).
+ *
+ * @pre `self != NULL`
+ */
+uint32_t SmolRTSP_RtpTransport_octet_count(SmolRTSP_RtpTransport *self)
+    SMOLRTSP_PRIV_MUST_USE;
