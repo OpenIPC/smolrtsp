@@ -13,6 +13,7 @@ struct SmolRTSP_RtpTransport {
     uint32_t ssrc;
     uint32_t pkt_count;
     uint32_t octet_count;
+    uint32_t last_rtp_ts;
     uint8_t payload_ty;
     uint32_t clock_rate;
     SmolRTSP_Transport transport;
@@ -39,6 +40,7 @@ SmolRTSP_RtpTransport *SmolRTSP_RtpTransport_new_with_ssrc(
     self->ssrc = ssrc;
     self->pkt_count = 0;
     self->octet_count = 0;
+    self->last_rtp_ts = 0;
     self->payload_ty = payload_ty;
     self->clock_rate = clock_rate;
     self->transport = t;
@@ -62,6 +64,8 @@ int SmolRTSP_RtpTransport_send_packet(
     U8Slice99 payload_header, U8Slice99 payload) {
     assert(self);
 
+    const uint32_t rtp_ts = compute_timestamp(ts, self->clock_rate);
+
     const SmolRTSP_RtpHeader header = {
         .version = 2,
         .padding = false,
@@ -70,7 +74,7 @@ int SmolRTSP_RtpTransport_send_packet(
         .marker = marker,
         .payload_ty = self->payload_ty,
         .sequence_number = htons(self->seq_num),
-        .timestamp = htobe32(compute_timestamp(ts, self->clock_rate)),
+        .timestamp = htobe32(rtp_ts),
         /* SSRC is the only multi-byte RTP-header field that was
          * passed in host order — every other (sequence, timestamp,
          * extension_*) is htobe32/htons'd in this same struct.
@@ -106,6 +110,7 @@ int SmolRTSP_RtpTransport_send_packet(
          * or padding). The codec-specific `payload_header` is part of the
          * payload from the receiver's point of view. */
         self->octet_count += (uint32_t)(payload_header.len + payload.len);
+        self->last_rtp_ts = rtp_ts;
     }
 
     return ret;
@@ -146,4 +151,9 @@ uint32_t SmolRTSP_RtpTransport_pkt_count(SmolRTSP_RtpTransport *self) {
 uint32_t SmolRTSP_RtpTransport_octet_count(SmolRTSP_RtpTransport *self) {
     assert(self);
     return self->octet_count;
+}
+
+uint32_t SmolRTSP_RtpTransport_last_rtp_ts(SmolRTSP_RtpTransport *self) {
+    assert(self);
+    return self->last_rtp_ts;
 }
