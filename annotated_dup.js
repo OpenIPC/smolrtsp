@@ -14,6 +14,7 @@ var annotated_dup =
     [ "SmolRTSP_RequestLine", "structSmolRTSP__RequestLine.html", "structSmolRTSP__RequestLine" ],
     [ "SmolRTSP_Response", "structSmolRTSP__Response.html", "structSmolRTSP__Response" ],
     [ "SmolRTSP_ResponseLine", "structSmolRTSP__ResponseLine.html", "structSmolRTSP__ResponseLine" ],
+    [ "SmolRTSP_RtcpSr", "structSmolRTSP__RtcpSr.html", "structSmolRTSP__RtcpSr" ],
     [ "SmolRTSP_RtpHeader", "structSmolRTSP__RtpHeader.html", "structSmolRTSP__RtpHeader" ],
     [ "SmolRTSP_RtspVersion", "structSmolRTSP__RtspVersion.html", "structSmolRTSP__RtspVersion" ],
     [ "SmolRTSP_SdpLine", "structSmolRTSP__SdpLine.html", "structSmolRTSP__SdpLine" ],
