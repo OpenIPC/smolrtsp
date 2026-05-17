@@ -59,6 +59,28 @@ SmolRTSP_RtpTransport *SmolRTSP_RtpTransport_new(
     uint32_t clock_rate) SMOLRTSP_PRIV_MUST_USE;
 
 /**
+ * Like #SmolRTSP_RtpTransport_new but uses an explicit SSRC instead of
+ * a randomly generated one.
+ *
+ * Useful when the caller needs the RTP stream's SSRC to match an
+ * externally-chosen identifier — e.g. an RTCP Sender Report constructed
+ * elsewhere, or a multi-stream pipeline that pins SSRCs by configuration.
+ *
+ * The plain #SmolRTSP_RtpTransport_new is equivalent to calling this
+ * with `(uint32_t)rand()` as the SSRC.
+ *
+ * @param[in] t The level-4 protocol (such as TCP or UDP).
+ * @param[in] payload_ty The RTP payload type.
+ * @param[in] clock_rate The RTP clock rate of @p payload_ty (Hz).
+ * @param[in] ssrc The SSRC identifier to use for every RTP packet.
+ *
+ * @pre `t.self && t.vptr`
+ */
+SmolRTSP_RtpTransport *SmolRTSP_RtpTransport_new_with_ssrc(
+    SmolRTSP_Transport t, uint8_t payload_ty, uint32_t clock_rate,
+    uint32_t ssrc) SMOLRTSP_PRIV_MUST_USE;
+
+/**
  * Sends an RTP packet.
  *
  * @param[out] self The RTP transport for sending this packet.
