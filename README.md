@@ -29,8 +29,7 @@ SmolRTSP is a simple [RTSP 1.0] server library tailored for embedded devices, su
    - [x] RTP over UDP
    - [x] SDP ([RFC 4566])
    - RTCP ([RFC 3550]):
-     - [x] Sender Report (SR) serialization
-     - [ ] Receiver Report (RR), SDES, BYE
+     - [x] Sender Report (SR), Receiver Report (RR), SDES (single CNAME), and BYE serialization
  - Supported RTP payload formats:
    - [x] H.264 ([RFC 6184])
    - [x] H.265 ([RFC 7798])

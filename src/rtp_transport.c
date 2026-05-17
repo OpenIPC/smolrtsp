@@ -23,13 +23,20 @@ compute_timestamp(SmolRTSP_RtpTimestamp ts, uint32_t clock_rate);
 
 SmolRTSP_RtpTransport *SmolRTSP_RtpTransport_new(
     SmolRTSP_Transport t, uint8_t payload_ty, uint32_t clock_rate) {
+    return SmolRTSP_RtpTransport_new_with_ssrc(
+        t, payload_ty, clock_rate, (uint32_t)rand());
+}
+
+SmolRTSP_RtpTransport *SmolRTSP_RtpTransport_new_with_ssrc(
+    SmolRTSP_Transport t, uint8_t payload_ty, uint32_t clock_rate,
+    uint32_t ssrc) {
     assert(t.self && t.vptr);
 
     SmolRTSP_RtpTransport *self = malloc(sizeof *self);
     assert(self);
 
     self->seq_num = 0;
-    self->ssrc = (uint32_t)rand();
+    self->ssrc = ssrc;
     self->pkt_count = 0;
     self->octet_count = 0;
     self->payload_ty = payload_ty;

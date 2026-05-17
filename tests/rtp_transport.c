@@ -84,7 +84,29 @@ TEST counters_advance_per_packet(void) {
     PASS();
 }
 
+TEST new_with_ssrc_uses_caller_value(void) {
+    int fds[2];
+    ASSERT_EQ(0, socketpair(AF_UNIX, SOCK_SEQPACKET, 0, fds));
+
+    SmolRTSP_Transport udp = smolrtsp_transport_udp(fds[0]);
+    SmolRTSP_RtpTransport *rtp = SmolRTSP_RtpTransport_new_with_ssrc(
+        udp, /*payload_ty=*/96, /*clock_rate=*/90000,
+        /*ssrc=*/0xdeadbeef);
+    ASSERT(rtp != NULL);
+
+    /* Caller-provided SSRC must be the one returned, not a rand() value. */
+    ASSERT_EQ_FMT(
+        (uint32_t)0xdeadbeef, SmolRTSP_RtpTransport_ssrc(rtp), "0x%08x");
+    ASSERT_EQ_FMT((uint32_t)0, SmolRTSP_RtpTransport_pkt_count(rtp), "%u");
+    ASSERT_EQ_FMT((uint32_t)0, SmolRTSP_RtpTransport_octet_count(rtp), "%u");
+
+    VTABLE(SmolRTSP_RtpTransport, SmolRTSP_Droppable).drop(rtp);
+    close(fds[1]);
+    PASS();
+}
+
 SUITE(rtp_transport) {
     RUN_TEST(accessors_initial_state);
     RUN_TEST(counters_advance_per_packet);
+    RUN_TEST(new_with_ssrc_uses_caller_value);
 }
