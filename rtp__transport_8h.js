@@ -4,5 +4,8 @@ var rtp__transport_8h =
     [ "datatype99", "rtp__transport_8h.html#a437ce4ec35fee41c3933a72500e3ef74", null ],
     [ "declImplExtern99", "rtp__transport_8h.html#adb171408327c92d02faaf24d50193f86", null ],
     [ "SmolRTSP_RtpTransport_new", "rtp__transport_8h.html#af7fd8b6cb0f09f21ce28edb85a9755b8", null ],
-    [ "SmolRTSP_RtpTransport_send_packet", "rtp__transport_8h.html#aaa9b54fd3bacd147c6b3dde76e1a1108", null ]
+    [ "SmolRTSP_RtpTransport_octet_count", "rtp__transport_8h.html#a707696e2fa7458600a92d4d2d53f1a6d", null ],
+    [ "SmolRTSP_RtpTransport_pkt_count", "rtp__transport_8h.html#ae2921602dc9e16eadc20ecc3c449ab87", null ],
+    [ "SmolRTSP_RtpTransport_send_packet", "rtp__transport_8h.html#aaa9b54fd3bacd147c6b3dde76e1a1108", null ],
+    [ "SmolRTSP_RtpTransport_ssrc", "rtp__transport_8h.html#ae0bfba008fba50681d401374443ecb7c", null ]
 ];

@@ -195,6 +195,15 @@ Functions</h2></td></tr>
 <tr class="memitem:a142ce899a7c27b57345501a5b2a1f84c" id="r_a142ce899a7c27b57345501a5b2a1f84c"><td class="memItemLeft" align="right" valign="top"><a id="a142ce899a7c27b57345501a5b2a1f84c" name="a142ce899a7c27b57345501a5b2a1f84c"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>SmolRTSP_RtpTransport_is_full</b> (<a class="el" href="rtp__transport_8h.html#a8c72a0e77af47185c469b8ddeec20f3d">SmolRTSP_RtpTransport</a> *self)</td></tr>
 <tr class="separator:a142ce899a7c27b57345501a5b2a1f84c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0bfba008fba50681d401374443ecb7c" id="r_ae0bfba008fba50681d401374443ecb7c"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rtp__transport_8h.html#ae0bfba008fba50681d401374443ecb7c">SmolRTSP_RtpTransport_ssrc</a> (<a class="el" href="rtp__transport_8h.html#a8c72a0e77af47185c469b8ddeec20f3d">SmolRTSP_RtpTransport</a> *self) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:ae0bfba008fba50681d401374443ecb7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the Synchronization Source (SSRC) identifier used by <code>self</code> on every RTP packet it sends.  <br /></td></tr>
+<tr class="separator:ae0bfba008fba50681d401374443ecb7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2921602dc9e16eadc20ecc3c449ab87" id="r_ae2921602dc9e16eadc20ecc3c449ab87"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rtp__transport_8h.html#ae2921602dc9e16eadc20ecc3c449ab87">SmolRTSP_RtpTransport_pkt_count</a> (<a class="el" href="rtp__transport_8h.html#a8c72a0e77af47185c469b8ddeec20f3d">SmolRTSP_RtpTransport</a> *self) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:ae2921602dc9e16eadc20ecc3c449ab87"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the total number of RTP data packets successfully transmitted by <code>self</code> since it was created.  <br /></td></tr>
+<tr class="separator:ae2921602dc9e16eadc20ecc3c449ab87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a707696e2fa7458600a92d4d2d53f1a6d" id="r_a707696e2fa7458600a92d4d2d53f1a6d"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rtp__transport_8h.html#a707696e2fa7458600a92d4d2d53f1a6d">SmolRTSP_RtpTransport_octet_count</a> (<a class="el" href="rtp__transport_8h.html#a8c72a0e77af47185c469b8ddeec20f3d">SmolRTSP_RtpTransport</a> *self) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:a707696e2fa7458600a92d4d2d53f1a6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the total number of payload octets (i.e., not including the RTP header or padding) successfully transmitted by <code>self</code> since it was created.  <br /></td></tr>
+<tr class="separator:a707696e2fa7458600a92d4d2d53f1a6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>An RTP data transport. </p>
@@ -319,6 +328,50 @@ The <code>rand</code> PRNG must be set up via <code>srand</code>. </dd></dl>
 
 </div>
 </div>
+<a id="a707696e2fa7458600a92d4d2d53f1a6d" name="a707696e2fa7458600a92d4d2d53f1a6d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a707696e2fa7458600a92d4d2d53f1a6d">&#9670;&#160;</a></span>SmolRTSP_RtpTransport_octet_count()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t SmolRTSP_RtpTransport_octet_count </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="rtp__transport_8h.html#a8c72a0e77af47185c469b8ddeec20f3d">SmolRTSP_RtpTransport</a> *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the total number of payload octets (i.e., not including the RTP header or padding) successfully transmitted by <code>self</code> since it was created. </p>
+<p>Maps to the "sender's octet count" field of an RTCP Sender Report (RFC 3550 §6.4.1).</p>
+<dl class="section pre"><dt>Precondition</dt><dd><code>self != NULL</code> </dd></dl>
+
+</div>
+</div>
+<a id="ae2921602dc9e16eadc20ecc3c449ab87" name="ae2921602dc9e16eadc20ecc3c449ab87"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae2921602dc9e16eadc20ecc3c449ab87">&#9670;&#160;</a></span>SmolRTSP_RtpTransport_pkt_count()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t SmolRTSP_RtpTransport_pkt_count </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="rtp__transport_8h.html#a8c72a0e77af47185c469b8ddeec20f3d">SmolRTSP_RtpTransport</a> *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the total number of RTP data packets successfully transmitted by <code>self</code> since it was created. </p>
+<p>Maps to the "sender's packet count" field of an RTCP Sender Report (RFC 3550 §6.4.1).</p>
+<dl class="section pre"><dt>Precondition</dt><dd><code>self != NULL</code> </dd></dl>
+
+</div>
+</div>
 <a id="aaa9b54fd3bacd147c6b3dde76e1a1108" name="aaa9b54fd3bacd147c6b3dde76e1a1108"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aaa9b54fd3bacd147c6b3dde76e1a1108">&#9670;&#160;</a></span>SmolRTSP_RtpTransport_send_packet()</h2>
 
@@ -376,6 +429,28 @@ The <code>rand</code> PRNG must be set up via <code>srand</code>. </dd></dl>
 </dl>
 <dl class="section pre"><dt>Precondition</dt><dd><code>self != NULL</code></dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>-1 if an I/O error occurred and sets <code>errno</code> appropriately, 0 on success. </dd></dl>
+
+</div>
+</div>
+<a id="ae0bfba008fba50681d401374443ecb7c" name="ae0bfba008fba50681d401374443ecb7c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0bfba008fba50681d401374443ecb7c">&#9670;&#160;</a></span>SmolRTSP_RtpTransport_ssrc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t SmolRTSP_RtpTransport_ssrc </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="rtp__transport_8h.html#a8c72a0e77af47185c469b8ddeec20f3d">SmolRTSP_RtpTransport</a> *&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the Synchronization Source (SSRC) identifier used by <code>self</code> on every RTP packet it sends. </p>
+<p>Useful when constructing an RTCP Sender Report (see <a class="el" href="structSmolRTSP__RtcpSr.html" title="An RTCP Sender Report (SR) header.">SmolRTSP_RtcpSr</a> in <code>&lt;<a class="el" href="rtcp_8h.html" title="RFC 3550 §6.4-compliant RTCP Sender Report (SR) implementation.">smolrtsp/types/rtcp.h</a>&gt;</code>) that needs to carry the matching SSRC so receivers can pair the SR with the RTP stream per RFC 3550 §6.4.1.</p>
+<dl class="section pre"><dt>Precondition</dt><dd><code>self != NULL</code> </dd></dl>
 
 </div>
 </div>
