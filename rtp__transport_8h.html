@@ -186,6 +186,9 @@ Functions</h2></td></tr>
 <tr class="memitem:af7fd8b6cb0f09f21ce28edb85a9755b8" id="r_af7fd8b6cb0f09f21ce28edb85a9755b8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="rtp__transport_8h.html#a8c72a0e77af47185c469b8ddeec20f3d">SmolRTSP_RtpTransport</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rtp__transport_8h.html#af7fd8b6cb0f09f21ce28edb85a9755b8">SmolRTSP_RtpTransport_new</a> (SmolRTSP_Transport t, uint8_t payload_ty, uint32_t clock_rate) SMOLRTSP_PRIV_MUST_USE</td></tr>
 <tr class="memdesc:af7fd8b6cb0f09f21ce28edb85a9755b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new RTP transport from the underlying level-4 protocol <code>t</code>.  <br /></td></tr>
 <tr class="separator:af7fd8b6cb0f09f21ce28edb85a9755b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a950419ae5aa3ddf9a14a6a5086836bc0" id="r_a950419ae5aa3ddf9a14a6a5086836bc0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="rtp__transport_8h.html#a8c72a0e77af47185c469b8ddeec20f3d">SmolRTSP_RtpTransport</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rtp__transport_8h.html#a950419ae5aa3ddf9a14a6a5086836bc0">SmolRTSP_RtpTransport_new_with_ssrc</a> (SmolRTSP_Transport t, uint8_t payload_ty, uint32_t clock_rate, uint32_t ssrc) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:a950419ae5aa3ddf9a14a6a5086836bc0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Like <a class="el" href="rtp__transport_8h.html#af7fd8b6cb0f09f21ce28edb85a9755b8" title="Creates a new RTP transport from the underlying level-4 protocol t.">SmolRTSP_RtpTransport_new</a> but uses an explicit SSRC instead of a randomly generated one.  <br /></td></tr>
+<tr class="separator:a950419ae5aa3ddf9a14a6a5086836bc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaa9b54fd3bacd147c6b3dde76e1a1108" id="r_aaa9b54fd3bacd147c6b3dde76e1a1108"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rtp__transport_8h.html#aaa9b54fd3bacd147c6b3dde76e1a1108">SmolRTSP_RtpTransport_send_packet</a> (<a class="el" href="rtp__transport_8h.html#a8c72a0e77af47185c469b8ddeec20f3d">SmolRTSP_RtpTransport</a> *self, SmolRTSP_RtpTimestamp ts, bool marker, U8Slice99 payload_header, U8Slice99 payload) SMOLRTSP_PRIV_MUST_USE</td></tr>
 <tr class="memdesc:aaa9b54fd3bacd147c6b3dde76e1a1108"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends an RTP packet.  <br /></td></tr>
 <tr class="separator:aaa9b54fd3bacd147c6b3dde76e1a1108"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -325,6 +328,60 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>SmolRTSP_RtpTransport
 <dl class="section pre"><dt>Precondition</dt><dd><code>t.self &amp;&amp; t.vptr</code> </dd>
 <dd>
 The <code>rand</code> PRNG must be set up via <code>srand</code>. </dd></dl>
+
+</div>
+</div>
+<a id="a950419ae5aa3ddf9a14a6a5086836bc0" name="a950419ae5aa3ddf9a14a6a5086836bc0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a950419ae5aa3ddf9a14a6a5086836bc0">&#9670;&#160;</a></span>SmolRTSP_RtpTransport_new_with_ssrc()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="rtp__transport_8h.html#a8c72a0e77af47185c469b8ddeec20f3d">SmolRTSP_RtpTransport</a> * SmolRTSP_RtpTransport_new_with_ssrc </td>
+          <td>(</td>
+          <td class="paramtype">SmolRTSP_Transport&#160;</td>
+          <td class="paramname"><em>t</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>payload_ty</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>clock_rate</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t&#160;</td>
+          <td class="paramname"><em>ssrc</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Like <a class="el" href="rtp__transport_8h.html#af7fd8b6cb0f09f21ce28edb85a9755b8" title="Creates a new RTP transport from the underlying level-4 protocol t.">SmolRTSP_RtpTransport_new</a> but uses an explicit SSRC instead of a randomly generated one. </p>
+<p>Useful when the caller needs the RTP stream's SSRC to match an externally-chosen identifier — e.g. an RTCP Sender Report constructed elsewhere, or a multi-stream pipeline that pins SSRCs by configuration.</p>
+<p>The plain <a class="el" href="rtp__transport_8h.html#af7fd8b6cb0f09f21ce28edb85a9755b8" title="Creates a new RTP transport from the underlying level-4 protocol t.">SmolRTSP_RtpTransport_new</a> is equivalent to calling this with <code>(uint32_t)rand()</code> as the SSRC.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">t</td><td>The level-4 protocol (such as TCP or UDP). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">payload_ty</td><td>The RTP payload type. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">clock_rate</td><td>The RTP clock rate of <code>payload_ty</code> (Hz). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">ssrc</td><td>The SSRC identifier to use for every RTP packet.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section pre"><dt>Precondition</dt><dd><code>t.self &amp;&amp; t.vptr</code> </dd></dl>
 
 </div>
 </div>

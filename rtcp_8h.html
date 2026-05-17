@@ -128,6 +128,15 @@ Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structSmolRTSP__RtcpSr.html">SmolRTSP_RtcpSr</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An RTCP Sender Report (SR) header.  <a href="structSmolRTSP__RtcpSr.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structSmolRTSP__RtcpRr.html">SmolRTSP_RtcpRr</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An RTCP Receiver Report (RR) header (RFC 3550 §6.4.2).  <a href="structSmolRTSP__RtcpRr.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structSmolRTSP__RtcpSdesCname.html">SmolRTSP_RtcpSdesCname</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An RTCP SDES packet with a single chunk containing a single CNAME item (RFC 3550 §6.5).  <a href="structSmolRTSP__RtcpSdesCname.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structSmolRTSP__RtcpBye.html">SmolRTSP_RtcpBye</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An RTCP BYE packet for a single SSRC, optionally carrying a reason text (RFC 3550 §6.6).  <a href="structSmolRTSP__RtcpBye.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
@@ -135,9 +144,29 @@ Macros</h2></td></tr>
 #define&#160;</td><td class="memItemRight" valign="bottom"><b>SMOLRTSP_RTCP_PT_SR</b>&#160;&#160;&#160;200</td></tr>
 <tr class="memdesc:ae20b7d09079c1d4ae452654fe7ea0958"><td class="mdescLeft">&#160;</td><td class="mdescRight">RTCP packet type for Sender Report (RFC 3550 §6.4.1). <br /></td></tr>
 <tr class="separator:ae20b7d09079c1d4ae452654fe7ea0958"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1702887cdd681348571ff6349fa901a5" id="r_a1702887cdd681348571ff6349fa901a5"><td class="memItemLeft" align="right" valign="top"><a id="a1702887cdd681348571ff6349fa901a5" name="a1702887cdd681348571ff6349fa901a5"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SMOLRTSP_RTCP_PT_RR</b>&#160;&#160;&#160;201</td></tr>
+<tr class="memdesc:a1702887cdd681348571ff6349fa901a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">RTCP packet type for Receiver Report (RFC 3550 §6.4.2). <br /></td></tr>
+<tr class="separator:a1702887cdd681348571ff6349fa901a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f95885b9c9a91ae8b8474b762e75d18" id="r_a7f95885b9c9a91ae8b8474b762e75d18"><td class="memItemLeft" align="right" valign="top"><a id="a7f95885b9c9a91ae8b8474b762e75d18" name="a7f95885b9c9a91ae8b8474b762e75d18"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SMOLRTSP_RTCP_PT_SDES</b>&#160;&#160;&#160;202</td></tr>
+<tr class="memdesc:a7f95885b9c9a91ae8b8474b762e75d18"><td class="mdescLeft">&#160;</td><td class="mdescRight">RTCP packet type for Source Description (RFC 3550 §6.5). <br /></td></tr>
+<tr class="separator:a7f95885b9c9a91ae8b8474b762e75d18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b216b493a76cb853951d5d50d365cde" id="r_a0b216b493a76cb853951d5d50d365cde"><td class="memItemLeft" align="right" valign="top"><a id="a0b216b493a76cb853951d5d50d365cde" name="a0b216b493a76cb853951d5d50d365cde"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SMOLRTSP_RTCP_PT_BYE</b>&#160;&#160;&#160;203</td></tr>
+<tr class="memdesc:a0b216b493a76cb853951d5d50d365cde"><td class="mdescLeft">&#160;</td><td class="mdescRight">RTCP packet type for Goodbye (RFC 3550 §6.6). <br /></td></tr>
+<tr class="separator:a0b216b493a76cb853951d5d50d365cde"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a8e7778b2064af93e4a783d26a8bf27" id="r_a4a8e7778b2064af93e4a783d26a8bf27"><td class="memItemLeft" align="right" valign="top"><a id="a4a8e7778b2064af93e4a783d26a8bf27" name="a4a8e7778b2064af93e4a783d26a8bf27"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SMOLRTSP_RTCP_SDES_CNAME</b>&#160;&#160;&#160;1</td></tr>
+<tr class="memdesc:a4a8e7778b2064af93e4a783d26a8bf27"><td class="mdescLeft">&#160;</td><td class="mdescRight">SDES item type for canonical end-point identifier (CNAME) (RFC 3550 §6.5.1). <br /></td></tr>
+<tr class="separator:a4a8e7778b2064af93e4a783d26a8bf27"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aada11a78c67b51dc78319f2834878052" id="r_aada11a78c67b51dc78319f2834878052"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rtcp_8h.html#aada11a78c67b51dc78319f2834878052">SMOLRTSP_RTCP_SR_SIZE_BASE</a>&#160;&#160;&#160;28u</td></tr>
 <tr class="memdesc:aada11a78c67b51dc78319f2834878052"><td class="mdescLeft">&#160;</td><td class="mdescRight">The fixed wire size of an RTCP Sender Report with no reception report blocks (RC = 0).  <br /></td></tr>
 <tr class="separator:aada11a78c67b51dc78319f2834878052"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab43a5f0bff121a17ee76b2a74687f0fd" id="r_ab43a5f0bff121a17ee76b2a74687f0fd"><td class="memItemLeft" align="right" valign="top"><a id="ab43a5f0bff121a17ee76b2a74687f0fd" name="ab43a5f0bff121a17ee76b2a74687f0fd"></a>
+#define&#160;</td><td class="memItemRight" valign="bottom"><b>SMOLRTSP_RTCP_RR_SIZE_BASE</b>&#160;&#160;&#160;8u</td></tr>
+<tr class="memdesc:ab43a5f0bff121a17ee76b2a74687f0fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">The fixed wire size of an RTCP Receiver Report with no reception report blocks (RC = 0): a 4-byte common header plus the 4-byte SSRC of the packet sender = 8 bytes. <br /></td></tr>
+<tr class="separator:ab43a5f0bff121a17ee76b2a74687f0fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
@@ -147,6 +176,24 @@ Functions</h2></td></tr>
 <tr class="memitem:a354a5d402539b46b3a8ae9305cc7935f" id="r_a354a5d402539b46b3a8ae9305cc7935f"><td class="memItemLeft" align="right" valign="top">uint8_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rtcp_8h.html#a354a5d402539b46b3a8ae9305cc7935f">SmolRTSP_RtcpSr_serialize</a> (<a class="el" href="structSmolRTSP__RtcpSr.html">SmolRTSP_RtcpSr</a> self, uint8_t buffer[restrict]) SMOLRTSP_PRIV_MUST_USE</td></tr>
 <tr class="memdesc:a354a5d402539b46b3a8ae9305cc7935f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes <code>self</code> to <code>buffer</code>.  <br /></td></tr>
 <tr class="separator:a354a5d402539b46b3a8ae9305cc7935f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac69cd24f2f91d86ad5d6c6a0c5e9c060" id="r_ac69cd24f2f91d86ad5d6c6a0c5e9c060"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rtcp_8h.html#ac69cd24f2f91d86ad5d6c6a0c5e9c060">SmolRTSP_RtcpRr_size</a> (<a class="el" href="structSmolRTSP__RtcpRr.html">SmolRTSP_RtcpRr</a> self) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:ac69cd24f2f91d86ad5d6c6a0c5e9c060"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the size of the binary <code>self</code>.  <br /></td></tr>
+<tr class="separator:ac69cd24f2f91d86ad5d6c6a0c5e9c060"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a267923d3c55fa5ca5dba3588ad5e951d" id="r_a267923d3c55fa5ca5dba3588ad5e951d"><td class="memItemLeft" align="right" valign="top">uint8_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rtcp_8h.html#a267923d3c55fa5ca5dba3588ad5e951d">SmolRTSP_RtcpRr_serialize</a> (<a class="el" href="structSmolRTSP__RtcpRr.html">SmolRTSP_RtcpRr</a> self, uint8_t buffer[restrict]) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:a267923d3c55fa5ca5dba3588ad5e951d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes <code>self</code> to <code>buffer</code>.  <br /></td></tr>
+<tr class="separator:a267923d3c55fa5ca5dba3588ad5e951d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc2bbbb6f6c95c00a50e5524d70b8e24" id="r_afc2bbbb6f6c95c00a50e5524d70b8e24"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rtcp_8h.html#afc2bbbb6f6c95c00a50e5524d70b8e24">SmolRTSP_RtcpSdesCname_size</a> (<a class="el" href="structSmolRTSP__RtcpSdesCname.html">SmolRTSP_RtcpSdesCname</a> self) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:afc2bbbb6f6c95c00a50e5524d70b8e24"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the size of the binary <code>self</code>.  <br /></td></tr>
+<tr class="separator:afc2bbbb6f6c95c00a50e5524d70b8e24"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45887e4a9a691ee9de2c467bac2d02b0" id="r_a45887e4a9a691ee9de2c467bac2d02b0"><td class="memItemLeft" align="right" valign="top">uint8_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rtcp_8h.html#a45887e4a9a691ee9de2c467bac2d02b0">SmolRTSP_RtcpSdesCname_serialize</a> (<a class="el" href="structSmolRTSP__RtcpSdesCname.html">SmolRTSP_RtcpSdesCname</a> self, uint8_t buffer[restrict]) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:a45887e4a9a691ee9de2c467bac2d02b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes <code>self</code> to <code>buffer</code>.  <br /></td></tr>
+<tr class="separator:a45887e4a9a691ee9de2c467bac2d02b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab240ef8040d14c9c5a37500da7b4cec1" id="r_ab240ef8040d14c9c5a37500da7b4cec1"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rtcp_8h.html#ab240ef8040d14c9c5a37500da7b4cec1">SmolRTSP_RtcpBye_size</a> (<a class="el" href="structSmolRTSP__RtcpBye.html">SmolRTSP_RtcpBye</a> self) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:ab240ef8040d14c9c5a37500da7b4cec1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes the size of the binary <code>self</code>.  <br /></td></tr>
+<tr class="separator:ab240ef8040d14c9c5a37500da7b4cec1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac065693b81e2abdabf7cf42fc3a30f84" id="r_ac065693b81e2abdabf7cf42fc3a30f84"><td class="memItemLeft" align="right" valign="top">uint8_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="rtcp_8h.html#ac065693b81e2abdabf7cf42fc3a30f84">SmolRTSP_RtcpBye_serialize</a> (<a class="el" href="structSmolRTSP__RtcpBye.html">SmolRTSP_RtcpBye</a> self, uint8_t buffer[restrict]) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:ac065693b81e2abdabf7cf42fc3a30f84"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes <code>self</code> to <code>buffer</code>.  <br /></td></tr>
+<tr class="separator:ac065693b81e2abdabf7cf42fc3a30f84"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a href="https://datatracker.ietf.org/doc/html/rfc3550#section-6.4">RFC 3550 §6.4</a>-compliant RTCP Sender Report (SR) implementation. </p>
@@ -171,6 +218,184 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="ac065693b81e2abdabf7cf42fc3a30f84" name="ac065693b81e2abdabf7cf42fc3a30f84"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac065693b81e2abdabf7cf42fc3a30f84">&#9670;&#160;</a></span>SmolRTSP_RtcpBye_serialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t * SmolRTSP_RtcpBye_serialize </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structSmolRTSP__RtcpBye.html">SmolRTSP_RtcpBye</a>&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>buffer</em>[restrict]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Writes <code>self</code> to <code>buffer</code>. </p>
+<dl class="section pre"><dt>Precondition</dt><dd><code>buffer != NULL</code> </dd>
+<dd>
+<code>self.reason == NULL || strlen(self.reason) &lt;= 255</code> </dd></dl>
+
+</div>
+</div>
+<a id="ab240ef8040d14c9c5a37500da7b4cec1" name="ab240ef8040d14c9c5a37500da7b4cec1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab240ef8040d14c9c5a37500da7b4cec1">&#9670;&#160;</a></span>SmolRTSP_RtcpBye_size()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t SmolRTSP_RtcpBye_size </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structSmolRTSP__RtcpBye.html">SmolRTSP_RtcpBye</a>&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Computes the size of the binary <code>self</code>. </p>
+<p>Without a reason: 8 bytes (4 header + 4 SSRC). With a reason: the above plus 1 byte length + N bytes text, zero-padded to a 32-bit boundary.</p>
+<dl class="section pre"><dt>Precondition</dt><dd><code>self.reason == NULL || strlen(self.reason) &lt;= 255</code> </dd></dl>
+
+</div>
+</div>
+<a id="a267923d3c55fa5ca5dba3588ad5e951d" name="a267923d3c55fa5ca5dba3588ad5e951d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a267923d3c55fa5ca5dba3588ad5e951d">&#9670;&#160;</a></span>SmolRTSP_RtcpRr_serialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t * SmolRTSP_RtcpRr_serialize </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structSmolRTSP__RtcpRr.html">SmolRTSP_RtcpRr</a>&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>buffer</em>[restrict]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Writes <code>self</code> to <code>buffer</code>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">self</td><td>The RR packet to write. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">buffer</td><td>Must be at least <code>SmolRTSP_RtcpRr_size(self)</code> bytes.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The pointer to the passed buffer.</dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd><code>buffer != NULL</code> </dd>
+<dd>
+<code>self.rc == 0</code> </dd></dl>
+
+</div>
+</div>
+<a id="ac69cd24f2f91d86ad5d6c6a0c5e9c060" name="ac69cd24f2f91d86ad5d6c6a0c5e9c060"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac69cd24f2f91d86ad5d6c6a0c5e9c060">&#9670;&#160;</a></span>SmolRTSP_RtcpRr_size()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t SmolRTSP_RtcpRr_size </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structSmolRTSP__RtcpRr.html">SmolRTSP_RtcpRr</a>&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Computes the size of the binary <code>self</code>. </p>
+<p>Currently always returns <a class="el" href="rtcp_8h.html#ab43a5f0bff121a17ee76b2a74687f0fd" title="The fixed wire size of an RTCP Receiver Report with no reception report blocks (RC = 0): a 4-byte com...">SMOLRTSP_RTCP_RR_SIZE_BASE</a>. </p>
+
+</div>
+</div>
+<a id="a45887e4a9a691ee9de2c467bac2d02b0" name="a45887e4a9a691ee9de2c467bac2d02b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a45887e4a9a691ee9de2c467bac2d02b0">&#9670;&#160;</a></span>SmolRTSP_RtcpSdesCname_serialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t * SmolRTSP_RtcpSdesCname_serialize </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structSmolRTSP__RtcpSdesCname.html">SmolRTSP_RtcpSdesCname</a>&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>buffer</em>[restrict]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Writes <code>self</code> to <code>buffer</code>. </p>
+<dl class="section pre"><dt>Precondition</dt><dd><code>buffer != NULL</code> </dd>
+<dd>
+<code>self.cname != NULL</code> </dd>
+<dd>
+<code>strlen(self.cname) &lt;= 255</code> </dd></dl>
+
+</div>
+</div>
+<a id="afc2bbbb6f6c95c00a50e5524d70b8e24" name="afc2bbbb6f6c95c00a50e5524d70b8e24"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc2bbbb6f6c95c00a50e5524d70b8e24">&#9670;&#160;</a></span>SmolRTSP_RtcpSdesCname_size()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t SmolRTSP_RtcpSdesCname_size </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structSmolRTSP__RtcpSdesCname.html">SmolRTSP_RtcpSdesCname</a>&#160;</td>
+          <td class="paramname"><em>self</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Computes the size of the binary <code>self</code>. </p>
+<p>Layout: 4-byte common header + 4-byte SSRC + 2-byte CNAME item header</p><ul>
+<li>N bytes of CNAME text + 1-byte item-list terminator, then zero-padded to a 32-bit boundary.</li>
+</ul>
+<dl class="section pre"><dt>Precondition</dt><dd><code>self.cname != NULL</code> </dd>
+<dd>
+<code>strlen(self.cname) &lt;= 255</code> </dd></dl>
+
+</div>
+</div>
 <a id="a354a5d402539b46b3a8ae9305cc7935f" name="a354a5d402539b46b3a8ae9305cc7935f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a354a5d402539b46b3a8ae9305cc7935f">&#9670;&#160;</a></span>SmolRTSP_RtcpSr_serialize()</h2>
 

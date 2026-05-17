@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['rc_0',['rc',['../structSmolRTSP__RtcpSr.html#a3f2f0a04c7e00ddd19d80e4b5db05737',1,'SmolRTSP_RtcpSr']]],
-  ['reason_1',['reason',['../structSmolRTSP__ResponseLine.html#a8c9b163a1c6e57e795ef6bf559e5af15',1,'SmolRTSP_ResponseLine']]],
+  ['rc_0',['rc',['../structSmolRTSP__RtcpSr.html#a3f2f0a04c7e00ddd19d80e4b5db05737',1,'SmolRTSP_RtcpSr::rc'],['../structSmolRTSP__RtcpRr.html#a9e88fd81fd4ae61849bcd61aa2f0e66d',1,'SmolRTSP_RtcpRr::rc']]],
+  ['reason_1',['reason',['../structSmolRTSP__ResponseLine.html#a8c9b163a1c6e57e795ef6bf559e5af15',1,'SmolRTSP_ResponseLine::reason'],['../structSmolRTSP__RtcpBye.html#a7a3cff1c23212bdc68c59029eac08d39',1,'SmolRTSP_RtcpBye::reason']]],
   ['ref_5fidc_2',['ref_idc',['../structSmolRTSP__H264NalHeader.html#ae41578742d05c569244745a33d949677',1,'SmolRTSP_H264NalHeader']]],
   ['rtcp_5fchannel_3',['rtcp_channel',['../structSmolRTSP__ChannelPair.html#a0d10069bb044306ad148257bf7656819',1,'SmolRTSP_ChannelPair']]],
   ['rtcp_5fport_4',['rtcp_port',['../structSmolRTSP__PortPair.html#a83df95bfdd0674434f0ec23b17a46b16',1,'SmolRTSP_PortPair']]],
