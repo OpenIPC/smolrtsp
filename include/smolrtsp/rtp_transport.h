@@ -146,3 +146,20 @@ uint32_t SmolRTSP_RtpTransport_pkt_count(SmolRTSP_RtpTransport *self)
  */
 uint32_t SmolRTSP_RtpTransport_octet_count(SmolRTSP_RtpTransport *self)
     SMOLRTSP_PRIV_MUST_USE;
+
+/**
+ * Returns the RTP timestamp (already in the wire/clock-rate domain) that
+ * was placed in the most recently transmitted RTP packet's header.
+ * Zero if no packet has been transmitted yet.
+ *
+ * Maps to the "RTP timestamp" field of an RTCP Sender Report
+ * (RFC 3550 §6.4.1) — the SR must carry an RTP timestamp in the same
+ * domain as the data packets so a receiver can correlate the SR's
+ * NTP/RTP pair against frames. Using a separately-computed `rtp_ts`
+ * (e.g. "ticks since SETUP") yields wall-clock estimates that drift
+ * by the gap between the two clock origins.
+ *
+ * @pre `self != NULL`
+ */
+uint32_t SmolRTSP_RtpTransport_last_rtp_ts(SmolRTSP_RtpTransport *self)
+    SMOLRTSP_PRIV_MUST_USE;
