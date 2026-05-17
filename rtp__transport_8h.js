@@ -3,6 +3,7 @@ var rtp__transport_8h =
     [ "SmolRTSP_RtpTransport", "rtp__transport_8h.html#a8c72a0e77af47185c469b8ddeec20f3d", null ],
     [ "datatype99", "rtp__transport_8h.html#a437ce4ec35fee41c3933a72500e3ef74", null ],
     [ "declImplExtern99", "rtp__transport_8h.html#adb171408327c92d02faaf24d50193f86", null ],
+    [ "SmolRTSP_RtpTransport_last_rtp_ts", "rtp__transport_8h.html#af0b1ed4741451acc3cd1ecb567918de3", null ],
     [ "SmolRTSP_RtpTransport_new", "rtp__transport_8h.html#af7fd8b6cb0f09f21ce28edb85a9755b8", null ],
     [ "SmolRTSP_RtpTransport_new_with_ssrc", "rtp__transport_8h.html#a950419ae5aa3ddf9a14a6a5086836bc0", null ],
     [ "SmolRTSP_RtpTransport_octet_count", "rtp__transport_8h.html#a707696e2fa7458600a92d4d2d53f1a6d", null ],
