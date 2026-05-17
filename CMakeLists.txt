@@ -49,6 +49,7 @@ set(SMOLRTSP_SOURCES
     include/smolrtsp/types/status_code.h
     include/smolrtsp/types/sdp.h
     include/smolrtsp/types/rtp.h
+    include/smolrtsp/types/rtcp.h
     include/smolrtsp/nal/h264.h
     include/smolrtsp/nal/h265.h
     include/smolrtsp/nal.h
@@ -79,6 +80,7 @@ set(SMOLRTSP_SOURCES
     src/types/status_code.c
     src/types/sdp.c
     src/types/rtp.c
+    src/types/rtcp.c
     src/nal/h264.c
     src/nal/h265.c
     src/nal.c
