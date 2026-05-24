@@ -50,14 +50,22 @@
 #include "media/video.jxs.h"
 #endif
 
+#ifdef ENABLE_AV1
+/* A short AV1 raw-OBU stream (320x240, 10 fps, 5 frames) produced by
+ * `ffmpeg -f lavfi -i smptebars=size=320x240:rate=10 -frames:v 5 \
+ *         -c:v libaom-av1 -cpu-used 8 -b:v 200k -f obu media/video.av1`.
+ * Each TU starts with a Temporal Delimiter OBU per the AV1 spec. */
+#include "media/video.av1.h"
+#endif
+
 // Comment one of these lines if you do not need audio or video.
 #define ENABLE_AUDIO
 #define ENABLE_VIDEO
 
-/* ENABLE_JPEGXS is set from the build system (examples/CMakeLists.txt
- * has an opt-in option). When on, the server advertises a third media
- * stream ("/jpegxs") that emits RFC 9134 JPEG XS RTP packets carrying
- * the codestream baked in from `media/video.jxs.h`. */
+/* ENABLE_JPEGXS / ENABLE_AV1 are set from the build system
+ * (examples/CMakeLists.txt has opt-in options). When set, the server
+ * advertises additional media streams alongside H.264 -- "/jpegxs" for
+ * RFC 9134 JPEG XS and "/av1" for the AOMedia AV1 RTP format. */
 
 #define SERVER_PORT SMOLRTSP_DEFAULT_PORT
 
@@ -75,11 +83,16 @@
 #define JPEGXS_SAMPLE_RATE  90000 // RFC 9134 §4.2: 90 kHz
 #define JPEGXS_FPS          25
 
+#define AV1_PAYLOAD_TYPE 98    // dynamic PT
+#define AV1_SAMPLE_RATE  90000 // AOMedia AV1 RTP §7.2.1: 90 kHz
+#define AV1_FPS          10
+
 #define AUDIO_STREAM_ID  0
 #define VIDEO_STREAM_ID  1
 #define JPEGXS_STREAM_ID 2
+#define AV1_STREAM_ID    3
 
-#define MAX_STREAMS 3
+#define MAX_STREAMS 4
 
 typedef struct {
     uint64_t session_id;
@@ -158,6 +171,34 @@ static SmolRTSP_Droppable play_jpegxs(
     struct event_base *base, struct bufferevent *bev, SmolRTSP_RtpTransport *t,
     struct event **ev, int *streams_playing);
 static void send_jpegxs_packet_cb(evutil_socket_t fd, short events, void *arg);
+#endif
+
+#ifdef ENABLE_AV1
+/* The raw OBU stream gets pre-split into temporal units (TU) at TD OBU
+ * boundaries on first play; the callback then walks the list and loops. */
+#define AV1_MAX_TUS 64
+typedef struct {
+    size_t offset;
+    size_t length;
+} Av1TuRange;
+
+typedef struct {
+    SmolRTSP_Av1Transport *transport;
+    uint32_t timestamp;
+    Av1TuRange tus[AV1_MAX_TUS];
+    size_t tu_count;
+    size_t tu_index;
+    struct event *ev;
+    struct bufferevent *bev;
+    int *streams_playing;
+} Av1Ctx;
+
+static SmolRTSP_Droppable play_av1(
+    struct event_base *base, struct bufferevent *bev, SmolRTSP_RtpTransport *t,
+    struct event **ev, int *streams_playing);
+static void send_av1_packet_cb(evutil_socket_t fd, short events, void *arg);
+static size_t split_av1_temporal_units(
+    const uint8_t *stream, size_t stream_len, Av1TuRange *tus, size_t max_tus);
 #endif
 
 int main(void) {
@@ -336,6 +377,16 @@ Client_describe(VSelf, SmolRTSP_Context *ctx, const SmolRTSP_Request *req) {
             JPEGXS_PAYLOAD_TYPE),
         (SMOLRTSP_SDP_ATTR, "framerate:%d", JPEGXS_FPS));
 #endif
+
+#ifdef ENABLE_AV1
+    SMOLRTSP_SDP_DESCRIBE(
+        ret, sdp,
+        (SMOLRTSP_SDP_MEDIA, "video 0 RTP/AVP %d", AV1_PAYLOAD_TYPE),
+        (SMOLRTSP_SDP_ATTR, "control:av1"),
+        (SMOLRTSP_SDP_ATTR, "rtpmap:%d AV1/%d", AV1_PAYLOAD_TYPE, AV1_SAMPLE_RATE),
+        (SMOLRTSP_SDP_ATTR, "fmtp:%d profile=0;level-idx=5;tier=0", AV1_PAYLOAD_TYPE),
+        (SMOLRTSP_SDP_ATTR, "framerate:%d", AV1_FPS));
+#endif
     // clang-format on
 
     assert(ret > 0);
@@ -364,6 +415,12 @@ Client_setup(VSelf, SmolRTSP_Context *ctx, const SmolRTSP_Request *req) {
     else if (CharSlice99_primitive_ends_with(
                  req->start_line.uri, CharSlice99_from_str("/jpegxs"))) {
         stream_id = JPEGXS_STREAM_ID;
+    }
+#endif
+#ifdef ENABLE_AV1
+    else if (CharSlice99_primitive_ends_with(
+                 req->start_line.uri, CharSlice99_from_str("/av1"))) {
+        stream_id = AV1_STREAM_ID;
     }
 #endif
     else {
@@ -396,6 +453,12 @@ Client_setup(VSelf, SmolRTSP_Context *ctx, const SmolRTSP_Request *req) {
     else if (JPEGXS_STREAM_ID == stream_id) {
         stream->transport = SmolRTSP_RtpTransport_new(
             transport, JPEGXS_PAYLOAD_TYPE, JPEGXS_SAMPLE_RATE);
+    }
+#endif
+#ifdef ENABLE_AV1
+    else if (AV1_STREAM_ID == stream_id) {
+        stream->transport = SmolRTSP_RtpTransport_new(
+            transport, AV1_PAYLOAD_TYPE, AV1_SAMPLE_RATE);
     }
 #endif
     else {
@@ -433,6 +496,13 @@ Client_play(VSelf, SmolRTSP_Context *ctx, const SmolRTSP_Request *req) {
 #ifdef ENABLE_JPEGXS
             else if (JPEGXS_STREAM_ID == i) {
                 self->streams[i].ctx = play_jpegxs(
+                    self->base, self->bev, self->streams[i].transport,
+                    &self->streams[i].ev, &self->streams_playing);
+            }
+#endif
+#ifdef ENABLE_AV1
+            else if (AV1_STREAM_ID == i) {
+                self->streams[i].ctx = play_av1(
                     self->base, self->bev, self->streams[i].transport,
                     &self->streams[i].ev, &self->streams_playing);
             }
@@ -852,5 +922,144 @@ send_jpegxs_packet_cb(evutil_socket_t fd, short events, void *arg) {
                 ___media_video_jxs, ___media_video_jxs_len)) == -1) {
         perror("Failed to send RTP/JPEGXS");
     }
+}
+#endif
+
+#ifdef ENABLE_AV1
+static void Av1Ctx_drop(VSelf) {
+    VSELF(Av1Ctx);
+
+    event_free(self->ev);
+    VTABLE(SmolRTSP_Av1Transport, SmolRTSP_Droppable).drop(self->transport);
+    free(self);
+}
+
+impl(SmolRTSP_Droppable, Av1Ctx);
+
+/* Walk the raw OBU stream and identify temporal unit boundaries by
+ * locating Temporal Delimiter OBUs (type 2). Each TU runs from one TD
+ * (inclusive) to the next (exclusive). Returns the count of TUs found. */
+static size_t split_av1_temporal_units(
+    const uint8_t *stream, size_t stream_len, Av1TuRange *tus,
+    size_t max_tus) {
+    size_t pos = 0;
+    size_t tu_start = (size_t)-1;
+    size_t n = 0;
+
+    while (pos < stream_len) {
+        const uint8_t hdr = stream[pos];
+        const uint8_t obu_type = (uint8_t)((hdr >> 3) & 0x0Fu);
+        const bool has_ext = ((hdr >> 2) & 0x01u) != 0;
+        const bool has_size = ((hdr >> 1) & 0x01u) != 0;
+
+        size_t cur = pos + 1;
+        if (has_ext) {
+            if (cur >= stream_len) {
+                break;
+            }
+            cur++;
+        }
+
+        uint64_t payload_len = 0;
+        if (has_size) {
+            uint64_t v = 0;
+            size_t shift = 0;
+            size_t i = 0;
+            for (; i < 10 && cur + i < stream_len; i++) {
+                const uint8_t byte = stream[cur + i];
+                v |= (uint64_t)(byte & 0x7Fu) << shift;
+                if ((byte & 0x80u) == 0) {
+                    i++;
+                    break;
+                }
+                shift += 7;
+            }
+            payload_len = v;
+            cur += i;
+        } else {
+            payload_len = stream_len - cur;
+        }
+
+        if (obu_type == SMOLRTSP_AV1_OBU_TEMPORAL_DELIMITER) {
+            if (tu_start != (size_t)-1 && n < max_tus) {
+                tus[n].offset = tu_start;
+                tus[n].length = pos - tu_start;
+                n++;
+            }
+            tu_start = pos;
+        }
+
+        pos = cur + (size_t)payload_len;
+    }
+
+    /* Close the last TU (from the final TD to end-of-stream). */
+    if (tu_start != (size_t)-1 && n < max_tus) {
+        tus[n].offset = tu_start;
+        tus[n].length = stream_len - tu_start;
+        n++;
+    }
+
+    return n;
+}
+
+static SmolRTSP_Droppable play_av1(
+    struct event_base *base, struct bufferevent *bev, SmolRTSP_RtpTransport *t,
+    struct event **ev, int *streams_playing) {
+    Av1Ctx *ctx = malloc(sizeof *ctx);
+    assert(ctx);
+    *ctx = (Av1Ctx){
+        .transport = SmolRTSP_Av1Transport_new(t),
+        .timestamp = 0,
+        .tu_count = 0,
+        .tu_index = 0,
+        .ev = NULL,
+        .bev = bev,
+        .streams_playing = streams_playing,
+    };
+
+    ctx->tu_count = split_av1_temporal_units(
+        ___media_video_av1, ___media_video_av1_len, ctx->tus, AV1_MAX_TUS);
+    if (ctx->tu_count == 0) {
+        fputs("AV1: no temporal units found in baked-in stream.\n", stderr);
+        abort();
+    }
+
+    ctx->ev = event_new(
+        base, -1, EV_PERSIST | EV_TIMEOUT, send_av1_packet_cb, (void *)ctx);
+    assert(ctx->ev);
+
+    event_add(
+        ctx->ev, &(const struct timeval){
+                     .tv_sec = 0,
+                     .tv_usec = 1e6 / AV1_FPS,
+                 });
+    *ev = ctx->ev;
+    (*streams_playing)++;
+
+    return DYN(Av1Ctx, SmolRTSP_Droppable, ctx);
+}
+
+static void send_av1_packet_cb(evutil_socket_t fd, short events, void *arg) {
+    (void)fd;
+    (void)events;
+
+    Av1Ctx *ctx = arg;
+
+    const Av1TuRange *tu = &ctx->tus[ctx->tu_index];
+    /* First TU of each loop iteration starts a (re)new CVS so a
+     * just-joined receiver can tune in. */
+    const bool is_new_cvs = (ctx->tu_index == 0);
+
+    ctx->timestamp += AV1_SAMPLE_RATE / AV1_FPS;
+
+    if (SmolRTSP_Av1Transport_send_temporal_unit(
+            ctx->transport, SmolRTSP_RtpTimestamp_Raw(ctx->timestamp),
+            U8Slice99_new(
+                ___media_video_av1 + tu->offset, tu->length),
+            is_new_cvs) == -1) {
+        perror("Failed to send RTP/AV1");
+    }
+
+    ctx->tu_index = (ctx->tu_index + 1) % ctx->tu_count;
 }
 #endif
