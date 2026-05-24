@@ -250,10 +250,14 @@ static bool send_vvc_nalu(VvcCtx *ctx);
 int main(void) {
     srand(time(NULL));
 
-    struct event_base *base;
+    int rc = EXIT_FAILURE;
+    struct event_base *base = NULL;
+    struct evconnlistener *listener = NULL;
+    struct event *sigint_handler = NULL;
+
     if ((base = event_base_new()) == NULL) {
-        fputs("event_base_new failed.\n", stderr);
-        return EXIT_FAILURE;
+        perror("event_base_new");
+        goto out;
     }
 
     struct sockaddr_in sin = {
@@ -261,37 +265,51 @@ int main(void) {
         .sin_port = htons(SERVER_PORT),
     };
 
-    struct evconnlistener *listener;
     if ((listener = evconnlistener_new_bind(
              base, listener_cb, (void *)base,
              LEV_OPT_REUSEABLE | LEV_OPT_CLOSE_ON_FREE, -1,
              (struct sockaddr *)&sin, sizeof sin)) == NULL) {
-        fputs("evconnlistener_new_bind failed.\n", stderr);
-        return EXIT_FAILURE;
+        const int bind_errno = errno;
+        perror("evconnlistener_new_bind");
+        if (bind_errno == EACCES) {
+            fprintf(
+                stderr,
+                "Hint: port %d is privileged; rerun with sudo, "
+                "grant CAP_NET_BIND_SERVICE, or change SERVER_PORT.\n",
+                SERVER_PORT);
+        }
+        goto out;
     }
 
-    struct event *sigint_handler;
     if ((sigint_handler =
              evsignal_new(base, SIGINT, on_sigint_cb, (void *)base)) == NULL) {
-        fputs("evsignal_new failed.\n", stderr);
-        return EXIT_FAILURE;
+        perror("evsignal_new");
+        goto out;
     }
 
     if (event_add(sigint_handler, NULL) < 0) {
-        fputs("event_add failed.\n", stderr);
-        return EXIT_FAILURE;
+        perror("event_add");
+        goto out;
     }
 
     printf("Server started on port %d.\n", SERVER_PORT);
 
     event_base_dispatch(base);
 
-    evconnlistener_free(listener);
-    event_free(sigint_handler);
-    event_base_free(base);
-
     puts("Done.");
-    return EXIT_SUCCESS;
+    rc = EXIT_SUCCESS;
+
+out:
+    if (sigint_handler != NULL) {
+        event_free(sigint_handler);
+    }
+    if (listener != NULL) {
+        evconnlistener_free(listener);
+    }
+    if (base != NULL) {
+        event_base_free(base);
+    }
+    return rc;
 }
 
 static void listener_cb(
