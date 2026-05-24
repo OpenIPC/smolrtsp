@@ -84,8 +84,7 @@ SmolRTSP_RtcpRr_serialize(SmolRTSP_RtcpRr self, uint8_t buffer[restrict]) {
  * zero-padded so the total packet length is a multiple of 4. */
 size_t SmolRTSP_RtcpSdesCname_size(SmolRTSP_RtcpSdesCname self) {
     assert(self.cname);
-    const size_t cname_len = strlen(self.cname);
-    assert(cname_len <= 255);
+    const size_t cname_len = strnlen(self.cname, 255);
     /* 4 header + 4 ssrc + 2 (CNAME type+len) + cname_len text + 1 terminator */
     const size_t raw = 4 + 4 + 2 + cname_len + 1;
     return (raw + 3u) & ~(size_t)3u;
@@ -96,8 +95,7 @@ uint8_t *SmolRTSP_RtcpSdesCname_serialize(
     assert(buffer);
     assert(self.cname);
 
-    const size_t cname_len = strlen(self.cname);
-    assert(cname_len <= 255);
+    const size_t cname_len = strnlen(self.cname, 255);
     const size_t total = SmolRTSP_RtcpSdesCname_size(self);
     uint8_t *const start = buffer;
 
@@ -129,8 +127,7 @@ size_t SmolRTSP_RtcpBye_size(SmolRTSP_RtcpBye self) {
     if (self.reason == NULL || self.reason[0] == '\0') {
         return 8;
     }
-    const size_t r_len = strlen(self.reason);
-    assert(r_len <= 255);
+    const size_t r_len = strnlen(self.reason, 255);
     const size_t raw = 4 + 4 + 1 + r_len;
     return (raw + 3u) & ~(size_t)3u;
 }
@@ -150,8 +147,7 @@ SmolRTSP_RtcpBye_serialize(SmolRTSP_RtcpBye self, uint8_t buffer[restrict]) {
     buffer = SLICE99_APPEND(buffer, self.ssrc);
 
     if (self.reason != NULL && self.reason[0] != '\0') {
-        const size_t r_len = strlen(self.reason);
-        assert(r_len <= 255);
+        const size_t r_len = strnlen(self.reason, 255);
         *buffer++ = (uint8_t)r_len;
         memcpy(buffer, self.reason, r_len);
         buffer += r_len;
