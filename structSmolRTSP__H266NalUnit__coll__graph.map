@@ -1,0 +1,5 @@
+<map id="SmolRTSP_H266NalUnit" name="SmolRTSP_H266NalUnit">
+<area shape="rect" id="Node000001" title="An H.266 NAL unit." alt="" coords="15,93,193,119"/>
+<area shape="rect" id="Node000002" href="$structSmolRTSP__H266NalHeader.html" title="An H.266 NAL header (RFC 9328 §1.1.4 / VVC spec §7.3.1.2)." alt="" coords="5,5,203,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="107,45,107,93,101,93,101,45"/>
+</map>

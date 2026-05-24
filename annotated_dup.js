@@ -7,6 +7,8 @@ var annotated_dup =
     [ "SmolRTSP_H264NalUnit", "structSmolRTSP__H264NalUnit.html", "structSmolRTSP__H264NalUnit" ],
     [ "SmolRTSP_H265NalHeader", "structSmolRTSP__H265NalHeader.html", "structSmolRTSP__H265NalHeader" ],
     [ "SmolRTSP_H265NalUnit", "structSmolRTSP__H265NalUnit.html", "structSmolRTSP__H265NalUnit" ],
+    [ "SmolRTSP_H266NalHeader", "structSmolRTSP__H266NalHeader.html", "structSmolRTSP__H266NalHeader" ],
+    [ "SmolRTSP_H266NalUnit", "structSmolRTSP__H266NalUnit.html", "structSmolRTSP__H266NalUnit" ],
     [ "SmolRTSP_Header", "structSmolRTSP__Header.html", "structSmolRTSP__Header" ],
     [ "SmolRTSP_HeaderMap", "structSmolRTSP__HeaderMap.html", "structSmolRTSP__HeaderMap" ],
     [ "SmolRTSP_JpegXsPayloadHeader", "structSmolRTSP__JpegXsPayloadHeader.html", "structSmolRTSP__JpegXsPayloadHeader" ],

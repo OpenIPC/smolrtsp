@@ -102,6 +102,7 @@ $(document).ready(function(){initNavTree('nal_8h.html',''); initResizable(); });
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;<a class="el" href="h264_8h_source.html">smolrtsp/nal/h264.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="h265_8h_source.html">smolrtsp/nal/h265.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="h266_8h_source.html">smolrtsp/nal/h266.h</a>&gt;</code><br />
 <code>#include &lt;stdbool.h&gt;</code><br />
 <code>#include &lt;stdint.h&gt;</code><br />
 <code>#include &lt;datatype99.h&gt;</code><br />
@@ -112,28 +113,34 @@ Include dependency graph for nal.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="nal_8h__incl.png" border="0" usemap="#ainclude_2smolrtsp_2nal_8h" alt=""/></div>
 <map name="ainclude_2smolrtsp_2nal_8h" id="ainclude_2smolrtsp_2nal_8h">
-<area shape="rect" title="A generic NAL (Network Abstraction Layer) representation." alt="" coords="231,5,398,31"/>
-<area shape="rect" href="h264_8h.html" title="H.264 NAL representation." alt="" coords="239,79,390,104"/>
-<area shape="poly" title=" " alt="" coords="317,31,317,65,312,65,312,31"/>
-<area shape="rect" title=" " alt="" coords="5,159,88,185"/>
-<area shape="poly" title=" " alt="" coords="232,29,175,36,119,47,72,62,55,71,43,80,36,95,34,112,40,145,34,146,28,112,31,93,39,77,52,66,70,57,118,42,174,31,231,23"/>
-<area shape="rect" title=" " alt="" coords="433,159,503,185"/>
-<area shape="poly" title=" " alt="" coords="348,28,387,48,425,77,448,111,463,145,458,147,444,113,421,81,384,52,345,33"/>
-<area shape="rect" title=" " alt="" coords="112,159,192,185"/>
-<area shape="poly" title=" " alt="" coords="232,30,125,48,81,62,65,71,54,80,49,90,49,100,60,119,83,136,111,151,108,156,80,141,56,122,43,101,44,89,50,77,62,67,79,58,124,43,231,24"/>
-<area shape="rect" title=" " alt="" coords="230,152,399,192"/>
-<area shape="poly" title=" " alt="" coords="346,29,379,48,393,61,405,78,409,98,402,116,387,133,368,147,365,143,383,129,397,114,404,97,400,80,389,65,375,52,344,33"/>
-<area shape="rect" href="h265_8h.html" title="H.265 NAL representation." alt="" coords="65,79,215,104"/>
-<area shape="poly" title=" " alt="" coords="288,33,182,76,180,71,286,28"/>
-<area shape="rect" title=" " alt="" coords="517,79,625,104"/>
-<area shape="poly" title=" " alt="" coords="357,28,517,72,516,78,355,33"/>
-<area shape="poly" title=" " alt="" coords="271,107,101,155,92,157,90,152,99,149,269,102"/>
-<area shape="poly" title=" " alt="" coords="339,102,434,151,432,155,336,107"/>
-<area shape="poly" title=" " alt="" coords="292,106,189,156,187,151,290,102"/>
-<area shape="poly" title=" " alt="" coords="317,104,317,138,312,138,312,104"/>
-<area shape="poly" title=" " alt="" coords="128,106,73,152,69,148,125,102"/>
-<area shape="poly" title=" " alt="" coords="144,104,151,146,146,146,139,105"/>
-<area shape="poly" title=" " alt="" coords="166,102,262,144,259,149,164,106"/>
+<area shape="rect" title="A generic NAL (Network Abstraction Layer) representation." alt="" coords="330,5,497,31"/>
+<area shape="rect" href="h264_8h.html" title="H.264 NAL representation." alt="" coords="252,79,402,104"/>
+<area shape="poly" title=" " alt="" coords="402,33,353,72,350,68,398,29"/>
+<area shape="rect" title=" " alt="" coords="63,159,146,185"/>
+<area shape="poly" title=" " alt="" coords="330,22,242,26,147,35,65,53,35,65,14,80,9,90,9,99,19,118,41,136,67,151,64,156,38,140,15,121,3,100,4,88,10,77,32,61,64,47,147,30,242,20,330,17"/>
+<area shape="rect" title=" " alt="" coords="472,159,542,185"/>
+<area shape="poly" title=" " alt="" coords="498,20,530,26,561,37,590,54,613,77,619,89,619,102,606,123,581,142,552,156,550,152,578,137,602,120,614,100,614,91,609,80,587,58,559,42,528,31,497,25"/>
+<area shape="rect" title=" " alt="" coords="174,159,254,185"/>
+<area shape="poly" title=" " alt="" coords="331,33,283,51,260,64,241,80,231,95,224,112,217,145,212,144,219,110,226,92,237,77,257,59,280,46,330,28"/>
+<area shape="rect" title=" " alt="" coords="278,152,448,192"/>
+<area shape="poly" title=" " alt="" coords="498,28,542,39,578,54,591,64,599,76,599,90,592,106,575,116,543,128,458,151,456,146,541,123,573,111,588,102,594,89,594,78,587,68,576,59,540,44,497,33"/>
+<area shape="rect" href="h265_8h.html" title="H.265 NAL representation." alt="" coords="25,79,176,104"/>
+<area shape="poly" title=" " alt="" coords="364,33,165,78,164,73,363,28"/>
+<area shape="rect" href="h266_8h.html" title="H.266 / VVC NAL representation." alt="" coords="426,79,577,104"/>
+<area shape="poly" title=" " alt="" coords="430,29,478,68,475,72,426,33"/>
+<area shape="rect" title=" " alt="" coords="704,79,812,104"/>
+<area shape="poly" title=" " alt="" coords="470,28,690,73,689,79,469,33"/>
+<area shape="poly" title=" " alt="" coords="296,107,150,157,149,152,294,101"/>
+<area shape="poly" title=" " alt="" coords="354,102,469,151,467,156,352,106"/>
+<area shape="poly" title=" " alt="" coords="312,106,243,154,240,149,309,102"/>
+<area shape="poly" title=" " alt="" coords="335,103,351,138,346,141,330,105"/>
+<area shape="poly" title=" " alt="" coords="104,104,106,145,101,146,98,104"/>
+<area shape="poly" title=" " alt="" coords="119,102,187,149,184,154,116,106"/>
+<area shape="poly" title=" " alt="" coords="139,101,287,145,286,151,138,107"/>
+<area shape="poly" title=" " alt="" coords="427,105,302,125,162,155,150,158,149,153,161,149,301,120,426,100"/>
+<area shape="poly" title=" " alt="" coords="505,104,508,145,503,146,500,104"/>
+<area shape="poly" title=" " alt="" coords="451,107,364,128,267,155,257,157,256,152,265,149,363,122,450,101"/>
+<area shape="poly" title=" " alt="" coords="483,107,410,148,407,143,480,102"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -155,7 +162,7 @@ This graph shows which files directly or indirectly include this file:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structSmolRTSP__NalUnit.html">SmolRTSP_NalUnit</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A generic NAL unit (either H.264 or H.265).  <a href="structSmolRTSP__NalUnit.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A generic NAL unit (H.264, H.265, or H.266 / VVC).  <a href="structSmolRTSP__NalUnit.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
@@ -166,9 +173,9 @@ Typedefs</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:af7758ff65ddd510dc4dc87339ad171a5" id="r_af7758ff65ddd510dc4dc87339ad171a5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_8h.html#af7758ff65ddd510dc4dc87339ad171a5">datatype99</a> (SmolRTSP_NalHeader,(SmolRTSP_NalHeader_H264, <a class="el" href="structSmolRTSP__H264NalHeader.html">SmolRTSP_H264NalHeader</a>),(SmolRTSP_NalHeader_H265, <a class="el" href="structSmolRTSP__H265NalHeader.html">SmolRTSP_H265NalHeader</a>))</td></tr>
-<tr class="memdesc:af7758ff65ddd510dc4dc87339ad171a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">A generic NAL header (either H.264 or H.265).  <br /></td></tr>
-<tr class="separator:af7758ff65ddd510dc4dc87339ad171a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9bb45125d596f1679f24bee38e643e56" id="r_a9bb45125d596f1679f24bee38e643e56"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="nal_8h.html#a9bb45125d596f1679f24bee38e643e56">datatype99</a> (SmolRTSP_NalHeader,(SmolRTSP_NalHeader_H264, <a class="el" href="structSmolRTSP__H264NalHeader.html">SmolRTSP_H264NalHeader</a>),(SmolRTSP_NalHeader_H265, <a class="el" href="structSmolRTSP__H265NalHeader.html">SmolRTSP_H265NalHeader</a>),(SmolRTSP_NalHeader_H266, <a class="el" href="structSmolRTSP__H266NalHeader.html">SmolRTSP_H266NalHeader</a>))</td></tr>
+<tr class="memdesc:a9bb45125d596f1679f24bee38e643e56"><td class="mdescLeft">&#160;</td><td class="mdescRight">A generic NAL header (H.264, H.265, or H.266 / VVC).  <br /></td></tr>
+<tr class="separator:a9bb45125d596f1679f24bee38e643e56"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a075b5b1ff934b906c70980a8375309ca" id="r_a075b5b1ff934b906c70980a8375309ca"><td class="memItemLeft" align="right" valign="top"><a id="a075b5b1ff934b906c70980a8375309ca" name="a075b5b1ff934b906c70980a8375309ca"></a>
 uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>SmolRTSP_NalHeader_unit_type</b> (SmolRTSP_NalHeader self) SMOLRTSP_PRIV_MUST_USE</td></tr>
 <tr class="memdesc:a075b5b1ff934b906c70980a8375309ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the NAL unit type of <code>self</code>. <br /></td></tr>
@@ -246,8 +253,8 @@ size_t&#160;</td><td class="memItemRight" valign="bottom"><b>smolrtsp_test_start
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="af7758ff65ddd510dc4dc87339ad171a5" name="af7758ff65ddd510dc4dc87339ad171a5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af7758ff65ddd510dc4dc87339ad171a5">&#9670;&#160;</a></span>datatype99()</h2>
+<a id="a9bb45125d596f1679f24bee38e643e56" name="a9bb45125d596f1679f24bee38e643e56"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9bb45125d596f1679f24bee38e643e56">&#9670;&#160;</a></span>datatype99()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -268,6 +275,12 @@ size_t&#160;</td><td class="memItemRight" valign="bottom"><b>smolrtsp_test_start
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">(SmolRTSP_NalHeader_H265, <a class="el" href="structSmolRTSP__H265NalHeader.html">SmolRTSP_H265NalHeader</a>)&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">(SmolRTSP_NalHeader_H266, <a class="el" href="structSmolRTSP__H266NalHeader.html">SmolRTSP_H266NalHeader</a>)&#160;</td>
           <td class="paramname">&#160;</td>
         </tr>
         <tr>
@@ -278,7 +291,7 @@ size_t&#160;</td><td class="memItemRight" valign="bottom"><b>smolrtsp_test_start
       </table>
 </div><div class="memdoc">
 
-<p>A generic NAL header (either H.264 or H.265). </p>
+<p>A generic NAL header (H.264, H.265, or H.266 / VVC). </p>
 <p>See <a href="https://github.com/hirrolot/datatype99">Datatype99</a> for the macro usage. </p>
 
 </div>
