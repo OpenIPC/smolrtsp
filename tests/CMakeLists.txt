@@ -40,6 +40,8 @@ add_executable(
   nal.c
   jpegxs.c
   jpegxs_transport.c
+  av1.c
+  av1_transport.c
   util.c
   writer.c
   io_vec.c

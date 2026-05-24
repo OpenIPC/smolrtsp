@@ -54,12 +54,14 @@ set(SMOLRTSP_SOURCES
     include/smolrtsp/nal/h265.h
     include/smolrtsp/nal.h
     include/smolrtsp/jpegxs.h
+    include/smolrtsp/av1.h
     include/smolrtsp/writer.h
     include/smolrtsp/util.h
     include/smolrtsp/transport.h
     include/smolrtsp/rtp_transport.h
     include/smolrtsp/nal_transport.h
     include/smolrtsp/jpegxs_transport.h
+    include/smolrtsp/av1_transport.h
     include/smolrtsp/droppable.h
     include/smolrtsp/controller.h
     include/smolrtsp/io_vec.h
@@ -97,6 +99,8 @@ set(SMOLRTSP_SOURCES
     src/nal_transport.c
     src/jpegxs.c
     src/jpegxs_transport.c
+    src/av1.c
+    src/av1_transport.c
     src/io_vec.c
     src/controller.c
     src/context.c

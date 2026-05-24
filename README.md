@@ -34,6 +34,7 @@ SmolRTSP is a simple [RTSP 1.0] server library tailored for embedded devices, su
    - [x] H.264 ([RFC 6184])
    - [x] H.265 ([RFC 7798])
    - [x] JPEG XS ([RFC 9134]) -- codestream and slice packetization modes
+   - [x] AV1 ([AOMedia AV1 RTP]) -- one OBU per packet with Z/Y fragmentation
 
 [RFC 3550]: https://datatracker.ietf.org/doc/html/rfc3550
 [RFC 4566]: https://datatracker.ietf.org/doc/html/rfc4566
@@ -41,6 +42,7 @@ SmolRTSP is a simple [RTSP 1.0] server library tailored for embedded devices, su
 [RFC 6184]: https://datatracker.ietf.org/doc/html/rfc6184
 [RFC 7798]: https://datatracker.ietf.org/doc/html/rfc7798
 [RFC 9134]: https://datatracker.ietf.org/doc/html/rfc9134
+[AOMedia AV1 RTP]: https://aomediacodec.github.io/av1-rtp-spec/
 
 ## Installation
 
@@ -70,7 +72,7 @@ target_link_libraries(MyProject smolrtsp)
 
 ## Usage
 
-A simple example server that streams H.264 video and G.711 Mu-Law audio can be found at [`examples/server.c`](examples/server.c). The same server can also advertise a JPEG XS stream on the `/jpegxs` path; pass `-DENABLE_JPEGXS=ON` to CMake to opt in.
+A simple example server that streams H.264 video and G.711 Mu-Law audio can be found at [`examples/server.c`](examples/server.c). The same server can also advertise additional streams: pass `-DENABLE_JPEGXS=ON` for JPEG XS on the `/jpegxs` path, or `-DENABLE_AV1=ON` for AV1 on the `/av1` path.
 
 ![server demo](media/example-server-demo.png)
 

@@ -31,6 +31,8 @@
 #include <smolrtsp/types/sdp.h>
 #include <smolrtsp/types/status_code.h>
 
+#include <smolrtsp/av1.h>
+#include <smolrtsp/av1_transport.h>
 #include <smolrtsp/context.h>
 #include <smolrtsp/controller.h>
 #include <smolrtsp/droppable.h>
