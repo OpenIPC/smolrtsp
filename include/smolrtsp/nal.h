@@ -9,6 +9,7 @@
 
 #include <smolrtsp/nal/h264.h>
 #include <smolrtsp/nal/h265.h>
+#include <smolrtsp/nal/h266.h>
 
 #include <stdbool.h>
 #include <stdint.h>
@@ -19,7 +20,7 @@
 #include <smolrtsp/priv/compiler_attrs.h>
 
 /**
- * A generic NAL header (either H.264 or H.265).
+ * A generic NAL header (H.264, H.265, or H.266 / VVC).
  *
  * See [Datatype99](https://github.com/hirrolot/datatype99) for the macro usage.
  */
@@ -28,7 +29,8 @@
 datatype99(
     SmolRTSP_NalHeader,
     (SmolRTSP_NalHeader_H264, SmolRTSP_H264NalHeader),
-    (SmolRTSP_NalHeader_H265, SmolRTSP_H265NalHeader)
+    (SmolRTSP_NalHeader_H265, SmolRTSP_H265NalHeader),
+    (SmolRTSP_NalHeader_H266, SmolRTSP_H266NalHeader)
 );
 // clang-format on
 
@@ -110,7 +112,7 @@ void SmolRTSP_NalHeader_write_fu_header(
     bool is_last_fragment);
 
 /**
- * A generic NAL unit (either H.264 or H.265).
+ * A generic NAL unit (H.264, H.265, or H.266 / VVC).
  */
 typedef struct {
     /**

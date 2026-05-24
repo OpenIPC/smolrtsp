@@ -58,6 +58,18 @@
 #include "media/video.av1.h"
 #endif
 
+#ifdef ENABLE_VVC
+/* A short H.266 / VVC Annex-B byte stream (320x240, 10 fps, 5 frames)
+ * produced by Fraunhofer vvenc <https://github.com/fraunhoferhhi/vvenc>:
+ *   ffmpeg -f lavfi -i smptebars=size=320x240:rate=10 -frames:v 5 \
+ *          -pix_fmt yuv420p -f rawvideo input.yuv
+ *   vvencapp -i input.yuv -s 320x240 -c yuv420 --fps 10 -f 5 \
+ *            --preset faster -aud 1 -o media/video.h266
+ * Each AU starts with an AUD_NUT, which the example uses to detect AU
+ * boundaries for RTP timestamp / marker bit handling. */
+#include "media/video.h266.h"
+#endif
+
 // Comment one of these lines if you do not need audio or video.
 #define ENABLE_AUDIO
 #define ENABLE_VIDEO
@@ -87,12 +99,17 @@
 #define AV1_SAMPLE_RATE  90000 // AOMedia AV1 RTP §7.2.1: 90 kHz
 #define AV1_FPS          10
 
+#define VVC_PAYLOAD_TYPE 99    // dynamic PT
+#define VVC_SAMPLE_RATE  90000 // RFC 9328 (H.266): 90 kHz
+#define VVC_FPS          10
+
 #define AUDIO_STREAM_ID  0
 #define VIDEO_STREAM_ID  1
 #define JPEGXS_STREAM_ID 2
 #define AV1_STREAM_ID    3
+#define VVC_STREAM_ID    4
 
-#define MAX_STREAMS 4
+#define MAX_STREAMS 5
 
 typedef struct {
     uint64_t session_id;
@@ -199,6 +216,35 @@ static SmolRTSP_Droppable play_av1(
 static void send_av1_packet_cb(evutil_socket_t fd, short events, void *arg);
 static size_t split_av1_temporal_units(
     const uint8_t *stream, size_t stream_len, Av1TuRange *tus, size_t max_tus);
+#endif
+
+#ifdef ENABLE_VVC
+/* vvenc emits a mix of 3-byte and 4-byte NAL start codes per Annex-B,
+ * so the simple single-tester scheme used by the H.264 demo doesn't
+ * work. Recognise either pattern at the current position. */
+static size_t vvc_test_start_code(U8Slice99 data) {
+    const size_t four = smolrtsp_test_start_code_4b(data);
+    if (four != 0) {
+        return four;
+    }
+    return smolrtsp_test_start_code_3b(data);
+}
+
+typedef struct {
+    SmolRTSP_NalTransport *transport;
+    uint32_t timestamp;
+    U8Slice99 video;
+    uint8_t *nalu_start;
+    struct event *ev;
+    struct bufferevent *bev;
+    int *streams_playing;
+} VvcCtx;
+
+static SmolRTSP_Droppable play_vvc(
+    struct event_base *base, struct bufferevent *bev, SmolRTSP_RtpTransport *t,
+    struct event **ev, int *streams_playing);
+static void send_vvc_packet_cb(evutil_socket_t fd, short events, void *arg);
+static bool send_vvc_nalu(VvcCtx *ctx);
 #endif
 
 int main(void) {
@@ -387,6 +433,16 @@ Client_describe(VSelf, SmolRTSP_Context *ctx, const SmolRTSP_Request *req) {
         (SMOLRTSP_SDP_ATTR, "fmtp:%d profile=0;level-idx=5;tier=0", AV1_PAYLOAD_TYPE),
         (SMOLRTSP_SDP_ATTR, "framerate:%d", AV1_FPS));
 #endif
+
+#ifdef ENABLE_VVC
+    SMOLRTSP_SDP_DESCRIBE(
+        ret, sdp,
+        (SMOLRTSP_SDP_MEDIA, "video 0 RTP/AVP %d", VVC_PAYLOAD_TYPE),
+        (SMOLRTSP_SDP_ATTR, "control:vvc"),
+        (SMOLRTSP_SDP_ATTR, "rtpmap:%d H266/%d", VVC_PAYLOAD_TYPE, VVC_SAMPLE_RATE),
+        (SMOLRTSP_SDP_ATTR, "fmtp:%d profile-id=1;tier-flag=0;level-id=51", VVC_PAYLOAD_TYPE),
+        (SMOLRTSP_SDP_ATTR, "framerate:%d", VVC_FPS));
+#endif
     // clang-format on
 
     assert(ret > 0);
@@ -421,6 +477,12 @@ Client_setup(VSelf, SmolRTSP_Context *ctx, const SmolRTSP_Request *req) {
     else if (CharSlice99_primitive_ends_with(
                  req->start_line.uri, CharSlice99_from_str("/av1"))) {
         stream_id = AV1_STREAM_ID;
+    }
+#endif
+#ifdef ENABLE_VVC
+    else if (CharSlice99_primitive_ends_with(
+                 req->start_line.uri, CharSlice99_from_str("/vvc"))) {
+        stream_id = VVC_STREAM_ID;
     }
 #endif
     else {
@@ -459,6 +521,12 @@ Client_setup(VSelf, SmolRTSP_Context *ctx, const SmolRTSP_Request *req) {
     else if (AV1_STREAM_ID == stream_id) {
         stream->transport = SmolRTSP_RtpTransport_new(
             transport, AV1_PAYLOAD_TYPE, AV1_SAMPLE_RATE);
+    }
+#endif
+#ifdef ENABLE_VVC
+    else if (VVC_STREAM_ID == stream_id) {
+        stream->transport = SmolRTSP_RtpTransport_new(
+            transport, VVC_PAYLOAD_TYPE, VVC_SAMPLE_RATE);
     }
 #endif
     else {
@@ -503,6 +571,13 @@ Client_play(VSelf, SmolRTSP_Context *ctx, const SmolRTSP_Request *req) {
 #ifdef ENABLE_AV1
             else if (AV1_STREAM_ID == i) {
                 self->streams[i].ctx = play_av1(
+                    self->base, self->bev, self->streams[i].transport,
+                    &self->streams[i].ev, &self->streams_playing);
+            }
+#endif
+#ifdef ENABLE_VVC
+            else if (VVC_STREAM_ID == i) {
+                self->streams[i].ctx = play_vvc(
                     self->base, self->bev, self->streams[i].transport,
                     &self->streams[i].ev, &self->streams_playing);
             }
@@ -1061,5 +1136,122 @@ static void send_av1_packet_cb(evutil_socket_t fd, short events, void *arg) {
     }
 
     ctx->tu_index = (ctx->tu_index + 1) % ctx->tu_count;
+}
+#endif
+
+#ifdef ENABLE_VVC
+static void VvcCtx_drop(VSelf) {
+    VSELF(VvcCtx);
+
+    event_free(self->ev);
+    VTABLE(SmolRTSP_NalTransport, SmolRTSP_Droppable).drop(self->transport);
+    free(self);
+}
+
+impl(SmolRTSP_Droppable, VvcCtx);
+
+static SmolRTSP_Droppable play_vvc(
+    struct event_base *base, struct bufferevent *bev, SmolRTSP_RtpTransport *t,
+    struct event **ev, int *streams_playing) {
+    U8Slice99 video = Slice99_typed_from_array(___media_video_h266);
+
+    if (vvc_test_start_code(video) == 0) {
+        fputs("Invalid H.266 file (no Annex-B start code).\n", stderr);
+        abort();
+    }
+
+    VvcCtx *ctx = malloc(sizeof *ctx);
+    assert(ctx);
+    *ctx = (VvcCtx){
+        .transport = SmolRTSP_NalTransport_new(t),
+        .timestamp = 0,
+        .video = video,
+        .nalu_start = NULL,
+        .ev = NULL,
+        .bev = bev,
+        .streams_playing = streams_playing,
+    };
+
+    ctx->ev = event_new(
+        base, -1, EV_PERSIST | EV_TIMEOUT, send_vvc_packet_cb, (void *)ctx);
+    assert(ctx->ev);
+
+    event_add(
+        ctx->ev, &(const struct timeval){
+                     .tv_sec = 0,
+                     .tv_usec = 1e6 / VVC_FPS,
+                 });
+    *ev = ctx->ev;
+    (*streams_playing)++;
+
+    return DYN(VvcCtx, SmolRTSP_Droppable, ctx);
+}
+
+static void send_vvc_packet_cb(evutil_socket_t fd, short events, void *arg) {
+    (void)fd;
+    (void)events;
+
+    VvcCtx *ctx = arg;
+
+    /* The baked-in stream is short -- loop it from the top when the
+     * play head reaches the end so the demo can run indefinitely. */
+    if (U8Slice99_is_empty(ctx->video)) {
+        send_vvc_nalu(ctx);
+        ctx->video =
+            U8Slice99_new(___media_video_h266, ___media_video_h266_len);
+        ctx->nalu_start = NULL;
+    }
+
+again:
+    if (U8Slice99_is_empty(ctx->video)) {
+        send_vvc_nalu(ctx);
+        ctx->video =
+            U8Slice99_new(___media_video_h266, ___media_video_h266_len);
+        ctx->nalu_start = NULL;
+        return;
+    }
+
+    const size_t start_code_len = vvc_test_start_code(ctx->video);
+    if (0 == start_code_len) {
+        ctx->video = U8Slice99_advance(ctx->video, 1);
+        goto again;
+    }
+
+    bool au_found = false;
+    if (NULL != ctx->nalu_start) {
+        au_found = send_vvc_nalu(ctx);
+    }
+
+    ctx->video = U8Slice99_advance(ctx->video, start_code_len);
+    ctx->nalu_start = ctx->video.ptr;
+
+    if (!au_found) {
+        goto again;
+    }
+}
+
+static bool send_vvc_nalu(VvcCtx *ctx) {
+    const SmolRTSP_NalUnit nalu = {
+        .header = SmolRTSP_NalHeader_H266(
+            SmolRTSP_H266NalHeader_parse(ctx->nalu_start)),
+        .payload = U8Slice99_from_ptrdiff(
+            ctx->nalu_start + SMOLRTSP_H266_NAL_HEADER_SIZE, ctx->video.ptr),
+    };
+
+    bool au_found = false;
+
+    if (SmolRTSP_NalHeader_unit_type(nalu.header) ==
+        SMOLRTSP_H266_NAL_UNIT_AUD_NUT) {
+        ctx->timestamp += VVC_SAMPLE_RATE / VVC_FPS;
+        au_found = true;
+    }
+
+    if (SmolRTSP_NalTransport_send_packet(
+            ctx->transport, SmolRTSP_RtpTimestamp_Raw(ctx->timestamp), true,
+            nalu) == -1) {
+        perror("Failed to send RTP/H266");
+    }
+
+    return au_found;
 }
 #endif

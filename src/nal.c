@@ -2,25 +2,29 @@
 
 #include <assert.h>
 
-#define NAL_HEADER_DERIVE_GETTER(T, name, h264_value, h265_value)              \
+#define NAL_HEADER_DERIVE_GETTER(T, name, h264_value, h265_value, h266_value)  \
     T SmolRTSP_NalHeader_##name(SmolRTSP_NalHeader self) {                     \
         T result = 0;                                                          \
                                                                                \
         match(self) {                                                          \
             of(SmolRTSP_NalHeader_H264, h) result = h264_value;                \
             of(SmolRTSP_NalHeader_H265, h) result = h265_value;                \
+            of(SmolRTSP_NalHeader_H266, h) result = h266_value;                \
         }                                                                      \
                                                                                \
         return result;                                                         \
     }
 
-NAL_HEADER_DERIVE_GETTER(uint8_t, unit_type, h->unit_type, h->unit_type)
+NAL_HEADER_DERIVE_GETTER(
+    uint8_t, unit_type, h->unit_type, h->unit_type, h->unit_type)
 NAL_HEADER_DERIVE_GETTER(
     size_t, size, ((void)h, SMOLRTSP_H264_NAL_HEADER_SIZE),
-    ((void)h, SMOLRTSP_H265_NAL_HEADER_SIZE))
+    ((void)h, SMOLRTSP_H265_NAL_HEADER_SIZE),
+    ((void)h, SMOLRTSP_H266_NAL_HEADER_SIZE))
 NAL_HEADER_DERIVE_GETTER(
     size_t, fu_size, ((void)h, SMOLRTSP_H264_FU_HEADER_SIZE),
-    ((void)h, SMOLRTSP_H265_FU_HEADER_SIZE))
+    ((void)h, SMOLRTSP_H265_FU_HEADER_SIZE),
+    ((void)h, SMOLRTSP_H266_FU_HEADER_SIZE))
 
 #undef NAL_HEADER_DERIVE_GETTER
 
@@ -33,6 +37,8 @@ NAL_HEADER_DERIVE_GETTER(
                 SmolRTSP_H264NalHeader_##fn(*h);                               \
             of(SmolRTSP_NalHeader_H265, h) result =                            \
                 SmolRTSP_H265NalHeader_##fn(*h);                               \
+            of(SmolRTSP_NalHeader_H266, h) result =                            \
+                SmolRTSP_H266NalHeader_##fn(*h);                               \
         }                                                                      \
                                                                                \
         return result;                                                         \
@@ -57,6 +63,10 @@ void SmolRTSP_NalHeader_serialize(
             const uint16_t repr = SmolRTSP_H265NalHeader_serialize(*h);
             memcpy(buffer, &repr, sizeof repr);
         }
+        of(SmolRTSP_NalHeader_H266, h) {
+            const uint16_t repr = SmolRTSP_H266NalHeader_serialize(*h);
+            memcpy(buffer, &repr, sizeof repr);
+        }
     }
 }
 
@@ -67,6 +77,8 @@ void SmolRTSP_NalHeader_write_fu_header(
         of(SmolRTSP_NalHeader_H264, h) SmolRTSP_H264NalHeader_write_fu_header(
             *h, buffer, is_first_fragment, is_last_fragment);
         of(SmolRTSP_NalHeader_H265, h) SmolRTSP_H265NalHeader_write_fu_header(
+            *h, buffer, is_first_fragment, is_last_fragment);
+        of(SmolRTSP_NalHeader_H266, h) SmolRTSP_H266NalHeader_write_fu_header(
             *h, buffer, is_first_fragment, is_last_fragment);
     }
 }
