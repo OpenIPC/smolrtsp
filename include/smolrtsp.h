@@ -35,6 +35,8 @@
 #include <smolrtsp/controller.h>
 #include <smolrtsp/droppable.h>
 #include <smolrtsp/io_vec.h>
+#include <smolrtsp/jpegxs.h>
+#include <smolrtsp/jpegxs_transport.h>
 #include <smolrtsp/nal.h>
 #include <smolrtsp/nal_transport.h>
 #include <smolrtsp/option.h>
