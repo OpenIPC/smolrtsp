@@ -17,7 +17,15 @@ static const SmolRTSP_H265NalHeader h265_header = {
     .nuh_temporal_id_plus1 = 0b101,
 };
 
-#define NAL_HEADER_TEST_GETTER(T, name, h264_value, h265_value)                \
+static const SmolRTSP_H266NalHeader h266_header = {
+    .forbidden_zero_bit = false,
+    .nuh_reserved_zero_bit = false,
+    .nuh_layer_id = 0b010101,
+    .unit_type = SMOLRTSP_H266_NAL_UNIT_IDR_W_RADL,
+    .nuh_temporal_id_plus1 = 0b101,
+};
+
+#define NAL_HEADER_TEST_GETTER(T, name, h264_value, h265_value, h266_value)    \
     TEST header_##name##_h264(void) {                                          \
         const T result =                                                       \
             SmolRTSP_NalHeader_##name(SmolRTSP_NalHeader_H264(h264_header));   \
@@ -30,14 +38,24 @@ static const SmolRTSP_H265NalHeader h265_header = {
             SmolRTSP_NalHeader_##name(SmolRTSP_NalHeader_H265(h265_header));   \
         ASSERT_EQ(h265_value, result);                                         \
         PASS();                                                                \
+    }                                                                          \
+                                                                               \
+    TEST header_##name##_h266(void) {                                          \
+        const T result =                                                       \
+            SmolRTSP_NalHeader_##name(SmolRTSP_NalHeader_H266(h266_header));   \
+        ASSERT_EQ(h266_value, result);                                         \
+        PASS();                                                                \
     }
 
 NAL_HEADER_TEST_GETTER(
-    uint8_t, unit_type, h264_header.unit_type, h265_header.unit_type)
+    uint8_t, unit_type, h264_header.unit_type, h265_header.unit_type,
+    h266_header.unit_type)
 NAL_HEADER_TEST_GETTER(
-    size_t, size, SMOLRTSP_H264_NAL_HEADER_SIZE, SMOLRTSP_H265_NAL_HEADER_SIZE)
+    size_t, size, SMOLRTSP_H264_NAL_HEADER_SIZE, SMOLRTSP_H265_NAL_HEADER_SIZE,
+    SMOLRTSP_H266_NAL_HEADER_SIZE)
 NAL_HEADER_TEST_GETTER(
-    size_t, fu_size, SMOLRTSP_H264_FU_HEADER_SIZE, SMOLRTSP_H265_FU_HEADER_SIZE)
+    size_t, fu_size, SMOLRTSP_H264_FU_HEADER_SIZE, SMOLRTSP_H265_FU_HEADER_SIZE,
+    SMOLRTSP_H266_FU_HEADER_SIZE)
 
 #undef NAL_HEADER_TEST_GETTER
 
@@ -83,6 +101,35 @@ TEST header_serialize_fu_h265(void) {
     ASSERT_EQ(0b01100011, buffer[0]);
     ASSERT_EQ(0b10101101, buffer[1]);
     ASSERT_EQ(0b10001000, buffer[2]);
+
+    PASS();
+}
+
+TEST header_serialize_h266(void) {
+    uint8_t buffer[SMOLRTSP_H266_NAL_HEADER_SIZE] = {0};
+    SmolRTSP_NalHeader_serialize(SmolRTSP_NalHeader_H266(h266_header), buffer);
+    /* byte 0: F(0) Z(0) LayerId(010101) = 0b00010101 = 0x15
+     * byte 1: Type(00111 = IDR_W_RADL=7) TID(101) = 0b00111101 = 0x3D */
+    ASSERT_EQ(0x15, buffer[0]);
+    ASSERT_EQ(0x3D, buffer[1]);
+
+    PASS();
+}
+
+TEST header_serialize_fu_h266(void) {
+    uint8_t buffer[SMOLRTSP_H266_FU_HEADER_SIZE] = {0};
+    const bool is_first_fragment = true, is_last_fragment = false;
+
+    SmolRTSP_NalHeader_write_fu_header(
+        SmolRTSP_NalHeader_H266(h266_header), buffer, is_first_fragment,
+        is_last_fragment);
+
+    /* payload-hdr: byte 0 unchanged (0x15), byte 1 = Type(FU=29=11101) |
+     * TID(101) = 0b11101101 = 0xED fu-hdr byte: S=1 E=0 P=0
+     * FuType(IDR_W_RADL=7=00111) = 0b10000111 = 0x87 */
+    ASSERT_EQ(0x15, buffer[0]);
+    ASSERT_EQ(0xED, buffer[1]);
+    ASSERT_EQ(0x87, buffer[2]);
 
     PASS();
 }
@@ -154,15 +201,20 @@ TEST test_start_code_4b(void) {
 SUITE(nal) {
     RUN_TEST(header_unit_type_h264);
     RUN_TEST(header_unit_type_h265);
+    RUN_TEST(header_unit_type_h266);
     RUN_TEST(header_size_h264);
     RUN_TEST(header_size_h265);
+    RUN_TEST(header_size_h266);
     RUN_TEST(header_fu_size_h264);
     RUN_TEST(header_fu_size_h265);
+    RUN_TEST(header_fu_size_h266);
 
     RUN_TEST(header_serialize_h264);
     RUN_TEST(header_serialize_h265);
+    RUN_TEST(header_serialize_h266);
     RUN_TEST(header_serialize_fu_h264);
     RUN_TEST(header_serialize_fu_h265);
+    RUN_TEST(header_serialize_fu_h266);
 
     RUN_TEST(determine_start_code);
     RUN_TEST(test_start_code_3b);

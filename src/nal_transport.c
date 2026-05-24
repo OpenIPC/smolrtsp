@@ -19,6 +19,7 @@ SmolRTSP_NalTransportConfig SmolRTSP_NalTransportConfig_default(void) {
     return (SmolRTSP_NalTransportConfig){
         .max_h264_nalu_size = SMOLRTSP_MAX_H264_NALU_SIZE,
         .max_h265_nalu_size = SMOLRTSP_MAX_H265_NALU_SIZE,
+        .max_h266_nalu_size = SMOLRTSP_MAX_H266_NALU_SIZE,
     };
 }
 
@@ -67,11 +68,16 @@ int SmolRTSP_NalTransport_send_packet(
     SmolRTSP_NalUnit nalu) {
     assert(self);
 
-    const size_t max_packet_size = MATCHES(nalu.header, SmolRTSP_NalHeader_H264)
-                                       ? self->config.max_h264_nalu_size
-                                       : self->config.max_h265_nalu_size,
-                 nalu_size =
-                     SmolRTSP_NalHeader_size(nalu.header) + nalu.payload.len;
+    size_t max_packet_size;
+    if (MATCHES(nalu.header, SmolRTSP_NalHeader_H264)) {
+        max_packet_size = self->config.max_h264_nalu_size;
+    } else if (MATCHES(nalu.header, SmolRTSP_NalHeader_H265)) {
+        max_packet_size = self->config.max_h265_nalu_size;
+    } else {
+        max_packet_size = self->config.max_h266_nalu_size;
+    }
+    const size_t nalu_size =
+        SmolRTSP_NalHeader_size(nalu.header) + nalu.payload.len;
 
     if (nalu_size <= max_packet_size) {
         /* RFC 6184 §5.1 / RFC 7798 §4.4.1: M set only on the very last

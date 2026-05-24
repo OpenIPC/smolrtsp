@@ -19,6 +19,7 @@ FetchContent_MakeAvailable(smolrtsp-libevent)
 
 option(ENABLE_JPEGXS "Advertise a JPEG XS demo stream (RFC 9134) in addition to H.264" OFF)
 option(ENABLE_AV1 "Advertise an AV1 demo stream (AOMedia AV1 RTP) in addition to H.264" OFF)
+option(ENABLE_VVC "Advertise an H.266 / VVC demo stream (RFC 9328) in addition to H.264" OFF)
 
 add_executable(server server.c)
 
@@ -32,6 +33,10 @@ endif()
 
 if(ENABLE_AV1)
   target_compile_definitions(server PRIVATE ENABLE_AV1)
+endif()
+
+if(ENABLE_VVC)
+  target_compile_definitions(server PRIVATE ENABLE_VVC)
 endif()
 
 if(CMAKE_C_COMPILER_ID STREQUAL "Clang")
@@ -51,4 +56,8 @@ endif()
 
 if(ENABLE_AV1)
   execute_process(COMMAND xxd -i ../media/video.av1 ../media/video.av1.h)
+endif()
+
+if(ENABLE_VVC)
+  execute_process(COMMAND xxd -i ../media/video.h266 ../media/video.h266.h)
 endif()

@@ -31,6 +31,11 @@
 #define SMOLRTSP_MAX_H265_NALU_SIZE 1200
 
 /**
+ * The default value for #SmolRTSP_NalTransportConfig.max_h266_nalu_size.
+ */
+#define SMOLRTSP_MAX_H266_NALU_SIZE 1200
+
+/**
  * The configuration structure for #SmolRTSP_NalTransport.
  */
 typedef struct {
@@ -43,6 +48,11 @@ typedef struct {
      * The maximum size of an H.265 NAL unit (including the header).
      */
     size_t max_h265_nalu_size;
+
+    /**
+     * The maximum size of an H.266 / VVC NAL unit (including the header).
+     */
+    size_t max_h266_nalu_size;
 } SmolRTSP_NalTransportConfig;
 
 /**
@@ -52,6 +62,7 @@ typedef struct {
  *
  *  - `max_h264_nalu_size` is #SMOLRTSP_MAX_H264_NALU_SIZE.
  *  - `max_h265_nalu_size` is #SMOLRTSP_MAX_H265_NALU_SIZE.
+ *  - `max_h266_nalu_size` is #SMOLRTSP_MAX_H266_NALU_SIZE.
  */
 SmolRTSP_NalTransportConfig
 SmolRTSP_NalTransportConfig_default(void) SMOLRTSP_PRIV_MUST_USE;

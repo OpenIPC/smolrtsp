@@ -37,6 +37,7 @@ add_executable(
   types/test_util.h
   nal/h264.c
   nal/h265.c
+  nal/h266.c
   nal.c
   jpegxs.c
   jpegxs_transport.c
