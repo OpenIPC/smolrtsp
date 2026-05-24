@@ -189,6 +189,12 @@ Enumerations</h2></td></tr>
  }</td></tr>
 <tr class="memdesc:a1913c4e09e6a1c4acc7a875ec14a59ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">An RTSP lower transport.  <a href="util_8h.html#a1913c4e09e6a1c4acc7a875ec14a59ec">More...</a><br /></td></tr>
 <tr class="separator:a1913c4e09e6a1c4acc7a875ec14a59ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5e406474caf1ddf6762815fa01258a53" id="r_a5e406474caf1ddf6762815fa01258a53"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#a5e406474caf1ddf6762815fa01258a53">SmolRTSP_InterleavedFrameStatus</a> { <a class="el" href="util_8h.html#a5e406474caf1ddf6762815fa01258a53a418e46e84b88f4cfd271b49b5bec6114">SmolRTSP_InterleavedFrameStatus_Complete</a>
+, <a class="el" href="util_8h.html#a5e406474caf1ddf6762815fa01258a53a6e5e4b907d5927a904901c1750ba9eda">SmolRTSP_InterleavedFrameStatus_Partial</a>
+, <a class="el" href="util_8h.html#a5e406474caf1ddf6762815fa01258a53a5e3a3e31d79c8a9f4ad88c7894385694">SmolRTSP_InterleavedFrameStatus_NotInterleaved</a>
+ }</td></tr>
+<tr class="memdesc:a5e406474caf1ddf6762815fa01258a53"><td class="mdescLeft">&#160;</td><td class="mdescRight">The result of <a class="el" href="util_8h.html#a735992b405e04beb669cdd88ebbae501" title="Parses one interleaved binary frame (RFC 2326 §10.12).">smolrtsp_parse_interleaved_frame</a>.  <a href="util_8h.html#a5e406474caf1ddf6762815fa01258a53">More...</a><br /></td></tr>
+<tr class="separator:a5e406474caf1ddf6762815fa01258a53"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
@@ -211,10 +217,40 @@ const char *&#160;</td><td class="memItemRight" valign="bottom"><b>SmolRTSP_Lowe
 <tr class="memitem:ae0a7a7670f0477d14cb44ce8c164f250" id="r_ae0a7a7670f0477d14cb44ce8c164f250"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#ae0a7a7670f0477d14cb44ce8c164f250">smolrtsp_parse_interleaved_header</a> (const uint8_t data[restrict static 4], uint8_t *restrict channel_id, uint16_t *restrict payload_len)</td></tr>
 <tr class="memdesc:ae0a7a7670f0477d14cb44ce8c164f250"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses an four-octet interleaved binary data header <code>data</code>.  <br /></td></tr>
 <tr class="separator:ae0a7a7670f0477d14cb44ce8c164f250"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a735992b405e04beb669cdd88ebbae501" id="r_a735992b405e04beb669cdd88ebbae501"><td class="memItemLeft" align="right" valign="top"><a class="el" href="util_8h.html#a5e406474caf1ddf6762815fa01258a53">SmolRTSP_InterleavedFrameStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="util_8h.html#a735992b405e04beb669cdd88ebbae501">smolrtsp_parse_interleaved_frame</a> (CharSlice99 input, uint8_t *restrict channel_id, U8Slice99 *restrict payload, size_t *restrict consumed) SMOLRTSP_PRIV_MUST_USE</td></tr>
+<tr class="memdesc:a735992b405e04beb669cdd88ebbae501"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses one interleaved binary frame (<a href="https://datatracker.ietf.org/doc/html/rfc2326#section-10.12">RFC 2326 §10.12</a>).  <br /></td></tr>
+<tr class="separator:a735992b405e04beb669cdd88ebbae501"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Utilitary stuff. </p>
 </div><h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="a5e406474caf1ddf6762815fa01258a53" name="a5e406474caf1ddf6762815fa01258a53"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5e406474caf1ddf6762815fa01258a53">&#9670;&#160;</a></span>SmolRTSP_InterleavedFrameStatus</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="util_8h.html#a5e406474caf1ddf6762815fa01258a53">SmolRTSP_InterleavedFrameStatus</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The result of <a class="el" href="util_8h.html#a735992b405e04beb669cdd88ebbae501" title="Parses one interleaved binary frame (RFC 2326 §10.12).">smolrtsp_parse_interleaved_frame</a>. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a5e406474caf1ddf6762815fa01258a53a418e46e84b88f4cfd271b49b5bec6114" name="a5e406474caf1ddf6762815fa01258a53a418e46e84b88f4cfd271b49b5bec6114"></a>SmolRTSP_InterleavedFrameStatus_Complete&#160;</td><td class="fielddoc"><p>A complete interleaved frame was parsed. </p>
+<p><code>channel_id</code>, <code>payload</code>, and <code>consumed</code> outputs are set. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a5e406474caf1ddf6762815fa01258a53a6e5e4b907d5927a904901c1750ba9eda" name="a5e406474caf1ddf6762815fa01258a53a6e5e4b907d5927a904901c1750ba9eda"></a>SmolRTSP_InterleavedFrameStatus_Partial&#160;</td><td class="fielddoc"><p>The input starts with the <code>$</code> magic byte but the full frame has not yet arrived. </p>
+<p>Outputs are untouched. The caller should preserve the buffer and wait for more bytes before retrying. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a5e406474caf1ddf6762815fa01258a53a5e3a3e31d79c8a9f4ad88c7894385694" name="a5e406474caf1ddf6762815fa01258a53a5e3a3e31d79c8a9f4ad88c7894385694"></a>SmolRTSP_InterleavedFrameStatus_NotInterleaved&#160;</td><td class="fielddoc"><p>The input does not begin with <code>$</code> and is therefore not an interleaved binary frame. </p>
+<p>Outputs are untouched. The caller should fall through to whichever other parser handles the protocol (typically <a class="el" href="request_8h.html#aacdf4eac25bcebe4e94b54abb0a3489b" title="Parses data to self.">SmolRTSP_Request_parse</a> or <a class="el" href="response_8h.html#a38d925052be039df403a7959a751ac08" title="Parses data to self.">SmolRTSP_Response_parse</a>). </p>
+</td></tr>
+</table>
+
+</div>
+</div>
 <a id="a1913c4e09e6a1c4acc7a875ec14a59ec" name="a1913c4e09e6a1c4acc7a875ec14a59ec"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a1913c4e09e6a1c4acc7a875ec14a59ec">&#9670;&#160;</a></span>SmolRTSP_LowerTransport</h2>
 
@@ -315,6 +351,64 @@ const char *&#160;</td><td class="memItemRight" valign="bottom"><b>SmolRTSP_Lowe
   </dd>
 </dl>
 <dl class="section see"><dt>See also</dt><dd><a href="https://datatracker.ietf.org/doc/html/rfc2326#section-10.12">https://datatracker.ietf.org/doc/html/rfc2326#section-10.12</a> </dd></dl>
+
+</div>
+</div>
+<a id="a735992b405e04beb669cdd88ebbae501" name="a735992b405e04beb669cdd88ebbae501"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a735992b405e04beb669cdd88ebbae501">&#9670;&#160;</a></span>smolrtsp_parse_interleaved_frame()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="util_8h.html#a5e406474caf1ddf6762815fa01258a53">SmolRTSP_InterleavedFrameStatus</a> smolrtsp_parse_interleaved_frame </td>
+          <td>(</td>
+          <td class="paramtype">CharSlice99&#160;</td>
+          <td class="paramname"><em>input</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *restrict&#160;</td>
+          <td class="paramname"><em>channel_id</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">U8Slice99 *restrict&#160;</td>
+          <td class="paramname"><em>payload</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t *restrict&#160;</td>
+          <td class="paramname"><em>consumed</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Parses one interleaved binary frame (<a href="https://datatracker.ietf.org/doc/html/rfc2326#section-10.12">RFC 2326 §10.12</a>). </p>
+<p>Used by RTSP servers that want to receive client-pushed media (RTSP back channel / ONVIF Profile T) on a TCP-interleaved RTSP connection. Frames look like <code>$&lt;channel:u8&gt;&lt;length:u16-be&gt;&lt;payload&gt;</code> on the wire.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">input</td><td>The raw bytes at the head of the receive buffer. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">channel_id</td><td>The one-byte channel identifier of the frame, set only on <a class="el" href="util_8h.html#a5e406474caf1ddf6762815fa01258a53a418e46e84b88f4cfd271b49b5bec6114" title="A complete interleaved frame was parsed.">SmolRTSP_InterleavedFrameStatus_Complete</a>. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">payload</td><td>A slice into <code>input</code> covering just the frame payload (no <code>$</code>/channel/length prefix), set only on Complete. The slice is valid as long as <code>input</code> remains valid. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">consumed</td><td>The number of bytes (4-byte header + payload) the caller should drain from the buffer, set only on Complete.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Frame status (see enum).</dd></dl>
+<dl class="section pre"><dt>Precondition</dt><dd><code>channel_id != NULL</code> </dd>
+<dd>
+<code>payload != NULL</code> </dd>
+<dd>
+<code>consumed != NULL</code> </dd></dl>
 
 </div>
 </div>
