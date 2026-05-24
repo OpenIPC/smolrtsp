@@ -33,12 +33,14 @@ SmolRTSP is a simple [RTSP 1.0] server library tailored for embedded devices, su
  - Supported RTP payload formats:
    - [x] H.264 ([RFC 6184])
    - [x] H.265 ([RFC 7798])
+   - [x] JPEG XS ([RFC 9134]) -- codestream and slice packetization modes
 
 [RFC 3550]: https://datatracker.ietf.org/doc/html/rfc3550
 [RFC 4566]: https://datatracker.ietf.org/doc/html/rfc4566
 [RFC 2326]: https://datatracker.ietf.org/doc/html/rfc2326
 [RFC 6184]: https://datatracker.ietf.org/doc/html/rfc6184
 [RFC 7798]: https://datatracker.ietf.org/doc/html/rfc7798
+[RFC 9134]: https://datatracker.ietf.org/doc/html/rfc9134
 
 ## Installation
 
@@ -68,7 +70,7 @@ target_link_libraries(MyProject smolrtsp)
 
 ## Usage
 
-A simple example server that streams H.264 video and G.711 Mu-Law audio can be found at [`examples/server.c`](examples/server.c).
+A simple example server that streams H.264 video and G.711 Mu-Law audio can be found at [`examples/server.c`](examples/server.c). The same server can also advertise a JPEG XS stream on the `/jpegxs` path; pass `-DENABLE_JPEGXS=ON` to CMake to opt in.
 
 ![server demo](media/example-server-demo.png)
 

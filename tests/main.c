@@ -31,6 +31,9 @@ int main(int argc, char *argv[]) {
     SMOLRTSP_SUITE(nal_h265);
     SMOLRTSP_SUITE(nal);
 
+    SMOLRTSP_SUITE(jpegxs);
+    SMOLRTSP_SUITE(jpegxs_transport);
+
     SMOLRTSP_SUITE(util);
     SMOLRTSP_SUITE(writer);
     SMOLRTSP_SUITE(transport);

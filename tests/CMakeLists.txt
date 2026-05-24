@@ -38,6 +38,8 @@ add_executable(
   nal/h264.c
   nal/h265.c
   nal.c
+  jpegxs.c
+  jpegxs_transport.c
   util.c
   writer.c
   io_vec.c

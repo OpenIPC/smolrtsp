@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+ - JPEG XS RTP payload format per [RFC 9134](https://datatracker.ietf.org/doc/html/rfc9134). New headers `smolrtsp/jpegxs.h` (4-byte RFC 9134 §4.3 payload header struct + serializer) and `smolrtsp/jpegxs_transport.h` (`SmolRTSP_JpegXsTransport`, a thin packetizer over `SmolRTSP_RtpTransport`). Both codestream (`K=0`) and slice (`K=1`) packetization modes are supported, with progressive and interlaced framing, and a configurable MTU. The example server gains an opt-in `/jpegxs` stream behind the `ENABLE_JPEGXS` CMake option.
  - RTCP Sender Report (SR) serialization per [RFC 3550 §6.4.1](https://datatracker.ietf.org/doc/html/rfc3550#section-6.4.1). New header `smolrtsp/types/rtcp.h` exposing `SmolRTSP_RtcpSr`, `SmolRTSP_RtcpSr_size`, and `SmolRTSP_RtcpSr_serialize`. Currently emits the fixed 28-byte SR header (RC = 0).
  - RTCP Receiver Report (RR), SDES with single CNAME item, and BYE serialization. New types `SmolRTSP_RtcpRr`, `SmolRTSP_RtcpSdesCname`, `SmolRTSP_RtcpBye` with matching `_size` / `_serialize` functions in `smolrtsp/types/rtcp.h`. SDES and BYE handle the variable-length item-list padding to 32-bit boundaries automatically.
  - `SmolRTSP_RtpTransport_ssrc`, `SmolRTSP_RtpTransport_pkt_count`, and `SmolRTSP_RtpTransport_octet_count` accessors so callers can populate the corresponding fields of an RTCP Sender Report. `pkt_count` and `octet_count` are now tracked inside `SmolRTSP_RtpTransport` and advance with each successful `_send_packet` call.

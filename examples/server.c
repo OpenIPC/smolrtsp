@@ -40,9 +40,24 @@
 // H.264 video with AUDs, 25 FPS.
 #include "media/video.h264.h"
 
+#ifdef ENABLE_JPEGXS
+/* A single 640x480 YUV422 8-bit JPEG XS codestream at 3 bpp, encoded by
+ * SVT-JPEG-XS <https://github.com/OpenVisualCloud/SVT-JPEG-XS> from
+ * `ffmpeg -f lavfi -i smptebars=size=640x480 -frames:v 1 -pix_fmt
+ * yuv422p input.yuv` then `SvtJpegxsEncApp -i input.yuv -w 640 -h 480
+ * --colour-format yuv422 --input-depth 8 --bpp 3 -n 1 -b
+ * media/video.jxs`. */
+#include "media/video.jxs.h"
+#endif
+
 // Comment one of these lines if you do not need audio or video.
 #define ENABLE_AUDIO
 #define ENABLE_VIDEO
+
+/* ENABLE_JPEGXS is set from the build system (examples/CMakeLists.txt
+ * has an opt-in option). When on, the server advertises a third media
+ * stream ("/jpegxs") that emits RFC 9134 JPEG XS RTP packets carrying
+ * the codestream baked in from `media/video.jxs.h`. */
 
 #define SERVER_PORT SMOLRTSP_DEFAULT_PORT
 
@@ -56,10 +71,15 @@
 #define VIDEO_SAMPLE_RATE  90000
 #define VIDEO_FPS          25
 
-#define AUDIO_STREAM_ID 0
-#define VIDEO_STREAM_ID 1
+#define JPEGXS_PAYLOAD_TYPE 97    // dynamic PT
+#define JPEGXS_SAMPLE_RATE  90000 // RFC 9134 §4.2: 90 kHz
+#define JPEGXS_FPS          25
 
-#define MAX_STREAMS 2
+#define AUDIO_STREAM_ID  0
+#define VIDEO_STREAM_ID  1
+#define JPEGXS_STREAM_ID 2
+
+#define MAX_STREAMS 3
 
 typedef struct {
     uint64_t session_id;
@@ -124,6 +144,21 @@ static SmolRTSP_Droppable play_video(
     struct event **ev, int *streams_playing);
 static void send_video_packet_cb(evutil_socket_t fd, short events, void *arg);
 static bool send_nalu(VideoCtx *ctx);
+
+#ifdef ENABLE_JPEGXS
+typedef struct {
+    SmolRTSP_JpegXsTransport *transport;
+    uint32_t timestamp;
+    struct event *ev;
+    struct bufferevent *bev;
+    int *streams_playing;
+} JpegXsCtx;
+
+static SmolRTSP_Droppable play_jpegxs(
+    struct event_base *base, struct bufferevent *bev, SmolRTSP_RtpTransport *t,
+    struct event **ev, int *streams_playing);
+static void send_jpegxs_packet_cb(evutil_socket_t fd, short events, void *arg);
+#endif
 
 int main(void) {
     srand(time(NULL));
@@ -288,6 +323,19 @@ Client_describe(VSelf, SmolRTSP_Context *ctx, const SmolRTSP_Request *req) {
         (SMOLRTSP_SDP_ATTR, "fmtp:%d packetization-mode=1", VIDEO_PAYLOAD_TYPE),
         (SMOLRTSP_SDP_ATTR, "framerate:%d", VIDEO_FPS));
 #endif
+
+#ifdef ENABLE_JPEGXS
+    SMOLRTSP_SDP_DESCRIBE(
+        ret, sdp,
+        (SMOLRTSP_SDP_MEDIA, "video 0 RTP/AVP %d", JPEGXS_PAYLOAD_TYPE),
+        (SMOLRTSP_SDP_ATTR, "control:jpegxs"),
+        (SMOLRTSP_SDP_ATTR, "rtpmap:%d jxsv/%d", JPEGXS_PAYLOAD_TYPE, JPEGXS_SAMPLE_RATE),
+        (SMOLRTSP_SDP_ATTR,
+            "fmtp:%d packetmode=0;transmode=1;sampling=YCbCr-4:2:2;"
+            "width=640;height=480;depth=8;colorimetry=BT709;TCS=SDR",
+            JPEGXS_PAYLOAD_TYPE),
+        (SMOLRTSP_SDP_ATTR, "framerate:%d", JPEGXS_FPS));
+#endif
     // clang-format on
 
     assert(ret > 0);
@@ -307,11 +355,20 @@ Client_setup(VSelf, SmolRTSP_Context *ctx, const SmolRTSP_Request *req) {
         return;
     }
 
-    const size_t stream_id =
-        CharSlice99_primitive_ends_with(
-            req->start_line.uri, CharSlice99_from_str("/audio"))
-            ? AUDIO_STREAM_ID
-            : VIDEO_STREAM_ID;
+    size_t stream_id;
+    if (CharSlice99_primitive_ends_with(
+            req->start_line.uri, CharSlice99_from_str("/audio"))) {
+        stream_id = AUDIO_STREAM_ID;
+    }
+#ifdef ENABLE_JPEGXS
+    else if (CharSlice99_primitive_ends_with(
+                 req->start_line.uri, CharSlice99_from_str("/jpegxs"))) {
+        stream_id = JPEGXS_STREAM_ID;
+    }
+#endif
+    else {
+        stream_id = VIDEO_STREAM_ID;
+    }
     Stream *stream = &self->streams[stream_id];
 
     const bool aggregate_control_requested = SmolRTSP_HeaderMap_contains_key(
@@ -334,7 +391,14 @@ Client_setup(VSelf, SmolRTSP_Context *ctx, const SmolRTSP_Request *req) {
     if (AUDIO_STREAM_ID == stream_id) {
         stream->transport = SmolRTSP_RtpTransport_new(
             transport, AUDIO_PCMU_PAYLOAD_TYPE, AUDIO_SAMPLE_RATE);
-    } else {
+    }
+#ifdef ENABLE_JPEGXS
+    else if (JPEGXS_STREAM_ID == stream_id) {
+        stream->transport = SmolRTSP_RtpTransport_new(
+            transport, JPEGXS_PAYLOAD_TYPE, JPEGXS_SAMPLE_RATE);
+    }
+#endif
+    else {
         stream->transport = SmolRTSP_RtpTransport_new(
             transport, VIDEO_PAYLOAD_TYPE, VIDEO_SAMPLE_RATE);
     }
@@ -365,7 +429,15 @@ Client_play(VSelf, SmolRTSP_Context *ctx, const SmolRTSP_Request *req) {
                 self->streams[i].ctx = play_audio(
                     self->base, self->bev, self->streams[i].transport,
                     &self->streams[i].ev, &self->streams_playing);
-            } else {
+            }
+#ifdef ENABLE_JPEGXS
+            else if (JPEGXS_STREAM_ID == i) {
+                self->streams[i].ctx = play_jpegxs(
+                    self->base, self->bev, self->streams[i].transport,
+                    &self->streams[i].ev, &self->streams_playing);
+            }
+#endif
+            else {
                 self->streams[i].ctx = play_video(
                     self->base, self->bev, self->streams[i].transport,
                     &self->streams[i].ev, &self->streams_playing);
@@ -721,3 +793,64 @@ static bool send_nalu(VideoCtx *ctx) {
 
     return au_found;
 }
+
+#ifdef ENABLE_JPEGXS
+static void JpegXsCtx_drop(VSelf) {
+    VSELF(JpegXsCtx);
+
+    event_free(self->ev);
+    VTABLE(SmolRTSP_JpegXsTransport, SmolRTSP_Droppable).drop(self->transport);
+    free(self);
+}
+
+impl(SmolRTSP_Droppable, JpegXsCtx);
+
+static SmolRTSP_Droppable play_jpegxs(
+    struct event_base *base, struct bufferevent *bev, SmolRTSP_RtpTransport *t,
+    struct event **ev, int *streams_playing) {
+    JpegXsCtx *ctx = malloc(sizeof *ctx);
+    assert(ctx);
+    *ctx = (JpegXsCtx){
+        .transport = SmolRTSP_JpegXsTransport_new(t),
+        .timestamp = 0,
+        .ev = NULL,
+        .bev = bev,
+        .streams_playing = streams_playing,
+    };
+
+    ctx->ev = event_new(
+        base, -1, EV_PERSIST | EV_TIMEOUT, send_jpegxs_packet_cb, (void *)ctx);
+    assert(ctx->ev);
+
+    event_add(
+        ctx->ev, &(const struct timeval){
+                     .tv_sec = 0,
+                     .tv_usec = 1e6 / JPEGXS_FPS,
+                 });
+    *ev = ctx->ev;
+    (*streams_playing)++;
+
+    return DYN(JpegXsCtx, SmolRTSP_Droppable, ctx);
+}
+
+static void
+send_jpegxs_packet_cb(evutil_socket_t fd, short events, void *arg) {
+    (void)fd;
+    (void)events;
+
+    JpegXsCtx *ctx = arg;
+
+    /* The codestream is single-frame; loop it forever so a client can
+     * dwell on the stream. Real integrations would feed each new
+     * encoded frame here. */
+    ctx->timestamp += JPEGXS_SAMPLE_RATE / JPEGXS_FPS;
+
+    if (SmolRTSP_JpegXsTransport_send_codestream(
+            ctx->transport, SmolRTSP_RtpTimestamp_Raw(ctx->timestamp),
+            SMOLRTSP_JPEGXS_INTERLACE_PROGRESSIVE, /*is_frame_end=*/true,
+            U8Slice99_new(
+                ___media_video_jxs, ___media_video_jxs_len)) == -1) {
+        perror("Failed to send RTP/JPEGXS");
+    }
+}
+#endif
