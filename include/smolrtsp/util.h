@@ -163,3 +163,63 @@ uint32_t smolrtsp_interleaved_header(uint8_t channel_id, uint16_t payload_len)
 void smolrtsp_parse_interleaved_header(
     const uint8_t data[restrict static 4], uint8_t *restrict channel_id,
     uint16_t *restrict payload_len);
+
+/**
+ * The result of #smolrtsp_parse_interleaved_frame.
+ */
+typedef enum {
+    /**
+     * A complete interleaved frame was parsed.
+     *
+     * `channel_id`, `payload`, and `consumed` outputs are set.
+     */
+    SmolRTSP_InterleavedFrameStatus_Complete,
+
+    /**
+     * The input starts with the `$` magic byte but the full frame has not
+     * yet arrived.
+     *
+     * Outputs are untouched. The caller should preserve the buffer and wait
+     * for more bytes before retrying.
+     */
+    SmolRTSP_InterleavedFrameStatus_Partial,
+
+    /**
+     * The input does not begin with `$` and is therefore not an interleaved
+     * binary frame.
+     *
+     * Outputs are untouched. The caller should fall through to whichever
+     * other parser handles the protocol (typically
+     * #SmolRTSP_Request_parse or #SmolRTSP_Response_parse).
+     */
+    SmolRTSP_InterleavedFrameStatus_NotInterleaved,
+} SmolRTSP_InterleavedFrameStatus;
+
+/**
+ * Parses one interleaved binary frame
+ * ([RFC 2326
+ * §10.12](https://datatracker.ietf.org/doc/html/rfc2326#section-10.12)).
+ *
+ * Used by RTSP servers that want to receive client-pushed media (RTSP back
+ * channel / ONVIF Profile T) on a TCP-interleaved RTSP connection. Frames
+ * look like `$<channel:u8><length:u16-be><payload>` on the wire.
+ *
+ * @param[in] input The raw bytes at the head of the receive buffer.
+ * @param[out] channel_id The one-byte channel identifier of the frame, set
+ *             only on #SmolRTSP_InterleavedFrameStatus_Complete.
+ * @param[out] payload A slice into @p input covering just the frame payload
+ *             (no `$`/channel/length prefix), set only on Complete. The
+ *             slice is valid as long as @p input remains valid.
+ * @param[out] consumed The number of bytes (4-byte header + payload) the
+ *             caller should drain from the buffer, set only on Complete.
+ *
+ * @return Frame status (see enum).
+ *
+ * @pre `channel_id != NULL`
+ * @pre `payload != NULL`
+ * @pre `consumed != NULL`
+ */
+SmolRTSP_InterleavedFrameStatus smolrtsp_parse_interleaved_frame(
+    CharSlice99 input, uint8_t *restrict channel_id,
+    U8Slice99 *restrict payload,
+    size_t *restrict consumed) SMOLRTSP_PRIV_MUST_USE;

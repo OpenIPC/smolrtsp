@@ -129,10 +129,117 @@ TEST parse_interleaved_header(void) {
     PASS();
 }
 
+TEST parse_interleaved_frame_complete(void) {
+    /* $, channel=7, len=3 (big-endian 0x0003), payload "abc", trailing "x" */
+    const uint8_t data[] = {'$', 7, 0x00, 0x03, 'a', 'b', 'c', 'x'};
+    CharSlice99 input = CharSlice99_new((char *)(uintptr_t)data, sizeof data);
+
+    uint8_t channel_id = 0;
+    U8Slice99 payload = U8Slice99_empty();
+    size_t consumed = 0;
+
+    const SmolRTSP_InterleavedFrameStatus status =
+        smolrtsp_parse_interleaved_frame(
+            input, &channel_id, &payload, &consumed);
+
+    ASSERT_EQ(SmolRTSP_InterleavedFrameStatus_Complete, status);
+    ASSERT_EQ_FMT(7, channel_id, "%" PRIu8);
+    ASSERT_EQ_FMT((size_t)3, payload.len, "%zu");
+    ASSERT_EQ('a', (char)payload.ptr[0]);
+    ASSERT_EQ('b', (char)payload.ptr[1]);
+    ASSERT_EQ('c', (char)payload.ptr[2]);
+    ASSERT_EQ_FMT((size_t)7, consumed, "%zu"); /* 4-byte header + 3 payload */
+
+    PASS();
+}
+
+TEST parse_interleaved_frame_partial_header(void) {
+    /* Only the $ byte arrived so far. */
+    const uint8_t data[] = {'$'};
+    CharSlice99 input = CharSlice99_new((char *)(uintptr_t)data, sizeof data);
+
+    uint8_t channel_id = 99;
+    U8Slice99 payload = U8Slice99_empty();
+    size_t consumed = 999;
+
+    const SmolRTSP_InterleavedFrameStatus status =
+        smolrtsp_parse_interleaved_frame(
+            input, &channel_id, &payload, &consumed);
+
+    ASSERT_EQ(SmolRTSP_InterleavedFrameStatus_Partial, status);
+    /* Outputs untouched on Partial. */
+    ASSERT_EQ_FMT(99, channel_id, "%" PRIu8);
+    ASSERT_EQ_FMT((size_t)999, consumed, "%zu");
+
+    PASS();
+}
+
+TEST parse_interleaved_frame_partial_payload(void) {
+    /* Header says len=10 but only 2 payload bytes have arrived. */
+    const uint8_t data[] = {'$', 3, 0x00, 0x0a, 'x', 'y'};
+    CharSlice99 input = CharSlice99_new((char *)(uintptr_t)data, sizeof data);
+
+    uint8_t channel_id = 0;
+    U8Slice99 payload = U8Slice99_empty();
+    size_t consumed = 0;
+
+    const SmolRTSP_InterleavedFrameStatus status =
+        smolrtsp_parse_interleaved_frame(
+            input, &channel_id, &payload, &consumed);
+
+    ASSERT_EQ(SmolRTSP_InterleavedFrameStatus_Partial, status);
+
+    PASS();
+}
+
+TEST parse_interleaved_frame_not_interleaved(void) {
+    /* Buffer starts with an RTSP request, not a $-frame. */
+    const char request[] = "OPTIONS rtsp://x RTSP/1.0\r\n";
+    CharSlice99 input = CharSlice99_from_str((char *)request);
+
+    uint8_t channel_id = 0;
+    U8Slice99 payload = U8Slice99_empty();
+    size_t consumed = 0;
+
+    const SmolRTSP_InterleavedFrameStatus status =
+        smolrtsp_parse_interleaved_frame(
+            input, &channel_id, &payload, &consumed);
+
+    ASSERT_EQ(SmolRTSP_InterleavedFrameStatus_NotInterleaved, status);
+
+    PASS();
+}
+
+TEST parse_interleaved_frame_zero_length(void) {
+    /* Valid frame with zero-byte payload. */
+    const uint8_t data[] = {'$', 5, 0x00, 0x00};
+    CharSlice99 input = CharSlice99_new((char *)(uintptr_t)data, sizeof data);
+
+    uint8_t channel_id = 0;
+    U8Slice99 payload = U8Slice99_new((uint8_t *)"sentinel", 8);
+    size_t consumed = 0;
+
+    const SmolRTSP_InterleavedFrameStatus status =
+        smolrtsp_parse_interleaved_frame(
+            input, &channel_id, &payload, &consumed);
+
+    ASSERT_EQ(SmolRTSP_InterleavedFrameStatus_Complete, status);
+    ASSERT_EQ_FMT(5, channel_id, "%" PRIu8);
+    ASSERT_EQ_FMT((size_t)0, payload.len, "%zu");
+    ASSERT_EQ_FMT((size_t)4, consumed, "%zu");
+
+    PASS();
+}
+
 SUITE(util) {
     RUN_TEST(parse_transport_config);
     RUN_TEST(parse_transport_minimal);
     RUN_TEST(parse_transport_trailing_semicolon);
     RUN_TEST(interleaved_header);
     RUN_TEST(parse_interleaved_header);
+    RUN_TEST(parse_interleaved_frame_complete);
+    RUN_TEST(parse_interleaved_frame_partial_header);
+    RUN_TEST(parse_interleaved_frame_partial_payload);
+    RUN_TEST(parse_interleaved_frame_not_interleaved);
+    RUN_TEST(parse_interleaved_frame_zero_length);
 }

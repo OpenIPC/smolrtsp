@@ -159,3 +159,37 @@ void smolrtsp_parse_interleaved_header(
     memcpy(payload_len, data + 2, sizeof *payload_len);
     *payload_len = ntohs(*payload_len);
 }
+
+SmolRTSP_InterleavedFrameStatus smolrtsp_parse_interleaved_frame(
+    CharSlice99 input, uint8_t *restrict channel_id,
+    U8Slice99 *restrict payload, size_t *restrict consumed) {
+    assert(channel_id);
+    assert(payload);
+    assert(consumed);
+
+    if (input.len == 0) {
+        return SmolRTSP_InterleavedFrameStatus_Partial;
+    }
+    if ('$' != input.ptr[0]) {
+        return SmolRTSP_InterleavedFrameStatus_NotInterleaved;
+    }
+    if (input.len < sizeof(uint32_t)) {
+        return SmolRTSP_InterleavedFrameStatus_Partial;
+    }
+
+    uint8_t ch = 0;
+    uint16_t payload_len = 0;
+    smolrtsp_parse_interleaved_header(
+        (const uint8_t *)input.ptr, &ch, &payload_len);
+
+    const size_t total = sizeof(uint32_t) + (size_t)payload_len;
+    if (input.len < total) {
+        return SmolRTSP_InterleavedFrameStatus_Partial;
+    }
+
+    *channel_id = ch;
+    *payload = U8Slice99_new(
+        (uint8_t *)input.ptr + sizeof(uint32_t), (size_t)payload_len);
+    *consumed = total;
+    return SmolRTSP_InterleavedFrameStatus_Complete;
+}
