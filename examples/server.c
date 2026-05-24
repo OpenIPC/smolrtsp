@@ -714,8 +714,8 @@ static bool send_nalu(VideoCtx *ctx) {
     }
 
     if (SmolRTSP_NalTransport_send_packet(
-            ctx->transport, SmolRTSP_RtpTimestamp_Raw(ctx->timestamp), nalu) ==
-        -1) {
+            ctx->transport, SmolRTSP_RtpTimestamp_Raw(ctx->timestamp), true,
+            nalu) == -1) {
         perror("Failed to send RTP/NAL");
     }
 
