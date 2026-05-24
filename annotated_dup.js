@@ -1,5 +1,7 @@
 var annotated_dup =
 [
+    [ "SmolRTSP_Av1AggregationHeader", "structSmolRTSP__Av1AggregationHeader.html", "structSmolRTSP__Av1AggregationHeader" ],
+    [ "SmolRTSP_Av1TransportConfig", "structSmolRTSP__Av1TransportConfig.html", "structSmolRTSP__Av1TransportConfig" ],
     [ "SmolRTSP_ChannelPair", "structSmolRTSP__ChannelPair.html", "structSmolRTSP__ChannelPair" ],
     [ "SmolRTSP_H264NalHeader", "structSmolRTSP__H264NalHeader.html", "structSmolRTSP__H264NalHeader" ],
     [ "SmolRTSP_H264NalUnit", "structSmolRTSP__H264NalUnit.html", "structSmolRTSP__H264NalUnit" ],

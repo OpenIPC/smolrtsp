@@ -1,10 +1,5 @@
 var searchData=
 [
-  ['h264_2eh_0',['h264.h',['../h264_8h.html',1,'']]],
-  ['h265_2eh_1',['h265.h',['../h265_8h.html',1,'']]],
-  ['header_2',['header',['../structSmolRTSP__NalUnit.html#a5c247cb4cebb2984384737b700ca614b',1,'SmolRTSP_NalUnit::header'],['../structSmolRTSP__H264NalUnit.html#ae0c2fee41e9880c9e47d719c4820b0c0',1,'SmolRTSP_H264NalUnit::header'],['../structSmolRTSP__H265NalUnit.html#acf0b21f7a6c751880e091b681ad76531',1,'SmolRTSP_H265NalUnit::header']]],
-  ['header_2eh_3',['header.h',['../header_8h.html',1,'']]],
-  ['header_5fmap_4',['header_map',['../structSmolRTSP__Request.html#a64c4a2150e6ab000d6e5eafc190113f5',1,'SmolRTSP_Request::header_map'],['../structSmolRTSP__Response.html#abb3baccb3cd9c2ed1575aa3ef2adf5bd',1,'SmolRTSP_Response::header_map']]],
-  ['header_5fmap_2eh_5',['header_map.h',['../header__map_8h.html',1,'']]],
-  ['headers_6',['headers',['../structSmolRTSP__HeaderMap.html#ad5118cb4e185eef65b812796243508da',1,'SmolRTSP_HeaderMap']]]
+  ['forbidden_5fzero_5fbit_0',['forbidden_zero_bit',['../structSmolRTSP__H264NalHeader.html#a4365efcbb2bb8fce15eb14446b1061d4',1,'SmolRTSP_H264NalHeader::forbidden_zero_bit'],['../structSmolRTSP__H265NalHeader.html#aa6016936c0d719f35a1735b184d54575',1,'SmolRTSP_H265NalHeader::forbidden_zero_bit']]],
+  ['frame_5fcounter_1',['frame_counter',['../structSmolRTSP__JpegXsPayloadHeader.html#a21e417b92d6196cb519a28342bb95ecf',1,'SmolRTSP_JpegXsPayloadHeader']]]
 ];
