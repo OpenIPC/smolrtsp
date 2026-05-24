@@ -9,11 +9,11 @@
 #include <slice99.h>
 
 static int send_fragmentized_nal_data(
-    SmolRTSP_RtpTransport *t, SmolRTSP_RtpTimestamp ts, size_t max_packet_size,
-    SmolRTSP_NalUnit nalu);
+    SmolRTSP_RtpTransport *t, SmolRTSP_RtpTimestamp ts, bool is_au_end,
+    size_t max_packet_size, SmolRTSP_NalUnit nalu);
 static int send_fu(
     SmolRTSP_RtpTransport *t, SmolRTSP_RtpTimestamp ts, SmolRTSP_NalUnit fu,
-    bool is_first_fragment, bool is_last_fragment);
+    bool is_first_fragment, bool is_last_fragment, bool is_au_end);
 
 SmolRTSP_NalTransportConfig SmolRTSP_NalTransportConfig_default(void) {
     return (SmolRTSP_NalTransportConfig){
@@ -63,7 +63,7 @@ bool SmolRTSP_NalTransport_is_full(SmolRTSP_NalTransport *self) {
 }
 
 int SmolRTSP_NalTransport_send_packet(
-    SmolRTSP_NalTransport *self, SmolRTSP_RtpTimestamp ts,
+    SmolRTSP_NalTransport *self, SmolRTSP_RtpTimestamp ts, bool is_au_end,
     SmolRTSP_NalUnit nalu) {
     assert(self);
 
@@ -74,9 +74,12 @@ int SmolRTSP_NalTransport_send_packet(
                      SmolRTSP_NalHeader_size(nalu.header) + nalu.payload.len;
 
     if (nalu_size < max_packet_size) {
-        const bool marker =
-            SmolRTSP_NalHeader_is_coded_slice_idr(nalu.header) ||
-            SmolRTSP_NalHeader_is_coded_slice_non_idr(nalu.header);
+        /* RFC 6184 §5.1 / RFC 7798 §4.4.1: M set only on the very last
+         * RTP packet of the access unit. Non-VCL NALs (SPS/PPS/SEI/VPS)
+         * never end an AU even if the caller passes is_au_end=true on
+         * them by mistake — but the producer is expected to signal AU
+         * end on the last VCL NAL of the frame, so this works out. */
+        const bool marker = is_au_end;
 
         const size_t header_buf_size = SmolRTSP_NalHeader_size(nalu.header);
         uint8_t *header_buf = alloca(header_buf_size);
@@ -88,14 +91,14 @@ int SmolRTSP_NalTransport_send_packet(
     }
 
     return send_fragmentized_nal_data(
-        self->transport, ts, max_packet_size, nalu);
+        self->transport, ts, is_au_end, max_packet_size, nalu);
 }
 
 // See <https://tools.ietf.org/html/rfc6184#section-5.8> (H.264),
 // <https://tools.ietf.org/html/rfc7798#section-4.4.3> (H.265).
 static int send_fragmentized_nal_data(
-    SmolRTSP_RtpTransport *t, SmolRTSP_RtpTimestamp ts, size_t max_packet_size,
-    SmolRTSP_NalUnit nalu) {
+    SmolRTSP_RtpTransport *t, SmolRTSP_RtpTimestamp ts, bool is_au_end,
+    size_t max_packet_size, SmolRTSP_NalUnit nalu) {
     const size_t rem = nalu.payload.len % max_packet_size,
                  packets_count = (nalu.payload.len - rem) / max_packet_size;
 
@@ -110,7 +113,9 @@ static int send_fragmentized_nal_data(
                              : (packet_idx + 1) * max_packet_size);
         const SmolRTSP_NalUnit fu = {nalu.header, fu_data};
 
-        if (send_fu(t, ts, fu, is_first_fragment, is_last_fragment) == -1) {
+        if (send_fu(
+                t, ts, fu, is_first_fragment, is_last_fragment, is_au_end) ==
+            -1) {
             return -1;
         }
     }
@@ -122,7 +127,9 @@ static int send_fragmentized_nal_data(
         const bool is_first_fragment = 0 == packets_count,
                    is_last_fragment = true;
 
-        if (send_fu(t, ts, fu, is_first_fragment, is_last_fragment) == -1) {
+        if (send_fu(
+                t, ts, fu, is_first_fragment, is_last_fragment, is_au_end) ==
+            -1) {
             return -1;
         }
     }
@@ -132,14 +139,16 @@ static int send_fragmentized_nal_data(
 
 static int send_fu(
     SmolRTSP_RtpTransport *t, SmolRTSP_RtpTimestamp ts, SmolRTSP_NalUnit fu,
-    bool is_first_fragment, bool is_last_fragment) {
+    bool is_first_fragment, bool is_last_fragment, bool is_au_end) {
     const size_t fu_header_size = SmolRTSP_NalHeader_fu_size(fu.header);
     U8Slice99 fu_header = U8Slice99_new(alloca(fu_header_size), fu_header_size);
 
     SmolRTSP_NalHeader_write_fu_header(
         fu.header, fu_header.ptr, is_first_fragment, is_last_fragment);
 
-    const bool marker = is_last_fragment;
+    /* M only on the very last RTP packet of the AU — i.e., the last
+     * fragment of the last NAL of the frame. */
+    const bool marker = is_last_fragment && is_au_end;
 
     return SmolRTSP_RtpTransport_send_packet(
         t, ts, marker, fu_header, fu.payload);

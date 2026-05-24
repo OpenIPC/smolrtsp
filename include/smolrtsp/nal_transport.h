@@ -14,6 +14,7 @@
 #include <smolrtsp/nal.h>
 #include <smolrtsp/rtp_transport.h>
 
+#include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
 
@@ -92,6 +93,11 @@ SmolRTSP_NalTransport *SmolRTSP_NalTransport_new_with_config(
  *
  * @param[out] self The RTP/NAL transport for sending this packet.
  * @param[in] ts The RTP timestamp for this packet.
+ * @param[in] is_au_end `true` if @p nalu is the last NAL unit of its access
+ *            unit (frame). The RTP marker bit is set on the final RTP packet
+ *            emitted for this NAL only when this is `true`. Callers that do
+ *            not split a frame into multiple NALs (single coded slice per
+ *            frame) should pass `true`. RFC 6184 §5.1 / RFC 7798 §4.4.1.
  * @param[in] nalu The NAL unit of this RTP packet.
  *
  * @pre `self != NULL`
@@ -100,7 +106,7 @@ SmolRTSP_NalTransport *SmolRTSP_NalTransport_new_with_config(
  * success.
  */
 int SmolRTSP_NalTransport_send_packet(
-    SmolRTSP_NalTransport *self, SmolRTSP_RtpTimestamp ts,
+    SmolRTSP_NalTransport *self, SmolRTSP_RtpTimestamp ts, bool is_au_end,
     SmolRTSP_NalUnit nalu) SMOLRTSP_PRIV_MUST_USE;
 
 /**
