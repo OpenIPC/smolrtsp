@@ -1,0 +1,9 @@
+<map id="include/smolrtsp/jpegxs.h" name="include/smolrtsp/jpegxs.h">
+<area shape="rect" id="Node000001" title="JPEG XS RTP payload&#45;header types and serialization." alt="" coords="53,5,243,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,86,88,111"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="135,33,74,79,71,75,131,29"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="113,86,183,111"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="151,31,151,72,145,72,145,31"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="207,79,377,119"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="171,28,247,70,244,74,168,33"/>
+</map>
