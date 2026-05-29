@@ -90,8 +90,6 @@ $(document).ready(function(){initNavTree('structSmolRTSP__NalTransportConfig.htm
 </div>
 
 <div class="header">
-  <div class="summary">
-<a href="#pub-attribs">Data Fields</a>  </div>
   <div class="headertitle"><div class="title">SmolRTSP_NalTransportConfig Struct Reference</div></div>
 </div><!--header-->
 <div class="contents">
@@ -100,24 +98,9 @@ $(document).ready(function(){initNavTree('structSmolRTSP__NalTransportConfig.htm
  <a href="structSmolRTSP__NalTransportConfig.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="nal__transport_8h_source.html">nal_transport.h</a>&gt;</code></p>
-<table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
-Data Fields</h2></td></tr>
-<tr class="memitem:a0f17bfa9433696e0fdf3587287baa772" id="r_a0f17bfa9433696e0fdf3587287baa772"><td class="memItemLeft" align="right" valign="top"><a id="a0f17bfa9433696e0fdf3587287baa772" name="a0f17bfa9433696e0fdf3587287baa772"></a>
-size_t&#160;</td><td class="memItemRight" valign="bottom"><b>max_h264_nalu_size</b></td></tr>
-<tr class="memdesc:a0f17bfa9433696e0fdf3587287baa772"><td class="mdescLeft">&#160;</td><td class="mdescRight">The maximum size of an H.264 NAL unit (including the header). <br /></td></tr>
-<tr class="separator:a0f17bfa9433696e0fdf3587287baa772"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7bc7a1085e243929bf8f367e72de7283" id="r_a7bc7a1085e243929bf8f367e72de7283"><td class="memItemLeft" align="right" valign="top"><a id="a7bc7a1085e243929bf8f367e72de7283" name="a7bc7a1085e243929bf8f367e72de7283"></a>
-size_t&#160;</td><td class="memItemRight" valign="bottom"><b>max_h265_nalu_size</b></td></tr>
-<tr class="memdesc:a7bc7a1085e243929bf8f367e72de7283"><td class="mdescLeft">&#160;</td><td class="mdescRight">The maximum size of an H.265 NAL unit (including the header). <br /></td></tr>
-<tr class="separator:a7bc7a1085e243929bf8f367e72de7283"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae3502194c7a3104195678c52eda9f69d" id="r_ae3502194c7a3104195678c52eda9f69d"><td class="memItemLeft" align="right" valign="top"><a id="ae3502194c7a3104195678c52eda9f69d" name="ae3502194c7a3104195678c52eda9f69d"></a>
-size_t&#160;</td><td class="memItemRight" valign="bottom"><b>max_h266_nalu_size</b></td></tr>
-<tr class="memdesc:ae3502194c7a3104195678c52eda9f69d"><td class="mdescLeft">&#160;</td><td class="mdescRight">The maximum size of an H.266 / VVC NAL unit (including the header). <br /></td></tr>
-<tr class="separator:ae3502194c7a3104195678c52eda9f69d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The configuration structure for <a class="el" href="nal__transport_8h.html#afec555143193b4746bcddf7614953b65" title="An RTP/NAL data transport.">SmolRTSP_NalTransport</a>. </p>
+<p>The set of per-codec NALU-size limits present here matches the <code>SMOLRTSP_WITH_{H264,H265,H266}</code> build options. </p>
 </div><hr/>The documentation for this struct was generated from the following file:<ul>
 <li>include/smolrtsp/<a class="el" href="nal__transport_8h_source.html">nal_transport.h</a></li>
 </ul>

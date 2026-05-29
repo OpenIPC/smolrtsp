@@ -13,7 +13,7 @@ var annotated_dup =
     [ "SmolRTSP_HeaderMap", "structSmolRTSP__HeaderMap.html", "structSmolRTSP__HeaderMap" ],
     [ "SmolRTSP_JpegXsPayloadHeader", "structSmolRTSP__JpegXsPayloadHeader.html", "structSmolRTSP__JpegXsPayloadHeader" ],
     [ "SmolRTSP_JpegXsTransportConfig", "structSmolRTSP__JpegXsTransportConfig.html", "structSmolRTSP__JpegXsTransportConfig" ],
-    [ "SmolRTSP_NalTransportConfig", "structSmolRTSP__NalTransportConfig.html", "structSmolRTSP__NalTransportConfig" ],
+    [ "SmolRTSP_NalTransportConfig", "structSmolRTSP__NalTransportConfig.html", null ],
     [ "SmolRTSP_NalUnit", "structSmolRTSP__NalUnit.html", "structSmolRTSP__NalUnit" ],
     [ "SmolRTSP_PortPair", "structSmolRTSP__PortPair.html", "structSmolRTSP__PortPair" ],
     [ "SmolRTSP_Request", "structSmolRTSP__Request.html", "structSmolRTSP__Request" ],

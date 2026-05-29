@@ -1,8 +1,5 @@
 <map id="include/smolrtsp/av1.h" name="include/smolrtsp/av1.h">
 <area shape="rect" id="Node000001" title="AV1 RTP aggregation&#45;header types, LEB128 helpers, and OBU constants." alt="" coords="5,5,176,31"/>
-<area shape="rect" id="Node000002" href="$smolrtsp_8h.html" title="Re&#45;exports all the functionality." alt="" coords="19,167,162,192"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="77,43,60,79,57,99,60,118,71,144,84,165,80,168,66,146,55,119,51,99,55,78,72,41"/>
-<area shape="rect" id="Node000003" href="$av1__transport_8h.html" title="An RTP/AV1 data transport." alt="" coords="70,79,229,119"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="110,40,137,77,133,80,105,43"/>
-<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="129,131,102,168,97,165,125,128"/>
+<area shape="rect" id="Node000002" href="$av1__transport_8h.html" title="An RTP/AV1 data transport." alt="" coords="11,79,170,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="93,44,93,79,88,79,88,44"/>
 </map>

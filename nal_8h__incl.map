@@ -1,30 +1,13 @@
 <map id="include/smolrtsp/nal.h" name="include/smolrtsp/nal.h">
-<area shape="rect" id="Node000001" title="A generic NAL (Network Abstraction Layer) representation." alt="" coords="330,5,497,31"/>
-<area shape="rect" id="Node000002" href="$h264_8h.html" title="H.264 NAL representation." alt="" coords="252,79,402,104"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="402,33,353,72,350,68,398,29"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="63,159,146,185"/>
-<area shape="poly" id="edge15_Node000001_Node000003" title=" " alt="" coords="330,22,242,26,147,35,65,53,35,65,14,80,9,90,9,99,19,118,41,136,67,151,64,156,38,140,15,121,3,100,4,88,10,77,32,61,64,47,147,30,242,20,330,17"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="472,159,542,185"/>
-<area shape="poly" id="edge16_Node000001_Node000004" title=" " alt="" coords="498,20,530,26,561,37,590,54,613,77,619,89,619,102,606,123,581,142,552,156,550,152,578,137,602,120,614,100,614,91,609,80,587,58,559,42,528,31,497,25"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="174,159,254,185"/>
-<area shape="poly" id="edge18_Node000001_Node000005" title=" " alt="" coords="331,33,283,51,260,64,241,80,231,95,224,112,217,145,212,144,219,110,226,92,237,77,257,59,280,46,330,28"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="278,152,448,192"/>
-<area shape="poly" id="edge19_Node000001_Node000006" title=" " alt="" coords="498,28,542,39,578,54,591,64,599,76,599,90,592,106,575,116,543,128,458,151,456,146,541,123,573,111,588,102,594,89,594,78,587,68,576,59,540,44,497,33"/>
-<area shape="rect" id="Node000007" href="$h265_8h.html" title="H.265 NAL representation." alt="" coords="25,79,176,104"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="364,33,165,78,164,73,363,28"/>
-<area shape="rect" id="Node000008" href="$h266_8h.html" title="H.266 / VVC NAL representation." alt="" coords="426,79,577,104"/>
-<area shape="poly" id="edge10_Node000001_Node000008" title=" " alt="" coords="430,29,478,68,475,72,426,33"/>
-<area shape="rect" id="Node000009" title=" " alt="" coords="704,79,812,104"/>
-<area shape="poly" id="edge17_Node000001_Node000009" title=" " alt="" coords="470,28,690,73,689,79,469,33"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="296,107,150,157,149,152,294,101"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="354,102,469,151,467,156,352,106"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="312,106,243,154,240,149,309,102"/>
-<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="335,103,351,138,346,141,330,105"/>
-<area shape="poly" id="edge7_Node000007_Node000003" title=" " alt="" coords="104,104,106,145,101,146,98,104"/>
-<area shape="poly" id="edge8_Node000007_Node000005" title=" " alt="" coords="119,102,187,149,184,154,116,106"/>
-<area shape="poly" id="edge9_Node000007_Node000006" title=" " alt="" coords="139,101,287,145,286,151,138,107"/>
-<area shape="poly" id="edge11_Node000008_Node000003" title=" " alt="" coords="427,105,302,125,162,155,150,158,149,153,161,149,301,120,426,100"/>
-<area shape="poly" id="edge12_Node000008_Node000004" title=" " alt="" coords="505,104,508,145,503,146,500,104"/>
-<area shape="poly" id="edge13_Node000008_Node000005" title=" " alt="" coords="451,107,364,128,267,155,257,157,256,152,265,149,363,122,450,101"/>
-<area shape="poly" id="edge14_Node000008_Node000006" title=" " alt="" coords="483,107,410,148,407,143,480,102"/>
+<area shape="rect" id="Node000001" title="A generic NAL (Network Abstraction Layer) representation." alt="" coords="178,5,345,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,86,88,111"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="231,33,92,84,90,79,229,28"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="113,86,183,111"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="246,33,177,80,174,76,243,29"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="207,86,315,111"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="264,31,264,72,259,72,259,31"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="340,86,420,111"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="280,29,352,76,349,80,277,33"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="445,79,614,119"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="301,28,453,72,451,77,300,33"/>
 </map>
