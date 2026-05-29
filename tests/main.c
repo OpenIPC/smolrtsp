@@ -32,6 +32,9 @@ int main(int argc, char *argv[]) {
     SMOLRTSP_SUITE(nal_h266);
     SMOLRTSP_SUITE(nal);
 
+    SMOLRTSP_SUITE(jpeg);
+    SMOLRTSP_SUITE(jpeg_transport);
+
     SMOLRTSP_SUITE(jpegxs);
     SMOLRTSP_SUITE(jpegxs_transport);
 

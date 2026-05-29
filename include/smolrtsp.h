@@ -48,6 +48,11 @@
 #include <smolrtsp/av1_transport.h>
 #endif
 
+#ifdef SMOLRTSP_WITH_JPEG
+#include <smolrtsp/jpeg.h>
+#include <smolrtsp/jpeg_transport.h>
+#endif
+
 #ifdef SMOLRTSP_WITH_JPEGXS
 #include <smolrtsp/jpegxs.h>
 #include <smolrtsp/jpegxs_transport.h>

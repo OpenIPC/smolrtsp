@@ -39,6 +39,8 @@ add_executable(
   nal/h265.c
   nal/h266.c
   nal.c
+  jpeg.c
+  jpeg_transport.c
   jpegxs.c
   jpegxs_transport.c
   av1.c
