@@ -63,6 +63,11 @@ SmolRTSP_Transport smolrtsp_transport_tcp(
  * necessarily UDP. E.g., you may use a `SOCK_SEQPACKET` socket for local
  * communication.
  *
+ * Takes ownership of @p fd: the descriptor is `close(2)`d when the
+ * returned transport is dropped. Callers must not `close` it themselves
+ * and must not hand the same @p fd to two transports — `dup(2)` first if
+ * multiple transports need to share an underlying socket.
+ *
  * @param[in] fd The socket file descriptor to be provided with data.
  *
  * @pre `fd >= 0`
@@ -71,6 +76,9 @@ SmolRTSP_Transport smolrtsp_transport_udp(int fd) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Creates a new UDP transport with address.
+ *
+ * Takes ownership of @p fd; see #smolrtsp_transport_udp for the
+ * descriptor-lifetime contract.
  *
  * @param[in] fd The socket file descriptor to be provided with data.
  * @param[in] addr Pointer to address data (e.g., sockaddr_un or sockaddr_in).
