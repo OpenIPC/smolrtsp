@@ -31,14 +31,10 @@
 #include <smolrtsp/types/sdp.h>
 #include <smolrtsp/types/status_code.h>
 
-#include <smolrtsp/av1.h>
-#include <smolrtsp/av1_transport.h>
 #include <smolrtsp/context.h>
 #include <smolrtsp/controller.h>
 #include <smolrtsp/droppable.h>
 #include <smolrtsp/io_vec.h>
-#include <smolrtsp/jpegxs.h>
-#include <smolrtsp/jpegxs_transport.h>
 #include <smolrtsp/nal.h>
 #include <smolrtsp/nal_transport.h>
 #include <smolrtsp/option.h>
@@ -46,3 +42,13 @@
 #include <smolrtsp/transport.h>
 #include <smolrtsp/util.h>
 #include <smolrtsp/writer.h>
+
+#ifdef SMOLRTSP_WITH_AV1
+#include <smolrtsp/av1.h>
+#include <smolrtsp/av1_transport.h>
+#endif
+
+#ifdef SMOLRTSP_WITH_JPEGXS
+#include <smolrtsp/jpegxs.h>
+#include <smolrtsp/jpegxs_transport.h>
+#endif

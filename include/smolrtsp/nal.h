@@ -7,10 +7,6 @@
 
 #pragma once
 
-#include <smolrtsp/nal/h264.h>
-#include <smolrtsp/nal/h265.h>
-#include <smolrtsp/nal/h266.h>
-
 #include <stdbool.h>
 #include <stdint.h>
 
@@ -19,19 +15,73 @@
 
 #include <smolrtsp/priv/compiler_attrs.h>
 
+#if !defined(SMOLRTSP_WITH_H264) && !defined(SMOLRTSP_WITH_H265) &&            \
+    !defined(SMOLRTSP_WITH_H266)
+#error "smolrtsp: at least one NAL codec must be enabled at build time."
+#endif
+
+#ifdef SMOLRTSP_WITH_H264
+#include <smolrtsp/nal/h264.h>
+#endif
+#ifdef SMOLRTSP_WITH_H265
+#include <smolrtsp/nal/h265.h>
+#endif
+#ifdef SMOLRTSP_WITH_H266
+#include <smolrtsp/nal/h266.h>
+#endif
+
 /**
- * A generic NAL header (H.264, H.265, or H.266 / VVC).
+ * A generic NAL header. The set of variants carried by the sum type depends
+ * on which of `SMOLRTSP_WITH_H264`, `SMOLRTSP_WITH_H265`, `SMOLRTSP_WITH_H266`
+ * were enabled at build time (at least one must be).
  *
  * See [Datatype99](https://github.com/hirrolot/datatype99) for the macro usage.
  */
 
 // clang-format off
+// `datatype99` is variadic but its variant list cannot contain preprocessor
+// directives, so the (up to 2**3 - 1 = 7) live combinations are enumerated.
+#if defined(SMOLRTSP_WITH_H264) && defined(SMOLRTSP_WITH_H265) && defined(SMOLRTSP_WITH_H266)
 datatype99(
     SmolRTSP_NalHeader,
     (SmolRTSP_NalHeader_H264, SmolRTSP_H264NalHeader),
     (SmolRTSP_NalHeader_H265, SmolRTSP_H265NalHeader),
     (SmolRTSP_NalHeader_H266, SmolRTSP_H266NalHeader)
 );
+#elif defined(SMOLRTSP_WITH_H264) && defined(SMOLRTSP_WITH_H265)
+datatype99(
+    SmolRTSP_NalHeader,
+    (SmolRTSP_NalHeader_H264, SmolRTSP_H264NalHeader),
+    (SmolRTSP_NalHeader_H265, SmolRTSP_H265NalHeader)
+);
+#elif defined(SMOLRTSP_WITH_H264) && defined(SMOLRTSP_WITH_H266)
+datatype99(
+    SmolRTSP_NalHeader,
+    (SmolRTSP_NalHeader_H264, SmolRTSP_H264NalHeader),
+    (SmolRTSP_NalHeader_H266, SmolRTSP_H266NalHeader)
+);
+#elif defined(SMOLRTSP_WITH_H265) && defined(SMOLRTSP_WITH_H266)
+datatype99(
+    SmolRTSP_NalHeader,
+    (SmolRTSP_NalHeader_H265, SmolRTSP_H265NalHeader),
+    (SmolRTSP_NalHeader_H266, SmolRTSP_H266NalHeader)
+);
+#elif defined(SMOLRTSP_WITH_H264)
+datatype99(
+    SmolRTSP_NalHeader,
+    (SmolRTSP_NalHeader_H264, SmolRTSP_H264NalHeader)
+);
+#elif defined(SMOLRTSP_WITH_H265)
+datatype99(
+    SmolRTSP_NalHeader,
+    (SmolRTSP_NalHeader_H265, SmolRTSP_H265NalHeader)
+);
+#elif defined(SMOLRTSP_WITH_H266)
+datatype99(
+    SmolRTSP_NalHeader,
+    (SmolRTSP_NalHeader_H266, SmolRTSP_H266NalHeader)
+);
+#endif
 // clang-format on
 
 /**

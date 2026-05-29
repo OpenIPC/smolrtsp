@@ -20,39 +20,53 @@
 
 #include <smolrtsp/priv/compiler_attrs.h>
 
+#ifdef SMOLRTSP_WITH_H264
 /**
  * The default value for #SmolRTSP_NalTransportConfig.max_h264_nalu_size.
  */
 #define SMOLRTSP_MAX_H264_NALU_SIZE 1200
+#endif
 
+#ifdef SMOLRTSP_WITH_H265
 /**
  * The default value for #SmolRTSP_NalTransportConfig.max_h265_nalu_size.
  */
 #define SMOLRTSP_MAX_H265_NALU_SIZE 1200
+#endif
 
+#ifdef SMOLRTSP_WITH_H266
 /**
  * The default value for #SmolRTSP_NalTransportConfig.max_h266_nalu_size.
  */
 #define SMOLRTSP_MAX_H266_NALU_SIZE 1200
+#endif
 
 /**
- * The configuration structure for #SmolRTSP_NalTransport.
+ * The configuration structure for #SmolRTSP_NalTransport. The set of
+ * per-codec NALU-size limits present here matches the
+ * `SMOLRTSP_WITH_{H264,H265,H266}` build options.
  */
 typedef struct {
+#ifdef SMOLRTSP_WITH_H264
     /**
      * The maximum size of an H.264 NAL unit (including the header).
      */
     size_t max_h264_nalu_size;
+#endif
 
+#ifdef SMOLRTSP_WITH_H265
     /**
      * The maximum size of an H.265 NAL unit (including the header).
      */
     size_t max_h265_nalu_size;
+#endif
 
+#ifdef SMOLRTSP_WITH_H266
     /**
      * The maximum size of an H.266 / VVC NAL unit (including the header).
      */
     size_t max_h266_nalu_size;
+#endif
 } SmolRTSP_NalTransportConfig;
 
 /**
