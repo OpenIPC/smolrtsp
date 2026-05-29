@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+### Added
+
+ - Per-codec compile-time gates: `SMOLRTSP_WITH_H264`, `SMOLRTSP_WITH_H265`, `SMOLRTSP_WITH_H266`, `SMOLRTSP_WITH_AV1`, `SMOLRTSP_WITH_JPEGXS`. Every option defaults to `ON` (no behaviour change for existing consumers). Switching one off removes the matching `.c` source from the build, the matching header from the umbrella `<smolrtsp.h>`, and -- for the H.26x family -- the matching `SmolRTSP_NalHeader` variant plus the per-codec arms in `SmolRTSP_NalTransportConfig`, `SmolRTSP_NalHeader_*`, and `SmolRTSP_NalTransport_send_packet`. At least one of `SMOLRTSP_WITH_H264 / _H265 / _H266` must remain `ON` (enforced by `FATAL_ERROR` at configure time). Each enabled option becomes a `PUBLIC` compile definition so callers see the same gates as the library. Lets downstream firmwares strip codecs no shipped sensor can produce -- OpenIPC's `hi3516ev200` lite build drops 4 KB of stripped binary with H.266 + AV1 + JPEG XS disabled.
+
 ## 0.2.0 - 2026-05-24
 
 ### Added

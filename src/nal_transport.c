@@ -17,9 +17,15 @@ static int send_fu(
 
 SmolRTSP_NalTransportConfig SmolRTSP_NalTransportConfig_default(void) {
     return (SmolRTSP_NalTransportConfig){
+#ifdef SMOLRTSP_WITH_H264
         .max_h264_nalu_size = SMOLRTSP_MAX_H264_NALU_SIZE,
+#endif
+#ifdef SMOLRTSP_WITH_H265
         .max_h265_nalu_size = SMOLRTSP_MAX_H265_NALU_SIZE,
+#endif
+#ifdef SMOLRTSP_WITH_H266
         .max_h266_nalu_size = SMOLRTSP_MAX_H266_NALU_SIZE,
+#endif
     };
 }
 
@@ -68,13 +74,29 @@ int SmolRTSP_NalTransport_send_packet(
     SmolRTSP_NalUnit nalu) {
     assert(self);
 
-    size_t max_packet_size;
+    /* Independent gated arms (no `else if` chain across `#ifdef`s, which
+     * clang-format mis-indents). After the cascade `max_packet_size`
+     * stays zero only if no enabled variant matched, which is the
+     * fall-through we want to assert on. */
+    size_t max_packet_size = 0;
+#ifdef SMOLRTSP_WITH_H264
     if (MATCHES(nalu.header, SmolRTSP_NalHeader_H264)) {
         max_packet_size = self->config.max_h264_nalu_size;
-    } else if (MATCHES(nalu.header, SmolRTSP_NalHeader_H265)) {
+    }
+#endif
+#ifdef SMOLRTSP_WITH_H265
+    if (MATCHES(nalu.header, SmolRTSP_NalHeader_H265)) {
         max_packet_size = self->config.max_h265_nalu_size;
-    } else {
+    }
+#endif
+#ifdef SMOLRTSP_WITH_H266
+    if (MATCHES(nalu.header, SmolRTSP_NalHeader_H266)) {
         max_packet_size = self->config.max_h266_nalu_size;
+    }
+#endif
+    if (max_packet_size == 0) {
+        assert(0 && "smolrtsp: unhandled NAL header variant");
+        return -1;
     }
     const size_t nalu_size =
         SmolRTSP_NalHeader_size(nalu.header) + nalu.payload.len;
