@@ -13,11 +13,12 @@ option(SMOLRTSP_FULL_MACRO_EXPANSION "Show full macro expansion backtraces" OFF)
 # downstream projects can switch off whatever the deployed hardware can't
 # produce/consume to shrink the binary. At least one of the NAL codecs
 # (H.264 / H.265 / H.266) must remain enabled.
-option(SMOLRTSP_WITH_H264   "RTP H.264 / AVC NAL payload format (RFC 6184)"  ON)
-option(SMOLRTSP_WITH_H265   "RTP H.265 / HEVC NAL payload format (RFC 7798)" ON)
-option(SMOLRTSP_WITH_H266   "RTP H.266 / VVC NAL payload format"             ON)
-option(SMOLRTSP_WITH_AV1    "RTP AV1 payload format (AOMedia AV1 RTP spec)"  ON)
-option(SMOLRTSP_WITH_JPEGXS "RTP JPEG XS payload format (RFC 9134)"          ON)
+option(SMOLRTSP_WITH_H264   "RTP H.264 / AVC NAL payload format (RFC 6184)"     ON)
+option(SMOLRTSP_WITH_H265   "RTP H.265 / HEVC NAL payload format (RFC 7798)"    ON)
+option(SMOLRTSP_WITH_H266   "RTP H.266 / VVC NAL payload format"                ON)
+option(SMOLRTSP_WITH_AV1    "RTP AV1 payload format (AOMedia AV1 RTP spec)"     ON)
+option(SMOLRTSP_WITH_JPEG   "RTP JPEG / Motion JPEG payload format (RFC 2435)"  ON)
+option(SMOLRTSP_WITH_JPEGXS "RTP JPEG XS payload format (RFC 9134)"             ON)
 
 if(NOT (SMOLRTSP_WITH_H264 OR SMOLRTSP_WITH_H265 OR SMOLRTSP_WITH_H266))
     message(FATAL_ERROR
@@ -125,6 +126,11 @@ if(SMOLRTSP_WITH_AV1)
         include/smolrtsp/av1.h include/smolrtsp/av1_transport.h
         src/av1.c src/av1_transport.c)
 endif()
+if(SMOLRTSP_WITH_JPEG)
+    list(APPEND SMOLRTSP_SOURCES
+        include/smolrtsp/jpeg.h include/smolrtsp/jpeg_transport.h
+        src/jpeg.c src/jpeg_transport.c)
+endif()
 if(SMOLRTSP_WITH_JPEGXS)
     list(APPEND SMOLRTSP_SOURCES
         include/smolrtsp/jpegxs.h include/smolrtsp/jpegxs_transport.h
@@ -153,7 +159,7 @@ endif()
 
 # Propagate the per-codec gates to consumers. Use PUBLIC so headers (which
 # also branch on these defines) stay in sync between smolrtsp and its callers.
-foreach(_codec H264 H265 H266 AV1 JPEGXS)
+foreach(_codec H264 H265 H266 AV1 JPEG JPEGXS)
     if(SMOLRTSP_WITH_${_codec})
         target_compile_definitions(${PROJECT_NAME}
             PUBLIC SMOLRTSP_WITH_${_codec})
