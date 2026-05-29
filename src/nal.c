@@ -2,25 +2,39 @@
 
 #include <assert.h>
 
-/* Per-codec match arm fragments. Each expands to either the corresponding
- * `of(...)` arm or nothing, depending on the SMOLRTSP_WITH_HXXX gates. They
- * are top-level macros (not nested in the derive macros below) so that the
- * preprocessor evaluates the gates before the derive macro is expanded —
- * #ifdef cannot legally appear inside a macro's replacement-list. */
+/* Per-codec match arm fragments, defined per derive-macro flavour so each
+ * fragment's call site stays under the 80-column limit even with the
+ * trailing `\` line continuation. They are top-level (not nested inside
+ * the derive macros) so the preprocessor evaluates the SMOLRTSP_WITH_HXXX
+ * gates before the derive macro is expanded -- #ifdef cannot legally
+ * appear inside a macro's replacement-list. Each expands either to the
+ * corresponding `of(...)` arm or to nothing. */
 #ifdef SMOLRTSP_WITH_H264
-#define SMOLRTSP_PRIV_NAL_H264_ARM(body) of(SmolRTSP_NalHeader_H264, h) body
+#define SMOLRTSP_PRIV_NAL_H264_GET(value)                                      \
+    of(SmolRTSP_NalHeader_H264, h) result = value;
+#define SMOLRTSP_PRIV_NAL_H264_PRED(fn)                                        \
+    of(SmolRTSP_NalHeader_H264, h) result = SmolRTSP_H264NalHeader_##fn(*h);
 #else
-#define SMOLRTSP_PRIV_NAL_H264_ARM(body)
+#define SMOLRTSP_PRIV_NAL_H264_GET(value)
+#define SMOLRTSP_PRIV_NAL_H264_PRED(fn)
 #endif
 #ifdef SMOLRTSP_WITH_H265
-#define SMOLRTSP_PRIV_NAL_H265_ARM(body) of(SmolRTSP_NalHeader_H265, h) body
+#define SMOLRTSP_PRIV_NAL_H265_GET(value)                                      \
+    of(SmolRTSP_NalHeader_H265, h) result = value;
+#define SMOLRTSP_PRIV_NAL_H265_PRED(fn)                                        \
+    of(SmolRTSP_NalHeader_H265, h) result = SmolRTSP_H265NalHeader_##fn(*h);
 #else
-#define SMOLRTSP_PRIV_NAL_H265_ARM(body)
+#define SMOLRTSP_PRIV_NAL_H265_GET(value)
+#define SMOLRTSP_PRIV_NAL_H265_PRED(fn)
 #endif
 #ifdef SMOLRTSP_WITH_H266
-#define SMOLRTSP_PRIV_NAL_H266_ARM(body) of(SmolRTSP_NalHeader_H266, h) body
+#define SMOLRTSP_PRIV_NAL_H266_GET(value)                                      \
+    of(SmolRTSP_NalHeader_H266, h) result = value;
+#define SMOLRTSP_PRIV_NAL_H266_PRED(fn)                                        \
+    of(SmolRTSP_NalHeader_H266, h) result = SmolRTSP_H266NalHeader_##fn(*h);
 #else
-#define SMOLRTSP_PRIV_NAL_H266_ARM(body)
+#define SMOLRTSP_PRIV_NAL_H266_GET(value)
+#define SMOLRTSP_PRIV_NAL_H266_PRED(fn)
 #endif
 
 #define NAL_HEADER_DERIVE_GETTER(T, name, h264_value, h265_value, h266_value)  \
@@ -28,9 +42,9 @@
         T result = 0;                                                          \
                                                                                \
         match(self) {                                                          \
-            SMOLRTSP_PRIV_NAL_H264_ARM(result = h264_value;)                   \
-            SMOLRTSP_PRIV_NAL_H265_ARM(result = h265_value;)                   \
-            SMOLRTSP_PRIV_NAL_H266_ARM(result = h266_value;)                   \
+            SMOLRTSP_PRIV_NAL_H264_GET(h264_value)                             \
+            SMOLRTSP_PRIV_NAL_H265_GET(h265_value)                             \
+            SMOLRTSP_PRIV_NAL_H266_GET(h266_value)                             \
         }                                                                      \
                                                                                \
         return result;                                                         \
@@ -54,12 +68,9 @@ NAL_HEADER_DERIVE_GETTER(
         bool result = 0;                                                       \
                                                                                \
         match(self) {                                                          \
-            SMOLRTSP_PRIV_NAL_H264_ARM(                                        \
-                result = SmolRTSP_H264NalHeader_##fn(*h);)                     \
-            SMOLRTSP_PRIV_NAL_H265_ARM(                                        \
-                result = SmolRTSP_H265NalHeader_##fn(*h);)                     \
-            SMOLRTSP_PRIV_NAL_H266_ARM(                                        \
-                result = SmolRTSP_H266NalHeader_##fn(*h);)                     \
+            SMOLRTSP_PRIV_NAL_H264_PRED(fn)                                    \
+            SMOLRTSP_PRIV_NAL_H265_PRED(fn)                                    \
+            SMOLRTSP_PRIV_NAL_H266_PRED(fn)                                    \
         }                                                                      \
                                                                                \
         return result;                                                         \
