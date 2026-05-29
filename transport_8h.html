@@ -383,6 +383,7 @@ Functions</h2></td></tr>
 
 <p>Creates a new UDP transport. </p>
 <p>Strictly speaking, it can handle any datagram-oriented protocol, not necessarily UDP. E.g., you may use a <code>SOCK_SEQPACKET</code> socket for local communication.</p>
+<p>Takes ownership of <code>fd:</code> the descriptor is <code>close(2)</code>d when the returned transport is dropped. Callers must not <code>close</code> it themselves and must not hand the same <code>fd</code> to two transports — <code>dup(2)</code> first if multiple transports need to share an underlying socket.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">fd</td><td>The socket file descriptor to be provided with data.</td></tr>
@@ -426,6 +427,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Creates a new UDP transport with address. </p>
+<p>Takes ownership of <code>fd</code>; see <a class="el" href="transport_8h.html#a3875a72cf6f4cd52bad76d6692979c61" title="Creates a new UDP transport.">smolrtsp_transport_udp</a> for the descriptor-lifetime contract.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">fd</td><td>The socket file descriptor to be provided with data. </td></tr>
