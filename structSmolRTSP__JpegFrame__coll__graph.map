@@ -1,0 +1,5 @@
+<map id="SmolRTSP_JpegFrame" name="SmolRTSP_JpegFrame">
+<area shape="rect" id="Node000001" title="One Motion&#45;JPEG frame, ready to packetize per RFC 2435." alt="" coords="34,93,197,119"/>
+<area shape="rect" id="Node000002" href="$structSmolRTSP__JpegPayloadHeader.html" title="An RFC 2435 main JPEG header (§3.1)." alt="" coords="5,5,225,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="118,45,118,93,113,93,113,45"/>
+</map>

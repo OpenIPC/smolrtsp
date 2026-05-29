@@ -8,6 +8,8 @@ var dir_d9df11550791e941c069ba1bdc5c3ae8 =
     [ "controller.h", "controller_8h.html", "controller_8h" ],
     [ "droppable.h", "droppable_8h.html", "droppable_8h" ],
     [ "io_vec.h", "io__vec_8h.html", "io__vec_8h" ],
+    [ "jpeg.h", "jpeg_8h.html", "jpeg_8h" ],
+    [ "jpeg_transport.h", "jpeg__transport_8h.html", "jpeg__transport_8h" ],
     [ "jpegxs.h", "jpegxs_8h.html", "jpegxs_8h" ],
     [ "jpegxs_transport.h", "jpegxs__transport_8h.html", "jpegxs__transport_8h" ],
     [ "nal.h", "nal_8h.html", "nal_8h" ],
