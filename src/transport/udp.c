@@ -4,6 +4,7 @@
 #include <errno.h>
 #include <stddef.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 #include <arpa/inet.h>
 #include <netinet/in.h>
@@ -53,6 +54,10 @@ static void SmolRTSP_UdpTransport_drop(VSelf) {
     VSELF(SmolRTSP_UdpTransport);
     assert(self);
 
+    if (self->fd >= 0) {
+        (void)close(self->fd);
+        self->fd = -1;
+    }
     free(self);
 }
 
