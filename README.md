@@ -17,7 +17,7 @@ SmolRTSP is a simple [RTSP 1.0] server library tailored for embedded devices, su
 
 [libevent]: https://libevent.org/
 [array slices]: https://github.com/hirrolot/slice99
-[Majestic]: https://openipc.github.io/wiki/en/majestic-streamer.html
+[Majestic]: https://github.com/OpenIPC/majestic
 [OpenIPC]: https://openipc.org/
 
 ## Features
