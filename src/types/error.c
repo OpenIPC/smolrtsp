@@ -67,6 +67,14 @@ int SmolRTSP_ParseError_print(SmolRTSP_ParseError self, SmolRTSP_Writer w) {
                        CharSlice99_from_str("`"),
                    });
         }
+        of(SmolRTSP_ParseError_HeaderValueTooLong, value) {
+            return SMOLRTSP_WRITE_SLICES(
+                w, {
+                       CharSlice99_from_str("Header value too long `"),
+                       TRUNCATE_STR(*value),
+                       CharSlice99_from_str("`"),
+                   });
+        }
     }
 
     return -1;

@@ -2,6 +2,7 @@
 
 #include <assert.h>
 #include <ctype.h>
+#include <stdint.h>
 #include <string.h>
 
 SmolRTSP_ParseResult smolrtsp_match_until(
@@ -150,4 +151,25 @@ SmolRTSP_ParseResult smolrtsp_match_header_name(CharSlice99 input) {
     }
 
     return smolrtsp_match_until(input, header_name_char_matcher, NULL);
+}
+
+bool smolrtsp_parse_uint(CharSlice99 input, uintmax_t max, uintmax_t *result) {
+    assert(result);
+
+    if (input.len == 0 || !isdigit((unsigned char)input.ptr[0])) {
+        return false;
+    }
+
+    uintmax_t acc = 0;
+    for (size_t i = 0; i < input.len && isdigit((unsigned char)input.ptr[i]);
+         i++) {
+        const unsigned digit = (unsigned)(input.ptr[i] - '0');
+        if (acc > max / 10 || (acc == max / 10 && digit > max % 10)) {
+            return false;
+        }
+        acc = acc * 10 + digit;
+    }
+
+    *result = acc;
+    return true;
 }

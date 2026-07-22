@@ -92,12 +92,13 @@ SmolRTSP_Request_parse(SmolRTSP_Request *restrict self, CharSlice99 input) {
         &self->header_map, SMOLRTSP_HEADER_CONTENT_LENGTH, &content_length);
 
     if (content_length_found) {
-        if (sscanf(
-                CharSlice99_alloca_c_str(content_length), "%zd",
-                &content_length_int) != 1) {
+        uintmax_t content_length_num;
+        if (!smolrtsp_parse_uint(
+                content_length, SIZE_MAX, &content_length_num)) {
             return SmolRTSP_ParseResult_Failure(
                 SmolRTSP_ParseError_ContentLength(content_length));
         }
+        content_length_int = (size_t)content_length_num;
     }
 
     MATCH(SmolRTSP_MessageBody_parse(&self->body, input, content_length_int));
@@ -109,13 +110,13 @@ SmolRTSP_Request_parse(SmolRTSP_Request *restrict self, CharSlice99 input) {
         return SmolRTSP_ParseResult_Failure(SmolRTSP_ParseError_MissingCSeq());
     }
 
-    uint32_t cseq;
-    if (sscanf(CharSlice99_alloca_c_str(cseq_value), "%" SCNu32, &cseq) != 1) {
+    uintmax_t cseq;
+    if (!smolrtsp_parse_uint(cseq_value, UINT32_MAX, &cseq)) {
         return SmolRTSP_ParseResult_Failure(
             SmolRTSP_ParseError_InvalidCSeq(cseq_value));
     }
 
-    self->cseq = cseq;
+    self->cseq = (uint32_t)cseq;
 
     return SmolRTSP_ParseResult_complete(input.ptr - backup.ptr);
 }

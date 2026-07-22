@@ -28,6 +28,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
  - Update the minimum required CMake version to 3.10.0 due to deprecation (see [metalang99/issues/33](https://github.com/hirrolot/metalang99/issues/33)).
  - Fix the `SmolRTSP_NalTransportConfig_default` value for H.265 ([PR #17](https://github.com/OpenIPC/smolrtsp/pull/17)).
 
+### Security
+
+ - Fix a remotely-triggerable stack-overflow denial of service in RTSP parsing (reported by [LL-V](https://github.com/LL-V), [#58](https://github.com/OpenIPC/smolrtsp/issues/58)). Attacker-controlled header values and numeric fields were copied onto the stack via unbounded `alloca` (`CharSlice99_alloca_c_str`), so a multi-megabyte `CSeq`/`Content-Length` could crash the process. Integer fields (`CSeq`, `Content-Length`, RTSP version, status code) are now parsed with a bounded, overflow-checked parser that also rejects a negative `Content-Length` (previously wrapped to `SIZE_MAX`), and header values longer than the new `SMOLRTSP_MAX_HEADER_VALUE` (default 1024, override-able) are rejected with the new `SmolRTSP_ParseError_HeaderValueTooLong` parse error.
+
 ## 0.1.3 - 2023-03-12
 
 ### Fixed

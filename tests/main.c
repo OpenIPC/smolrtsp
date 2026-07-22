@@ -49,5 +49,7 @@ int main(int argc, char *argv[]) {
     SMOLRTSP_SUITE(controller);
     SMOLRTSP_SUITE(rtp_transport);
 
+    SMOLRTSP_SUITE(security);
+
     GREATEST_MAIN_END();
 }
