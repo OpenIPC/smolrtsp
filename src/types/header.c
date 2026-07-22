@@ -42,6 +42,11 @@ SmolRTSP_Header_parse(SmolRTSP_Header *restrict self, CharSlice99 input) {
     header.value =
         CharSlice99_from_ptrdiff(header.value.ptr, input.ptr - strlen("\r\n"));
 
+    if (header.value.len > SMOLRTSP_MAX_HEADER_VALUE) {
+        return SmolRTSP_ParseResult_Failure(
+            SmolRTSP_ParseError_HeaderValueTooLong(header.value));
+    }
+
     *self = header;
 
     return SmolRTSP_ParseResult_complete(input.ptr - backup.ptr);

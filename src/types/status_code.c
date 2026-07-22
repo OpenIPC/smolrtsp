@@ -4,10 +4,8 @@
 
 #include <assert.h>
 #include <inttypes.h>
-#include <stdio.h>
+#include <stdint.h>
 #include <string.h>
-
-#include <alloca.h>
 
 ssize_t SmolRTSP_StatusCode_serialize(
     const SmolRTSP_StatusCode *restrict self, SmolRTSP_Writer w) {
@@ -28,13 +26,13 @@ SmolRTSP_ParseResult SmolRTSP_StatusCode_parse(
     MATCH(smolrtsp_match_numeric(input));
     code = CharSlice99_from_ptrdiff(code.ptr, input.ptr);
 
-    SmolRTSP_StatusCode code_int;
-    if (sscanf(CharSlice99_alloca_c_str(code), "%" SCNu16, &code_int) != 1) {
+    uintmax_t code_int;
+    if (!smolrtsp_parse_uint(code, UINT16_MAX, &code_int)) {
         return SmolRTSP_ParseResult_Failure(
             SmolRTSP_ParseError_TypeMismatch(SmolRTSP_ParseType_Int, code));
     }
 
-    *self = code_int;
+    *self = (SmolRTSP_StatusCode)code_int;
 
     return SmolRTSP_ParseResult_complete(input.ptr - backup.ptr);
 }

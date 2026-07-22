@@ -65,6 +65,20 @@ bool SmolRTSP_Header_eq(
     const SmolRTSP_Header *restrict rhs) SMOLRTSP_PRIV_MUST_USE;
 
 /**
+ * The maximum length, in bytes, of a single RTSP header value accepted by
+ * #SmolRTSP_Header_parse.
+ *
+ * Values longer than this are rejected with
+ * #SmolRTSP_ParseError_HeaderValueTooLong. This bounds the memory that header
+ * parsing may touch and guards against denial-of-service from unbounded header
+ * values sent by an untrusted peer. Define this macro before including this
+ * header to override the default.
+ */
+#ifndef SMOLRTSP_MAX_HEADER_VALUE
+#define SMOLRTSP_MAX_HEADER_VALUE 1024
+#endif
+
+/**
  * `Accept`.
  */
 #define SMOLRTSP_HEADER_ACCEPT (CharSlice99_from_str("Accept"))

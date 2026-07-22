@@ -433,9 +433,9 @@ Client_before(VSelf, SmolRTSP_Context *ctx, const SmolRTSP_Request *req) {
     (void)ctx;
 
     printf(
-        "%s %s CSeq=%" PRIu32 ".\n",
-        CharSlice99_alloca_c_str(req->start_line.method),
-        CharSlice99_alloca_c_str(req->start_line.uri), req->cseq);
+        "%.*s %.*s CSeq=%" PRIu32 ".\n", (int)req->start_line.method.len,
+        req->start_line.method.ptr, (int)req->start_line.uri.len,
+        req->start_line.uri.ptr, req->cseq);
 
     return SmolRTSP_ControlFlow_Continue;
 }

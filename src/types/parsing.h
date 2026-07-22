@@ -46,3 +46,22 @@ SmolRTSP_ParseResult smolrtsp_match_non_whitespaces(CharSlice99 input);
 SmolRTSP_ParseResult smolrtsp_match_numeric(CharSlice99 input);
 SmolRTSP_ParseResult smolrtsp_match_ident(CharSlice99 input);
 SmolRTSP_ParseResult smolrtsp_match_header_name(CharSlice99 input);
+
+/**
+ * Parses a non-negative decimal integer from the beginning of @p input.
+ *
+ * At least one leading ASCII digit is required; scanning stops at the first
+ * non-digit (any trailing characters are ignored, matching `sscanf` leniency).
+ * The accumulated value must not exceed @p max. No sign is accepted.
+ *
+ * This is a bounded, allocation-free replacement for
+ * `sscanf(CharSlice99_alloca_c_str(...), ...)` on untrusted input: it never
+ * allocates and rejects overflow instead of wrapping.
+ *
+ * @param[out] result The parsed value; written only when the return value is
+ * `true`.
+ *
+ * @return `true` if at least one digit was parsed without exceeding @p max,
+ * `false` otherwise (no leading digit or overflow).
+ */
+bool smolrtsp_parse_uint(CharSlice99 input, uintmax_t max, uintmax_t *result);
