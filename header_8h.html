@@ -179,6 +179,9 @@ Data Structures</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
+<tr class="memitem:a9504409ebdcb5f5751c1444e000dcb91" id="r_a9504409ebdcb5f5751c1444e000dcb91"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="header_8h.html#a9504409ebdcb5f5751c1444e000dcb91">SMOLRTSP_MAX_HEADER_VALUE</a>&#160;&#160;&#160;1024</td></tr>
+<tr class="memdesc:a9504409ebdcb5f5751c1444e000dcb91"><td class="mdescLeft">&#160;</td><td class="mdescRight">The maximum length, in bytes, of a single RTSP header value accepted by <a class="el" href="header_8h.html#a35f400689278b63b62a5a5cd3710c5fb" title="Parses data to self.">SmolRTSP_Header_parse</a>.  <br /></td></tr>
+<tr class="separator:a9504409ebdcb5f5751c1444e000dcb91"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6a1bf63b9a4db2e9fa28cb27b0afde77" id="r_a6a1bf63b9a4db2e9fa28cb27b0afde77"><td class="memItemLeft" align="right" valign="top"><a id="a6a1bf63b9a4db2e9fa28cb27b0afde77" name="a6a1bf63b9a4db2e9fa28cb27b0afde77"></a>
 #define&#160;</td><td class="memItemRight" valign="bottom"><b>SMOLRTSP_HEADER_ACCEPT</b>&#160;&#160;&#160;(CharSlice99_from_str(&quot;Accept&quot;))</td></tr>
 <tr class="memdesc:a6a1bf63b9a4db2e9fa28cb27b0afde77"><td class="mdescLeft">&#160;</td><td class="mdescRight"><code>Accept</code>. <br /></td></tr>
@@ -350,7 +353,25 @@ Functions</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>An RTSP header. </p>
-</div><h2 class="groupheader">Function Documentation</h2>
+</div><h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="a9504409ebdcb5f5751c1444e000dcb91" name="a9504409ebdcb5f5751c1444e000dcb91"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9504409ebdcb5f5751c1444e000dcb91">&#9670;&#160;</a></span>SMOLRTSP_MAX_HEADER_VALUE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SMOLRTSP_MAX_HEADER_VALUE&#160;&#160;&#160;1024</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The maximum length, in bytes, of a single RTSP header value accepted by <a class="el" href="header_8h.html#a35f400689278b63b62a5a5cd3710c5fb" title="Parses data to self.">SmolRTSP_Header_parse</a>. </p>
+<p>Values longer than this are rejected with #SmolRTSP_ParseError_HeaderValueTooLong. This bounds the memory that header parsing may touch and guards against denial-of-service from unbounded header values sent by an untrusted peer. Define this macro before including this header to override the default. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
 <a id="ad30a3b22169851f3680d7a6cdedd1939" name="ad30a3b22169851f3680d7a6cdedd1939"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad30a3b22169851f3680d7a6cdedd1939">&#9670;&#160;</a></span>SmolRTSP_Header_eq()</h2>
 

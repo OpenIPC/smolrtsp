@@ -1,5 +1,6 @@
 var NAVTREEINDEX1 =
 {
+"io__vec_8h.html#a73fb0c8243a4da29c96e982a24082784":[1,0,0,0,7,2],
 "io__vec_8h_source.html":[1,0,0,0,7],
 "jpeg_8h.html":[1,0,0,0,8],
 "jpeg_8h.html#a0fb96a45c1c7862f7c24a6f852dfd6fa":[1,0,0,0,8,7],
@@ -248,6 +249,5 @@ var NAVTREEINDEX1 =
 "structSmolRTSP__ChannelPair.html#afa635e0877a97254c9652dba84abc791":[0,0,2,1],
 "structSmolRTSP__H264NalHeader.html":[0,0,3],
 "structSmolRTSP__H264NalHeader.html#a4365efcbb2bb8fce15eb14446b1061d4":[0,0,3,0],
-"structSmolRTSP__H264NalHeader.html#ae41578742d05c569244745a33d949677":[0,0,3,1],
-"structSmolRTSP__H264NalHeader.html#af57084c3855a5ef198aba71751ca28eb":[0,0,3,2]
+"structSmolRTSP__H264NalHeader.html#ae41578742d05c569244745a33d949677":[0,0,3,1]
 };

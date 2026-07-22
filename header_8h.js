@@ -40,6 +40,7 @@ var header_8h =
     [ "SMOLRTSP_HEADER_USER_AGENT", "header_8h.html#a0ded536382c6d61c60ed159971183e98", null ],
     [ "SMOLRTSP_HEADER_VIA", "header_8h.html#a04b37cb754cb331da852e6cae66961a5", null ],
     [ "SMOLRTSP_HEADER_WWW_AUTHENTICATE", "header_8h.html#a687f5c677edb6e9ccfd8561154e7df49", null ],
+    [ "SMOLRTSP_MAX_HEADER_VALUE", "header_8h.html#a9504409ebdcb5f5751c1444e000dcb91", null ],
     [ "SmolRTSP_Header_eq", "header_8h.html#ad30a3b22169851f3680d7a6cdedd1939", null ],
     [ "SmolRTSP_Header_parse", "header_8h.html#a35f400689278b63b62a5a5cd3710c5fb", null ],
     [ "SmolRTSP_Header_serialize", "header_8h.html#aded7b8296de9544d7223113e19329c9a", null ]
