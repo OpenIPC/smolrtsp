@@ -138,6 +138,9 @@ Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structSmolRTSP__JpegQtHeader.html">SmolRTSP_JpegQtHeader</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An RFC 2435 Quantization Table header (§3.1.8).  <a href="structSmolRTSP__JpegQtHeader.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structSmolRTSP__JpegRestartHeader.html">SmolRTSP_JpegRestartHeader</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An RFC 2435 Restart Marker header (§3.1.7).  <a href="structSmolRTSP__JpegRestartHeader.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
@@ -151,6 +154,12 @@ Macros</h2></td></tr>
 #define&#160;</td><td class="memItemRight" valign="bottom"><b>SMOLRTSP_JPEG_QT_SIZE</b>&#160;&#160;&#160;64</td></tr>
 <tr class="memdesc:aaed751404f4df8c8ca5efdc417147e98"><td class="mdescLeft">&#160;</td><td class="mdescRight">The size in bytes of one 8-bit-precision baseline quantization table. <br /></td></tr>
 <tr class="separator:aaed751404f4df8c8ca5efdc417147e98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ea0e02d74b2cdc85148f659b2bc2ea7" id="r_a9ea0e02d74b2cdc85148f659b2bc2ea7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="jpeg_8h.html#a9ea0e02d74b2cdc85148f659b2bc2ea7">SMOLRTSP_JPEG_RESTART_HEADER_SIZE</a>&#160;&#160;&#160;4</td></tr>
+<tr class="memdesc:a9ea0e02d74b2cdc85148f659b2bc2ea7"><td class="mdescLeft">&#160;</td><td class="mdescRight">The size in bytes of an RFC 2435 Restart Marker header (§3.1.7).  <br /></td></tr>
+<tr class="separator:a9ea0e02d74b2cdc85148f659b2bc2ea7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36933d9e6431c4eb9f02ec8b0f161a84" id="r_a36933d9e6431c4eb9f02ec8b0f161a84"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="jpeg_8h.html#a36933d9e6431c4eb9f02ec8b0f161a84">SMOLRTSP_JPEG_TYPE_RESTART</a>&#160;&#160;&#160;64</td></tr>
+<tr class="memdesc:a36933d9e6431c4eb9f02ec8b0f161a84"><td class="mdescLeft">&#160;</td><td class="mdescRight">The RFC 2435 Type offset that flags the presence of restart markers.  <br /></td></tr>
+<tr class="separator:a36933d9e6431c4eb9f02ec8b0f161a84"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0fb96a45c1c7862f7c24a6f852dfd6fa" id="r_a0fb96a45c1c7862f7c24a6f852dfd6fa"><td class="memItemLeft" align="right" valign="top"><a id="a0fb96a45c1c7862f7c24a6f852dfd6fa" name="a0fb96a45c1c7862f7c24a6f852dfd6fa"></a>
 #define&#160;</td><td class="memItemRight" valign="bottom"><b>SMOLRTSP_MAX_JPEG_PACKET_SIZE</b>&#160;&#160;&#160;1200</td></tr>
 <tr class="memdesc:a0fb96a45c1c7862f7c24a6f852dfd6fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default value for <a class="el" href="structSmolRTSP__JpegTransportConfig.html#aeed39971d3f31897152e1c42088f6d9b" title="Maximum size in bytes of the RTP payload (i.e.">SmolRTSP_JpegTransportConfig.max_packet_size</a>: a conservative MTU that leaves room for RTP / UDP / IP headers and one 140-byte first-packet JPEG header (main + QT header + two 64-byte tables). <br /></td></tr>
@@ -171,6 +180,9 @@ Functions</h2></td></tr>
 <tr class="memitem:a71c2fe8771514de51d97409cda7654a5" id="r_a71c2fe8771514de51d97409cda7654a5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="jpeg_8h.html#a71c2fe8771514de51d97409cda7654a5">SmolRTSP_JpegQtHeader_serialize</a> (<a class="el" href="structSmolRTSP__JpegQtHeader.html">SmolRTSP_JpegQtHeader</a> self, uint8_t buffer[restrict])</td></tr>
 <tr class="memdesc:a71c2fe8771514de51d97409cda7654a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serializes <code>self</code> into <code>buffer</code> in network byte order.  <br /></td></tr>
 <tr class="separator:a71c2fe8771514de51d97409cda7654a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2d27b498ce8aca251d04c81b9a58715" id="r_ae2d27b498ce8aca251d04c81b9a58715"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="jpeg_8h.html#ae2d27b498ce8aca251d04c81b9a58715">SmolRTSP_JpegRestartHeader_serialize</a> (<a class="el" href="structSmolRTSP__JpegRestartHeader.html">SmolRTSP_JpegRestartHeader</a> self, uint8_t buffer[restrict])</td></tr>
+<tr class="memdesc:ae2d27b498ce8aca251d04c81b9a58715"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serializes <code>self</code> into <code>buffer</code> in network byte order.  <br /></td></tr>
+<tr class="separator:ae2d27b498ce8aca251d04c81b9a58715"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>JPEG / Motion JPEG RTP payload-header types and serialization. </p>
@@ -224,6 +236,40 @@ Functions</h2></td></tr>
 
 <p>The size in bytes of an RFC 2435 Quantization Table header (§3.1.8). </p>
 <p>Carries MBZ, Precision and Length fields, prefixing the QT data block itself. Only emitted on the first RTP packet of a frame when an embedded quantization table is sent (Q &gt;= 128). </p>
+
+</div>
+</div>
+<a id="a9ea0e02d74b2cdc85148f659b2bc2ea7" name="a9ea0e02d74b2cdc85148f659b2bc2ea7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9ea0e02d74b2cdc85148f659b2bc2ea7">&#9670;&#160;</a></span>SMOLRTSP_JPEG_RESTART_HEADER_SIZE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SMOLRTSP_JPEG_RESTART_HEADER_SIZE&#160;&#160;&#160;4</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The size in bytes of an RFC 2435 Restart Marker header (§3.1.7). </p>
+<p>Carries the Restart Interval, F, L and Restart Count fields. Present immediately after the main JPEG header on every RTP packet of a frame whose Type is in <code>[64, 127]</code> (i.e. the source JPEG uses restart markers). </p>
+
+</div>
+</div>
+<a id="a36933d9e6431c4eb9f02ec8b0f161a84" name="a36933d9e6431c4eb9f02ec8b0f161a84"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a36933d9e6431c4eb9f02ec8b0f161a84">&#9670;&#160;</a></span>SMOLRTSP_JPEG_TYPE_RESTART</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SMOLRTSP_JPEG_TYPE_RESTART&#160;&#160;&#160;64</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>The RFC 2435 Type offset that flags the presence of restart markers. </p>
+<p>A base Type in <code>[0, 63]</code> (subsampling + interlace) gains this offset, moving it into <code>[64, 127]</code>, when the source JPEG carries a DRI marker. The receiver then expects a <a class="el" href="structSmolRTSP__JpegRestartHeader.html" title="An RFC 2435 Restart Marker header (§3.1.7).">SmolRTSP_JpegRestartHeader</a> after the main header and knows to honour the inline RSTn markers in the scan data. </p>
 
 </div>
 </div>
@@ -296,6 +342,43 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramdir">[in]</td><td class="paramname">self</td><td>The header to write. </td></tr>
     <tr><td class="paramdir">[out]</td><td class="paramname">buffer</td><td>The memory area capable of storing <a class="el" href="jpeg_8h.html#aceaa931111a069164f9e77575f39ada0" title="The size in bytes of an RFC 2435 Quantization Table header (§3.1.8).">SMOLRTSP_JPEG_QT_HEADER_SIZE</a> bytes. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ae2d27b498ce8aca251d04c81b9a58715" name="ae2d27b498ce8aca251d04c81b9a58715"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae2d27b498ce8aca251d04c81b9a58715">&#9670;&#160;</a></span>SmolRTSP_JpegRestartHeader_serialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void SmolRTSP_JpegRestartHeader_serialize </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structSmolRTSP__JpegRestartHeader.html">SmolRTSP_JpegRestartHeader</a>&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>buffer</em>[restrict]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Serializes <code>self</code> into <code>buffer</code> in network byte order. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">self</td><td>The header to write. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">buffer</td><td>The memory area capable of storing <a class="el" href="jpeg_8h.html#a9ea0e02d74b2cdc85148f659b2bc2ea7" title="The size in bytes of an RFC 2435 Restart Marker header (§3.1.7).">SMOLRTSP_JPEG_RESTART_HEADER_SIZE</a> bytes. </td></tr>
   </table>
   </dd>
 </dl>

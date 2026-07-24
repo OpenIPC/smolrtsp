@@ -125,6 +125,9 @@ Data Fields</h2></td></tr>
 <tr class="memitem:a455fafe1197f78368a7b0a34bd6453d6" id="r_a455fafe1197f78368a7b0a34bd6453d6"><td class="memItemLeft" align="right" valign="top">U8Slice99&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structSmolRTSP__JpegFrame.html#a455fafe1197f78368a7b0a34bd6453d6">scan_data</a></td></tr>
 <tr class="memdesc:a455fafe1197f78368a7b0a34bd6453d6"><td class="mdescLeft">&#160;</td><td class="mdescRight">JPEG entropy-coded scan data (the bytes after the SOS marker, not including the trailing EOI).  <br /></td></tr>
 <tr class="separator:a455fafe1197f78368a7b0a34bd6453d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa078499f10e8af596e2c2fa26cb8ffa7" id="r_aa078499f10e8af596e2c2fa26cb8ffa7"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structSmolRTSP__JpegFrame.html#aa078499f10e8af596e2c2fa26cb8ffa7">restart_interval</a></td></tr>
+<tr class="memdesc:aa078499f10e8af596e2c2fa26cb8ffa7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Restart interval in MCUs (the JPEG DRI value), or 0 when the source JPEG carries no restart markers.  <br /></td></tr>
+<tr class="separator:aa078499f10e8af596e2c2fa26cb8ffa7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>One Motion-JPEG frame, ready to packetize per RFC 2435. </p>
@@ -179,6 +182,23 @@ Data Fields</h2></td></tr>
 
 <p>Second quantization table, typically 64 bytes. </p>
 <p>Pass #U8Slice99_empty() for grayscale or single-table frames. </p>
+
+</div>
+</div>
+<a id="aa078499f10e8af596e2c2fa26cb8ffa7" name="aa078499f10e8af596e2c2fa26cb8ffa7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa078499f10e8af596e2c2fa26cb8ffa7">&#9670;&#160;</a></span>restart_interval</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t SmolRTSP_JpegFrame::restart_interval</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Restart interval in MCUs (the JPEG DRI value), or 0 when the source JPEG carries no restart markers. </p>
+<p>When non-zero the caller MUST also move hdr.type into <code>[64, 127]</code> (base type + <a class="el" href="jpeg_8h.html#a36933d9e6431c4eb9f02ec8b0f161a84" title="The RFC 2435 Type offset that flags the presence of restart markers.">SMOLRTSP_JPEG_TYPE_RESTART</a>); the transport then emits a <a class="el" href="structSmolRTSP__JpegRestartHeader.html" title="An RFC 2435 Restart Marker header (§3.1.7).">SmolRTSP_JpegRestartHeader</a> after the main header on every packet so the receiver can decode the inline RSTn markers (RFC 2435 §3.1.7). </p>
 
 </div>
 </div>

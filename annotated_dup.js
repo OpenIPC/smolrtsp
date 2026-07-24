@@ -14,6 +14,7 @@ var annotated_dup =
     [ "SmolRTSP_JpegFrame", "structSmolRTSP__JpegFrame.html", "structSmolRTSP__JpegFrame" ],
     [ "SmolRTSP_JpegPayloadHeader", "structSmolRTSP__JpegPayloadHeader.html", "structSmolRTSP__JpegPayloadHeader" ],
     [ "SmolRTSP_JpegQtHeader", "structSmolRTSP__JpegQtHeader.html", "structSmolRTSP__JpegQtHeader" ],
+    [ "SmolRTSP_JpegRestartHeader", "structSmolRTSP__JpegRestartHeader.html", "structSmolRTSP__JpegRestartHeader" ],
     [ "SmolRTSP_JpegTransportConfig", "structSmolRTSP__JpegTransportConfig.html", "structSmolRTSP__JpegTransportConfig" ],
     [ "SmolRTSP_JpegXsPayloadHeader", "structSmolRTSP__JpegXsPayloadHeader.html", "structSmolRTSP__JpegXsPayloadHeader" ],
     [ "SmolRTSP_JpegXsTransportConfig", "structSmolRTSP__JpegXsTransportConfig.html", "structSmolRTSP__JpegXsTransportConfig" ],

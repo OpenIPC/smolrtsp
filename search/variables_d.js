@@ -3,9 +3,11 @@ var searchData=
   ['rc_0',['rc',['../structSmolRTSP__RtcpSr.html#a3f2f0a04c7e00ddd19d80e4b5db05737',1,'SmolRTSP_RtcpSr::rc'],['../structSmolRTSP__RtcpRr.html#a9e88fd81fd4ae61849bcd61aa2f0e66d',1,'SmolRTSP_RtcpRr::rc']]],
   ['reason_1',['reason',['../structSmolRTSP__ResponseLine.html#a8c9b163a1c6e57e795ef6bf559e5af15',1,'SmolRTSP_ResponseLine::reason'],['../structSmolRTSP__RtcpBye.html#a7a3cff1c23212bdc68c59029eac08d39',1,'SmolRTSP_RtcpBye::reason']]],
   ['ref_5fidc_2',['ref_idc',['../structSmolRTSP__H264NalHeader.html#ae41578742d05c569244745a33d949677',1,'SmolRTSP_H264NalHeader']]],
-  ['rtcp_5fchannel_3',['rtcp_channel',['../structSmolRTSP__ChannelPair.html#a0d10069bb044306ad148257bf7656819',1,'SmolRTSP_ChannelPair']]],
-  ['rtcp_5fport_4',['rtcp_port',['../structSmolRTSP__PortPair.html#a83df95bfdd0674434f0ec23b17a46b16',1,'SmolRTSP_PortPair']]],
-  ['rtp_5fchannel_5',['rtp_channel',['../structSmolRTSP__ChannelPair.html#afa635e0877a97254c9652dba84abc791',1,'SmolRTSP_ChannelPair']]],
-  ['rtp_5fport_6',['rtp_port',['../structSmolRTSP__PortPair.html#ac932ef69e005261ff14eea4f11322ae3',1,'SmolRTSP_PortPair']]],
-  ['rtp_5fts_7',['rtp_ts',['../structSmolRTSP__RtcpSr.html#abf3be0116628737a278afdda6cc5ea19',1,'SmolRTSP_RtcpSr']]]
+  ['restart_5fcount_3',['restart_count',['../structSmolRTSP__JpegRestartHeader.html#a97c83628e5654752911061700b482346',1,'SmolRTSP_JpegRestartHeader']]],
+  ['restart_5finterval_4',['restart_interval',['../structSmolRTSP__JpegRestartHeader.html#a553f51febf46d6421242183de009b68d',1,'SmolRTSP_JpegRestartHeader::restart_interval'],['../structSmolRTSP__JpegFrame.html#aa078499f10e8af596e2c2fa26cb8ffa7',1,'SmolRTSP_JpegFrame::restart_interval']]],
+  ['rtcp_5fchannel_5',['rtcp_channel',['../structSmolRTSP__ChannelPair.html#a0d10069bb044306ad148257bf7656819',1,'SmolRTSP_ChannelPair']]],
+  ['rtcp_5fport_6',['rtcp_port',['../structSmolRTSP__PortPair.html#a83df95bfdd0674434f0ec23b17a46b16',1,'SmolRTSP_PortPair']]],
+  ['rtp_5fchannel_7',['rtp_channel',['../structSmolRTSP__ChannelPair.html#afa635e0877a97254c9652dba84abc791',1,'SmolRTSP_ChannelPair']]],
+  ['rtp_5fport_8',['rtp_port',['../structSmolRTSP__PortPair.html#ac932ef69e005261ff14eea4f11322ae3',1,'SmolRTSP_PortPair']]],
+  ['rtp_5fts_9',['rtp_ts',['../structSmolRTSP__RtcpSr.html#abf3be0116628737a278afdda6cc5ea19',1,'SmolRTSP_RtcpSr']]]
 ];
