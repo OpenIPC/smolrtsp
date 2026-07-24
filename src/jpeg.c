@@ -30,3 +30,16 @@ void SmolRTSP_JpegQtHeader_serialize(
     buffer[2] = (uint8_t)((self.length >> 8) & 0xFFu);
     buffer[3] = (uint8_t)(self.length & 0xFFu);
 }
+
+void SmolRTSP_JpegRestartHeader_serialize(
+    SmolRTSP_JpegRestartHeader self, uint8_t buffer[restrict]) {
+    /* RFC 2435 §3.1.7 wire layout:
+     *   bytes 0..1 -- Restart Interval (16-bit, big-endian)
+     *   byte 2     -- F (bit 7), L (bit 6), Restart Count high 6 bits
+     *   byte 3     -- Restart Count low 8 bits */
+    buffer[0] = (uint8_t)((self.restart_interval >> 8) & 0xFFu);
+    buffer[1] = (uint8_t)(self.restart_interval & 0xFFu);
+    buffer[2] = (uint8_t)((self.first ? 0x80u : 0u) | (self.last ? 0x40u : 0u) |
+                          ((self.restart_count >> 8) & 0x3Fu));
+    buffer[3] = (uint8_t)(self.restart_count & 0xFFu);
+}

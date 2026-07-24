@@ -85,6 +85,15 @@ typedef struct {
      * still emits one RTP packet with the marker bit set.
      */
     U8Slice99 scan_data;
+    /**
+     * Restart interval in MCUs (the JPEG DRI value), or 0 when the source
+     * JPEG carries no restart markers. When non-zero the caller MUST also
+     * move @ref hdr.type into `[64, 127]` (base type +
+     * #SMOLRTSP_JPEG_TYPE_RESTART); the transport then emits a
+     * #SmolRTSP_JpegRestartHeader after the main header on every packet so
+     * the receiver can decode the inline RSTn markers (RFC 2435 §3.1.7).
+     */
+    uint16_t restart_interval;
 } SmolRTSP_JpegFrame;
 
 /**
