@@ -112,10 +112,56 @@ TEST qt_header_serialize_precision_bitmap(void) {
     PASS();
 }
 
+TEST restart_header_serialize_whole_frame_reassembly(void) {
+    /* The packetizer's default: restart intervals are not aligned to packet
+     * boundaries, so F=L=1 and Restart Count=0x3FFF (RFC 2435 §3.1.7). With a
+     * 16-MCU interval the four wire bytes are 0x00 0x10 0xFF 0xFF. */
+    const SmolRTSP_JpegRestartHeader h = {
+        .restart_interval = 0x0010,
+        .first = true,
+        .last = true,
+        .restart_count = 0x3FFF,
+    };
+
+    uint8_t buf[SMOLRTSP_JPEG_RESTART_HEADER_SIZE] = {0x00, 0x00, 0x00, 0x00};
+    SmolRTSP_JpegRestartHeader_serialize(h, buf);
+
+    ASSERT_EQ_FMT((uint8_t)0x00, buf[0], "%u"); /* interval high */
+    ASSERT_EQ_FMT((uint8_t)0x10, buf[1], "%u"); /* interval low */
+    ASSERT_EQ_FMT((uint8_t)0xFF, buf[2], "%u"); /* F | L | count[13:8] */
+    ASSERT_EQ_FMT((uint8_t)0xFF, buf[3], "%u"); /* count[7:0] */
+    PASS();
+}
+
+TEST restart_header_serialize_field_layout(void) {
+    /* Hand-computed sentinel exercising the F/L bits and the 14-bit Restart
+     * Count split across bytes 2..3:
+     *   bytes 0..1  restart_interval = 0x1234 (big-endian)
+     *   byte 2      F=1, L=0, count[13:8] = 0x01  ->  0x80 | 0x01 = 0x81
+     *   byte 3      count[7:0] = 0x55 */
+    const SmolRTSP_JpegRestartHeader h = {
+        .restart_interval = 0x1234,
+        .first = true,
+        .last = false,
+        .restart_count = 0x0155,
+    };
+
+    uint8_t buf[SMOLRTSP_JPEG_RESTART_HEADER_SIZE] = {0};
+    SmolRTSP_JpegRestartHeader_serialize(h, buf);
+
+    ASSERT_EQ_FMT((uint8_t)0x12, buf[0], "%u");
+    ASSERT_EQ_FMT((uint8_t)0x34, buf[1], "%u");
+    ASSERT_EQ_FMT((uint8_t)0x81, buf[2], "%u");
+    ASSERT_EQ_FMT((uint8_t)0x55, buf[3], "%u");
+    PASS();
+}
+
 SUITE(jpeg) {
     RUN_TEST(main_header_serialize_all_zero);
     RUN_TEST(main_header_serialize_field_layout);
     RUN_TEST(main_header_fragment_offset_truncates_to_24_bits);
     RUN_TEST(qt_header_serialize_two_baseline_tables);
     RUN_TEST(qt_header_serialize_precision_bitmap);
+    RUN_TEST(restart_header_serialize_whole_frame_reassembly);
+    RUN_TEST(restart_header_serialize_field_layout);
 }

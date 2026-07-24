@@ -70,13 +70,13 @@ bool SmolRTSP_JpegTransport_is_full(SmolRTSP_JpegTransport *self) {
  *   continuation packets:
  *     [ 8 B main JPEG header ][ scan ]
  *
- * The longest header we ever emit is 8 + 4 + 64 + 64 = 140 bytes (two
- * 8-bit baseline tables). Anything larger means qt0/qt1 are non-baseline
- * tables; the assertion in send_frame catches sizes that wouldn't leave
- * room for a single scan-data byte. */
+ * The longest header we ever emit is 8 + 4 + 4 + 64 + 64 = 144 bytes (main
+ * + restart marker header + QT header + two 8-bit baseline tables). Anything
+ * larger means qt0/qt1 are non-baseline tables; the assertion in send_frame
+ * catches sizes that wouldn't leave room for a single scan-data byte. */
 #define SMOLRTSP_PRIV_JPEG_HDR_BUF                                             \
-    (SMOLRTSP_JPEG_MAIN_HEADER_SIZE + SMOLRTSP_JPEG_QT_HEADER_SIZE +           \
-     2 * SMOLRTSP_JPEG_QT_SIZE)
+    (SMOLRTSP_JPEG_MAIN_HEADER_SIZE + SMOLRTSP_JPEG_RESTART_HEADER_SIZE +      \
+     SMOLRTSP_JPEG_QT_HEADER_SIZE + 2 * SMOLRTSP_JPEG_QT_SIZE)
 
 int SmolRTSP_JpegTransport_send_frame(
     SmolRTSP_JpegTransport *self, SmolRTSP_RtpTimestamp ts,
@@ -89,9 +89,19 @@ int SmolRTSP_JpegTransport_send_frame(
         (0 == frame.qt0.len && 0 == frame.qt1.len)
             ? 0
             : SMOLRTSP_JPEG_QT_HEADER_SIZE + frame.qt0.len + frame.qt1.len;
+
+    /* RFC 2435 §3.1.7: a frame whose Type is in [64, 127] carries a Restart
+     * Marker header immediately after the main header on EVERY packet (unlike
+     * the QT block, which rides only the first packet). */
+    const bool has_restart =
+        frame.hdr.type >= SMOLRTSP_JPEG_TYPE_RESTART && frame.hdr.type <= 127;
+    const size_t restart_hdr_size =
+        has_restart ? SMOLRTSP_JPEG_RESTART_HEADER_SIZE : 0;
+
     const size_t first_hdr_size =
-        SMOLRTSP_JPEG_MAIN_HEADER_SIZE + qt_block_size;
-    const size_t cont_hdr_size = SMOLRTSP_JPEG_MAIN_HEADER_SIZE;
+        SMOLRTSP_JPEG_MAIN_HEADER_SIZE + restart_hdr_size + qt_block_size;
+    const size_t cont_hdr_size =
+        SMOLRTSP_JPEG_MAIN_HEADER_SIZE + restart_hdr_size;
 
     /* Reject configurations that wouldn't leave room for even one scan-data
      * byte on the first packet -- a single-byte first packet is
@@ -123,6 +133,22 @@ int SmolRTSP_JpegTransport_send_frame(
 
         size_t hdr_len = SMOLRTSP_JPEG_MAIN_HEADER_SIZE;
         SmolRTSP_JpegPayloadHeader_serialize(pl_hdr, hdr_buf);
+
+        if (has_restart) {
+            /* Fragments are split on arbitrary byte offsets, not restart
+             * boundaries, so per RFC 2435 §3.1.7 F=L=1 and Restart Count
+             * 0x3FFF tell the receiver to reassemble the whole frame before
+             * decoding -- which is exactly how the transport reassembles by
+             * fragment_offset. */
+            const SmolRTSP_JpegRestartHeader rst_hdr = {
+                .restart_interval = frame.restart_interval,
+                .first = true,
+                .last = true,
+                .restart_count = 0x3FFFu,
+            };
+            SmolRTSP_JpegRestartHeader_serialize(rst_hdr, hdr_buf + hdr_len);
+            hdr_len += SMOLRTSP_JPEG_RESTART_HEADER_SIZE;
+        }
 
         if (first && qt_block_size > 0) {
             const SmolRTSP_JpegQtHeader qt_hdr = {

@@ -17,6 +17,7 @@
  * header plus the table bytes. */
 #define RTP_HEADER_LEN     12
 #define JPEG_MAIN_LEN      SMOLRTSP_JPEG_MAIN_HEADER_SIZE
+#define JPEG_RESTART_LEN   SMOLRTSP_JPEG_RESTART_HEADER_SIZE
 #define JPEG_QT_HEADER_LEN SMOLRTSP_JPEG_QT_HEADER_SIZE
 #define MIN_PACKET_LEN     (RTP_HEADER_LEN + JPEG_MAIN_LEN)
 #define RX_BUF_SIZE        4096
@@ -34,6 +35,12 @@ typedef struct {
     uint8_t q;
     uint8_t width_blocks;
     uint8_t height_blocks;
+    /* Restart Marker header (present when type is in [64, 127]). */
+    bool restart_present;
+    uint16_t restart_interval;
+    bool restart_first;
+    bool restart_last;
+    uint16_t restart_count;
     /* QT block (only meaningful on the first packet of a frame). */
     bool qt_block_present;
     uint8_t qt_mbz;
@@ -78,6 +85,20 @@ static int recv_packet(int fd, bool expect_qt_block, ParsedPacket *out) {
     out->height_blocks = jpg[7];
 
     size_t cursor = MIN_PACKET_LEN;
+    out->restart_present = false;
+    if (out->type >= SMOLRTSP_JPEG_TYPE_RESTART && out->type <= 127) {
+        if ((ssize_t)(cursor + JPEG_RESTART_LEN) > n) {
+            return -1;
+        }
+        const uint8_t *r = buf + cursor;
+        out->restart_present = true;
+        out->restart_interval = ((uint16_t)r[0] << 8) | r[1];
+        out->restart_first = (r[2] & 0x80) != 0;
+        out->restart_last = (r[2] & 0x40) != 0;
+        out->restart_count = ((uint16_t)(r[2] & 0x3F) << 8) | r[3];
+        cursor += JPEG_RESTART_LEN;
+    }
+
     out->qt_block_present = false;
     if (expect_qt_block) {
         if ((ssize_t)(cursor + JPEG_QT_HEADER_LEN) > n) {
@@ -368,9 +389,84 @@ TEST seq_advances_across_packets_and_frames(void) {
     PASS();
 }
 
+TEST fragmented_frame_with_restart_markers(void) {
+    /* Type in [64, 127] => every packet carries a 4-byte Restart Marker header
+     * right after the main header (RFC 2435 §3.1.7). Because the packetizer
+     * splits scan data on arbitrary byte offsets rather than restart
+     * boundaries, the header uses the whole-frame-reassembly escape: F=L=1 and
+     * Restart Count 0x3FFF, identical on every packet.
+     *
+     *   max_packet_size = 224
+     *   first pkt: 8 main + 4 restart + 4 qt-hdr + 128 qt = 144 hdr, 80 scan
+     *   cont pkt : 8 main + 4 restart = 12 hdr, 212 scan
+     *   400 B scan: 80 + 212 + 108 = 400 -> 3 packets. */
+    SmolRTSP_JpegTransportConfig cfg = SmolRTSP_JpegTransportConfig_default();
+    cfg.max_packet_size = 224;
+    Fixture f = make_fixture(cfg, /*pt=*/26);
+
+    uint8_t qt0[SMOLRTSP_JPEG_QT_SIZE];
+    uint8_t qt1[SMOLRTSP_JPEG_QT_SIZE];
+    fill_qt(qt0, 0x20);
+    fill_qt(qt1, 0x90);
+    uint8_t scan[400];
+    for (size_t i = 0; i < sizeof scan; i++) {
+        scan[i] = (uint8_t)(i & 0xFF);
+    }
+
+    const SmolRTSP_JpegFrame frame = {
+        .hdr =
+            {.type_specific = 0,
+             .fragment_offset = 0,
+             .type = 1 + SMOLRTSP_JPEG_TYPE_RESTART, /* 4:2:0 + restart flag */
+             .q = 0xFF,
+             .width_blocks = 80,
+             .height_blocks = 60},
+        .qt0 = U8Slice99_new(qt0, sizeof qt0),
+        .qt1 = U8Slice99_new(qt1, sizeof qt1),
+        .scan_data = U8Slice99_new(scan, sizeof scan),
+        .restart_interval = 0x00F0,
+    };
+
+    ASSERT_EQ(
+        0, SmolRTSP_JpegTransport_send_frame(
+               f.jpg, SmolRTSP_RtpTimestamp_Raw(7000), frame));
+
+    const size_t expected_chunks[] = {80, 212, 108};
+    size_t total = 0;
+    for (size_t i = 0; i < 3; i++) {
+        ParsedPacket pkt;
+        const bool first = (i == 0);
+        ASSERT_EQ(0, recv_packet(f.rx, /*expect_qt_block=*/first, &pkt));
+
+        /* Restart Marker header present and identical on every packet. */
+        ASSERT(pkt.restart_present);
+        ASSERT_EQ_FMT(
+            (uint8_t)(1 + SMOLRTSP_JPEG_TYPE_RESTART), pkt.type, "%u");
+        ASSERT_EQ_FMT((uint16_t)0x00F0, pkt.restart_interval, "%u");
+        ASSERT(pkt.restart_first);
+        ASSERT(pkt.restart_last);
+        ASSERT_EQ_FMT((uint16_t)0x3FFF, pkt.restart_count, "%u");
+
+        const bool last = (i == 2);
+        ASSERT_EQ(last, pkt.marker);
+        ASSERT_EQ_FMT((uint32_t)7000, pkt.timestamp, "%u");
+        ASSERT_EQ_FMT((uint32_t)total, pkt.fragment_offset, "%u");
+        ASSERT_EQ(first, pkt.qt_block_present);
+
+        ASSERT_EQ_FMT(expected_chunks[i], pkt.chunk_len, "%zu");
+        ASSERT_MEM_EQ(scan + total, pkt.chunk, pkt.chunk_len);
+        total += pkt.chunk_len;
+    }
+    ASSERT_EQ_FMT((size_t)sizeof scan, total, "%zu");
+
+    drop_fixture(&f);
+    PASS();
+}
+
 SUITE(jpeg_transport) {
     RUN_TEST(single_packet_frame_with_qt);
     RUN_TEST(fragmented_frame_with_qt);
     RUN_TEST(referenced_tables_no_qt_block);
     RUN_TEST(seq_advances_across_packets_and_frames);
+    RUN_TEST(fragmented_frame_with_restart_markers);
 }

@@ -36,6 +36,25 @@
 #define SMOLRTSP_JPEG_QT_SIZE 64
 
 /**
+ * The size in bytes of an RFC 2435 Restart Marker header (§3.1.7).
+ *
+ * Carries the Restart Interval, F, L and Restart Count fields. Present
+ * immediately after the main JPEG header on every RTP packet of a frame
+ * whose Type is in `[64, 127]` (i.e. the source JPEG uses restart markers).
+ */
+#define SMOLRTSP_JPEG_RESTART_HEADER_SIZE 4
+
+/**
+ * The RFC 2435 Type offset that flags the presence of restart markers.
+ *
+ * A base Type in `[0, 63]` (subsampling + interlace) gains this offset,
+ * moving it into `[64, 127]`, when the source JPEG carries a DRI marker.
+ * The receiver then expects a #SmolRTSP_JpegRestartHeader after the main
+ * header and knows to honour the inline RSTn markers in the scan data.
+ */
+#define SMOLRTSP_JPEG_TYPE_RESTART 64
+
+/**
  * Default value for #SmolRTSP_JpegTransportConfig.max_packet_size: a
  * conservative MTU that leaves room for RTP / UDP / IP headers and one
  * 140-byte first-packet JPEG header (main + QT header + two 64-byte tables).
@@ -136,3 +155,46 @@ typedef struct {
  */
 void SmolRTSP_JpegQtHeader_serialize(
     SmolRTSP_JpegQtHeader self, uint8_t buffer[restrict]);
+
+/**
+ * An RFC 2435 Restart Marker header (§3.1.7).
+ *
+ * Present immediately after the main JPEG header on every packet of a frame
+ * whose Type is in `[64, 127]`. Bit layout, transmitted in network byte
+ * order:
+ *
+ *      0                   1                   2                   3
+ *      0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+ *     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+ *     |       Restart Interval        |F|L|       Restart Count       |
+ *     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+ */
+typedef struct {
+    /**
+     * Number of MCUs between restart markers (bytes 0..1, big-endian) --
+     * the value of the JPEG DRI marker.
+     */
+    uint16_t restart_interval;
+    /** First bit (byte 2, bit 7): this packet begins a restart interval. */
+    bool first;
+    /** Last bit (byte 2, bit 6): this packet ends a restart interval. */
+    bool last;
+    /**
+     * Restart Count (14-bit, low 6 bits of byte 2 plus byte 3). With
+     * @ref first and @ref last both set and this at `0x3FFF`, the sender
+     * declares that restart intervals are not aligned to packet boundaries,
+     * so the receiver must reassemble the whole frame before decoding
+     * (RFC 2435 §3.1.7).
+     */
+    uint16_t restart_count;
+} SmolRTSP_JpegRestartHeader;
+
+/**
+ * Serializes @p self into @p buffer in network byte order.
+ *
+ * @param[in] self The header to write.
+ * @param[out] buffer The memory area capable of storing
+ * #SMOLRTSP_JPEG_RESTART_HEADER_SIZE bytes.
+ */
+void SmolRTSP_JpegRestartHeader_serialize(
+    SmolRTSP_JpegRestartHeader self, uint8_t buffer[restrict]);
