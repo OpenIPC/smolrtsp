@@ -122,14 +122,18 @@ static uint32_t sysclock_ts(uint32_t clock_rate, uint64_t time_us) {
     U8Slice99 body =
         U8Slice99_new((uint8_t *)PAYLOAD_BODY, sizeof(PAYLOAD_BODY) - 1);
 
-    (void)SmolRTSP_RtpTransport_send_packet(
+    const int sent = SmolRTSP_RtpTransport_send_packet(
         rtp, SmolRTSP_RtpTimestamp_SysClockUs(time_us),
         /*marker=*/false, hdr, body);
 
-    const uint32_t ts = SmolRTSP_RtpTransport_last_rtp_ts(rtp);
-
-    char drain[256];
-    (void)read(fds[1], drain, sizeof(drain));
+    /* last_rtp_ts only advances on a successful send, so reporting it after a
+     * failure would assert against a stale 0 and read as a scaling bug. There
+     * is deliberately no drain read() here either: one packet per socketpair,
+     * and both ends are closed below, so there is nothing to drain — a blind
+     * read on a socket that never received anything would hang the suite
+     * rather than fail it. */
+    const uint32_t ts =
+        sent == -1 ? UINT32_MAX : SmolRTSP_RtpTransport_last_rtp_ts(rtp);
 
     VTABLE(SmolRTSP_RtpTransport, SmolRTSP_Droppable).drop(rtp);
     close(fds[1]);
