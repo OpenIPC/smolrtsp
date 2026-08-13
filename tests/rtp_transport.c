@@ -105,8 +105,66 @@ TEST new_with_ssrc_uses_caller_value(void) {
     PASS();
 }
 
+/* Send one SysClockUs-stamped packet and report the RTP timestamp it put on
+ * the wire, so the microseconds -> ticks conversion can be checked directly. */
+static uint32_t sysclock_ts(uint32_t clock_rate, uint64_t time_us) {
+    int fds[2];
+    if (socketpair(AF_UNIX, SOCK_SEQPACKET, 0, fds) != 0) {
+        return UINT32_MAX;
+    }
+
+    SmolRTSP_Transport udp = smolrtsp_transport_udp(fds[0]);
+    SmolRTSP_RtpTransport *rtp = SmolRTSP_RtpTransport_new_with_ssrc(
+        udp, /*payload_ty=*/96, clock_rate, /*ssrc=*/1);
+
+    U8Slice99 hdr =
+        U8Slice99_new((uint8_t *)PAYLOAD_HEADER, sizeof(PAYLOAD_HEADER) - 1);
+    U8Slice99 body =
+        U8Slice99_new((uint8_t *)PAYLOAD_BODY, sizeof(PAYLOAD_BODY) - 1);
+
+    (void)SmolRTSP_RtpTransport_send_packet(
+        rtp, SmolRTSP_RtpTimestamp_SysClockUs(time_us),
+        /*marker=*/false, hdr, body);
+
+    const uint32_t ts = SmolRTSP_RtpTransport_last_rtp_ts(rtp);
+
+    char drain[256];
+    (void)read(fds[1], drain, sizeof(drain));
+
+    VTABLE(SmolRTSP_RtpTransport, SmolRTSP_Droppable).drop(rtp);
+    close(fds[1]);
+
+    return ts;
+}
+
+TEST sysclock_scales_exactly(void) {
+    /* Whole-kHz rates always worked, and must not move. */
+    ASSERT_EQ_FMT((uint32_t)90000, sysclock_ts(90000, 1000000), "%u");
+    ASSERT_EQ_FMT((uint32_t)48000, sysclock_ts(48000, 1000000), "%u");
+    ASSERT_EQ_FMT((uint32_t)8000, sysclock_ts(8000, 1000000), "%u");
+    ASSERT_EQ_FMT((uint32_t)45000, sysclock_ts(90000, 500000), "%u");
+
+    /* Rates that are not. 44100 used to truncate to 44000, losing 100 ticks
+     * -- roughly 2.3 ms -- every second, without bound. */
+    ASSERT_EQ_FMT((uint32_t)44100, sysclock_ts(44100, 1000000), "%u");
+    ASSERT_EQ_FMT((uint32_t)441000, sysclock_ts(44100, 10000000), "%u");
+    ASSERT_EQ_FMT((uint32_t)66150, sysclock_ts(44100, 1500000), "%u");
+    ASSERT_EQ_FMT((uint32_t)22050, sysclock_ts(22050, 1000000), "%u");
+    ASSERT_EQ_FMT((uint32_t)11025, sysclock_ts(11025, 1000000), "%u");
+
+    /* Sub-kHz rates collapsed to zero outright. */
+    ASSERT_EQ_FMT((uint32_t)900, sysclock_ts(900, 1000000), "%u");
+
+    /* Sub-second remainders are floored, not discarded. */
+    ASSERT_EQ_FMT((uint32_t)44, sysclock_ts(44100, 1000), "%u");
+    ASSERT_EQ_FMT((uint32_t)90, sysclock_ts(90000, 1000), "%u");
+
+    PASS();
+}
+
 SUITE(rtp_transport) {
     RUN_TEST(accessors_initial_state);
     RUN_TEST(counters_advance_per_packet);
     RUN_TEST(new_with_ssrc_uses_caller_value);
+    RUN_TEST(sysclock_scales_exactly);
 }
