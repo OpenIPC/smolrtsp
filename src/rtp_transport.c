@@ -123,11 +123,22 @@ compute_timestamp(SmolRTSP_RtpTimestamp ts, uint32_t clock_rate) {
             return *raw_ts;
         }
         of(SmolRTSP_RtpTimestamp_SysClockUs, time_us) {
-            const uint64_t us_rem = *time_us % 1000,
-                           ms = (*time_us - us_rem) / 1000;
-            uint32_t clock_rate_kHz = clock_rate / 1000;
-            return ms * clock_rate_kHz +
-                   (uint32_t)(us_rem * ((double)clock_rate_kHz / 1000.0));
+            /* Scale exactly: ticks = time_us * clock_rate / 10^6.
+             *
+             * Pre-dividing the clock rate to whole kHz, as this used to do,
+             * is lossy for any rate that is not a multiple of 1000 — 44100
+             * became 44000, drifting ~2.3 ms per second without bound, and
+             * anything below 1000 Hz collapsed to zero.
+             *
+             * Splitting on seconds keeps every intermediate within 64 bits:
+             * `sec * clock_rate` cannot realistically overflow, and
+             * `us_rem < 10^6` bounds the second term far below it. Because
+             * `sec * clock_rate` is an integer, the two truncations compose
+             * into the single floor the formula wants. Narrowing to uint32_t
+             * preserves the modular wrap RTP timestamps are defined to have. */
+            const uint64_t sec = *time_us / 1000000,
+                           us_rem = *time_us % 1000000;
+            return (uint32_t)(sec * clock_rate + us_rem * clock_rate / 1000000);
         }
     }
 
