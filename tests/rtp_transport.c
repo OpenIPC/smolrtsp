@@ -224,6 +224,34 @@ TEST ts_base_is_random_by_default(void) {
     PASS();
 }
 
+TEST ts_base_spans_more_than_a_single_draw(void) {
+    /* The base has to be able to reach the whole timestamp space, which at
+     * 8 kHz is about six days of microseconds. A generator built from a
+     * fixed pair of draws cannot do that where RAND_MAX is 32767, and this
+     * is the assertion that says so rather than trusting the platform. */
+    int fds[2];
+    if (socketpair(AF_UNIX, SOCK_SEQPACKET, 0, fds) != 0) {
+        FAIL();
+    }
+    /* Two 15-bit draws bound the base to 2^30 microseconds, which at 8 kHz
+     * is under 8.6 million ticks — a thousandth of the timestamp space, and
+     * always below this line. A base built to the full width crosses it
+     * about seven times in eight. */
+    const uint32_t narrow_ceiling = 1u << 28;
+    bool wide = false;
+    for (int i = 0; i < 100 && !wide; i++) {
+        SmolRTSP_RtpTransport *rtp = SmolRTSP_RtpTransport_new_with_ssrc(
+            smolrtsp_transport_udp(fds[0]), /*payload_ty=*/96,
+            /*clock_rate=*/8000, /*ssrc=*/1);
+        wide = SmolRTSP_RtpTransport_ts_from_sys_clock_us(rtp, 1000000) >
+               narrow_ceiling;
+        VTABLE(SmolRTSP_RtpTransport, SmolRTSP_Droppable).drop(rtp);
+    }
+    close(fds[1]);
+    ASSERT(wide);
+    PASS();
+}
+
 TEST ts_base_leaves_raw_timestamps_alone(void) {
     /* A Raw timestamp is the value the caller wants on the wire. */
     int fds[2];
@@ -254,5 +282,6 @@ SUITE(rtp_transport) {
     RUN_TEST(sysclock_scales_exactly);
     RUN_TEST(ts_base_shifts_the_media_clock);
     RUN_TEST(ts_base_is_random_by_default);
+    RUN_TEST(ts_base_spans_more_than_a_single_draw);
     RUN_TEST(ts_base_leaves_raw_timestamps_alone);
 }

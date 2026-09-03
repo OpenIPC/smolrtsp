@@ -96,6 +96,12 @@ SmolRTSP_RtpTransport *SmolRTSP_RtpTransport_new_with_ssrc(
  * streams still wrap their 32 bits at their own rates, and RFC 3550 gives
  * receivers RTCP sender reports for that job.
  *
+ * Passing a base is also how a caller gets an origin that is unpredictable
+ * to somebody watching the stream. The random one the other constructors
+ * draw comes from rand(), the same sequence the SSRC does, so it is worth
+ * exactly as much as the caller's seeding of it — which for anything the
+ * base is meant to conceal is unlikely to be enough.
+ *
  * A #SmolRTSP_RtpTimestamp_Raw timestamp is never shifted: it is by
  * definition the value to put on the wire.
  */

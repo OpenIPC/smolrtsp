@@ -23,13 +23,37 @@ struct SmolRTSP_RtpTransport {
 static uint32_t compute_timestamp(
     SmolRTSP_RtpTimestamp ts, uint32_t clock_rate, uint64_t ts_base_us);
 
-/* RFC 3550 §5.1: "the initial value of the timestamp SHOULD be random". Two
- * draws because one is not enough microseconds to reach every 32-bit tick:
- * at 8 kHz the timestamp space is about six days wide, and RAND_MAX is only
- * guaranteed to cover 32767. Same source as the SSRC just above, and with
- * the same standing: unguessable in practice, not a CSPRNG. */
+/* RFC 3550 §5.1: "the initial value of the timestamp SHOULD be random".
+ *
+ * Assembled from as many draws as the platform's RAND_MAX needs rather than
+ * from a fixed two: RAND_MAX is only guaranteed to reach 32767, and two
+ * draws of that width leave two thirds of the base's range unreachable —
+ * a base that cannot span the timestamp space leaves the origin partly
+ * known, which is the whole thing this is for. Six days of microseconds is
+ * what a 32-bit timestamp covers at 8 kHz, so the width has to be built up
+ * to 64 bits, not assumed.
+ *
+ * rand() is what a C99 library has, and it is what the SSRC above already
+ * uses; a transport constructor is not the place to open /dev/urandom on a
+ * caller's behalf. What it is worth therefore depends on how the caller
+ * seeded it: an attacker who can reproduce the sequence recovers the base,
+ * and the SSRC drawn beside it is on the wire to check the guess against.
+ * A caller who needs better than that — because the base is hiding
+ * something, as it is for a camera whose media clock is its uptime — passes
+ * its own to SmolRTSP_RtpTransport_new_with_ssrc_ts_base(). */
 static uint64_t random_ts_base_us(void) {
-    return ((uint64_t)(uint32_t)rand() << 31) ^ (uint64_t)(uint32_t)rand();
+    /* RAND_MAX is one less than a power of two on every implementation in
+     * practice; its width is what a draw actually carries. */
+    unsigned per_draw = 0;
+    for (int m = RAND_MAX; m > 0; m >>= 1) {
+        per_draw++;
+    }
+
+    uint64_t base = 0;
+    for (unsigned bits = 0; bits < 64; bits += per_draw) {
+        base = (base << per_draw) ^ (uint64_t)(unsigned)rand();
+    }
+    return base;
 }
 
 SmolRTSP_RtpTransport *SmolRTSP_RtpTransport_new(
