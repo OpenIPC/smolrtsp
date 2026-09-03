@@ -51,7 +51,7 @@ var NAVTREEINDEX =
 [
 "annotated.html",
 "io__vec_8h.html#a73fb0c8243a4da29c96e982a24082784",
-"structSmolRTSP__H264NalHeader.html"
+"structSmolRTSP__ChannelPair.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

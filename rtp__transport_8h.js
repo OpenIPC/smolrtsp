@@ -3,11 +3,14 @@ var rtp__transport_8h =
     [ "SmolRTSP_RtpTransport", "rtp__transport_8h.html#a8c72a0e77af47185c469b8ddeec20f3d", null ],
     [ "datatype99", "rtp__transport_8h.html#a437ce4ec35fee41c3933a72500e3ef74", null ],
     [ "declImplExtern99", "rtp__transport_8h.html#adb171408327c92d02faaf24d50193f86", null ],
+    [ "smolrtsp_rtp_ts_from_sys_clock_us", "rtp__transport_8h.html#affaad2ec0d67bbc05a7dfec2bb22fec3", null ],
     [ "SmolRTSP_RtpTransport_last_rtp_ts", "rtp__transport_8h.html#af0b1ed4741451acc3cd1ecb567918de3", null ],
     [ "SmolRTSP_RtpTransport_new", "rtp__transport_8h.html#af7fd8b6cb0f09f21ce28edb85a9755b8", null ],
     [ "SmolRTSP_RtpTransport_new_with_ssrc", "rtp__transport_8h.html#a950419ae5aa3ddf9a14a6a5086836bc0", null ],
+    [ "SmolRTSP_RtpTransport_new_with_ssrc_ts_base", "rtp__transport_8h.html#a830ca9e20e6156dc1663ebdff8124555", null ],
     [ "SmolRTSP_RtpTransport_octet_count", "rtp__transport_8h.html#a707696e2fa7458600a92d4d2d53f1a6d", null ],
     [ "SmolRTSP_RtpTransport_pkt_count", "rtp__transport_8h.html#ae2921602dc9e16eadc20ecc3c449ab87", null ],
     [ "SmolRTSP_RtpTransport_send_packet", "rtp__transport_8h.html#aaa9b54fd3bacd147c6b3dde76e1a1108", null ],
-    [ "SmolRTSP_RtpTransport_ssrc", "rtp__transport_8h.html#ae0bfba008fba50681d401374443ecb7c", null ]
+    [ "SmolRTSP_RtpTransport_ssrc", "rtp__transport_8h.html#ae0bfba008fba50681d401374443ecb7c", null ],
+    [ "SmolRTSP_RtpTransport_ts_from_sys_clock_us", "rtp__transport_8h.html#adb155c0b6bc8c2c2f01761ea32ea4109", null ]
 ];

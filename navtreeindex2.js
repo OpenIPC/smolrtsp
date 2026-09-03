@@ -1,5 +1,8 @@
 var NAVTREEINDEX2 =
 {
+"structSmolRTSP__ChannelPair.html":[0,0,2],
+"structSmolRTSP__ChannelPair.html#a0d10069bb044306ad148257bf7656819":[0,0,2,0],
+"structSmolRTSP__ChannelPair.html#afa635e0877a97254c9652dba84abc791":[0,0,2,1],
 "structSmolRTSP__H264NalHeader.html":[0,0,3],
 "structSmolRTSP__H264NalHeader.html#a4365efcbb2bb8fce15eb14446b1061d4":[0,0,3,0],
 "structSmolRTSP__H264NalHeader.html#ae41578742d05c569244745a33d949677":[0,0,3,1],
