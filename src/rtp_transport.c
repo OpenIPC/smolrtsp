@@ -16,11 +16,21 @@ struct SmolRTSP_RtpTransport {
     uint32_t last_rtp_ts;
     uint8_t payload_ty;
     uint32_t clock_rate;
+    uint64_t ts_base_us;
     SmolRTSP_Transport transport;
 };
 
-static uint32_t
-compute_timestamp(SmolRTSP_RtpTimestamp ts, uint32_t clock_rate);
+static uint32_t compute_timestamp(
+    SmolRTSP_RtpTimestamp ts, uint32_t clock_rate, uint64_t ts_base_us);
+
+/* RFC 3550 §5.1: "the initial value of the timestamp SHOULD be random". Two
+ * draws because one is not enough microseconds to reach every 32-bit tick:
+ * at 8 kHz the timestamp space is about six days wide, and RAND_MAX is only
+ * guaranteed to cover 32767. Same source as the SSRC just above, and with
+ * the same standing: unguessable in practice, not a CSPRNG. */
+static uint64_t random_ts_base_us(void) {
+    return ((uint64_t)(uint32_t)rand() << 31) ^ (uint64_t)(uint32_t)rand();
+}
 
 SmolRTSP_RtpTransport *SmolRTSP_RtpTransport_new(
     SmolRTSP_Transport t, uint8_t payload_ty, uint32_t clock_rate) {
@@ -31,6 +41,13 @@ SmolRTSP_RtpTransport *SmolRTSP_RtpTransport_new(
 SmolRTSP_RtpTransport *SmolRTSP_RtpTransport_new_with_ssrc(
     SmolRTSP_Transport t, uint8_t payload_ty, uint32_t clock_rate,
     uint32_t ssrc) {
+    return SmolRTSP_RtpTransport_new_with_ssrc_ts_base(
+        t, payload_ty, clock_rate, ssrc, random_ts_base_us());
+}
+
+SmolRTSP_RtpTransport *SmolRTSP_RtpTransport_new_with_ssrc_ts_base(
+    SmolRTSP_Transport t, uint8_t payload_ty, uint32_t clock_rate,
+    uint32_t ssrc, uint64_t ts_base_us) {
     assert(t.self && t.vptr);
 
     SmolRTSP_RtpTransport *self = malloc(sizeof *self);
@@ -43,6 +60,7 @@ SmolRTSP_RtpTransport *SmolRTSP_RtpTransport_new_with_ssrc(
     self->last_rtp_ts = 0;
     self->payload_ty = payload_ty;
     self->clock_rate = clock_rate;
+    self->ts_base_us = ts_base_us;
     self->transport = t;
 
     return self;
@@ -64,7 +82,8 @@ int SmolRTSP_RtpTransport_send_packet(
     U8Slice99 payload_header, U8Slice99 payload) {
     assert(self);
 
-    const uint32_t rtp_ts = compute_timestamp(ts, self->clock_rate);
+    const uint32_t rtp_ts =
+        compute_timestamp(ts, self->clock_rate, self->ts_base_us);
 
     const SmolRTSP_RtpHeader header = {
         .version = 2,
@@ -116,10 +135,12 @@ int SmolRTSP_RtpTransport_send_packet(
     return ret;
 }
 
-static uint32_t
-compute_timestamp(SmolRTSP_RtpTimestamp ts, uint32_t clock_rate) {
+static uint32_t compute_timestamp(
+    SmolRTSP_RtpTimestamp ts, uint32_t clock_rate, uint64_t ts_base_us) {
     match(ts) {
         of(SmolRTSP_RtpTimestamp_Raw, raw_ts) {
+            /* Already a wire value; shifting it would corrupt a caller that
+             * knows exactly what it wants to send. */
             return *raw_ts;
         }
         of(SmolRTSP_RtpTimestamp_SysClockUs, time_us) {
@@ -136,13 +157,30 @@ compute_timestamp(SmolRTSP_RtpTimestamp ts, uint32_t clock_rate) {
              * `sec * clock_rate` is an integer, the two truncations compose
              * into the single floor the formula wants. Narrowing to uint32_t
              * preserves the modular wrap RTP timestamps are defined to have. */
-            const uint64_t sec = *time_us / 1000000,
-                           us_rem = *time_us % 1000000;
-            return (uint32_t)(sec * clock_rate + us_rem * clock_rate / 1000000);
+            return smolrtsp_rtp_ts_from_sys_clock_us(
+                *time_us, clock_rate, ts_base_us);
         }
     }
 
     return 0;
+}
+
+uint32_t smolrtsp_rtp_ts_from_sys_clock_us(
+    uint64_t time_us, uint32_t clock_rate, uint64_t ts_base_us) {
+    /* The base shifts the clock's origin, and is added in the microsecond
+     * domain so that streams sharing a base stay aligned across different
+     * clock rates. Both it and the sum wrap by design — an RTP timestamp is
+     * modular arithmetic (RFC 3550 §5.1). */
+    const uint64_t t = time_us + ts_base_us;
+    const uint64_t sec = t / 1000000, us_rem = t % 1000000;
+    return (uint32_t)(sec * clock_rate + us_rem * clock_rate / 1000000);
+}
+
+uint32_t SmolRTSP_RtpTransport_ts_from_sys_clock_us(
+    const SmolRTSP_RtpTransport *self, uint64_t time_us) {
+    assert(self);
+    return smolrtsp_rtp_ts_from_sys_clock_us(
+        time_us, self->clock_rate, self->ts_base_us);
 }
 
 bool SmolRTSP_RtpTransport_is_full(SmolRTSP_RtpTransport *self) {

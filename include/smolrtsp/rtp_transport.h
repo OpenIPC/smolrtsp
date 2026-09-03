@@ -81,6 +81,29 @@ SmolRTSP_RtpTransport *SmolRTSP_RtpTransport_new_with_ssrc(
     uint32_t ssrc) SMOLRTSP_PRIV_MUST_USE;
 
 /**
+ * As #SmolRTSP_RtpTransport_new_with_ssrc, with the media clock's origin
+ * given rather than drawn at random.
+ *
+ * Every timestamp derived from a system clock is shifted by @p ts_base_us
+ * before it is scaled. A sender that has to relate two of its own streams —
+ * an anchor that names an instant in both, a report built from a paired
+ * measurement — passes the same base to all of them, and then one wall-clock
+ * instant maps through one origin. #SmolRTSP_RtpTransport_new and
+ * #SmolRTSP_RtpTransport_new_with_ssrc draw an independent base each, which
+ * is what RFC 3550 §5.1 asks for and what a lone stream wants.
+ *
+ * A shared base is not a synchronisation mechanism for the receiver: the two
+ * streams still wrap their 32 bits at their own rates, and RFC 3550 gives
+ * receivers RTCP sender reports for that job.
+ *
+ * A #SmolRTSP_RtpTimestamp_Raw timestamp is never shifted: it is by
+ * definition the value to put on the wire.
+ */
+SmolRTSP_RtpTransport *SmolRTSP_RtpTransport_new_with_ssrc_ts_base(
+    SmolRTSP_Transport t, uint8_t payload_ty, uint32_t clock_rate,
+    uint32_t ssrc, uint64_t ts_base_us);
+
+/**
  * Sends an RTP packet.
  *
  * @param[out] self The RTP transport for sending this packet.
@@ -107,6 +130,39 @@ int SmolRTSP_RtpTransport_send_packet(
 declImplExtern99(SmolRTSP_Droppable, SmolRTSP_RtpTransport);
 
 bool SmolRTSP_RtpTransport_is_full(SmolRTSP_RtpTransport *self);
+
+/**
+ * Maps a system-clock instant to the RTP timestamp a transport of
+ * @p clock_rate would put on a packet stamped with it, offset by
+ * @p ts_base_us.
+ *
+ * This is the conversion #SmolRTSP_RtpTransport_send_packet applies to
+ * #SmolRTSP_RtpTimestamp_SysClockUs, exported because a sender has other
+ * things to say about the same instant — an RTCP Sender Report's RTP
+ * timestamp above all — and they have to land on the identical value. A
+ * second copy of the arithmetic drifts from this one the moment either is
+ * touched, and a report that disagrees with its own stream by even a few
+ * milliseconds is worse than none.
+ *
+ * @p ts_base_us shifts the whole media clock. RFC 3550 §5.1 wants the
+ * initial timestamp to be random rather than to expose the sender's clock.
+ * The shift is applied in the microsecond domain, before the rate is
+ * applied, so that streams given the same base still map wall time through
+ * one origin — which is what a sender needs to say anything coherent about
+ * two of its own streams at once.
+ */
+uint32_t smolrtsp_rtp_ts_from_sys_clock_us(
+    uint64_t time_us, uint32_t clock_rate,
+    uint64_t ts_base_us) SMOLRTSP_PRIV_MUST_USE;
+
+/**
+ * As #smolrtsp_rtp_ts_from_sys_clock_us, with @p self's own clock rate and
+ * timestamp base.
+ *
+ * @pre `self != NULL`
+ */
+uint32_t SmolRTSP_RtpTransport_ts_from_sys_clock_us(
+    const SmolRTSP_RtpTransport *self, uint64_t time_us) SMOLRTSP_PRIV_MUST_USE;
 
 /**
  * Returns the Synchronization Source (SSRC) identifier used by @p self
