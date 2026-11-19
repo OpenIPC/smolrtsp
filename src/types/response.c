@@ -95,7 +95,7 @@ SmolRTSP_Response_parse(SmolRTSP_Response *restrict self, CharSlice99 input) {
     if (content_length_is_found) {
         uintmax_t content_length_num;
         if (!smolrtsp_parse_uint(
-                content_length, SMOLRTSP_MAX_CONTENT_LENGTH,
+                content_length, smolrtsp_max_content_length(),
                 &content_length_num)) {
             return SmolRTSP_ParseResult_Failure(
                 SmolRTSP_ParseError_ContentLength(content_length));

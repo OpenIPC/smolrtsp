@@ -20,7 +20,10 @@
  * than waited for: a peer that declares a body of `SIZE_MAX` bytes would
  * otherwise keep a request Partial, and its bytes buffered, for as long as it
  * keeps sending. RTSP bodies are SDP and parameter lists, a few kilobytes at
- * most. Define this macro before including this header to override it.
+ * most. The parsers are compiled with this value, so an override has to be in
+ * the library's own build: configure with `-DSMOLRTSP_MAX_CONTENT_LENGTH=<n>`,
+ * which also defines it for consumers of the target. Values above `SIZE_MAX`
+ * are treated as `SIZE_MAX`.
  */
 #ifndef SMOLRTSP_MAX_CONTENT_LENGTH
 #define SMOLRTSP_MAX_CONTENT_LENGTH 65536
