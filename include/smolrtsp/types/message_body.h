@@ -14,6 +14,19 @@
 #include <slice99.h>
 
 /**
+ * The largest `Content-Length` a parsed request or response may declare.
+ *
+ * Larger values are rejected with #SmolRTSP_ParseError_ContentLength rather
+ * than waited for: a peer that declares a body of `SIZE_MAX` bytes would
+ * otherwise keep a request Partial, and its bytes buffered, for as long as it
+ * keeps sending. RTSP bodies are SDP and parameter lists, a few kilobytes at
+ * most. Define this macro before including this header to override it.
+ */
+#ifndef SMOLRTSP_MAX_CONTENT_LENGTH
+#define SMOLRTSP_MAX_CONTENT_LENGTH 65536
+#endif
+
+/**
  * An RTSP message body.
  */
 typedef CharSlice99 SmolRTSP_MessageBody;
