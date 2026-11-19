@@ -14,7 +14,7 @@ var searchData=
   ['smolrtsp_5fcontext_5fget_5fret_11',['SmolRTSP_Context_get_ret',['../context_8h.html#a2a13e3d13510f32438858892f6876378',1,'context.h']]],
   ['smolrtsp_5fcontext_5fget_5fwriter_12',['SmolRTSP_Context_get_writer',['../context_8h.html#ab5a0fe6fc8b24540fe289ad6308cbf13',1,'context.h']]],
   ['smolrtsp_5fcontext_5fnew_13',['SmolRTSP_Context_new',['../context_8h.html#a0d70ae26daf6ca2a81823f9fecdc4edb',1,'context.h']]],
-  ['smolrtsp_5fdef_5foption_14',['smolrtsp_def_option',['../util_8h.html#ab72eecaa404fbad784ac1cb2cd9b39de',1,'SMOLRTSP_DEF_OPTION(SmolRTSP_ChannelPair):&#160;util.h'],['../util_8h.html#a2d8f79b7a21db7aa05b327d920dfa966',1,'SMOLRTSP_DEF_OPTION(SmolRTSP_PortPair):&#160;util.h']]],
+  ['smolrtsp_5fdef_5foption_14',['SMOLRTSP_DEF_OPTION',['../util_8h.html#a2d8f79b7a21db7aa05b327d920dfa966',1,'SMOLRTSP_DEF_OPTION(SmolRTSP_PortPair):&#160;util.h'],['../util_8h.html#ab72eecaa404fbad784ac1cb2cd9b39de',1,'SMOLRTSP_DEF_OPTION(SmolRTSP_ChannelPair):&#160;util.h']]],
   ['smolrtsp_5fdetermine_5fstart_5fcode_15',['smolrtsp_determine_start_code',['../nal_8h.html#a283af6a547a8ed910f28b4a96b3e1dba',1,'nal.h']]],
   ['smolrtsp_5fdgram_5fsocket_16',['smolrtsp_dgram_socket',['../transport_8h.html#ad1b0ff08bd0e2464fb4a07819ffa291d',1,'transport.h']]],
   ['smolrtsp_5fdispatch_17',['smolrtsp_dispatch',['../controller_8h.html#acc8d32b42b1d76b8b014dda046e90a86',1,'controller.h']]],

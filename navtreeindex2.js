@@ -1,5 +1,6 @@
 var NAVTREEINDEX2 =
 {
+"structSmolRTSP__Av1TransportConfig.html#afbf479188f8bd2097e3bb6981fea1974":[0,0,1,0],
 "structSmolRTSP__ChannelPair.html":[0,0,2],
 "structSmolRTSP__ChannelPair.html#a0d10069bb044306ad148257bf7656819":[0,0,2,0],
 "structSmolRTSP__ChannelPair.html#afa635e0877a97254c9652dba84abc791":[0,0,2,1],

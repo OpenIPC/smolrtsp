@@ -1,8 +1,8 @@
 <map id="include/smolrtsp/types/request.h" name="include/smolrtsp/types/request.h">
-<area shape="rect" id="Node000001" title="An RTSP request." alt="" coords="5,5,176,45"/>
-<area shape="rect" id="Node000002" href="$smolrtsp_8h.html" title="Re&#45;exports all the functionality." alt="" coords="19,167,162,192"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="67,57,48,94,45,106,48,118,62,144,80,165,76,168,58,147,43,120,40,106,43,92,63,55"/>
-<area shape="rect" id="Node000003" href="$controller_8h.html" title="An RTSP requests controller." alt="" coords="58,93,265,119"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="119,54,153,91,149,95,115,57"/>
-<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="142,131,104,168,100,165,138,127"/>
+<area shape="rect" id="Node000001" title="An RTSP request." alt="" coords="5,5,175,50"/>
+<area shape="rect" id="Node000002" href="$smolrtsp_8h.html" title="Re&#45;exports all the functionality." alt="" coords="19,174,161,201"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="60,65,49,94,46,109,49,125,62,151,79,173,74,173,57,154,43,126,41,109,44,92,62,60"/>
+<area shape="rect" id="Node000003" href="$controller_8h.html" title="An RTSP requests controller." alt="" coords="58,98,264,126"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="119,59,152,97,147,98,118,64"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="140,136,104,175,101,171,135,138"/>
 </map>

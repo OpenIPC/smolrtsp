@@ -47,10 +47,11 @@ var NAVTREEINDEX1 =
 "jpegxs__transport_8h.html#afbfb1eb3dff76274f12f6b0088db4260":[1,0,0,0,11,9],
 "jpegxs__transport_8h_source.html":[1,0,0,0,11],
 "message__body_8h.html":[1,0,0,0,1,3],
-"message__body_8h.html#a1074b00b01273281134dcea7193ca9a2":[1,0,0,0,1,3,1],
-"message__body_8h.html#a7cf19e53447cd824890913d713bd5122":[1,0,0,0,1,3,0],
-"message__body_8h.html#abdff7d56cf8c81fa2fd1d49d19b249b3":[1,0,0,0,1,3,3],
-"message__body_8h.html#acf394daa42cea4b603389db94b5c9d67":[1,0,0,0,1,3,2],
+"message__body_8h.html#a02453c9fc91640fb3faf5084156d4c6d":[1,0,0,0,1,3,0],
+"message__body_8h.html#a1074b00b01273281134dcea7193ca9a2":[1,0,0,0,1,3,2],
+"message__body_8h.html#a7cf19e53447cd824890913d713bd5122":[1,0,0,0,1,3,1],
+"message__body_8h.html#abdff7d56cf8c81fa2fd1d49d19b249b3":[1,0,0,0,1,3,4],
+"message__body_8h.html#acf394daa42cea4b603389db94b5c9d67":[1,0,0,0,1,3,3],
 "message__body_8h_source.html":[1,0,0,0,1,3],
 "method_8h.html":[1,0,0,0,1,4],
 "method_8h.html#a172adb93d5ffb9d8c5b59cd1ed1a2415":[1,0,0,0,1,4,4],
@@ -248,6 +249,5 @@ var NAVTREEINDEX1 =
 "structSmolRTSP__Av1AggregationHeader.html#a1423b4bacb8b7ce531354c47246bcf4a":[0,0,0,3],
 "structSmolRTSP__Av1AggregationHeader.html#a47180e439590f288f1e6eab466a7bbcb":[0,0,0,0],
 "structSmolRTSP__Av1AggregationHeader.html#a6385d828460883a221f87593ced7ccc8":[0,0,0,1],
-"structSmolRTSP__Av1TransportConfig.html":[0,0,1],
-"structSmolRTSP__Av1TransportConfig.html#afbf479188f8bd2097e3bb6981fea1974":[0,0,1,0]
+"structSmolRTSP__Av1TransportConfig.html":[0,0,1]
 };

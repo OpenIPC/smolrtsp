@@ -1,11 +1,11 @@
 <map id="SmolRTSP_Response" name="SmolRTSP_Response">
-<area shape="rect" id="Node000001" title="An RTSP response." alt="" coords="119,181,276,207"/>
-<area shape="rect" id="Node000002" href="$structSmolRTSP__ResponseLine.html" title="An RTSP response line." alt="" coords="5,93,189,119"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="123,126,185,179,182,183,120,130"/>
-<area shape="rect" id="Node000003" href="$structSmolRTSP__RtspVersion.html" title="An RTSP version." alt="" coords="12,5,183,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="100,45,100,93,95,93,95,45"/>
-<area shape="rect" id="Node000004" href="$structSmolRTSP__HeaderMap.html" title="An RTSP header map." alt="" coords="214,93,383,119"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="276,130,213,183,210,179,273,126"/>
-<area shape="rect" id="Node000005" href="$structSmolRTSP__Header.html" title="An RTSP header." alt="" coords="228,5,369,31"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="301,45,301,93,296,93,296,45"/>
+<area shape="rect" id="Node000001" title="An RTSP response." alt="" coords="118,207,274,234"/>
+<area shape="rect" id="Node000002" href="$structSmolRTSP__ResponseLine.html" title="An RTSP response line." alt="" coords="5,106,189,134"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="121,142,185,205,180,207,119,147"/>
+<area shape="rect" id="Node000003" href="$structSmolRTSP__RtspVersion.html" title="An RTSP version." alt="" coords="12,5,182,33"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="98,46,100,106,94,105,96,51"/>
+<area shape="rect" id="Node000004" href="$structSmolRTSP__HeaderMap.html" title="An RTSP header map." alt="" coords="213,106,381,134"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="276,144,211,208,208,204,270,145"/>
+<area shape="rect" id="Node000005" href="$structSmolRTSP__Header.html" title="An RTSP header." alt="" coords="227,5,367,33"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="299,47,299,107,295,104,295,51"/>
 </map>

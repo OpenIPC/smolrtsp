@@ -1,17 +1,17 @@
 <map id="include/smolrtsp/types/status_code.h" name="include/smolrtsp/types/status_code.h">
-<area shape="rect" id="Node000001" title="An RTSP status code." alt="" coords="35,5,205,45"/>
-<area shape="rect" id="Node000002" href="$smolrtsp_8h.html" title="Re&#45;exports all the functionality." alt="" coords="106,269,249,295"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="56,54,32,72,13,95,9,113,13,133,25,181,35,199,53,219,71,235,93,248,136,267,134,272,90,253,68,240,49,223,31,202,20,183,8,134,3,113,8,92,28,68,53,50"/>
-<area shape="rect" id="Node000003" href="$context_8h.html" title="A request context." alt="" coords="23,101,217,126"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="123,59,123,100,117,100,117,59"/>
-<area shape="rect" id="Node000005" href="$response__line_8h.html" title="An RTSP response line." alt="" coords="241,93,412,133"/>
-<area shape="poly" id="edge6_Node000001_Node000005" title=" " alt="" coords="179,48,282,91,280,96,177,53"/>
-<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="97,137,80,155,65,176,58,199,64,220,77,236,93,249,131,267,129,272,90,254,73,240,59,223,53,198,60,174,76,152,93,133"/>
-<area shape="rect" id="Node000004" href="$controller_8h.html" title="An RTSP requests controller." alt="" coords="74,189,281,214"/>
-<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="137,136,172,187,167,190,133,139"/>
-<area shape="poly" id="edge5_Node000004_Node000002" title=" " alt="" coords="180,228,180,269,175,269,175,228"/>
-<area shape="poly" id="edge7_Node000005_Node000002" title=" " alt="" coords="325,147,315,186,294,223,277,239,257,253,217,272,215,267,254,248,273,235,290,220,310,184,320,146"/>
-<area shape="rect" id="Node000006" href="$response_8h.html" title="An RTSP response." alt="" coords="356,181,527,221"/>
-<area shape="poly" id="edge8_Node000005_Node000006" title=" " alt="" coords="364,140,418,179,414,183,361,144"/>
-<area shape="poly" id="edge9_Node000006_Node000002" title=" " alt="" coords="365,228,217,272,215,267,364,223"/>
+<area shape="rect" id="Node000001" title="An RTSP status code." alt="" coords="36,5,205,50"/>
+<area shape="rect" id="Node000002" href="$smolrtsp_8h.html" title="Re&#45;exports all the functionality." alt="" coords="106,283,247,311"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="50,60,31,78,14,99,9,120,14,142,25,192,35,212,53,233,91,262,134,282,129,284,88,266,49,237,31,215,20,194,9,143,3,120,9,97,27,74,52,56"/>
+<area shape="rect" id="Node000003" href="$context_8h.html" title="A request context." alt="" coords="23,106,218,134"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="121,63,123,106,118,105,120,68"/>
+<area shape="rect" id="Node000005" href="$response__line_8h.html" title="An RTSP response line." alt="" coords="241,98,410,143"/>
+<area shape="poly" id="edge6_Node000001_Node000005" title=" " alt="" coords="183,54,279,96,274,99,183,59"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="93,147,79,166,65,189,59,212,64,234,76,250,92,262,129,282,124,283,89,267,73,253,59,237,53,212,60,186,75,163,96,143"/>
+<area shape="rect" id="Node000004" href="$controller_8h.html" title="An RTSP requests controller." alt="" coords="73,199,280,227"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="137,145,171,199,166,199,136,150"/>
+<area shape="poly" id="edge5_Node000004_Node000002" title=" " alt="" coords="178,241,179,284,174,282,175,245"/>
+<area shape="poly" id="edge7_Node000005_Node000002" title=" " alt="" coords="324,156,314,199,293,237,259,266,220,285,218,280,256,262,289,234,309,197,320,160"/>
+<area shape="rect" id="Node000006" href="$response_8h.html" title="An RTSP response." alt="" coords="354,191,524,235"/>
+<area shape="poly" id="edge8_Node000005_Node000006" title=" " alt="" coords="365,150,415,190,409,190,364,155"/>
+<area shape="poly" id="edge9_Node000006_Node000002" title=" " alt="" coords="358,240,219,285,218,280,352,241"/>
 </map>

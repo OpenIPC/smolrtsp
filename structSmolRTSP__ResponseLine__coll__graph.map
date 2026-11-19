@@ -1,5 +1,5 @@
 <map id="SmolRTSP_ResponseLine" name="SmolRTSP_ResponseLine">
-<area shape="rect" id="Node000001" title="An RTSP response line." alt="" coords="5,93,189,119"/>
-<area shape="rect" id="Node000002" href="$structSmolRTSP__RtspVersion.html" title="An RTSP version." alt="" coords="12,5,183,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="100,45,100,93,95,93,95,45"/>
+<area shape="rect" id="Node000001" title="An RTSP response line." alt="" coords="5,106,189,134"/>
+<area shape="rect" id="Node000002" href="$structSmolRTSP__RtspVersion.html" title="An RTSP version." alt="" coords="12,5,182,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="99,47,100,106,94,105,95,50"/>
 </map>

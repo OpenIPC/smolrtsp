@@ -1,14 +1,14 @@
 <map id="include/smolrtsp/rtp_transport.h" name="include/smolrtsp/rtp_transport.h">
-<area shape="rect" id="Node000001" title="An RTP data transport." alt="" coords="220,5,372,45"/>
-<area shape="rect" id="Node000002" href="$smolrtsp_8h.html" title="Re&#45;exports all the functionality." alt="" coords="266,181,409,207"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="207,34,127,44,55,63,28,76,13,91,9,109,21,132,36,144,60,155,123,171,197,181,266,187,266,192,196,187,122,176,58,160,34,148,17,135,4,110,8,89,25,71,53,58,126,39,206,29"/>
-<area shape="rect" id="Node000003" href="$av1__transport_8h.html" title="An RTP/AV1 data transport." alt="" coords="32,93,190,133"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="244,54,153,96,150,91,242,49"/>
-<area shape="rect" id="Node000004" href="$jpeg__transport_8h.html" title="An RTP/JPEG (Motion JPEG) data transport." alt="" coords="215,93,378,133"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="299,59,299,93,294,93,294,59"/>
-<area shape="rect" id="Node000005" href="$jpegxs__transport_8h.html" title="An RTP/JPEG XS data transport." alt="" coords="402,93,580,133"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="352,48,449,91,447,96,350,53"/>
-<area shape="rect" id="Node000006" href="$nal__transport_8h.html" title="An RTP/NAL data transport." alt="" coords="604,93,759,133"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="386,44,604,92,603,97,385,49"/>
-<area shape="poly" id="edge6_Node000006_Node000002" title=" " alt="" coords="591,138,388,184,387,179,590,133"/>
+<area shape="rect" id="Node000001" title="An RTP data transport." alt="" coords="218,5,369,50"/>
+<area shape="rect" id="Node000002" href="$smolrtsp_8h.html" title="Re&#45;exports all the functionality." alt="" coords="264,191,406,218"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="201,38,124,50,53,71,28,84,12,100,9,119,21,141,36,153,59,164,122,180,195,191,266,200,261,200,194,196,121,186,57,169,33,158,17,144,4,120,8,98,24,80,51,66,123,45,205,34"/>
+<area shape="rect" id="Node000003" href="$av1__transport_8h.html" title="An RTP/AV1 data transport." alt="" coords="31,98,188,143"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="234,59,155,100,152,95,238,56"/>
+<area shape="rect" id="Node000004" href="$jpeg__transport_8h.html" title="An RTP/JPEG (Motion JPEG) data transport." alt="" coords="213,98,374,143"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="295,63,296,99,291,97,292,68"/>
+<area shape="rect" id="Node000005" href="$jpegxs__transport_8h.html" title="An RTP/JPEG XS data transport." alt="" coords="399,98,575,143"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="354,54,443,97,438,98,353,60"/>
+<area shape="rect" id="Node000006" href="$nal__transport_8h.html" title="An RTP/NAL data transport." alt="" coords="600,98,753,143"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="385,48,602,100,597,102,384,53"/>
+<area shape="poly" id="edge6_Node000006_Node000002" title=" " alt="" coords="587,143,390,193,389,187,582,144"/>
 </map>

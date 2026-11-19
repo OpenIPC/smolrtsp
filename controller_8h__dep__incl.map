@@ -1,5 +1,5 @@
 <map id="include/smolrtsp/controller.h" name="include/smolrtsp/controller.h">
-<area shape="rect" id="Node000001" title="An RTSP requests controller." alt="" coords="5,5,212,31"/>
-<area shape="rect" id="Node000002" href="$smolrtsp_8h.html" title="Re&#45;exports all the functionality." alt="" coords="37,79,180,104"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="111,44,111,79,106,79,106,44"/>
+<area shape="rect" id="Node000001" title="An RTSP requests controller." alt="" coords="5,5,212,33"/>
+<area shape="rect" id="Node000002" href="$smolrtsp_8h.html" title="Re&#45;exports all the functionality." alt="" coords="38,81,179,109"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="110,47,111,82,106,79,107,51"/>
 </map>

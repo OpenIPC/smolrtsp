@@ -1,11 +1,11 @@
 <map id="include/smolrtsp/nal/h266.h" name="include/smolrtsp/nal/h266.h">
-<area shape="rect" id="Node000001" title="H.266 / VVC NAL representation." alt="" coords="120,5,275,45"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="5,101,88,126"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="166,48,80,96,77,92,163,43"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="113,101,183,126"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="189,47,164,90,159,87,184,44"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="208,101,288,126"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="211,44,236,87,232,90,206,47"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="313,93,482,133"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="242,43,342,85,340,90,240,48"/>
+<area shape="rect" id="Node000001" title="H.266 / VVC NAL representation." alt="" coords="119,5,272,50"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,106,87,134"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="161,53,82,100,79,96,158,48"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="111,106,181,134"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="186,49,162,94,158,91,181,52"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="205,106,284,134"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="208,48,233,93,228,92,206,53"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="308,98,477,143"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="243,48,334,91,329,92,242,53"/>
 </map>

@@ -1,13 +1,13 @@
 <map id="include/smolrtsp/io_vec.h" name="include/smolrtsp/io_vec.h">
-<area shape="rect" id="Node000001" title="Vectored I/O support." alt="" coords="207,5,353,45"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="5,101,80,126"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="227,48,93,96,86,98,84,93,91,91,226,43"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="105,101,207,126"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="254,48,185,95,182,91,251,43"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="232,101,328,126"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="283,46,283,87,277,87,277,46"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="352,101,432,126"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="306,43,367,90,364,94,303,48"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="457,93,626,133"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="338,43,472,86,470,92,337,48"/>
+<area shape="rect" id="Node000001" title="Vectored I/O support." alt="" coords="204,5,349,50"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,106,79,134"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="217,53,92,100,87,103,85,98,90,96,216,48"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="103,106,205,134"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="250,50,186,99,183,95,245,51"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="229,106,324,134"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="279,48,279,92,274,90,275,52"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="349,106,428,134"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="304,48,363,97,358,96,302,53"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="452,98,621,143"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="339,48,463,92,457,93,339,53"/>
 </map>

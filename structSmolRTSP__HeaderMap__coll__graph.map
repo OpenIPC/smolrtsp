@@ -1,5 +1,5 @@
 <map id="SmolRTSP_HeaderMap" name="SmolRTSP_HeaderMap">
-<area shape="rect" id="Node000001" title="An RTSP header map." alt="" coords="5,93,175,119"/>
-<area shape="rect" id="Node000002" href="$structSmolRTSP__Header.html" title="An RTSP header." alt="" coords="19,5,161,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="93,45,93,93,87,93,87,45"/>
+<area shape="rect" id="Node000001" title="An RTSP header map." alt="" coords="5,106,174,134"/>
+<area shape="rect" id="Node000002" href="$structSmolRTSP__Header.html" title="An RTSP header." alt="" coords="19,5,160,33"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="92,47,92,106,87,105,87,50"/>
 </map>

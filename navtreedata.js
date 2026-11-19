@@ -51,8 +51,9 @@ var NAVTREEINDEX =
 [
 "annotated.html",
 "io__vec_8h.html#a73fb0c8243a4da29c96e982a24082784",
-"structSmolRTSP__ChannelPair.html"
+"structSmolRTSP__Av1TransportConfig.html#afbf479188f8bd2097e3bb6981fea1974"
 ];
 
-var SYNCONMSG = 'click to disable panel synchronisation';
-var SYNCOFFMSG = 'click to enable panel synchronisation';
+var SYNCONMSG = 'click to disable panel synchronization';
+var SYNCOFFMSG = 'click to enable panel synchronization';
+var LISTOFALLMEMBERS = 'List of all members';
