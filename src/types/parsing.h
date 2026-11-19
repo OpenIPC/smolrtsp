@@ -1,5 +1,7 @@
 #pragma once
 
+#include <smolrtsp/types/message_body.h>
+
 #include <smolrtsp/types/error.h>
 
 #include <stdbool.h>
@@ -65,3 +67,12 @@ SmolRTSP_ParseResult smolrtsp_match_header_name(CharSlice99 input);
  * `false` otherwise (no leading digit or overflow).
  */
 bool smolrtsp_parse_uint(CharSlice99 input, uintmax_t max, uintmax_t *result);
+
+// SMOLRTSP_MAX_CONTENT_LENGTH as a size_t bound: a configured value above
+// SIZE_MAX would otherwise pass validation and then wrap when narrowed, so a
+// 32-bit build could read 4294967296 as an empty body.
+static inline uintmax_t smolrtsp_max_content_length(void) {
+    return (uintmax_t)SMOLRTSP_MAX_CONTENT_LENGTH < (uintmax_t)SIZE_MAX
+               ? (uintmax_t)SMOLRTSP_MAX_CONTENT_LENGTH
+               : (uintmax_t)SIZE_MAX;
+}

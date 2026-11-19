@@ -33,19 +33,21 @@ static bool non_whitespace_matcher(char c, void *ctx) {
     return !whitespace_matcher(c, NULL);
 }
 
+// The <ctype.h> classifiers take an unsigned char's value: a byte >= 0x80
+// passed as a negative char is undefined behaviour.
 static bool numeric_matcher(char c, void *ctx) {
     (void)ctx;
-    return isdigit(c);
+    return isdigit((unsigned char)c);
 }
 
 static bool ident_matcher(char c, void *ctx) {
     (void)ctx;
-    return isalnum(c) || c == '_';
+    return isalnum((unsigned char)c) || c == '_';
 }
 
 static bool header_name_char_matcher(char c, void *ctx) {
     (void)ctx;
-    return isalpha(c) || c == '-';
+    return isalpha((unsigned char)c) || c == '-';
 }
 
 static bool char_matcher(char c, void *ctx) {
@@ -126,7 +128,13 @@ SmolRTSP_ParseResult smolrtsp_match_non_whitespaces(CharSlice99 input) {
 
 // TODO: refactor the following functions.
 
+// Each of the three below looks at its first byte before matching, so an
+// empty input -- a request that ends exactly where one of them starts -- is
+// more to come, not a byte past the end to read.
 SmolRTSP_ParseResult smolrtsp_match_numeric(CharSlice99 input) {
+    if (input.len == 0) {
+        return SmolRTSP_ParseResult_partial();
+    }
     if (!numeric_matcher(input.ptr[0], NULL)) {
         return SmolRTSP_ParseResult_Failure(
             SmolRTSP_ParseError_TypeMismatch(SmolRTSP_ParseType_Int, input));
@@ -136,6 +144,9 @@ SmolRTSP_ParseResult smolrtsp_match_numeric(CharSlice99 input) {
 }
 
 SmolRTSP_ParseResult smolrtsp_match_ident(CharSlice99 input) {
+    if (input.len == 0) {
+        return SmolRTSP_ParseResult_partial();
+    }
     if (!ident_matcher(input.ptr[0], NULL)) {
         return SmolRTSP_ParseResult_Failure(
             SmolRTSP_ParseError_TypeMismatch(SmolRTSP_ParseType_Ident, input));
@@ -145,6 +156,9 @@ SmolRTSP_ParseResult smolrtsp_match_ident(CharSlice99 input) {
 }
 
 SmolRTSP_ParseResult smolrtsp_match_header_name(CharSlice99 input) {
+    if (input.len == 0) {
+        return SmolRTSP_ParseResult_partial();
+    }
     if (!header_name_char_matcher(input.ptr[0], NULL)) {
         return SmolRTSP_ParseResult_Failure(SmolRTSP_ParseError_TypeMismatch(
             SmolRTSP_ParseType_HeaderName, input));

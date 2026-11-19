@@ -38,6 +38,14 @@ SmolRTSP_Header_parse(SmolRTSP_Header *restrict self, CharSlice99 input) {
     MATCH(smolrtsp_match_whitespaces(input));
 
     header.value = input;
+    // The length limit holds while the value is still arriving, not only once
+    // its CRLF is found: a value that never ends would otherwise be Partial
+    // for as long as the peer keeps sending, and buffered all the while.
+    if (SmolRTSP_ParseResult_is_partial(smolrtsp_match_until_crlf(input)) &&
+        input.len > SMOLRTSP_MAX_HEADER_VALUE + strlen("\r\n")) {
+        return SmolRTSP_ParseResult_Failure(
+            SmolRTSP_ParseError_HeaderValueTooLong(input));
+    }
     MATCH(smolrtsp_match_until_crlf(input));
     header.value =
         CharSlice99_from_ptrdiff(header.value.ptr, input.ptr - strlen("\r\n"));

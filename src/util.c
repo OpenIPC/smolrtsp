@@ -102,13 +102,13 @@ static int parse_transport_param(
     } else if (STARTS_WITH(param, "multicast")) {
         result->multicast = true;
     } else if (STARTS_WITH(param, "interleaved")) {
-        SmolRTSP_ChannelPair val;
+        SmolRTSP_ChannelPair val = {0};
         if (parse_channel_pair(&val, param) == -1) {
             return -1;
         }
         result->interleaved = SmolRTSP_ChannelPair_Some(val);
     } else if (STARTS_WITH(param, "client_port")) {
-        SmolRTSP_PortPair val;
+        SmolRTSP_PortPair val = {0};
         if (parse_port_pair(&val, param) == -1) {
             return -1;
         }
@@ -118,10 +118,21 @@ static int parse_transport_param(
     return 0;
 }
 
+// A single value names the RTP channel or port, and RTCP is the next one up
+// (RFC 2326, 12.39). It used to be accepted with the RTCP half left as whatever
+// the stack held, which a server then echoed back to the client and used.
 static int parse_channel_pair(
     SmolRTSP_ChannelPair *restrict val, const char *restrict param) {
-    if (PARSE_RANGE(val->rtp_channel, val->rtcp_channel, SCNu8, param) < 1) {
+    const int n =
+        PARSE_RANGE(val->rtp_channel, val->rtcp_channel, SCNu8, param);
+    if (n < 1) {
         return -1;
+    }
+    if (n == 1) {
+        if (val->rtp_channel == UINT8_MAX) {
+            return -1;
+        }
+        val->rtcp_channel = val->rtp_channel + 1;
     }
 
     return 0;
@@ -129,8 +140,15 @@ static int parse_channel_pair(
 
 static int
 parse_port_pair(SmolRTSP_PortPair *restrict val, const char *restrict param) {
-    if (PARSE_RANGE(val->rtp_port, val->rtcp_port, SCNu16, param) < 1) {
+    const int n = PARSE_RANGE(val->rtp_port, val->rtcp_port, SCNu16, param);
+    if (n < 1) {
         return -1;
+    }
+    if (n == 1) {
+        if (val->rtp_port == UINT16_MAX) {
+            return -1;
+        }
+        val->rtcp_port = val->rtp_port + 1;
     }
 
     return 0;

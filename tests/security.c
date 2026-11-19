@@ -5,6 +5,7 @@
 
 #include <smolrtsp/types/request.h>
 #include <smolrtsp/types/response.h>
+#include <smolrtsp/util.h>
 
 #include <greatest.h>
 
@@ -107,9 +108,109 @@ TEST valid_request_still_parses(void) {
     PASS();
 }
 
+// A request that ends exactly where a number, an identifier or a header name
+// starts must be Partial: the matchers looked at their first byte before
+// checking there was one. ASan catches a reintroduced read past the buffer,
+// which is sized exactly so there is no slack to hide it.
+TEST request_ending_at_a_token_is_partial(void) {
+    static const char *const inputs[] = {
+        "OPTIONS * RTSP/",
+        "OPTIONS * RTSP/1.0\r\n",
+        "OPTIONS * RTSP/1.0\r\nCSeq: 1\r\n",
+    };
+    for (size_t i = 0; i < sizeof inputs / sizeof inputs[0]; i++) {
+        const size_t len = strlen(inputs[i]);
+        char *buf = malloc(len);
+        ASSERT(buf != NULL);
+        memcpy(buf, inputs[i], len);
+        SmolRTSP_Request req = SmolRTSP_Request_uninit();
+        const SmolRTSP_ParseResult ret =
+            SmolRTSP_Request_parse(&req, CharSlice99_new(buf, len));
+        free(buf);
+        ASSERT(SmolRTSP_ParseResult_is_partial(ret));
+    }
+
+    PASS();
+}
+
+// A header value that never ends is refused once it is past the limit, rather
+// than kept Partial (and buffered) for as long as the peer keeps sending.
+TEST unterminated_header_value_is_refused(void) {
+    const size_t value_len = SMOLRTSP_MAX_HEADER_VALUE + 64;
+    static const char head[] = "OPTIONS * RTSP/1.0\r\nX-Long: ";
+    char *buf = malloc(sizeof head - 1 + value_len);
+    ASSERT(buf != NULL);
+    memcpy(buf, head, sizeof head - 1);
+    memset(buf + sizeof head - 1, 'A', value_len);
+    SmolRTSP_Request req = SmolRTSP_Request_uninit();
+    const SmolRTSP_ParseResult ret = SmolRTSP_Request_parse(
+        &req, CharSlice99_new(buf, sizeof head - 1 + value_len));
+    free(buf);
+    ASSERT(SmolRTSP_ParseResult_is_failure(ret));
+
+    PASS();
+}
+
+// A Content-Length past SMOLRTSP_MAX_CONTENT_LENGTH is an error, not a body to
+// wait for; SIZE_MAX used to be accepted and waited on.
+TEST content_length_is_bounded(void) {
+    ASSERT(request_fails(
+        "OPTIONS * RTSP/1.0\r\nCSeq: 1\r\n"
+        "Content-Length: 18446744073709551615\r\n\r\n"));
+    ASSERT(request_fails(
+        "OPTIONS * RTSP/1.0\r\nCSeq: 1\r\n"
+        "Content-Length: 65537\r\n\r\n"));
+
+    PASS();
+}
+
+// One value in `interleaved=` or `client_port=` names RTP; RTCP is the next one
+// (RFC 2326, 12.39). It was left uninitialized and handed back.
+TEST transport_single_value_pairs(void) {
+    SmolRTSP_TransportConfig config;
+
+    ASSERT_EQ(
+        0, smolrtsp_parse_transport(
+               &config, CharSlice99_from_str("RTP/AVP/TCP;interleaved=5")));
+    match(config.interleaved) {
+        of(SmolRTSP_ChannelPair_Some, pair) {
+            ASSERT_EQ(5, pair->rtp_channel);
+            ASSERT_EQ(6, pair->rtcp_channel);
+        }
+        otherwise FAIL();
+    }
+
+    ASSERT_EQ(
+        0, smolrtsp_parse_transport(
+               &config,
+               CharSlice99_from_str("RTP/AVP/UDP;unicast;client_port=5000")));
+    match(config.client_port) {
+        of(SmolRTSP_PortPair_Some, pair) {
+            ASSERT_EQ(5000, pair->rtp_port);
+            ASSERT_EQ(5001, pair->rtcp_port);
+        }
+        otherwise FAIL();
+    }
+
+    // No next channel or port to give RTCP.
+    ASSERT_EQ(
+        -1, smolrtsp_parse_transport(
+                &config, CharSlice99_from_str("RTP/AVP/TCP;interleaved=255")));
+    ASSERT_EQ(
+        -1,
+        smolrtsp_parse_transport(
+            &config, CharSlice99_from_str("RTP/AVP/UDP;client_port=65535")));
+
+    PASS();
+}
+
 SUITE(security) {
     RUN_TEST(huge_header_value_does_not_crash);
     RUN_TEST(integer_fields_are_bounded);
     RUN_TEST(status_code_is_bounded);
     RUN_TEST(valid_request_still_parses);
+    RUN_TEST(request_ending_at_a_token_is_partial);
+    RUN_TEST(unterminated_header_value_is_refused);
+    RUN_TEST(content_length_is_bounded);
+    RUN_TEST(transport_single_value_pairs);
 }

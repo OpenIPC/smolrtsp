@@ -166,6 +166,20 @@ foreach(_codec H264 H265 H266 AV1 JPEG JPEGXS)
     endif()
 endforeach()
 
+# The parser limits are compiled into the library, so an override has to reach
+# its build, not only a consumer's sources. Set here, it is PUBLIC so the
+# headers a consumer includes see the same value the parsers were built with.
+set(SMOLRTSP_MAX_CONTENT_LENGTH "" CACHE STRING
+    "Largest Content-Length the parsers accept (empty: the header's default)")
+set(SMOLRTSP_MAX_HEADER_VALUE "" CACHE STRING
+    "Longest header value the parsers accept (empty: the header's default)")
+foreach(_limit MAX_CONTENT_LENGTH MAX_HEADER_VALUE)
+    if(NOT "${SMOLRTSP_${_limit}}" STREQUAL "")
+        target_compile_definitions(${PROJECT_NAME}
+            PUBLIC SMOLRTSP_${_limit}=${SMOLRTSP_${_limit}})
+    endif()
+endforeach()
+
 # Precompile headers that use Datatype99/Interface99.
 set(SMOLRTSP_PCH
     include/smolrtsp/types/error.h

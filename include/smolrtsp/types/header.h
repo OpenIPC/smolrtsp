@@ -71,8 +71,10 @@ bool SmolRTSP_Header_eq(
  * Values longer than this are rejected with
  * #SmolRTSP_ParseError_HeaderValueTooLong. This bounds the memory that header
  * parsing may touch and guards against denial-of-service from unbounded header
- * values sent by an untrusted peer. Define this macro before including this
- * header to override the default.
+ * values sent by an untrusted peer. The parsers are compiled with this value,
+ * so an override has to be in the library's own build: configure with
+ * `-DSMOLRTSP_MAX_HEADER_VALUE=<n>`, which also defines it for consumers of the
+ * target.
  */
 #ifndef SMOLRTSP_MAX_HEADER_VALUE
 #define SMOLRTSP_MAX_HEADER_VALUE 1024
