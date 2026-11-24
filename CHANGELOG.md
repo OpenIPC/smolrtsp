@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
  - The `<ctype.h>` classifiers in the matchers get an `unsigned char` value, so a byte >= 0x80 is no longer undefined behaviour.
  - A header value longer than `SMOLRTSP_MAX_HEADER_VALUE` is refused while it is still arriving, not only once its CRLF is found, so a value that never ends no longer keeps a request Partial indefinitely.
  - `Content-Length` is capped by the new `SMOLRTSP_MAX_CONTENT_LENGTH` (default 64 KiB, overridable) in requests and responses; `SIZE_MAX` used to be accepted and waited for.
+ - The example server no longer crashes or leaks on out-of-order sessions: `TEARDOWN` before `PLAY` (NULL dereference), `Session: 0` matching a stream that was never SETUP, a repeated `PLAY` or `SETUP` (use-after-free after the client disconnects), and a `SETUP` that is not followed by `PLAY` or carries a malformed `Session` (leaked transport and UDP socket). A `TEARDOWN` now ends the session, so a later `PLAY` or `TEARDOWN` of it gets 454; `PLAY` of a stream that has reached its end gets 455 until it is SETUP again. The library itself is unaffected; code derived from the example should be updated. Reported by Dickson Wu (GHSA-mp34-pfv9-mm6f).
 
 ## 0.2.0 - 2026-05-24
 
