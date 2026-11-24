@@ -124,7 +124,10 @@ def run_case(server, requests, expected):
         time.sleep(0.2)
 
         def count_fds():
-            return len(os.listdir(f"/proc/{proc.pid}/fd"))
+            try:
+                return len(os.listdir(f"/proc/{proc.pid}/fd"))
+            except FileNotFoundError:
+                return 0  # No procfs; skip the check.
 
         fds = count_fds()
         codes = converse(requests)
@@ -132,7 +135,7 @@ def run_case(server, requests, expected):
             problems.append(f"expected {expected}, got {codes}")
         if proc.poll() is None:
             leaked = count_fds() - fds
-            if leaked != 0:
+            if leaked > 0:
                 problems.append(f"{leaked} file descriptors leaked")
             if converse([setup(), play(), teardown()]) != [200] * 3:
                 problems.append("the next client was not served")

@@ -137,6 +137,7 @@ static void on_event_cb(struct bufferevent *bev, short events, void *ctx);
 static void on_sigint_cb(evutil_socket_t sig, short events, void *ctx);
 
 static bool Stream_matches(const Stream *self, uint64_t session_id);
+static bool Stream_is_playing(const Stream *self);
 static void Client_reset_stream(Client *self, Stream *stream);
 
 static int setup_transport(
@@ -577,6 +578,19 @@ Client_play(VSelf, SmolRTSP_Context *ctx, const SmolRTSP_Request *req) {
         return;
     }
 
+    // A stream that has reached its end must be SETUP again. Check this before
+    // starting anything, so that a failed PLAY has no effect.
+    for (size_t i = 0; i < MAX_STREAMS; i++) {
+        const Stream *stream = &self->streams[i];
+        if (Stream_matches(stream, session_id) && stream->ctx.vptr != NULL &&
+            !Stream_is_playing(stream)) {
+            smolrtsp_respond(
+                ctx, SMOLRTSP_STATUS_METHOD_NOT_VALID_IN_THIS_STATE,
+                "Stream has ended");
+            return;
+        }
+    }
+
     bool played = false;
     for (size_t i = 0; i < MAX_STREAMS; i++) {
         if (Stream_matches(&self->streams[i], session_id)) {
@@ -584,7 +598,7 @@ Client_play(VSelf, SmolRTSP_Context *ctx, const SmolRTSP_Request *req) {
 
             // The transport is already owned by the running stream; starting it
             // again would make two streams own it.
-            if (self->streams[i].ctx.vptr != NULL) {
+            if (Stream_is_playing(&self->streams[i])) {
                 continue;
             }
 
@@ -707,11 +721,16 @@ static bool Stream_matches(const Stream *self, uint64_t session_id) {
     return self->transport != NULL && self->session_id == session_id;
 }
 
+static bool Stream_is_playing(const Stream *self) {
+    // The timer is deleted once the media ends, while `ctx` stays until reset.
+    return self->ctx.vptr != NULL && event_pending(self->ev, EV_TIMEOUT, NULL);
+}
+
 // Stops `stream` if it is playing and returns it to the state before SETUP.
 static void Client_reset_stream(Client *self, Stream *stream) {
     if (stream->ctx.vptr != NULL) {
         // A stream that has reached its end has already been discounted.
-        if (event_pending(stream->ev, EV_TIMEOUT, NULL)) {
+        if (Stream_is_playing(stream)) {
             self->streams_playing--;
         }
         VCALL(stream->ctx, drop); // Frees `ev` and `transport` too.
