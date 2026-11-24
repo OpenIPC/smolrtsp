@@ -6,6 +6,9 @@ mkdir examples/build -p
 cd examples/build
 cmake ..
 cmake --build .
+
+python3 ../../scripts/test-server-sessions.py ./server
+
 ./server &
 server_pid=$!
 

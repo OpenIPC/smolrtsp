@@ -113,6 +113,7 @@
 
 typedef struct {
     uint64_t session_id;
+    // Non-NULL iff the stream has been SETUP. Owned by `ctx` once it is PLAYed.
     SmolRTSP_RtpTransport *transport;
     struct event *ev;
     SmolRTSP_Droppable ctx;
@@ -134,6 +135,9 @@ static void listener_cb(
     int socklen, void *ctx);
 static void on_event_cb(struct bufferevent *bev, short events, void *ctx);
 static void on_sigint_cb(evutil_socket_t sig, short events, void *ctx);
+
+static bool Stream_matches(const Stream *self, uint64_t session_id);
+static void Client_reset_stream(Client *self, Stream *stream);
 
 static int setup_transport(
     Client *self, SmolRTSP_Context *ctx, const SmolRTSP_Request *req,
@@ -370,9 +374,7 @@ static void Client_drop(VSelf) {
     VSELF(Client);
 
     for (size_t i = 0; i < MAX_STREAMS; i++) {
-        if (self->streams[i].ctx.vptr != NULL) {
-            VCALL(self->streams[i].ctx, drop);
-        }
+        Client_reset_stream(self, &self->streams[i]);
     }
 
     free(self);
@@ -475,11 +477,6 @@ static void
 Client_setup(VSelf, SmolRTSP_Context *ctx, const SmolRTSP_Request *req) {
     VSELF(Client);
 
-    SmolRTSP_Transport transport;
-    if (setup_transport(self, ctx, req, &transport) == -1) {
-        return;
-    }
-
     size_t stream_id;
     if (CharSlice99_primitive_ends_with(
             req->start_line.uri, CharSlice99_from_str("/audio"))) {
@@ -510,8 +507,8 @@ Client_setup(VSelf, SmolRTSP_Context *ctx, const SmolRTSP_Request *req) {
 
     const bool aggregate_control_requested = SmolRTSP_HeaderMap_contains_key(
         &req->header_map, SMOLRTSP_HEADER_SESSION);
+    uint64_t session_id;
     if (aggregate_control_requested) {
-        uint64_t session_id;
         if (smolrtsp_scanf_header(
                 &req->header_map, SMOLRTSP_HEADER_SESSION, "%" SCNu64,
                 &session_id) != 1) {
@@ -519,11 +516,20 @@ Client_setup(VSelf, SmolRTSP_Context *ctx, const SmolRTSP_Request *req) {
                 ctx, SMOLRTSP_STATUS_BAD_REQUEST, "Malformed `Session'");
             return;
         }
-
-        stream->session_id = session_id;
     } else {
-        stream->session_id = (uint64_t)rand();
+        session_id = (uint64_t)rand();
     }
+
+    // Must be the last fallible step: from here on, the transport is owned by
+    // `stream`.
+    SmolRTSP_Transport transport;
+    if (setup_transport(self, ctx, req, &transport) == -1) {
+        return;
+    }
+
+    // A repeated SETUP replaces the previous transport and stops playback.
+    Client_reset_stream(self, stream);
+    stream->session_id = session_id;
 
     if (AUDIO_STREAM_ID == stream_id) {
         stream->transport = SmolRTSP_RtpTransport_new(
@@ -573,7 +579,15 @@ Client_play(VSelf, SmolRTSP_Context *ctx, const SmolRTSP_Request *req) {
 
     bool played = false;
     for (size_t i = 0; i < MAX_STREAMS; i++) {
-        if (self->streams[i].session_id == session_id) {
+        if (Stream_matches(&self->streams[i], session_id)) {
+            played = true;
+
+            // The transport is already owned by the running stream; starting it
+            // again would make two streams own it.
+            if (self->streams[i].ctx.vptr != NULL) {
+                continue;
+            }
+
             if (AUDIO_STREAM_ID == i) {
                 self->streams[i].ctx = play_audio(
                     self->base, self->bev, self->streams[i].transport,
@@ -605,8 +619,6 @@ Client_play(VSelf, SmolRTSP_Context *ctx, const SmolRTSP_Request *req) {
                     self->base, self->bev, self->streams[i].transport,
                     &self->streams[i].ev, &self->streams_playing);
             }
-
-            played = true;
         }
     }
 
@@ -635,8 +647,8 @@ Client_teardown(VSelf, SmolRTSP_Context *ctx, const SmolRTSP_Request *req) {
 
     bool teardowned = false;
     for (size_t i = 0; i < MAX_STREAMS; i++) {
-        if (self->streams[i].session_id == session_id) {
-            event_del(self->streams[i].ev);
+        if (Stream_matches(&self->streams[i], session_id)) {
+            Client_reset_stream(self, &self->streams[i]);
             teardowned = true;
         }
     }
@@ -689,6 +701,27 @@ static void Client_after(
 }
 
 impl(SmolRTSP_Controller, Client);
+
+static bool Stream_matches(const Stream *self, uint64_t session_id) {
+    // A zeroed stream has session ID 0, which a client is free to send.
+    return self->transport != NULL && self->session_id == session_id;
+}
+
+// Stops `stream` if it is playing and returns it to the state before SETUP.
+static void Client_reset_stream(Client *self, Stream *stream) {
+    if (stream->ctx.vptr != NULL) {
+        // A stream that has reached its end has already been discounted.
+        if (event_pending(stream->ev, EV_TIMEOUT, NULL)) {
+            self->streams_playing--;
+        }
+        VCALL(stream->ctx, drop); // Frees `ev` and `transport` too.
+    } else if (stream->transport != NULL) {
+        VTABLE(SmolRTSP_RtpTransport, SmolRTSP_Droppable)
+            .drop(stream->transport);
+    }
+
+    *stream = (Stream){0};
+}
 
 static int setup_transport(
     Client *self, SmolRTSP_Context *ctx, const SmolRTSP_Request *req,
